@@ -3,6 +3,10 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import vuetify from "./plugins/vuetify";
+import api from "./plugins/api";
+import "@/plugins/Dayjs";
+
+Vue.use(api);
 
 import "./scss/main.scss";
 

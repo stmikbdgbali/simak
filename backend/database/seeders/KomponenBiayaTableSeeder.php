@@ -18,7 +18,7 @@ class KomponenBiayaTableSeeder extends Seeder
         
         \DB::table('pe3_kombi')->insert([
             'id'=>"101",
-            'nama'=>'BIAYA PENDAFTARAN + BIAYA FORMULIR',
+            'nama'=>'BIAYA PENDAFTARAN',
             'periode'=>'sekali',
             'created_at'=>Carbon::now(),
             'updated_at'=>Carbon::now()
@@ -26,7 +26,7 @@ class KomponenBiayaTableSeeder extends Seeder
 
         \DB::table('pe3_kombi')->insert([
             'id'=>"102",
-            'nama'=>'BIAYA DAFTAR ULANG MHS. BARU',
+            'nama'=>'PENGEMBANGAN',
             'periode'=>'sekali',
             'created_at'=>Carbon::now(),
             'updated_at'=>Carbon::now()
@@ -34,51 +34,27 @@ class KomponenBiayaTableSeeder extends Seeder
         
         \DB::table('pe3_kombi')->insert([
             'id'=>"201",
-            'nama'=>'SPP',
+            'nama'=>'SPP + KEMAHASISWAAN',
             'periode'=>'perbulan',
             'created_at'=>Carbon::now(),
             'updated_at'=>Carbon::now()
         ]);       
 
         \DB::table('pe3_kombi')->insert([
-            'id'=>"202",
-            'nama'=>'REGISTRASI KRS',
-            'periode'=>'perbulan',
+            'id'=>"401",
+            'nama'=>'KERJA PRAKTEK',
+            'periode'=>'insidental',
             'created_at'=>Carbon::now(),
             'updated_at'=>Carbon::now()
-        ]);          
+        ]);
 
         \DB::table('pe3_kombi')->insert([
-            'id'=>"301",
-            'nama'=>'PROGRAM PENGALAMAN LAPANGAN / PROGRAM KERJA LAPANGAN',
+            'id'=>"402",
+            'nama'=>'SKRIPSI',
             'periode'=>'insidental',
             'created_at'=>Carbon::now(),
             'updated_at'=>Carbon::now()
-        ]);          
-        
-        \DB::table('pe3_kombi')->insert([
-            'id'=>"401",
-            'nama'=>'KULIAH KERJA NYATA',
-            'periode'=>'insidental',
-            'created_at'=>Carbon::now(),
-            'updated_at'=>Carbon::now()
-        ]);          
-        
-        \DB::table('pe3_kombi')->insert([
-            'id'=>"501",
-            'nama'=>'SEMINAR',
-            'periode'=>'insidental',
-            'created_at'=>Carbon::now(),
-            'updated_at'=>Carbon::now()
-        ]);          
-        
-        \DB::table('pe3_kombi')->insert([
-            'id'=>"601",
-            'nama'=>'UJIAN MUNAQASAH',
-            'periode'=>'insidental',
-            'created_at'=>Carbon::now(),
-            'updated_at'=>Carbon::now()
-        ]);          
+        ]);                   
         
         \DB::table('pe3_kombi')->insert([
             'id'=>"701",
