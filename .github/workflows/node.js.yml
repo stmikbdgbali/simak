@@ -29,3 +29,7 @@ jobs:
     - name: build library
       working-directory: ./frontend
       run: npm run build --if-present
+      
+    - name: tampilkan isi folder dist
+      working-directory: ./frontend
+      run: dir ./dist
