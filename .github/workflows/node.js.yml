@@ -32,6 +32,6 @@ jobs:
         password: 12345
         port: 21
         protocol: ftps
-        LOCAL_DIR: ./frontend/dist
-        REMOTE_DIR:  /public_html/simak/
-        ARGS: --delete # will delete files on the server if you've deleted them in git
+        local_dir: ./frontend/dist
+        remote_dir:  /public_html/simak/
+        args: --delete # will delete files on the server if you've deleted them in git
