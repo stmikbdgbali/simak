@@ -29,7 +29,7 @@ jobs:
       with:
         server: ftp.myhosing.com
         username: myusername
-        password: ${{ secrets.FTP_PASSWORD }}
+        password: 12345
         port: 21
         protocol: ftps
         LOCAL_DIR: ./frontend/dist
