@@ -22,21 +22,11 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}    
-    - name: Install library
-      working-directory: ./frontend
-      run: npm install
-    
-    - name: build library
-      working-directory: ./frontend
-      run: npm run build --if-present
-      
-    - name: tampilkan isi folder dist
-      working-directory: ./frontend
-      run: dir ./dist
+
       
     - name: upload ke ftp server stmik bandung bali
       uses: SamKirkland/FTP-Deploy-Action@4.0.0
-      env:
+      with:
         FTP_SERVER: ftp.myhosing.com
         FTP_USERNAME: myusername
         FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
