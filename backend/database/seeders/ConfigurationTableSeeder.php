@@ -21,7 +21,7 @@ class ConfigurationTableSeeder extends Seeder
             'config_id'=>"101",
             'config_group'=>'identitas',
             'config_key'=>'NAMA_PT',
-            'config_value'=>'NAMA PT',
+            'config_value'=>'STMIK BANDUNG BALI',
             'created_at'=>Carbon::now(),
             'updated_at'=>Carbon::now()
         ]);        
@@ -30,7 +30,7 @@ class ConfigurationTableSeeder extends Seeder
             'config_id'=>"102",
             'config_group'=>'identitas',
             'config_key'=>'NAMA_PT_ALIAS',
-            'config_value'=>'NAMA PT ALIAS',
+            'config_value'=>'STMIK BANDUNG BALI',
             'created_at'=>Carbon::now(),
             'updated_at'=>Carbon::now()
         ]);
@@ -48,7 +48,7 @@ class ConfigurationTableSeeder extends Seeder
             'config_id'=>"104",
             'config_group'=>'identitas',
             'config_key'=>'KODE_PT',
-            'config_value'=>'0',
+            'config_value'=>'083036',
             'created_at'=>Carbon::now(),
             'updated_at'=>Carbon::now()
         ]);
