@@ -8,8 +8,6 @@ import "@/plugins/Dayjs";
 
 Vue.use(api);
 
-import "./scss/main.scss";
-
 Vue.config.productionTip = false;
 
 new Vue({

@@ -1,11 +1,21 @@
-import Vue from "vue";
-import Vuex from "vuex";
+import Vue from 'vue'
+import Vuex from 'vuex'
+import VuexPersistence from 'vuex-persist'
+import Uifront from './modules/uifront'
+import Uiadmin from './modules/uiadmin'
+import Auth from './modules/auth'
 
-Vue.use(Vuex);
+const vuexStorage = new VuexPersistence({
+	key:'portalekampus3',
+    storage: localStorage, 
+})
+Vue.use(Vuex)
 
-export default new Vuex.Store({
-	state: {},
-	mutations: {},
-	actions: {},
-	modules: {},
-});
+export default new Vuex.Store({	
+    modules: {
+		uifront:Uifront,
+		auth:Auth,
+		uiadmin:Uiadmin,
+	},
+	plugins: [vuexStorage.plugin]
+})
