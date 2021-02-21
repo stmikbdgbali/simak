@@ -35,4 +35,4 @@ jobs:
         local_dir: ./frontend/dist/
         remote_dir:  /home/stmikba1/public_html/simak/
         args: --delete # will delete files on the server if you've deleted them in git
-        exclude: '[backend/**]'
+        exclude: '[.git*, .git*/**, **/.git*/**, backend/**]'
