@@ -31,7 +31,7 @@ jobs:
         username: ${{ secrets.username}}
         password: ${{ secrets.password}}
         port: 21
-        protocol: ftps
+        protocol: ftp
         local_dir: ./frontend/dist
         remote_dir:  /public_html/simak/
         args: --delete # will delete files on the server if you've deleted them in git
