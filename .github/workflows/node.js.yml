@@ -33,3 +33,10 @@ jobs:
     - name: tampilkan isi folder dist
       working-directory: ./frontend
       run: dir ./dist
+      
+    - name: upload ke ftp server stmik bandung bali
+      uses: SamKirkland/FTP-Deploy-Action@4.0.0
+      with:
+        server: ${{ secrets.FTP_HOST }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
