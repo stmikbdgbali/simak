@@ -27,9 +27,11 @@ jobs:
     - name: upload ke ftp server stmik bandung bali
       uses: SamKirkland/FTP-Deploy-Action@4.0.0
       with:
-        FTP_SERVER: ftp.myhosing.com
-        FTP_USERNAME: myusername
-        FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-        LOCAL_DIR: ./public/
-        REMOTE_DIR:  /path/to/site/root/on/my/hosting/
+        server: ftp.myhosing.com
+        username: myusername
+        password: ${{ secrets.FTP_PASSWORD }}
+        port: 21
+        protocol: ftps
+        LOCAL_DIR: ./frontend/dist
+        REMOTE_DIR:  /public_html/simak/
         ARGS: --delete # will delete files on the server if you've deleted them in git
