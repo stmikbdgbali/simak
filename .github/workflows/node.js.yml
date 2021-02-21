@@ -27,7 +27,7 @@ jobs:
     - name: upload ke ftp server stmik bandung bali
       uses: SamKirkland/FTP-Deploy-Action@4.0.0
       with:
-        server: ${{ secrets.ftp_host}}
+        server: ${{ secrets.server}}
         username: ${{ secrets.ftp_username}}
         password: ${{ secrets.ftp_password}}
         port: 21
