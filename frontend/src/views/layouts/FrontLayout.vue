@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-app-bar app elevation="0">
+        <v-app-bar app elevation="0" class="orange">
             <v-toolbar-title>
                 <span class="hidden-sm-and-down">{{namaPTAlias}}</span>
             </v-toolbar-title>
