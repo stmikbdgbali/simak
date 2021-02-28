@@ -15,6 +15,30 @@ const routes = [
 		component: () => import("../views/pages/front/Home.vue"),
 	},
 	{
+		path: '/pmb',
+		name: 'FrontPMB',
+		meta:{
+			title: "PENDAFTARAN MAHASISWA BARU"
+		},
+		component: () => import('../views/pages/front/PMB.vue')
+	},
+	{
+		path: '/login',
+		name: 'FrontLogin',
+		meta:{
+			title: "LOGIN"
+		},
+		component: () => import('../views/pages/front/Login.vue')
+	},
+	{
+		path: '/dashboard/:token',
+		name: 'AdminDashboard',
+		meta:{
+			title: "DASHBOARD",			
+        },
+		component: () => import('../views/pages/admin/Dashboard.vue'),		
+	},
+	{
 		path: "/404",
 		name: "NotFoundComponent",
 		meta: {

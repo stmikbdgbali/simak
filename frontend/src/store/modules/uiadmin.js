@@ -28,18 +28,9 @@ const getDefaultState = () =>
         k_status:null,
         
         skala_nilai:[
-            'A',
-            'A-',
-            'A/B',
-            'B+',        
-            'B',
-            'B-',
-            'B/C',
-            'C+',
-            'C',
-            'C-',
-            'C/D',
-            'D+',
+            'A',                               
+            'B',            
+            'C',            
             'D',
             'E'
         ],       
