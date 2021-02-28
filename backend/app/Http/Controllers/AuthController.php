@@ -66,7 +66,35 @@ class AuthController extends Controller
         $user['isdw']=$this->hasRole('dosenwali');
         $user['permissions']=$this->guard()->user()->permissions->pluck('id','name')->toArray();
         return response()->json($user);
-    }    
+    }   
+    /**
+     * Log the user out (Invalidate the token).
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function logout(Request $request)
+    {
+        //log user logout
+        \App\Models\System\ActivityLog::log($request,[
+            'object' => $this->guard()->user(),             
+            'object_id' => $this->getUserid(), 
+            'user_id' => $this->getUserid(), 
+            'message' => 'user '.$this->guard()->user()->username.' berhasil logout'
+        ],1);
+
+        $this->guard()->logout();
+
+        return response()->json(['message' => 'Successfully logged out'],200);
+    }
+    /**
+     * Refresh a token.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function refresh()
+    {
+        return $this->respondWithToken($this->guard()->refresh());
+    } 
     /**
      * Get the token array structure.
      *
