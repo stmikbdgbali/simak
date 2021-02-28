@@ -279,7 +279,10 @@ class PermissionsTableSeeder extends Seeder
             'SYSTEM-USERS-ALUMNI',
             'SYSTEM-USERS-ORANG-TUA-WALI',
 
-            'SYSTEM-MIGRATION'
+            'SYSTEM-MIGRATION',
+
+            //plugins
+            'PLUGINS-H2H-ZOOMAPI',
         ];
         $records=[];
         foreach($modules as $v)
