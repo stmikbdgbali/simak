@@ -313,9 +313,9 @@ export default {
                     this.$refs.frmdata.reset(); 
                     this.formdata.foto=data.foto;       
                     this.formdata=this.formdefault; 
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                 }).catch(()=>{
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                 });                     
             }
         },
@@ -352,10 +352,10 @@ export default {
                             }
                         }
                     ).then(({data})=>{                           
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                         this.$store.dispatch('updateFoto',data.user.foto);                        
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });    
                     this.$refs.frmdata.reset(); 
                 }   
@@ -371,10 +371,10 @@ export default {
                     }
                 }
             ).then(({data})=>{                           
-                this.btnLoading=false;
+                this.btnLoading = false;
                 this.$store.dispatch('updateFoto',data.user.foto);
             }).catch(()=>{
-                this.btnLoading=false;
+                this.btnLoading = false;
             });    
         },
         async fetchMahasiswa()
@@ -391,7 +391,7 @@ export default {
         }
         
     },
-    computed:{        
+    computed: {        
 		photoUser: {
             get()
             {

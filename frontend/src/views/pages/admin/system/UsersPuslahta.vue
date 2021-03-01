@@ -286,7 +286,7 @@
     </SystemUserLayout>
 </template>
 <script>
-import {mapGetters} from 'vuex';
+import {mapGetters} from "vuex";
 import SystemUserLayout from '@/views/layouts/SystemUserLayout';
 import ModuleHeader from '@/components/ModuleHeader';
 import UserPermissions from '@/views/pages/admin/system/UserPermissions';
@@ -445,9 +445,9 @@ export default {
                             }
                         }
                     ).then(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
                 }
             });
@@ -536,7 +536,7 @@ export default {
                 }
             }).then(({data})=>{
                 this.editedItem.role_id=data.roles;
-                this.btnLoading=false;
+                this.btnLoading = false;
                 this.dialogEdit = true;
             });
         },
@@ -545,7 +545,7 @@ export default {
             this.editedItem=item;
         },
         close () {
-            this.btnLoading=false;
+            this.btnLoading = false;
             this.dialog = false;
             this.dialogEdit = false;
             setTimeout(() => {
@@ -556,7 +556,7 @@ export default {
             );
         },
         closeUserPermissions () {
-            this.btnLoading=false;            
+            this.btnLoading = false;            
             this.dialogUserPermission = false;
         },
         save () {
@@ -585,7 +585,7 @@ export default {
                         Object.assign(this.daftar_users[this.editedIndex], data.user);
                         this.close();
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
 
                 } else {
@@ -608,7 +608,7 @@ export default {
                         this.daftar_users.push(data.user);
                         this.close();
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
                 }
             }
@@ -630,9 +630,9 @@ export default {
                     ).then(()=>{
                         const index = this.daftar_users.indexOf(item);
                         this.daftar_users.splice(index, 1);
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
                 }
             });

@@ -305,7 +305,7 @@
     </SystemUserLayout>
 </template>
 <script>
-import {mapGetters} from 'vuex';
+import {mapGetters} from "vuex";
 import SystemUserLayout from '@/views/layouts/SystemUserLayout';
 import ModuleHeader from '@/components/ModuleHeader';
 import UserPermissions from '@/views/pages/admin/system/UserPermissions';
@@ -468,7 +468,7 @@ export default {
             this.dialogEdit = true;
         },        
         close () {            
-            this.btnLoading=false;
+            this.btnLoading = false;
             this.dialog = false;
             this.dialogEdit = false;            
             setTimeout(() => {
@@ -479,7 +479,7 @@ export default {
             );
         },        
         closeUserPermissions () {
-            this.btnLoading=false;            
+            this.btnLoading = false;            
             this.dialogUserPermission = false;
         },
         save () {
@@ -509,7 +509,7 @@ export default {
                         this.initialize();
                         this.close();
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });                    
                     
                 } else {
@@ -533,7 +533,7 @@ export default {
                         this.daftar_users.push(data.user);
                         this.close();
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
                 }
             }
@@ -558,9 +558,9 @@ export default {
                             }
                         }
                     ).then(()=>{                   
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });     
                 }
             });
@@ -582,9 +582,9 @@ export default {
                     ).then(()=>{   
                         const index = this.daftar_users.indexOf(item);
                         this.daftar_users.splice(index, 1);
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
                 }
             });

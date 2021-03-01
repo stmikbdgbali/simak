@@ -118,7 +118,7 @@
     </v-card>
 </template>
 <script>
-import {mapGetters} from 'vuex';
+import {mapGetters} from "vuex";
 export default {
     name: 'RolePermissions',
     data: () => ({
@@ -147,10 +147,10 @@ export default {
                     }
                 }
             ).then(()=>{   
-                this.btnLoading=false;
+                this.btnLoading = false;
                 this.close();                
             }).catch(()=>{
-                this.btnLoading=false;
+                this.btnLoading = false;
             });
         },
         revoke(item)
@@ -167,15 +167,15 @@ export default {
                     }
                 }
             ).then(()=>{   
-                this.btnLoading=false;
+                this.btnLoading = false;
                 this.close();                
             }).catch(()=>{
-                this.btnLoading=false;
+                this.btnLoading = false;
             });
         },
         close()
         {
-            this.btnLoading=false;
+            this.btnLoading = false;
             this.permissions_selected=[];
             this.$emit('closeRolePermissions',this.role.id);
         }

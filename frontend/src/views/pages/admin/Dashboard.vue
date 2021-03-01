@@ -327,7 +327,7 @@ export default {
 			this.$store.dispatch('uiadmin/init',this.$ajax); 
 		}
 	},
-	computed:{
+	computed: {
 		
 	},
 	components:{

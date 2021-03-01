@@ -126,7 +126,7 @@
     </FrontLayout>
 </template>
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 import VueRecaptcha from 'vue-recaptcha';
 import FrontLayout from '@/views/layouts/FrontLayout';
 export default {

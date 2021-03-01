@@ -163,7 +163,7 @@
     </div>    
 </template>
 <script>
-import {mapGetters} from 'vuex';
+import {mapGetters} from "vuex";
 export default {
     name:'SystemConfigLayout',   
     props:{
@@ -173,7 +173,7 @@ export default {
         },
         temporaryleftsidebar:{
             type:Boolean,
-            default:false
+            default: false
         },
     },     
     data:()=>({
@@ -183,25 +183,25 @@ export default {
     methods: {        
         logout ()
         {
-            this.loginTime=0;
-            this.$ajax.post('/auth/logout',
+            this.loginTime = 0;
+            this.$ajax.post("/auth/logout",
                 {},
                 {
                     headers:{
-                        'Authorization': this.TOKEN,
+                        "Authorization": this.TOKEN,
                     }
                 }
             ).then(()=> {     
-                this.$store.dispatch('auth/logout');	
-                this.$store.dispatch('uifront/reinit');	
-                this.$store.dispatch('uiadmin/reinit');	
-                this.$router.push('/');
+                this.$store.dispatch("auth/logout");	
+                this.$store.dispatch("uifront/reinit");
+                this.$store.dispatch("uiadmin/reinit");
+                this.$router.push("/");
             })
             .catch(() => {
-                this.$store.dispatch('auth/logout');	
-                this.$store.dispatch('uifront/reinit');	
-                this.$store.dispatch('uiadmin/reinit');	
-                this.$router.push('/');
+                this.$store.dispatch("auth/logout");	
+                this.$store.dispatch("uifront/reinit");
+                this.$store.dispatch("uiadmin/reinit");
+                this.$router.push("/");
             });
         },
         isBentukPT (bentuk_pt)
@@ -209,7 +209,7 @@ export default {
             return this.$store.getters['uifront/getBentukPT']==bentuk_pt?true:false;
         }
 	},
-    computed:{
+    computed: {
         ...mapGetters('auth',{
             AUTHENTICATED:'Authenticated',  
             ACCESS_TOKEN:'AccessToken',          

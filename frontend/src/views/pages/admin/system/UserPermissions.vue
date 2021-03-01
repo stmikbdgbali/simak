@@ -225,7 +225,7 @@ export default {
             ).then(()=>{   
                 this.exit();                
             }).catch(()=>{
-                this.btnLoading=false;
+                this.btnLoading = false;
             });
         },
         revoke(item)
@@ -244,7 +244,7 @@ export default {
             ).then(()=>{   
                 this.exit();                
             }).catch(()=>{
-                this.btnLoading=false;
+                this.btnLoading = false;
             });
         },
         exit()
@@ -252,7 +252,7 @@ export default {
             this.$emit('closeUserPermissions');           
         }
     },
-    computed:{
+    computed: {
         role_user()
         {
             return this.daftar_role.join(',').toUpperCase();

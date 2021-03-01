@@ -58,7 +58,7 @@
     </SystemConfigLayout>
 </template>
 <script>
-import {mapGetters} from 'vuex';
+import {mapGetters} from "vuex";
 import SystemConfigLayout from '@/views/layouts/SystemConfigLayout';
 import ModuleHeader from '@/components/ModuleHeader';
 export default {
@@ -128,14 +128,14 @@ export default {
                         }
                     }
                 ).then(()=>{                       
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                 }).catch(()=>{
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                 });        
             }
         }
     },
-    computed:{ 
+    computed: { 
         ...mapGetters('auth',{            
             ACCESS_TOKEN:'AccessToken',          
             TOKEN:'Token',                                  

@@ -374,9 +374,9 @@ export default {
                 }
                 ).then(()=>{               
                     this.$router.go();
-                    this.btnLoading=false;                        
+                    this.btnLoading = false;                        
                 }).catch(() => {                                   
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                 });                                                    
             }                             
         },
