@@ -247,19 +247,19 @@ export default {
         this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];   
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.ACCESS_TOKEN
+                href: '/dashboard/'+this.ACCESS_TOKEN
             },
             {
-                text:'KEUANGAN',
+                text: 'KEUANGAN',
                 disabled: false,
-                href:'/keuangan'
+                href: '/keuangan'
             },
             {
-                text:'DAFTAR TRANSAKSI',
-                disabled:true,
-                href:'#'
+                text: 'DAFTAR TRANSAKSI',
+                disabled: true,
+                href: '#'
             }
         ];
         this.breadcrumbs[1].disabled=(this.dashboard=='mahasiswabaru'||this.dashboard=='mahasiswa');
@@ -273,7 +273,7 @@ export default {
         this.initialize()
     },
     data: () => ({ 
-        firstloading:true,
+        firstloading: true,
         breadcrumbs: [],     
         prodi_id:null,
         nama_prodi:null, 
@@ -286,13 +286,13 @@ export default {
         datatableLoading: false,       
         datatable: [], 
         headers: [                                                
-            { text: 'KODE BILLING', value: 'no_transaksi',width:100,sortable:true },
-            { text: 'TANGGAL', value: 'tanggal',width:100,sortable:true },
-            { text: 'NIM', value: 'nim',width:100,sortable:true },
-            { text: 'NAMA MAHASISWA', value: 'nama_mhs',sortable:true,width:250 },
-            { text: 'SMT', value: 'idsmt',width:50,sortable:true },
-            { text: 'TOTAL', value: 'total',width:100,sortable:true },
-            { text: 'STATUS', value: 'nama_status',width:50,sortable:true },            
+            { text: 'KODE BILLING', value: 'no_transaksi',width:100,sortable: true },
+            { text: 'TANGGAL', value: 'tanggal',width:100,sortable: true },
+            { text: 'NIM', value: 'nim',width:100,sortable: true },
+            { text: 'NAMA MAHASISWA', value: 'nama_mhs',sortable: true,width:250 },
+            { text: 'SMT', value: 'idsmt',width:50,sortable: true },
+            { text: 'TOTAL', value: 'total',width:100,sortable: true },
+            { text: 'STATUS', value: 'nama_status',width:50,sortable: true },            
             { text: 'KET.', value: 'desc',width:150,sortable: false },            
             { text: 'AKSI', value: 'actions', sortable: false,width:50 },
         ],        
@@ -310,8 +310,8 @@ export default {
             { text: 'JUMLAH', value: 'sub_total',width:60,sortable: false },
         ],
         //form data
-        data_transaksi:{}, 
-        data_transaksi_detail:{},      
+        data_transaksi: {}, 
+        data_transaksi_detail: {},      
     }),
     methods: {
         changeTahunAkademik (tahun)
@@ -376,7 +376,7 @@ export default {
             );
         },
     },    
-    watch:{
+    watch: {
         tahun_akademik()
         {
             if (!this.firstloading)
@@ -457,7 +457,7 @@ export default {
             return total;
         }
     },
-    components:{
+    components: {
         KeuanganLayout,
         ModuleHeader,    
         Filter18,

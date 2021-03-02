@@ -69,10 +69,10 @@
                             </v-toolbar>
                         </template>
                         <template v-slot:item.nidn="{ item }">
-                            {{(item.nidn && item.nidn.length > 0) > 0 ? item.nidn:'N.A'}}
+                            {{(item.nidn && item.nidn.length > 0) > 0 ? item.nidn: 'N.A'}}
                         </template>
                         <template v-slot:item.is_dw="{ item }">
-                            {{item.is_dw == false ? 'BUKAN':'YA'}}
+                            {{item.is_dw == false ? 'BUKAN': 'YA'}}
                         </template>
                         <template v-slot:item.actions="{ item }">                            
                             <v-icon
@@ -127,19 +127,19 @@ export default {
     created () {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.ACCESS_TOKEN
+                href: '/dashboard/'+this.ACCESS_TOKEN
             },
             {
-                text:'AKADEMIK',
+                text: 'AKADEMIK',
                 disabled: false,
-                href:'/akademik'
+                href: '/akademik'
             },
             {
-                text:'DOSEN WALI',
-                disabled:true,
-                href:'#'
+                text: 'DOSEN WALI',
+                disabled: true,
+                href: '#'
             }
         ];
         this.initialize()
@@ -152,11 +152,11 @@ export default {
         //tables
         headers: [                        
             { text:  "", value: 'foto' },
-            { text: 'USERNAME', value: 'username',sortable:true },
-            { text: 'NAMA DOSEN', value: 'name',sortable:true },
-            { text: 'NIDN', value: 'nidn',sortable:true },     
-            { text: 'NIPY', value: 'nipy',sortable:true },     
-            { text: 'NOMOR HP', value: 'nomor_hp',sortable:true },                 
+            { text: 'USERNAME', value: 'username',sortable: true },
+            { text: 'NAMA DOSEN', value: 'name',sortable: true },
+            { text: 'NIDN', value: 'nidn',sortable: true },     
+            { text: 'NIPY', value: 'nipy',sortable: true },     
+            { text: 'NOMOR HP', value: 'nomor_hp',sortable: true },                 
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],
         expanded: [],
@@ -199,10 +199,10 @@ export default {
                     this.btnLoading=true;
                     this.$ajax.post('/akademik/dosenwali/'+item.id,
                         {
-                            '_method':'DELETE',
+                            '_method': 'DELETE',
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization:this.TOKEN
                             }
                         }
@@ -219,8 +219,8 @@ export default {
     },
     computed: {        
         ...mapGetters('auth',{            
-            ACCESS_TOKEN:'AccessToken',          
-            TOKEN:'Token',                                  
+            ACCESS_TOKEN: 'AccessToken',          
+            TOKEN: 'Token',                                  
         }),
     },
     watch: {
@@ -231,7 +231,7 @@ export default {
             val || this.close()
         },        
     },    
-    components:{
+    components: {
         AkademikLayout,
         ModuleHeader,        
     },

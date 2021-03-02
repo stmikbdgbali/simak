@@ -79,24 +79,24 @@ export default {
     {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.ACCESS_TOKEN
+                href: '/dashboard/'+this.ACCESS_TOKEN
             },
             {
-                text:'KONFIGURASI SISTEM',
+                text: 'KONFIGURASI SISTEM',
                 disabled: false,
-                href:'/system-setting'
+                href: '/system-setting'
             },  
             {
-                text:'THEMES',
+                text: 'THEMES',
                 disabled: false,
-                href:'#'
+                href: '#'
             },
             {
-                text:'WARNA DASHBOARD',
-                disabled:true,
-                href:'#'
+                text: 'WARNA DASHBOARD',
+                disabled: true,
+                href: '#'
             }
         ];
         this.initialize();
@@ -106,9 +106,9 @@ export default {
         datatableLoading: false,
         btnLoading: false,   
         //form
-        form_valid:true, 
-        currentBox:'dmaster',
-        color:'#fff',          
+        form_valid: true, 
+        currentBox: 'dmaster',
+        color: '#fff',          
         formdata: {
             dmaster:null,            
             perencanaan:null,            
@@ -188,14 +188,14 @@ export default {
                             
                 this.$ajax.post('/system/setting/variables',
                     {
-                        '_method':'PUT', 
-                        'pid':'Color Dashboard',
+                        '_method': 'PUT', 
+                        'pid': 'Color Dashboard',
                         setting:JSON.stringify({
                             807:this.formdata,                            
                         }),                                                                                                                            
                     },
                     {
-                        headers:{
+                        headers: {
                             Authorization:this.TOKEN
                         }
                     }
@@ -208,12 +208,12 @@ export default {
             }
         }
     },
-    computed:{ 
+    computed: { 
         ...mapGetters('auth',{            
-            ACCESS_TOKEN:'AccessToken',          
-            TOKEN:'Token',                                  
+            ACCESS_TOKEN: 'AccessToken',          
+            TOKEN: 'Token',                                  
         }),
-        showColor:{
+        showColor: {
             set(val)
             {
                 this.color=val;                
@@ -225,7 +225,7 @@ export default {
             }
         }
     },
-    watch:{
+    watch: {
         currentBox(val)
         {
             switch (val)
@@ -263,7 +263,7 @@ export default {
             }
         }
     },
-    components:{
+    components: {
 		SystemConfigLayout,
         ModuleHeader,        
 	}

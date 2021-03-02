@@ -98,35 +98,35 @@ export default {
         this.krs_id=this.$route.params.krsid;        
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
-                text:'AKADEMIK',
+                text: 'AKADEMIK',
                 disabled: false,
-                href:'/akademik'
+                href: '/akademik'
             },
             {
-                text:'PERKULIAHAN',
+                text: 'PERKULIAHAN',
                 disabled: false,
-                href:'#'
+                href: '#'
             },
             {
-                text:'KRS',
+                text: 'KRS',
                 disabled: false,
-                href:'/akademik/perkuliahan/krs/daftar'
+                href: '/akademik/perkuliahan/krs/daftar'
             },
             {
-                text:'TAMBAH MATAKULIAH',
-                disabled:true,
-                href:'#'
+                text: 'TAMBAH MATAKULIAH',
+                disabled: true,
+                href: '#'
             },
         ];
         this.fetchKRS();               
     },  
     data: () => ({ 
-        firstloading:true,        
+        firstloading: true,        
         nama_prodi:null,
         tahun_akademik:null,        
         semester_akademik:null,
@@ -136,7 +136,7 @@ export default {
         //formdata
         form_valid: true,   
         krs_id:null,
-        datakrs:{},
+        datakrs: {},
         jumlah_matkul:0,
         jumlah_sks:0,
         daftar_matkul_selected: [],
@@ -146,8 +146,8 @@ export default {
         expanded: [],
         datatable: [],      
         headers: [
-            { text: 'KODE', value: 'kmatkul', sortable:true,width:120  },   
-            { text: 'NAMA MATAKULIAH', value: 'nmatkul',sortable:true },               
+            { text: 'KODE', value: 'kmatkul', sortable: true,width:120  },   
+            { text: 'NAMA MATAKULIAH', value: 'nmatkul',sortable: true },               
             { text: 'SKS', value: 'sks', sortable: false,width:120 },                           
             { text: 'SMT', value: 'semester', sortable: false,width:120 },                                       
             { text: 'TAHUN MATKUL', value: 'ta_matkul', sortable: false,width:120 },                                       
@@ -181,7 +181,7 @@ export default {
                     prodi_id:this.datakrs.kjur,
                     ta:this.datakrs.tahun,
                     semester_akademik:this.datakrs.idsmt,
-                    pid:'belumterdaftar'
+                    pid: 'belumterdaftar'
                 },
                 {
                     headers: {
@@ -206,7 +206,7 @@ export default {
                         matkul_selected:JSON.stringify(Object.assign({},this.daftar_matkul_selected)),
                     },
                     {
-                        headers:{
+                        headers: {
                             Authorization: this.$store.getters["auth/Token"]
                         }
                     }
@@ -237,7 +237,7 @@ export default {
             return total;
         }
     },
-    components:{
+    components: {
         AkademikLayout,
         ModuleHeader, 
         DataKRS           

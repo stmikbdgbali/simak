@@ -142,7 +142,7 @@
                                         vertical
                                     ></v-divider>
                                     <v-spacer></v-spacer>                                        
-                                    <v-btn color="primary" icon outlined small class="ma-2" :to="{path:'/keuangan/transaksi-spp/tambah/'+transaksi_id}" :disabled="data_transaksi.status==1 || data_transaksi.status==2">
+                                    <v-btn color="primary" icon outlined small class="ma-2" :to="{path: '/keuangan/transaksi-spp/tambah/'+transaksi_id}" :disabled="data_transaksi.status==1 || data_transaksi.status==2">
                                         <v-icon>mdi-plus</v-icon>
                                     </v-btn>                                        
                                 </v-toolbar>
@@ -182,31 +182,31 @@
 import KeuanganLayout from '@/views/layouts/KeuanganLayout';
 import ModuleHeader from '@/components/ModuleHeader';
 export default {
-    name:'TransaksiSPPDetail',
+    name: 'TransaksiSPPDetail',
     created()
     {
         this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];   
         this.transaksi_id=this.$route.params.transaksi_id;        
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
-                text:'KEUANGAN',
+                text: 'KEUANGAN',
                 disabled: false,
-                href:'/keuangan'
+                href: '/keuangan'
             },
             {
-                text:'TRANSAKSI SPP',
+                text: 'TRANSAKSI SPP',
                 disabled: false,
-                href:'/keuangan/transaksi-spp'
+                href: '/keuangan/transaksi-spp'
             },
             {
-                text:'DETAIL',
-                disabled:true,
-                href:'#'
+                text: 'DETAIL',
+                disabled: true,
+                href: '#'
             }
         ];                          
         this.initialize();
@@ -231,7 +231,7 @@ export default {
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },        
         ],              
         //form
-        form_valid:true  
+        form_valid: true  
     }),
     methods : {
         changeTahunAkademik (tahun)
@@ -259,10 +259,10 @@ export default {
                     this.btnLoading=true;
                     this.$ajax.post('/keuangan/transaksi-spp/'+item.id,
                         {
-                            '_method':'DELETE',
+                            '_method': 'DELETE',
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
@@ -301,7 +301,7 @@ export default {
             return total;
         }
     },
-    components:{
+    components: {
         KeuanganLayout,
         ModuleHeader,             
     },

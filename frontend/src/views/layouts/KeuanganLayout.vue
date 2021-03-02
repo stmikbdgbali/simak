@@ -76,7 +76,7 @@
 			</v-list-item>
 			<v-divider></v-divider>
             <v-list expand>
-                <v-list-item :to="{path:'/keuangan'}" link class="yellow" color="green" v-if="CAN_ACCESS('KEUANGAN-GROUP') && dashboard!='mahasiswabaru' && dashboard!='mahasiswa'">
+                <v-list-item :to="{path: '/keuangan'}" link class="yellow" color="green" v-if="CAN_ACCESS('KEUANGAN-GROUP') && dashboard!='mahasiswabaru' && dashboard!='mahasiswa'">
                     <v-list-item-icon class="mr-2">
                         <v-icon>mdi-monitor-dashboard</v-icon>
                     </v-list-item-icon>
@@ -233,7 +233,7 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
-    name:'KeuanganLayout',     
+    name: 'KeuanganLayout',     
     created()
     {
         this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];        
@@ -241,7 +241,7 @@ export default {
     props: {
         showrightsidebar: {
             type: Boolean,
-            default:true
+            default: true
         },
         temporaryleftsidebar: {
             type: Boolean,
@@ -262,7 +262,7 @@ export default {
             this.$ajax.post("/auth/logout",
                 {},
                 {
-                    headers:{
+                    headers: {
                         Authorization: this.TOKEN,
                     }
                 }
@@ -286,13 +286,13 @@ export default {
 	},
     computed: {
         ...mapGetters('auth',{
-            AUTHENTICATED:'Authenticated',  
-            ACCESS_TOKEN:'AccessToken',          
-            TOKEN:'Token',          
-            DEFAULT_ROLE:'DefaultRole',
-            ROLE:'Role',
-            CAN_ACCESS:'can',         
-            ATTRIBUTE_USER:'AttributeUser',               
+            AUTHENTICATED: 'Authenticated',  
+            ACCESS_TOKEN: 'AccessToken',          
+            TOKEN: 'Token',          
+            DEFAULT_ROLE: 'DefaultRole',
+            ROLE: 'Role',
+            CAN_ACCESS: 'can',         
+            ATTRIBUTE_USER: 'AttributeUser',               
         }),
         APP_NAME ()
         {
@@ -314,7 +314,7 @@ export default {
         },
     },
     watch: {
-        loginTime:{
+        loginTime: {
             handler(value)
             {
                 
@@ -330,7 +330,7 @@ export default {
                     this.$router.replace("/login");
                 }
             },
-            immediate:true
+            immediate: true
         },        
     }
 }

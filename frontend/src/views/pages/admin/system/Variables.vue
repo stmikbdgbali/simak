@@ -92,24 +92,24 @@ export default {
     {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.ACCESS_TOKEN
+                href: '/dashboard/'+this.ACCESS_TOKEN
             },
             {
-                text:'KONFIGURASI SISTEM',
+                text: 'KONFIGURASI SISTEM',
                 disabled: false,
-                href:'/system-setting'
+                href: '/system-setting'
             },  
             {
-                text:'PERGURUAN TINGGI',
+                text: 'PERGURUAN TINGGI',
                 disabled: false,
-                href:'#'
+                href: '#'
             },
             {
-                text:'VARIABLES',
-                disabled:true,
-                href:'#'
+                text: 'VARIABLES',
+                disabled: true,
+                href: '#'
             }
         ];
         this.daftar_ta=this.$store.getters['uiadmin/getDaftarTA'];  
@@ -161,8 +161,8 @@ export default {
                 this.btnLoading=true;                
                 this.$ajax.post('/system/setting/variables',
                     {
-                        '_method':'PUT', 
-                        'pid':'Variable default sistem',
+                        '_method': 'PUT', 
+                        'pid': 'Variable default sistem',
                         setting:JSON.stringify({
                             201:this.formdata.default_ta,
                             202:this.formdata.default_semester,                            
@@ -170,7 +170,7 @@ export default {
                         }),                                                                                                                            
                     },
                     {
-                        headers:{
+                        headers: {
                             Authorization:this.TOKEN
                         }
                     }
@@ -184,11 +184,11 @@ export default {
     },
     computed: { 
         ...mapGetters('auth',{            
-            ACCESS_TOKEN:'AccessToken',          
-            TOKEN:'Token',                                  
+            ACCESS_TOKEN: 'AccessToken',          
+            TOKEN: 'Token',                                  
         }),
     },
-    components:{
+    components: {
 		SystemConfigLayout,
         ModuleHeader,        
 	}

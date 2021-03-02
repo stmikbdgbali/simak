@@ -125,7 +125,7 @@
                                                         :color="userstatus"
                                                         label
                                                         outlined>
-                                                        {{formdata.active==1?'AKTIF':'TIDAK AKTIF'}}
+                                                        {{formdata.active==1?'AKTIF': 'TIDAK AKTIF'}}
                                                     </v-chip>
                                                 </v-card-subtitle>
                                             </v-card>
@@ -200,25 +200,25 @@
 import SystemUserLayout from '@/views/layouts/SystemUserLayout';
 import ModuleHeader from '@/components/ModuleHeader';
 export default {
-    name:'UsersProfile',
+    name: 'UsersProfile',
     created () {
         this.dashboard=this.$store.getters['uiadmin/getDefaultDashboard'];
         this.formdata=this.$store.getters['auth/User'];
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
-                text:'SYSTEM',
+                text: 'SYSTEM',
                 disabled: false,
-                href:'#'
+                href: '#'
             },
             {
-                text:'PROFILE USER',
-                disabled:true,
-                href:'#'
+                text: 'PROFILE USER',
+                disabled: true,
+                href: '#'
             }
         ];
         if (this.dashboard=='mahasiswa')
@@ -236,12 +236,12 @@ export default {
             avatar : null,
 
             //form data        
-            data_mhs:{
-                nim:'N.A',
-                nirm:'N.A',
-                nama_prodi:'N.A',
-                nama_kelas:'N.A',
-                dosen_wali:'N.A',
+            data_mhs: {
+                nim: 'N.A',
+                nirm: 'N.A',
+                nama_prodi: 'N.A',
+                nama_kelas: 'N.A',
+                dosen_wali: 'N.A',
             },       
             form_valid: true,         
             formdata: {
@@ -301,11 +301,11 @@ export default {
                 this.btnLoading=true;
                 this.$ajax.post('/system/users/updatepassword/'+this.$store.getters['auth/AttributeUser']('id'),
                     {
-                        '_method':'PUT',                        
+                        '_method': 'PUT',                        
                         password:this.formdata.password,                           
                     },
                     {
-                        headers:{
+                        headers: {
                             Authorization: this.$store.getters["auth/Token"]
                         }
                     }
@@ -346,7 +346,7 @@ export default {
                     formdata.append('foto',this.formdata.foto);
                     await this.$ajax.post('/setting/users/uploadfoto/'+this.$store.getters.User.id,formdata,                    
                         {
-                            headers:{
+                            headers: {
                                 Authorization: this.$store.getters["auth/Token"],  
                                 'Content-Type': 'multipart/form-data'                      
                             }
@@ -366,7 +366,7 @@ export default {
             this.btnLoading=true;
             await this.$ajax.post('/setting/users/resetfoto/'+this.$store.getters.User.id,{},                    
                 {
-                    headers:{
+                    headers: {
                         Authorization: this.$store.getters["auth/Token"],                              
                     }
                 }
@@ -381,7 +381,7 @@ export default {
         {
             await this.$ajax.get('/akademik/kemahasiswaan/biodatamhs1/'+this.$store.getters['auth/AttributeUser']('id'),                    
                 {
-                    headers:{
+                    headers: {
                         Authorization: this.$store.getters["auth/Token"],                              
                     }
                 }
@@ -413,10 +413,10 @@ export default {
         },
         userstatus()
         {
-            return this.formdata.active == 1 ?'green':'red';
+            return this.formdata.active == 1 ?'green': 'red';
         }
     },
-    components:{
+    components: {
         SystemUserLayout,
         ModuleHeader,
     },

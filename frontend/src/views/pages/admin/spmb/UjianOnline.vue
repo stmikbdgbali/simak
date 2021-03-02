@@ -53,7 +53,7 @@
 <script>
 import JawabanSoal from '@/components/JawabanSoal';
 export default {
-    name:'UjianOnline',
+    name: 'UjianOnline',
     created () 
     {           
         var page = this.$store.getters['uiadmin/Page']('ujianonline');
@@ -102,7 +102,7 @@ export default {
             this.btnLoading=true;
             await this.$ajax.post('/spmb/ujianonline/selesaiujian',    
             {
-                _method:'put',
+                _method: 'put',
                 user_id:this.peserta.user_id
             },    
             {
@@ -117,7 +117,7 @@ export default {
             }); 
         }
     },    
-    components:{
+    components: {
         JawabanSoal,        
     },
 }

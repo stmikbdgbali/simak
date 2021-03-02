@@ -187,13 +187,13 @@ export default {
         permissions_selected: [],
 
     }),
-    props:{                        
-        user:{
+    props: {                        
+        user: {
             type:Object,
-            required:true
+            required: true
         },
-        role_default:{
-            required:true
+        role_default: {
+            required: true
         }
     },
     methods: {
@@ -201,7 +201,7 @@ export default {
         {
             this.$ajax.get('/system/users/'+this.user.id+'/roles',                
                 {
-                    headers:{
+                    headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     }
                 }
@@ -218,7 +218,7 @@ export default {
                     chkpermission:this.permissions_selected
                 },
                 {
-                    headers:{
+                    headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     }
                 }
@@ -237,7 +237,7 @@ export default {
                     name:item.name
                 },
                 {
-                    headers:{
+                    headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     }
                 }
@@ -258,7 +258,7 @@ export default {
             return this.daftar_role.join(',').toUpperCase();
         }
     },
-    watch:{
+    watch: {
         async role_name(val)
         {
             if(val)

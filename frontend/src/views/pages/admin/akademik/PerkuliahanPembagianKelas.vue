@@ -206,24 +206,24 @@ export default {
     created () {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
-                text:'AKADEMIK',
+                text: 'AKADEMIK',
                 disabled: false,
-                href:'/akademik'
+                href: '/akademik'
             },
             {
-                text:'PERKULIAHAN',
+                text: 'PERKULIAHAN',
                 disabled: false,
-                href:'#'
+                href: '#'
             },
             {
-                text:'PEMBAGIAN KELAS',
-                disabled:true,
-                href:'#'
+                text: 'PEMBAGIAN KELAS',
+                disabled: true,
+                href: '#'
             }
         ];        
         this.tahun_akademik=this.$store.getters['uiadmin/getTahunAkademik'];                
@@ -231,7 +231,7 @@ export default {
         this.initialize()
     },  
     data: () => ({ 
-        firstloading:true,        
+        firstloading: true,        
         tahun_akademik:null,
         semester_akademik:null,
 
@@ -241,13 +241,13 @@ export default {
         expanded: [],
         datatable: [],      
         headers: [
-            { text: 'KODE', value: 'kmatkul', sortable:true,width:100  },   
-            { text: 'NAMA MATAKULIAH/KELAS', value: 'nmatkul', sortable:true  },   
-            { text: 'NAMA DOSEN', value: 'nama_dosen', sortable:true  },                           
-            { text: 'HARI', value: 'nama_hari', sortable:true, width:100 },               
-            { text: 'JAM', value: 'jam_masuk',sortable:true, width:100 },                           
-            { text: 'RUANG', value: 'namaruang',sortable:true, width:100},                           
-            { text: 'JUMLAH PESERTA', value: 'jumlah_mhs',sortable:true, width:100},                           
+            { text: 'KODE', value: 'kmatkul', sortable: true,width:100  },   
+            { text: 'NAMA MATAKULIAH/KELAS', value: 'nmatkul', sortable: true  },   
+            { text: 'NAMA DOSEN', value: 'nama_dosen', sortable: true  },                           
+            { text: 'HARI', value: 'nama_hari', sortable: true, width:100 },               
+            { text: 'JAM', value: 'jam_masuk',sortable: true, width:100 },                           
+            { text: 'RUANG', value: 'namaruang',sortable: true, width:100},                           
+            { text: 'JUMLAH PESERTA', value: 'jumlah_mhs',sortable: true, width:100},                           
             { text: 'AKSI', value: 'actions', sortable: false,width:120 },
         ],  
         search: "",
@@ -260,31 +260,31 @@ export default {
         daftar_ruang_kelas: [],
         daftar_hari: [
             {
-                text:'SENIN',
+                text: 'SENIN',
                 value:1,
             },
             {
-                text:'SELASA',
+                text: 'SELASA',
                 value:2,
             },
             {
-                text:'RABU',
+                text: 'RABU',
                 value:3,
             },
             {
-                text:'KAMIS',
+                text: 'KAMIS',
                 value:4,
             },
             {
-                text:'JUMAT',
+                text: 'JUMAT',
                 value:5,
             },
             {
-                text:'SABTU',
+                text: 'SABTU',
                 value:6,
             },
         ],
-        formdata:{            
+        formdata: {            
             id: "",
             idkelas: "",            
             hari: "",            
@@ -293,7 +293,7 @@ export default {
             penyelenggaraan_dosen_id: "",
             ruang_kelas_id: "",            
         }, 
-        formdefault:{            
+        formdefault: {            
             id: "",
             idkelas: "",            
             hari: "",            
@@ -378,14 +378,14 @@ export default {
                 
                 await this.$ajax.post('/akademik/perkuliahan/pembagiankelas/'+this.formdata.id,
                     {
-                        '_method':'PUT',                        
+                        '_method': 'PUT',                        
                         hari:this.formdata.hari,                            
                         jam_masuk:this.formdata.jam_masuk,
                         jam_keluar:this.formdata.jam_keluar,                        
                         ruang_kelas_id:this.formdata.ruang_kelas_id,                            
                     },
                     {
-                        headers:{
+                        headers: {
                             Authorization: this.$store.getters["auth/Token"]
                         }
                     }
@@ -400,16 +400,16 @@ export default {
         },            
         deleteItem (item)
         {
-            this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus pembagian kelas matakuliah ('+item.nmatkul+') ?', { color: 'red',width:600,'desc':'proses ini membuat mahasiswa tidak memiliki kelas.' }).then((confirm) => {
+            this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus pembagian kelas matakuliah ('+item.nmatkul+') ?', { color: 'red',width:600,'desc': 'proses ini membuat mahasiswa tidak memiliki kelas.' }).then((confirm) => {
                 if (confirm)
                 {
                     this.btnLoadingTable=true;
                     this.$ajax.post('/akademik/perkuliahan/pembagiankelas/'+item.id,
                         {
-                            '_method':'DELETE',
+                            '_method': 'DELETE',
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
@@ -432,7 +432,7 @@ export default {
             );
         },
     },
-    watch:{
+    watch: {
         tahun_akademik()
         {
             if (!this.firstloading)
@@ -450,10 +450,10 @@ export default {
     },
     computed: {
         ...mapGetters('auth',{            
-            CAN_ACCESS:'can',                     
+            CAN_ACCESS: 'can',                     
         }),
     },
-    components:{
+    components: {
         AkademikLayout,
         ModuleHeader,    
         Filter2               

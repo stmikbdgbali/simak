@@ -247,23 +247,23 @@ import {mapGetters} from "vuex";
 import DataMasterLayout from '@/views/layouts/DataMasterLayout';
 import ModuleHeader from '@/components/ModuleHeader';
 export default {
-    name:'ProgramStudi',
+    name: 'ProgramStudi',
     created () {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.ACCESS_TOKEN
+                href: '/dashboard/'+this.ACCESS_TOKEN
             },
             {
-                text:'DATA MASTER',
+                text: 'DATA MASTER',
                 disabled: false,
-                href:'#'
+                href: '#'
             },
             {
-                text:'PROGRAM STUDI',
-                disabled:true,
-                href:'#'
+                text: 'PROGRAM STUDI',
+                disabled: true,
+                href: '#'
             }
         ];
         this.initialize()
@@ -274,7 +274,7 @@ export default {
         expanded: [],
         datatable: [],        
         search: "",    
-        firstloading:true,
+        firstloading: true,
 
         //dialog
         dialogfrm: false,
@@ -295,7 +295,7 @@ export default {
             nama_prodi_alias: "",         
             kode_jenjang: "", 
             nama_jenjang: "", 
-            config:{}
+            config: {}
         },
         formdefault: {
             id:0,                        
@@ -305,7 +305,7 @@ export default {
             nama_prodi_alias: "",         
             kode_jenjang: "", 
             nama_jenjang: "", 
-            config:{}
+            config: {}
         },
         dosen_id:null,
         daftar_dosen: [],
@@ -435,7 +435,7 @@ export default {
                 {
                     await this.$ajax.post('/datamaster/programstudi/'+this.formdata.id,
                         {
-                            '_method':'PUT',
+                            '_method': 'PUT',
                             kode_fakultas:this.formdata.kode_fakultas,                            
                             kode_prodi:this.formdata.kode_prodi,                            
                             nama_prodi:this.formdata.nama_prodi,                                                        
@@ -444,7 +444,7 @@ export default {
                             nama_jenjang:this.formdata.nama_jenjang,                                                                                                             
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization:this.TOKEN
                             }
                         }
@@ -467,7 +467,7 @@ export default {
                             nama_jenjang:this.jenjang_studi.nama_jenjang,                                                                                                             
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization:this.TOKEN
                             }
                         }
@@ -488,10 +488,10 @@ export default {
                     this.btnLoading=true;
                     this.$ajax.post('/datamaster/programstudi/'+item.id,
                         {
-                            '_method':'DELETE',
+                            '_method': 'DELETE',
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization:this.TOKEN
                             }
                         }
@@ -526,8 +526,8 @@ export default {
     },
     computed: {
         ...mapGetters('auth',{            
-            ACCESS_TOKEN:'AccessToken',          
-            TOKEN:'Token',                                  
+            ACCESS_TOKEN: 'AccessToken',          
+            TOKEN: 'Token',                                  
         }),
         formTitle () {
             return this.editedIndex === -1 ? 'TAMBAH DATA' : 'UBAH DATA'
@@ -557,7 +557,7 @@ export default {
             }
         },
     },
-    watch:{
+    watch: {
         async dosen_id(val)
         {         
             if (!this.firstloading)
@@ -565,13 +565,13 @@ export default {
                 this.btnLoading=true;
                 await this.$ajax.post('/datamaster/programstudi/updateconfig/'+this.formdata.id,
                     {
-                        '_method':'PUT',                    
+                        '_method': 'PUT',                    
                         config:JSON.stringify({
                             kaprodi:val                            
                         }),                                                                 
                     },
                     {
-                        headers:{
+                        headers: {
                             Authorization:this.TOKEN
                         }
                     }
@@ -584,7 +584,7 @@ export default {
             }            
         }  
     },
-    components:{
+    components: {
         DataMasterLayout,
         ModuleHeader,        
     },

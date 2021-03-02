@@ -303,7 +303,7 @@
                                                     <v-card flat>
                                                         <v-card-title>STATUS PENDAFTARAN :</v-card-title>
                                                         <v-card-subtitle>
-                                                            {{formdata.status_pendaftaran == 0 ? 'BUKA':'TUTUP'}}
+                                                            {{formdata.status_pendaftaran == 0 ? 'BUKA': 'TUTUP'}}
                                                         </v-card-subtitle>
                                                     </v-card>
                                                 </v-col>
@@ -323,7 +323,7 @@
                                                     <v-card flat>
                                                         <v-card-title>STATUS UJIAN :</v-card-title>
                                                         <v-card-subtitle>
-                                                            {{formdata.status_ujian == 0 ? 'BUKA':'TUTUP'}}
+                                                            {{formdata.status_ujian == 0 ? 'BUKA': 'TUTUP'}}
                                                         </v-card-subtitle>
                                                     </v-card>
                                                 </v-col>
@@ -407,24 +407,24 @@
 import SPMBLayout from '@/views/layouts/SPMBLayout';
 import ModuleHeader from '@/components/ModuleHeader';
 export default {
-    name:'JadwalUjianPMB',
+    name: 'JadwalUjianPMB',
     created () {
         this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
-                text:'SPMB',
+                text: 'SPMB',
                 disabled: false,
-                href:'#'
+                href: '#'
             },
             {
-                text:'JADWAL UJIAN PMB',
-                disabled:true,
-                href:'#'
+                text: 'JADWAL UJIAN PMB',
+                disabled: true,
+                href: '#'
             }
         ];        
         this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];        
@@ -439,7 +439,7 @@ export default {
             breadcrumbs: [],        
             dashboard:null,
             
-            firstloading:true,
+            firstloading: true,
             tahun_pendaftaran:null,
             semester_pendaftaran:null,
             nama_semester_pendaftaran:null,
@@ -608,11 +608,11 @@ export default {
             this.btnLoading=true;
             await this.$ajax.post('/spmb/jadwalujianpmb/updatestatusujian/'+this.formdata.id,
             {
-                '_method':'PUT',
+                '_method': 'PUT',
                 status_ujian:1,                
             },
             {
-                headers:{
+                headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
             }
@@ -646,7 +646,7 @@ export default {
                 {
                     await this.$ajax.post('/spmb/jadwalujianpmb/'+this.formdata.id,
                         {
-                            '_method':'PUT',
+                            '_method': 'PUT',
                             nama_kegiatan:this.formdata.nama_kegiatan,
                             jumlah_soal:this.formdata.jumlah_soal,
                             tanggal_ujian:this.formdata.tanggal_ujian,    
@@ -657,7 +657,7 @@ export default {
                             ruangkelas_id:this.formdata.ruangkelas_id,                                  
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
@@ -684,7 +684,7 @@ export default {
                             idsmt:this.semester_pendaftaran,                                       
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
@@ -705,10 +705,10 @@ export default {
                     this.btnLoading=true;
                     this.$ajax.post('/spmb/jadwalujianpmb/'+item.id,
                         {
-                            '_method':'DELETE',
+                            '_method': 'DELETE',
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
@@ -745,7 +745,7 @@ export default {
             return this.editedIndex === -1 ? 'TAMBAH JADWAL' : 'UBAH JADWAL'
         },        
     },
-    components:{
+    components: {
         SPMBLayout,
         ModuleHeader,        
     },

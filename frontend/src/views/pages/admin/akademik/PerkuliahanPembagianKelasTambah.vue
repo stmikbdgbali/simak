@@ -177,29 +177,29 @@ export default {
     created () {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
-                text:'AKADEMIK',
+                text: 'AKADEMIK',
                 disabled: false,
-                href:'/akademik'
+                href: '/akademik'
             },
             {
-                text:'PERKULIAHAN',
+                text: 'PERKULIAHAN',
                 disabled: false,
-                href:'#'
+                href: '#'
             },
             {
-                text:'PEMBAGIAN KELAS',
+                text: 'PEMBAGIAN KELAS',
                 disabled: false,
-                href:'/akademik/perkuliahan/pembagiankelas/daftar'
+                href: '/akademik/perkuliahan/pembagiankelas/daftar'
             },
             {
-                text:'TAMBAH',
-                disabled:true,
-                href:'#'
+                text: 'TAMBAH',
+                disabled: true,
+                href: '#'
             }
         ];
         this.tahun_akademik=this.$store.getters['uiadmin/getTahunAkademik'];
@@ -229,31 +229,31 @@ export default {
 
         daftar_hari: [
             {
-                text:'SENIN',
+                text: 'SENIN',
                 value:1,
             },
             {
-                text:'SELASA',
+                text: 'SELASA',
                 value:2,
             },
             {
-                text:'RABU',
+                text: 'RABU',
                 value:3,
             },
             {
-                text:'KAMIS',
+                text: 'KAMIS',
                 value:4,
             },
             {
-                text:'JUMAT',
+                text: 'JUMAT',
                 value:5,
             },
             {
-                text:'SABTU',
+                text: 'SABTU',
                 value:6,
             },
         ],
-        formdata:{
+        formdata: {
             id: "",
             user_id: "",
             zoom_id: "",
@@ -307,7 +307,7 @@ export default {
             {
                 ta:this.$store.getters['uiadmin/getTahunAkademik'],
                 semester_akademik:this.$store.getters['uiadmin/getSemesterAkademik'],
-                pid:'daftarpengampu'
+                pid: 'daftarpengampu'
             },
             {
                 headers: {
@@ -357,7 +357,7 @@ export default {
 
                     },
                     {
-                        headers:{
+                        headers: {
                             Authorization: this.$store.getters["auth/Token"]
                         }
                     }
@@ -370,7 +370,7 @@ export default {
             }
         },
     },
-    watch:{
+    watch: {
         async dosen_id(val)
         {
             await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/matakuliah',
@@ -390,7 +390,7 @@ export default {
             })
         }
     },
-    components:{
+    components: {
         AkademikLayout,
         ModuleHeader,
     },

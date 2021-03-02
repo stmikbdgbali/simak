@@ -295,19 +295,19 @@ export default {
     created () {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.ACCESS_TOKEN
+                href: '/dashboard/'+this.ACCESS_TOKEN
             },
             {
-                text:'USER SISTEM',
+                text: 'USER SISTEM',
                 disabled: false,
-                href:'/system-users'
+                href: '/system-users'
             },
             {
-                text:'USERS PUSLAHTA',
-                disabled:true,
-                href:'#'
+                text: 'USERS PUSLAHTA',
+                disabled: true,
+                href: '#'
             }
         ];
         this.initialize()
@@ -320,10 +320,10 @@ export default {
         //tables
         headers: [
             { text:  "", value: 'foto' },
-            { text: 'USERNAME', value: 'username',sortable:true },
-            { text: 'NAME', value: 'name',sortable:true },
-            { text: 'EMAIL', value: 'email',sortable:true },
-            { text: 'NOMOR HP', value: 'nomor_hp',sortable:true },
+            { text: 'USERNAME', value: 'username',sortable: true },
+            { text: 'NAME', value: 'name',sortable: true },
+            { text: 'EMAIL', value: 'email',sortable: true },
+            { text: 'NOMOR HP', value: 'nomor_hp',sortable: true },
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],
         expanded: [],
@@ -437,10 +437,10 @@ export default {
                     this.btnLoading=true;
                     await this.$ajax.post('/system/users/syncallpermissions',
                         {
-                            role_name:'puslahta',
+                            role_name: 'puslahta',
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
@@ -466,7 +466,7 @@ export default {
                     {
                         daftar_roles.push({
                             text:element.name,
-                            disabled:true,
+                            disabled: true,
                         });
                     }
                     else if (element.name=='dosen'||element.name=='dosenwali')
@@ -490,7 +490,7 @@ export default {
 
             await this.$ajax.get('/system/users/'+item.id+'/prodi',
                 {
-                    headers:{
+                    headers: {
                         Authorization:this.TOKEN
                     }
                 }
@@ -514,7 +514,7 @@ export default {
                     {
                         daftar_roles.push({
                             text:element.name,
-                            disabled:true,
+                            disabled: true,
                         });
                     }
                     else if (element.name=='dosen'||element.name=='dosenwali')
@@ -567,7 +567,7 @@ export default {
                 {
                     this.$ajax.post('/system/userspuslahta/'+this.editedItem.id,
                         {
-                            '_method':'PUT',
+                            '_method': 'PUT',
                             name:this.editedItem.name,
                             email:this.editedItem.email,
                             nomor_hp:this.editedItem.nomor_hp,
@@ -577,7 +577,7 @@ export default {
                             role_id:JSON.stringify(Object.assign({},this.editedItem.role_id)),
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization:this.TOKEN
                             }
                         }
@@ -600,7 +600,7 @@ export default {
                             role_id:JSON.stringify(Object.assign({},this.editedItem.role_id)),
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization:this.TOKEN
                             }
                         }
@@ -620,10 +620,10 @@ export default {
                     this.btnLoading=true;
                     this.$ajax.post('/system/userspuslahta/'+item.id,
                         {
-                            '_method':'DELETE',
+                            '_method': 'DELETE',
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization:this.TOKEN
                             }
                         }
@@ -643,8 +643,8 @@ export default {
             return this.editedIndex === -1 ? 'TAMBAH USER PUSLAHTA' : 'EDIT USER PUSLAHTA'
         },
         ...mapGetters('auth',{
-            ACCESS_TOKEN:'AccessToken',
-            TOKEN:'Token',
+            ACCESS_TOKEN: 'AccessToken',
+            TOKEN: 'Token',
         }),
     },
 
@@ -656,7 +656,7 @@ export default {
             val || this.close()
         },
     },
-    components:{
+    components: {
         SystemUserLayout,
         ModuleHeader,
         UserPermissions

@@ -50,7 +50,7 @@
                                     <v-card flat>
                                         <v-card-title>SAH :</v-card-title>
                                         <v-card-subtitle>
-                                            <v-chip label outlined color="info">{{datakrs.sah==1?'YA':'TIDAK'}}</v-chip>
+                                            <v-chip label outlined color="info">{{datakrs.sah==1?'YA': 'TIDAK'}}</v-chip>
                                         </v-card-subtitle>
                                     </v-card>
                                 </v-col>
@@ -179,35 +179,35 @@ export default {
         this.krs_id=this.$route.params.krs_id;          
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
-                text:'AKADEMIK',
+                text: 'AKADEMIK',
                 disabled: false,
-                href:'/akademik'
+                href: '/akademik'
             },
             {
-                text:'NILAI',
+                text: 'NILAI',
                 disabled: false,
-                href:'#'
+                href: '#'
             },
             {
-                text:'KHS',
+                text: 'KHS',
                 disabled: false,
-                href:'/akademik/nilai/khs'
+                href: '/akademik/nilai/khs'
             },
             {
-                text:'DETAIL',
-                disabled:true,
-                href:'#'
+                text: 'DETAIL',
+                disabled: true,
+                href: '#'
             },
         ];
         this.fetchKHS();               
     },  
     data: () => ({ 
-        firstloading:true,        
+        firstloading: true,        
         nama_prodi:null,
         tahun_akademik:null,        
         semester_akademik:null,
@@ -217,15 +217,15 @@ export default {
 
         //formdata
         krs_id:null,
-        datakrs:{},
+        datakrs: {},
         
         //table        
         datatableLoading: false,
         expanded: [],
         datatable: [],      
         headers: [
-            { text: 'KODE', value: 'kmatkul', sortable:true,width:100  },   
-            { text: 'NAMA MATAKULIAH', value: 'nmatkul',sortable:true },               
+            { text: 'KODE', value: 'kmatkul', sortable: true,width:100  },   
+            { text: 'NAMA MATAKULIAH', value: 'nmatkul',sortable: true },               
             { text: 'SKS', value: 'sks', sortable: false,width:50 },                           
             { text: 'HM', value: 'HM', sortable: false,width:50 },                           
             { text: 'AM', value: 'AM', sortable: false,width:50 },                           
@@ -275,7 +275,7 @@ export default {
             this.btnLoading=true;
             await this.$ajax.get('/akademik/nilai/khs/printpdf/'+this.krs_id,                
                 {
-                    headers:{
+                    headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     },
                     
@@ -296,7 +296,7 @@ export default {
             );
         },        
     },    
-    components:{
+    components: {
         AkademikLayout,
         ModuleHeader,            
     },

@@ -117,24 +117,24 @@ export default {
         this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];   
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
-                text:'AKADEMIK',
+                text: 'AKADEMIK',
                 disabled: false,
-                href:'/akademik'
+                href: '/akademik'
             },
             {
-                text:'DAFTAR ULANG',
+                text: 'DAFTAR ULANG',
                 disabled: false,
-                href:'#'
+                href: '#'
             },
             {
-                text:'DAFTAR ULANG MAHASISWA LAMA',
-                disabled:true,
-                href:'#'
+                text: 'DAFTAR ULANG MAHASISWA LAMA',
+                disabled: true,
+                href: '#'
             }
         ];
         let prodi_id=this.$store.getters['uiadmin/getProdiID'];
@@ -146,7 +146,7 @@ export default {
     },  
     data: () => ({ 
         dashboard:null,
-        firstloading:true,
+        firstloading: true,
         prodi_id:null,
         nama_prodi:null,
         tahun_akademik:null,
@@ -158,12 +158,12 @@ export default {
         expanded: [],
         datatable: [],      
         headers: [
-            { text: 'NO. FORMULIR', value: 'no_formulir', sortable:true,width:100  },   
-            { text: 'NIM', value: 'nim', sortable:true,width:100  },   
-            { text: 'NIRM', value: 'nirm', sortable:true,width:100  },   
-            { text: 'NAMA MAHASISWA', value: 'nama_mhs',sortable:true,width:250 },                           
-            { text: 'KELAS', value: 'idkelas',sortable:true,width:120, },                           
-            { text: 'STATUS', value: 'n_status',sortable:true,width:120, },                           
+            { text: 'NO. FORMULIR', value: 'no_formulir', sortable: true,width:100  },   
+            { text: 'NIM', value: 'nim', sortable: true,width:100  },   
+            { text: 'NIRM', value: 'nirm', sortable: true,width:100  },   
+            { text: 'NAMA MAHASISWA', value: 'nama_mhs',sortable: true,width:250 },                           
+            { text: 'KELAS', value: 'idkelas',sortable: true,width:120, },                           
+            { text: 'STATUS', value: 'n_status',sortable: true,width:120, },                           
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],  
         search: "", 
@@ -216,16 +216,16 @@ export default {
         },        
         deleteItem (item)
         {
-            this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus daftar ulang '+item.nama_mhs+' ?', { color: 'red',width:600,'desc':'proses ini juga menghapus seluruh data akademik namun KEUANGAN TETAP ADA.' }).then((confirm) => {
+            this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus daftar ulang '+item.nama_mhs+' ?', { color: 'red',width:600,'desc': 'proses ini juga menghapus seluruh data akademik namun KEUANGAN TETAP ADA.' }).then((confirm) => {
                 if (confirm)
                 {
                     this.btnLoadingTable=true;
                     this.$ajax.post('/akademik/dulang/mhslama'+item.id,
                         {
-                            '_method':'DELETE',
+                            '_method': 'DELETE',
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
@@ -248,7 +248,7 @@ export default {
             );
         },
     },
-    watch:{
+    watch: {
         tahun_akademik()
         {
             if (!this.firstloading)
@@ -272,7 +272,7 @@ export default {
             }            
         }
     },
-    components:{
+    components: {
         AkademikLayout,
         ModuleHeader,    
         Filter6               

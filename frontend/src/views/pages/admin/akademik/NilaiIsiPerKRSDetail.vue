@@ -50,7 +50,7 @@
                                     <v-card flat>
                                         <v-card-title>SAH :</v-card-title>
                                         <v-card-subtitle>
-                                            <v-chip label outlined color="info">{{datakrs.sah==1?'YA':'TIDAK'}}</v-chip>
+                                            <v-chip label outlined color="info">{{datakrs.sah==1?'YA': 'TIDAK'}}</v-chip>
                                         </v-card-subtitle>
                                     </v-card>
                                 </v-col>
@@ -183,31 +183,31 @@ export default {
         this.krs_id=this.$route.params.krsid;        
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
-                text:'AKADEMIK',
+                text: 'AKADEMIK',
                 disabled: false,
-                href:'/akademik'
+                href: '/akademik'
             },
             {
-                text:'ISI NILAI',
+                text: 'ISI NILAI',
                 disabled: false,
-                href:'#'
+                href: '#'
             },
             {
-                text:'PER KRS',
-                disabled:true,
-                href:'#'
+                text: 'PER KRS',
+                disabled: true,
+                href: '#'
             }
         ];  
         this.fetchKRS();               
     },  
     data: () => ({ 
         test:100,
-        firstloading:true,        
+        firstloading: true,        
         nama_prodi:null,
         tahun_akademik:null,        
         semester_akademik:null,
@@ -217,15 +217,15 @@ export default {
 
         //formdata
         krs_id:null,
-        datakrs:{},
+        datakrs: {},
         
         //table        
         datatableLoading: false,
         expanded: [],
         datatable: [],      
         headers: [
-            { text: 'KODE', value: 'kmatkul', sortable:true,width:100  },   
-            { text: 'NAMA MATAKULIAH', value: 'nmatkul',sortable:true,width:260 },               
+            { text: 'KODE', value: 'kmatkul', sortable: true,width:100  },   
+            { text: 'NAMA MATAKULIAH', value: 'nmatkul',sortable: true,width:260 },               
             { text: 'SKS', value: 'sks', sortable: false,width:50 },                           
             { text: 'SMT', value: 'semester', sortable: false,width:50 },                           
             { text: 'KELAS', value: 'nama_kelas', sortable: false,width:200 },                           
@@ -274,7 +274,7 @@ export default {
                     daftar_nilai:JSON.stringify(Object.assign({},daftar_nilai)),                    
                 },
                 {
-                    headers:{
+                    headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     }
                 }
@@ -301,7 +301,7 @@ export default {
             return total;
         }
     },
-    components:{
+    components: {
         AkademikLayout,
         ModuleHeader, 
         VAngkaNilai           

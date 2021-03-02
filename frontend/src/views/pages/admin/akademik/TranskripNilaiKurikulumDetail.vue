@@ -224,29 +224,29 @@ export default {
         this.user_id=this.$route.params.user_id;        
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
-                text:'AKADEMIK',
+                text: 'AKADEMIK',
                 disabled: false,
-                href:'/akademik'
+                href: '/akademik'
             },
             {
-                text:'NILAI',
+                text: 'NILAI',
                 disabled: false,
-                href:'#'
+                href: '#'
             },
             {
-                text:'TRANSKRIP KURIKULUM',
+                text: 'TRANSKRIP KURIKULUM',
                 disabled: false,
-                href:'/akademik/nilai/transkripkurikulum'
+                href: '/akademik/nilai/transkripkurikulum'
             },
             {
-                text:'DETAIL',
-                disabled:true,
-                href:'#'
+                text: 'DETAIL',
+                disabled: true,
+                href: '#'
             }
         ];
         let prodi_id=this.$store.getters['uiadmin/getProdiID'];
@@ -257,7 +257,7 @@ export default {
     },  
     data: () => ({ 
         user_id:null,
-        firstloading:true,
+        firstloading: true,
         prodi_id:null,
         nama_prodi:null,
         tahun_pendaftaran:null,
@@ -267,20 +267,20 @@ export default {
         datatableLoading: false,        
         datatable: [],      
         headers: [            
-            { text: 'NO', value: 'no', sortable:true,width:50  },               
-            { text: 'MATAKULIAH', value: 'nmatkul',sortable:true,width:350 },                           
-            { text: 'KODE', value: 'kmatkul',sortable:true,width:120, },                           
-            { text: 'SMT', value: 'semester',sortable:true,width:80, },                           
-            { text: 'KLP', value: 'group_alias',sortable:true,width:100, },                           
+            { text: 'NO', value: 'no', sortable: true,width:50  },               
+            { text: 'MATAKULIAH', value: 'nmatkul',sortable: true,width:350 },                           
+            { text: 'KODE', value: 'kmatkul',sortable: true,width:120, },                           
+            { text: 'SMT', value: 'semester',sortable: true,width:80, },                           
+            { text: 'KLP', value: 'group_alias',sortable: true,width:100, },                           
             { text: 'HM', value: 'HM',sortable: false,width:100, },                           
             { text: 'AM', value: 'AM',sortable: false,width:100, },                           
-            { text: 'K', value: 'sks',sortable:true,width:100, },                           
+            { text: 'K', value: 'sks',sortable: true,width:100, },                           
             { text: 'M', value: 'M', sortable: false,width:100 },
             { text: 'AKSI', value: 'actions', sortable: false,width:50 },
         ],  
         search: "", 
 
-        data_mhs:{},
+        data_mhs: {},
         jumlahMatkul:0, 
         totalSKS:0, 
         totalM:0, 
@@ -288,13 +288,13 @@ export default {
         ipk:0.00, 
 
         //history
-        data_matkul:{},
+        data_matkul: {},
         data_history: [],
         expanded: [],
         history_headers: [                                    
-            { text: 'NILAI HURUF', value: 'n_kual',sortable:true,width:80, },                                       
+            { text: 'NILAI HURUF', value: 'n_kual',sortable: true,width:80, },                                       
             { text: 'NILAI AKHIR', value: 'n_kuan',sortable: false,width:100, },                           
-            { text: 'NILAI MUTU', value: 'n_mutu',sortable:true,width:100, },                           
+            { text: 'NILAI MUTU', value: 'n_mutu',sortable: true,width:100, },                           
             { text: 'TA.SMT', value: 'tasmt',sortable: false,width:100, },                           
             { text: 'TA.MATKUL', value: 'ta_matkul',sortable: false,width:100, },                                       
             { text: 'DI INPUT OLEH', value: 'username',sortable: false,width:100, },                                       
@@ -344,7 +344,7 @@ export default {
                     user_id:this.data_mhs.user_id,
                 },
                 {
-                    headers:{
+                    headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     },
                     
@@ -374,7 +374,7 @@ export default {
             this.btnLoading=true;
             await this.$ajax.get('/akademik/nilai/transkripkurikulum/printpdf1/'+this.data_mhs.user_id,                
                 {
-                    headers:{
+                    headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     },
                     
@@ -392,7 +392,7 @@ export default {
             this.btnLoading=true;
             await this.$ajax.get('/akademik/nilai/transkripkurikulum/printpdf2/'+this.data_mhs.user_id,                
                 {
-                    headers:{
+                    headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     },
                     
@@ -421,7 +421,7 @@ export default {
             );
         }, 
     },
-    components:{
+    components: {
         AkademikLayout,
         ModuleHeader,          
         ProfilMahasiswa  

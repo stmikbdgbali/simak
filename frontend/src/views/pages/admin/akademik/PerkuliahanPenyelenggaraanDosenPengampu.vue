@@ -94,7 +94,7 @@
                                 <template v-slot:item.is_ketua="{ item }">                                    
                                     <v-switch
                                         v-model="item.is_ketua"
-                                        :label="item.is_ketua == 1?'YA':'TIDAK'"
+                                        :label="item.is_ketua == 1?'YA': 'TIDAK'"
                                         @change="updateketua(item)">
                                     </v-switch>  
                                 </template>
@@ -130,29 +130,29 @@ export default {
     created () {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
-                text:'AKADEMIK',
+                text: 'AKADEMIK',
                 disabled: false,
-                href:'/akademik'
+                href: '/akademik'
             },
             {
-                text:'PERKULIAHAN',
+                text: 'PERKULIAHAN',
                 disabled: false,
-                href:'#'
+                href: '#'
             },
             {
-                text:'PENYELENGGARAAN MATAKULIAH',
+                text: 'PENYELENGGARAAN MATAKULIAH',
                 disabled: false,
-                href:'/akademik/perkuliahan/penyelenggaraan/daftar'
+                href: '/akademik/perkuliahan/penyelenggaraan/daftar'
             },
             {
-                text:'DOSEN PENGAMPU',
-                disabled:true,
-                href:'#'
+                text: 'DOSEN PENGAMPU',
+                disabled: true,
+                href: '#'
             },
         ];
         let prodi_id=this.$store.getters['uiadmin/getProdiID'];
@@ -170,7 +170,7 @@ export default {
         this.fetchDosenPengampu(); 
     },
     data: () => ({ 
-        firstloading:true,
+        firstloading: true,
         prodi_id:null,
         nama_prodi:null,
         tahun_akademik:null,        
@@ -196,12 +196,12 @@ export default {
         daftar_dosen: [],
 
        
-        formdata:{
+        formdata: {
             idpenyelenggaraan:null,
             dosen_id:null,
             is_ketua: false,
         },        
-        formdefault:{
+        formdefault: {
             idpenyelenggaraan:null,
             dosen_id:null,
             is_ketua: false,
@@ -216,7 +216,7 @@ export default {
             await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/pengampu',            
             {
                 idpenyelenggaraan:this.formdata.idpenyelenggaraan,
-                pid:'terdaftar'
+                pid: 'terdaftar'
             },
             {
                 headers: {
@@ -242,7 +242,7 @@ export default {
             await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/pengampu',            
             {
                 idpenyelenggaraan:this.formdata.idpenyelenggaraan,
-                pid:'belumterdaftar'
+                pid: 'belumterdaftar'
             },
             {
                 headers: {
@@ -263,7 +263,7 @@ export default {
                         is_ketua:this.formdata.is_ketua,                                                                                                                               
                     },
                     {
-                        headers:{
+                        headers: {
                             Authorization: this.$store.getters["auth/Token"]
                         }
                     }
@@ -281,16 +281,16 @@ export default {
         },
         deleteItem (item)
         {
-            this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus DOSEN PENGAMPU matakuliah ('+item.nama_dosen+') ?', { color: 'red',width:600,'desc':'proses ini juga menghapus seluruh data yang terkait dalam penyelenggaraan matkul ini.' }).then((confirm) => {
+            this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus DOSEN PENGAMPU matakuliah ('+item.nama_dosen+') ?', { color: 'red',width:600,'desc': 'proses ini juga menghapus seluruh data yang terkait dalam penyelenggaraan matkul ini.' }).then((confirm) => {
                 if (confirm)
                 {
                     this.btnLoadingTable=true;
                     this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/deletepengampu/'+item.id,
                         {
-                            '_method':'DELETE',
+                            '_method': 'DELETE',
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
@@ -308,12 +308,12 @@ export default {
         {
             await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/updateketua/'+item.id,
                 {
-                    _method:'put',
+                    _method: 'put',
                     penyelenggaraan_id:item.penyelenggaraan_id,                                                                                                                               
                     is_ketua:item.is_ketua,                                                                                                                               
                 },
                 {
-                    headers:{
+                    headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     }
                 }
@@ -329,7 +329,7 @@ export default {
         }
     },
    
-    components:{
+    components: {
         AkademikLayout,
         ModuleHeader, 
         DataMatakuliahPenyelenggaraan           

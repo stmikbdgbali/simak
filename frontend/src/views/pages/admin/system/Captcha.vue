@@ -73,19 +73,19 @@ export default {
     {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.ACCESS_TOKEN
+                href: '/dashboard/'+this.ACCESS_TOKEN
             },
             {
-                text:'KONFIGURASI SISTEM',
+                text: 'KONFIGURASI SISTEM',
                 disabled: false,
-                href:'/system-setting'
+                href: '/system-setting'
             },  
             {
-                text:'SERVER - CAPTCHA',
-                disabled:true,
-                href:'#'
+                text: 'SERVER - CAPTCHA',
+                disabled: true,
+                href: '#'
             }
         ];
         this.initialize();
@@ -98,7 +98,7 @@ export default {
         form_valid: true,
         formdata: {
             siteKey: "",
-            privateKey:''
+            privateKey: ''
         },
         //form rules
         rule_site_key: [
@@ -130,15 +130,15 @@ export default {
                 this.btnLoading=true;
                 this.$ajax.post('/system/setting/variables',
                     {
-                        '_method':'PUT',
-                        'pid':'captcha google',
+                        '_method': 'PUT',
+                        'pid': 'captcha google',
                         setting:JSON.stringify({
                             901:this.formdata.siteKey,
                             902:this.formdata.privateKey,
                         }),
                     },
                     {
-                        headers:{
+                        headers: {
                             Authorization:this.TOKEN
                         }
                     }
@@ -152,11 +152,11 @@ export default {
     },
     computed: {
         ...mapGetters('auth',{
-            ACCESS_TOKEN:'AccessToken',
-            TOKEN:'Token',
+            ACCESS_TOKEN: 'AccessToken',
+            TOKEN: 'Token',
         }),
     },
-    components:{
+    components: {
 		SystemConfigLayout,
         ModuleHeader,
 	}

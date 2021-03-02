@@ -259,7 +259,7 @@ export default {
 			},
 			{
 				text:"USERS SUPER ADMIN",
-				disabled:true,
+				disabled: true,
 				href:"#"
 			}
 		];
@@ -273,10 +273,10 @@ export default {
 		//tables
 		headers: [
 			{ text: "", value: "foto" },
-			{ text: "USERNAME", value: "username",sortable:true },
-			{ text: "NAME", value: "name",sortable:true },
-			{ text: "EMAIL", value: "email",sortable:true }, 
-			{ text: "NOMOR HP", value: "nomor_hp",sortable:true }, 
+			{ text: "USERNAME", value: "username",sortable: true },
+			{ text: "NAME", value: "name",sortable: true },
+			{ text: "EMAIL", value: "email",sortable: true }, 
+			{ text: "NOMOR HP", value: "nomor_hp",sortable: true }, 
 			{ text: "AKSI", value: "actions", sortable: false,width:100 },
 		],
 		expanded: [],
@@ -392,7 +392,7 @@ export default {
 					{
 						daftar_roles.push({
 							text:element.name,
-							disabled:true,
+							disabled: true,
 						});
 					}
 					else
@@ -425,7 +425,7 @@ export default {
 					{
 						daftar_roles.push({
 							text:element.name,
-							disabled:true,
+							disabled: true,
 						});
 					}
 					else
@@ -479,7 +479,7 @@ export default {
 							role_id:JSON.stringify(Object.assign({},this.editedItem.role_id)),
 						},
 						{
-							headers:{
+							headers: {
 								Authorization:this.TOKEN
 							}
 						}
@@ -501,7 +501,7 @@ export default {
 							role_id:JSON.stringify(Object.assign({},this.editedItem.role_id)),
 						},
 						{
-							headers:{
+							headers: {
 								Authorization:this.TOKEN
 							}
 						}
@@ -524,7 +524,7 @@ export default {
 							"_method":"DELETE",
 						},
 						{
-							headers:{
+							headers: {
 								Authorization:this.TOKEN
 							}
 						}

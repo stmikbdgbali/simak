@@ -235,19 +235,19 @@ export default {
     {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.ACCESS_TOKEN
+                href: '/dashboard/'+this.ACCESS_TOKEN
             },
             {
-                text:'USER SISTEM',
+                text: 'USER SISTEM',
                 disabled: false,
-                href:'/system-users'
+                href: '/system-users'
             },
             {
-                text:'ROLES',
-                disabled:true,
-                href:'#'
+                text: 'ROLES',
+                disabled: true,
+                href: '#'
             }
         ];
         this.initialize()
@@ -297,7 +297,7 @@ export default {
             value => !!value||"Mohon untuk di isi nama Role !!!",  
             value => /^[A-Za-z]*$/.test(value) || 'Nama Role hanya boleh string',                
         ], 
-        form_error_message:''
+        form_error_message: ''
     }),
     methods: {
         initialize () 
@@ -400,11 +400,11 @@ export default {
                 {
                     this.$ajax.post('/system/setting/roles/'+this.editedItem.id,
                         {
-                            '_method':'PUT',
+                            '_method': 'PUT',
                             name:this.editedItem.name.toLowerCase(),
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization:this.TOKEN
                             }
                         }
@@ -421,7 +421,7 @@ export default {
                             name:this.editedItem.name.toLowerCase()
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization:this.TOKEN
                             }
                         }
@@ -440,8 +440,8 @@ export default {
             return this.editedIndex === -1 ? 'TAMBAH ROLE' : 'EDIT ROLE'
         },
         ...mapGetters('auth',{            
-            ACCESS_TOKEN:'AccessToken',          
-            TOKEN:'Token',                                  
+            ACCESS_TOKEN: 'AccessToken',          
+            TOKEN: 'Token',                                  
         }),
     },
     watch: {
@@ -449,7 +449,7 @@ export default {
             val || this.close()
         },
     },   
-    components:{
+    components: {
 		SystemUserLayout,
         ModuleHeader,
         RolePermissions

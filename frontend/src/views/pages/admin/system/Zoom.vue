@@ -315,7 +315,7 @@ export default {
 			},
 			{
 				text:"PLUGIN - ZOOM",
-				disabled:true,
+				disabled: true,
 				href:"#"
 			}
 		];
@@ -443,7 +443,7 @@ export default {
 							im_token:this.formdata.im_token, 
 						},
 						{
-							headers:{
+							headers: {
 								Authorization: this.$store.getters["auth/Token"]
 							}
 						}
@@ -464,7 +464,7 @@ export default {
 							im_token:this.formdata.im_token,
 						},
 						{
-							headers:{
+							headers: {
 								Authorization: this.$store.getters["auth/Token"]
 							}
 						}
@@ -483,7 +483,7 @@ export default {
 					if (confirm) {
 						this.btnLoading = true;
 						this.$ajax.get(process.env.VUE_APP_HOST + "/h2h/zoom/sync/" + item.id, {
-							headers:{
+							headers: {
 								Authorization: this.$store.getters["auth/Token"]
 							}
 						}

@@ -84,29 +84,29 @@ export default {
     created () {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
-                text:'AKADEMIK',
+                text: 'AKADEMIK',
                 disabled: false,
-                href:'/akademik'
+                href: '/akademik'
             },
             {
-                text:'PERKULIAHAN',
+                text: 'PERKULIAHAN',
                 disabled: false,
-                href:'#'
+                href: '#'
             },
             {
-                text:'KRS',
+                text: 'KRS',
                 disabled: false,
-                href:'/akademik/perkuliahan/krs/daftar'
+                href: '/akademik/perkuliahan/krs/daftar'
             },
             {
-                text:'TAMBAH',
-                disabled:true,
-                href:'#'
+                text: 'TAMBAH',
+                disabled: true,
+                href: '#'
             },
         ];
         let prodi_id=this.$store.getters['uiadmin/getProdiID'];
@@ -124,7 +124,7 @@ export default {
         }
     },  
     data: () => ({ 
-        firstloading:true,
+        firstloading: true,
         prodi_id:null,
         nama_prodi:null,
         tahun_akademik:null,
@@ -139,11 +139,11 @@ export default {
         expanded: [],
         datatable: [],      
         headers: [
-            { text: 'KODE', value: 'kmatkul', sortable:true,width:120  },   
-            { text: 'NAMA MATAKULIAH', value: 'nmatkul',sortable:true },               
-            { text: 'KELOMPOK', value: 'group_alias', sortable:true,width:120 },               
-            { text: 'SKS', value: 'sks',sortable:true,width:80, align:'center' },               
-            { text: 'SMT', value: 'semester', sortable:true,width:80 },               
+            { text: 'KODE', value: 'kmatkul', sortable: true,width:120  },   
+            { text: 'NAMA MATAKULIAH', value: 'nmatkul',sortable: true },               
+            { text: 'KELOMPOK', value: 'group_alias', sortable: true,width:120 },               
+            { text: 'SKS', value: 'sks',sortable: true,width:80, align: 'center' },               
+            { text: 'SMT', value: 'semester', sortable: true,width:80 },               
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],  
         search: "",    
@@ -151,9 +151,9 @@ export default {
         //formdata
         form_valid: true,   
         daftar_dulang: [],
-        formdata:{
+        formdata: {
             nim: "",
-            dulang_id:''
+            dulang_id: ''
         },        
         rule_nim: [
             value => !!value||"Nomor Induk Mahasiswa (NIM) mohon untuk diisi !!!",
@@ -215,7 +215,7 @@ export default {
         },
     },
     
-    components:{
+    components: {
         AkademikLayout,
         ModuleHeader,            
     },

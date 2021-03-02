@@ -340,23 +340,23 @@ import {mapGetters} from "vuex";
 import DataMasterLayout from '@/views/layouts/DataMasterLayout';
 import ModuleHeader from '@/components/ModuleHeader';
 export default {
-    name:'TahunAkademik',
+    name: 'TahunAkademik',
     created () {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.ACCESS_TOKEN
+                href: '/dashboard/'+this.ACCESS_TOKEN
             },
             {
-                text:'DATA MASTER',
+                text: 'DATA MASTER',
                 disabled: false,
-                href:'#'
+                href: '#'
             },
             {
-                text:'TAHUN AKADEMIK',
-                disabled:true,
-                href:'#'
+                text: 'TAHUN AKADEMIK',
+                disabled: true,
+                href: '#'
             }
         ];
         this.initialize()
@@ -485,7 +485,7 @@ export default {
                 {
                     await this.$ajax.post('/datamaster/tahunakademik/'+this.old_tahun,
                         {
-                            '_method':'PUT',
+                            '_method': 'PUT',
                             tahun:this.formdata.tahun,
                             tahun_akademik:this.formdata.tahun_akademik,
                             awal_ganjil:this.semester_ganjil[0],
@@ -494,7 +494,7 @@ export default {
                             akhir_genap:this.semester_genap[1],
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization:this.TOKEN
                             }
                         }
@@ -517,7 +517,7 @@ export default {
                             akhir_genap:this.semester_genap[1],
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization:this.TOKEN
                             }
                         }
@@ -538,10 +538,10 @@ export default {
                     this.btnLoading=true;
                     this.$ajax.post('/datamaster/tahunakademik/'+item.tahun,
                         {
-                            '_method':'DELETE',
+                            '_method': 'DELETE',
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization:this.TOKEN
                             }
                         }
@@ -575,8 +575,8 @@ export default {
     },
     computed: {
         ...mapGetters('auth',{
-            ACCESS_TOKEN:'AccessToken',
-            TOKEN:'Token',
+            ACCESS_TOKEN: 'AccessToken',
+            TOKEN: 'Token',
         }),
         formTitle () {
             return this.editedIndex === -1 ? 'TAMBAH DATA' : 'UBAH DATA'
@@ -591,7 +591,7 @@ export default {
                 return this.semester_ganjil.join(' ~ ');
             }
         },
-        semesterGenapText:{
+        semesterGenapText: {
             set()
             {
 
@@ -602,7 +602,7 @@ export default {
             }
         },           
     },
-    components:{
+    components: {
         DataMasterLayout,
         ModuleHeader,
     },

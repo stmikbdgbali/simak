@@ -164,24 +164,24 @@ export default {
     created () {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
-                text:'AKADEMIK',
+                text: 'AKADEMIK',
                 disabled: false,
-                href:'/akademik'
+                href: '/akademik'
             },
             {
-                text:'NILAI',
+                text: 'NILAI',
                 disabled: false,
-                href:'#'
+                href: '#'
             },
             {
-                text:'TRANSKRIP KURIKULUM',
-                disabled:true,
-                href:'#'
+                text: 'TRANSKRIP KURIKULUM',
+                disabled: true,
+                href: '#'
             }
         ];
         let prodi_id=this.$store.getters['uiadmin/getProdiID'];
@@ -191,7 +191,7 @@ export default {
         this.initialize()
     },  
     data: () => ({ 
-        firstloading:true,
+        firstloading: true,
         prodi_id:null,
         nama_prodi:null,
         tahun_pendaftaran:null,
@@ -204,12 +204,12 @@ export default {
         expanded: [],
         datatable: [],      
         headers: [            
-            { text: 'NIM', value: 'nim', sortable:true,width:100  },               
-            { text: 'NAMA MAHASISWA', value: 'nama_mhs',sortable:true },                           
-            { text: 'KELAS', value: 'idkelas',sortable:true,width:120, },                           
+            { text: 'NIM', value: 'nim', sortable: true,width:100  },               
+            { text: 'NAMA MAHASISWA', value: 'nama_mhs',sortable: true },                           
+            { text: 'KELAS', value: 'idkelas',sortable: true,width:120, },                           
             { text: 'JUMLAH MATKUL', value: 'jumlah_matkul',sortable: false,width:100, },                           
             { text: 'JUMLAH SKS', value: 'jumlah_sks',sortable: false,width:100, },                           
-            { text: 'IPK SEMENTARA', value: 'ipk',sortable:true,width:100, },                           
+            { text: 'IPK SEMENTARA', value: 'ipk',sortable: true,width:100, },                           
             { text: 'AKSI', value: 'actions', sortable: false,width:120 },
         ],  
         search: "", 
@@ -267,7 +267,7 @@ export default {
             this.btnLoading=true;
             await this.$ajax.get('/akademik/nilai/transkripkurikulum/printpdf2/'+item.user_id,                
                 {
-                    headers:{
+                    headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     },
                     
@@ -288,7 +288,7 @@ export default {
             );
         }, 
     },
-    watch:{
+    watch: {
         tahun_pendaftaran()
         {
             if (!this.firstloading)
@@ -334,7 +334,7 @@ export default {
         }
         
     },
-    components:{
+    components: {
         AkademikLayout,
         ModuleHeader,    
         Filter7               

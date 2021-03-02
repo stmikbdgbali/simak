@@ -349,19 +349,19 @@ export default {
         this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];      
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
-                text:'SPMB',
+                text: 'SPMB',
                 disabled: false,
-                href:'/spmb'
+                href: '/spmb'
             },
             {
-                text:'PENDAFTAR BARU',
-                disabled:true,
-                href:'#'
+                text: 'PENDAFTAR BARU',
+                disabled: true,
+                href: '#'
             }
         ];   
         this.breadcrumbs[1].disabled=(this.dashboard=='mahasiswabaru'||this.dashboard=='mahasiswa');
@@ -373,7 +373,7 @@ export default {
         this.initialize();
     },
     data: () => ({ 
-        firstloading:true,
+        firstloading: true,
         prodi_id:null,
         tahun_pendaftaran:null,
         nama_prodi:null,
@@ -389,11 +389,11 @@ export default {
         //tables
         headers: [                        
             { text:  "", value: 'foto', width:70 },            
-            { text: 'NAMA MAHASISWA', value: 'name',width:350,sortable:true },
-            { text: 'USERNAME', value: 'username',sortable:true },
-            { text: 'EMAIL', value: 'email',sortable:true },     
+            { text: 'NAMA MAHASISWA', value: 'name',width:350,sortable: true },
+            { text: 'USERNAME', value: 'username',sortable: true },
+            { text: 'EMAIL', value: 'email',sortable: true },     
             { text: 'NOMOR HP', value: 'nomor_hp',sortable: false,width:130 },                
-            { text: 'TGL.DAFTAR', value: 'created_at',sortable:true,width:100 },     
+            { text: 'TGL.DAFTAR', value: 'created_at',sortable: true,width:100 },     
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],
         expanded: [],
@@ -490,11 +490,11 @@ export default {
         },
         badgeColor(item)
         {
-            return item.active == 1 ? 'success':'error'
+            return item.active == 1 ? 'success': 'error'
         },
         badgeIcon(item)
         {
-            return item.active == 1 ? 'mdi-check-bold':'mdi-close-thick'
+            return item.active == 1 ? 'mdi-check-bold': 'mdi-close-thick'
         },      
         dataTableRowClicked(item)
         {
@@ -512,11 +512,11 @@ export default {
             this.btnLoading=true;
             this.$ajax.post('/akademik/kemahasiswaan/updatestatus/'+id,
                 {
-                    '_method':'PUT',
+                    '_method': 'PUT',
                     'active':1
                 },
                 {
-                    headers:{
+                    headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     }
                 }
@@ -532,12 +532,12 @@ export default {
             this.btnLoading=true;
             await this.$ajax.post('/system/users/syncallpermissions',
                 {
-                    role_name:'mahasiswabaru',
+                    role_name: 'mahasiswabaru',
                     TA:this.tahun_pendaftaran,                    
                     prodi_id:this.prodi_id                     
                 },
                 {
-                    headers:{
+                    headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     }
                 }
@@ -575,7 +575,7 @@ export default {
                 {
                     await this.$ajax.post('/spmb/pmb/updatependaftar/'+this.formdata.id,
                         {
-                            '_method':'PUT',
+                            '_method': 'PUT',
                             name:this.formdata.name,
                             email:this.formdata.email,                    
                             nomor_hp:this.formdata.nomor_hp,
@@ -585,7 +585,7 @@ export default {
                             password:this.formdata.password,                     
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
@@ -609,7 +609,7 @@ export default {
                             password:this.formdata.password,                            
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
@@ -631,7 +631,7 @@ export default {
                     id:id,                    
                 },
                 {
-                    headers:{
+                    headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     }
                 }
@@ -668,7 +668,7 @@ export default {
             }   
             await this.$ajax.get('/akademik/kemahasiswaan/biodatamhs2/'+item.id,                
                 {
-                    headers:{
+                    headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     }
                 }
@@ -688,10 +688,10 @@ export default {
                     this.btnLoading=true;
                     this.$ajax.post('/spmb/pmb/'+item.id,
                         {
-                            '_method':'DELETE',
+                            '_method': 'DELETE',
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
@@ -723,7 +723,7 @@ export default {
             );
         },
     },
-    watch:{
+    watch: {
         tahun_pendaftaran()
         {
             if (!this.firstloading)
@@ -785,7 +785,7 @@ export default {
         },        
     },
     
-    components:{
+    components: {
         SPMBLayout,
         ModuleHeader,    
         Filter7    

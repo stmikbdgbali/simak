@@ -181,19 +181,19 @@ export default {
         this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
-                text:'SYSTEM',
+                text: 'SYSTEM',
                 disabled: false,
-                href:'#'
+                href: '#'
             },
             {
-                text:'BIODATA DIRI',
-                disabled:true,
-                href:'#'
+                text: 'BIODATA DIRI',
+                disabled: true,
+                href: '#'
             }
         ];    
         this.initialize();    
@@ -210,7 +210,7 @@ export default {
 
         //form
         user_id:null,
-        kode_billing:'N.A',
+        kode_billing: 'N.A',
         form_valid: true,
 
         menuTanggalLahir: false,
@@ -233,11 +233,11 @@ export default {
         daftar_prodi: [],        
         daftar_kelas: [],
         
-        formdata:{
+        formdata: {
             nama_mhs: "",           
             tempat_lahir: "",
             tanggal_lahir: "",
-            jk:'L',
+            jk: 'L',
             nomor_hp: "",    
             email: "",
             alamat_rumah: "",
@@ -302,7 +302,7 @@ export default {
             });
             await this.$ajax.get('/spmb/formulirpendaftaran/'+this.user_id,             
                 {
-                    headers:{
+                    headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     }
             },
@@ -349,7 +349,7 @@ export default {
             {
                 this.btnLoading=true;                
                 await this.$ajax.post('/kemahasiswaan/biodata/'+this.user_id+'/update',{                    
-                    _method:'put',
+                    _method: 'put',
                     nama_mhs:this.formdata.nama_mhs,           
                     tempat_lahir:this.formdata.tempat_lahir,           
                     tanggal_lahir:this.formdata.tanggal_lahir,           
@@ -368,7 +368,7 @@ export default {
                     alamat_rumah:this.formdata.alamat_rumah,                           
                 },
                 {
-                    headers:{
+                    headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     }
                 }
@@ -381,7 +381,7 @@ export default {
             }                             
         },
     },    
-    watch:{
+    watch: {
         provinsi_id(val)
         {
             if (val.id != null && val.id != '')
@@ -426,7 +426,7 @@ export default {
         }
 
     },
-    components:{
+    components: {
         SystemUserLayout,
         ModuleHeader,              
     },

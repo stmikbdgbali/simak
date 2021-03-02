@@ -84,24 +84,24 @@ export default {
     {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.ACCESS_TOKEN
+                href: '/dashboard/'+this.ACCESS_TOKEN
             },
             {
-                text:'KONFIGURASI SISTEM',
+                text: 'KONFIGURASI SISTEM',
                 disabled: false,
-                href:'/system-setting'
+                href: '/system-setting'
             },  
             {
-                text:'PERGURUAN TINGGI',
+                text: 'PERGURUAN TINGGI',
                 disabled: false,
-                href:'#'
+                href: '#'
             },
             {
-                text:'IDENTITAS DIRI',
-                disabled:true,
-                href:'#'
+                text: 'IDENTITAS DIRI',
+                disabled: true,
+                href: '#'
             }
         ];
         this.initialize();
@@ -152,8 +152,8 @@ export default {
                 this.btnLoading=true;                
                 this.$ajax.post('/system/setting/variables',
                     {
-                        '_method':'PUT', 
-                        'pid':'Identitas Perguruan Tinggi',
+                        '_method': 'PUT', 
+                        'pid': 'Identitas Perguruan Tinggi',
                         setting:JSON.stringify({
                             101:this.formdata.nama_pt,
                             102:this.formdata.nama_alias_pt,
@@ -162,7 +162,7 @@ export default {
                         }),                                                                                                                            
                     },
                     {
-                        headers:{
+                        headers: {
                             Authorization:this.TOKEN
                         }
                     }
@@ -176,11 +176,11 @@ export default {
     },
     computed: { 
         ...mapGetters('auth',{            
-            ACCESS_TOKEN:'AccessToken',          
-            TOKEN:'Token',                                  
+            ACCESS_TOKEN: 'AccessToken',          
+            TOKEN: 'Token',                                  
         }),
     },
-    components:{
+    components: {
 		SystemConfigLayout,
         ModuleHeader,        
 	}

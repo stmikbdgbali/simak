@@ -183,23 +183,23 @@ import {mapGetters} from "vuex";
 import DataMasterLayout from '@/views/layouts/DataMasterLayout';
 import ModuleHeader from '@/components/ModuleHeader';
 export default {
-    name:'Fakultas',
+    name: 'Fakultas',
     created () {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.ACCESS_TOKEN
+                href: '/dashboard/'+this.ACCESS_TOKEN
             },
             {
-                text:'DATA MASTER',
+                text: 'DATA MASTER',
                 disabled: false,
-                href:'#'
+                href: '#'
             },
             {
-                text:'FAKULTAS',
-                disabled:true,
-                href:'#'
+                text: 'FAKULTAS',
+                disabled: true,
+                href: '#'
             }
         ];
         this.initialize()
@@ -287,12 +287,12 @@ export default {
                 {
                     await this.$ajax.post('/datamaster/fakultas/'+this.kode_fakultas,
                         {
-                            '_method':'PUT',
+                            '_method': 'PUT',
                             kode_fakultas:this.formdata.kode_fakultas,                            
                             nama_fakultas:this.formdata.nama_fakultas,                                                        
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization:this.TOKEN
                             }
                         }
@@ -311,7 +311,7 @@ export default {
                             nama_fakultas:this.formdata.nama_fakultas,                                                        
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization:this.TOKEN
                             }
                         }
@@ -332,10 +332,10 @@ export default {
                     this.btnLoading=true;
                     this.$ajax.post('/datamaster/fakultas/'+item.kode_fakultas,
                         {
-                            '_method':'DELETE',
+                            '_method': 'DELETE',
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization:this.TOKEN
                             }
                         }
@@ -369,14 +369,14 @@ export default {
     },
     computed: {
         ...mapGetters('auth',{            
-            ACCESS_TOKEN:'AccessToken',          
-            TOKEN:'Token',                                  
+            ACCESS_TOKEN: 'AccessToken',          
+            TOKEN: 'Token',                                  
         }),
         formTitle () {
             return this.editedIndex === -1 ? 'TAMBAH DATA' : 'UBAH DATA'
         },        
     },
-    components:{
+    components: {
         DataMasterLayout,
         ModuleHeader,        
     },

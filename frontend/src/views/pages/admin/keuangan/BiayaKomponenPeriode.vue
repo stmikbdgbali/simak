@@ -153,25 +153,25 @@ import KeuanganLayout from '@/views/layouts/KeuanganLayout';
 import ModuleHeader from '@/components/ModuleHeader';
 import Filter7 from '@/components/sidebar/FilterMode7';
 export default {
-    name:'BiayaKomponenPeriode',
+    name: 'BiayaKomponenPeriode',
     created()
     {
         this.dashboard=this.$store.getters['uiadmin/getDefaultDashboard'];
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
-                text:'KEUANGAN',
+                text: 'KEUANGAN',
                 disabled: false,
-                href:'/keuangan'
+                href: '/keuangan'
             },
             {
-                text:'BIAYA KOMPONEN PER PERIODE',
-                disabled:true,
-                href:'#'
+                text: 'BIAYA KOMPONEN PER PERIODE',
+                disabled: true,
+                href: '#'
             }
         ];
         this.tahun_pendaftaran = this.$store.getters['uiadmin/getTahunPendaftaran'];         
@@ -182,7 +182,7 @@ export default {
     },  
     data: () => ({
         dashboard:null,
-        firstloading:true,
+        firstloading: true,
         breadcrumbs: [],  
         tahun_pendaftaran:0,
         prodi_id:null,
@@ -290,7 +290,7 @@ export default {
 
         },
     },
-    watch:{
+    watch: {
         tahun_pendaftaran()
         {
             if (!this.firstloading)
@@ -335,7 +335,7 @@ export default {
             }  
         }
     },
-    components:{
+    components: {
         KeuanganLayout,
         ModuleHeader,    
         Filter7,       

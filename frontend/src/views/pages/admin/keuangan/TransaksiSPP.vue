@@ -185,25 +185,25 @@ import KeuanganLayout from '@/views/layouts/KeuanganLayout';
 import ModuleHeader from '@/components/ModuleHeader';
 import Filter18 from '@/components/sidebar/FilterMode18';
 export default {
-    name:'TransaksiSPP',
+    name: 'TransaksiSPP',
     created()
     {
         this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];   
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
-                text:'KEUANGAN',
+                text: 'KEUANGAN',
                 disabled: false,
-                href:'/keuangan'
+                href: '/keuangan'
             },
             {
-                text:'TRANSAKSI SPP',
-                disabled:true,
-                href:'#'
+                text: 'TRANSAKSI SPP',
+                disabled: true,
+                href: '#'
             }
         ];        
         let prodi_id=this.$store.getters['uiadmin/getProdiID'];
@@ -216,7 +216,7 @@ export default {
         this.initialize()
     },
     data: () => ({
-        firstloading:true,
+        firstloading: true,
         breadcrumbs: [],     
         prodi_id:null,
         nama_prodi:null,
@@ -230,13 +230,13 @@ export default {
         datatableLoading: false,       
         datatable: [], 
         headers: [                                                
-            { text: 'KODE BILLING', value: 'no_transaksi',width:100,sortable:true },
-            { text: 'TANGGAL', value: 'tanggal',width:90,sortable:true },
-            { text: 'NIM', value: 'nim',sortable:true,width:100 },
-            { text: 'NAMA MAHASISWA', value: 'nama_mhs',sortable:true, width:250 },            
-            { text: 'BULAN', value: 'nama_bulan',width:100,sortable:true },
+            { text: 'KODE BILLING', value: 'no_transaksi',width:100,sortable: true },
+            { text: 'TANGGAL', value: 'tanggal',width:90,sortable: true },
+            { text: 'NIM', value: 'nim',sortable: true,width:100 },
+            { text: 'NAMA MAHASISWA', value: 'nama_mhs',sortable: true, width:250 },            
+            { text: 'BULAN', value: 'nama_bulan',width:100,sortable: true },
             { text: 'TA/SMT', value: 'idsmt',width:50,sortable: false },
-            { text: 'JUMLAH', value: 'sub_total',width:100,sortable: false,align:'right' },
+            { text: 'JUMLAH', value: 'sub_total',width:100,sortable: false,align: 'right' },
             { text: 'STATUS', value: 'nama_status',width:100,sortable: false },            
             { text: 'AKSI', value: 'actions', sortable: false,width:50 },
         ],        
@@ -250,11 +250,11 @@ export default {
         daftar_semester: [],        
         formdata: {
             nim: "",
-            semester_akademik:''
+            semester_akademik: ''
         },
         formdefault: {
             nim: "",
-            semester_akademik:''
+            semester_akademik: ''
         },
         rule_nim: [
             value => !!value||"Nomor Induk Mahasiswa (NIM) mohon untuk diisi !!!",
@@ -328,7 +328,7 @@ export default {
                         TA:this.tahun_akademik,                                                     
                     },
                     {
-                        headers:{
+                        headers: {
                             Authorization: this.$store.getters["auth/Token"]
                         }
                     }
@@ -384,7 +384,7 @@ export default {
             return total;
         }
     }, 
-    watch:{        
+    watch: {        
         tahun_akademik()
         {
             if (!this.firstloading)
@@ -429,7 +429,7 @@ export default {
             this.awaiting_search = true;
         }
     },
-    components:{
+    components: {
         KeuanganLayout,
         ModuleHeader,     
         Filter18    

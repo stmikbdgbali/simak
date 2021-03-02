@@ -140,14 +140,14 @@ export default {
 	{
 		this.breadcrumbs = [
 			{
-				text:'HOME',
+				text: 'HOME',
 				disabled: false,
-				href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+				href: '/dashboard/'+this.$store.getters['auth/AccessToken']
 			},
 			{
-				text:'MIGRASI SISTEM',
-				disabled:true,
-				href:'#'
+				text: 'MIGRASI SISTEM',
+				disabled: true,
+				href: '#'
 			}
         ];				
         this.tahun_pendaftaran = this.$store.getters['uiadmin/getTahunPendaftaran']; 
@@ -157,7 +157,7 @@ export default {
         this.initialize();
     },
     data: () => ({        
-        firstloading:true,
+        firstloading: true,
         breadcrumbs: [],        
         tahun_pendaftaran:0,  
         
@@ -268,7 +268,7 @@ export default {
                         status_mhs:JSON.stringify(Object.assign({},this.formdata.status_mhs)),                                                                                                          
                     },
                     {
-                        headers:{
+                        headers: {
                             Authorization: this.$store.getters["auth/Token"]
                         }
                     }
@@ -285,7 +285,7 @@ export default {
             }
         },
     },
-    watch:{
+    watch: {
         tahun_pendaftaran()
         {
             if (!this.firstloading)
@@ -294,7 +294,7 @@ export default {
             }            
         },
     },
-    components:{
+    components: {
         SystemMigrationLayout,
         ModuleHeader,           
         Filter9,        

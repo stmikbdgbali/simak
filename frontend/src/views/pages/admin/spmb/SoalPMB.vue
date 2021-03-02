@@ -255,7 +255,7 @@
                                                     >
                                                         <template v-slot:item.status="{ item }">
                                                             <v-icon>    
-                                                                {{item.status == 1 ?'mdi-check-bold':'mdi-close-thick'}}
+                                                                {{item.status == 1 ?'mdi-check-bold': 'mdi-close-thick'}}
                                                             </v-icon>
                                                         </template>
                                                     </v-data-table>
@@ -317,23 +317,23 @@ import SPMBLayout from '@/views/layouts/SPMBLayout';
 import ModuleHeader from '@/components/ModuleHeader';
 import Filter19 from '@/components/sidebar/FilterMode19';
 export default {
-    name:'SoalPMB',
+    name: 'SoalPMB',
     created () {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
-                text:'SPMB',
+                text: 'SPMB',
                 disabled: false,
-                href:'/spmb'
+                href: '/spmb'
             },
             {
-                text:'SOAL PMB',
-                disabled:true,
-                href:'#'
+                text: 'SOAL PMB',
+                disabled: true,
+                href: '#'
             }
         ];
         this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];        
@@ -342,7 +342,7 @@ export default {
         this.initialize()
     },  
     data: () => ({ 
-        firstloading:true,
+        firstloading: true,
         prodi_id:null,        
         nama_prodi:null,
         tahun_pendaftaran:null,
@@ -375,19 +375,19 @@ export default {
         daftar_jawaban: [
             {
                 id:1,
-                text:'JAWABAN KE 1'
+                text: 'JAWABAN KE 1'
             },
             {
                 id:2,
-                text:'JAWABAN KE 2'
+                text: 'JAWABAN KE 2'
             },
             {
                 id:3,
-                text:'JAWABAN KE 3'
+                text: 'JAWABAN KE 3'
             },
             {
                 id:4,
-                text:'JAWABAN KE 4'
+                text: 'JAWABAN KE 4'
             },
         ],     
         formdata: {
@@ -526,12 +526,12 @@ export default {
                 {
                     await this.$ajax.post('/spmb/soalpmb/'+this.formdata.id,
                         {
-                            '_method':'PUT',
+                            '_method': 'PUT',
                             soal:this.formdata.soal, 
                             jawaban_benar:this.formdata.jawaban_benar                      
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
@@ -547,7 +547,7 @@ export default {
                     await this.$ajax.post('/spmb/soalpmb/store',
                         {  
                             soal:this.formdata.soal,                            
-                            gambar:'gambar',                            
+                            gambar: 'gambar',                            
                             jawaban1:this.formdata.jawaban1,                            
                             jawaban2:this.formdata.jawaban2,                            
                             jawaban3:this.formdata.jawaban3,                            
@@ -557,7 +557,7 @@ export default {
                             semester_pendaftaran:this.semester_pendaftaran
                         },                        
                         {
-                            headers:{
+                            headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
@@ -578,10 +578,10 @@ export default {
                     this.btnLoading=true;
                     this.$ajax.post('/spmb/soalpmb/'+item.id,
                         {
-                            '_method':'DELETE',
+                            '_method': 'DELETE',
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
@@ -624,7 +624,7 @@ export default {
         },
     },
     computed: {
-        gambarSoal:{
+        gambarSoal: {
             get ()
             {   
                 if (this.image_prev==null)
@@ -645,7 +645,7 @@ export default {
             return this.editedIndex === -1 ? 'TAMBAH DATA' : 'UBAH DATA'
         },        
     },
-    watch:{
+    watch: {
         tahun_pendaftaran()
         {
             if (!this.firstloading)
@@ -670,7 +670,7 @@ export default {
             }            
         }
     },
-    components:{
+    components: {
         SPMBLayout,
         ModuleHeader,        
         Filter19,        

@@ -248,14 +248,14 @@ export default {
 	{
 		this.breadcrumbs = [
 			{
-				text:'HOME',
+				text: 'HOME',
 				disabled: false,
-				href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+				href: '/dashboard/'+this.$store.getters['auth/AccessToken']
 			},
 			{
-				text:'SPMB',
-				disabled:true,
-				href:'#'
+				text: 'SPMB',
+				disabled: true,
+				href: '#'
 			}
         ];				
         this.tahun_pendaftaran = this.$store.getters['uiadmin/getTahunPendaftaran']; 
@@ -266,7 +266,7 @@ export default {
     },
     data: () => ({
         datatableLoading: false,
-        firstloading:true,
+        firstloading: true,
         breadcrumbs: [],        
         tahun_pendaftaran:0,
         
@@ -285,7 +285,7 @@ export default {
         headers: [                        
             { text: 'NAMA PRODI', value: 'nama_prodi', sortable: false},               
             { text: 'JENJANG', value: 'nama_jenjang', sortable: false},               
-            { text: 'JUMLAH', align:'end',value: 'jumlah', sortable: false},                
+            { text: 'JUMLAH', align: 'end',value: 'jumlah', sortable: false},                
         ], 
     }),
     methods : {
@@ -325,7 +325,7 @@ export default {
             this.$refs.filter9.setFirstTimeLoading(this.firstloading); 
         }
     },
-    watch:{
+    watch: {
         tahun_pendaftaran()
         {
             if (!this.firstloading)
@@ -334,7 +334,7 @@ export default {
             }            
         },
     },
-    components:{
+    components: {
         SPMBLayout,
         ModuleHeader,           
         Filter9,        

@@ -98,11 +98,11 @@
                         </template>
                         <template v-slot:item.sah="{item}">                            
                             <v-chip                                
-                                :color="item.sah==1?'green':'warning'"
+                                :color="item.sah==1?'green': 'warning'"
                                 text-color="white"
                                 small
                                 >
-                                {{item.sah==1?'YA':'TIDAK'}}                            
+                                {{item.sah==1?'YA': 'TIDAK'}}                            
                             </v-chip>
                         </template>
                         <template v-slot:item.idkelas="{item}">
@@ -173,24 +173,24 @@ export default {
     created () {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
-                text:'AKADEMIK',
+                text: 'AKADEMIK',
                 disabled: false,
-                href:'/akademik'
+                href: '/akademik'
             },
             {
-                text:'PERKULIAHAN',
+                text: 'PERKULIAHAN',
                 disabled: false,
-                href:'#'
+                href: '#'
             },
             {
-                text:'KRS',
-                disabled:true,
-                href:'#'
+                text: 'KRS',
+                disabled: true,
+                href: '#'
             }
         ];  
         if (this.$store.getters['uiadmin/getDefaultDashboard']=='mahasiswa')
@@ -214,7 +214,7 @@ export default {
         }
     },
     data: () => ({ 
-        firstloading:true,
+        firstloading: true,
         prodi_id:null,
         nama_prodi:null,
         daftar_ta: [],
@@ -229,13 +229,13 @@ export default {
         expanded: [],
         datatable: [],      
         headers: [
-            { text: 'NIM', value: 'nim', sortable:true,width:100  },   
-            { text: 'NAMA', value: 'nama_mhs', sortable:true,width:250  },   
-            { text: 'ANGK.', value: 'tahun_masuk', sortable:true, width:100  },               
-            { text: 'JUMLAH MATKUL', value: 'jumlah_matkul', sortable:true, width:100  },               
-            { text: 'JUMLAH SKS', value: 'jumlah_sks', sortable:true, width:100 },               
-            { text: 'TA.SMT', value: 'tasmt',sortable:true, width:100 },                           
-            { text: 'SAH', value: 'sah',sortable:true, width:100},                           
+            { text: 'NIM', value: 'nim', sortable: true,width:100  },   
+            { text: 'NAMA', value: 'nama_mhs', sortable: true,width:250  },   
+            { text: 'ANGK.', value: 'tahun_masuk', sortable: true, width:100  },               
+            { text: 'JUMLAH MATKUL', value: 'jumlah_matkul', sortable: true, width:100  },               
+            { text: 'JUMLAH SKS', value: 'jumlah_sks', sortable: true, width:100 },               
+            { text: 'TA.SMT', value: 'tasmt',sortable: true, width:100 },                           
+            { text: 'SAH', value: 'sah',sortable: true, width:100},                           
             { text: 'AKSI', value: 'actions', sortable: false,width:140 },
         ],  
         search: "", 
@@ -312,7 +312,7 @@ export default {
             this.btnLoading=true;
             await this.$ajax.get('/akademik/perkuliahan/krs/printpdf/'+item.id,                
                 {
-                    headers:{
+                    headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     },
                     
@@ -330,10 +330,10 @@ export default {
             this.btnLoading=true;
             await this.$ajax.post('/akademik/perkuliahan/krs/'+item.id+'/verifikasi',
                 {
-                    _method:'put'
+                    _method: 'put'
                 },             
                 {
-                    headers:{
+                    headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     },
                     
@@ -353,7 +353,7 @@ export default {
             );
         },    
     },
-    watch:{
+    watch: {
         tahun_akademik()
         {
             if (!this.firstloading)
@@ -406,7 +406,7 @@ export default {
             this.awaiting_search = true;
         }
     },
-    components:{
+    components: {
         AkademikLayout,
         ModuleHeader,    
         Filter6               

@@ -186,29 +186,29 @@ export default {
     created () {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
-                text:'AKADEMIK',
+                text: 'AKADEMIK',
                 disabled: false,
-                href:'/akademik'
+                href: '/akademik'
             },
             {
-                text:'NILAI',
+                text: 'NILAI',
                 disabled: false,
-                href:'#'
+                href: '#'
             },            
             {
-                text:'KONVERSI MAHASISWA PINDAHAN/AMPULAN',
+                text: 'KONVERSI MAHASISWA PINDAHAN/AMPULAN',
                 disabled: false,
-                href:'/akademik/nilai/konversi'
+                href: '/akademik/nilai/konversi'
             },
             {
-                text:'TAMBAH',
-                disabled:true,
-                href:'#'
+                text: 'TAMBAH',
+                disabled: true,
+                href: '#'
             }
         ];
         let prodi_id=this.$store.getters['uiadmin/getProdiID'];
@@ -230,7 +230,7 @@ export default {
             { text: 'KODE', value: 'kmatkul', sortable: false, width:100  },               
             { text: 'NAMA', value: 'nmatkul', sortable: false, width:250  },               
             { text: 'SKS', value: 'sks',sortable: false, width:70 },                           
-            { text: 'SMT', value: 'semester',sortable:true,width:70, },                           
+            { text: 'SMT', value: 'semester',sortable: true,width:70, },                           
             { text: 'KODE MATKUL ASAL', value: 'kmatkul_asal',sortable: false,width:120 },                           
             { text: 'MATAKULIAH ASAL', value: 'matkul_asal',sortable: false,width:170 },                           
             { text: 'SKS ASAL', value: 'sks_asal',sortable: false,width:70},                           
@@ -240,7 +240,7 @@ export default {
                 
         form_valid: true,   
         daftar_jenjang: [],                        
-        formdata:{
+        formdata: {
             'id': "",
             'user_id': "",
             'nim': "",
@@ -258,7 +258,7 @@ export default {
             'kjur': "",
             'perpanjangan': "",   
         },
-        formdefault:{
+        formdefault: {
             'id': "",
             'user_id': "",
             'nim': "",
@@ -371,7 +371,7 @@ export default {
                         daftar_nilai:JSON.stringify(Object.assign({},daftar_nilai)),                    
                     },
                     {
-                        headers:{
+                        headers: {
                             Authorization: this.$store.getters["auth/Token"]
                         }
                     }
@@ -384,7 +384,7 @@ export default {
             }
         },        
     },    
-    components:{
+    components: {
         AkademikLayout,
         ModuleHeader,            
     },

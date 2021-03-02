@@ -66,24 +66,24 @@
 import DataMasterLayout from '@/views/layouts/DataMasterLayout';
 import ModuleHeader from '@/components/ModuleHeader';
 export default {
-    name:'JenjangStudi',
+    name: 'JenjangStudi',
     created()
     {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
-                text:'DATA MASTER',
+                text: 'DATA MASTER',
                 disabled: false,
-                href:'/dmaster'
+                href: '/dmaster'
             },
             {
-                text:'JENJANG STUDI',
-                disabled:true,
-                href:'#'
+                text: 'JENJANG STUDI',
+                disabled: true,
+                href: '#'
             }
         ];
         this.initialize();
@@ -126,7 +126,7 @@ export default {
             }               
         },
     },
-    components:{
+    components: {
         DataMasterLayout,
         ModuleHeader,        
     },

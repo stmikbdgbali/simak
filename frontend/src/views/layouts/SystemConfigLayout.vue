@@ -73,7 +73,7 @@
 			</v-list-item>
 			<v-divider></v-divider>
 			<v-list expand>
-				<v-list-item :to="{path:'/system-setting'}" v-if="CAN_ACCESS('SYSTEM-SETTING-GROUP')" link class="yellow" color="green" >
+				<v-list-item :to="{path: '/system-setting'}" v-if="CAN_ACCESS('SYSTEM-SETTING-GROUP')" link class="yellow" color="green" >
 					<v-list-item-icon class="mr-2">
 						<v-icon>mdi-account</v-icon>
 					</v-list-item-icon>
@@ -154,7 +154,28 @@
 							ZOOM
 						</v-list-item-title>
 					</v-list-item-content>
-				</v-list-item>            
+				</v-list-item>    
+				<v-subheader v-if="CAN_ACCESS('SYSTEM-SETTING-THEMES_BROWSE')" >THEMES</v-subheader>                    
+				<v-list-item link v-if="CAN_ACCESS('SYSTEM-SETTING-THEMES_BROWSE')" to="/system-setting/themes/colordashboard">
+					<v-list-item-icon class="mr-2">
+						<v-icon>mdi-desktop-mac-dashboard</v-icon>
+					</v-list-item-icon>
+					<v-list-item-content>
+						<v-list-item-title>
+							WARNA DASHBOARD
+						</v-list-item-title>
+					</v-list-item-content>
+				</v-list-item>
+				<v-list-item link v-if="CAN_ACCESS('SYSTEM-SETTING-THEMES_BROWSE')" to="/system-setting/themes/layout">
+					<v-list-item-icon class="mr-2">
+						<v-icon>mdi-desktop-mac-dashboard</v-icon>
+					</v-list-item-icon>
+					<v-list-item-content>
+						<v-list-item-title>
+							LAYOUT
+						</v-list-item-title>
+					</v-list-item-content>
+				</v-list-item>        
 			</v-list>
 		</v-navigation-drawer>        
 		<v-main class="mx-4 mb-4">			
@@ -176,15 +197,15 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
-	name:'SystemConfigLayout',   
+	name: "SystemConfigLayout",   
 	props: {
 		showrightsidebar: {
 			type: Boolean,
-			default:true
+			default: true,
 		},
 		temporaryleftsidebar: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 	},     
 	data: () => ({
@@ -192,13 +213,12 @@ export default {
 		drawer: null,        
 	}),       
 	methods: {        
-		logout()
-		{
+		logout() {
 			this.loginTime = 0;
 			this.$ajax.post("/auth/logout",
 				{},
 				{
-					headers:{
+					headers: {
 						Authorization: this.TOKEN,
 					}
 				}
@@ -215,45 +235,40 @@ export default {
 				this.$router.push("/");
 			});
 		},
-		isBentukPT (bentuk_pt)
-		{
-			return this.$store.getters['uifront/getBentukPT']==bentuk_pt?true: false;
-		}
+		isBentukPT (bentuk_pt) {
+			return this.$store.getters["uifront/getBentukPT"]==bentuk_pt?true: false;
+		},
 	},
 	computed: {
-		...mapGetters('auth',{
-			AUTHENTICATED:'Authenticated',  
-			ACCESS_TOKEN:'AccessToken',          
-			TOKEN:'Token',          
-			DEFAULT_ROLE:'DefaultRole',
-			ROLE:'Role',
-			CAN_ACCESS:'can',         
-			ATTRIBUTE_USER:'AttributeUser',               
+		...mapGetters("auth",{
+			AUTHENTICATED: "Authenticated",  
+			ACCESS_TOKEN: "AccessToken",          
+			TOKEN: "Token",          
+			DEFAULT_ROLE: "DefaultRole",
+			ROLE: "Role",
+			CAN_ACCESS: "can",         
+			ATTRIBUTE_USER: "AttributeUser",               
 		}),
-		APP_NAME ()
-		{
+		APP_NAME() {
 			return process.env.VUE_APP_NAME;
 		},
-		photoUser()
-		{
+		photoUser() {
 			let img=this.ATTRIBUTE_USER("foto");
 			var photo;
-			if (img == '')
+			if (img == "")
 			{
-				photo = this.$api.url+'/storage/images/users/no_photo.png';	
+				photo = this.$api.url+"/storage/images/users/no_photo.png";	
 			}
 			else
 			{
-				photo = this.$api.url+'/'+img;	
+				photo = this.$api.url+"/"+img;	
 			}
 			return photo;
 		},    
 	},
 	watch: {
-		loginTime:{
-			handler(value)
-			{
-				
+		loginTime: {
+			handler(value) {				
 				if (value >= 0)
 				{
 					setTimeout(() => { 
@@ -266,8 +281,8 @@ export default {
 					this.$router.replace("/login");
 				}
 			},
-			immediate:true
+			immediate: true,
 		},        
-	}
+	},
 }
 </script>

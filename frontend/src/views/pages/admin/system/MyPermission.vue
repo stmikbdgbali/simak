@@ -94,19 +94,19 @@ export default {
     {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.ACCESS_TOKEN
+                href: '/dashboard/'+this.ACCESS_TOKEN
             },
             {
-                text:'USER SISTEM',
+                text: 'USER SISTEM',
                 disabled: false,
-                href:'/system-users'
+                href: '/system-users'
             },
             {
-                text:'PERMISSIONS',
-                disabled:true,
-                href:'#'
+                text: 'PERMISSIONS',
+                disabled: true,
+                href: '#'
             }
         ];
         this.initialize();
@@ -154,13 +154,13 @@ export default {
     },
     computed: {
         ...mapGetters('auth',{            
-            ACCESS_TOKEN:'AccessToken',          
-            TOKEN:'Token',          
-            CAN_ACCESS:'can',         
-            ATTRIBUTE_USER:'AttributeUser',          
+            ACCESS_TOKEN: 'AccessToken',          
+            TOKEN: 'Token',          
+            CAN_ACCESS: 'can',         
+            ATTRIBUTE_USER: 'AttributeUser',          
         }),
     },    
-    components:{
+    components: {
 		SystemUserLayout,
 		ModuleHeader,
 	}

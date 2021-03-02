@@ -237,23 +237,23 @@ import {mapGetters} from "vuex";
 import KeuanganLayout from '@/views/layouts/KeuanganLayout';
 import ModuleHeader from '@/components/ModuleHeader';
 export default {
-    name:'Kelas',
+    name: 'Kelas',
     created () {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.ACCESS_TOKEN
+                href: '/dashboard/'+this.ACCESS_TOKEN
             },
             {
-                text:'KEUANGAN',
+                text: 'KEUANGAN',
                 disabled: false,
-                href:'#'
+                href: '#'
             },
             {
-                text:'TRANSFER BANK',
-                disabled:true,
-                href:'#'
+                text: 'TRANSFER BANK',
+                disabled: true,
+                href: '#'
             }
         ];
         this.initialize()
@@ -359,14 +359,14 @@ export default {
                 {
                     await this.$ajax.post('/keuangan/transferbank/'+this.formdata.id,
                         {
-                            '_method':'PUT',
+                            '_method': 'PUT',
                             nama_bank:this.formdata.nama_bank,                            
                             nama_cabang:this.formdata.nama_cabang,                            
                             nomor_rekening:this.formdata.nomor_rekening,                            
                             pemilik_rekening:this.formdata.pemilik_rekening,                            
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization:this.TOKEN
                             }
                         }
@@ -387,7 +387,7 @@ export default {
                             pemilik_rekening:this.formdata.pemilik_rekening,                            
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization:this.TOKEN
                             }
                         }
@@ -408,10 +408,10 @@ export default {
                     this.btnLoading=true;
                     this.$ajax.post('/keuangan/transferbank/'+item.id,
                         {
-                            '_method':'DELETE',
+                            '_method': 'DELETE',
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization:this.TOKEN
                             }
                         }
@@ -445,14 +445,14 @@ export default {
     },
     computed: {
         ...mapGetters('auth',{            
-            ACCESS_TOKEN:'AccessToken',          
-            TOKEN:'Token',                                  
+            ACCESS_TOKEN: 'AccessToken',          
+            TOKEN: 'Token',                                  
         }),
         formTitle () {
             return this.editedIndex === -1 ? 'TAMBAH DATA' : 'UBAH DATA'
         },        
     },
-    components:{
+    components: {
         KeuanganLayout,
         ModuleHeader,        
     },

@@ -145,7 +145,7 @@
                             </v-toolbar>
                         </template>
                         <template v-slot:item.nidn="{ item }">
-                            {{(item.nidn && item.nidn.length > 0) > 0 ? item.nidn:'N.A'}}
+                            {{(item.nidn && item.nidn.length > 0) > 0 ? item.nidn: 'N.A'}}
                         </template>
                         <template v-slot:item.actions="{ item }">                                           
                             <v-tooltip bottom>             
@@ -175,7 +175,7 @@
                             <td :colspan="headers.length" class="text-center">
                                 <v-col cols="12">
                                     <strong>ID:</strong>{{ item.id }}
-                                    <strong>DW:</strong>{{item.is_dw == false ? 'BUKAN':'YA'}}
+                                    <strong>DW:</strong>{{item.is_dw == false ? 'BUKAN': 'YA'}}
                                     <strong>Email:</strong>{{ item.email }}
                                     <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
@@ -201,19 +201,19 @@ export default {
     created () {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.ACCESS_TOKEN
+                href: '/dashboard/'+this.ACCESS_TOKEN
             },
             {
-                text:'KEPEGAWAIAN',
+                text: 'KEPEGAWAIAN',
                 disabled: false,
-                href:'/kepegawaian'
+                href: '/kepegawaian'
             },
             {
-                text:'DOSEN',
-                disabled:true,
-                href:'#'
+                text: 'DOSEN',
+                disabled: true,
+                href: '#'
             }
         ];
         this.initialize()
@@ -225,11 +225,11 @@ export default {
         //tables
         headers: [                        
             { text:  "", value: 'foto' },            
-            { text: 'NAMA DOSEN', value: 'nama_dosen',sortable:true, width:250 },
-            { text: 'NIDN', value: 'nidn',sortable:true },     
-            { text: 'NIPY', value: 'nipy',sortable:true },     
-            { text: 'NOMOR HP', value: 'nomor_hp',sortable:true },     
-            { text: 'JABATAN AKADEMIK', value: 'nama_jabatan',sortable:true },  
+            { text: 'NAMA DOSEN', value: 'nama_dosen',sortable: true, width:250 },
+            { text: 'NIDN', value: 'nidn',sortable: true },     
+            { text: 'NIPY', value: 'nipy',sortable: true },     
+            { text: 'NOMOR HP', value: 'nomor_hp',sortable: true },     
+            { text: 'JABATAN AKADEMIK', value: 'nama_jabatan',sortable: true },  
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],
         expanded: [],
@@ -248,7 +248,7 @@ export default {
             nama_dosen:  "",                                   
             id_jabatan:1,           
             gelar_depan: "",           
-            gelar_belakang:'1',                       
+            gelar_belakang: '1',                       
             nidn: "",   
             nipy: "",         
             email:  "",           
@@ -264,7 +264,7 @@ export default {
             nama_dosen:  "",                       
             id_jabatan:1,      
             gelar_depan: "",           
-            gelar_belakang:'1',                             
+            gelar_belakang: '1',                             
             nidn: "",
             nipy: "",       
             email:  "",           
@@ -321,7 +321,7 @@ export default {
         editItem:async function (item) {
             this.$ajax.get('/datamaster/jabatanakademik',                
                 {
-                    headers:{
+                    headers: {
                         Authorization:this.TOKEN
                     }
                 }
@@ -351,7 +351,7 @@ export default {
                 {
                     this.$ajax.post('/kepegawaian/dosen/'+this.editedItem.id,
                         {
-                            '_method':'PUT',
+                            '_method': 'PUT',
                             name:this.editedItem.name,
                             id_jabatan:this.editedItem.id_jabatan,
                             gelar_depan:this.editedItem.gelar_depan,
@@ -362,7 +362,7 @@ export default {
                             nomor_hp:this.editedItem.nomor_hp,                                                                                         
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization:this.TOKEN
                             }
                         }
@@ -379,8 +379,8 @@ export default {
     },
     computed: {        
         ...mapGetters('auth',{            
-            ACCESS_TOKEN:'AccessToken',          
-            TOKEN:'Token',                                  
+            ACCESS_TOKEN: 'AccessToken',          
+            TOKEN: 'Token',                                  
         }),
     },
 
@@ -389,7 +389,7 @@ export default {
             val || this.close()
         },        
     },    
-    components:{
+    components: {
         KepegawaianLayout,
         ModuleHeader,         
     },

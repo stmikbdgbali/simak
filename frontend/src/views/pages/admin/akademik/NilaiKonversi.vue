@@ -203,24 +203,24 @@ export default {
     created () {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
-                text:'AKADEMIK',
+                text: 'AKADEMIK',
                 disabled: false,
-                href:'/akademik'
+                href: '/akademik'
             },
             {
-                text:'NILAI',
+                text: 'NILAI',
                 disabled: false,
-                href:'#'
+                href: '#'
             },
             {
-                text:'KONVERSI MAHASISWA PINDAHAN/AMPULAN',
-                disabled:true,
-                href:'#'
+                text: 'KONVERSI MAHASISWA PINDAHAN/AMPULAN',
+                disabled: true,
+                href: '#'
             }
         ];
         let prodi_id=this.$store.getters['uiadmin/getProdiID'];
@@ -230,7 +230,7 @@ export default {
         this.initialize()
     },  
     data: () => ({ 
-        firstloading:true,
+        firstloading: true,
         prodi_id:null,
         nama_prodi:null,
         tahun_pendaftaran:null,
@@ -241,13 +241,13 @@ export default {
         expanded: [],
         datatable: [],      
         headers: [            
-            { text: 'NIM', value: 'nim_asal', sortable:true,width:100  },               
-            { text: 'NAMA', value: 'nama_mhs', sortable:true,width:250  },               
-            { text: 'ALAMAT', value: 'alamat',sortable:true,width:200 },                           
-            { text: 'NO. TELP', value: 'no_telp',sortable:true,width:120, },                           
+            { text: 'NIM', value: 'nim_asal', sortable: true,width:100  },               
+            { text: 'NAMA', value: 'nama_mhs', sortable: true,width:250  },               
+            { text: 'ALAMAT', value: 'alamat',sortable: true,width:200 },                           
+            { text: 'NO. TELP', value: 'no_telp',sortable: true,width:120, },                           
             { text: 'JUMLAH MATKUL', value: 'jumlah_matkul',sortable: false,width:100, },                           
             { text: 'JUMLAH SKS', value: 'jumlah_sks',sortable: false,width:100, },                           
-            { text: 'NIM SISTEM', value: 'nim',sortable:true,width:100, },                           
+            { text: 'NIM SISTEM', value: 'nim',sortable: true,width:100, },                           
             { text: 'AKSI', value: 'actions', sortable: false,width:150 },
         ],  
         search: "", 
@@ -311,10 +311,10 @@ export default {
                     this.btnLoading=true;
                     this.$ajax.post('/akademik/nilai/konversi/'+item.id,
                         {
-                            '_method':'DELETE',
+                            '_method': 'DELETE',
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
@@ -333,7 +333,7 @@ export default {
             this.btnLoading=true;
             await this.$ajax.get('/akademik/nilai/konversi/printpdf1/'+item.id,                
                 {
-                    headers:{
+                    headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     },
                     
@@ -354,7 +354,7 @@ export default {
             );
         }, 
     },
-    watch:{
+    watch: {
         tahun_pendaftaran()
         {
             if (!this.firstloading)
@@ -371,7 +371,7 @@ export default {
             }            
         }
     },
-    components:{
+    components: {
         AkademikLayout,
         ModuleHeader,    
         Filter7               

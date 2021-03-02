@@ -120,14 +120,14 @@ export default {
 	{
 		this.breadcrumbs = [
 			{
-				text:'HOME',
+				text: 'HOME',
 				disabled: false,
-				href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+				href: '/dashboard/'+this.$store.getters['auth/AccessToken']
 			},
 			{
-				text:'KEMAHASISWAAN',
-				disabled:true,
-				href:'#'
+				text: 'KEMAHASISWAAN',
+				disabled: true,
+				href: '#'
 			}
         ];				
         this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];                 
@@ -137,7 +137,7 @@ export default {
         this.initialize();
     },
     data: () => ({                
-        firstloading:true,
+        firstloading: true,
         breadcrumbs: [],        
         tahun_akademik:0,
         
@@ -199,7 +199,7 @@ export default {
             })
         },        
     },
-    watch:{
+    watch: {
         tahun_akademik()
         {
             if (!this.firstloading)
@@ -236,7 +236,7 @@ export default {
             }
         },
     },
-    components:{
+    components: {
         KemahasiswaanLayout,
         ModuleHeader,           
         Filter1,      

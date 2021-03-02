@@ -128,24 +128,24 @@ export default {
     created () {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
-                text:'AKADEMIK',
+                text: 'AKADEMIK',
                 disabled: false,
-                href:'/akademik'
+                href: '/akademik'
             },
             {
-                text:'ISI NILAI',
+                text: 'ISI NILAI',
                 disabled: false,
-                href:'#'
+                href: '#'
             },
             {
-                text:'PER KELAS MAHASISWA',
-                disabled:true,
-                href:'#'
+                text: 'PER KELAS MAHASISWA',
+                disabled: true,
+                href: '#'
             }
         ];
         this.kelas_mhs_id=this.$route.params.kelas_mhs_id;        
@@ -234,10 +234,10 @@ export default {
             
         }      
     },
-    watch:{
+    watch: {
         
     },    
-    components:{
+    components: {
         AkademikLayout,
         ModuleHeader,     
         DataKelasMHS       

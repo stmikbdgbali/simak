@@ -295,19 +295,19 @@ export default {
     created () {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.ACCESS_TOKEN
+                href: '/dashboard/'+this.ACCESS_TOKEN
             },
             {
-                text:'USER SISTEM',
+                text: 'USER SISTEM',
                 disabled: false,
-                href:'/system-users'
+                href: '/system-users'
             },
             {
-                text:'USERS PMB',
-                disabled:true,
-                href:'#'
+                text: 'USERS PMB',
+                disabled: true,
+                href: '#'
             }
         ];
         this.initialize()
@@ -320,10 +320,10 @@ export default {
         //tables
         headers: [                        
             { text:  "", value: 'foto' },
-            { text: 'USERNAME', value: 'username',sortable:true },
-            { text: 'NAME', value: 'name',sortable:true },
-            { text: 'EMAIL', value: 'email',sortable:true },     
-            { text: 'NOMOR HP', value: 'nomor_hp',sortable:true },     
+            { text: 'USERNAME', value: 'username',sortable: true },
+            { text: 'NAME', value: 'name',sortable: true },
+            { text: 'EMAIL', value: 'email',sortable: true },     
+            { text: 'NOMOR HP', value: 'nomor_hp',sortable: true },     
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],
         expanded: [],
@@ -437,10 +437,10 @@ export default {
                     this.btnLoading=true;
                     await this.$ajax.post('/system/users/syncallpermissions',
                         {
-                            role_name:'pmb',                    
+                            role_name: 'pmb',                    
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
@@ -466,7 +466,7 @@ export default {
                     {                        
                         daftar_roles.push({
                             text:element.name,
-                            disabled:true,
+                            disabled: true,
                         });                        
                     }
                     else if (element.name=='dosen'||element.name=='dosenwali')
@@ -489,7 +489,7 @@ export default {
             this.daftar_prodi=this.$store.getters['uiadmin/getDaftarProdi'];  
             await this.$ajax.get('/system/users/'+item.id+'/prodi',               
                 {
-                    headers:{
+                    headers: {
                         Authorization:this.TOKEN
                     }
                 }
@@ -514,7 +514,7 @@ export default {
                     {                        
                         daftar_roles.push({
                             text:element.name,
-                            disabled:true,
+                            disabled: true,
                         });                        
                     }
                     else if (element.name=='dosen'||element.name=='dosenwali')
@@ -568,7 +568,7 @@ export default {
                 {
                     this.$ajax.post('/system/userspmb/'+this.editedItem.id,
                         {
-                            '_method':'PUT',
+                            '_method': 'PUT',
                             name:this.editedItem.name,
                             email:this.editedItem.email,
                             nomor_hp:this.editedItem.nomor_hp,     
@@ -578,7 +578,7 @@ export default {
                             role_id:JSON.stringify(Object.assign({},this.editedItem.role_id)),
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization:this.TOKEN
                             }
                         }
@@ -601,7 +601,7 @@ export default {
                             role_id:JSON.stringify(Object.assign({},this.editedItem.role_id)),                          
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization:this.TOKEN
                             }
                         }
@@ -621,10 +621,10 @@ export default {
                     this.btnLoading=true;
                     this.$ajax.post('/system/userspmb/'+item.id,
                         {
-                            '_method':'DELETE',
+                            '_method': 'DELETE',
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization:this.TOKEN
                             }
                         }
@@ -644,8 +644,8 @@ export default {
             return this.editedIndex === -1 ? 'TAMBAH USER PMB' : 'EDIT USER PMB'
         },
         ...mapGetters('auth',{            
-            ACCESS_TOKEN:'AccessToken',          
-            TOKEN:'Token',                                  
+            ACCESS_TOKEN: 'AccessToken',          
+            TOKEN: 'Token',                                  
         }),
     },
 
@@ -657,7 +657,7 @@ export default {
             val || this.close()
         },        
     },    
-    components:{
+    components: {
         SystemUserLayout,
         ModuleHeader,
         UserPermissions

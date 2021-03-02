@@ -91,24 +91,24 @@ export default {
     {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.ACCESS_TOKEN
+                href: '/dashboard/'+this.ACCESS_TOKEN
             },
             {
-                text:'KONFIGURASI SISTEM',
+                text: 'KONFIGURASI SISTEM',
                 disabled: false,
-                href:'/system-setting'
+                href: '/system-setting'
             },  
             {
-                text:'THEMES',
+                text: 'THEMES',
                 disabled: false,
-                href:'#'
+                href: '#'
             },
             {
-                text:'LAYOUT',
-                disabled:true,
-                href:'#'
+                text: 'LAYOUT',
+                disabled: true,
+                href: '#'
             }
         ];
         this.initialize();
@@ -118,13 +118,13 @@ export default {
         datatableLoading: false,
         btnLoading: false,   
         //form
-        form_valid:true,   
+        form_valid: true,   
         formdata: {
-            V_SYSTEM_BAR_CSS_CLASS:'',
-            V_APP_BAR_NAV_ICON_CSS_CLASS:'',
-            V_NAVIGATION_DRAWER_CSS_CLASS:'',
-            V_LIST_ITEM_BOARD_CSS_CLASS:'',
-            V_LIST_ITEM_ACTIVE_CSS_CLASS:'',
+            V_SYSTEM_BAR_CSS_CLASS: '',
+            V_APP_BAR_NAV_ICON_CSS_CLASS: '',
+            V_NAVIGATION_DRAWER_CSS_CLASS: '',
+            V_LIST_ITEM_BOARD_CSS_CLASS: '',
+            V_LIST_ITEM_ACTIVE_CSS_CLASS: '',
         },
         //form rules        
         rule_required: [
@@ -156,8 +156,8 @@ export default {
                 this.btnLoading=true;                
                 this.$ajax.post('/system/setting/variables',
                     {
-                        '_method':'PUT', 
-                        'pid':'Class Css Layout',
+                        '_method': 'PUT', 
+                        'pid': 'Class Css Layout',
                         setting:JSON.stringify({
                             801:this.formdata.V_SYSTEM_BAR_CSS_CLASS,
                             802:this.formdata.V_APP_BAR_NAV_ICON_CSS_CLASS,
@@ -168,7 +168,7 @@ export default {
                         }),                                                                                                                            
                     },
                     {
-                        headers:{
+                        headers: {
                             Authorization:this.TOKEN
                         }
                     }
@@ -181,13 +181,13 @@ export default {
             }
         }
     },
-    computed:{ 
+    computed: { 
         ...mapGetters('auth',{            
-            ACCESS_TOKEN:'AccessToken',          
-            TOKEN:'Token',                                  
+            ACCESS_TOKEN: 'AccessToken',          
+            TOKEN: 'Token',                                  
         }),
     },
-    components:{
+    components: {
 		SystemConfigLayout,
         ModuleHeader,        
 	}

@@ -64,7 +64,7 @@ export default {
         form_error: false,
         formlogin: {
             username: "",
-            password:''
+            password: ''
         },
         rule_username: [
             value => !!value||"Kolom Username mohon untuk diisi !!!"
@@ -85,7 +85,7 @@ export default {
                     password:this.formlogin.password
                 }).then(({data})=>{
                     this.$ajax.get('/auth/me',{
-                        headers:{
+                        headers: {
                             'Authorization': data.token_type+' '+data.access_token,
                         }
                     })

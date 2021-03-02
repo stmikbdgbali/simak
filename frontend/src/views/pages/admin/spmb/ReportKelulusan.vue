@@ -136,19 +136,19 @@ export default {
         this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
-                text:'SPMB',
+                text: 'SPMB',
                 disabled: false,
-                href:'/spmb'
+                href: '/spmb'
             },
             {
-                text:'NILAI UJIAN',
-                disabled:true,
-                href:'#'
+                text: 'NILAI UJIAN',
+                disabled: true,
+                href: '#'
             }
         ];
         this.breadcrumbs[1].disabled=(this.dashboard=='mahasiswabaru'||this.dashboard=='mahasiswa');
@@ -160,7 +160,7 @@ export default {
         this.initialize()   
     },  
     data: () => ({
-        firstloading:true,
+        firstloading: true,
         prodi_id:null,
         tahun_pendaftaran:null,
         nama_prodi:null,
@@ -176,23 +176,23 @@ export default {
         datatable: [],
         headers: [                        
             { text:  "", value: 'foto', width:70 },               
-            { text: 'NO.FORMULIR', value: 'no_formulir',width:120,sortable:true },
-            { text: 'NAMA MAHASISWA', value: 'name',width:350,sortable:true },
+            { text: 'NO.FORMULIR', value: 'no_formulir',width:120,sortable: true },
+            { text: 'NAMA MAHASISWA', value: 'name',width:350,sortable: true },
             { text: 'NOMOR HP', value: 'nomor_hp',width:100},
-            { text: 'KELAS', value: 'nkelas',width:100,sortable:true },
-            { text: 'NILAI', value: 'nilai',width:100,sortable:true },
-            { text: 'STATUS', value: 'status',width:100,sortable:true },
+            { text: 'KELAS', value: 'nkelas',width:100,sortable: true },
+            { text: 'NILAI', value: 'nilai',width:100,sortable: true },
+            { text: 'STATUS', value: 'status',width:100,sortable: true },
             { text: 'AKSI', value: 'actions', sortable: false,width:50 },
         ],
         search: "",  
         
-        datamhsbaru:{},
+        datamhsbaru: {},
 
         //form data 
         filter_status:1,  
         form_valid: true,   
 
-        data_mhs:{},        
+        data_mhs: {},        
         daftar_prodi: [],        
         
     }),
@@ -246,11 +246,11 @@ export default {
         },
         badgeColor(item)
         {
-            return item.active == 1 ? 'success':'error'
+            return item.active == 1 ? 'success': 'error'
         },
         badgeIcon(item)
         {
-            return item.active == 1 ? 'mdi-check-bold':'mdi-close-thick'
+            return item.active == 1 ? 'mdi-check-bold': 'mdi-close-thick'
         },     
         viewItem(item)
         {
@@ -268,10 +268,10 @@ export default {
                     filter_status:this.filter_status,                 
                 },
                 {
-                    headers:{
+                    headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     },
-                    responseType:'arraybuffer'
+                    responseType: 'arraybuffer'
                 }
             ).then(({data})=>{              
                 const url = window.URL.createObjectURL(new Blob([data]));
@@ -292,7 +292,7 @@ export default {
             this.dialogprofilmhsbaru = false;                     
         }        
     },
-    watch:{
+    watch: {
         tahun_pendaftaran()
         {
             if (!this.firstloading)
@@ -309,7 +309,7 @@ export default {
             }            
         }
     },
-    components:{
+    components: {
         SPMBLayout,
         ModuleHeader,                
         ProfilMahasiswaBaru,

@@ -79,7 +79,7 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
-    name:'TransaksiInvoice',
+    name: 'TransaksiInvoice',
     created()
     {
         this.transaksi_id=this.$route.params.transaksi_id;   
@@ -94,7 +94,7 @@ export default {
         
         errormessage: "",
 
-        headers:{
+        headers: {
             header_1: "",
             header_2: "",
             header_3: "",
@@ -145,7 +145,7 @@ export default {
 
         },
     },    
-    computed :{
+    computed : {
         ...mapGetters('uifront',{
             namaPTAlias: 'getNamaPTAlias'
         })

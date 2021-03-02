@@ -426,28 +426,28 @@ import AkademikLayout from '@/views/layouts/AkademikLayout';
 import ModuleHeader from '@/components/ModuleHeader';
 import Filter18 from '@/components/sidebar/FilterMode18';
 export default {
-    name:'Matakuliah',
+    name: 'Matakuliah',
     created () {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.ACCESS_TOKEN
+                href: '/dashboard/'+this.ACCESS_TOKEN
             },
             {
-                text:'AKADEMIK',
+                text: 'AKADEMIK',
                 disabled: false,
-                href:'/akademik'
+                href: '/akademik'
             },
             {
-                text:'PERKULIAHAN',
+                text: 'PERKULIAHAN',
                 disabled: false,
-                href:'#'
+                href: '#'
             },
             {
-                text:'MATAKULIAH',
-                disabled:true,
-                href:'#'
+                text: 'MATAKULIAH',
+                disabled: true,
+                href: '#'
             }
         ];
         let prodi_id=this.$store.getters['uiadmin/getProdiID'];
@@ -457,7 +457,7 @@ export default {
         this.initialize()
     },  
     data: () => ({ 
-        firstloading:true,
+        firstloading: true,
         prodi_id:null,
         nama_prodi:null,
         tahun_akademik:null,        
@@ -467,12 +467,12 @@ export default {
         expanded: [],
         datatable: [],      
         headers: [
-            { text: 'KODE', value: 'kmatkul', sortable:true,width:120  },   
-            { text: 'NAMA MATAKULIAH', value: 'nmatkul',sortable:true },               
-            { text: 'KELOMPOK', value: 'group_alias', sortable:true,width:120 },               
-            { text: 'SKS', value: 'sks',sortable:true,width:80, align:'center' },               
-            { text: 'SMT', value: 'semester', sortable:true,width:80 },               
-            { text: 'JUMLAH PENYELENGGARAAN', value: 'jummlah_penyelenggaraan', sortable:true,width:100 },               
+            { text: 'KODE', value: 'kmatkul', sortable: true,width:120  },   
+            { text: 'NAMA MATAKULIAH', value: 'nmatkul',sortable: true },               
+            { text: 'KELOMPOK', value: 'group_alias', sortable: true,width:120 },               
+            { text: 'SKS', value: 'sks',sortable: true,width:80, align: 'center' },               
+            { text: 'SMT', value: 'semester', sortable: true,width:80 },               
+            { text: 'JUMLAH PENYELENGGARAAN', value: 'jummlah_penyelenggaraan', sortable: true,width:100 },               
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],  
         search: "",    
@@ -525,9 +525,9 @@ export default {
             sks_tatap_muka: "", 
             sks_praktikum:null, 
             sks_praktik_lapangan:null, 
-            minimal_nilai:'C', 
-            syarat_skripsi:true, 
-            status:true, 
+            minimal_nilai: 'C', 
+            syarat_skripsi: true, 
+            status: true, 
             ta: "", 
             kjur: "", 
             update_penyelenggaraan: false,
@@ -547,9 +547,9 @@ export default {
             sks_tatap_muka: "", 
             sks_praktikum:null, 
             sks_praktik_lapangan:null, 
-            minimal_nilai:'C', 
-            syarat_skripsi:true, 
-            status:true, 
+            minimal_nilai: 'C', 
+            syarat_skripsi: true, 
+            status: true, 
             ta: "", 
             kjur: "",  
             update_penyelenggaraan: false,
@@ -692,7 +692,7 @@ export default {
                 {
                     await this.$ajax.post('/akademik/matakuliah/'+this.formdata.id,
                         {
-                            '_method':'PUT',
+                            '_method': 'PUT',
                             id_group:this.formdata.id_group,                                                    
                             nama_group:this.formdata.nama_group,                                                    
                             group_alias:this.formdata.group_alias,                                                    
@@ -714,7 +714,7 @@ export default {
                             update_penyelenggaraan:this.formdata.update_penyelenggaraan,                                                       
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization:this.TOKEN
                             }
                         }
@@ -749,7 +749,7 @@ export default {
                             kjur:this.prodi_id,                                                                                   
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization:this.TOKEN
                             }
                         }
@@ -774,7 +774,7 @@ export default {
                         prodi_id:this.prodi_id,
                     },
                     {
-                        headers:{
+                        headers: {
                             Authorization:this.TOKEN
                         }
                     }
@@ -794,10 +794,10 @@ export default {
                     this.btnLoading=true;
                     this.$ajax.post('/akademik/matakuliah/'+item.id,
                         {
-                            '_method':'DELETE',
+                            '_method': 'DELETE',
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization:this.TOKEN
                             }
                         }
@@ -839,8 +839,8 @@ export default {
     },
     computed: {
         ...mapGetters('auth',{            
-            ACCESS_TOKEN:'AccessToken',          
-            TOKEN:'Token',                                  
+            ACCESS_TOKEN: 'AccessToken',          
+            TOKEN: 'Token',                                  
         }),
         formTitle () {
             return this.editedIndex === -1 ? 'TAMBAH DATA' : 'UBAH DATA'
@@ -856,7 +856,7 @@ export default {
             return total;
         },            
     },
-    watch:{
+    watch: {
         tahun_akademik()
         {
             if (!this.firstloading)
@@ -873,7 +873,7 @@ export default {
             }            
         }
     },
-    components:{
+    components: {
         AkademikLayout,
         ModuleHeader,
         Filter18        

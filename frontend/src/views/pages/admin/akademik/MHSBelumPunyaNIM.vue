@@ -196,28 +196,28 @@ import AkademikLayout from '@/views/layouts/AkademikLayout';
 import ModuleHeader from '@/components/ModuleHeader';
 import Filter7 from '@/components/sidebar/FilterMode7';
 export default {
-    name:'MHSBelumPunyaNIM',
+    name: 'MHSBelumPunyaNIM',
     created () {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
-                text:'AKADEMIK',
+                text: 'AKADEMIK',
                 disabled: false,
-                href:'/akademik'
+                href: '/akademik'
             },
             {
-                text:'DAFTAR ULANG',
+                text: 'DAFTAR ULANG',
                 disabled: false,
-                href:'#'
+                href: '#'
             },
             {
-                text:'MAHASISWA BARU BELUM PUNYA NIM',
-                disabled:true,
-                href:'#'
+                text: 'MAHASISWA BARU BELUM PUNYA NIM',
+                disabled: true,
+                href: '#'
             }
         ];
         let prodi_id=this.$store.getters['uiadmin/getProdiID'];
@@ -227,7 +227,7 @@ export default {
         this.initialize()
     },  
     data: () => ({ 
-        firstloading:true,
+        firstloading: true,
         prodi_id:null,
         nama_prodi:null,
         tahun_pendaftaran:null,        
@@ -237,15 +237,15 @@ export default {
         expanded: [],
         datatable: [],      
         headers: [
-            { text: 'NO. FORMULIR', value: 'no_formulir', sortable:true,width:150  },   
-            { text: 'NAMA MAHASISWA', value: 'nama_mhs',sortable:true },               
-            { text: 'TELP. HP', value: 'telp_hp', sortable:true,width:150 },               
-            { text: 'KELAS', value: 'idkelas',sortable:true,width:120, },                           
+            { text: 'NO. FORMULIR', value: 'no_formulir', sortable: true,width:150  },   
+            { text: 'NAMA MAHASISWA', value: 'nama_mhs',sortable: true },               
+            { text: 'TELP. HP', value: 'telp_hp', sortable: true,width:150 },               
+            { text: 'KELAS', value: 'idkelas',sortable: true,width:120, },                           
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],  
         search: "", 
         
-        data_mhs:{},  
+        data_mhs: {},  
 
         //formdata
         form_valid: true,   
@@ -255,12 +255,12 @@ export default {
         formdata: {                        
             nim: "",
             nirm: "",
-            dosen_id:''           
+            dosen_id: ''           
         },
         formdefault: {                        
             nim: "",
             nirm: "",
-            dosen_id:''           
+            dosen_id: ''           
         },
         rule_nim: [
             value => !!value||"Nomor Induk Mahasiswa (NIM) mohon untuk diisi !!!",
@@ -339,7 +339,7 @@ export default {
                     dosen_id:this.formdata.dosen_id,                       
                 },                    
                 {
-                    headers:{
+                    headers: {
                         Authorization: this.$store.getters["auth/Token"],                        
                     }
                 }
@@ -361,7 +361,7 @@ export default {
             );
         },
     },
-    watch:{
+    watch: {
         tahun_pendaftaran()
         {
             if (!this.firstloading)
@@ -378,7 +378,7 @@ export default {
             }            
         }
     },
-    components:{
+    components: {
         AkademikLayout,
         ModuleHeader,
         Filter7        

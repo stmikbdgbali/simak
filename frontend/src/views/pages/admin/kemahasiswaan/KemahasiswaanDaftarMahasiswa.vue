@@ -141,19 +141,19 @@ export default {
     created () {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
             },            
             {
-                text:'KEMAHASISWAAN',
+                text: 'KEMAHASISWAAN',
                 disabled: false,
-                href:'/kemahasiswaan'
+                href: '/kemahasiswaan'
             },
             {
-                text:'DAFTAR MAHASISWA',
-                disabled:true,
-                href:'#'
+                text: 'DAFTAR MAHASISWA',
+                disabled: true,
+                href: '#'
             }
         ];
         let prodi_id=this.$store.getters['uiadmin/getProdiID'];
@@ -163,7 +163,7 @@ export default {
         this.initialize()
     },  
     data: () => ({ 
-        firstloading:true,
+        firstloading: true,
         prodi_id:null,
         nama_prodi:null,
         tahun_pendaftaran:null,
@@ -176,12 +176,12 @@ export default {
         expanded: [],
         datatable: [],      
         headers: [
-            { text: 'NO. FORMULIR', value: 'no_formulir', sortable:true,width:150  },   
-            { text: 'NIM', value: 'nim', sortable:true,width:150  },   
-            { text: 'NIRM', value: 'nirm', sortable:true,width:150  },   
-            { text: 'NAMA MAHASISWA', value: 'nama_mhs',sortable:true },                           
-            { text: 'KELAS', value: 'idkelas',sortable:true,width:120, },                                       
-            { text: 'STATUS', value: 'k_status',sortable:true,width:120, },                                       
+            { text: 'NO. FORMULIR', value: 'no_formulir', sortable: true,width:150  },   
+            { text: 'NIM', value: 'nim', sortable: true,width:150  },   
+            { text: 'NIRM', value: 'nirm', sortable: true,width:150  },   
+            { text: 'NAMA MAHASISWA', value: 'nama_mhs',sortable: true },                           
+            { text: 'KELAS', value: 'idkelas',sortable: true,width:120, },                                       
+            { text: 'STATUS', value: 'k_status',sortable: true,width:120, },                                       
         ],  
         search: "", 
     }),
@@ -236,10 +236,10 @@ export default {
                     nama_prodi:this.nama_prodi,                 
                 },
                 {
-                    headers:{
+                    headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     },
-                    responseType:'arraybuffer'
+                    responseType: 'arraybuffer'
                 }
             ).then(({data})=>{              
                 const url = window.URL.createObjectURL(new Blob([data]));
@@ -260,12 +260,12 @@ export default {
             this.btnLoading=true;
             await this.$ajax.post('/system/users/syncallpermissions',
                 {
-                    role_name:'mahasiswa',
+                    role_name: 'mahasiswa',
                     TA:this.tahun_pendaftaran,                    
                     prodi_id:this.prodi_id                     
                 },
                 {
-                    headers:{
+                    headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     }
                 }
@@ -283,7 +283,7 @@ export default {
                     user_id:item.user_id,         
                 },
                 {
-                    headers:{
+                    headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     }
                 }
@@ -294,7 +294,7 @@ export default {
             });     
         }
     },
-    watch:{
+    watch: {
         tahun_pendaftaran()
         {
             if (!this.firstloading)
@@ -339,7 +339,7 @@ export default {
             this.awaiting_search = true;
         }
     },
-    components:{
+    components: {
         KemahasiswaanLayout,
         ModuleHeader,    
         Filter7               

@@ -289,14 +289,14 @@ export default {
 		this.TOKEN = this.$route.params.token;                
 		this.breadcrumbs = [
 			{
-				text:'HOME',
+				text: 'HOME',
 				disabled: false,
-				href:'/dashboard/'+this.TOKEN
+				href: '/dashboard/'+this.TOKEN
 			},
 			{
-				text:'DASHBOARD',
-				disabled:true,
-				href:'#'
+				text: 'DASHBOARD',
+				disabled: true,
+				href: '#'
 			}
 		];		
 		this.tahun_pendaftaran = this.$store.getters['uifront/getTahunPendaftaran'];
@@ -310,7 +310,7 @@ export default {
 
 		tahun_pendaftaran: "",
 		//theme
-		color_dashboard:{}
+		color_dashboard: {}
 	}),
 	methods : {
 		initialize:async function()
@@ -318,7 +318,7 @@ export default {
 			await this.$ajax.get('/auth/me',                
 			{
 				headers: {
-					Authorization:'Bearer '+this.TOKEN
+					Authorization: 'Bearer '+this.TOKEN
 				}
 			}).then(({data})=>{          
 				this.dashboard = data.role[0];    
@@ -330,7 +330,7 @@ export default {
 	computed: {
 		
 	},
-	components:{
+	components: {
 		AdminLayout,        
 		DashboardMB,        
 	}

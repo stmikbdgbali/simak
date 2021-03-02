@@ -14,7 +14,6 @@
                 vertical
             ></v-divider>
             <v-menu
-
                 :close-on-content-click="true"
                 origin="center center"
                 transition="scale-transition"
@@ -65,11 +64,11 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
-    name:'AdminLayout',  
+    name: 'AdminLayout',  
     props: {
         showrightsidebar: {
             type: Boolean,
-            default:true
+            default: true
         },
         temporaryleftsidebar: {
             type: Boolean,
@@ -88,7 +87,7 @@ export default {
             this.$ajax.post("/auth/logout",
                 {},
                 {
-                    headers:{
+                    headers: {
                         Authorization: this.TOKEN,
                     }
                 }
@@ -112,13 +111,13 @@ export default {
 	},
     computed: {
         ...mapGetters('auth',{
-            AUTHENTICATED:'Authenticated',  
-            ACCESS_TOKEN:'AccessToken',          
-            TOKEN:'Token', 
-            DEFAULT_ROLE:'DefaultRole',         
-            ROLE:'Role',
-            CAN_ACCESS:'can',         
-            ATTRIBUTE_USER:'AttributeUser',               
+            AUTHENTICATED: 'Authenticated',  
+            ACCESS_TOKEN: 'AccessToken',          
+            TOKEN: 'Token', 
+            DEFAULT_ROLE: 'DefaultRole',         
+            ROLE: 'Role',
+            CAN_ACCESS: 'can',         
+            ATTRIBUTE_USER: 'AttributeUser',               
         }),
         APP_NAME ()
         {
@@ -140,7 +139,7 @@ export default {
         },  
     },
     watch: {
-        loginTime:{
+        loginTime: {
             handler(value)
             {
                 
@@ -156,7 +155,7 @@ export default {
                     this.$router.replace("/login");
                 }
             },
-            immediate:true
+            immediate: true
         },        
     }
 }
