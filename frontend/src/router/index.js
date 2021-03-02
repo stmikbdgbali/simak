@@ -38,6 +38,109 @@ const routes = [
 		},
 		component: () => import('../views/pages/admin/Dashboard.vue'),		
 	},
+	//dmaster
+	{
+		path: '/dmaster',
+		name: 'DMaster',
+		meta:{
+			title: "DATA MASTER",
+			requiresAuth:true,
+        },
+		component: () => import('../views/pages/admin/dmaster/DMaster.vue'),
+	},
+	// dmaster - fasilitas
+	{
+		path: '/dmaster/ruangkelas',
+		name: 'DMasterRuangKelas',
+		meta:{
+			title: "DATA MASTER - RUANG KELAS",
+			requiresAuth:true,
+        },
+		component: () => import('../views/pages/admin/dmaster/RuangKelas.vue'),
+	},
+	{
+		path: '/dmaster/kelas',
+		name: 'DMasterKelas',
+		meta:{
+			title: "DATA MASTER - KELAS",
+			requiresAuth:true,
+        },
+		component: () => import('../views/pages/admin/dmaster/Kelas.vue'),
+	},
+	// dmaster - pmb
+	{
+		path: '/dmaster/persyaratanpmb',
+		name: 'DMasterPersyaratanPMB',
+		meta:{
+			title: "DATA MASTER - PERSYARATAN PMB",
+			requiresAuth:true,
+        },
+		component: () => import('../views/pages/admin/dmaster/PersyaratanPMB.vue'),
+	},
+	{
+		path: '/dmaster/jabatanakademik',
+		name: 'DMasterJabatanAkademik',
+		meta:{
+			title: "DATA MASTER - JABATAN AKADEMIK",
+			requiresAuth:true,
+        },
+		component: () => import('../views/pages/admin/dmaster/JabatanAkademik.vue'),
+	},
+	{
+		path: '/dmaster/jenjangstudi',
+		name: 'DMasterJenjangStudi',
+		meta:{
+			title: "DATA MASTER - JENJANG STUDI",
+			requiresAuth:true,
+        },
+		component: () => import('../views/pages/admin/dmaster/JenjangStudi.vue'),
+	},
+	{
+		path: '/dmaster/statusmahasiswa',
+		name: 'DMasterStatusMahasiswa',
+		meta:{
+			title: "DATA MASTER - STATUS MAHASISWA",
+			requiresAuth:true,
+        },
+		component: () => import('../views/pages/admin/dmaster/StatusMahasiswa.vue'),
+	},
+	{
+		path: '/dmaster/ta',
+		name: 'DMasterTahunAkademik',
+		meta:{
+			title: "DATA MASTER - TAHUN AKADEMIK",
+			requiresAuth:true,
+        },
+		component: () => import('../views/pages/admin/dmaster/TahunAkademik.vue'),
+	},
+	{
+		path: '/dmaster/fakultas',
+		name: 'DMasterFakultas',
+		meta:{
+			title: "DATA MASTER - FAKULTAS",
+			requiresAuth:true,
+        },
+		component: () => import('../views/pages/admin/dmaster/Fakultas.vue'),
+		beforeEnter: (to, from, next) => {
+			if(store.getters['uifront/getBentukPT']=='sekolahtinggi')
+			{
+				next('/dashboard/'+store.getters['auth/AccessToken']);
+			}
+			else
+			{
+				next();
+			}
+		}
+	},
+	{
+		path: '/dmaster/programstudi',
+		name: 'DMasterProgramStudi',
+		meta:{
+			title: "DATA MASTER - PROGRAM STUDI",
+			requiresAuth:true,
+        },
+		component: () => import('../views/pages/admin/dmaster/ProgramStudi.vue'),
+	},
 	//system
 	{
 		path: '/system-setting',

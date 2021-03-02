@@ -1,6 +1,6 @@
 <?php
 $router->get('/', function () use ($router) {
-    return 'PortalEkampus API';
+    return 'SIMAK API';
 });
 
 $router->group(['prefix'=>'v1'], function () use ($router)

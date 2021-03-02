@@ -162,8 +162,8 @@ export default {
         tahun_pendaftaran:0,  
         
         //form
-        form_valid:true, 
-        btnLoading:false,
+        form_valid: true, 
+        btnLoading: false,
 
         daftar_prodi:[],
         daftar_kelas:[],                
@@ -172,12 +172,12 @@ export default {
         daftar_tasmt:[],
         daftar_status_mhs:[],        
         formdata: {
-            nim:'',
-            nirm:'',
-            nama_mhs:'',            
-            dosen_id:'',           
-            prodi_id:'',
-            idkelas:'',
+            nim: "",
+            nirm: "",
+            nama_mhs: "",            
+            dosen_id: "",           
+            prodi_id: "",
+            idkelas: "",
             status_mhs:[],
         },
         rule_nim:[
@@ -221,7 +221,7 @@ export default {
 
             await this.$ajax.get('/akademik/dosenwali',{
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{                              
                 this.daftar_dw = data.users; 
@@ -234,7 +234,7 @@ export default {
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{                              
                 this.daftar_tasmt = data.daftar_tasmt; 
@@ -269,17 +269,17 @@ export default {
                     },
                     {
                         headers:{
-                            Authorization:this.$store.getters['auth/Token']
+                            Authorization: this.$store.getters["auth/Token"]
                         }
                     }
                 ).then(()=>{                                       
                     setTimeout(() => {
                         this.$router.go();    
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                         }, 300
                     );                                  
                 }).catch(()=>{
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                 });                                   
                  
             }

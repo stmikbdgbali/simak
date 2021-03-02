@@ -118,18 +118,18 @@
     </v-card>
 </template>
 <script>
-import {mapGetters} from 'vuex';
+import {mapGetters} from "vuex";
 export default {
     name: 'RolePermissions',
     data: () => ({
-        btnLoading:false,
+        btnLoading: false,
         //tables
         headers: [                        
             { text: 'NAMA PERMISSION', value: 'name' },
             { text: 'GUARD', value: 'guard_name' },      
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },          
         ],
-        search:'',        
+        search: "",        
         perm_selected:[]
     }),
     methods: {
@@ -147,10 +147,10 @@ export default {
                     }
                 }
             ).then(()=>{   
-                this.btnLoading=false;
+                this.btnLoading = false;
                 this.close();                
             }).catch(()=>{
-                this.btnLoading=false;
+                this.btnLoading = false;
             });
         },
         revoke(item)
@@ -167,15 +167,15 @@ export default {
                     }
                 }
             ).then(()=>{   
-                this.btnLoading=false;
+                this.btnLoading = false;
                 this.close();                
             }).catch(()=>{
-                this.btnLoading=false;
+                this.btnLoading = false;
             });
         },
         close()
         {
-            this.btnLoading=false;
+            this.btnLoading = false;
             this.permissions_selected=[];
             this.$emit('closeRolePermissions',this.role.id);
         }

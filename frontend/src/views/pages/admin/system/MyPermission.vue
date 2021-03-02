@@ -85,7 +85,7 @@
     </SystemUserLayout>
 </template>
 <script>
-import {mapGetters} from 'vuex';
+import {mapGetters} from "vuex";
 import SystemUserLayout from '@/views/layouts/SystemUserLayout';
 import ModuleHeader from '@/components/ModuleHeader';
 export default {
@@ -114,7 +114,7 @@ export default {
     data: () => ({
         breadcrumbs:[],
         datatableLoading:false,
-        btnLoading:false,  
+        btnLoading: false,  
         expanded:[],        
         daftar_permissions: [],
         //tables
@@ -122,7 +122,7 @@ export default {
             { text: 'NAMA PERMISSION', value: 'name' },
             { text: 'GUARD', value: 'guard_name' },                        
         ],
-        search:'', 
+        search: "", 
    
     }),
     methods: {
@@ -152,7 +152,7 @@ export default {
             }               
         },        
     },
-    computed:{
+    computed: {
         ...mapGetters('auth',{            
             ACCESS_TOKEN:'AccessToken',          
             TOKEN:'Token',          

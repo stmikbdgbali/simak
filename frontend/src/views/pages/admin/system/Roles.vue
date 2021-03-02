@@ -225,7 +225,7 @@
     </SystemUserLayout>
 </template>
 <script>
-import {mapGetters} from 'vuex';
+import {mapGetters} from "vuex";
 import SystemUserLayout from '@/views/layouts/SystemUserLayout';
 import ModuleHeader from '@/components/ModuleHeader';
 import RolePermissions from '@/views/pages/admin/system/RolePermissions';
@@ -255,7 +255,7 @@ export default {
     data: () => ({
         breadcrumbs:[],
         datatableLoading:false,
-        btnLoading:false,          
+        btnLoading: false,          
         expanded:[],        
         datatable: [],
         daftar_permissions: [],
@@ -271,26 +271,26 @@ export default {
             { text: 'NAMA PERMISSION', value: 'name' },
             { text: 'GUARD', value: 'guard_name' },                          
         ],
-        search:'',
+        search: "",
         //form
-        form_valid:true,
+        form_valid: true,
         dialog: false,
         dialogdetail: false,
         dialogRolePermission: false,
         editedIndex: -1,
         editedItem: {
             id:0,
-            name: '',           
-            guard: '',           
-            created_at: '',           
-            updated_at: '',           
+            name:  "",           
+            guard:  "",           
+            created_at:  "",           
+            updated_at:  "",           
         },
         defaultItem: {
             id:0,
-            name: '',           
+            name:  "",           
             guard: 'api',           
-            created_at: '',           
-            updated_at: '',           
+            created_at:  "",           
+            updated_at:  "",           
         },
         //form rules        
         rule_role_name:[
@@ -377,7 +377,7 @@ export default {
         
         },
         close () {
-            this.btnLoading=false;
+            this.btnLoading = false;
             this.dialog = false;
             this.$refs.frmdata.reset(); 
             this.form_error_message='';           
@@ -412,7 +412,7 @@ export default {
                         Object.assign(this.datatable[this.editedIndex], data.roles);
                         this.close();
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });                    
                     
                 } else {
@@ -429,13 +429,13 @@ export default {
                         this.datatable.push(data.roles);
                         this.close();
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
                 }
             }
         },        
     },
-    computed:{        
+    computed: {        
         formTitle () {
             return this.editedIndex === -1 ? 'TAMBAH ROLE' : 'EDIT ROLE'
         },

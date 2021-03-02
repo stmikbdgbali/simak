@@ -55,7 +55,7 @@
     </SystemConfigLayout>
 </template>
 <script>
-import {mapGetters} from 'vuex';
+import {mapGetters} from "vuex";
 import SystemConfigLayout from '@/views/layouts/SystemConfigLayout';
 import ModuleHeader from '@/components/ModuleHeader';
 export default {
@@ -84,9 +84,9 @@ export default {
     data: () => ({
         breadcrumbs:[],
         datatableLoading:false,
-        btnLoading:false,
+        btnLoading: false,
         //form
-        form_valid:true,
+        form_valid: true,
         formdata: {            
             token_ttl_expire:60          
         },
@@ -97,7 +97,7 @@ export default {
         ],        
     }),
     methods: {
-        initialize:async function ()
+        initialize: async function ()
         {
             this.datatableLoading=true;
             await this.$ajax.get('/system/setting/variables',
@@ -129,14 +129,14 @@ export default {
                         }
                     }
                 ).then(()=>{
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                 }).catch(()=>{
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                 });
             }
         }
     },
-    computed:{
+    computed: {
         ...mapGetters('auth',{
             ACCESS_TOKEN:'AccessToken',
             TOKEN:'Token',

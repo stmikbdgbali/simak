@@ -134,7 +134,7 @@
     </SystemUserLayout>
 </template>
 <script>
-import {mapGetters} from 'vuex';
+import {mapGetters} from "vuex";
 import SystemUserLayout from '@/views/layouts/SystemUserLayout';
 import ModuleHeader from '@/components/ModuleHeader';
 export default {
@@ -163,7 +163,7 @@ export default {
     data: () => ({
         breadcrumbs:[],
         datatableLoading:false,
-        btnLoading:false,  
+        btnLoading: false,  
         expanded:[],        
         daftar_permissions: [],
         //tables
@@ -172,24 +172,24 @@ export default {
             { text: 'GUARD', value: 'guard_name' },            
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],
-        search:'',        
+        search: "",        
         //form
-        form_valid:true,
+        form_valid: true,
         dialog: false,
         editedIndex: -1,
         editedItem: {
             id:0,
-            name: '',           
-            guard: '',           
-            created_at: '',           
-            updated_at: '',           
+            name:  "",           
+            guard:  "",           
+            created_at:  "",           
+            updated_at:  "",           
         },
         defaultItem: {
             id:0,
-            name: '',           
+            name:  "",           
             guard: 'api',           
-            created_at: '',           
-            updated_at: '',           
+            created_at:  "",           
+            updated_at:  "",           
         },
         //form rules        
         rule_permission_name:[
@@ -228,7 +228,7 @@ export default {
             this.dialog = true
         },
         close () {
-            this.btnLoading=false;
+            this.btnLoading = false;
             this.dialog = false;
             this.$refs.frmdata.reset(); 
             setTimeout(() => {
@@ -256,7 +256,7 @@ export default {
                         this.initialize();
                         this.close();
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
                 }
             }
@@ -278,15 +278,15 @@ export default {
                     ).then(()=>{   
                         const index = this.daftar_permissions.indexOf(item);
                         this.daftar_permissions.splice(index, 1);
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
                 }
             });      
         },
     },
-    computed:{
+    computed: {
         formTitle () {
             return this.editedIndex === -1 ? 'TAMBAH PERMISSION' : 'EDIT PERMISSION'
         },

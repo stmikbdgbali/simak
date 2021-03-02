@@ -59,11 +59,11 @@ export default {
 		}
 	},
     data: () => ({
-        btnLoading:false,
+        btnLoading: false,
         //form
         form_error:false,
         formlogin: {
-            username:'',
+            username: "",
             password:''
         },
         rule_username:[

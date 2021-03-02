@@ -308,7 +308,7 @@ export default {
 		TOKEN:null,
 		dashboard:null,
 
-		tahun_pendaftaran:'',
+		tahun_pendaftaran: "",
 		//theme
 		color_dashboard:{}
 	}),
@@ -327,7 +327,7 @@ export default {
 			this.$store.dispatch('uiadmin/init',this.$ajax); 
 		}
 	},
-	computed:{
+	computed: {
 		
 	},
 	components:{

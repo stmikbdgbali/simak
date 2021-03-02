@@ -1,11 +1,11 @@
 <template>
     <div>
         <v-system-bar app color="#a4b0be" class="white--text">
-            <strong>Hak Akses Sebagai :</strong> {{ROLE}}
+            <strong>Hak Akses Sebagai :</strong> {{ ROLE }}
 		</v-system-bar>	
         <v-app-bar app class="white" elevation="0">            
             <v-toolbar-title class="headline clickable" @click.stop="$router.push('/dashboard/'+$store.getters['auth/AccessToken']).catch(err => {})">
-				<span class="hidden-sm-and-down">{{APP_NAME}}</span>
+				<span class="hidden-sm-and-down">{{ APP_NAME }}</span>
 			</v-toolbar-title>
             <v-spacer></v-spacer>            
             <v-divider
@@ -31,12 +31,12 @@
                         <v-list-item-avatar>
                             <v-img :src="photoUser"></v-img>
                         </v-list-item-avatar>
-                        <v-list-item-content>					
+                        <v-list-item-content>
                             <v-list-item-title class="title">
-                                {{ATTRIBUTE_USER('username')}}
+                                {{ ATTRIBUTE_USER("username") }}
                             </v-list-item-title>
                             <v-list-item-subtitle>                                
-                                [{{DEFAULT_ROLE}}]
+                                [{{ DEFAULT_ROLE }}]
                             </v-list-item-subtitle>
                         </v-list-item-content>
                     </v-list-item>                    
@@ -63,46 +63,46 @@
     </div>    
 </template>
 <script>
-import {mapGetters} from 'vuex';
+import { mapGetters } from "vuex";
 export default {
     name:'AdminLayout',  
-    props:{
-        showrightsidebar:{
-            type:Boolean,
+    props: {
+        showrightsidebar: {
+            type: Boolean,
             default:true
         },
-        temporaryleftsidebar:{
-            type:Boolean,
-            default:false
+        temporaryleftsidebar: {
+            type: Boolean,
+            default: false
         },
     },      
-    data:()=>({
-        loginTime:0,
-        drawer:null,
+    data: () => ({
+        loginTime: 0,
+        drawer: null,
         drawerRight:null,   
     }),       
     methods: {        
-        logout ()
+        logout()
         {
-            this.loginTime=0;
-            this.$ajax.post('/auth/logout',
+            this.loginTime = 0;
+            this.$ajax.post("/auth/logout",
                 {},
                 {
                     headers:{
-                        'Authorization': this.TOKEN,
+                        Authorization: this.TOKEN,
                     }
                 }
             ).then(()=> {     
-                this.$store.dispatch('auth/logout');	
-                this.$store.dispatch('uifront/reinit');	
-                this.$store.dispatch('uiadmin/reinit');	
-                this.$router.push('/');
+                this.$store.dispatch("auth/logout");	
+                this.$store.dispatch("uifront/reinit");
+                this.$store.dispatch("uiadmin/reinit");
+                this.$router.push("/");
             })
             .catch(() => {
-                this.$store.dispatch('auth/logout');	
-                this.$store.dispatch('uifront/reinit');	
-                this.$store.dispatch('uiadmin/reinit');	
-                this.$router.push('/');
+                this.$store.dispatch("auth/logout");	
+                this.$store.dispatch("uifront/reinit");
+                this.$store.dispatch("uiadmin/reinit");
+                this.$router.push("/");
             });
         },
         isBentukPT (bentuk_pt)
@@ -110,7 +110,7 @@ export default {
             return this.$store.getters['uifront/getBentukPT']==bentuk_pt?true:false;
         }
 	},
-    computed:{
+    computed: {
         ...mapGetters('auth',{
             AUTHENTICATED:'Authenticated',  
             ACCESS_TOKEN:'AccessToken',          
@@ -126,7 +126,7 @@ export default {
         },
         photoUser()
 		{
-			let img=this.ATTRIBUTE_USER('foto');
+			let img=this.ATTRIBUTE_USER("foto");
 			var photo;
 			if (img == '')
 			{
@@ -152,8 +152,8 @@ export default {
                 }
                 else
                 {
-                    this.$store.dispatch('auth/logout');
-                    this.$router.replace('/login');
+                    this.$store.dispatch("auth/logout");
+                    this.$router.replace("/login");
                 }
             },
             immediate:true

@@ -286,7 +286,7 @@
     </SystemUserLayout>
 </template>
 <script>
-import {mapGetters} from 'vuex';
+import {mapGetters} from "vuex";
 import SystemUserLayout from '@/views/layouts/SystemUserLayout';
 import ModuleHeader from '@/components/ModuleHeader';
 import UserPermissions from '@/views/pages/admin/system/UserPermissions';
@@ -316,10 +316,10 @@ export default {
     data: () => ({
         role_id:0,
         datatableLoading:false,
-        btnLoading:false,
+        btnLoading: false,
         //tables
         headers: [
-            { text: '', value: 'foto' },
+            { text:  "", value: 'foto' },
             { text: 'USERNAME', value: 'username',sortable:true },
             { text: 'NAME', value: 'name',sortable:true },
             { text: 'EMAIL', value: 'email',sortable:true },
@@ -327,11 +327,11 @@ export default {
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],
         expanded:[],
-        search:'',
+        search: "",
         daftar_users: [],    
 
         //form
-        form_valid:true,
+        form_valid: true,
         daftar_roles:[],
         dialog: false,
         dialogEdit: false,
@@ -340,27 +340,27 @@ export default {
         daftar_prodi:[],
         editedItem: {
             id:0,
-            username: '',
-            password: '',
-            name: '',
-            email: '',
-            nomor_hp:'',
+            username:  "",
+            password:  "",
+            name:  "",
+            email:  "",
+            nomor_hp: "",
             prodi_id:[],
             role_id:['puslahta'],
-            created_at: '',
-            updated_at: '',
+            created_at:  "",
+            updated_at:  "",
         },
         defaultItem: {
             id:0,
-            username: '',
-            password: '',
-            name: '',
-            email: '',
-            nomor_hp: '',
+            username:  "",
+            password:  "",
+            name:  "",
+            email:  "",
+            nomor_hp:  "",
             prodi_id:[],
             role_id:['puslahta'],
-            created_at: '',
-            updated_at: '',
+            created_at:  "",
+            updated_at:  "",
         },
         //form rules
         rule_user_name:[
@@ -404,7 +404,7 @@ export default {
         ],
     }),
     methods: {
-        initialize:async function ()
+        initialize: async function ()
         {
             this.datatableLoading=true;
             await this.$ajax.get('/system/userspuslahta',{
@@ -441,13 +441,13 @@ export default {
                         },
                         {
                             headers:{
-                                Authorization:this.$store.getters['auth/Token']
+                                Authorization: this.$store.getters["auth/Token"]
                             }
                         }
                     ).then(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
                 }
             });
@@ -536,7 +536,7 @@ export default {
                 }
             }).then(({data})=>{
                 this.editedItem.role_id=data.roles;
-                this.btnLoading=false;
+                this.btnLoading = false;
                 this.dialogEdit = true;
             });
         },
@@ -545,7 +545,7 @@ export default {
             this.editedItem=item;
         },
         close () {
-            this.btnLoading=false;
+            this.btnLoading = false;
             this.dialog = false;
             this.dialogEdit = false;
             setTimeout(() => {
@@ -556,7 +556,7 @@ export default {
             );
         },
         closeUserPermissions () {
-            this.btnLoading=false;            
+            this.btnLoading = false;            
             this.dialogUserPermission = false;
         },
         save () {
@@ -585,7 +585,7 @@ export default {
                         Object.assign(this.daftar_users[this.editedIndex], data.user);
                         this.close();
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
 
                 } else {
@@ -608,7 +608,7 @@ export default {
                         this.daftar_users.push(data.user);
                         this.close();
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
                 }
             }
@@ -630,9 +630,9 @@ export default {
                     ).then(()=>{
                         const index = this.daftar_users.indexOf(item);
                         this.daftar_users.splice(index, 1);
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
                 }
             });
