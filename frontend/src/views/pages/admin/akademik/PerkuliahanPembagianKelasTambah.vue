@@ -210,9 +210,9 @@ export default {
         tahun_akademik:null,
         semester_akademik:null,
 
-        btnLoading:false,
+        btnLoading: false,
         //formdata
-        form_valid:true,
+        form_valid: true,
         daftar_dosen:[],
         dosen_id:null,
         daftar_zoom:[],
@@ -254,18 +254,18 @@ export default {
             },
         ],
         formdata:{
-            id:'',
-            user_id:'',
-            zoom_id:'',
-            kmatkul:'',
-            nmatkul:'',
-            sks:'',
-            idkelas:'',
-            hari:'',
-            jam_masuk:'',
-            jam_keluar:'',
-            penyelenggaraan_dosen_id:'',
-            ruang_kelas_id:'',
+            id: "",
+            user_id: "",
+            zoom_id: "",
+            kmatkul: "",
+            nmatkul: "",
+            sks: "",
+            idkelas: "",
+            hari: "",
+            jam_masuk: "",
+            jam_keluar: "",
+            penyelenggaraan_dosen_id: "",
+            ruang_kelas_id: "",
         },
         rule_dosen:[
             value => !!value||"Mohon dipilih Dosen pengampu matakuliah !!!"
@@ -301,7 +301,7 @@ export default {
         ],
     }),
     methods: {
-        initialize:async function ()
+        initialize: async function ()
         {
             await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/pengampu',
             {
@@ -311,7 +311,7 @@ export default {
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{
                 this.daftar_dosen = data.dosen;
@@ -319,7 +319,7 @@ export default {
 
             await this.$ajax.get('/datamaster/ruangankelas',{
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{
                 this.daftar_ruang_kelas = data.ruangan;
@@ -328,7 +328,7 @@ export default {
             await this.$ajax.get(process.env.VUE_APP_API_HOST+'/h2h/zoom',
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{
                 this.daftar_zoom = data.zoom;
@@ -358,7 +358,7 @@ export default {
                     },
                     {
                         headers:{
-                            Authorization:this.$store.getters['auth/Token']
+                            Authorization: this.$store.getters["auth/Token"]
                         }
                     }
                 ).then(()=>{
@@ -381,7 +381,7 @@ export default {
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{
                 this.daftar_matakuliah = data.matakuliah;

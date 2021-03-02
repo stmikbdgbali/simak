@@ -224,7 +224,7 @@ export default {
         nama_prodi:null,
         tahun_pendaftaran:null,
 
-        btnLoading:false,
+        btnLoading: false,
         btnLoadingTable:false,
         datatableLoading:false,        
         datatable:[],      
@@ -238,45 +238,45 @@ export default {
             { text: 'SKS ASAL', value: 'sks_asal',sortable:false,width:70},                           
             { text: 'NILAI', value: 'n_kual',sortable:false,width:70},                                       
         ],  
-        search:'', 
+        search: "", 
         
-        form_valid:true,   
+        form_valid: true,   
         daftar_jenjang:[],                        
         formdata:{
             'id':null,
-            'user_id':'',
-            'nim':'',
-            'nama_mhs':'',
-            'alamat':'', 
-            'no_telp':'',         
-            'nim_asal':'', 
-            'kode_jenjang':'', 
-            'kode_pt_asal':'',
-            'nama_pt_asal':'',
-            'kode_ps_asal':'',
-            'nama_ps_asal':'',
-            'tahun':'',
+            'user_id': "",
+            'nim': "",
+            'nama_mhs': "",
+            'alamat': "", 
+            'no_telp': "",         
+            'nim_asal': "", 
+            'kode_jenjang': "", 
+            'kode_pt_asal': "",
+            'nama_pt_asal': "",
+            'kode_ps_asal': "",
+            'nama_ps_asal': "",
+            'tahun': "",
             
-            'kjur':'',
-            'perpanjangan':'',   
+            'kjur': "",
+            'perpanjangan': "",   
         },
         formdefault:{
             'id':null,
-            'user_id':'',
-            'nim':'',
-            'nama_mhs':'',
-            'alamat':'', 
-            'no_telp':'',         
-            'nim_asal':'', 
-            'kode_jenjang':'', 
-            'kode_pt_asal':'',
-            'nama_pt_asal':'',
-            'kode_ps_asal':'',
-            'nama_ps_asal':'',
-            'tahun':'',
+            'user_id': "",
+            'nim': "",
+            'nama_mhs': "",
+            'alamat': "", 
+            'no_telp': "",         
+            'nim_asal': "", 
+            'kode_jenjang': "", 
+            'kode_pt_asal': "",
+            'nama_pt_asal': "",
+            'kode_ps_asal': "",
+            'nama_ps_asal': "",
+            'tahun': "",
             
-            'kjur':'',
-            'perpanjangan':'',   
+            'kjur': "",
+            'perpanjangan': "",   
         },
         rule_nim_asal:[
             value => !!value||"Mohon di isi nim mahasiswa pindahan/ampulan dengan  nim dari perguruan tinggi asal !!!",              
@@ -315,13 +315,13 @@ export default {
         ],
     }),
     methods: {        
-        initialize:async function () 
+        initialize: async function () 
         {      
             this.datatableLoading=true;
             await this.$ajax.get('/akademik/nilai/konversi/'+this.nilai_konversi_id,            
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{               
                 this.datatable = data.nilai_konversi;
@@ -372,7 +372,7 @@ export default {
                     },
                     {
                         headers:{
-                            Authorization:this.$store.getters['auth/Token']
+                            Authorization: this.$store.getters["auth/Token"]
                         }
                     }
                 ).then(()=>{   

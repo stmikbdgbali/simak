@@ -84,9 +84,9 @@ export default {
     data: () => ({
         breadcrumbs:[],
         datatableLoading:false,
-        btnLoading:false,
+        btnLoading: false,
         //form
-        form_valid:true,
+        form_valid: true,
         formdata: {            
             token_ttl_expire:60          
         },
@@ -97,7 +97,7 @@ export default {
         ],        
     }),
     methods: {
-        initialize:async function ()
+        initialize: async function ()
         {
             this.datatableLoading=true;
             await this.$ajax.get('/system/setting/variables',

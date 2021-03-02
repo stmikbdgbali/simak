@@ -292,7 +292,7 @@ export default {
         firstloading:true,        
         tahun_pendaftaran:null,        
 
-        btnLoading:false,
+        btnLoading: false,
         datatableLoading:false,
         expanded:[],
         datatable:[],      
@@ -302,7 +302,7 @@ export default {
             { text: 'TA', value: 'ta',sortable:true,width:80, align:'center' },                           
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],  
-        search:'',    
+        search: "",    
 
         //dialog
         dialogfrm:false,
@@ -310,22 +310,22 @@ export default {
         dialogcopypersyaratan:false,
 
         //form data   
-        form_valid:true, 
+        form_valid: true, 
         daftar_ta:[],         
         dari_tahun_pendaftaran:null,          
         formdata: {
-            id:'',                        
+            id: "",                        
             proses:'pmb',                        
             nama_persyaratan:null,                        
             prodi_id:null, 
-            ta:'',                   
+            ta: "",                   
         },
         formdefault: {
-            id:'',                        
+            id: "",                        
             proses:'pmb',                                         
             nama_persyaratan:null,                        
             prodi_id:null, 
-            ta:'',                   
+            ta: "",                   
         },
         editedIndex: -1,
 
@@ -342,7 +342,7 @@ export default {
         {
             this.tahun_pendaftaran=tahun;
         },        
-        initialize:async function () 
+        initialize: async function () 
         {
             this.datatableLoading=true;
             await this.$ajax.post('/datamaster/persyaratan',

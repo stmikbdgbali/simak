@@ -274,7 +274,7 @@ export default {
 
         breadcrumbs:[],     
         tahun_akademik:0,
-        btnLoading:false,              
+        btnLoading: false,              
         //tables
         datatableLoading:false,       
         datatable:[], 
@@ -293,13 +293,13 @@ export default {
         {
             this.tahun_akademik=tahun;
         },
-        initialize:async function () 
+        initialize: async function () 
         {
             this.datatableLoading=true;            
             await this.$ajax.get('/keuangan/transaksi-spp/'+this.transaksi_id,                        
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{       
                 this.data_transaksi=data.transaksi;        
@@ -320,7 +320,7 @@ export default {
                     },
                     {
                         headers:{
-                            Authorization:this.$store.getters['auth/Token']
+                            Authorization: this.$store.getters["auth/Token"]
                         }
                     }
                 ).then(()=>{                       
@@ -351,7 +351,7 @@ export default {
                             },
                             {
                                 headers:{
-                                    Authorization:this.$store.getters['auth/Token']
+                                    Authorization: this.$store.getters["auth/Token"]
                                 }
                             }
                         ).then(()=>{   

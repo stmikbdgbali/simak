@@ -232,7 +232,7 @@ export default {
         nama_prodi:null,
         tahun_pendaftaran:null,        
 
-        btnLoading:false,
+        btnLoading: false,
         datatableLoading:false,
         expanded:[],
         datatable:[],      
@@ -243,23 +243,23 @@ export default {
             { text: 'KELAS', value: 'idkelas',sortable:true,width:120, },                           
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],  
-        search:'', 
+        search: "", 
         
         data_mhs:{},  
 
         //formdata
-        form_valid:true,   
+        form_valid: true,   
         dialogfrm:false, 
         daftar_dw:[],     
         
         formdata: {                        
-            nim:'',
-            nirm:'',
+            nim: "",
+            nirm: "",
             dosen_id:''           
         },
         formdefault: {                        
-            nim:'',
-            nirm:'',
+            nim: "",
+            nirm: "",
             dosen_id:''           
         },
         rule_nim:[
@@ -283,7 +283,7 @@ export default {
         {
             this.prodi_id=id;
         },
-        initialize:async function () 
+        initialize: async function () 
         {
             this.datatableLoading=true;
             await this.$ajax.post('/akademik/dulang/mhsbelumpunyanim',
@@ -293,7 +293,7 @@ export default {
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{               
                 this.datatable = data.mahasiswa;
@@ -319,7 +319,7 @@ export default {
         {
             await this.$ajax.get('/akademik/dosenwali',{
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{                  
                 this.data_mhs = item;
@@ -340,7 +340,7 @@ export default {
                 },                    
                 {
                     headers:{
-                        Authorization:this.$store.getters['auth/Token'],                        
+                        Authorization: this.$store.getters["auth/Token"],                        
                     }
                 }
                 ).then(()=>{               

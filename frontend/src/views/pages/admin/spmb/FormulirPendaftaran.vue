@@ -179,12 +179,12 @@ export default {
         breadcrumbs:[],        
         dashboard:null,
 
-        btnLoading:false,
+        btnLoading: false,
         datatableLoading:false,
         expanded:[],
         datatable:[],
         headers: [                        
-            { text: '', value: 'foto', width:70 },               
+            { text:  "", value: 'foto', width:70 },               
             { text: 'NO. FORMULIR', value: 'no_formulir',width:140,sortable:true },
             { text: 'USERNAME', value: 'username',width:150,sortable:true },
             { text: 'NAMA MAHASISWA', value: 'name',width:350,sortable:true },
@@ -193,7 +193,7 @@ export default {
             { text: 'KELAS', value: 'nkelas',width:150,sortable:true },
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],
-        search:'',  
+        search: "",  
         
         datamhsbaru:{}
     }),
@@ -222,7 +222,7 @@ export default {
                     },
                     {
                         headers: {
-                            Authorization:this.$store.getters['auth/Token']
+                            Authorization: this.$store.getters["auth/Token"]
                         }
                     }).then(({data})=>{               
                         this.datatable = data.pmb;                

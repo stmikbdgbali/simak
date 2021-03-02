@@ -349,7 +349,7 @@ export default {
         semester_pendaftaran:null,
         nama_semester_pendaftaran:null,
 
-        btnLoading:false,
+        btnLoading: false,
         datatableLoading:false,
         expanded:[],
         datatable:[],
@@ -361,7 +361,7 @@ export default {
             { text: 'JAWABAN', value: 'jawaban', sortable: false,}, 
             { text: 'KET.', value: 'status', sortable: false,width:100 },
         ],
-        search:'',    
+        search: "",    
 
         //dialog
         dialogfrm:false,
@@ -370,7 +370,7 @@ export default {
         daftar_soal_jawaban:[],
 
         //form data   
-        form_valid:true,    
+        form_valid: true,    
         image_prev:null,      
         daftar_jawaban:[
             {
@@ -392,28 +392,28 @@ export default {
         ],     
         formdata: {
             id:0,                        
-            soal:'',  
-            gambar:'',  
-            jawaban1:'',                    
-            jawaban2:'',                    
-            jawaban3:'',                    
-            jawaban4:'',                    
-            jawaban_benar:'',                    
-            created_at: '',           
-            updated_at: '',           
+            soal: "",  
+            gambar: "",  
+            jawaban1: "",                    
+            jawaban2: "",                    
+            jawaban3: "",                    
+            jawaban4: "",                    
+            jawaban_benar: "",                    
+            created_at:  "",           
+            updated_at:  "",           
 
         },
         formdefault: {
             id:0,           
-            soal:'',    
-            gambar:'',                      
-            jawaban1:'',                    
-            jawaban2:'',                    
-            jawaban3:'',                    
-            jawaban4:'',        
-            jawaban_benar:'',                                
-            created_at: '',           
-            updated_at: '',       
+            soal: "",    
+            gambar: "",                      
+            jawaban1: "",                    
+            jawaban2: "",                    
+            jawaban3: "",                    
+            jawaban4: "",        
+            jawaban_benar: "",                                
+            created_at:  "",           
+            updated_at:  "",       
         },
         editedIndex: -1,
 
@@ -440,7 +440,7 @@ export default {
         {
             this.semester_pendaftaran=semester;
         },
-        initialize:async function () 
+        initialize: async function () 
         {
             this.datatableLoading=true;
             await this.$ajax.post('/spmb/soalpmb',
@@ -450,7 +450,7 @@ export default {
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{                        
                 this.datatable = data.soal;
@@ -475,7 +475,7 @@ export default {
         viewItem:async function (item) {                          
             await this.$ajax.get('/spmb/soalpmb/'+item.id,{
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{         
                 this.formdata=item;      
@@ -486,7 +486,7 @@ export default {
         editItem:async function (item) {                          
             await this.$ajax.get('/spmb/soalpmb/'+item.id,{
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{          
                 this.editedIndex = this.datatable.indexOf(item);
@@ -532,7 +532,7 @@ export default {
                         },
                         {
                             headers:{
-                                Authorization:this.$store.getters['auth/Token']
+                                Authorization: this.$store.getters["auth/Token"]
                             }
                         }
                     ).then(({data})=>{   
@@ -558,7 +558,7 @@ export default {
                         },                        
                         {
                             headers:{
-                                Authorization:this.$store.getters['auth/Token']
+                                Authorization: this.$store.getters["auth/Token"]
                             }
                         }
                     ).then(({data})=>{   
@@ -582,7 +582,7 @@ export default {
                         },
                         {
                             headers:{
-                                Authorization:this.$store.getters['auth/Token']
+                                Authorization: this.$store.getters["auth/Token"]
                             }
                         }
                     ).then(()=>{   

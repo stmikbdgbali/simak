@@ -226,7 +226,7 @@ export default {
 
         btnLoadingTable:false,
         datatableLoading:false,
-        btnLoading:false,  
+        btnLoading: false,  
         
         datatable:[],            
         datatable_peserta:[],                 
@@ -244,7 +244,7 @@ export default {
         ],                
 
         //formdata
-        form_valid:true, 
+        form_valid: true, 
         komponen_nilai:{
             'persen_absen':15,
             'persen_quiz':0,
@@ -256,13 +256,13 @@ export default {
         daftar_nilai:[],
     }),
     methods: {        
-        initialize:async function () 
+        initialize: async function () 
         {
             this.datatableLoading=true;
             await this.$ajax.get('/akademik/perkuliahan/pembagiankelas/'+this.kelas_mhs_id,            
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{           
                 this.data_kelas_mhs=data.pembagiankelas;                                         
@@ -270,7 +270,7 @@ export default {
             await this.$ajax.get('/akademik/nilai/matakuliah/pesertakelas/'+this.kelas_mhs_id,            
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{                                                                                 
                 this.datatableLoading=false;                
@@ -403,7 +403,7 @@ export default {
                 },
                 {
                     headers:{
-                        Authorization:this.$store.getters['auth/Token']
+                        Authorization: this.$store.getters["auth/Token"]
                     }
                 }
             ).then(()=>{                   

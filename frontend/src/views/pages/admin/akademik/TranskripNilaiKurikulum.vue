@@ -198,7 +198,7 @@ export default {
         filter_ignore:false, 
         awaiting_search:false,
         
-        btnLoading:false,
+        btnLoading: false,
         btnLoadingTable:false,
         datatableLoading:false,
         expanded:[],
@@ -212,7 +212,7 @@ export default {
             { text: 'IPK SEMENTARA', value: 'ipk',sortable:true,width:100, },                           
             { text: 'AKSI', value: 'actions', sortable: false,width:120 },
         ],  
-        search:'', 
+        search: "", 
 
         dialogprintpdf:false,
         file_pdf:null
@@ -226,7 +226,7 @@ export default {
         {
             this.prodi_id=id;
         },
-        initialize:async function () 
+        initialize: async function () 
         {
             this.datatableLoading=true;
             await this.$ajax.post('/akademik/nilai/transkripkurikulum',
@@ -236,7 +236,7 @@ export default {
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{               
                 this.datatable = data.mahasiswa;
@@ -268,7 +268,7 @@ export default {
             await this.$ajax.get('/akademik/nilai/transkripkurikulum/printpdf2/'+item.user_id,                
                 {
                     headers:{
-                        Authorization:this.$store.getters['auth/Token']
+                        Authorization: this.$store.getters["auth/Token"]
                     },
                     
                 }
@@ -320,7 +320,7 @@ export default {
                         },
                         {
                             headers: {
-                                Authorization:this.$store.getters['auth/Token']
+                                Authorization: this.$store.getters["auth/Token"]
                             }
                         }).then(({data})=>{               
                             this.datatable = data.mahasiswa;

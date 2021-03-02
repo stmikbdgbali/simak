@@ -278,7 +278,7 @@ export default {
         prodi_id:null,
         nama_prodi:null, 
         tahun_akademik:0,
-        btnLoading:false,       
+        btnLoading: false,       
         filter_ignore:false, 
         awaiting_search:false,
 
@@ -297,7 +297,7 @@ export default {
             { text: 'AKSI', value: 'actions', sortable: false,width:50 },
         ],        
         expanded:[],
-        search:'', 
+        search: "", 
 
         //dialog        
         dialogdetailitem:false,
@@ -322,7 +322,7 @@ export default {
         {
             this.prodi_id=id;
         },
-        initialize:async function () 
+        initialize: async function () 
         {
             this.datatableLoading=true;            
             await this.$ajax.post('/keuangan/transaksi',            
@@ -332,7 +332,7 @@ export default {
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{               
                 this.datatable = data.transaksi;                
@@ -357,7 +357,7 @@ export default {
             await this.$ajax.get('/keuangan/transaksi/'+item.id,  
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{                                                             
                 this.data_transaksi=item;   
@@ -409,7 +409,7 @@ export default {
                         },
                         {
                             headers: {
-                                Authorization:this.$store.getters['auth/Token']
+                                Authorization: this.$store.getters["auth/Token"]
                             }
                         }).then(({data})=>{               
                             this.datatable = data.transaksi;                

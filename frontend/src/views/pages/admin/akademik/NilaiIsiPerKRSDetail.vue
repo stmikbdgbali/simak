@@ -212,7 +212,7 @@ export default {
         tahun_akademik:null,        
         semester_akademik:null,
     
-        btnLoading:false, 
+        btnLoading: false, 
         btnLoadingTable:false,
 
         //formdata
@@ -234,7 +234,7 @@ export default {
                                    
         ],  
         //formdata
-        form_valid:true,                 
+        form_valid: true,                 
     }),
     methods: {          
         async fetchKRS()
@@ -242,7 +242,7 @@ export default {
             await this.$ajax.get('/akademik/nilai/matakuliah/perkrs/'+this.krs_id,                        
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{                                               
                 this.datakrs=data.krs;                
@@ -275,7 +275,7 @@ export default {
                 },
                 {
                     headers:{
-                        Authorization:this.$store.getters['auth/Token']
+                        Authorization: this.$store.getters["auth/Token"]
                     }
                 }
             ).then(()=>{                   

@@ -108,13 +108,13 @@ export default {
     },
     data: () => ({
         breadcrumbs:[],        
-        btnLoading:false,   
+        btnLoading: false,   
         //form
-        form_valid:true,   
+        form_valid: true,   
         formdata: {
-            nama_pt:'',
-            nama_alias_pt:'',
-            bentuk_pt:'',
+            nama_pt: "",
+            nama_alias_pt: "",
+            bentuk_pt: "",
             kode_pt:0,
         },
         //form rules        
@@ -130,7 +130,7 @@ export default {
         ]
     }),
     methods: {
-        initialize:async function () 
+        initialize: async function () 
         {
             await this.$ajax.get('/system/setting/variables',
             {

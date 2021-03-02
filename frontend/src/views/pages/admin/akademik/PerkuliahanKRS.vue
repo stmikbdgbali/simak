@@ -225,7 +225,7 @@ export default {
         filter_ignore:false, 
         awaiting_search:false,
 
-        btnLoading:false,
+        btnLoading: false,
         btnLoadingTable:false,
         datatableLoading:false,
         expanded:[],
@@ -240,7 +240,7 @@ export default {
             { text: 'SAH', value: 'sah',sortable:true, width:100},                           
             { text: 'AKSI', value: 'actions', sortable: false,width:140 },
         ],  
-        search:'', 
+        search: "", 
 
         dialogprintpdf:false,
         file_pdf:null
@@ -267,7 +267,7 @@ export default {
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{                                           
                 this.datatable = data.daftar_krs;
@@ -276,7 +276,7 @@ export default {
                 this.datatableLoading=false;
             });              
         },
-        initialize:async function () 
+        initialize: async function () 
         {
             this.datatableLoading=true;
             await this.$ajax.post('/akademik/perkuliahan/krs',
@@ -287,7 +287,7 @@ export default {
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{                                        
                 this.datatable = data.daftar_krs;
@@ -321,7 +321,7 @@ export default {
                         },
                         {
                             headers:{
-                                Authorization:this.$store.getters['auth/Token']
+                                Authorization: this.$store.getters["auth/Token"]
                             }
                         }
                     ).then(()=>{   
@@ -340,7 +340,7 @@ export default {
             await this.$ajax.get('/akademik/perkuliahan/krs/printpdf/'+item.id,                
                 {
                     headers:{
-                        Authorization:this.$store.getters['auth/Token']
+                        Authorization: this.$store.getters["auth/Token"]
                     },
                     
                 }
@@ -400,7 +400,7 @@ export default {
                         },
                         {
                             headers: {
-                                Authorization:this.$store.getters['auth/Token']
+                                Authorization: this.$store.getters["auth/Token"]
                             }
                         }).then(({data})=>{               
                             this.datatable = data.daftar_krs;

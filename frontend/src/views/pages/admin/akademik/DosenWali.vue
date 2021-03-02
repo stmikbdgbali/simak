@@ -148,10 +148,10 @@ export default {
     data: () => ({ 
         role_id:0,
         datatableLoading:false,
-        btnLoading:false,      
+        btnLoading: false,      
         //tables
         headers: [                        
-            { text: '', value: 'foto' },
+            { text:  "", value: 'foto' },
             { text: 'USERNAME', value: 'username',sortable:true },
             { text: 'NAMA DOSEN', value: 'name',sortable:true },
             { text: 'NIDN', value: 'nidn',sortable:true },     
@@ -160,11 +160,11 @@ export default {
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],
         expanded:[],
-        search:'',
+        search: "",
         daftar_users: [],               
     }),
     methods: {
-        initialize:async function () 
+        initialize: async function () 
         {
             this.datatableLoading=true;
             await this.$ajax.get('/akademik/dosenwali',{

@@ -66,16 +66,16 @@ export default {
         peserta:null,
         isprosesujian:false,
 
-        nama_soal:'',
+        nama_soal: "",
         daftar_jawaban:[]
     }),
     methods: {
-        initialize:async function () 
+        initialize: async function () 
         {
             await this.$ajax.get('/spmb/ujianonline/soal/'+this.peserta.user_id,           
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{                       
                 if (data.status==0)
@@ -107,7 +107,7 @@ export default {
             },    
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(()=>{                       
                this.btnLoading=false;

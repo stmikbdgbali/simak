@@ -221,10 +221,10 @@ export default {
    
     data: () => ({         
         datatableLoading:false,
-        btnLoading:false,      
+        btnLoading: false,      
         //tables
         headers: [                        
-            { text: '', value: 'foto' },            
+            { text:  "", value: 'foto' },            
             { text: 'NAMA DOSEN', value: 'nama_dosen',sortable:true, width:250 },
             { text: 'NIDN', value: 'nidn',sortable:true },     
             { text: 'NIPY', value: 'nipy',sortable:true },     
@@ -233,45 +233,45 @@ export default {
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],
         expanded:[],
-        search:'',
+        search: "",
         daftar_dosen: [],                       
         
         //form
-        form_valid:true,        
+        form_valid: true,        
         dialogEdit: false,           
         editedIndex: -1,      
         daftar_jabatan:[],  
         editedItem: {
             id:0,
-            username: '',           
-            name: '',                       
-            nama_dosen: '',                                   
+            username:  "",           
+            name:  "",                       
+            nama_dosen:  "",                                   
             id_jabatan:1,           
-            gelar_depan:'',           
+            gelar_depan: "",           
             gelar_belakang:'1',                       
-            nidn:'',   
-            nipy:'',         
-            email: '',           
-            nomor_hp:'',                 
+            nidn: "",   
+            nipy: "",         
+            email:  "",           
+            nomor_hp: "",                 
             is_dw:false,      
-            created_at: '',           
-            updated_at: '',   
+            created_at:  "",           
+            updated_at:  "",   
         },
         defaultItem: {
             id:0,
-            username: '',                       
-            name: '',                       
-            nama_dosen: '',                       
+            username:  "",                       
+            name:  "",                       
+            nama_dosen:  "",                       
             id_jabatan:1,      
-            gelar_depan:'',           
+            gelar_depan: "",           
             gelar_belakang:'1',                             
-            nidn:'',
-            nipy:'',       
-            email: '',           
-            nomor_hp: '',          
+            nidn: "",
+            nipy: "",       
+            email:  "",           
+            nomor_hp:  "",          
             is_dw:false,    
-            created_at: '',           
-            updated_at: '',        
+            created_at:  "",           
+            updated_at:  "",        
         },
         //form rules        
         rule_user_name:[
@@ -294,7 +294,7 @@ export default {
         ],         
     }),
     methods: {
-        initialize:async function () 
+        initialize: async function () 
         {
             this.datatableLoading=true;
             await this.$ajax.get('/kepegawaian/dosen',{

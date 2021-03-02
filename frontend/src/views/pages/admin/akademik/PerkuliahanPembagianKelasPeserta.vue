@@ -298,7 +298,7 @@ export default {
 
         btnLoadingTable:false,
         datatableLoading:false,
-        btnLoading:false,  
+        btnLoading: false,  
         
         datatable:[],    
         daftar_matakuliah:[],     
@@ -326,27 +326,27 @@ export default {
             { text: 'KELAS', value: 'idkelas', sortable:false  },                           
             { text: 'TAHUN MASUK', value: 'tahun', sortable:false },                                                   
         ],  
-        search_members:'',    
+        search_members: "",    
 
         showdialogmatakuliah:false,      
         showdialogpeserta:false,      
 
         //formdata
-        form_valid:true,  
+        form_valid: true,  
         members_selected:[],
         formdata:{                        
-            penyelenggaraan_dosen_id:'',                        
+            penyelenggaraan_dosen_id: "",                        
         },  
         
     }),
     methods: {        
-        initialize:async function () 
+        initialize: async function () 
         {
             this.datatableLoading=true;
             await this.$ajax.get('/akademik/perkuliahan/pembagiankelas/'+this.kelas_mhs_id,            
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{           
                 this.data_kelas_mhs=data.pembagiankelas;    
@@ -361,7 +361,7 @@ export default {
             await this.$ajax.get('/akademik/perkuliahan/pembagiankelas/matakuliah/'+this.kelas_mhs_id,            
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{                                                      
                 this.datatable=data.penyelenggaraan;                                
@@ -374,7 +374,7 @@ export default {
             await this.$ajax.get('/akademik/perkuliahan/pembagiankelas/peserta/'+this.kelas_mhs_id,            
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{                                                      
                 this.datatable_peserta=data.peserta;                                
@@ -391,7 +391,7 @@ export default {
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{                                                               
                 this.daftar_matakuliah = data.matakuliah; 
@@ -408,7 +408,7 @@ export default {
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{           
                 this.datatable_members=data.members;                
@@ -426,7 +426,7 @@ export default {
                     },
                     {
                         headers:{
-                            Authorization:this.$store.getters['auth/Token']
+                            Authorization: this.$store.getters["auth/Token"]
                         }
                     }
                 ).then(()=>{                       
@@ -448,7 +448,7 @@ export default {
                     },
                     {
                         headers:{
-                            Authorization:this.$store.getters['auth/Token']
+                            Authorization: this.$store.getters["auth/Token"]
                         }
                     }
                 ).then(()=>{                       
@@ -471,7 +471,7 @@ export default {
                         },
                         {
                             headers:{
-                                Authorization:this.$store.getters['auth/Token']
+                                Authorization: this.$store.getters["auth/Token"]
                             }
                         }
                     ).then(()=>{                           
@@ -495,7 +495,7 @@ export default {
                         },
                         {
                             headers:{
-                                Authorization:this.$store.getters['auth/Token']
+                                Authorization: this.$store.getters["auth/Token"]
                             }
                         }
                     ).then(()=>{                           

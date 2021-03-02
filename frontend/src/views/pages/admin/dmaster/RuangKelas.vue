@@ -207,7 +207,7 @@ export default {
         this.initialize()
     },
     data: () => ({
-        btnLoading:false,
+        btnLoading: false,
         datatableLoading:false,
         expanded:[],
         datatable:[],
@@ -216,22 +216,22 @@ export default {
             { text: 'KAPASITAS', value: 'kapasitas' },
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],
-        search:'',
+        search: "",
 
         //dialog
         dialogfrm:false,
         dialogdetailitem:false,
 
         //form data        
-        form_valid:true,
+        form_valid: true,
         formdata: {
-            id:'',
-            namaruang:'',
+            id: "",
+            namaruang: "",
             kapasitas:0,
         },
         formdefault: {
-            id:'',
-            namaruang:'',
+            id: "",
+            namaruang: "",
             kapasitas:0,
         },
         editedIndex: -1,
@@ -246,7 +246,7 @@ export default {
         ],        
     }),
     methods: {
-        initialize:async function ()
+        initialize: async function ()
         {
             this.datatableLoading=true;
             await this.$ajax.get('/datamaster/ruangankelas',{

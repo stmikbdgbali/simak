@@ -171,19 +171,19 @@ export default {
         breadcrumbs:[],        
         dashboard:null,
 
-        btnLoading:false,
+        btnLoading: false,
         datatableLoading:false,
         expanded:[],
         datatable:[],
         headers: [                        
-            { text: '', value: 'foto', width:70 },               
+            { text:  "", value: 'foto', width:70 },               
             { text: 'NAMA MAHASISWA', value: 'name',width:350,sortable:true },
             { text: 'NOMOR HP', value: 'nomor_hp',width:100},
             { text: 'KELAS', value: 'nkelas',width:100,sortable:true },
             { text: 'STATUS', value: 'status',width:120,sortable:true },
             { text: 'AKSI', value: 'actions', sortable: false,width:50 },
         ],
-        search:'',
+        search: "",
 
         showcomponentpersyaratan:false,
         datamhsbaru:{
@@ -206,7 +206,7 @@ export default {
                 await this.$ajax.get('/spmb/formulirpendaftaran/'+this.$store.getters['auth/AttributeUser']('id'),             
                     {
                         headers:{
-                            Authorization:this.$store.getters['auth/Token']
+                            Authorization: this.$store.getters["auth/Token"]
                         }
                     },
                     
@@ -224,7 +224,7 @@ export default {
                 },
                 {
                     headers: {
-                        Authorization:this.$store.getters['auth/Token']
+                        Authorization: this.$store.getters["auth/Token"]
                     }
                 }).then(({data})=>{                                   
                     this.datatable = data.persyaratan;   

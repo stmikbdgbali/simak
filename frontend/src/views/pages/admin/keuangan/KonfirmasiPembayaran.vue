@@ -521,7 +521,7 @@ export default {
         firstloading:true,
         breadcrumbs:[],
         dashboard:null,
-        btnLoading:false,
+        btnLoading: false,
         prodi_id:null,
         nama_prodi:null,
         tahun_akademik:null,
@@ -545,7 +545,7 @@ export default {
             { text: 'AKSI', value: 'actions', sortable: false,width:82 },
         ],
         expanded:[],
-        search:'',
+        search: "",
 
         //dialog
         dialogfrm:false,
@@ -553,7 +553,7 @@ export default {
         dialogcanceltransaksi:false,
 
         //form data
-        form_valid:true,
+        form_valid: true,
         menuTanggalBayar:false,
         image_prev:null,
         data_transaksi: {
@@ -564,21 +564,21 @@ export default {
         formdata: {
             id_channel:1,
             total_bayar:0,
-            nomor_rekening_pengirim:'',
-            nama_rekening_pengirim:'',
-            nama_bank_pengirim:'',
-            desc:'',
-            tanggal_bayar:'',
+            nomor_rekening_pengirim: "",
+            nama_rekening_pengirim: "",
+            nama_bank_pengirim: "",
+            desc: "",
+            tanggal_bayar: "",
             bukti_bayar:[],
         },
         formdefault: {
             id_channel:1,
             total_bayar:0,
-            nomor_rekening_pengirim:'',
-            nama_rekening_pengirim:'',
-            nama_bank_pengirim:'',
-            desc:'',
-            tanggal_bayar:'',
+            nomor_rekening_pengirim: "",
+            nama_rekening_pengirim: "",
+            nama_bank_pengirim: "",
+            desc: "",
+            tanggal_bayar: "",
             bukti_bayar:[],
         },
         //form rules
@@ -612,7 +612,7 @@ export default {
         {
             this.prodi_id=id;
         },
-        initialize:async function ()
+        initialize: async function ()
         {
             this.datatableLoading=true;
             await this.$ajax.post('/keuangan/konfirmasipembayaran',
@@ -622,7 +622,7 @@ export default {
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{
                 this.datatable = data.transaksi;
@@ -647,7 +647,7 @@ export default {
             await this.$ajax.get('/keuangan/channelpembayaran',
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{
                 this.daftar_channel=data.channel;
@@ -661,7 +661,7 @@ export default {
             await this.$ajax.get('/keuangan/konfirmasipembayaran/'+item.id,
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{
                 this.data_konfirmasi=data.konfirmasi;
@@ -703,7 +703,7 @@ export default {
                 this.$ajax.post('/keuangan/konfirmasipembayaran/store',data,
                     {
                         headers:{
-                            Authorization:this.$store.getters['auth/Token'],
+                            Authorization: this.$store.getters["auth/Token"],
                             'Content-Type': 'multipart/form-data'
                         }
                     }
@@ -729,7 +729,7 @@ export default {
                         },
                         {
                             headers:{
-                                Authorization:this.$store.getters['auth/Token'],
+                                Authorization: this.$store.getters["auth/Token"],
                             }
                         }
                     ).then(()=>{
@@ -753,7 +753,7 @@ export default {
                         },
                         {
                             headers:{
-                                Authorization:this.$store.getters['auth/Token'],
+                                Authorization: this.$store.getters["auth/Token"],
                             }
                         }
                     ).then(()=>{
@@ -841,7 +841,7 @@ export default {
                         },
                         {
                             headers: {
-                                Authorization:this.$store.getters['auth/Token']
+                                Authorization: this.$store.getters["auth/Token"]
                             }
                         }).then(({data})=>{
                             this.datatable = data.transaksi;

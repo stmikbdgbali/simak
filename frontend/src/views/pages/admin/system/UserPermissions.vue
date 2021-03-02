@@ -170,7 +170,7 @@ export default {
         this.initialize();
     },
     data: () => ({
-        btnLoading:false,
+        btnLoading: false,
         datatableLoading:false,
         //tables
         headers: [                        
@@ -178,7 +178,7 @@ export default {
             { text: 'GUARD', value: 'guard_name' },   
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },         
         ],
-        search:'',
+        search: "",
 
         role_name:null,
         daftar_role:[],
@@ -202,7 +202,7 @@ export default {
             this.$ajax.get('/system/users/'+this.user.id+'/roles',                
                 {
                     headers:{
-                        Authorization:this.$store.getters['auth/Token']
+                        Authorization: this.$store.getters["auth/Token"]
                     }
                 }
             ).then(({data})=>{   
@@ -219,7 +219,7 @@ export default {
                 },
                 {
                     headers:{
-                        Authorization:this.$store.getters['auth/Token']
+                        Authorization: this.$store.getters["auth/Token"]
                     }
                 }
             ).then(()=>{   
@@ -238,7 +238,7 @@ export default {
                 },
                 {
                     headers:{
-                        Authorization:this.$store.getters['auth/Token']
+                        Authorization: this.$store.getters["auth/Token"]
                     }
                 }
             ).then(()=>{   
@@ -266,14 +266,14 @@ export default {
                 this.datatableLoading=true;
                 await this.$ajax.get('/system/setting/rolesbyname/'+this.role_name+'/permission',{
                     headers: {
-                        Authorization:this.$store.getters['auth/Token']
+                        Authorization: this.$store.getters["auth/Token"]
                     }
                 }).then(({data})=>{
                     this.daftar_permissions = data.permissions;
                 });
                 await this.$ajax.get('/system/users/'+this.user.id+'/permission',{
                     headers: {
-                        Authorization:this.$store.getters['auth/Token']
+                        Authorization: this.$store.getters["auth/Token"]
                     }
                 }).then(({data})=>{
                     this.permissions_selected = data.permissions;                    

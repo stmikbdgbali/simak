@@ -170,12 +170,12 @@ export default {
         breadcrumbs:[],        
         dashboard:null,
 
-        btnLoading:false,
+        btnLoading: false,
         datatableLoading:false,
         expanded:[],
         datatable:[],
         headers: [                        
-            { text: '', value: 'foto', width:70 },               
+            { text:  "", value: 'foto', width:70 },               
             { text: 'NO.FORMULIR', value: 'no_formulir',width:120,sortable:true },
             { text: 'NAMA MAHASISWA', value: 'name',width:350,sortable:true },
             { text: 'NOMOR HP', value: 'nomor_hp',width:100},
@@ -184,13 +184,13 @@ export default {
             { text: 'STATUS', value: 'status',width:100,sortable:true },
             { text: 'AKSI', value: 'actions', sortable: false,width:50 },
         ],
-        search:'',  
+        search: "",  
         
         datamhsbaru:{},
 
         //form data 
         filter_status:1,  
-        form_valid:true,   
+        form_valid: true,   
 
         data_mhs:{},        
         daftar_prodi:[],        
@@ -222,7 +222,7 @@ export default {
                     },
                     {
                         headers: {
-                            Authorization:this.$store.getters['auth/Token']
+                            Authorization: this.$store.getters["auth/Token"]
                         }
                     }).then(({data})=>{               
                         this.datatable = data.pmb;                
@@ -269,7 +269,7 @@ export default {
                 },
                 {
                     headers:{
-                        Authorization:this.$store.getters['auth/Token']
+                        Authorization: this.$store.getters["auth/Token"]
                     },
                     responseType:'arraybuffer'
                 }

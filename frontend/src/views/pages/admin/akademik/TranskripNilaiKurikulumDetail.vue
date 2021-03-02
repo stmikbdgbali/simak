@@ -262,7 +262,7 @@ export default {
         nama_prodi:null,
         tahun_pendaftaran:null,
 
-        btnLoading:false,
+        btnLoading: false,
         btnLoadingTable:false,
         datatableLoading:false,        
         datatable:[],      
@@ -278,7 +278,7 @@ export default {
             { text: 'M', value: 'M', sortable: false,width:100 },
             { text: 'AKSI', value: 'actions', sortable: false,width:50 },
         ],  
-        search:'', 
+        search: "", 
 
         data_mhs:{},
         jumlahMatkul:0, 
@@ -313,13 +313,13 @@ export default {
         {
             this.prodi_id=id;
         },
-        initialize:async function () 
+        initialize: async function () 
         {
             this.datatableLoading=true;
             await this.$ajax.get('/akademik/nilai/transkripkurikulum/'+this.user_id,           
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{                              
                 this.data_mhs=data.mahasiswa;
@@ -345,7 +345,7 @@ export default {
                 },
                 {
                     headers:{
-                        Authorization:this.$store.getters['auth/Token']
+                        Authorization: this.$store.getters["auth/Token"]
                     },
                     
                 }
@@ -375,7 +375,7 @@ export default {
             await this.$ajax.get('/akademik/nilai/transkripkurikulum/printpdf1/'+this.data_mhs.user_id,                
                 {
                     headers:{
-                        Authorization:this.$store.getters['auth/Token']
+                        Authorization: this.$store.getters["auth/Token"]
                     },
                     
                 }
@@ -393,7 +393,7 @@ export default {
             await this.$ajax.get('/akademik/nilai/transkripkurikulum/printpdf2/'+this.data_mhs.user_id,                
                 {
                     headers:{
-                        Authorization:this.$store.getters['auth/Token']
+                        Authorization: this.$store.getters["auth/Token"]
                     },
                     
                 }

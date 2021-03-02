@@ -235,7 +235,7 @@ export default {
         nama_prodi:null,
         tahun_pendaftaran:null,
 
-        btnLoading:false,
+        btnLoading: false,
         btnLoadingTable:false,
         datatableLoading:false,
         expanded:[],
@@ -250,7 +250,7 @@ export default {
             { text: 'NIM SISTEM', value: 'nim',sortable:true,width:100, },                           
             { text: 'AKSI', value: 'actions', sortable: false,width:150 },
         ],  
-        search:'', 
+        search: "", 
 
         dialogprintpdf:false,
         file_pdf:null
@@ -264,7 +264,7 @@ export default {
         {
             this.prodi_id=id;
         },
-        initialize:async function () 
+        initialize: async function () 
         {
             this.datatableLoading=true;
             await this.$ajax.post('/akademik/nilai/konversi',
@@ -274,7 +274,7 @@ export default {
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{               
                 this.datatable = data.mahasiswa;
@@ -315,7 +315,7 @@ export default {
                         },
                         {
                             headers:{
-                                Authorization:this.$store.getters['auth/Token']
+                                Authorization: this.$store.getters["auth/Token"]
                             }
                         }
                     ).then(()=>{   
@@ -334,7 +334,7 @@ export default {
             await this.$ajax.get('/akademik/nilai/konversi/printpdf1/'+item.id,                
                 {
                     headers:{
-                        Authorization:this.$store.getters['auth/Token']
+                        Authorization: this.$store.getters["auth/Token"]
                     },
                     
                 }

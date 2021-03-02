@@ -109,9 +109,9 @@ export default {
     data: () => ({
         breadcrumbs:[],
         datatableLoading:false,
-        btnLoading:false,   
+        btnLoading: false,   
         //form
-        form_valid:true,   
+        form_valid: true,   
         formdata: {
             header_1:null,
             header_2:null,
@@ -121,7 +121,7 @@ export default {
         },        
     }),
     methods: {
-        initialize:async function () 
+        initialize: async function () 
         {
             this.datatableLoading=true;
             await this.$ajax.get('/system/setting/variables',

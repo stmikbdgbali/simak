@@ -131,10 +131,10 @@ export default {
         tahun_akademik:null,        
         semester_akademik:null,
     
-        btnLoading:false, 
+        btnLoading: false, 
         
         //formdata
-        form_valid:true,   
+        form_valid: true,   
         krs_id:null,
         datakrs:{},
         jumlah_matkul:0,
@@ -159,7 +159,7 @@ export default {
             await this.$ajax.get('/akademik/perkuliahan/krs/'+this.krs_id,                        
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{                                               
                 this.datakrs=data.krs;
@@ -185,7 +185,7 @@ export default {
                 },
                 {
                     headers: {
-                        Authorization:this.$store.getters['auth/Token']
+                        Authorization: this.$store.getters["auth/Token"]
                     }
                 }).then(({data})=>{               
                     this.datatable = data.penyelenggaraan;
@@ -207,7 +207,7 @@ export default {
                     },
                     {
                         headers:{
-                            Authorization:this.$store.getters['auth/Token']
+                            Authorization: this.$store.getters["auth/Token"]
                         }
                     }
                 ).then(()=>{                       

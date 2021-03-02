@@ -235,7 +235,7 @@ export default {
         tahun_akademik:null,
         semester_akademik:null,
 
-        btnLoading:false,
+        btnLoading: false,
         btnLoadingTable:false,        
         datatableLoading:false,
         expanded:[],
@@ -250,13 +250,13 @@ export default {
             { text: 'JUMLAH PESERTA', value: 'jumlah_mhs',sortable:true, width:100},                           
             { text: 'AKSI', value: 'actions', sortable: false,width:120 },
         ],  
-        search:'',
+        search: "",
         
         //dialog
         dialogfrm:false,
 
         //formdata
-        form_valid:true, 
+        form_valid: true, 
         daftar_ruang_kelas:[],
         daftar_hari:[
             {
@@ -285,22 +285,22 @@ export default {
             },
         ],
         formdata:{            
-            id:'',
-            idkelas:'',            
-            hari:'',            
-            jam_masuk:'',
-            jam_keluar:'',
-            penyelenggaraan_dosen_id:'',
-            ruang_kelas_id:'',            
+            id: "",
+            idkelas: "",            
+            hari: "",            
+            jam_masuk: "",
+            jam_keluar: "",
+            penyelenggaraan_dosen_id: "",
+            ruang_kelas_id: "",            
         }, 
         formdefault:{            
-            id:'',
-            idkelas:'',            
-            hari:'',            
-            jam_masuk:'',
-            jam_keluar:'',
-            penyelenggaraan_dosen_id:'',
-            ruang_kelas_id:'',            
+            id: "",
+            idkelas: "",            
+            hari: "",            
+            jam_masuk: "",
+            jam_keluar: "",
+            penyelenggaraan_dosen_id: "",
+            ruang_kelas_id: "",            
         },         
 
         rule_hari:[
@@ -328,7 +328,7 @@ export default {
         {
             this.semester_akademik=semester;
         },        
-        initialize:async function () 
+        initialize: async function () 
         {
             this.datatableLoading=true;
             await this.$ajax.post('/akademik/perkuliahan/pembagiankelas',
@@ -338,7 +338,7 @@ export default {
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{                               
                 this.datatable = data.pembagiankelas;
@@ -363,7 +363,7 @@ export default {
         async editItem (item) {
             await this.$ajax.get('/datamaster/ruangankelas',{
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{
                 this.daftar_ruang_kelas = data.ruangan;                 
@@ -386,7 +386,7 @@ export default {
                     },
                     {
                         headers:{
-                            Authorization:this.$store.getters['auth/Token']
+                            Authorization: this.$store.getters["auth/Token"]
                         }
                     }
                 ).then(()=>{
@@ -410,7 +410,7 @@ export default {
                         },
                         {
                             headers:{
-                                Authorization:this.$store.getters['auth/Token']
+                                Authorization: this.$store.getters["auth/Token"]
                             }
                         }
                     ).then(()=>{   

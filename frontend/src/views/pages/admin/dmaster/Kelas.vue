@@ -205,7 +205,7 @@ export default {
         this.initialize()
     },
     data: () => ({
-        btnLoading:false,
+        btnLoading: false,
         datatableLoading:false,
         expanded:[],
         datatable:[],
@@ -214,22 +214,22 @@ export default {
             { text: 'NAMA KELAS', value: 'nkelas' },
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],
-        search:'',
+        search: "",
 
         //dialog
         dialogfrm:false,
         dialogdetailitem:false,
 
         //form data
-        old_idkelas:'',
-        form_valid:true,
+        old_idkelas: "",
+        form_valid: true,
         formdata: {
-            idkelas:'',
-            nkelas:'',
+            idkelas: "",
+            nkelas: "",
         },
         formdefault: {
-           idkelas:'',
-            nkelas:'',
+           idkelas: "",
+            nkelas: "",
         },
         editedIndex: -1,
 
@@ -244,7 +244,7 @@ export default {
         ],
     }),
     methods: {
-        initialize:async function ()
+        initialize: async function ()
         {
             this.datatableLoading=true;
             await this.$ajax.get('/datamaster/kelas',{

@@ -243,7 +243,7 @@ export default {
         filter_ignore:false, 
         awaiting_search:false,
         
-        btnLoading:false,      
+        btnLoading: false,      
 
         //tables
         datatableLoading:false,       
@@ -259,20 +259,20 @@ export default {
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],        
         expanded:[],
-        search:'', 
+        search: "", 
 
         //dialog
         dialogfrm:false,        
 
         //form data   
-        form_valid:true,      
+        form_valid: true,      
         daftar_semester:[],        
         formdata: {
-            nim:'',
+            nim: "",
             semester_akademik:''
         },
         formdefault: {
-            nim:'',
+            nim: "",
             semester_akademik:''
         },
         rule_nim:[
@@ -296,7 +296,7 @@ export default {
         {
             this.prodi_id=id;
         },
-        initialize:async function () 
+        initialize: async function () 
         {
             this.datatableLoading=true;            
             await this.$ajax.post('/keuangan/transaksi-registrasikrs',            
@@ -307,7 +307,7 @@ export default {
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{               
                 this.datatable = data.transaksi;                
@@ -353,7 +353,7 @@ export default {
                     },
                     {
                         headers:{
-                            Authorization:this.$store.getters['auth/Token']
+                            Authorization: this.$store.getters["auth/Token"]
                         }
                     }
                 ).then(()=>{   
@@ -389,7 +389,7 @@ export default {
                         },
                         {
                             headers:{
-                                Authorization:this.$store.getters['auth/Token']
+                                Authorization: this.$store.getters["auth/Token"]
                             }
                         }
                     ).then(()=>{   
@@ -478,7 +478,7 @@ export default {
                         },
                         {
                             headers: {
-                                Authorization:this.$store.getters['auth/Token']
+                                Authorization: this.$store.getters["auth/Token"]
                             }
                         }).then(({data})=>{               
                             this.datatable = data.transaksi;                

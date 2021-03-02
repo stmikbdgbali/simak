@@ -152,7 +152,7 @@ export default {
         tahun_akademik:null,
         semester_akademik:null,
 
-        btnLoading:false,
+        btnLoading: false,
         btnLoadingTable:false,
         datatableLoading:false,
         expanded:[],
@@ -166,7 +166,7 @@ export default {
             { text: 'STATUS', value: 'n_status',sortable:true,width:120, },                           
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],  
-        search:'', 
+        search: "", 
     }),
     methods: {
         changeTahunAkademik (tahun)
@@ -181,7 +181,7 @@ export default {
         {
             this.prodi_id=id;
         },
-        initialize:async function () 
+        initialize: async function () 
         {
             this.datatableLoading=true;
             await this.$ajax.post('/akademik/dulang/mhslama',
@@ -192,7 +192,7 @@ export default {
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{               
                 this.datatable = data.mahasiswa;
@@ -226,7 +226,7 @@ export default {
                         },
                         {
                             headers:{
-                                Authorization:this.$store.getters['auth/Token']
+                                Authorization: this.$store.getters["auth/Token"]
                             }
                         }
                     ).then(()=>{   

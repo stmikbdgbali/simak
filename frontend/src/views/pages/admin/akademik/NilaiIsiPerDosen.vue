@@ -168,7 +168,7 @@ export default {
             { text: 'JUMLAH PESERTA', value: 'jumlah_mhs',sortable:true, width:100},                           
             { text: 'AKSI', value: 'actions', sortable: false,width:120 },
         ],  
-        search:'', 
+        search: "", 
 
     }),
     methods: {
@@ -180,7 +180,7 @@ export default {
         {
             this.semester_akademik=semester;
         },        
-        initialize:async function () 
+        initialize: async function () 
         {
             this.datatableLoading=true;
             await this.$ajax.post('/akademik/perkuliahan/pembagiankelas',
@@ -190,7 +190,7 @@ export default {
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{                               
                 this.datatable = data.pembagiankelas;

@@ -202,16 +202,16 @@ export default {
         breadcrumbs:[],        
         dashboard:null,
 
-        btnLoading:false,
+        btnLoading: false,
         btnLoadingProv:false,
         btnLoadingKab:false,
         btnLoadingKec:false,
-        btnLoadingFakultas:false,
+        btnLoadingFakultas: false,
 
         //form
         user_id:null,
         kode_billing:'N.A',
-        form_valid:true,
+        form_valid: true,
 
         menuTanggalLahir:false,
 
@@ -228,22 +228,22 @@ export default {
         desa_id:0,
 
         daftar_fakultas:[],
-        kode_fakultas:'',
+        kode_fakultas: "",
 
         daftar_prodi:[],        
         daftar_kelas:[],
         
         formdata:{
-            nama_mhs:'',           
-            tempat_lahir:'',
-            tanggal_lahir:'',
+            nama_mhs: "",           
+            tempat_lahir: "",
+            tanggal_lahir: "",
             jk:'L',
-            nomor_hp:'',    
-            email:'',
-            alamat_rumah:'',
-            nama_ibu_kandung:'',
-            kjur1:'',
-            idkelas:'',
+            nomor_hp: "",    
+            email: "",
+            alamat_rumah: "",
+            nama_ibu_kandung: "",
+            kjur1: "",
+            idkelas: "",
         },
         rule_nama_mhs:[
             value => !!value||"Nama Mahasiswa mohon untuk diisi !!!",
@@ -303,7 +303,7 @@ export default {
             await this.$ajax.get('/spmb/formulirpendaftaran/'+this.user_id,             
                 {
                     headers:{
-                        Authorization:this.$store.getters['auth/Token']
+                        Authorization: this.$store.getters["auth/Token"]
                     }
             },
                 
@@ -369,7 +369,7 @@ export default {
                 },
                 {
                     headers:{
-                        Authorization:this.$store.getters['auth/Token']
+                        Authorization: this.$store.getters["auth/Token"]
                     }
                 }
                 ).then(()=>{               

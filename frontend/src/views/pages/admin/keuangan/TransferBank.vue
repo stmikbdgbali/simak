@@ -259,7 +259,7 @@ export default {
         this.initialize()
     },  
     data: () => ({ 
-        btnLoading:false,
+        btnLoading: false,
         datatableLoading:false,
         expanded:[],
         datatable:[],
@@ -270,31 +270,31 @@ export default {
             { text: 'PEMILIK REKENING', value: 'pemilik_rekening' },   
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],
-        search:'',    
+        search: "",    
 
         //dialog
         dialogfrm:false,
         dialogdetailitem:false,
 
         //form data           
-        form_valid:true,         
+        form_valid: true,         
         formdata: {
-            id:'',                        
-            nama_bank:'',                        
-            nama_cabang:'',                        
-            nomor_rekening:'',                        
-            pemilik_rekening:'',                        
-            created_at:'',                        
-            updated_at:'',                        
+            id: "",                        
+            nama_bank: "",                        
+            nama_cabang: "",                        
+            nomor_rekening: "",                        
+            pemilik_rekening: "",                        
+            created_at: "",                        
+            updated_at: "",                        
         },
         formdefault: {
-            id:'',                        
-            nama_bank:'',                        
-            nama_cabang:'',                        
-            nomor_rekening:'',                        
-            pemilik_rekening:'',                        
-            created_at:'',                        
-            updated_at:'',                               
+            id: "",                        
+            nama_bank: "",                        
+            nama_cabang: "",                        
+            nomor_rekening: "",                        
+            pemilik_rekening: "",                        
+            created_at: "",                        
+            updated_at: "",                               
         },
         editedIndex: -1,
 
@@ -317,7 +317,7 @@ export default {
         ],
     }),
     methods: {
-        initialize:async function () 
+        initialize: async function () 
         {
             this.datatableLoading=true;
             await this.$ajax.get('/keuangan/transferbank',{

@@ -444,7 +444,7 @@ export default {
             semester_pendaftaran:null,
             nama_semester_pendaftaran:null,
 
-            btnLoading:false,
+            btnLoading: false,
             datatableLoading:false,
             expanded:[],
             datatable:[],
@@ -456,14 +456,14 @@ export default {
                 { text: 'JUMLAH PESERTA', value: 'jumlah_peserta', sortable: true,width:100 },
                 { text: 'AKSI', value: 'actions', sortable: false,width:100 },
             ],
-            search:'',    
+            search: "",    
 
             //dialog
             dialogfrm:false,
             dialogdetailitem:false,
             
             //form data   
-            form_valid:true, 
+            form_valid: true, 
             jumlah_bank_soal:0,
             daftar_ruangan:[],
             
@@ -473,37 +473,37 @@ export default {
             menuTanggalAkhirPendaftaran:false,        
             formdata: {
                 id:0,                        
-                nama_kegiatan:'',
-                jumlah_soal:'',   
+                nama_kegiatan: "",
+                jumlah_soal: "",   
                 tanggal_ujian:tanggal_ujian,    
-                jam_mulai_ujian:'',                    
-                jam_selesai_ujian:'',                    
+                jam_mulai_ujian: "",                    
+                jam_selesai_ujian: "",                    
                 tanggal_akhir_daftar:tanggal_ujian,                                                                
-                ruangkelas_id:'',                        
-                ta:'',                        
-                idsmt:'',                        
-                status_pendaftaran:'',                        
-                status_ujian:'',                        
-                created_at: '',           
-                updated_at: '',           
+                ruangkelas_id: "",                        
+                ta: "",                        
+                idsmt: "",                        
+                status_pendaftaran: "",                        
+                status_ujian: "",                        
+                created_at:  "",           
+                updated_at:  "",           
 
             },
             formdefault: {
                 id:0,                        
-                nama_kegiatan:'',             
-                jumlah_soal:'',                                   
+                nama_kegiatan: "",             
+                jumlah_soal: "",                                   
                 tanggal_ujian:this.$date().format('YYYY-MM-DD'),   
-                jam_mulai_ujian:'',                    
-                jam_selesai_ujian:'',                              
+                jam_mulai_ujian: "",                    
+                jam_selesai_ujian: "",                              
                 tanggal_akhir_daftar:tanggal_ujian,                        
-                durasi_ujian:'',                        
-                ruangkelas_id:'',                        
-                ta:'',                        
-                idsmt:'',                        
-                status_pendaftaran:'',                        
-                status_ujian:'',                        
-                created_at: '',           
-                updated_at: '',       
+                durasi_ujian: "",                        
+                ruangkelas_id: "",                        
+                ta: "",                        
+                idsmt: "",                        
+                status_pendaftaran: "",                        
+                status_ujian: "",                        
+                created_at:  "",           
+                updated_at:  "",       
             },
             editedIndex: -1,
 
@@ -538,7 +538,7 @@ export default {
         {
             this.semester_pendaftaran=semester;
         },
-        initialize:async function () 
+        initialize: async function () 
         {
             this.datatableLoading=true;
             await this.$ajax.post('/spmb/jadwalujianpmb',
@@ -548,7 +548,7 @@ export default {
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{                      
                 this.jumlah_bank_soal=data.jumlah_bank_soal;                
@@ -575,7 +575,7 @@ export default {
             await this.$ajax.get('/datamaster/ruangankelas',       
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{               
                 this.daftar_ruangan = data.ruangan;
@@ -597,7 +597,7 @@ export default {
             
             // this.$ajax.get('/path/'+item.id,{
             //     headers: {
-            //         Authorization:this.$store.getters['auth/Token']
+            //         Authorization: this.$store.getters["auth/Token"]
             //     }
             // }).then(({data})=>{               
                                            
@@ -613,7 +613,7 @@ export default {
             },
             {
                 headers:{
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }
         ).then(()=>{                                       
@@ -626,7 +626,7 @@ export default {
             await this.$ajax.get('/datamaster/ruangankelas',       
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{               
                 this.daftar_ruangan = data.ruangan;
@@ -658,7 +658,7 @@ export default {
                         },
                         {
                             headers:{
-                                Authorization:this.$store.getters['auth/Token']
+                                Authorization: this.$store.getters["auth/Token"]
                             }
                         }
                     ).then(()=>{                           
@@ -685,7 +685,7 @@ export default {
                         },
                         {
                             headers:{
-                                Authorization:this.$store.getters['auth/Token']
+                                Authorization: this.$store.getters["auth/Token"]
                             }
                         }
                     ).then(()=>{                           
@@ -709,7 +709,7 @@ export default {
                         },
                         {
                             headers:{
-                                Authorization:this.$store.getters['auth/Token']
+                                Authorization: this.$store.getters["auth/Token"]
                             }
                         }
                     ).then(()=>{   

@@ -290,12 +290,12 @@ export default {
         breadcrumbs:[],        
         dashboard:null,
 
-        btnLoading:false,
+        btnLoading: false,
         datatableLoading:false,
         expanded:[],
         datatable:[],
         headers: [                        
-            { text: '', value: 'foto', width:70 },               
+            { text:  "", value: 'foto', width:70 },               
             { text: 'NO. FORMULIR', value: 'no_formulir',width:135,sortable:true },
             { text: 'NAMA MAHASISWA', value: 'name',width:350,sortable:true },
             { text: 'NOMOR HP', value: 'nomor_hp',width:100},
@@ -304,12 +304,12 @@ export default {
             { text: 'STATUS', value: 'status',width:100,sortable:true },
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],
-        search:'',  
+        search: "",  
         
         datamhsbaru:{},
 
         //form data   
-        form_valid:true,   
+        form_valid: true,   
 
         data_mhs:{},
         
@@ -326,7 +326,7 @@ export default {
             },
         ],
         formdata: {            
-            user_id:'',            
+            user_id: "",            
             jadwal_ujian_id:null,            
             jumlah_soal:null,            
             jawaban_benar:null,            
@@ -335,14 +335,14 @@ export default {
             passing_grade_1:null,            
             passing_grade_2:null,            
             nilai:0,            
-            ket_lulus:'',            
+            ket_lulus: "",            
             kjur:null,            
-            desc:'',            
-            created_at:'',            
-            updated_at:'',            
+            desc: "",            
+            created_at: "",            
+            updated_at: "",            
         },
         formdefault: {            
-            user_id:'',            
+            user_id: "",            
             jadwal_ujian_id:null,            
             jumlah_soal:null,            
             jawaban_benar:null,            
@@ -351,11 +351,11 @@ export default {
             passing_grade_1:null,            
             passing_grade_2:null,            
             nilai:0,            
-            ket_lulus:'',            
+            ket_lulus: "",            
             kjur:null,            
-            desc:'',            
-            created_at:'',            
-            updated_at:'',            
+            desc: "",            
+            created_at: "",            
+            updated_at: "",            
         },
         editedItem:-1,
 
@@ -391,7 +391,7 @@ export default {
                     },
                     {
                         headers: {
-                            Authorization:this.$store.getters['auth/Token']
+                            Authorization: this.$store.getters["auth/Token"]
                         }
                     }).then(({data})=>{               
                         this.datatable = data.pmb;                
@@ -430,7 +430,7 @@ export default {
             await this.$ajax.get('/spmb/nilaiujian/'+item.id,
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{   
                 if (data.transaksi_status==1)
@@ -474,7 +474,7 @@ export default {
                     },                    
                     {
                         headers:{
-                            Authorization:this.$store.getters['auth/Token'],                        
+                            Authorization: this.$store.getters["auth/Token"],                        
                         }
                     }
                     ).then(()=>{               
@@ -498,7 +498,7 @@ export default {
                     },                    
                     {
                         headers:{
-                            Authorization:this.$store.getters['auth/Token'],                        
+                            Authorization: this.$store.getters["auth/Token"],                        
                         }
                     }
                     ).then(()=>{               
@@ -523,7 +523,7 @@ export default {
                     },                    
                     {
                         headers:{
-                            Authorization:this.$store.getters['auth/Token'],                        
+                            Authorization: this.$store.getters["auth/Token"],                        
                         }
                     }
                     ).then(()=>{               

@@ -163,7 +163,7 @@ export default {
     data: () => ({
         breadcrumbs:[],
         datatableLoading:false,
-        btnLoading:false,  
+        btnLoading: false,  
         expanded:[],        
         daftar_permissions: [],
         //tables
@@ -172,24 +172,24 @@ export default {
             { text: 'GUARD', value: 'guard_name' },            
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],
-        search:'',        
+        search: "",        
         //form
-        form_valid:true,
+        form_valid: true,
         dialog: false,
         editedIndex: -1,
         editedItem: {
             id:0,
-            name: '',           
-            guard: '',           
-            created_at: '',           
-            updated_at: '',           
+            name:  "",           
+            guard:  "",           
+            created_at:  "",           
+            updated_at:  "",           
         },
         defaultItem: {
             id:0,
-            name: '',           
+            name:  "",           
             guard: 'api',           
-            created_at: '',           
-            updated_at: '',           
+            created_at:  "",           
+            updated_at:  "",           
         },
         //form rules        
         rule_permission_name:[

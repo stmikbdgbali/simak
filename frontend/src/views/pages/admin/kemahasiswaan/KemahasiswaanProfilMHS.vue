@@ -287,7 +287,7 @@ export default {
             { text: 'AKSI', value: 'actions', sortable: false,width:50 },
         ],        
         expanded:[],
-        search:'', 
+        search: "", 
         //form data
         dialogdetailitem:false,
         data_transaksi:{}, 
@@ -299,7 +299,7 @@ export default {
             await this.$ajax.get('/akademik/nilai/transkripkurikulum/'+this.user_id,           
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{                              
                 this.datamhs=data.mahasiswa;
@@ -318,7 +318,7 @@ export default {
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{               
                 this.datatable = data.transaksi;                
@@ -341,7 +341,7 @@ export default {
             await this.$ajax.get('/keuangan/transaksi/'+item.id,  
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{                                                             
                 this.data_transaksi=item;   

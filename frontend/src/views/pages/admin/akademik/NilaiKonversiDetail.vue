@@ -389,7 +389,7 @@ export default {
         nama_prodi:null,
         tahun_pendaftaran:null,
 
-        btnLoading:false,
+        btnLoading: false,
         btnLoadingTable:false,
         datatableLoading:false,        
         datatable:[],      
@@ -407,25 +407,25 @@ export default {
         dialogprintpdf:false,
         file_pdf:null,
 
-        form_valid:true,   
+        form_valid: true,   
         daftar_jenjang:[],                        
         data_konversi:{
             'id':null,
-            'user_id':'',
-            'nim':'',
-            'nama_mhs':'',
-            'alamat':'', 
-            'no_telp':'',         
-            'nim_asal':'', 
-            'kode_jenjang':'', 
-            'kode_pt_asal':'',
-            'nama_pt_asal':'',
-            'kode_ps_asal':'',
-            'nama_ps_asal':'',
-            'tahun':'',
+            'user_id': "",
+            'nim': "",
+            'nama_mhs': "",
+            'alamat': "", 
+            'no_telp': "",         
+            'nim_asal': "", 
+            'kode_jenjang': "", 
+            'kode_pt_asal': "",
+            'nama_pt_asal': "",
+            'kode_ps_asal': "",
+            'nama_ps_asal': "",
+            'tahun': "",
             
-            'kjur':'',
-            'perpanjangan':'',   
+            'kjur': "",
+            'perpanjangan': "",   
         },        
         
         //profil mahasiswa        
@@ -435,13 +435,13 @@ export default {
         search:null
     }),
     methods: {        
-        initialize:async function () 
+        initialize: async function () 
         {      
             this.datatableLoading=true;
             await this.$ajax.get('/akademik/nilai/konversi/'+this.nilai_konversi_id,            
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{               
                 this.datatable = data.nilai_konversi;
@@ -492,7 +492,7 @@ export default {
                     },
                     {
                         headers:{
-                            Authorization:this.$store.getters['auth/Token']
+                            Authorization: this.$store.getters["auth/Token"]
                         }
                     }
                 ).then(()=>{   
@@ -529,7 +529,7 @@ export default {
             await this.$ajax.get('/akademik/nilai/transkripkurikulum/printpdf2/'+item.user_id,                
                 {
                     headers:{
-                        Authorization:this.$store.getters['auth/Token']
+                        Authorization: this.$store.getters["auth/Token"]
                     },
                     
                 }
@@ -558,7 +558,7 @@ export default {
                 },
                 {
                     headers:{
-                        Authorization:this.$store.getters['auth/Token']
+                        Authorization: this.$store.getters["auth/Token"]
                     },
                     
                 }
@@ -580,7 +580,7 @@ export default {
                         },
                         {
                             headers:{
-                                Authorization:this.$store.getters['auth/Token']
+                                Authorization: this.$store.getters["auth/Token"]
                             }
                         }
                     ).then(()=>{   
@@ -645,7 +645,7 @@ export default {
                     },
                     {
                         headers: {
-                            Authorization:this.$store.getters['auth/Token']
+                            Authorization: this.$store.getters["auth/Token"]
                         }
                     }).then(({data})=>{                                                       
                         const { jumlah, daftar_mhs } = data;

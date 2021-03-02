@@ -367,7 +367,7 @@ export default {
         let semester_ganjil = [d.getFullYear()+'-09-01',(d.getFullYear()+1)+'-02-28'];                
         let semester_genap = [(d.getFullYear()+1)+'-03-01',(d.getFullYear()+1)+'-08-31'];                
         return {
-            btnLoading:false,
+            btnLoading: false,
             datatableLoading:false,
             expanded:[],
             datatable:[],
@@ -382,39 +382,39 @@ export default {
                 { text: 'AKHIR PENDEK', value: 'akhir_pendek',width:50 },
                 { text: 'AKSI', value: 'actions', sortable: false,width:100 },
             ],
-            search:'',
+            search: "",
 
             //dialog
             dialogfrm:false,
             dialogdetailitem:false,
 
             //form data
-            old_tahun:'',
-            form_valid:true,
+            old_tahun: "",
+            form_valid: true,
             menuSemesterGanjil:false,        
             semester_ganjil:semester_ganjil,
             menuSemesterGenap:false,        
             semester_genap:semester_genap,
 
             formdata: {
-                tahun:'',
-                tahun_akademik:'',
-                awal_ganjil:'',
-                akhir_ganjil:'',
-                awal_genap:'',
-                akhir_genap:'',
-                awal_pendek:'',
-                akhir_pendek:'',  
+                tahun: "",
+                tahun_akademik: "",
+                awal_ganjil: "",
+                akhir_ganjil: "",
+                awal_genap: "",
+                akhir_genap: "",
+                awal_pendek: "",
+                akhir_pendek: "",  
             },
             formdefault: {
-                tahun:'',
-                tahun_akademik:'',
-                awal_ganjil:'',
-                akhir_ganjil:'',
-                awal_genap:'',
-                akhir_genap:'',
-                awal_pendek:'',
-                akhir_pendek:'',  
+                tahun: "",
+                tahun_akademik: "",
+                awal_ganjil: "",
+                akhir_ganjil: "",
+                awal_genap: "",
+                akhir_genap: "",
+                awal_pendek: "",
+                akhir_pendek: "",  
             },
             editedIndex: -1,
 
@@ -438,7 +438,7 @@ export default {
         }
     },
     methods: {
-        initialize:async function ()
+        initialize: async function ()
         {
             this.datatableLoading=true;
             await this.$ajax.get('/datamaster/tahunakademik',{

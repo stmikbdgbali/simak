@@ -114,7 +114,7 @@ export default {
     data: () => ({
         breadcrumbs:[],
         datatableLoading:false,
-        btnLoading:false,  
+        btnLoading: false,  
         expanded:[],        
         daftar_permissions: [],
         //tables
@@ -122,7 +122,7 @@ export default {
             { text: 'NAMA PERMISSION', value: 'name' },
             { text: 'GUARD', value: 'guard_name' },                        
         ],
-        search:'', 
+        search: "", 
    
     }),
     methods: {

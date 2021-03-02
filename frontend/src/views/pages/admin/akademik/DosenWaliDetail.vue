@@ -263,10 +263,10 @@ export default {
         dosen_id:null,
         data_dosen:{},
         datatableLoading:false,
-        btnLoading:false,      
+        btnLoading: false,      
         //tables
         headers: [                        
-            { text: '', value: 'foto',width:70, },
+            { text:  "", value: 'foto',width:70, },
             { text: 'NIM', value: 'nim',width:100,sortable:true },
             { text: 'NAMA MAHASISWA', value: 'nama_mhs',width:250,sortable:true },
             { text: 'PROGRAM STUDI', value: 'nama_prodi',width:150,sortable:true },     
@@ -275,12 +275,12 @@ export default {
             { text: 'AKSI', value: 'actions', sortable: false,width:50 },
         ],
         expanded:[],
-        search:'',
+        search: "",
         daftar_mahasiswa: [], 
 
         //form mahasiswa ganti dw
         dialogfrm:false,
-        form_valid:true,   
+        form_valid: true,   
         data_mhs:{},
         daftar_dw:[],     
 
@@ -296,13 +296,13 @@ export default {
         ],         
     }),
     methods: {
-        initialize:async function () 
+        initialize: async function () 
         {
             this.datatableLoading=true;
             await this.$ajax.get('/system/usersdosen/biodatadiri/'+this.dosen_id,             
                 {
                     headers:{
-                        Authorization:this.$store.getters['auth/Token']
+                        Authorization: this.$store.getters["auth/Token"]
                     }
                 },
                 
@@ -337,7 +337,7 @@ export default {
             console.log(this.data_mhs);
             await this.$ajax.get('/akademik/dosenwali',{
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{                                  
                 this.dialogfrm=true;

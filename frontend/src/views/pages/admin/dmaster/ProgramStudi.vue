@@ -269,11 +269,11 @@ export default {
         this.initialize()
     },  
     data: () => ({ 
-        btnLoading:false,
+        btnLoading: false,
         datatableLoading:false,
         expanded:[],
         datatable:[],        
-        search:'',    
+        search: "",    
         firstloading:true,
 
         //dialog
@@ -281,30 +281,30 @@ export default {
         dialogdetailitem:false,
 
         //form data   
-        form_valid:true,   
+        form_valid: true,   
         daftar_fakultas:[],           
 
         daftar_jenjang:[],      
         jenjang_studi:null,          
-        kode_prodi:'',          
+        kode_prodi: "",          
         formdata: {
             id:0,                        
-            kode_fakultas:'',                        
-            kode_prodi:'',                        
-            nama_prodi:'', 
-            nama_prodi_alias:'',         
-            kode_jenjang:'', 
-            nama_jenjang:'', 
+            kode_fakultas: "",                        
+            kode_prodi: "",                        
+            nama_prodi: "", 
+            nama_prodi_alias: "",         
+            kode_jenjang: "", 
+            nama_jenjang: "", 
             config:{}
         },
         formdefault: {
             id:0,                        
-            kode_fakultas:'',   
-            kode_prodi:'',                        
-            nama_prodi:'',         
-            nama_prodi_alias:'',         
-            kode_jenjang:'', 
-            nama_jenjang:'', 
+            kode_fakultas: "",   
+            kode_prodi: "",                        
+            nama_prodi: "",         
+            nama_prodi_alias: "",         
+            kode_jenjang: "", 
+            nama_jenjang: "", 
             config:{}
         },
         dosen_id:null,
@@ -332,7 +332,7 @@ export default {
         ], 
     }),
     methods: {
-        initialize:async function () 
+        initialize: async function () 
         {
             this.datatableLoading=true;
             await this.$ajax.get('/datamaster/programstudi',{

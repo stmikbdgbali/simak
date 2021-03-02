@@ -294,7 +294,7 @@ export default {
         ta_matkul:null,
         semester_akademik:null,
 
-        btnLoading:false,        
+        btnLoading: false,        
 
         //table
         dialogdetailitem:false,
@@ -309,10 +309,10 @@ export default {
             { text: 'SMT', value: 'semester', sortable:true,width:80 },               
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],  
-        search:'',    
+        search: "",    
 
         //formdata
-        form_valid:true,   
+        form_valid: true,   
         formdata:[],
         daftar_matkul_selected:[],
         rule_tamatkul:[
@@ -344,7 +344,7 @@ export default {
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{               
                 this.datatable = data.matakuliah;
@@ -358,7 +358,7 @@ export default {
             await this.$ajax.get('/akademik/matakuliah/'+item.id,
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{
                 this.formdata=data.matakuliah;
@@ -378,7 +378,7 @@ export default {
                     },
                     {
                         headers:{
-                            Authorization:this.$store.getters['auth/Token']
+                            Authorization: this.$store.getters["auth/Token"]
                         }
                     }
                 ).then(()=>{                       

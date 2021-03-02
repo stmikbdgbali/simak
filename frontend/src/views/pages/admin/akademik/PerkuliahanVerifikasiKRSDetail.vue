@@ -121,7 +121,7 @@ export default {
         tahun_akademik:null,        
         semester_akademik:null,
     
-        btnLoading:false, 
+        btnLoading: false, 
         btnLoadingTable:false,
 
         //formdata
@@ -147,7 +147,7 @@ export default {
             await this.$ajax.get('/akademik/perkuliahan/krs/'+this.krs_id,                        
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{                                               
                 this.datakrs=data.krs;                

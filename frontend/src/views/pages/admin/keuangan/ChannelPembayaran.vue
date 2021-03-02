@@ -102,7 +102,7 @@ export default {
         firstloading:true,
         breadcrumbs:[],         
         
-        btnLoading:false,
+        btnLoading: false,
         datatableLoading:false,
         expanded:[],
         datatable:[],
@@ -119,7 +119,7 @@ export default {
             await this.$ajax.get('/keuangan/channelpembayaran',
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{               
                 this.datatable = data.channel;                

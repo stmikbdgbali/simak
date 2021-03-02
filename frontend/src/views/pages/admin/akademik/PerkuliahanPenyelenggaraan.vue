@@ -189,7 +189,7 @@ export default {
             { text: 'JUMLAH MHS', value: 'jumlah_mhs',sortable:true, width:50},                           
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],  
-        search:'', 
+        search: "", 
 
     }),
     methods: {
@@ -205,7 +205,7 @@ export default {
         {
             this.prodi_id=id;
         },
-        initialize:async function () 
+        initialize: async function () 
         {
             this.datatableLoading=true;
             await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah',
@@ -216,7 +216,7 @@ export default {
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{               
                 this.datatable = data.penyelenggaraan;
@@ -250,7 +250,7 @@ export default {
                         },
                         {
                             headers:{
-                                Authorization:this.$store.getters['auth/Token']
+                                Authorization: this.$store.getters["auth/Token"]
                             }
                         }
                     ).then(()=>{   

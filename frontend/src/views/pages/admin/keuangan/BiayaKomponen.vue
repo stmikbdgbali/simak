@@ -91,7 +91,7 @@ export default {
     data: () => ({
         breadcrumbs:[],  
 
-        btnLoading:false,
+        btnLoading: false,
         datatableLoading:false,
         expanded:[],
         datatable:[],
@@ -108,7 +108,7 @@ export default {
             await this.$ajax.get('/keuangan/komponenbiaya',            
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{               
                 this.datatable = data.kombi;                

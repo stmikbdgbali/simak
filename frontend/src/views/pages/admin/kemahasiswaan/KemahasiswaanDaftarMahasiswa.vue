@@ -170,7 +170,7 @@ export default {
         filter_ignore:false, 
         awaiting_search:false,
 
-        btnLoading:false,
+        btnLoading: false,
         btnLoadingTable:false,
         datatableLoading:false,
         expanded:[],
@@ -183,7 +183,7 @@ export default {
             { text: 'KELAS', value: 'idkelas',sortable:true,width:120, },                                       
             { text: 'STATUS', value: 'k_status',sortable:true,width:120, },                                       
         ],  
-        search:'', 
+        search: "", 
     }),
     methods: {
         changeTahunPendaftaran (tahun)
@@ -194,7 +194,7 @@ export default {
         {
             this.prodi_id=id;
         },
-        initialize:async function () 
+        initialize: async function () 
         {
             this.datatableLoading=true;
             await this.$ajax.post('/kemahasiswaan/daftarmhs',
@@ -204,7 +204,7 @@ export default {
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{               
                 this.datatable = data.mahasiswa;
@@ -237,7 +237,7 @@ export default {
                 },
                 {
                     headers:{
-                        Authorization:this.$store.getters['auth/Token']
+                        Authorization: this.$store.getters["auth/Token"]
                     },
                     responseType:'arraybuffer'
                 }
@@ -266,7 +266,7 @@ export default {
                 },
                 {
                     headers:{
-                        Authorization:this.$store.getters['auth/Token']
+                        Authorization: this.$store.getters["auth/Token"]
                     }
                 }
             ).then(()=>{                   
@@ -284,7 +284,7 @@ export default {
                 },
                 {
                     headers:{
-                        Authorization:this.$store.getters['auth/Token']
+                        Authorization: this.$store.getters["auth/Token"]
                     }
                 }
             ).then(()=>{                   
@@ -326,7 +326,7 @@ export default {
                         },
                         {
                             headers: {
-                                Authorization:this.$store.getters['auth/Token']
+                                Authorization: this.$store.getters["auth/Token"]
                             }
                         }).then(({data})=>{               
                             this.datatable = data.mahasiswa;                

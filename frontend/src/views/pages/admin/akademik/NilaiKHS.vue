@@ -196,7 +196,7 @@ export default {
         filter_ignore:false, 
         awaiting_search:false,
         
-        btnLoading:false,
+        btnLoading: false,
         btnLoadingTable:false,
         datatableLoading:false,
         expanded:[],
@@ -212,7 +212,7 @@ export default {
             { text: 'TA.SMT', value: 'tasmt',sortable:true, width:100 },                                       
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],  
-        search:'', 
+        search: "", 
 
         dialogprintpdf:false,
         file_pdf:null
@@ -239,7 +239,7 @@ export default {
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{                                           
                 this.datatable = data.daftar_khs;
@@ -248,7 +248,7 @@ export default {
                 this.datatableLoading=false;
             });              
         },
-        initialize:async function () 
+        initialize: async function () 
         {
             this.datatableLoading=true;
             await this.$ajax.post('/akademik/nilai/khs',
@@ -259,7 +259,7 @@ export default {
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{                                        
                 this.datatable = data.daftar_khs;
@@ -287,7 +287,7 @@ export default {
             await this.$ajax.get('/akademik/nilai/khs/printpdf/'+item.id,                
                 {
                     headers:{
-                        Authorization:this.$store.getters['auth/Token']
+                        Authorization: this.$store.getters["auth/Token"]
                     },
                     
                 }
@@ -347,7 +347,7 @@ export default {
                         },
                         {
                             headers: {
-                                Authorization:this.$store.getters['auth/Token']
+                                Authorization: this.$store.getters["auth/Token"]
                             }
                         }).then(({data})=>{               
                             this.datatable = data.daftar_khs;

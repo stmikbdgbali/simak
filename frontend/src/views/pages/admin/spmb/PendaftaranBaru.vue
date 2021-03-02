@@ -383,12 +383,12 @@ export default {
         breadcrumbs:[],
         dashboard:null,
         datatableLoading:false,
-        btnLoading:false,    
-        btnLoadingFakultas:false,
+        btnLoading: false,    
+        btnLoadingFakultas: false,
                   
         //tables
         headers: [                        
-            { text: '', value: 'foto', width:70 },            
+            { text:  "", value: 'foto', width:70 },            
             { text: 'NAMA MAHASISWA', value: 'name',width:350,sortable:true },
             { text: 'USERNAME', value: 'username',sortable:true },
             { text: 'EMAIL', value: 'email',sortable:true },     
@@ -397,7 +397,7 @@ export default {
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],
         expanded:[],
-        search:'',
+        search: "",
         datatable:[],
 
         //dialog
@@ -405,33 +405,33 @@ export default {
         dialogdetailitem:false,
         
         //form data   
-        form_valid:true,  
+        form_valid: true,  
         registered:false,   
         daftar_fakultas:[],
-        kode_fakultas:'',
+        kode_fakultas: "",
         daftar_prodi:[],   
         daftar_ta:[],         
         formdata: {
-            name:'',
-            email:'',            
-            nomor_hp:'',
-            username:'',
-            password:'',   
-            prodi_id:'', 
-            ta:'',   
-            created_at: '',           
-            updated_at: '',     
+            name: "",
+            email: "",            
+            nomor_hp: "",
+            username: "",
+            password: "",   
+            prodi_id: "", 
+            ta: "",   
+            created_at:  "",           
+            updated_at:  "",     
         },     
         formdefault: {
-            name:'',
-            email:'',            
-            nomor_hp:'',
-            username:'',
-            password:'',
-            prodi_id:'',
-            ta:'',
-            created_at: '',           
-            updated_at: '',              
+            name: "",
+            email: "",            
+            nomor_hp: "",
+            username: "",
+            password: "",
+            prodi_id: "",
+            ta: "",
+            created_at:  "",           
+            updated_at:  "",              
         },    
         editedIndex: -1,
 
@@ -469,7 +469,7 @@ export default {
         {
             this.prodi_id=id;
         },
-        initialize:async function () 
+        initialize: async function () 
         {
             this.datatableLoading=true;            
             await this.$ajax.post('/spmb/pmb',
@@ -479,7 +479,7 @@ export default {
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{               
                 this.datatable = data.pmb;                
@@ -517,7 +517,7 @@ export default {
                 },
                 {
                     headers:{
-                        Authorization:this.$store.getters['auth/Token']
+                        Authorization: this.$store.getters["auth/Token"]
                     }
                 }
             ).then(()=>{   
@@ -538,7 +538,7 @@ export default {
                 },
                 {
                     headers:{
-                        Authorization:this.$store.getters['auth/Token']
+                        Authorization: this.$store.getters["auth/Token"]
                     }
                 }
             ).then(()=>{                   
@@ -586,7 +586,7 @@ export default {
                         },
                         {
                             headers:{
-                                Authorization:this.$store.getters['auth/Token']
+                                Authorization: this.$store.getters["auth/Token"]
                             }
                         }
                     ).then(()=>{   
@@ -610,7 +610,7 @@ export default {
                         },
                         {
                             headers:{
-                                Authorization:this.$store.getters['auth/Token']
+                                Authorization: this.$store.getters["auth/Token"]
                             }
                         }
                     ).then(({data})=>{                           
@@ -632,7 +632,7 @@ export default {
                 },
                 {
                     headers:{
-                        Authorization:this.$store.getters['auth/Token']
+                        Authorization: this.$store.getters["auth/Token"]
                     }
                 }
             ).then(()=>{                                           
@@ -669,7 +669,7 @@ export default {
             await this.$ajax.get('/akademik/kemahasiswaan/biodatamhs2/'+item.id,                
                 {
                     headers:{
-                        Authorization:this.$store.getters['auth/Token']
+                        Authorization: this.$store.getters["auth/Token"]
                     }
                 }
             ).then(({data})=>{           
@@ -692,7 +692,7 @@ export default {
                         },
                         {
                             headers:{
-                                Authorization:this.$store.getters['auth/Token']
+                                Authorization: this.$store.getters["auth/Token"]
                             }
                         }
                     ).then(()=>{   
@@ -766,7 +766,7 @@ export default {
                         },
                         {
                             headers: {
-                                Authorization:this.$store.getters['auth/Token']
+                                Authorization: this.$store.getters["auth/Token"]
                             }
                         }).then(({data})=>{               
                             this.datatable = data.pmb;                

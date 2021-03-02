@@ -302,7 +302,7 @@ export default {
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{                            
                 this.daftar_registrasi = data.daftar_registrasi;

@@ -141,14 +141,14 @@ export default {
         jadwal_ujian_id:null,
         jadwal_ujian:{
             id:0,                        
-            nama_kegiatan:'',            
-            ta:'',                        
-            idsmt:'',                                    
+            nama_kegiatan: "",            
+            ta: "",                        
+            idsmt: "",                                    
         },
         breadcrumbs:[],        
         dashboard:null,
 
-        btnLoading:false,
+        btnLoading: false,
         datatableLoading:false,        
         expanded:[],
         datatable:[],
@@ -156,7 +156,7 @@ export default {
             { text: 'PROGRAM STUDI', value: 'kjur', sortable: true},
             { text: 'NILAI', value: 'nilai', sortable: false,width:100 },                        
         ],
-        search:'',
+        search: "",
 
         //form rules
         rule_angka:[
@@ -164,7 +164,7 @@ export default {
         ],
     }),
     methods: {
-        initialize:async function () 
+        initialize: async function () 
         {
             this.datatableLoading=true;
             await this.$ajax.post('/spmb/passinggrade',
@@ -173,7 +173,7 @@ export default {
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{                 
                 this.datatableLoading=false;
@@ -203,7 +203,7 @@ export default {
                 },
                 {
                     headers:{
-                        Authorization:this.$store.getters['auth/Token']
+                        Authorization: this.$store.getters["auth/Token"]
                     }
                 }
             ).then(()=>{         
@@ -224,7 +224,7 @@ export default {
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(()=>{        
                 this.btnLoading=false;       

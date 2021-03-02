@@ -316,10 +316,10 @@ export default {
     data: () => ({
         role_id:0,
         datatableLoading:false,
-        btnLoading:false,
+        btnLoading: false,
         //tables
         headers: [
-            { text: '', value: 'foto' },
+            { text:  "", value: 'foto' },
             { text: 'USERNAME', value: 'username',sortable:true },
             { text: 'NAME', value: 'name',sortable:true },
             { text: 'EMAIL', value: 'email',sortable:true },
@@ -327,11 +327,11 @@ export default {
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],
         expanded:[],
-        search:'',
+        search: "",
         daftar_users: [],
         
         //form
-        form_valid:true,
+        form_valid: true,
         daftar_roles:[],
         dialog: false,
         dialogEdit: false,
@@ -340,27 +340,27 @@ export default {
         daftar_prodi:[],
         editedItem: {
             id:0,
-            username: '',
-            password: '',
-            name: '',
-            email: '',
-            nomor_hp:'',
+            username:  "",
+            password:  "",
+            name:  "",
+            email:  "",
+            nomor_hp: "",
             prodi_id:[],
             role_id:['programstudi'],
-            created_at: '',
-            updated_at: '',
+            created_at:  "",
+            updated_at:  "",
         },
         defaultItem: {
             id:0,
-            username: '',
-            password: '',
-            name: '',
-            email: '',
-            nomor_hp: '',
+            username:  "",
+            password:  "",
+            name:  "",
+            email:  "",
+            nomor_hp:  "",
             prodi_id:[],
             role_id:['programstudi'],
-            created_at: '',
-            updated_at: '',
+            created_at:  "",
+            updated_at:  "",
         },
         //form rules
         rule_user_name:[
@@ -404,7 +404,7 @@ export default {
         ],
     }),
     methods: {
-        initialize:async function ()
+        initialize: async function ()
         {
             this.datatableLoading=true;
             await this.$ajax.get('/system/usersprodi',{
@@ -441,7 +441,7 @@ export default {
                         },
                         {
                             headers:{
-                                Authorization:this.$store.getters['auth/Token']
+                                Authorization: this.$store.getters["auth/Token"]
                             }
                         }
                     ).then(()=>{

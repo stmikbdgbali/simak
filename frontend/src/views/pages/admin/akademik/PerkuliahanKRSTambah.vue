@@ -131,7 +131,7 @@ export default {
         ta_matkul:null,
         semester_akademik:null,
 
-        btnLoading:false,        
+        btnLoading: false,        
 
         //table
         dialogdetailitem:false,
@@ -146,13 +146,13 @@ export default {
             { text: 'SMT', value: 'semester', sortable:true,width:80 },               
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],  
-        search:'',    
+        search: "",    
 
         //formdata
-        form_valid:true,   
+        form_valid: true,   
         daftar_dulang:[],
         formdata:{
-            nim:'',
+            nim: "",
             dulang_id:''
         },        
         rule_nim:[
@@ -172,7 +172,7 @@ export default {
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{                               
                 this.daftar_dulang=data.daftar_dulang;                
@@ -196,7 +196,7 @@ export default {
                 },
                 {
                     headers: {
-                        Authorization:this.$store.getters['auth/Token']
+                        Authorization: this.$store.getters["auth/Token"]
                     }
                 }).then(({data})=>{               
                     this.$router.push('/akademik/perkuliahan/krs/'+data.krs.id+'/detail');

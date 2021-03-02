@@ -187,10 +187,10 @@ export default {
         tahun_pendaftaran:0,
         prodi_id:null,
         nama_prodi:null,
-        filter_idkelas:'',
+        filter_idkelas: "",
         daftar_kelas:[],
         
-        btnLoading:false,
+        btnLoading: false,
         datatableLoading:false,
         expanded:[],
         datatable:[],
@@ -201,7 +201,7 @@ export default {
             { text: 'KELAS', value: 'nkelas',width:120,sortable:false },            
             { text: 'BIAYA', value: 'biaya',width:150,sortable:false },            
         ],    
-        search:'',      
+        search: "",      
     }),
     methods : {
         changeTahunPendaftaran (tahun)
@@ -222,7 +222,7 @@ export default {
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{               
                 this.datatable = data.kombi;                
@@ -255,7 +255,7 @@ export default {
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{               
                 this.datatable = data.kombi;                
@@ -271,7 +271,7 @@ export default {
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(()=>{               
                 this.initialize();                        
@@ -321,7 +321,7 @@ export default {
                     },
                     {
                         headers: {
-                            Authorization:this.$store.getters['auth/Token']
+                            Authorization: this.$store.getters["auth/Token"]
                         }
                     }).then(({data})=>{               
                         this.datatable = data.kombi;                

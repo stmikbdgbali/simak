@@ -322,7 +322,7 @@ export default {
 		this.initialize()
 	},  
 	data: () => ({ 
-		btnLoading:false,
+		btnLoading: false,
 		datatableLoading:false,
 		expanded:[],
 		datatable:[],
@@ -341,7 +341,7 @@ export default {
 		dialogdetailitem:false,
 
 		//form data
-		form_valid:true, 
+		form_valid: true, 
 		formdata: {
 			id:0,
 			zoom_id:"",
@@ -387,12 +387,12 @@ export default {
 		],
 	}),
 	methods: {
-		initialize:async function () 
+		initialize: async function () 
 		{
 			this.datatableLoading=true;
 			await this.$ajax.get(process.env.VUE_APP_HOST+"/h2h/zoom",{
 				headers: {
-					Authorization:this.$store.getters["auth/Token"]
+					Authorization: this.$store.getters["auth/Token"]
 				}
 			}).then(({data})=>{
 				this.datatable = data.zoom;
@@ -417,7 +417,7 @@ export default {
 			this.dialogdetailitem=true;  
 			// this.$ajax.get("/path/"+item.id,{
 			// headers: {
-			// Authorization:this.$store.getters["auth/Token"]
+			// Authorization: this.$store.getters["auth/Token"]
 			// }
 			// }).then(({data})=>{
 										
@@ -444,7 +444,7 @@ export default {
 						},
 						{
 							headers:{
-								Authorization:this.$store.getters["auth/Token"]
+								Authorization: this.$store.getters["auth/Token"]
 							}
 						}
 					).then(({data})=>{
@@ -465,7 +465,7 @@ export default {
 						},
 						{
 							headers:{
-								Authorization:this.$store.getters["auth/Token"]
+								Authorization: this.$store.getters["auth/Token"]
 							}
 						}
 					).then(({data})=>{
@@ -478,15 +478,13 @@ export default {
 				}
 			}
 		},
-		sink (item) {
+		sink(item) {
 			this.$root.$confirm.open("Sinkronisasi", "Sinkronasi Akun Zoom dengan ID "+item.id+" ?", { color: "yellow" }).then((confirm) => {
-				if (confirm)
-				{
-					this.btnLoading=true;
-					this.$ajax.get(process.env.VUE_APP_HOST+"/h2h/zoom/sync/"+item.id,
-						{
+					if (confirm) {
+						this.btnLoading = true;
+						this.$ajax.get(process.env.VUE_APP_HOST + "/h2h/zoom/sync/" + item.id, {
 							headers:{
-								Authorization:this.$store.getters["auth/Token"]
+								Authorization: this.$store.getters["auth/Token"]
 							}
 						}
 					).then(() => {
@@ -503,25 +501,24 @@ export default {
 				.open("Delete", "Apakah Anda ingin menghapus Akun Zoom dengan ID " + item.id + " ?", { color: "red" }).then((confirm) => {
 				if (confirm) {
 					this.btnLoading=true;
-						this.$ajax.post(
-								process.env.VUE_APP_HOST + "/h2h/zoom/" + item.id,
-							{
-								_method: "DELETE",
+					this.$ajax.post(process.env.VUE_APP_HOST + "/h2h/zoom/" + item.id,
+						{
+							_method: "DELETE",
+						},
+						{
+							headers: {
+								Authorization: this.$store.getters["auth/Token"],
 							},
-							{
-								headers: {
-									Authorization: this.$store.getters["auth/Token"],
-								},
-							}
-						).then(() => {
-							const index = this.datatable.indexOf(item);
-							this.datatable.splice(index, 1);
-							this.btnLoading = false;
-						}).catch(() => {
-							this.btnLoading = false;
-						});
-					}
-				});
+						}
+					).then(() => {
+						const index = this.datatable.indexOf(item);
+						this.datatable.splice(index, 1);
+						this.btnLoading = false;
+					}).catch(() => {
+						this.btnLoading = false;
+					});
+				}
+			});
 		},
 		closedialogdetailitem() {
 			this.dialogdetailitem = false;

@@ -269,7 +269,7 @@ export default {
 	data: () => ({ 
 		role_id:0,
 		datatableLoading:false,
-		btnLoading:false,
+		btnLoading: false,
 		//tables
 		headers: [
 			{ text: "", value: "foto" },
@@ -284,7 +284,7 @@ export default {
 		daftar_users: [],
 
 		//form
-		form_valid:true,
+		form_valid: true,
 		daftar_roles:[],
 		dialog: false,
 		dialogEdit: false,
@@ -353,7 +353,7 @@ export default {
 		],
 	}),
 	methods: {
-		initialize:async function () 
+		initialize: async function () 
 		{
 			this.datatableLoading=true;
 			await this.$ajax.get("/system/users",{

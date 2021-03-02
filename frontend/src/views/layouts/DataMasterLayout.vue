@@ -1,12 +1,12 @@
 <template>
 	<div>
 		<v-system-bar app dark :class="this.$store.getters['uiadmin/getTheme']('V-SYSTEM-BAR-CSS-CLASS')">
-			<strong>Hak Akses Sebagai :</strong> {{ROLE}}
+			<strong>Hak Akses Sebagai :</strong> {{ ROLE }}
 		</v-system-bar>	
 		<v-app-bar app>
 			<v-app-bar-nav-icon @click.stop="drawer = !drawer" class="grey--text"></v-app-bar-nav-icon>
 			<v-toolbar-title class="headline clickable" @click.stop="$router.push('/dashboard/'+$store.getters['auth/AccessToken']).catch(err => {})">
-				<span class="hidden-sm-and-down">{{APP_NAME}}</span>
+				<span class="hidden-sm-and-down">{{ APP_NAME }}</span>
 			</v-toolbar-title>
 			<v-spacer></v-spacer>                        
 			<v-menu 
@@ -26,12 +26,12 @@
 						<v-list-item-avatar>
 							<v-img :src="photoUser"></v-img>
 						</v-list-item-avatar>
-						<v-list-item-content>					
+						<v-list-item-content>
 							<v-list-item-title class="title">
-								{{ATTRIBUTE_USER('username')}}
+								{{ ATTRIBUTE_USER("username") }}
 							</v-list-item-title>
 							<v-list-item-subtitle>                                
-								[{{DEFAULT_ROLE}}]
+								[{{ DEFAULT_ROLE }}]
 							</v-list-item-subtitle>
 						</v-list-item-content>
 					</v-list-item>                    
@@ -65,12 +65,12 @@
 				<v-list-item-avatar>
 					<v-img :src="photoUser" @click.stop="toProfile"></v-img>
 				</v-list-item-avatar>
-				<v-list-item-content>					
+				<v-list-item-content>
 					<v-list-item-title class="title">
-						{{ATTRIBUTE_USER('username')}}
+						{{ ATTRIBUTE_USER("username") }}
 					</v-list-item-title>
 					<v-list-item-subtitle>
-						[{{DEFAULT_ROLE}}]
+						[{{ DEFAULT_ROLE }}]
 					</v-list-item-subtitle>
 				</v-list-item-content>
 			</v-list-item>
@@ -187,7 +187,7 @@
 					<v-list-item-icon class="mr-2">
 						<v-icon>mdi-menu-open</v-icon>
 					</v-list-item-icon>			
-					<v-list-item-content>									
+					<v-list-item-content>				
 						<v-list-item-title class="title">
 							OPTIONS
 						</v-list-item-title>
@@ -198,7 +198,7 @@
 					<v-list-item-icon class="mr-2">
 						<v-icon>mdi-filter</v-icon>
 					</v-list-item-icon>
-					<v-list-item-content>								
+					<v-list-item-content>			
 						<v-list-item-title>FILTER</v-list-item-title>
 					</v-list-item-content>		
 				</v-list-item>
@@ -208,25 +208,25 @@
 		<v-main class="mx-4 mb-4">			
 			<slot />
 		</v-main>
-		<v-footer app padless fixed>
-			<v-card class="flex" color="yellow darken-2" flat tile>
+		<v-footer app padless fixed dark>
+			<v-card class="flex" flat tile>
 				<v-divider></v-divider>
-				<v-card-text class="py-2 black--text text-center">
-					<strong>{{APP_NAME}} (2021-2021)</strong> dikembangkan oleh TIM IT STAI Miftahul 'Ulum Tanjungpinang 
-					<v-btn icon href="https://github.com/mrizkir/stiemu">
+				<v-card-text class="py-2 white--text text-center">
+					<strong>SIMAK (2021-2020)</strong> dikembangkan oleh TIM IT STMIK Bandung Bali 
+					<v-btn dark icon href="https://github.com/stmikbdgbali/simak">
 						<v-icon>mdi-github</v-icon>
-					</v-btn>					
+					</v-btn>
 				</v-card-text>
-			</v-card>			
-		</v-footer>  
+			</v-card>
+		</v-footer> 
 	</div>    
 </template>
 <script>
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 export default {
 	name: "DataMasterLayout",  
 	props: {
-		showrightsidebar:{
+		showrightsidebar: {
 			type: Boolean,
 			default: true,
 		},
@@ -235,7 +235,7 @@ export default {
 			default: false
 		},
 	},      
-	data:()=>({
+	data: () => ({
 		loginTime: 0,
 		drawer: null,
 		drawerRight: null,   
@@ -248,7 +248,7 @@ export default {
 				{},
 				{
 					headers:{
-						"Authorization": this.TOKEN,
+						Authorization: this.TOKEN,
 					}
 				}
 			).then(()=> {     
@@ -285,7 +285,7 @@ export default {
 		},
 		photoUser()
 		{
-			let img=this.ATTRIBUTE_USER('foto');
+			let img=this.ATTRIBUTE_USER("foto");
 			var photo;
 			if (img == '')
 			{
@@ -311,8 +311,8 @@ export default {
 				}
 				else
 				{
-					this.$store.dispatch('auth/logout');
-					this.$router.replace('/login');
+					this.$store.dispatch("auth/logout");
+					this.$router.replace("/login");
 				}
 			},
 			immediate:true

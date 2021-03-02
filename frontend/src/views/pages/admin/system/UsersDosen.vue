@@ -334,10 +334,10 @@ export default {
    
     data: () => ({         
         datatableLoading:false,
-        btnLoading:false,      
+        btnLoading: false,      
         //tables
         headers: [                        
-            { text: '', value: 'foto' },
+            { text:  "", value: 'foto' },
             { text: 'USERNAME', value: 'username',sortable:true, width:150 },
             { text: 'NAMA DOSEN', value: 'name',sortable:true, width:250 },
             { text: 'NIDN', value: 'nidn',sortable:true },     
@@ -348,42 +348,42 @@ export default {
             { text: 'AKSI', value: 'actions', sortable: false,width:120 },
         ],
         expanded:[],
-        search:'',
+        search: "",
         daftar_users: [],                       
         
         //form
-        form_valid:true,
+        form_valid: true,
         dialog: false,
         dialogEdit: false,   
         dialogUserPermission: false,     
         editedIndex: -1,        
         editedItem: {
             id:0,
-            username: '',           
-            password: '',           
-            onlyname: '',      
-            name: '',      
-            nidn:'',   
-            nipy:'',         
-            email: '',           
-            nomor_hp:'',                 
+            username:  "",           
+            password:  "",           
+            onlyname:  "",      
+            name:  "",      
+            nidn: "",   
+            nipy: "",         
+            email:  "",           
+            nomor_hp: "",                 
             is_dw:false,      
-            created_at: '',           
-            updated_at: '',   
+            created_at:  "",           
+            updated_at:  "",   
         },
         defaultItem: {
             id:0,
-            username: '',           
-            password: '',           
-            onlyname: '',    
-            name: '',    
-            nidn:'',
-            nipy:'',       
-            email: '',           
-            nomor_hp: '',          
+            username:  "",           
+            password:  "",           
+            onlyname:  "",    
+            name:  "",    
+            nidn: "",
+            nipy: "",       
+            email:  "",           
+            nomor_hp:  "",          
             is_dw:false,    
-            created_at: '',           
-            updated_at: '',        
+            created_at:  "",           
+            updated_at:  "",        
         },
         //form rules        
         rule_user_name:[
@@ -433,7 +433,7 @@ export default {
         ],
     }),
     methods: {
-        initialize:async function () 
+        initialize: async function () 
         {
             this.datatableLoading=true;
             await this.$ajax.get('/system/usersdosen',{
@@ -554,7 +554,7 @@ export default {
                         },
                         {
                             headers:{
-                                Authorization:this.$store.getters['auth/Token']
+                                Authorization: this.$store.getters["auth/Token"]
                             }
                         }
                     ).then(()=>{                   

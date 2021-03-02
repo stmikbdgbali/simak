@@ -92,14 +92,14 @@ export default {
 
         datatableLoading:false,       
         
-        errormessage:'',
+        errormessage: "",
 
         headers:{
-            header_1:'',
-            header_2:'',
-            header_3:'',
-            header_4:'',
-            header_address:'',
+            header_1: "",
+            header_2: "",
+            header_3: "",
+            header_4: "",
+            header_address: "",
         },
         headers_detail:[
             { text: 'KODE', value: 'kombi_id',width:50,sortable:false },
@@ -111,14 +111,14 @@ export default {
         ],
     }),    
     methods: {
-        initialize:async function () 
+        initialize: async function () 
         {
             this.datatableLoading=true;
 
             await this.$ajax.get('/system/setting/variables',
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{  
                 let setting = data.setting;                           
@@ -132,7 +132,7 @@ export default {
             await this.$ajax.get('/keuangan/transaksi/'+this.transaksi_id,                        
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({data})=>{       
                 this.data_transaksi=data.transaksi;                                       
