@@ -68,12 +68,12 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.ACCESS_TOKEN
             },
             {
                 text:'KONFIGURASI SISTEM',
-                disabled:false,
+                disabled: false,
                 href:'/system-setting'
             },  
             {
@@ -85,7 +85,7 @@ export default {
         this.initialize();
     },
     data: () => ({
-        breadcrumbs:[],        
+        breadcrumbs: [],        
         btnLoading: false,   
         //form
         form_valid: true,   

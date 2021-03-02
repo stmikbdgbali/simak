@@ -125,12 +125,12 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
                 text:'SPMB',
-                disabled:false,
+                disabled: false,
                 href:'/spmb'
             },
             {
@@ -151,14 +151,14 @@ export default {
         tahun_pendaftaran:null,
         nama_fakultas:null,
 
-        dialogprofilmhsbaru:false,
-        breadcrumbs:[],        
+        dialogprofilmhsbaru: false,
+        breadcrumbs: [],        
         dashboard:null,
 
         btnLoading: false,
-        datatableLoading:false,
-        expanded:[],
-        datatable:[],
+        datatableLoading: false,
+        expanded: [],
+        datatable: [],
         headers: [                        
             { text:  "", value: 'foto', width:70 },               
             { text: 'NAMA MAHASISWA', value: 'name',width:350,sortable:true },

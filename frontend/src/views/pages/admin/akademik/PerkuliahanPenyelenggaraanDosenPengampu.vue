@@ -131,22 +131,22 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
                 text:'AKADEMIK',
-                disabled:false,
+                disabled: false,
                 href:'/akademik'
             },
             {
                 text:'PERKULIAHAN',
-                disabled:false,
+                disabled: false,
                 href:'#'
             },
             {
                 text:'PENYELENGGARAAN MATAKULIAH',
-                disabled:false,
+                disabled: false,
                 href:'/akademik/perkuliahan/penyelenggaraan/daftar'
             },
             {
@@ -177,36 +177,36 @@ export default {
         semester_akademik:null,
 
         btnLoading: false,        
-        btnLoadingTable:false,
+        btnLoadingTable: false,
 
         //table        
-        datatableLoading:false,
-        expanded:[],
-        datatable:[],      
+        datatableLoading: false,
+        expanded: [],
+        datatable: [],      
         headers: [
-            { text: 'NIDN', value: 'nidn', sortable:false,width:120  },   
-            { text: 'NAMA DOSEN', value: 'nama_dosen',sortable:false },               
-            { text: 'KETUA', value: 'is_ketua', sortable:false,width:120 },                           
-            { text: 'AKSI', value: 'actions', sortable:false,width:120 },                           
+            { text: 'NIDN', value: 'nidn', sortable: false,width:120  },   
+            { text: 'NAMA DOSEN', value: 'nama_dosen',sortable: false },               
+            { text: 'KETUA', value: 'is_ketua', sortable: false,width:120 },                           
+            { text: 'AKSI', value: 'actions', sortable: false,width:120 },                           
         ],  
         
         //formdata
         form_valid: true, 
         data_matkul:null,  
-        daftar_dosen:[],
+        daftar_dosen: [],
 
        
         formdata:{
             idpenyelenggaraan:null,
             dosen_id:null,
-            is_ketua:false,
+            is_ketua: false,
         },        
         formdefault:{
             idpenyelenggaraan:null,
             dosen_id:null,
-            is_ketua:false,
+            is_ketua: false,
         },        
-        rule_dosen:[
+        rule_dosen: [
             value => !!value||"Mohon dipilih Dosen untuk matakuliah ini !!!"
         ],
     }),

@@ -190,12 +190,12 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.ACCESS_TOKEN
             },
             {
                 text:'DATA MASTER',
-                disabled:false,
+                disabled: false,
                 href:'#'
             },
             {
@@ -208,9 +208,9 @@ export default {
     },
     data: () => ({
         btnLoading: false,
-        datatableLoading:false,
-        expanded:[],
-        datatable:[],
+        datatableLoading: false,
+        expanded: [],
+        datatable: [],
         headers: [
             { text: 'NAMA RUANG', value: 'namaruang' },
             { text: 'KAPASITAS', value: 'kapasitas' },
@@ -219,8 +219,8 @@ export default {
         search: "",
 
         //dialog
-        dialogfrm:false,
-        dialogdetailitem:false,
+        dialogfrm: false,
+        dialogdetailitem: false,
 
         //form data        
         form_valid: true,
@@ -237,10 +237,10 @@ export default {
         editedIndex: -1,
 
         //form rules
-        rule_nama_ruang:[
+        rule_nama_ruang: [
             value => !!value||"Mohon untuk di isi nama ruang !!!",
         ],
-        rule_kapasitas:[
+        rule_kapasitas: [
             value => !!value||"Kapasitas Ruangan mohon untuk diisi !!!",
             value => /^[0-9]+$/.test(value) || 'Kapasitas Ruangan Kelas hanya boleh angka',            
         ],        

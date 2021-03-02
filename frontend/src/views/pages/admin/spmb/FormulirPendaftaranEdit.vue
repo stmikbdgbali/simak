@@ -222,17 +222,17 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
                 text:'SPMB',
-                disabled:false,
+                disabled: false,
                 href:'/spmb'
             },
             {
                 text:'BIODATA',
-                disabled:false,
+                disabled: false,
                 href:'/spmb/formulirpendaftaran'
             },
             {
@@ -244,16 +244,16 @@ export default {
         this.initialize();    
     },  
     data: () => ({
-        breadcrumbs:[],        
+        breadcrumbs: [],        
         dashboard:null,
 
         tahun_pendaftaran:null,
         nama_prodi:null,
         
         btnLoading: false,
-        btnLoadingProv:false,
-        btnLoadingKab:false,
-        btnLoadingKec:false,
+        btnLoadingProv: false,
+        btnLoadingKab: false,
+        btnLoadingKec: false,
         btnLoadingFakultas: false,
 
         //form
@@ -261,25 +261,25 @@ export default {
         kode_billing:'N.A',
         form_valid: true,
 
-        menuTanggalLahir:false,
+        menuTanggalLahir: false,
 
-        daftar_provinsi:[],
+        daftar_provinsi: [],
         provinsi_id:0,
 
-        daftar_kabupaten:[],
+        daftar_kabupaten: [],
         kabupaten_id:0,
 
-        daftar_kecamatan:[],
+        daftar_kecamatan: [],
         kecamatan_id:0,
 
-        daftar_desa:[],
+        daftar_desa: [],
         desa_id:0,
 
-        daftar_fakultas:[],
+        daftar_fakultas: [],
         kode_fakultas: "",
 
-        daftar_prodi:[],        
-        daftar_kelas:[],
+        daftar_prodi: [],        
+        daftar_kelas: [],
         
         formdata:{
             nama_mhs: "",           
@@ -293,41 +293,41 @@ export default {
             kjur1: "",
             idkelas: "",
         },
-        rule_nama_mhs:[
+        rule_nama_mhs: [
             value => !!value||"Nama Mahasiswa mohon untuk diisi !!!",
             value => /^[A-Za-z\s\\,\\.]*$/.test(value) || 'Nama Mahasiswa hanya boleh string dan spasi',
         ],                 
-        rule_tempat_lahir:[
+        rule_tempat_lahir: [
             value => !!value||"Tempat Lahir mohon untuk diisi !!!"
         ], 
-        rule_tanggal_lahir:[
+        rule_tanggal_lahir: [
             value => !!value||"Tanggal Lahir mohon untuk diisi !!!"
         ], 
-        rule_nomorhp:[
+        rule_nomorhp: [
             value => !!value||"Nomor HP mohon untuk diisi !!!",
             value => /^\+[1-9]{1}[0-9]{1,14}$/.test(value) || 'Nomor HP hanya boleh angka dan gunakan kode negara didepan seperti +6281214553388',
         ], 
-        rule_email:[
+        rule_email: [
             value => !!value||"Email mohon untuk diisi !!!",
             value => /.+@.+\..+/.test(value) || 'Format E-mail mohon di isi dengan benar',
         ],
-        rule_nama_ibu_kandung:[
+        rule_nama_ibu_kandung: [
             value => !!value||"Nama Ibu Kandung mohon untuk diisi !!!",
             value => /^[A-Za-z\s\\,\\.]*$/.test(value) || 'Nama Ibu Kandung hanya boleh string dan spasi',
         ], 
-        rule_desa:[
+        rule_desa: [
             value => !!value||"Mohon Desa mohon untuk diisi !!!"
         ], 
-        rule_alamat_rumah:[
+        rule_alamat_rumah: [
             value => !!value||"Alamat Rumah mohon untuk diisi !!!"
         ], 
-        rule_fakultas:[
+        rule_fakultas: [
             value => !!value||"Fakultas mohon untuk dipilih !!!"
         ], 
-        rule_prodi:[
+        rule_prodi: [
             value => !!value||"Program studi mohon untuk dipilih !!!"
         ], 
-        rule_kelas:[
+        rule_kelas: [
             value => !!value||"Kelas mohon untuk dipilih !!!"
         ], 
 

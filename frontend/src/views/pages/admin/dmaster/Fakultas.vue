@@ -188,12 +188,12 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.ACCESS_TOKEN
             },
             {
                 text:'DATA MASTER',
-                disabled:false,
+                disabled: false,
                 href:'#'
             },
             {
@@ -206,9 +206,9 @@ export default {
     },  
     data: () => ({ 
         btnLoading: false,
-        datatableLoading:false,
-        expanded:[],
-        datatable:[],
+        datatableLoading: false,
+        expanded: [],
+        datatable: [],
         headers: [                        
             { text: 'KODE FAKULTAS', value: 'kode_fakultas', width:150 },   
             { text: 'NAMA FAKULTAS', value: 'nama_fakultas' },   
@@ -217,8 +217,8 @@ export default {
         search: "",    
 
         //dialog
-        dialogfrm:false,
-        dialogdetailitem:false,
+        dialogfrm: false,
+        dialogdetailitem: false,
 
         //form data   
         form_valid: true,         
@@ -234,11 +234,11 @@ export default {
         editedIndex: -1,
 
         //form rules  
-        rule_kode_fakultas:[
+        rule_kode_fakultas: [
             value => !!value||"Kode Fakultas mohon untuk diisi !!!",
             value => /^[1-9]{1}[0-9]{1,14}$/.test(value) || 'Kode Fakultas hanya boleh angka',
         ], 
-        rule_nama_fakultas:[
+        rule_nama_fakultas: [
             value => !!value||"Mohon Nama Fakultas untuk di isi !!!",  
             value => /^[A-Za-z\s]*$/.test(value) || 'Nama Fakultas hanya boleh string dan spasi',                
         ], 

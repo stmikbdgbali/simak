@@ -240,12 +240,12 @@ export default {
 		this.breadcrumbs = [
 			{
 				text:'HOME',
-				disabled:false,
+				disabled: false,
 				href:'/dashboard/'+this.$store.getters['auth/AccessToken']
 			},
 			{
 				text:'KEMAHASISWAAN',
-				disabled:false,
+				disabled: false,
 				href:'/kemahasiswaan'
 			},
 			{
@@ -261,7 +261,7 @@ export default {
     },
     data: () => ({    
         firstloading:true,                    
-        breadcrumbs:[],              
+        breadcrumbs: [],              
         
         //profil mahasiswa      
         user_id:null,  
@@ -274,8 +274,8 @@ export default {
         ipk:0.00, 
 
         //tables
-        datatableLoading:false,       
-        datatable:[], 
+        datatableLoading: false,       
+        datatable: [], 
         headers: [                                                
             { text: 'KODE BILLING', value: 'no_transaksi',width:100,sortable:true },
             { text: 'TANGGAL', value: 'tanggal',width:100,sortable:true },
@@ -286,10 +286,10 @@ export default {
             { text: 'STATUS', value: 'nama_status',width:50,sortable:true },            
             { text: 'AKSI', value: 'actions', sortable: false,width:50 },
         ],        
-        expanded:[],
+        expanded: [],
         search: "", 
         //form data
-        dialogdetailitem:false,
+        dialogdetailitem: false,
         data_transaksi:{}, 
         data_transaksi_detail:{},  
     }),

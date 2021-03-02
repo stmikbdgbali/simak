@@ -64,10 +64,10 @@ export default {
     data: () => ({
         jadwal_ujian:null,
         peserta:null,
-        isprosesujian:false,
+        isprosesujian: false,
 
         nama_soal: "",
-        daftar_jawaban:[]
+        daftar_jawaban: []
     }),
     methods: {
         initialize: async function () 

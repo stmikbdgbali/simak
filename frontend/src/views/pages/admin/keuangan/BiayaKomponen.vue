@@ -72,12 +72,12 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
                 text:'KEUANGAN',
-                disabled:false,
+                disabled: false,
                 href:'/keuangan'
             },
             {
@@ -89,16 +89,16 @@ export default {
         this.initialize();
     },
     data: () => ({
-        breadcrumbs:[],  
+        breadcrumbs: [],  
 
         btnLoading: false,
-        datatableLoading:false,
-        expanded:[],
-        datatable:[],
+        datatableLoading: false,
+        expanded: [],
+        datatable: [],
         headers: [                                            
-            { text: 'ID', value: 'id',width:10,sortable:false },
-            { text: 'NAMA KOMPONEN', value: 'nama',sortable:false},
-            { text: 'PERIODE', value: 'periode',width:150,sortable:false },            
+            { text: 'ID', value: 'id',width:10,sortable: false },
+            { text: 'NAMA KOMPONEN', value: 'nama',sortable: false},
+            { text: 'PERIODE', value: 'periode',width:150,sortable: false },            
         ],        
     }),
     methods : {

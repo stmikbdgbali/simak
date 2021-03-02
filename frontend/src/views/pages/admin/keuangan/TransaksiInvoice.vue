@@ -88,9 +88,9 @@ export default {
     data: () => ({
         transaksi_id:null,
         data_transaksi:null,
-        transaksi_detail:[],
+        transaksi_detail: [],
 
-        datatableLoading:false,       
+        datatableLoading: false,       
         
         errormessage: "",
 
@@ -101,13 +101,13 @@ export default {
             header_4: "",
             header_address: "",
         },
-        headers_detail:[
-            { text: 'KODE', value: 'kombi_id',width:50,sortable:false },
-            { text: 'NAMA KOMPONEN', value: 'nama_kombi',sortable:false },
-            { text: 'BIAYA', value: 'biaya',width:60,sortable:false },
-            { text: 'JUMLAH', value: 'jumlah',width:60,sortable:false },
-            { text: 'BULAN', value: 'bulan',width:60,sortable:false },
-            { text: 'JUMLAH', value: 'sub_total',width:60,sortable:false },
+        headers_detail: [
+            { text: 'KODE', value: 'kombi_id',width:50,sortable: false },
+            { text: 'NAMA KOMPONEN', value: 'nama_kombi',sortable: false },
+            { text: 'BIAYA', value: 'biaya',width:60,sortable: false },
+            { text: 'JUMLAH', value: 'jumlah',width:60,sortable: false },
+            { text: 'BULAN', value: 'bulan',width:60,sortable: false },
+            { text: 'JUMLAH', value: 'sub_total',width:60,sortable: false },
         ],
     }),    
     methods: {

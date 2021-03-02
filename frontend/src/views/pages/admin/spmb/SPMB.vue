@@ -249,7 +249,7 @@ export default {
 		this.breadcrumbs = [
 			{
 				text:'HOME',
-				disabled:false,
+				disabled: false,
 				href:'/dashboard/'+this.$store.getters['auth/AccessToken']
 			},
 			{
@@ -265,27 +265,27 @@ export default {
         this.initialize();
     },
     data: () => ({
-        datatableLoading:false,
+        datatableLoading: false,
         firstloading:true,
-        breadcrumbs:[],        
+        breadcrumbs: [],        
         tahun_pendaftaran:0,
         
         //statistik
         total_registrasi:0,
-        daftar_registrasi:[], 
+        daftar_registrasi: [], 
 
         total_isi_formulir:0,
-        daftar_isi_formulir:[],        
+        daftar_isi_formulir: [],        
 
         total_lulus:0,
-        daftar_lulus:[],        
+        daftar_lulus: [],        
         
         total_tidak_lulus:0,
-        daftar_tidak_lulus:[],        
+        daftar_tidak_lulus: [],        
         headers: [                        
-            { text: 'NAMA PRODI', value: 'nama_prodi', sortable:false},               
-            { text: 'JENJANG', value: 'nama_jenjang', sortable:false},               
-            { text: 'JUMLAH', align:'end',value: 'jumlah', sortable:false},                
+            { text: 'NAMA PRODI', value: 'nama_prodi', sortable: false},               
+            { text: 'JENJANG', value: 'nama_jenjang', sortable: false},               
+            { text: 'JUMLAH', align:'end',value: 'jumlah', sortable: false},                
         ], 
     }),
     methods : {

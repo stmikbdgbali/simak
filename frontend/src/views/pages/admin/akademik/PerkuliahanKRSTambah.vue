@@ -85,22 +85,22 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
                 text:'AKADEMIK',
-                disabled:false,
+                disabled: false,
                 href:'/akademik'
             },
             {
                 text:'PERKULIAHAN',
-                disabled:false,
+                disabled: false,
                 href:'#'
             },
             {
                 text:'KRS',
-                disabled:false,
+                disabled: false,
                 href:'/akademik/perkuliahan/krs/daftar'
             },
             {
@@ -134,10 +134,10 @@ export default {
         btnLoading: false,        
 
         //table
-        dialogdetailitem:false,
-        datatableLoading:false,
-        expanded:[],
-        datatable:[],      
+        dialogdetailitem: false,
+        datatableLoading: false,
+        expanded: [],
+        datatable: [],      
         headers: [
             { text: 'KODE', value: 'kmatkul', sortable:true,width:120  },   
             { text: 'NAMA MATAKULIAH', value: 'nmatkul',sortable:true },               
@@ -150,16 +150,16 @@ export default {
 
         //formdata
         form_valid: true,   
-        daftar_dulang:[],
+        daftar_dulang: [],
         formdata:{
             nim: "",
             dulang_id:''
         },        
-        rule_nim:[
+        rule_nim: [
             value => !!value||"Nomor Induk Mahasiswa (NIM) mohon untuk diisi !!!",
             value => /^[0-9]+$/.test(value) || 'Nomor Induk Mahasiswa (NIM) hanya boleh angka',
         ], 
-        rule_dulang:[
+        rule_dulang: [
             value => !!value||"Mohon dipilih Daftar Ulang yang telah dilakukan !!!"
         ],         
     }),

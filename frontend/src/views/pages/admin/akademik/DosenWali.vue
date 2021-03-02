@@ -128,12 +128,12 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.ACCESS_TOKEN
             },
             {
                 text:'AKADEMIK',
-                disabled:false,
+                disabled: false,
                 href:'/akademik'
             },
             {
@@ -147,7 +147,7 @@ export default {
    
     data: () => ({ 
         role_id:0,
-        datatableLoading:false,
+        datatableLoading: false,
         btnLoading: false,      
         //tables
         headers: [                        
@@ -159,7 +159,7 @@ export default {
             { text: 'NOMOR HP', value: 'nomor_hp',sortable:true },                 
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],
-        expanded:[],
+        expanded: [],
         search: "",
         daftar_users: [],               
     }),

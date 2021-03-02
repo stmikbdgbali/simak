@@ -249,12 +249,12 @@ export default {
 		this.breadcrumbs = [
 			{
 				text: "HOME",
-				disabled:false,
+				disabled: false,
 				href:"/dashboard/"+this.ACCESS_TOKEN
 			},
 			{
 				text:"USER SISTEM",
-				disabled:false,
+				disabled: false,
 				href:"/system-users"
 			},
 			{
@@ -268,7 +268,7 @@ export default {
  
 	data: () => ({ 
 		role_id:0,
-		datatableLoading:false,
+		datatableLoading: false,
 		btnLoading: false,
 		//tables
 		headers: [
@@ -279,13 +279,13 @@ export default {
 			{ text: "NOMOR HP", value: "nomor_hp",sortable:true }, 
 			{ text: "AKSI", value: "actions", sortable: false,width:100 },
 		],
-		expanded:[],
+		expanded: [],
 		search:"",
 		daftar_users: [],
 
 		//form
 		form_valid: true,
-		daftar_roles:[],
+		daftar_roles: [],
 		dialog: false,
 		dialogEdit: false,
 		editedIndex: -1,
@@ -296,7 +296,7 @@ export default {
 			name: "", 
 			email: "", 
 			nomor_hp:"", 
-			role_id:["superadmin"],
+			role_id: ["superadmin"],
 			created_at: "", 
 			updated_at: "", 
 		},
@@ -307,28 +307,28 @@ export default {
 			name: "", 
 			email: "", 
 			nomor_hp: "", 
-			role_id:["superadmin"],
+			role_id: ["superadmin"],
 			created_at: "", 
 			updated_at: "",
 		},
 		//form rules
-		rule_user_name:[
+		rule_user_name: [
 			value => !!value||"Mohon untuk di isi nama User !!!",
 			value => /^[A-Za-z\s]*$/.test(value) || "Nama User hanya boleh string dan spasi",
 		], 
-		rule_user_email:[
+		rule_user_email: [
 			value => !!value||"Mohon untuk di isi email User !!!",
 			value => /.+@.+\..+/.test(value) || "Format E-mail harus benar", 
 		], 
-		rule_user_nomorhp:[
+		rule_user_nomorhp: [
 			value => !!value||"Nomor HP mohon untuk diisi !!!",
 			value => /^\+[1-9]{1}[0-9]{1,14}$/.test(value) || "Nomor HP hanya boleh angka dan gunakan kode negara didepan seperti +6281214553388",
 		], 
-		rule_user_username:[
+		rule_user_username: [
 			value => !!value||"Mohon untuk di isi username User !!!",
 			value => /^[A-Za-z_]*$/.test(value) || "Username hanya boleh string dan underscore",
 		], 
-		rule_user_password:[
+		rule_user_password: [
 			value => !!value||"Mohon untuk di isi password User !!!",
 			value => {
 				if (value && typeof value !== "undefined" && value.length > 0){
@@ -340,7 +340,7 @@ export default {
 				}
 			}
 		], 
-		rule_user_passwordEdit:[
+		rule_user_passwordEdit: [
 			value => {
 				if (value && typeof value !== "undefined" && value.length > 0){
 					return value.length >= 8 || "Minimial Password 8 karaketer";
@@ -399,7 +399,7 @@ export default {
 					{
 						daftar_roles.push({
 							text:element.name,
-							disabled:false,
+							disabled: false,
 						});
 					}
 				});
@@ -432,7 +432,7 @@ export default {
 					{
 						daftar_roles.push({
 							text:element.name,
-							disabled:false,
+							disabled: false,
 						});
 					}
 				});

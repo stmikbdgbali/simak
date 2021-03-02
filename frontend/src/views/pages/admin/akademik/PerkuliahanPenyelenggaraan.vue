@@ -141,17 +141,17 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
                 text:'AKADEMIK',
-                disabled:false,
+                disabled: false,
                 href:'/akademik'
             },
             {
                 text:'PERKULIAHAN',
-                disabled:false,
+                disabled: false,
                 href:'#'
             },
             {
@@ -174,10 +174,10 @@ export default {
         tahun_akademik:null,
         semester_akademik:null,
 
-        btnLoadingTable:false,
-        datatableLoading:false,
-        expanded:[],
-        datatable:[],      
+        btnLoadingTable: false,
+        datatableLoading: false,
+        expanded: [],
+        datatable: [],      
         headers: [
             { text: 'KODE', value: 'kmatkul', sortable:true,width:120  },   
             { text: 'NAMA MATAKULIAH', value: 'nmatkul', sortable:true  },   

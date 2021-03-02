@@ -188,12 +188,12 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.ACCESS_TOKEN
             },
             {
                 text:'DATA MASTER',
-                disabled:false,
+                disabled: false,
                 href:'#'
             },
             {
@@ -206,9 +206,9 @@ export default {
     },
     data: () => ({
         btnLoading: false,
-        datatableLoading:false,
-        expanded:[],
-        datatable:[],
+        datatableLoading: false,
+        expanded: [],
+        datatable: [],
         headers: [
             { text: 'KODE KELAS', value: 'idkelas',width:150 },
             { text: 'NAMA KELAS', value: 'nkelas' },
@@ -217,8 +217,8 @@ export default {
         search: "",
 
         //dialog
-        dialogfrm:false,
-        dialogdetailitem:false,
+        dialogfrm: false,
+        dialogdetailitem: false,
 
         //form data
         old_idkelas: "",
@@ -234,12 +234,12 @@ export default {
         editedIndex: -1,
 
         //form rules
-        rule_kode_kelas:[
+        rule_kode_kelas: [
             value => !!value||"ID Kelas mohon untuk diisi !!!",
             value => /^[A-Z]*$/.test(value) || 'Name hanya boleh string dan huruf besar',
             value => (value && value.length == 1) || 'Kode kelas hanya boleh 1 karakter'
         ],
-        rule_nama_kelas:[
+        rule_nama_kelas: [
             value => !!value||"Mohon untuk di isi nama kelas !!!",            
         ],
     }),

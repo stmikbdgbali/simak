@@ -65,12 +65,12 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.ACCESS_TOKEN
             },
             {
                 text:'KONFIGURASI SISTEM',
-                disabled:false,
+                disabled: false,
                 href:'/system-setting'
             },  
             {
@@ -82,8 +82,8 @@ export default {
         this.initialize();
     },
     data: () => ({
-        breadcrumbs:[],
-        datatableLoading:false,
+        breadcrumbs: [],
+        datatableLoading: false,
         btnLoading: false,
         //form
         form_valid: true,
@@ -91,7 +91,7 @@ export default {
             token_ttl_expire:60          
         },
         //form rules
-        rule_ttl_token_expire:[
+        rule_ttl_token_expire: [
             value => !!value||"Mohon untuk di isi TTL (Time To Live) expire dari token !!!",
             value => /^[0-9]+$/.test(value) || 'TTL Expire dari token hanya boleh angka',    
         ],        

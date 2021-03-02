@@ -254,22 +254,22 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
                 text:'AKADEMIK',
-                disabled:false,
+                disabled: false,
                 href:'/akademik'
             },
             {
                 text:'PERKULIAHAN',
-                disabled:false,
+                disabled: false,
                 href:'#'
             },
             {
                 text:'PENYELENGGARAAN MATAKULIAH',
-                disabled:false,
+                disabled: false,
                 href:'/akademik/perkuliahan/penyelenggaraan/daftar'
             },
             {
@@ -297,10 +297,10 @@ export default {
         btnLoading: false,        
 
         //table
-        dialogdetailitem:false,
-        datatableLoading:false,
-        expanded:[],
-        datatable:[],      
+        dialogdetailitem: false,
+        datatableLoading: false,
+        expanded: [],
+        datatable: [],      
         headers: [
             { text: 'KODE', value: 'kmatkul', sortable:true,width:120  },   
             { text: 'NAMA MATAKULIAH', value: 'nmatkul',sortable:true },               
@@ -313,9 +313,9 @@ export default {
 
         //formdata
         form_valid: true,   
-        formdata:[],
-        daftar_matkul_selected:[],
-        rule_tamatkul:[
+        formdata: [],
+        daftar_matkul_selected: [],
+        rule_tamatkul: [
             value => !!value||"Mohon tahun matakuliah untuk dipilih !!!",              
         ]        
 

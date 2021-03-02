@@ -116,17 +116,17 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
                 text:'SPMB',
-                disabled:false,
+                disabled: false,
                 href:'#'
             },
             {
                 text:'JADWAL UJIAN PMB',
-                disabled:false,
+                disabled: false,
                 href:'/spmb/jadwalujianpmb'
             },
             {
@@ -145,13 +145,13 @@ export default {
             ta: "",                        
             idsmt: "",                                    
         },
-        breadcrumbs:[],        
+        breadcrumbs: [],        
         dashboard:null,
 
         btnLoading: false,
-        datatableLoading:false,        
-        expanded:[],
-        datatable:[],
+        datatableLoading: false,        
+        expanded: [],
+        datatable: [],
         headers: [                                        
             { text: 'PROGRAM STUDI', value: 'kjur', sortable: true},
             { text: 'NILAI', value: 'nilai', sortable: false,width:100 },                        
@@ -159,7 +159,7 @@ export default {
         search: "",
 
         //form rules
-        rule_angka:[
+        rule_angka: [
             value => /^(100(\.0{1,2})?|[1-9]?\d(\.\d{1,2})?)$/.test(value) || 'Isi dengan nilai antara 0.00 s.d 100.00', 
         ],
     }),

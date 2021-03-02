@@ -464,7 +464,7 @@
                                         color="primary"
                                         @click.stop="cancel(item)"
                                         class="mb-2"
-                                        :disabled="(item.nama_status=='PAID'?true:false)||btnLoading"
+                                        :disabled="(item.nama_status=='PAID'?true: false)||btnLoading"
                                         :loading="btnLoading">
                                         BATALKAN
                                     </v-btn>
@@ -496,12 +496,12 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.ACCESS_TOKEN
             },
             {
                 text:'KEUANGAN',
-                disabled:false,
+                disabled: false,
                 href:'/keuangan'
             },
             {
@@ -519,7 +519,7 @@ export default {
     },
     data: () => ({
         firstloading:true,
-        breadcrumbs:[],
+        breadcrumbs: [],
         dashboard:null,
         btnLoading: false,
         prodi_id:null,
@@ -527,10 +527,10 @@ export default {
         tahun_akademik:null,
 
         //tables
-        filter_ignore:false,
-        awaiting_search:false,
-        datatableLoading:false,
-        datatable:[],
+        filter_ignore: false,
+        awaiting_search: false,
+        datatableLoading: false,
+        datatable: [],
         headers: [
             { text: 'KODE BILLING', value: 'no_transaksi',width:100,sortable:true },
             { text: 'NO.REF', value: 'no_faktur',width:100,sortable:true },
@@ -544,23 +544,23 @@ export default {
             { text: 'KONFIRM.', value: 'status_konfirmasi',width:50,sortable:true },
             { text: 'AKSI', value: 'actions', sortable: false,width:82 },
         ],
-        expanded:[],
+        expanded: [],
         search: "",
 
         //dialog
-        dialogfrm:false,
-        dialogdetailitem:false,
-        dialogcanceltransaksi:false,
+        dialogfrm: false,
+        dialogdetailitem: false,
+        dialogcanceltransaksi: false,
 
         //form data
         form_valid: true,
-        menuTanggalBayar:false,
+        menuTanggalBayar: false,
         image_prev:null,
         data_transaksi: {
 
         },
         data_konfirmasi:{},
-        daftar_channel:[],
+        daftar_channel: [],
         formdata: {
             id_channel:1,
             total_bayar:0,
@@ -569,7 +569,7 @@ export default {
             nama_bank_pengirim: "",
             desc: "",
             tanggal_bayar: "",
-            bukti_bayar:[],
+            bukti_bayar: [],
         },
         formdefault: {
             id_channel:1,
@@ -579,26 +579,26 @@ export default {
             nama_bank_pengirim: "",
             desc: "",
             tanggal_bayar: "",
-            bukti_bayar:[],
+            bukti_bayar: [],
         },
         //form rules
-        rule_channel_pembayaran:[
+        rule_channel_pembayaran: [
             value => !!value||"Mohon dipilih Channel Pembayaran mohon untuk dipilih !!!"
         ],
-        rule_nama_pengirim:[
+        rule_nama_pengirim: [
             value => !!value||"Mohon diisi nama pengirim !!!"
         ],
-        rule_nomor_rekening:[
+        rule_nomor_rekening: [
             value => !!value||"Mohon diisi nomor rekening pengirim !!!",
             value => /^[0-9]+$/.test(value) || 'Nomor Rekening hanya boleh angka',
         ],
-        rule_nama_bank:[
+        rule_nama_bank: [
             value => !!value||"Mohon diisi nama bank !!!"
         ],
-        rule_tanggal_bayar:[
+        rule_tanggal_bayar: [
             value => !!value||"Tanggal Bayar mohon untuk diisi !!!"
         ],
-        rule_bukti_bayar:[
+        rule_bukti_bayar: [
             value => !!value||"Mohon pilih foto !!!",
             value =>  !value || value.size < 2000000 || 'File Bukti Bayar harus kurang dari 2MB.'
         ],

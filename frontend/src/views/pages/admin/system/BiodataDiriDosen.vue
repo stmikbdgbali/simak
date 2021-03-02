@@ -42,12 +42,12 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
                 text:'SYSTEM',
-                disabled:false,
+                disabled: false,
                 href:'#'
             },
             {

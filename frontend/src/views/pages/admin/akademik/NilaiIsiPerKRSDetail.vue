@@ -184,17 +184,17 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
                 text:'AKADEMIK',
-                disabled:false,
+                disabled: false,
                 href:'/akademik'
             },
             {
                 text:'ISI NILAI',
-                disabled:false,
+                disabled: false,
                 href:'#'
             },
             {
@@ -213,24 +213,24 @@ export default {
         semester_akademik:null,
     
         btnLoading: false, 
-        btnLoadingTable:false,
+        btnLoadingTable: false,
 
         //formdata
         krs_id:null,
         datakrs:{},
         
         //table        
-        datatableLoading:false,
-        expanded:[],
-        datatable:[],      
+        datatableLoading: false,
+        expanded: [],
+        datatable: [],      
         headers: [
             { text: 'KODE', value: 'kmatkul', sortable:true,width:100  },   
             { text: 'NAMA MATAKULIAH', value: 'nmatkul',sortable:true,width:260 },               
-            { text: 'SKS', value: 'sks', sortable:false,width:50 },                           
-            { text: 'SMT', value: 'semester', sortable:false,width:50 },                           
-            { text: 'KELAS', value: 'nama_kelas', sortable:false,width:200 },                           
-            { text: 'NILAI ANGKA (0 s.d 100)', value: 'n_kuan', sortable:false,width:70 },                           
-            { text: 'NILAI HURUF', value: 'n_kual', sortable:false,width:100 },                           
+            { text: 'SKS', value: 'sks', sortable: false,width:50 },                           
+            { text: 'SMT', value: 'semester', sortable: false,width:50 },                           
+            { text: 'KELAS', value: 'nama_kelas', sortable: false,width:200 },                           
+            { text: 'NILAI ANGKA (0 s.d 100)', value: 'n_kuan', sortable: false,width:70 },                           
+            { text: 'NILAI HURUF', value: 'n_kual', sortable: false,width:100 },                           
                                    
         ],  
         //formdata

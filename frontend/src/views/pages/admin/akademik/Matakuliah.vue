@@ -431,17 +431,17 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.ACCESS_TOKEN
             },
             {
                 text:'AKADEMIK',
-                disabled:false,
+                disabled: false,
                 href:'/akademik'
             },
             {
                 text:'PERKULIAHAN',
-                disabled:false,
+                disabled: false,
                 href:'#'
             },
             {
@@ -463,9 +463,9 @@ export default {
         tahun_akademik:null,        
 
         btnLoading: false,
-        datatableLoading:false,
-        expanded:[],
-        datatable:[],      
+        datatableLoading: false,
+        expanded: [],
+        datatable: [],      
         headers: [
             { text: 'KODE', value: 'kmatkul', sortable:true,width:120  },   
             { text: 'NAMA MATAKULIAH', value: 'nmatkul',sortable:true },               
@@ -478,23 +478,23 @@ export default {
         search: "",    
 
         //dialog
-        dialogfrm:false,
-        dialogdetailitem:false,
-        dialogcopymatkul:false,
+        dialogfrm: false,
+        dialogdetailitem: false,
+        dialogcopymatkul: false,
 
         //form data   
         form_valid: true, 
-        daftar_ta:[],         
+        daftar_ta: [],         
         dari_tahun_akademik:null,  
-        group_matakuliah:[],   
-        daftar_konsentrasi:[],   
-        daftar_semester:[
+        group_matakuliah: [],   
+        daftar_konsentrasi: [],   
+        daftar_semester: [
             1,2,3,4,5,6,7,8
         ],  
-        daftar_sks:[
+        daftar_sks: [
             1,2,3,4,5,6,7,8,9,10,11,12
         ],
-        daftar_nilai:[
+        daftar_nilai: [
             'A',
             'A-',
             'A/B',
@@ -519,8 +519,8 @@ export default {
             nmatkul: "", 
             sks: "", 
             idkonsentrasi:null, 
-            ispilihan:false, 
-            islintas_prodi:false, 
+            ispilihan: false, 
+            islintas_prodi: false, 
             semester: "", 
             sks_tatap_muka: "", 
             sks_praktikum:null, 
@@ -530,7 +530,7 @@ export default {
             status:true, 
             ta: "", 
             kjur: "", 
-            update_penyelenggaraan:false,
+            update_penyelenggaraan: false,
         },
         formdefault: {
             id: "",                        
@@ -541,8 +541,8 @@ export default {
             nmatkul: "", 
             sks: "", 
             idkonsentrasi:null, 
-            ispilihan:false, 
-            islintas_prodi:false, 
+            ispilihan: false, 
+            islintas_prodi: false, 
             semester: "", 
             sks_tatap_muka: "", 
             sks_praktikum:null, 
@@ -552,33 +552,33 @@ export default {
             status:true, 
             ta: "", 
             kjur: "",  
-            update_penyelenggaraan:false,
+            update_penyelenggaraan: false,
         },
         editedIndex: -1,
 
         //form rules    
-        rule_group_matakuliah:[
+        rule_group_matakuliah: [
             value => !!value||"Mohon Group Matakuliah untuk dipilih !!!",              
         ],      
-        rule_kode_matkul:[
+        rule_kode_matkul: [
             value => !!value||"Kode Program Studi mohon untuk diisi !!!",            
         ], 
-        rule_nama_matakuliah:[
+        rule_nama_matakuliah: [
             value => !!value||"Mohon Nama Program Studi untuk diisi !!!",              
         ], 
-        rule_sks:[
+        rule_sks: [
             value => !!value||"Mohon SKS Matakuliah untuk dipilih !!!",              
         ],         
-        rule_sks_tatap_muka:[
+        rule_sks_tatap_muka: [
             value => !!value||"Mohon SKS Matakuliah Tatap Muka untuk dipilih !!!",              
         ],         
-        rule_semester:[
+        rule_semester: [
             value => !!value||"Mohon Semester Matakuliah ini diselenggarakan untuk dipilih !!!",              
         ],         
-        rule_minimal_nilai:[
+        rule_minimal_nilai: [
             value => !!value||"Mohon Minimal nilai kelulusan matakuliah untuk dipilih !!!",              
         ], 
-        rule_dari_tahun_akademik:[
+        rule_dari_tahun_akademik: [
             value => !!value||"Mohon Tahun Akademik sumber data matakuliah untuk dipilih !!!",              
         ],             
     }),

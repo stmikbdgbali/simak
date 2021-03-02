@@ -142,12 +142,12 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.$store.getters['auth/AccessToken']
             },            
             {
                 text:'KEMAHASISWAAN',
-                disabled:false,
+                disabled: false,
                 href:'/kemahasiswaan'
             },
             {
@@ -167,14 +167,14 @@ export default {
         prodi_id:null,
         nama_prodi:null,
         tahun_pendaftaran:null,
-        filter_ignore:false, 
-        awaiting_search:false,
+        filter_ignore: false, 
+        awaiting_search: false,
 
         btnLoading: false,
-        btnLoadingTable:false,
-        datatableLoading:false,
-        expanded:[],
-        datatable:[],      
+        btnLoadingTable: false,
+        datatableLoading: false,
+        expanded: [],
+        datatable: [],      
         headers: [
             { text: 'NO. FORMULIR', value: 'no_formulir', sortable:true,width:150  },   
             { text: 'NIM', value: 'nim', sortable:true,width:150  },   

@@ -99,22 +99,22 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
                 text:'AKADEMIK',
-                disabled:false,
+                disabled: false,
                 href:'/akademik'
             },
             {
                 text:'PERKULIAHAN',
-                disabled:false,
+                disabled: false,
                 href:'#'
             },
             {
                 text:'KRS',
-                disabled:false,
+                disabled: false,
                 href:'/akademik/perkuliahan/krs/daftar'
             },
             {
@@ -139,18 +139,18 @@ export default {
         datakrs:{},
         jumlah_matkul:0,
         jumlah_sks:0,
-        daftar_matkul_selected:[],
+        daftar_matkul_selected: [],
 
         //table        
-        datatableLoading:false,
-        expanded:[],
-        datatable:[],      
+        datatableLoading: false,
+        expanded: [],
+        datatable: [],      
         headers: [
             { text: 'KODE', value: 'kmatkul', sortable:true,width:120  },   
             { text: 'NAMA MATAKULIAH', value: 'nmatkul',sortable:true },               
-            { text: 'SKS', value: 'sks', sortable:false,width:120 },                           
-            { text: 'SMT', value: 'semester', sortable:false,width:120 },                                       
-            { text: 'TAHUN MATKUL', value: 'ta_matkul', sortable:false,width:120 },                                       
+            { text: 'SKS', value: 'sks', sortable: false,width:120 },                           
+            { text: 'SMT', value: 'semester', sortable: false,width:120 },                                       
+            { text: 'TAHUN MATKUL', value: 'ta_matkul', sortable: false,width:120 },                                       
         ],  
     }),
     methods: {          

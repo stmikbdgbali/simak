@@ -104,7 +104,7 @@ export default {
 		this.breadcrumbs = [
 			{
 				text:'HOME',
-				disabled:false,
+				disabled: false,
 				href:'/dashboard/'+this.$store.getters['auth/AccessToken']
 			},
 			{
@@ -126,10 +126,10 @@ export default {
         this.initialize();
     },
     data: () => ({
-        datatableLoading:false,
+        datatableLoading: false,
         firstloading:true,
-        breadcrumbs:[],        
-        datatable:[],      
+        breadcrumbs: [],        
+        datatable: [],      
         tahun_akademik:null,
         semester_akademik:null,
         

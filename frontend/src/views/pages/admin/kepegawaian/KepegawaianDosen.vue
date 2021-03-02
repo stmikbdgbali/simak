@@ -202,12 +202,12 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.ACCESS_TOKEN
             },
             {
                 text:'KEPEGAWAIAN',
-                disabled:false,
+                disabled: false,
                 href:'/kepegawaian'
             },
             {
@@ -220,7 +220,7 @@ export default {
     },  
    
     data: () => ({         
-        datatableLoading:false,
+        datatableLoading: false,
         btnLoading: false,      
         //tables
         headers: [                        
@@ -232,7 +232,7 @@ export default {
             { text: 'JABATAN AKADEMIK', value: 'nama_jabatan',sortable:true },  
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],
-        expanded:[],
+        expanded: [],
         search: "",
         daftar_dosen: [],                       
         
@@ -240,7 +240,7 @@ export default {
         form_valid: true,        
         dialogEdit: false,           
         editedIndex: -1,      
-        daftar_jabatan:[],  
+        daftar_jabatan: [],  
         editedItem: {
             id:0,
             username:  "",           
@@ -253,7 +253,7 @@ export default {
             nipy: "",         
             email:  "",           
             nomor_hp: "",                 
-            is_dw:false,      
+            is_dw: false,      
             created_at:  "",           
             updated_at:  "",   
         },
@@ -269,26 +269,26 @@ export default {
             nipy: "",       
             email:  "",           
             nomor_hp:  "",          
-            is_dw:false,    
+            is_dw: false,    
             created_at:  "",           
             updated_at:  "",        
         },
         //form rules        
-        rule_user_name:[
+        rule_user_name: [
             value => !!value||"Mohon untuk di isi nama Dosen !!!",  
             value => /^[A-Za-z\s]*$/.test(value) || 'Nama Dosen hanya boleh string dan spasi',                
         ],         
-        rule_nidn:[                         
+        rule_nidn: [                         
             value => /^[0-9]+$/.test(value) || 'NIDN hanya boleh angka',                
         ],         
-        rule_nipy:[            
+        rule_nipy: [            
             value => /^[0-9]+$/.test(value) || 'Nomor Induk Pegawai Yayasan (NIPY) hanya boleh angka',                
         ], 
-        rule_user_email:[
+        rule_user_email: [
             value => !!value||"Mohon untuk di isi email User !!!",  
             value => /.+@.+\..+/.test(value) || 'Format E-mail harus benar',       
         ], 
-        rule_user_nomorhp:[
+        rule_user_nomorhp: [
             value => !!value||"Nomor HP mohon untuk diisi !!!",
             value => /^\+[1-9]{1}[0-9]{1,14}$/.test(value) || 'Nomor HP hanya boleh angka dan gunakan kode negara didepan seperti +6281214553388',
         ],         

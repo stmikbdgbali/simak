@@ -242,12 +242,12 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.ACCESS_TOKEN
             },
             {
                 text:'KEUANGAN',
-                disabled:false,
+                disabled: false,
                 href:'#'
             },
             {
@@ -260,9 +260,9 @@ export default {
     },  
     data: () => ({ 
         btnLoading: false,
-        datatableLoading:false,
-        expanded:[],
-        datatable:[],
+        datatableLoading: false,
+        expanded: [],
+        datatable: [],
         headers: [                        
             { text: 'NAMA BANK', value: 'nama_bank',width:350 },   
             { text: 'CABANG', value: 'nama_cabang' },   
@@ -273,8 +273,8 @@ export default {
         search: "",    
 
         //dialog
-        dialogfrm:false,
-        dialogdetailitem:false,
+        dialogfrm: false,
+        dialogdetailitem: false,
 
         //form data           
         form_valid: true,         
@@ -299,19 +299,19 @@ export default {
         editedIndex: -1,
 
         //form rules  
-        rule_nama_bank:[
+        rule_nama_bank: [
             value => !!value||"Mohon untuk di isi nama bank !!!",  
             value => /^[A-Za-z\s]*$/.test(value) || 'Nama bank hanya boleh string dan spasi',                
         ],   
-        rule_nama_cabang:[
+        rule_nama_cabang: [
             value => !!value||"Mohon untuk di isi nama cabang bank !!!",  
             value => /^[A-Za-z\s]*$/.test(value) || 'Nama cabang bank hanya boleh string dan spasi',                
         ],         
-        rule_no_rekening:[
+        rule_no_rekening: [
             value => !!value||"Mohon untuk di isi nomor rekening !!!",                     
             value => /^[0-9]+$/.test(value) || 'Nomor rekening hanya boleh angka',
         ],
-        rule_pemilik:[
+        rule_pemilik: [
             value => !!value||"Mohon untuk di isi nama pemilik rekening !!!",  
             value => /^[A-Za-z\s]*$/.test(value) || 'Nama pemilik rekening hanya boleh string dan spasi',                
         ],

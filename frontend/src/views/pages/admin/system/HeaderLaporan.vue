@@ -85,17 +85,17 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.ACCESS_TOKEN
             },
             {
                 text:'KONFIGURASI SISTEM',
-                disabled:false,
+                disabled: false,
                 href:'/system-setting'
             },  
             {
                 text:'PERGURUAN TINGGI',
-                disabled:false,
+                disabled: false,
                 href:'#'
             },
             {
@@ -107,8 +107,8 @@ export default {
         this.initialize();
     },
     data: () => ({
-        breadcrumbs:[],
-        datatableLoading:false,
+        breadcrumbs: [],
+        datatableLoading: false,
         btnLoading: false,   
         //form
         form_valid: true,   

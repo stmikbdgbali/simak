@@ -413,12 +413,12 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
                 text:'SPMB',
-                disabled:false,
+                disabled: false,
                 href:'#'
             },
             {
@@ -436,7 +436,7 @@ export default {
     { 
         let tanggal_ujian=this.$date().format('YYYY-MM-DD');
         return {
-            breadcrumbs:[],        
+            breadcrumbs: [],        
             dashboard:null,
             
             firstloading:true,
@@ -445,9 +445,9 @@ export default {
             nama_semester_pendaftaran:null,
 
             btnLoading: false,
-            datatableLoading:false,
-            expanded:[],
-            datatable:[],
+            datatableLoading: false,
+            expanded: [],
+            datatable: [],
             headers: [                                        
                 { text: 'NAMA UJIAN', value: 'nama_kegiatan', sortable: true,width:300 },
                 { text: 'TGL. UJIAN', value: 'tanggal_ujian', sortable: true,width:100 },
@@ -459,18 +459,18 @@ export default {
             search: "",    
 
             //dialog
-            dialogfrm:false,
-            dialogdetailitem:false,
+            dialogfrm: false,
+            dialogdetailitem: false,
             
             //form data   
             form_valid: true, 
             jumlah_bank_soal:0,
-            daftar_ruangan:[],
+            daftar_ruangan: [],
             
-            menuTanggalUjian:false,        
-            menuJamMulaiUjian:false,        
-            menuJamSelesaiUjian:false,        
-            menuTanggalAkhirPendaftaran:false,        
+            menuTanggalUjian: false,        
+            menuJamMulaiUjian: false,        
+            menuJamSelesaiUjian: false,        
+            menuTanggalAkhirPendaftaran: false,        
             formdata: {
                 id:0,                        
                 nama_kegiatan: "",
@@ -508,10 +508,10 @@ export default {
             editedIndex: -1,
 
             //form rules          
-            rule_nama_kegiatan:[
+            rule_nama_kegiatan: [
                 value => !!value||"Mohon untuk di isi nama ujian online !!!",                  
             ], 
-            rule_jumlah_soal:[
+            rule_jumlah_soal: [
                 value => !!value||"Mohon untuk di isi jumlah soal ujian !!!",  
                 value => /^[0-9]+$/.test(value) || 'Jumlah soal ujian hanya boleh angka',    
                 value => {

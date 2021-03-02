@@ -160,12 +160,12 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
                 text:'KEUANGAN',
-                disabled:false,
+                disabled: false,
                 href:'/keuangan'
             },
             {
@@ -183,23 +183,23 @@ export default {
     data: () => ({
         dashboard:null,
         firstloading:true,
-        breadcrumbs:[],  
+        breadcrumbs: [],  
         tahun_pendaftaran:0,
         prodi_id:null,
         nama_prodi:null,
         filter_idkelas: "",
-        daftar_kelas:[],
+        daftar_kelas: [],
         
         btnLoading: false,
-        datatableLoading:false,
-        expanded:[],
-        datatable:[],
+        datatableLoading: false,
+        expanded: [],
+        datatable: [],
         headers: [            
-            { text: 'ID KOMPONEN', value: 'kombi_id',width:10,sortable:false },                                           
-            { text: 'NAMA KOMPONEN', value: 'nama_kombi',sortable:false},
-            { text: 'PERIODE', value: 'periode',width:150,sortable:false },            
-            { text: 'KELAS', value: 'nkelas',width:120,sortable:false },            
-            { text: 'BIAYA', value: 'biaya',width:150,sortable:false },            
+            { text: 'ID KOMPONEN', value: 'kombi_id',width:10,sortable: false },                                           
+            { text: 'NAMA KOMPONEN', value: 'nama_kombi',sortable: false},
+            { text: 'PERIODE', value: 'periode',width:150,sortable: false },            
+            { text: 'KELAS', value: 'nkelas',width:120,sortable: false },            
+            { text: 'BIAYA', value: 'biaya',width:150,sortable: false },            
         ],    
         search: "",      
     }),

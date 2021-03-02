@@ -61,15 +61,15 @@ export default {
     data: () => ({
         btnLoading: false,
         //form
-        form_error:false,
+        form_error: false,
         formlogin: {
             username: "",
             password:''
         },
-        rule_username:[
+        rule_username: [
             value => !!value||"Kolom Username mohon untuk diisi !!!"
         ],
-        rule_password:[
+        rule_password: [
             value => !!value||"Kolom Password mohon untuk diisi !!!"
         ],
 

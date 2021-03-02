@@ -180,22 +180,22 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
                 text:'AKADEMIK',
-                disabled:false,
+                disabled: false,
                 href:'/akademik'
             },
             {
                 text:'NILAI',
-                disabled:false,
+                disabled: false,
                 href:'#'
             },
             {
                 text:'KHS',
-                disabled:false,
+                disabled: false,
                 href:'/akademik/nilai/khs'
             },
             {
@@ -213,24 +213,24 @@ export default {
         semester_akademik:null,
     
         btnLoading: false, 
-        btnLoadingTable:false,
+        btnLoadingTable: false,
 
         //formdata
         krs_id:null,
         datakrs:{},
         
         //table        
-        datatableLoading:false,
-        expanded:[],
-        datatable:[],      
+        datatableLoading: false,
+        expanded: [],
+        datatable: [],      
         headers: [
             { text: 'KODE', value: 'kmatkul', sortable:true,width:100  },   
             { text: 'NAMA MATAKULIAH', value: 'nmatkul',sortable:true },               
-            { text: 'SKS', value: 'sks', sortable:false,width:50 },                           
-            { text: 'HM', value: 'HM', sortable:false,width:50 },                           
-            { text: 'AM', value: 'AM', sortable:false,width:50 },                           
-            { text: 'M', value: 'M', sortable:false,width:50 },                           
-            { text: 'NAMA DOSEN', value: 'nama_dosen', sortable:false,width:200 },                                                                
+            { text: 'SKS', value: 'sks', sortable: false,width:50 },                           
+            { text: 'HM', value: 'HM', sortable: false,width:50 },                           
+            { text: 'AM', value: 'AM', sortable: false,width:50 },                           
+            { text: 'M', value: 'M', sortable: false,width:50 },                           
+            { text: 'NAMA DOSEN', value: 'nama_dosen', sortable: false,width:200 },                                                                
         ],  
 
         jumlah_sks:0,
@@ -240,7 +240,7 @@ export default {
         ips:0,
         ipk:0,
 
-        dialogprintpdf:false,
+        dialogprintpdf: false,
         file_pdf:null
     }),
     methods: {          

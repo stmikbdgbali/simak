@@ -112,17 +112,17 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
                 text:'AKADEMIK',
-                disabled:false,
+                disabled: false,
                 href:'/akademik'
             },
             {
                 text:'DAFTAR ULANG',
-                disabled:false,
+                disabled: false,
                 href:'#'
             },
             {
@@ -144,10 +144,10 @@ export default {
         tahun_pendaftaran:null,
 
         btnLoading: false,
-        btnLoadingTable:false,
-        datatableLoading:false,
-        expanded:[],
-        datatable:[],      
+        btnLoadingTable: false,
+        datatableLoading: false,
+        expanded: [],
+        datatable: [],      
         headers: [
             { text: 'NO. FORMULIR', value: 'no_formulir', sortable:true,width:150  },   
             { text: 'NIM', value: 'nim', sortable:true,width:150  },   
@@ -162,8 +162,8 @@ export default {
 
         //formdata
         form_valid: true,   
-        dialogfrm:false, 
-        daftar_dw:[],     
+        dialogfrm: false, 
+        daftar_dw: [],     
 
         formdata: {                        
             nim: "",
@@ -175,15 +175,15 @@ export default {
             nirm: "",
             dosen_id:''           
         },
-        rule_nim:[
+        rule_nim: [
             value => !!value||"Nomor Induk Mahasiswa (NIM) mohon untuk diisi !!!",
             value => /^[0-9]+$/.test(value) || 'Nomor Induk Mahasiswa (NIM) hanya boleh angka',
         ], 
-        rule_nirm:[
+        rule_nirm: [
             value => !!value||"Nomor Induk Registrasi Masuk (NIRM) mohon untuk diisi !!!",
             value => /^[0-9]+$/.test(value) || 'Nomor Induk Registrasi Masuk (NIRM) hanya boleh angka',
         ], 
-        rule_dw:[
+        rule_dw: [
             value => !!value||"Mohon dipilih Dosen Wali untuk Mahasiswa ini !!!"
         ],
 

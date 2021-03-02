@@ -345,12 +345,12 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.ACCESS_TOKEN
             },
             {
                 text:'DATA MASTER',
-                disabled:false,
+                disabled: false,
                 href:'#'
             },
             {
@@ -368,9 +368,9 @@ export default {
         let semester_genap = [(d.getFullYear()+1)+'-03-01',(d.getFullYear()+1)+'-08-31'];                
         return {
             btnLoading: false,
-            datatableLoading:false,
-            expanded:[],
-            datatable:[],
+            datatableLoading: false,
+            expanded: [],
+            datatable: [],
             headers: [
                 { text: 'TA', value: 'tahun', width:50 },
                 { text: 'TAHUN AKADEMIK', value: 'tahun_akademik',width:150 },
@@ -385,15 +385,15 @@ export default {
             search: "",
 
             //dialog
-            dialogfrm:false,
-            dialogdetailitem:false,
+            dialogfrm: false,
+            dialogdetailitem: false,
 
             //form data
             old_tahun: "",
             form_valid: true,
-            menuSemesterGanjil:false,        
+            menuSemesterGanjil: false,        
             semester_ganjil:semester_ganjil,
-            menuSemesterGenap:false,        
+            menuSemesterGenap: false,        
             semester_genap:semester_genap,
 
             formdata: {
@@ -419,7 +419,7 @@ export default {
             editedIndex: -1,
 
             //form rules
-            rule_tahun:[
+            rule_tahun: [
                 value => !!value||"Tahun Akademik mohon untuk diisi Misalnya 2020 !!!",
                 value => /^[0-9]+$/.test(value) || 'Tahun Akademik hanya boleh angka',                
                 value => {                    
@@ -432,7 +432,7 @@ export default {
                     }                    
                 }
             ],
-            rule_tahun_akademik:[                
+            rule_tahun_akademik: [                
                 value => !!value||"Mohon untuk di isi nama tahun akademik !!!",
             ],            
         }

@@ -237,17 +237,17 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.ACCESS_TOKEN
             },
             {
                 text:'AKADEMIK',
-                disabled:false,
+                disabled: false,
                 href:'/akademik'
             },
             {
                 text:'DOSEN WALI',
-                disabled:false,
+                disabled: false,
                 href:'/akademik/dosenwali'
             },
             {
@@ -262,7 +262,7 @@ export default {
     data: () => ({ 
         dosen_id:null,
         data_dosen:{},
-        datatableLoading:false,
+        datatableLoading: false,
         btnLoading: false,      
         //tables
         headers: [                        
@@ -274,15 +274,15 @@ export default {
             { text: 'TAHUN MASUK', value: 'tahun',sortable:true },                 
             { text: 'AKSI', value: 'actions', sortable: false,width:50 },
         ],
-        expanded:[],
+        expanded: [],
         search: "",
         daftar_mahasiswa: [], 
 
         //form mahasiswa ganti dw
-        dialogfrm:false,
+        dialogfrm: false,
         form_valid: true,   
         data_mhs:{},
-        daftar_dw:[],     
+        daftar_dw: [],     
 
         formdata: {                                    
             dosen_id:''           
@@ -291,7 +291,7 @@ export default {
             dosen_id:''           
         },
 
-        rule_dw:[
+        rule_dw: [
             value => !!value||"Mohon dipilih Dosen Wali untuk Mahasiswa ini !!!"
         ],         
     }),

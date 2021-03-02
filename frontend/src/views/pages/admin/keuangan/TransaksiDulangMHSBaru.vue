@@ -200,12 +200,12 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
                 text:'KEUANGAN',
-                disabled:false,
+                disabled: false,
                 href:'/keuangan'
             },
             {
@@ -226,33 +226,33 @@ export default {
     data: () => ({
         dashboard:null,
         firstloading:true,
-        breadcrumbs:[],    
+        breadcrumbs: [],    
         prodi_id:null,
         nama_prodi:null, 
         tahun_pendaftaran:0,        
-        filter_ignore:false, 
-        awaiting_search:false,
+        filter_ignore: false, 
+        awaiting_search: false,
 
         btnLoading: false,      
 
         //tables
-        datatableLoading:false,       
-        datatable:[], 
+        datatableLoading: false,       
+        datatable: [], 
         headers: [                                                
             { text: 'KODE BILLING', value: 'no_transaksi',width:100,sortable:true },
             { text: 'TANGGAL', value: 'tanggal',width:90,sortable:true },
             { text: 'NO. FORMULIR', value: 'no_formulir',sortable:true,width:100 },            
             { text: 'NAMA MAHASISWA', value: 'nama_mhs',sortable:true, width:250 },            
-            { text: 'SMT', value: 'idsmt',width:100,sortable:false },
-            { text: 'JUMLAH', value: 'sub_total',width:100,sortable:false,align:'right' },
-            { text: 'STATUS', value: 'nama_status',width:100,sortable:false },            
+            { text: 'SMT', value: 'idsmt',width:100,sortable: false },
+            { text: 'JUMLAH', value: 'sub_total',width:100,sortable: false,align:'right' },
+            { text: 'STATUS', value: 'nama_status',width:100,sortable: false },            
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],        
-        expanded:[],
+        expanded: [],
         search: "", 
 
         //dialog
-        dialogfrm:false,        
+        dialogfrm: false,        
 
         //form data   
         form_valid: true,              
@@ -262,7 +262,7 @@ export default {
         formdefault: {
             no_formulir: "",            
         },
-        rule_no_formulir:[
+        rule_no_formulir: [
             value => !!value||"Nomor Formulir mohon untuk diisi !!!",
             value => /^[0-9]+$/.test(value) || 'Nomor Formulir hanya boleh angka',
         ],        
