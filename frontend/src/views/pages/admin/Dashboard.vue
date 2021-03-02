@@ -13,7 +13,7 @@
 					max-width="344"
 					min-height="210"
 					:color="color_dashboard.dmaster"
-					@click.native="$router.push('/dmaster')">
+					@click.native="$router.push('/DMaster')">
 						<div class="text-center pt-4">
 							<v-btn
 								class="mx-2"
@@ -43,7 +43,7 @@
 					max-width="344"
 					min-height="210"
 					:color="color_dashboard.spmb"
-					@click.native="$router.push('/spmb')">
+					@click.native="$router.push('/SPMB')">
 						<div class="text-center pt-4">
 							<v-btn
 								class="mx-2"
