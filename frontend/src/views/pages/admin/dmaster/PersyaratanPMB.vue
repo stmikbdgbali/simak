@@ -271,12 +271,12 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.ACCESS_TOKEN
             },
             {
                 text:'DATA MASTER',
-                disabled:false,
+                disabled: false,
                 href:'/dmaster'
             },
             {
@@ -293,9 +293,9 @@ export default {
         tahun_pendaftaran:null,        
 
         btnLoading: false,
-        datatableLoading:false,
-        expanded:[],
-        datatable:[],      
+        datatableLoading: false,
+        expanded: [],
+        datatable: [],      
         headers: [
             { text: 'PROSES', value: 'proses', sortable:true,width:120  },   
             { text: 'NAMA PERSYARATAN', value: 'nama_persyaratan',sortable:true },                           
@@ -305,13 +305,13 @@ export default {
         search: "",    
 
         //dialog
-        dialogfrm:false,
-        dialogdetailitem:false,
-        dialogcopypersyaratan:false,
+        dialogfrm: false,
+        dialogdetailitem: false,
+        dialogcopypersyaratan: false,
 
         //form data   
         form_valid: true, 
-        daftar_ta:[],         
+        daftar_ta: [],         
         dari_tahun_pendaftaran:null,          
         formdata: {
             id: "",                        
@@ -330,10 +330,10 @@ export default {
         editedIndex: -1,
 
         //form rules      
-        rule_nama_persyaratan:[
+        rule_nama_persyaratan: [
             value => !!value||"Mohon Nama Program Studi untuk diisi !!!",              
         ],         
-        rule_dari_tahun_pendaftaran:[
+        rule_dari_tahun_pendaftaran: [
             value => !!value||"Mohon Tahun Pendaftaran sumber persyaratan untuk dipilih !!!",              
         ],             
     }),

@@ -126,181 +126,170 @@
 	</FrontLayout>
 </template>
 <script>
-import { mapGetters } from "vuex";
-import VueRecaptcha from 'vue-recaptcha';
-import FrontLayout from '@/views/layouts/FrontLayout';
-export default {
-	name: 'PMB',
-	created()
-	{
-		this.initialize();
-	},
-	data: () => ({ 
-		btnLoading: false,
-		btnLoadingFakultas: false,
-		//form
-		form_valid: true,
-		dialogkonfirmasiemail:false,
-		daftar_fakultas:[],
-		kode_fakultas: "",
-		daftar_prodi:[],
-		prodi_id: "",
-		formdata: {
-			name: "",
-			email: "", 
-			nomor_hp: "",
-			username: "",
-			password: "",
-			captcha_response: "",
-		}, 
-		formdefault: {
-			name: "",
-			email: "", 
-			nomor_hp: "",
-			username: "",
-			password: "",
-			captcha_response: "", 
-		},
-		formkonfirmasi:{
-			email: "",
-			code: "",
-		},
-		rule_name:[
-			value => !!value||"Nama Mahasiswa mohon untuk diisi !!!",
-			value => /^[A-Za-z\s\\,\\.]*$/.test(value) || 'Nama Mahasiswa hanya boleh string dan spasi',
-		], 
-		rule_nomorhp:[
-			value => !!value||"Nomor HP mohon untuk diisi !!!",
-			value => /^\+[1-9]{1}[0-9]{1,14}$/.test(value) || 'Nomor HP hanya boleh angka dan gunakan kode negara didepan seperti +6281214553388',
-		], 
-		rule_email:[
-			value => !!value||"Email mohon untuk diisi !!!",
-			v => /.+@.+\..+/.test(v) || 'Format E-mail mohon di isi dengan benar',
-		],
-		rule_fakultas:[
-			value => !!value||"Fakultas mohon untuk dipilih !!!"
-		], 
-		rule_prodi:[
-			value => !!value||"Program studi mohon untuk dipilih !!!"
-		], 
-		rule_username:[
-			value => !!value||"Username mohon untuk diisi !!!"
-		], 
-		rule_password:[
-			value => !!value||"Password mohon untuk diisi !!!"
-		],
-		rule_code:[
-			value => /^[0-9]+$/.test(value) || 'Code hanya boleh angka',
-		]
-	}),
-	methods: {
-		initialize: async function ()
+	import { mapGetters } from "vuex";
+	import VueRecaptcha from "vue-recaptcha";
+	import FrontLayout from "@/views/layouts/FrontLayout";
+	export default {
+		name: "PMB",
+		created()
 		{
-			if (this.$store.getters['uifront/getBentukPT']=='universitas')
-			{ 
-				await this.$ajax.get('/datamaster/fakultas').then(({data})=>{
-					this.daftar_fakultas=data.fakultas;
-				});
-			}
-			else
-			{
-				await this.$ajax.get('/datamaster/programstudi').then(({data})=>{
-					this.daftar_prodi=data.prodi;
-				});
-			} 
-		}, 
-		save: async function ()
-		{
-			if (this.$refs.frmpendaftaran.validate())
-			{
-				this.btnLoading=true; 
-				await this.$ajax.post('/spmb/pmb/store',{
-					name:this.formdata.name,
-					email:this.formdata.email,
-					nomor_hp:this.formdata.nomor_hp,
-					username:this.formdata.username,
-					prodi_id:this.prodi_id,
-					password:this.formdata.password,
-					captcha_response:this.formdata.captcha_response,
-				}).then(({data})=>{
-					this.formkonfirmasi.email=data.email;
-					this.formkonfirmasi.code=data.code;
-					this.btnLoading=false;
-					this.dialogkonfirmasiemail = true;
-					
+			this.initialize();
+		},
+		data: () => ({ 
+			btnLoading: false,
+			btnLoadingFakultas: false,
+			//form
+			form_valid: true,
+			dialogkonfirmasiemail: false,
+			daftar_fakultas: [],
+			kode_fakultas: "",
+			daftar_prodi: [],
+			prodi_id: "",
+			formdata: {
+				name: "",
+				email: "", 
+				nomor_hp: "",
+				username: "",
+				password: "",
+				captcha_response: "",
+			}, 
+			formdefault: {
+				name: "",
+				email: "", 
+				nomor_hp: "",
+				username: "",
+				password: "",
+				captcha_response: "", 
+			},
+			formkonfirmasi: {
+				email: "",
+				code: "",
+			},
+			rule_name: [
+				value => !!value||"Nama Mahasiswa mohon untuk diisi !!!",
+				value => /^[A-Za-z\s\\,\\.]*$/.test(value) || "Nama Mahasiswa hanya boleh string dan spasi",
+			], 
+			rule_nomorhp: [
+				value => !!value||"Nomor HP mohon untuk diisi !!!",
+				value => /^\+[1-9]{1}[0-9]{1,14}$/.test(value) || "Nomor HP hanya boleh angka dan gunakan kode negara didepan seperti +6281214553388",
+			], 
+			rule_email: [
+				value => !!value||"Email mohon untuk diisi !!!",
+				v => /.+@.+\..+/.test(v) || "Format E-mail mohon di isi dengan benar",
+			],
+			rule_fakultas: [
+				value => !!value||"Fakultas mohon untuk dipilih !!!"
+			], 
+			rule_prodi: [
+				value => !!value||"Program studi mohon untuk dipilih !!!"
+			], 
+			rule_username: [
+				value => !!value||"Username mohon untuk diisi !!!"
+			], 
+			rule_password: [
+				value => !!value||"Password mohon untuk diisi !!!"
+			],
+			rule_code: [
+				value => /^[0-9]+$/.test(value) || "Code hanya boleh angka",
+			]
+		}),
+		methods: {
+			initialize: async function () {
+				if (this.$store.getters["uifront/getBentukPT"]=="universitas") {
+					await this.$ajax.get("/datamaster/fakultas").then(({data})=>{
+						this.daftar_fakultas=data.fakultas;
+					});
+				} else {
+					await this.$ajax.get("/datamaster/programstudi").then(({data})=>{
+						this.daftar_prodi=data.prodi;
+					});
+				} 
+			}, 
+			save: async function () {
+				if (this.$refs.frmpendaftaran.validate()) {
+					this.btnLoading=true; 
+					await this.$ajax.post("/spmb/pmb/store",{
+						name:this.formdata.name,
+						email:this.formdata.email,
+						nomor_hp:this.formdata.nomor_hp,
+						username:this.formdata.username,
+						prodi_id:this.prodi_id,
+						password:this.formdata.password,
+						captcha_response:this.formdata.captcha_response,
+					}).then(({data})=>{
+						this.formkonfirmasi.email=data.email;
+						this.formkonfirmasi.code=data.code;
+						this.btnLoading=false;
+						this.dialogkonfirmasiemail = true;
+						
+						this.form_valid=true;
+						this.$refs.frmpendaftaran.reset(); 
+						this.formdata = Object.assign({}, this.formdefault)
+					}).catch(() => { 
+						this.btnLoading=false;
+					}); 
+				}
+				this.resetRecaptcha();
+			},
+			konfirmasi: async function () {
+				if (this.$refs.frmkonfirmasi.validate()) {
+					this.btnLoading=true; 
+					await this.$ajax.post("/spmb/pmb/konfirmasi",{
+						email:this.formkonfirmasi.email,
+						code:this.formkonfirmasi.code,
+					}).then(()=>{
+						this.dialogkonfirmasiemail=false; 
+						this.btnLoading=false;
+					}).catch(() => { 
+						this.btnLoading=false;
+					}); 
 					this.form_valid=true;
-					this.$refs.frmpendaftaran.reset(); 
-					this.formdata = Object.assign({}, this.formdefault)
-				}).catch(() => { 
-					this.btnLoading=false;
-				}); 
-			}
-			this.resetRecaptcha();
+					this.$refs.frmkonfirmasi.reset(); 
+					this.frmkonfirmasi = Object.assign({}, {email: "",code:""});
+					this.$router.replace("/login");
+				}
+			},
+			onVerify: function (response) {
+				this.formdata.captcha_response=response; 
+			},
+			onExpired: function () {
+				this.formdata.captcha_response="";
+			},
+			resetRecaptcha() {
+				this.$refs.recaptcha.reset();
+				this.formdata.captcha_response="";
+			},
+			closedialogfrm () {
+				this.dialogkonfirmasiemail = false;
+				setTimeout(() => {
+					this.frmpendaftaran = Object.assign({}, this.formdefault);
+					this.$refs.frmpendaftaran.reset();
+					}, 300
+				);
+			},
 		},
-		konfirmasi: async function ()
-		{
-			if (this.$refs.frmkonfirmasi.validate())
-			{
-				this.btnLoading=true; 
-				await this.$ajax.post('/spmb/pmb/konfirmasi',{
-					email:this.formkonfirmasi.email,
-					code:this.formkonfirmasi.code,
-				}).then(()=>{
-					this.dialogkonfirmasiemail=false; 
-					this.btnLoading=false;
-				}).catch(() => { 
-					this.btnLoading=false;
-				}); 
-				this.form_valid=true;
-				this.$refs.frmkonfirmasi.reset(); 
-				this.frmkonfirmasi = Object.assign({}, {email: "",code:''});
-				this.$router.replace('/login');
-			}
+		computed: {
+			...mapGetters("uifront", {
+				sitekey: "getCaptchaKey",
+				tahunPendaftaran: "getTahunPendaftaran",
+			})
 		},
-		onVerify: function (response) {
-			this.formdata.captcha_response=response; 
+		watch: {
+			kode_fakultas (val) {
+				if (val != null && val != "") {
+					this.btnLoadingFakultas = true;
+					this.$ajax
+						.get("/datamaster/fakultas/" + val + "/programstudi")
+						.then(({data}) => {
+						this.daftar_prodi = data.programstudi;
+						this.btnLoadingFakultas = false;
+					});
+				}
+			},
 		},
-		onExpired: function () {
-			this.formdata.captcha_response='';
+		components: {
+			FrontLayout,
+			VueRecaptcha,
 		},
-		resetRecaptcha()
-		{
-			this.$refs.recaptcha.reset();
-			this.formdata.captcha_response='';
-		},
-		closedialogfrm () {
-			this.dialogkonfirmasiemail = false; 
-			setTimeout(() => {
-				this.frmpendaftaran = Object.assign({}, this.formdefault);
-				this.$refs.frmpendaftaran.reset(); 
-				}, 300
-			);
-		},
-	},
-	computed :{
-		...mapGetters('uifront',{
-			sitekey: 'getCaptchaKey',
-			tahunPendaftaran: 'getTahunPendaftaran',
-		})
-	},
-	watch:{
-		kode_fakultas (val)
-		{
-			if (val != null && val != '')
-			{
-				this.btnLoadingFakultas=true;
-				this.$ajax.get('/datamaster/fakultas/'+val+'/programstudi').then(({data})=>{
-					this.daftar_prodi=data.programstudi;
-					this.btnLoadingFakultas=false;
-				});
-			} 
-		}
-	},
-	components: {
-		FrontLayout,
-		VueRecaptcha
-	},
-	
-	
-}
+	};
 </script>

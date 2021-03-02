@@ -147,7 +147,7 @@ export default {
         },
         temporaryleftsidebar:{
             type:Boolean,
-            default:false
+            default: false
         },
     },      
     data:()=>({
@@ -181,7 +181,7 @@ export default {
         },
         isBentukPT (bentuk_pt)
         {
-            return this.$store.getters['uifront/getBentukPT']==bentuk_pt?true:false;
+            return this.$store.getters['uifront/getBentukPT']==bentuk_pt?true: false;
         }
 	},
     computed:{

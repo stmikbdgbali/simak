@@ -305,12 +305,12 @@ export default {
 		this.breadcrumbs = [
 			{
 				text:"HOME",
-				disabled:false,
+				disabled: false,
 				href:"/dashboard/"+this.$store.getters["auth/AccessToken"]
 			},
 			{
 				text:"KONFIGURASI SISTEM",
-				disabled:false,
+				disabled: false,
 				href:"/system-setting"
 			},
 			{
@@ -323,9 +323,9 @@ export default {
 	},  
 	data: () => ({ 
 		btnLoading: false,
-		datatableLoading:false,
-		expanded:[],
-		datatable:[],
+		datatableLoading: false,
+		expanded: [],
+		datatable: [],
 		headers: [ 
 			{ text: "ZOOM ID", value: "zoom_id" },
 			{ text: "EMAIL ZOOM", value: "email" },
@@ -337,8 +337,8 @@ export default {
 		search:"",
 
 		//dialog
-		dialogfrm:false,
-		dialogdetailitem:false,
+		dialogfrm: false,
+		dialogdetailitem: false,
 
 		//form data
 		form_valid: true, 
@@ -372,17 +372,17 @@ export default {
 		editedIndex: -1,
 
 		//form rules  
-		rule_email:[
+		rule_email: [
 			value => !!value||"Mohon untuk mengisi Email !!!",
 			v => /.+@.+\..+/.test(v) || "Format E-mail mohon di isi dengan benar",
 		], 
-		rule_api_key:[
+		rule_api_key: [
 			value => !!value||"Mohon untuk mengisi API Key !!!",  
 		], 
-		rule_api_secret:[
+		rule_api_secret: [
 			value => !!value||"Mohon untuk mengisi API Secret !!!",  
 		],
-		rule_im_token:[
+		rule_im_token: [
 			value => !!value||"Mohon mengisi IM Token !!!",  
 		],
 	}),

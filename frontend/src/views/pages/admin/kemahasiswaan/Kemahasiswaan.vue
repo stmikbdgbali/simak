@@ -121,7 +121,7 @@ export default {
 		this.breadcrumbs = [
 			{
 				text:'HOME',
-				disabled:false,
+				disabled: false,
 				href:'/dashboard/'+this.$store.getters['auth/AccessToken']
 			},
 			{
@@ -138,12 +138,12 @@ export default {
     },
     data: () => ({                
         firstloading:true,
-        breadcrumbs:[],        
+        breadcrumbs: [],        
         tahun_akademik:0,
         
         //profil mahasiswa        
-        entries:[],
-        isLoading:false,
+        entries: [],
+        isLoading: false,
         data_mhs:null,
         search:null
         

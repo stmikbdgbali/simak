@@ -178,22 +178,22 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
                 text:'AKADEMIK',
-                disabled:false,
+                disabled: false,
                 href:'/akademik'
             },
             {
                 text:'PERKULIAHAN',
-                disabled:false,
+                disabled: false,
                 href:'#'
             },
             {
                 text:'PEMBAGIAN KELAS',
-                disabled:false,
+                disabled: false,
                 href:'/akademik/perkuliahan/pembagiankelas/daftar'
             },
             {
@@ -213,21 +213,21 @@ export default {
         btnLoading: false,
         //formdata
         form_valid: true,
-        daftar_dosen:[],
+        daftar_dosen: [],
         dosen_id:null,
-        daftar_zoom:[],
+        daftar_zoom: [],
 
-        daftar_sks:[
+        daftar_sks: [
             1,2,3,4,5,6,7,8,9,10,11,12
         ],
 
-        daftar_matakuliah:[],
+        daftar_matakuliah: [],
 
-        daftar_kelas:[],
+        daftar_kelas: [],
 
-        daftar_ruang_kelas:[],
+        daftar_ruang_kelas: [],
 
-        daftar_hari:[
+        daftar_hari: [
             {
                 text:'SENIN',
                 value:1,
@@ -267,36 +267,36 @@ export default {
             penyelenggaraan_dosen_id: "",
             ruang_kelas_id: "",
         },
-        rule_dosen:[
+        rule_dosen: [
             value => !!value||"Mohon dipilih Dosen pengampu matakuliah !!!"
         ],
-        rule_kode_matkul:[
+        rule_kode_matkul: [
             value => !!value||"Kode Program Studi mohon untuk diisi !!!",
         ],
-        rule_nama_matakuliah:[
+        rule_nama_matakuliah: [
             value => !!value||"Mohon Nama Program Studi untuk diisi !!!",
         ],
-        rule_sks:[
+        rule_sks: [
             value => !!value||"Mohon SKS Matakuliah untuk dipilih !!!",
         ],
-        rule_matakuliah:[
+        rule_matakuliah: [
             value => !!value||"Mohon dipilih matakuliah yang diselenggaran untuk dosen pengampu ini!!!"
         ],
-        rule_kelas:[
+        rule_kelas: [
             value => !!value||"Mohon dipilih kelas matakuliah ini!!!"
         ],
-        rule_hari:[
+        rule_hari: [
             value => !!value||"Mohon dipilih hari mengajar!!!"
         ],
-        rule_jam_masuk:[
+        rule_jam_masuk: [
             value => !!value||"Mohon diisi jam masuk mengajar!!!",
-            value => /^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/.test(value) || 'Format jam masuk mengajar hh:mm, misalnya 15:30'
+            value => /^([0-9]|0[0-9]|1[0-9]|2[0-3]): [0-5][0-9]$/.test(value) || 'Format jam masuk mengajar hh:mm, misalnya 15:30'
         ],
-        rule_jam_keluar:[
+        rule_jam_keluar: [
             value => !!value||"Mohon diisi jam keluar mengajar!!!",
-            value => /^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/.test(value) || 'Format jam keluar mengajar hh:mm, misalnya 15:00'
+            value => /^([0-9]|0[0-9]|1[0-9]|2[0-3]): [0-5][0-9]$/.test(value) || 'Format jam keluar mengajar hh:mm, misalnya 15:00'
         ],
-        rule_ruang_kelas:[
+        rule_ruang_kelas: [
             value => !!value||"Mohon dipilih ruang kelas mengajar!!!"
         ],
     }),

@@ -236,12 +236,12 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.ACCESS_TOKEN
             },
             {
                 text:'USER SISTEM',
-                disabled:false,
+                disabled: false,
                 href:'/system-users'
             },
             {
@@ -253,10 +253,10 @@ export default {
         this.initialize()
     },    
     data: () => ({
-        breadcrumbs:[],
-        datatableLoading:false,
+        breadcrumbs: [],
+        datatableLoading: false,
         btnLoading: false,          
-        expanded:[],        
+        expanded: [],        
         datatable: [],
         daftar_permissions: [],
         permissions_selected: [],
@@ -293,7 +293,7 @@ export default {
             updated_at:  "",           
         },
         //form rules        
-        rule_role_name:[
+        rule_role_name: [
             value => !!value||"Mohon untuk di isi nama Role !!!",  
             value => /^[A-Za-z]*$/.test(value) || 'Nama Role hanya boleh string',                
         ], 

@@ -350,12 +350,12 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
                 text:'SPMB',
-                disabled:false,
+                disabled: false,
                 href:'/spmb'
             },
             {
@@ -377,12 +377,12 @@ export default {
         prodi_id:null,
         tahun_pendaftaran:null,
         nama_prodi:null,
-        filter_ignore:false, 
-        awaiting_search:false,
+        filter_ignore: false, 
+        awaiting_search: false,
         
-        breadcrumbs:[],
+        breadcrumbs: [],
         dashboard:null,
-        datatableLoading:false,
+        datatableLoading: false,
         btnLoading: false,    
         btnLoadingFakultas: false,
                   
@@ -392,25 +392,25 @@ export default {
             { text: 'NAMA MAHASISWA', value: 'name',width:350,sortable:true },
             { text: 'USERNAME', value: 'username',sortable:true },
             { text: 'EMAIL', value: 'email',sortable:true },     
-            { text: 'NOMOR HP', value: 'nomor_hp',sortable:false,width:130 },                
+            { text: 'NOMOR HP', value: 'nomor_hp',sortable: false,width:130 },                
             { text: 'TGL.DAFTAR', value: 'created_at',sortable:true,width:100 },     
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],
-        expanded:[],
+        expanded: [],
         search: "",
-        datatable:[],
+        datatable: [],
 
         //dialog
-        dialogfrm:false,
-        dialogdetailitem:false,
+        dialogfrm: false,
+        dialogdetailitem: false,
         
         //form data   
         form_valid: true,  
-        registered:false,   
-        daftar_fakultas:[],
+        registered: false,   
+        daftar_fakultas: [],
         kode_fakultas: "",
-        daftar_prodi:[],   
-        daftar_ta:[],         
+        daftar_prodi: [],   
+        daftar_ta: [],         
         formdata: {
             name: "",
             email: "",            
@@ -435,28 +435,28 @@ export default {
         },    
         editedIndex: -1,
 
-        rule_name:[
+        rule_name: [
             value => !!value||"Nama Mahasiswa mohon untuk diisi !!!",
             value => /^[A-Za-z\s\\,\\.]*$/.test(value) || 'Nama Mahasiswa hanya boleh string dan spasi',
         ], 
-        rule_nomorhp:[
+        rule_nomorhp: [
             value => !!value||"Nomor HP mohon untuk diisi !!!",
             value => /^\+[1-9]{1}[0-9]{1,14}$/.test(value) || 'Nomor HP hanya boleh angka dan gunakan kode negara didepan seperti +6281214553388',
         ], 
-        rule_email:[
+        rule_email: [
             value => !!value||"Email mohon untuk diisi !!!",
             v => /.+@.+\..+/.test(v) || 'Format E-mail mohon di isi dengan benar',
         ],   
-        rule_fakultas:[
+        rule_fakultas: [
             value => !!value||"Fakultas mohon untuk dipilih !!!"
         ], 
-        rule_prodi:[
+        rule_prodi: [
             value => !!value||"Program studi mohon untuk dipilih !!!"
         ],      
-        rule_username:[
+        rule_username: [
             value => !!value||"Username mohon untuk diisi !!!"
         ], 
-        rule_password:[
+        rule_password: [
             value => !!value||"Password mohon untuk diisi !!!"
         ], 
     }),

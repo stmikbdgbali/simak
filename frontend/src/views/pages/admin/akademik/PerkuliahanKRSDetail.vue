@@ -213,22 +213,22 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
                 text:'AKADEMIK',
-                disabled:false,
+                disabled: false,
                 href:'/akademik'
             },
             {
                 text:'PERKULIAHAN',
-                disabled:false,
+                disabled: false,
                 href:'#'
             },
             {
                 text:'KRS',
-                disabled:false,
+                disabled: false,
                 href:'/akademik/perkuliahan/krs/daftar'
             },
             {
@@ -246,7 +246,7 @@ export default {
         semester_akademik:null,
 
         btnLoading: false,
-        btnLoadingTable:false,
+        btnLoadingTable: false,
 
         //formdata
         form_valid: true,         
@@ -254,24 +254,24 @@ export default {
         datakrs:{},
         datamatkul:{},
 
-        dialogfrm:false,
+        dialogfrm: false,
 
-        daftar_kelas:[],
+        daftar_kelas: [],
         formdata:{
             kelas_mhs_id:null
         },
         //table
-        datatableLoading:false,
-        expanded:[],
-        datatable:[],
+        datatableLoading: false,
+        expanded: [],
+        datatable: [],
         headers: [
             { text: 'KODE', value: 'kmatkul', sortable:true,width:100  },
             { text: 'NAMA MATAKULIAH', value: 'nmatkul',sortable:true, width:300 },
-            { text: 'SKS', value: 'sks', sortable:false,width:50 },
-            { text: 'SMT', value: 'semester', sortable:false,width:50 },
-            { text: 'KELAS', value: 'nama_kelas', sortable:false,width:200 },
-            { text: 'NAMA DOSEN', value: 'nama_dosen', sortable:false,width:200 },
-            { text: 'AKSI', value: 'actions', sortable:false,width:100 },
+            { text: 'SKS', value: 'sks', sortable: false,width:50 },
+            { text: 'SMT', value: 'semester', sortable: false,width:50 },
+            { text: 'KELAS', value: 'nama_kelas', sortable: false,width:200 },
+            { text: 'NAMA DOSEN', value: 'nama_dosen', sortable: false,width:200 },
+            { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],
     }),
     methods: {

@@ -171,7 +171,7 @@ export default {
     },
     data: () => ({
         btnLoading: false,
-        datatableLoading:false,
+        datatableLoading: false,
         //tables
         headers: [                        
             { text: 'NAMA PERMISSION', value: 'name' },
@@ -181,7 +181,7 @@ export default {
         search: "",
 
         role_name:null,
-        daftar_role:[],
+        daftar_role: [],
 
         daftar_permissions: [],
         permissions_selected: [],

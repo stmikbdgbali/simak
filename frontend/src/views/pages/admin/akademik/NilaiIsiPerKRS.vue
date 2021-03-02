@@ -140,17 +140,17 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
                 text:'AKADEMIK',
-                disabled:false,
+                disabled: false,
                 href:'/akademik'
             },
             {
                 text:'ISI NILAI',
-                disabled:false,
+                disabled: false,
                 href:'#'
             },
             {
@@ -183,14 +183,14 @@ export default {
         firstloading:true,
         prodi_id:null,
         nama_prodi:null,
-        daftar_ta:[],
+        daftar_ta: [],
         tahun_akademik:null,
         semester_akademik:null,
         
-        btnLoadingTable:false,
-        datatableLoading:false,
-        expanded:[],
-        datatable:[],      
+        btnLoadingTable: false,
+        datatableLoading: false,
+        expanded: [],
+        datatable: [],      
         headers: [
             { text: 'NIM', value: 'nim', sortable:true,width:100  },   
             { text: 'NAMA', value: 'nama_mhs', sortable:true,width:250  },   
@@ -203,7 +203,7 @@ export default {
         ],  
         search: "", 
 
-        dialogprintpdf:false,
+        dialogprintpdf: false,
         file_pdf:null
     }),
     methods: {

@@ -118,17 +118,17 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
                 text:'AKADEMIK',
-                disabled:false,
+                disabled: false,
                 href:'/akademik'
             },
             {
                 text:'DAFTAR ULANG',
-                disabled:false,
+                disabled: false,
                 href:'#'
             },
             {
@@ -153,10 +153,10 @@ export default {
         semester_akademik:null,
 
         btnLoading: false,
-        btnLoadingTable:false,
-        datatableLoading:false,
-        expanded:[],
-        datatable:[],      
+        btnLoadingTable: false,
+        datatableLoading: false,
+        expanded: [],
+        datatable: [],      
         headers: [
             { text: 'NO. FORMULIR', value: 'no_formulir', sortable:true,width:100  },   
             { text: 'NIM', value: 'nim', sortable:true,width:100  },   

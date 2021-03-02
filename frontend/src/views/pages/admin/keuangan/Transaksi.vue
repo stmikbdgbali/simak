@@ -248,12 +248,12 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.ACCESS_TOKEN
             },
             {
                 text:'KEUANGAN',
-                disabled:false,
+                disabled: false,
                 href:'/keuangan'
             },
             {
@@ -274,17 +274,17 @@ export default {
     },
     data: () => ({ 
         firstloading:true,
-        breadcrumbs:[],     
+        breadcrumbs: [],     
         prodi_id:null,
         nama_prodi:null, 
         tahun_akademik:0,
         btnLoading: false,       
-        filter_ignore:false, 
-        awaiting_search:false,
+        filter_ignore: false, 
+        awaiting_search: false,
 
         //tables
-        datatableLoading:false,       
-        datatable:[], 
+        datatableLoading: false,       
+        datatable: [], 
         headers: [                                                
             { text: 'KODE BILLING', value: 'no_transaksi',width:100,sortable:true },
             { text: 'TANGGAL', value: 'tanggal',width:100,sortable:true },
@@ -293,21 +293,21 @@ export default {
             { text: 'SMT', value: 'idsmt',width:50,sortable:true },
             { text: 'TOTAL', value: 'total',width:100,sortable:true },
             { text: 'STATUS', value: 'nama_status',width:50,sortable:true },            
-            { text: 'KET.', value: 'desc',width:150,sortable:false },            
+            { text: 'KET.', value: 'desc',width:150,sortable: false },            
             { text: 'AKSI', value: 'actions', sortable: false,width:50 },
         ],        
-        expanded:[],
+        expanded: [],
         search: "", 
 
         //dialog        
-        dialogdetailitem:false,
-        headers_detail:[
-            { text: 'KODE', value: 'kombi_id',width:50,sortable:false },
-            { text: 'NAMA KOMPONEN', value: 'nama_kombi',sortable:false },
-            { text: 'BIAYA', value: 'biaya',width:60,sortable:false },
-            { text: 'JUMLAH', value: 'jumlah',width:60,sortable:false },
-            { text: 'BULAN', value: 'bulan',width:60,sortable:false },
-            { text: 'JUMLAH', value: 'sub_total',width:60,sortable:false },
+        dialogdetailitem: false,
+        headers_detail: [
+            { text: 'KODE', value: 'kombi_id',width:50,sortable: false },
+            { text: 'NAMA KOMPONEN', value: 'nama_kombi',sortable: false },
+            { text: 'BIAYA', value: 'biaya',width:60,sortable: false },
+            { text: 'JUMLAH', value: 'jumlah',width:60,sortable: false },
+            { text: 'BULAN', value: 'bulan',width:60,sortable: false },
+            { text: 'JUMLAH', value: 'sub_total',width:60,sortable: false },
         ],
         //form data
         data_transaksi:{}, 

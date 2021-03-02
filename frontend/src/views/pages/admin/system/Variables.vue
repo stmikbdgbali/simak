@@ -93,17 +93,17 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.ACCESS_TOKEN
             },
             {
                 text:'KONFIGURASI SISTEM',
-                disabled:false,
+                disabled: false,
                 href:'/system-setting'
             },  
             {
                 text:'PERGURUAN TINGGI',
-                disabled:false,
+                disabled: false,
                 href:'#'
             },
             {
@@ -117,25 +117,25 @@ export default {
         this.initialize();
     },
     data: () => ({
-        breadcrumbs:[],        
+        breadcrumbs: [],        
         btnLoading: false,   
         //form
         form_valid: true,   
-        daftar_ta:[],
-        daftar_semester:[],
+        daftar_ta: [],
+        daftar_semester: [],
         formdata: {
             default_ta: "",
             default_semester: "",            
             tahun_pendaftaran:0,
         },
         //form rules        
-        rule_default_ta:[
+        rule_default_ta: [
             value => !!value||"Mohon untuk dipilih Tahun Akademik !!!",             
         ], 
-        rule_default_semester:[
+        rule_default_semester: [
             value => !!value||"Mohon untuk diisi Semester !!!",             
         ],
-        rule_tahun_pendaftaran:[
+        rule_tahun_pendaftaran: [
             value => !!value||"Mohon untuk dipilih Tahun Pendaftaran !!!",                                 
         ]
     }),

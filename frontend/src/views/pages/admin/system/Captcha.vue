@@ -74,12 +74,12 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.ACCESS_TOKEN
             },
             {
                 text:'KONFIGURASI SISTEM',
-                disabled:false,
+                disabled: false,
                 href:'/system-setting'
             },  
             {
@@ -91,8 +91,8 @@ export default {
         this.initialize();
     },
     data: () => ({
-        breadcrumbs:[],
-        datatableLoading:false,
+        breadcrumbs: [],
+        datatableLoading: false,
         btnLoading: false,
         //form
         form_valid: true,
@@ -101,10 +101,10 @@ export default {
             privateKey:''
         },
         //form rules
-        rule_site_key:[
+        rule_site_key: [
             value => !!value||"Mohon untuk di isi site key !!!",
         ],
-        rule_private_key:[
+        rule_private_key: [
             value => !!value||"Mohon untuk di isi private key !!!",
         ],
     }),

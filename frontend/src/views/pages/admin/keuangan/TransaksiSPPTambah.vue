@@ -245,17 +245,17 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
                 text:'KEUANGAN',
-                disabled:false,
+                disabled: false,
                 href:'/keuangan'
             },
             {
                 text:'TRANSAKSI SPP',
-                disabled:false,
+                disabled: false,
                 href:'/keuangan/transaksi-spp'
             },
             {
@@ -270,19 +270,19 @@ export default {
     data: () => ({
         transaksi_id:null,
         data_transaksi:null,
-        item_selected:[],
+        item_selected: [],
 
-        breadcrumbs:[],     
+        breadcrumbs: [],     
         tahun_akademik:0,
         btnLoading: false,              
         //tables
-        datatableLoading:false,       
-        datatable:[], 
+        datatableLoading: false,       
+        datatable: [], 
         headers: [                                                
-            { text: 'NO. BULAN', value: 'no_bulan',width:120,sortable:false },
-            { text: 'BULAN', value: 'nama_bulan',sortable:false },            
-            { text: 'TAHUN', value: 'tahun',sortable:false },            
-            { text: 'BIAYA KOMBI', value: 'biaya_kombi',sortable:false },   
+            { text: 'NO. BULAN', value: 'no_bulan',width:120,sortable: false },
+            { text: 'BULAN', value: 'nama_bulan',sortable: false },            
+            { text: 'TAHUN', value: 'tahun',sortable: false },            
+            { text: 'BIAYA KOMBI', value: 'biaya_kombi',sortable: false },   
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },           
         ],              
         //form

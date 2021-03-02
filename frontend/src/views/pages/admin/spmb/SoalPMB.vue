@@ -322,12 +322,12 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
                 text:'SPMB',
-                disabled:false,
+                disabled: false,
                 href:'/spmb'
             },
             {
@@ -350,29 +350,29 @@ export default {
         nama_semester_pendaftaran:null,
 
         btnLoading: false,
-        datatableLoading:false,
-        expanded:[],
-        datatable:[],
+        datatableLoading: false,
+        expanded: [],
+        datatable: [],
         headers: [                                    
             { text: 'NAMA SOAL', value: 'soal'},   
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],
-        headers_detail:[
+        headers_detail: [
             { text: 'JAWABAN', value: 'jawaban', sortable: false,}, 
             { text: 'KET.', value: 'status', sortable: false,width:100 },
         ],
         search: "",    
 
         //dialog
-        dialogfrm:false,
-        dialogdetailitem:false,
-        dialogeditfrm:false,
-        daftar_soal_jawaban:[],
+        dialogfrm: false,
+        dialogdetailitem: false,
+        dialogeditfrm: false,
+        daftar_soal_jawaban: [],
 
         //form data   
         form_valid: true,    
         image_prev:null,      
-        daftar_jawaban:[
+        daftar_jawaban: [
             {
                 id:1,
                 text:'JAWABAN KE 1'
@@ -418,16 +418,16 @@ export default {
         editedIndex: -1,
 
         //form rules      
-        rule_soal:[
+        rule_soal: [
             value => !!value||"Mohon untuk di isi soal !!!",              
         ], 
-        rule_gambar:[            
+        rule_gambar: [            
             value =>  !value || value.size < 2000000 || 'File gambar harus kurang dari 2MB.'                
         ],
-        rule_jawaban:[
+        rule_jawaban: [
             value => !!value||"Mohon isi jawaban dari soal ini",              
         ], 
-        rule_jawaban_benar:[
+        rule_jawaban_benar: [
             value => !!value||"Mohon pilih jawaban benar dari soal ini",              
         ], 
     }),

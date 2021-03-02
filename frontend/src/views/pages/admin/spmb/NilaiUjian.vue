@@ -256,12 +256,12 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
                 text:'SPMB',
-                disabled:false,
+                disabled: false,
                 href:'/spmb'
             },
             {
@@ -284,16 +284,16 @@ export default {
         tahun_pendaftaran:null,
         nama_prodi:null,
 
-        dialogprofilmhsbaru:false,
-        dialogfrm:false,
+        dialogprofilmhsbaru: false,
+        dialogfrm: false,
 
-        breadcrumbs:[],        
+        breadcrumbs: [],        
         dashboard:null,
 
         btnLoading: false,
-        datatableLoading:false,
-        expanded:[],
-        datatable:[],
+        datatableLoading: false,
+        expanded: [],
+        datatable: [],
         headers: [                        
             { text:  "", value: 'foto', width:70 },               
             { text: 'NO. FORMULIR', value: 'no_formulir',width:135,sortable:true },
@@ -313,9 +313,9 @@ export default {
 
         data_mhs:{},
         
-        daftar_prodi:[],
+        daftar_prodi: [],
 
-        daftar_status:[
+        daftar_status: [
             {
                 value:'0',
                 text:'TIDAK LULUS',
@@ -359,10 +359,10 @@ export default {
         },
         editedItem:-1,
 
-        rule_prodi:[
+        rule_prodi: [
             value => !!value||"Mohon dipilih Prodi Mahasiswa ini !!!"
         ], 
-        rule_status:[
+        rule_status: [
             value => !!value||"Mohon dipilih status kelulusan mahasiswan ini !!!"
         ], 
     }),

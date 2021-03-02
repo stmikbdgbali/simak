@@ -252,12 +252,12 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.ACCESS_TOKEN
             },
             {
                 text:'DATA MASTER',
-                disabled:false,
+                disabled: false,
                 href:'#'
             },
             {
@@ -270,21 +270,21 @@ export default {
     },  
     data: () => ({ 
         btnLoading: false,
-        datatableLoading:false,
-        expanded:[],
-        datatable:[],        
+        datatableLoading: false,
+        expanded: [],
+        datatable: [],        
         search: "",    
         firstloading:true,
 
         //dialog
-        dialogfrm:false,
-        dialogdetailitem:false,
+        dialogfrm: false,
+        dialogdetailitem: false,
 
         //form data   
         form_valid: true,   
-        daftar_fakultas:[],           
+        daftar_fakultas: [],           
 
-        daftar_jenjang:[],      
+        daftar_jenjang: [],      
         jenjang_studi:null,          
         kode_prodi: "",          
         formdata: {
@@ -308,26 +308,26 @@ export default {
             config:{}
         },
         dosen_id:null,
-        daftar_dosen:[],
+        daftar_dosen: [],
         editedIndex: -1,
 
         //form rules 
-        rule_kode_fakultas:[
+        rule_kode_fakultas: [
             value => !!value||"Mohon fakultas untuk dipilih !!!",              
         ],  
-        rule_kode_prodi:[
+        rule_kode_prodi: [
             value => !!value||"Kode Program Studi mohon untuk diisi !!!",
             value => /^[1-9]{1}[0-9]{1,14}$/.test(value) || 'Kode Program Studi hanya boleh angka',
         ], 
-        rule_nama_prodi:[
+        rule_nama_prodi: [
             value => !!value||"Mohon Nama Program Studi untuk diisi !!!",  
             value => /^[A-Za-z\s]*$/.test(value) || 'Nama Program Studi hanya boleh string dan spasi',                
         ], 
-        rule_nama_prodi_alias:[
+        rule_nama_prodi_alias: [
             value => !!value||"Mohon Nama Singkat Program Studi untuk diisi !!!",  
             value => /^[A-Za-z\s]*$/.test(value) || 'Nama Singkat Program Studi hanya boleh string dan spasi',                
         ], 
-        rule_kode_jenjang:[
+        rule_kode_jenjang: [
             value => !!value||"Mohon Jenjang Studi untuk dipilih !!!",              
         ], 
     }),

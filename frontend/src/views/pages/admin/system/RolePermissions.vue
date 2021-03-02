@@ -130,7 +130,7 @@ export default {
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },          
         ],
         search: "",        
-        perm_selected:[]
+        perm_selected: []
     }),
     methods: {
         save()

@@ -353,22 +353,22 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
                 text:'AKADEMIK',
-                disabled:false,
+                disabled: false,
                 href:'/akademik'
             },
             {
                 text:'NILAI',
-                disabled:false,
+                disabled: false,
                 href:'#'
             },            
             {
                 text:'KONVERSI MAHASISWA PINDAHAN/AMPULAN',
-                disabled:false,
+                disabled: false,
                 href:'/akademik/nilai/konversi'
             },
             {
@@ -390,25 +390,25 @@ export default {
         tahun_pendaftaran:null,
 
         btnLoading: false,
-        btnLoadingTable:false,
-        datatableLoading:false,        
-        datatable:[],      
+        btnLoadingTable: false,
+        datatableLoading: false,        
+        datatable: [],      
         headers: [            
-            { text: 'KODE', value: 'kmatkul', sortable:false, width:100  },               
-            { text: 'NAMA', value: 'nmatkul', sortable:false, width:250  },               
-            { text: 'SKS', value: 'sks',sortable:false, width:70 },                           
+            { text: 'KODE', value: 'kmatkul', sortable: false, width:100  },               
+            { text: 'NAMA', value: 'nmatkul', sortable: false, width:250  },               
+            { text: 'SKS', value: 'sks',sortable: false, width:70 },                           
             { text: 'SMT', value: 'semester',sortable:true,width:70, },                           
-            { text: 'KODE MATKUL ASAL', value: 'kmatkul_asal',sortable:false,width:120 },                           
-            { text: 'MATAKULIAH ASAL', value: 'matkul_asal',sortable:false,width:170 },                           
-            { text: 'SKS ASAL', value: 'sks_asal',sortable:false,width:70},                           
-            { text: 'NILAI', value: 'n_kual',sortable:false,width:70},                                       
+            { text: 'KODE MATKUL ASAL', value: 'kmatkul_asal',sortable: false,width:120 },                           
+            { text: 'MATAKULIAH ASAL', value: 'matkul_asal',sortable: false,width:170 },                           
+            { text: 'SKS ASAL', value: 'sks_asal',sortable: false,width:70},                           
+            { text: 'NILAI', value: 'n_kual',sortable: false,width:70},                                       
         ],  
 
-        dialogprintpdf:false,
+        dialogprintpdf: false,
         file_pdf:null,
 
         form_valid: true,   
-        daftar_jenjang:[],                        
+        daftar_jenjang: [],                        
         data_konversi:{
             'id':null,
             'user_id': "",
@@ -429,8 +429,8 @@ export default {
         },        
         
         //profil mahasiswa        
-        entries:[],
-        isLoading:false,
+        entries: [],
+        isLoading: false,
         data_mhs:null,
         search:null
     }),

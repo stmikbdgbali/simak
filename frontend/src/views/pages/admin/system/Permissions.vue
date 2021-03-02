@@ -144,12 +144,12 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.ACCESS_TOKEN
             },
             {
                 text:'USER SISTEM',
-                disabled:false,
+                disabled: false,
                 href:'/system-users'
             },
             {
@@ -161,10 +161,10 @@ export default {
         this.initialize();
     },
     data: () => ({
-        breadcrumbs:[],
-        datatableLoading:false,
+        breadcrumbs: [],
+        datatableLoading: false,
         btnLoading: false,  
-        expanded:[],        
+        expanded: [],        
         daftar_permissions: [],
         //tables
         headers: [                        
@@ -192,7 +192,7 @@ export default {
             updated_at:  "",           
         },
         //form rules        
-        rule_permission_name:[
+        rule_permission_name: [
             value => !!value||"Mohon untuk di isi nama Permission !!!",  
             value => /^[0-9\\a-zA-Z\\-]+$/.test(value) || 'Nama Permission hanya boleh angka,huruf,dan tanda -',                
         ], 

@@ -204,17 +204,17 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
                 text:'AKADEMIK',
-                disabled:false,
+                disabled: false,
                 href:'/akademik'
             },
             {
                 text:'NILAI',
-                disabled:false,
+                disabled: false,
                 href:'#'
             },
             {
@@ -236,23 +236,23 @@ export default {
         tahun_pendaftaran:null,
 
         btnLoading: false,
-        btnLoadingTable:false,
-        datatableLoading:false,
-        expanded:[],
-        datatable:[],      
+        btnLoadingTable: false,
+        datatableLoading: false,
+        expanded: [],
+        datatable: [],      
         headers: [            
             { text: 'NIM', value: 'nim_asal', sortable:true,width:100  },               
             { text: 'NAMA', value: 'nama_mhs', sortable:true,width:250  },               
             { text: 'ALAMAT', value: 'alamat',sortable:true,width:200 },                           
             { text: 'NO. TELP', value: 'no_telp',sortable:true,width:120, },                           
-            { text: 'JUMLAH MATKUL', value: 'jumlah_matkul',sortable:false,width:100, },                           
-            { text: 'JUMLAH SKS', value: 'jumlah_sks',sortable:false,width:100, },                           
+            { text: 'JUMLAH MATKUL', value: 'jumlah_matkul',sortable: false,width:100, },                           
+            { text: 'JUMLAH SKS', value: 'jumlah_sks',sortable: false,width:100, },                           
             { text: 'NIM SISTEM', value: 'nim',sortable:true,width:100, },                           
             { text: 'AKSI', value: 'actions', sortable: false,width:150 },
         ],  
         search: "", 
 
-        dialogprintpdf:false,
+        dialogprintpdf: false,
         file_pdf:null
     }),
     methods: {

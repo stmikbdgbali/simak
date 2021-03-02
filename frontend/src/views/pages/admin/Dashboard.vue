@@ -290,7 +290,7 @@ export default {
 		this.breadcrumbs = [
 			{
 				text:'HOME',
-				disabled:false,
+				disabled: false,
 				href:'/dashboard/'+this.TOKEN
 			},
 			{
@@ -304,7 +304,7 @@ export default {
 		this.initialize();
 	},
 	data: () => ({
-		breadcrumbs:[],
+		breadcrumbs: [],
 		TOKEN:null,
 		dashboard:null,
 

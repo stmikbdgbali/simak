@@ -165,17 +165,17 @@ export default {
         this.breadcrumbs = [
             {
                 text:'HOME',
-                disabled:false,
+                disabled: false,
                 href:'/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
                 text:'AKADEMIK',
-                disabled:false,
+                disabled: false,
                 href:'/akademik'
             },
             {
                 text:'NILAI',
-                disabled:false,
+                disabled: false,
                 href:'#'
             },
             {
@@ -195,26 +195,26 @@ export default {
         prodi_id:null,
         nama_prodi:null,
         tahun_pendaftaran:null,
-        filter_ignore:false, 
-        awaiting_search:false,
+        filter_ignore: false, 
+        awaiting_search: false,
         
         btnLoading: false,
-        btnLoadingTable:false,
-        datatableLoading:false,
-        expanded:[],
-        datatable:[],      
+        btnLoadingTable: false,
+        datatableLoading: false,
+        expanded: [],
+        datatable: [],      
         headers: [            
             { text: 'NIM', value: 'nim', sortable:true,width:100  },               
             { text: 'NAMA MAHASISWA', value: 'nama_mhs',sortable:true },                           
             { text: 'KELAS', value: 'idkelas',sortable:true,width:120, },                           
-            { text: 'JUMLAH MATKUL', value: 'jumlah_matkul',sortable:false,width:100, },                           
-            { text: 'JUMLAH SKS', value: 'jumlah_sks',sortable:false,width:100, },                           
+            { text: 'JUMLAH MATKUL', value: 'jumlah_matkul',sortable: false,width:100, },                           
+            { text: 'JUMLAH SKS', value: 'jumlah_sks',sortable: false,width:100, },                           
             { text: 'IPK SEMENTARA', value: 'ipk',sortable:true,width:100, },                           
             { text: 'AKSI', value: 'actions', sortable: false,width:120 },
         ],  
         search: "", 
 
-        dialogprintpdf:false,
+        dialogprintpdf: false,
         file_pdf:null
     }),
     methods: {
