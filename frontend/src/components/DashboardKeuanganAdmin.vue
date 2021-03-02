@@ -3,12 +3,12 @@
         <v-row dense>
             <v-col xs="12" sm="4" md="3">
                 <v-card                         
-                    class="clickable blue darken-1"
+                    class="clickable green darken-1"
                     color="#385F73" 
                     @click.native="$router.push('/spmb/pendaftaranbaru')"
                     dark>
                     <v-card-title class="headline">
-                        TOTAL TRANSAKSI
+                        TOTAL
                     </v-card-title>    
                     <v-card-subtitle>
                         Total transaksi keseluruhan
@@ -21,12 +21,12 @@
             <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>  
             <v-col xs="12" sm="4" md="3">
                 <v-card                         
-                    class="clickable blue darken-1"
+                    class="clickable green darken-1"
                     color="#385F73" 
                     @click.native="$router.push('/spmb/pendaftaranbaru')"
                     dark>
                     <v-card-title class="headline">
-                        TRANSAKSI PAID
+                        PAID
                     </v-card-title>    
                     <v-card-subtitle>
                         Total transaksi dengan status PAID
@@ -39,12 +39,12 @@
             <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>  
             <v-col xs="12" sm="4" md="3">
                 <v-card                         
-                    class="clickable blue darken-1"
+                    class="clickable green darken-1"
                     color="#385F73" 
                     @click.native="$router.push('/spmb/pendaftaranbaru')"
                     dark>
                     <v-card-title class="headline">
-                        TRANSAKSI UNPAID
+                        UNPAID
                     </v-card-title>    
                     <v-card-subtitle>
                         Total transaksi dengan status UNPAID
@@ -57,12 +57,12 @@
             <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>  
             <v-col xs="12" sm="4" md="3">
                 <v-card                         
-                    class="clickable blue darken-1"
+                    class="clickable green darken-1"
                     color="#385F73" 
                     @click.native="$router.push('/spmb/pendaftaranbaru')"
                     dark>
                     <v-card-title class="headline">
-                        TRANSAKSI CANCELLED
+                        CANCELLED
                     </v-card-title>    
                     <v-card-subtitle>
                         Total transaksi dengan status CANCELLED
