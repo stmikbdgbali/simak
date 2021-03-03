@@ -74,7 +74,7 @@
                         :headers="headers"
                         :items="datatable" 
                         :search="search"                       
-                        item-key="id"
+                        item-key="kombi_id"
                         sort-by="idkelas"
                         show-expand
                         :disable-pagination="true"
