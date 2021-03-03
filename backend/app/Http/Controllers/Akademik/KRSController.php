@@ -632,7 +632,7 @@ class KRSController extends Controller
                 $file_pdf=\App\Helpers\Helper::public_path("exported/pdf/krs_".$krs->id.'.pdf');
                 $pdf->save($file_pdf);
 
-                $pdf_file="storage/exported/pdf/krs_".$krs->id.".pdf";
+                $pdf_file="storages/exported/pdf/krs_".$krs->id.".pdf";
 
                 return Response()->json([
                                         'status'=>1,

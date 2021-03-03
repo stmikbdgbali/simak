@@ -1,4 +1,6 @@
 public/storage
+public/storages
+/storages
 /vendor
 /.idea
 Homestead.json
