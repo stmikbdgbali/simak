@@ -292,11 +292,11 @@ export default {
         },
 
         rule_dw: [
-            value => !!value||"Mohon dipilih Dosen Wali untuk Mahasiswa ini !!!"
+            value => !!value || "Mohon dipilih Dosen Wali untuk Mahasiswa ini !!!"
         ],         
     }),
     methods: {
-        initialize: async function () 
+        initialize: async function() 
         {
             this.datatableLoading=true;
             await this.$ajax.get('/system/usersdosen/biodatadiri/'+this.dosen_id,             
@@ -306,15 +306,15 @@ export default {
                     }
                 },
                 
-            ).then(({data})=>{   
+            ).then(({ data })=>{   
                 this.data_dosen=data.biodatadiri;                                           
             });       
 
             await this.$ajax.get('/akademik/dosenwali/'+this.dosen_id,{
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
-            }).then(({data})=>{               
+            }).then(({ data })=>{               
                 this.daftar_mahasiswa = data.daftar_mahasiswa;                
                 this.datatableLoading=false;
             });          
@@ -339,7 +339,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{                                  
+            }).then(({ data })=>{                                  
                 this.dialogfrm=true;
                 this.daftar_dw = data.users; 
                 this.formdata.dosen_id = this.dosen_id;
@@ -351,18 +351,18 @@ export default {
             this.$ajax.post('/akademik/kemahasiswaan/updatedw/'+this.data_mhs.user_id,
                 {
                     '_method': 'PUT',
-                    'dosen_id':this.formdata.dosen_id,
+                    'dosen_id': this.formdata.dosen_id,
                 },
                 {
                     headers: {
-                        Authorization:this.TOKEN
+                        Authorization: this.TOKEN
                     }
                 }
             ).then(()=>{   
                 this.$router.go();
-                this.btnLoading=false;
+                this.btnLoading = false;
             }).catch(()=>{
-                this.btnLoading=false;
+                this.btnLoading = false;
             });
         },        
         closedialogfrm () {            

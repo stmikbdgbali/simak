@@ -145,14 +145,14 @@ export default {
                     this.datatableLoading=true;            
                     await this.$ajax.post('/spmb/nilaiujian',
                     {
-                        TA:this.tahun_pendaftaran,
-                        prodi_id:this.prodi_id,
+                        TA: this.tahun_pendaftaran,
+                        prodi_id: this.prodi_id,
                     },
                     {
                         headers: {
                             Authorization: this.$store.getters["auth/Token"]
                         }
-                    }).then(({data})=>{               
+                    }).then(({ data })=>{               
                         this.datatable = data.pmb;                
                         this.datatableLoading=false;
                     });                             
@@ -189,7 +189,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{   
+            }).then(({ data })=>{   
                 if (data.transaksi_status==1)
                 {
                     this.dialogfrm=true;        
@@ -223,11 +223,11 @@ export default {
                     this.$ajax.post('/spmb/nilaiujian/'+this.formdata.user_id,
                     {
                         _method: 'put',
-                        no_transaksi:this.data_mhs.no_transaksi,
-                        nilai:this.formdata.nilai,
-                        kjur:this.formdata.kjur,
-                        ket_lulus:this.formdata.ket_lulus,
-                        desc:this.formdata.desc,
+                        no_transaksi: this.data_mhs.no_transaksi,
+                        nilai: this.formdata.nilai,
+                        kjur: this.formdata.kjur,
+                        ket_lulus: this.formdata.ket_lulus,
+                        desc: this.formdata.desc,
                     },                    
                     {
                         headers: {
@@ -235,23 +235,23 @@ export default {
                         }
                     }
                     ).then(()=>{               
-                        this.btnLoading=false;          
+                        this.btnLoading = false;          
                         this.closedialogfrm();
                         this.initialize();
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });   
                 }
                 else
                 {
                     this.$ajax.post('/spmb/nilaiujian/store',
                     {
-                        no_transaksi:this.data_mhs.no_transaksi,
-                        user_id:this.data_mhs.id,
-                        nilai:this.formdata.nilai,
-                        kjur:this.formdata.kjur,
-                        ket_lulus:this.formdata.ket_lulus,
-                        desc:this.formdata.desc,
+                        no_transaksi: this.data_mhs.no_transaksi,
+                        user_id: this.data_mhs.id,
+                        nilai: this.formdata.nilai,
+                        kjur: this.formdata.kjur,
+                        ket_lulus: this.formdata.ket_lulus,
+                        desc: this.formdata.desc,
                     },                    
                     {
                         headers: {
@@ -259,11 +259,11 @@ export default {
                         }
                     }
                     ).then(()=>{               
-                        this.btnLoading=false;          
+                        this.btnLoading = false;          
                         this.closedialogfrm();
                         this.initialize();
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });   
                 }                
             
@@ -284,10 +284,10 @@ export default {
                         }
                     }
                     ).then(()=>{               
-                        this.btnLoading=false;                          
+                        this.btnLoading = false;                          
                         this.initialize();
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });   
                 }
             });

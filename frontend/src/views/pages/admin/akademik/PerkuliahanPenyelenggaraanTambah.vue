@@ -316,7 +316,7 @@ export default {
         formdata: [],
         daftar_matkul_selected: [],
         rule_tamatkul: [
-            value => !!value||"Mohon tahun matakuliah untuk dipilih !!!",              
+            value => !!value || "Mohon tahun matakuliah untuk dipilih !!!",              
         ]        
 
     }),
@@ -337,16 +337,16 @@ export default {
             this.datatableLoading=true;
             await this.$ajax.post('/akademik/matakuliah/penyelenggaraan',
             {
-                prodi_id:this.prodi_id,
+                prodi_id: this.prodi_id,
                 ta_matkul:val,
-                ta_akademik:this.tahun_akademik,
-                semester_akademik:this.semester_akademik,
+                ta_akademik: this.tahun_akademik,
+                semester_akademik: this.semester_akademik,
             },
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{               
+            }).then(({ data })=>{               
                 this.datatable = data.matakuliah;
                 this.datatableLoading=false;
             }).catch(()=>{
@@ -360,20 +360,20 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{
+            }).then(({ data })=>{
                 this.formdata=data.matakuliah;
             });
             this.dialogdetailitem=true;                        
         },    
-        save:async function () {
+        save:async function() {
             if (this.$refs.frmdata.validate())
             {                
                 this.btnLoading=true;
                 await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/store',
                     {
-                        prodi_id:this.prodi_id,
-                        ta:this.tahun_akademik,
-                        semester_akademik:this.semester_akademik,                          
+                        prodi_id: this.prodi_id,
+                        ta: this.tahun_akademik,
+                        semester_akademik: this.semester_akademik,                          
                         matkul_selected:JSON.stringify(Object.assign({},this.daftar_matkul_selected)),                                                                    
                     },
                     {
@@ -382,10 +382,10 @@ export default {
                         }
                     }
                 ).then(()=>{                       
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                     this.closedialogfrm();
                 }).catch(()=>{
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                 });
             }
         },

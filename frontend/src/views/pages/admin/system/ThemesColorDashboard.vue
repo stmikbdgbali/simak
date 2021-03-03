@@ -123,15 +123,15 @@ export default {
         },        
     }),
     methods: {
-        initialize:async function () 
+        initialize:async function() 
         {
             this.datatableLoading=true;
             await this.$ajax.get('/system/setting/variables',
             {
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
-            }).then(({data})=>{  
+            }).then(({ data })=>{  
                 let setting = JSON.parse(data.setting.COLOR_DASHBOARD);              
                 this.showColor=setting.dmaster;                             
                 this.formdata.dmaster=setting.dmaster;            
@@ -191,18 +191,18 @@ export default {
                         '_method': 'PUT', 
                         'pid': 'Color Dashboard',
                         setting:JSON.stringify({
-                            807:this.formdata,                            
+                            807: this.formdata,                            
                         }),                                                                                                                            
                     },
                     {
                         headers: {
-                            Authorization:this.TOKEN
+                            Authorization: this.TOKEN
                         }
                     }
                 ).then(()=>{                       
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                 }).catch(()=>{
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                 });        
                 this.$store.dispatch('uiadmin/init',this.$ajax); 
             }

@@ -180,19 +180,19 @@ export default {
         {
             this.prodi_id=id;
         },
-        initialize:async function () 
+        initialize:async function() 
         {
             this.datatableLoading=true;
             await this.$ajax.post('/akademik/kemahasiswaan/daftarmhs',
             {
-                prodi_id:this.prodi_id,
-                ta:this.tahun_pendaftaran
+                prodi_id: this.prodi_id,
+                ta: this.tahun_pendaftaran
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters['auth/Token']
                 }
-            }).then(({data})=>{               
+            }).then(({ data })=>{               
                 this.datatable = data.mahasiswa;
                 this.datatableLoading=false;
             }).catch(()=>{
@@ -212,22 +212,22 @@ export default {
                 this.expanded=[item];
             }               
         },
-        printtoexcel:async function ()
+        printtoexcel:async function()
         {
             this.btnLoading=true;
             await this.$ajax.post('/akademik/kemahasiswaan/daftarmhs/printtoexcel',
                 {
-                    TA:this.tahun_pendaftaran,                                                                
-                    prodi_id:this.prodi_id,    
-                    nama_prodi:this.nama_prodi,                 
+                    TA: this.tahun_pendaftaran,                                                                
+                    prodi_id: this.prodi_id,    
+                    nama_prodi: this.nama_prodi,                 
                 },
                 {
                     headers: {
-                        Authorization:this.$store.getters['auth/Token']
+                        Authorization: this.$store.getters['auth/Token']
                     },
                     responseType: 'arraybuffer'
                 }
-            ).then(({data})=>{              
+            ).then(({ data })=>{              
                 const url = window.URL.createObjectURL(new Blob([data]));
                 const link = document.createElement('a');
                 link.href = url;
@@ -236,29 +236,29 @@ export default {
                 document.body.appendChild(link);
                 link.click();                     
                 document.body.removeChild(link);
-                this.btnLoading=false;
+                this.btnLoading = false;
             }).catch(()=>{
-                this.btnLoading=false;
+                this.btnLoading = false;
             });     
         },    
-        syncPermission:async function ()
+        syncPermission:async function()
         {
             this.btnLoading=true;
             await this.$ajax.post('/system/users/syncallpermissions',
                 {
                     role_name: 'mahasiswa',
-                    TA:this.tahun_pendaftaran,                    
-                    prodi_id:this.prodi_id                     
+                    TA: this.tahun_pendaftaran,                    
+                    prodi_id: this.prodi_id                     
                 },
                 {
                     headers: {
-                        Authorization:this.$store.getters['auth/Token']
+                        Authorization: this.$store.getters['auth/Token']
                     }
                 }
             ).then(()=>{                   
-                this.btnLoading=false;
+                this.btnLoading = false;
             }).catch(()=>{
-                this.btnLoading=false;
+                this.btnLoading = false;
             });     
         },
     },

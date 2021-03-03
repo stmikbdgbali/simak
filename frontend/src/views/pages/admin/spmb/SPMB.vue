@@ -298,13 +298,13 @@ export default {
             this.datatableLoading=true;            
             await this.$ajax.post('/dashboard/pmb',
             {
-                TA:this.tahun_pendaftaran,                
+                TA: this.tahun_pendaftaran,                
             },
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{                            
+            }).then(({ data })=>{                            
                 this.daftar_registrasi = data.daftar_registrasi;
                 this.total_registrasi = data.total_registrasi;
                 

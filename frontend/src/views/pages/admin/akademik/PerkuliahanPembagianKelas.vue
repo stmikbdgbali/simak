@@ -304,18 +304,18 @@ export default {
         },         
 
         rule_hari: [
-            value => !!value||"Mohon dipilih hari mengajar!!!"
+            value => !!value || "Mohon dipilih hari mengajar!!!"
         ],
         rule_jam_masuk: [
-            value => !!value||"Mohon diisi jam masuk mengajar!!!",
+            value => !!value || "Mohon diisi jam masuk mengajar!!!",
             value => /^([0-9]|0[0-9]|1[0-9]|2[0-3]): [0-5][0-9]$/.test(value) || 'Format jam masuk mengajar hh:mm, misalnya 15:30'
         ],
         rule_jam_keluar: [
-            value => !!value||"Mohon diisi jam keluar mengajar!!!",
+            value => !!value || "Mohon diisi jam keluar mengajar!!!",
             value => /^([0-9]|0[0-9]|1[0-9]|2[0-3]): [0-5][0-9]$/.test(value) || 'Format jam keluar mengajar hh:mm, misalnya 15:00'
         ],
         rule_ruang_kelas: [
-            value => !!value||"Mohon dipilih ruang kelas mengajar!!!"
+            value => !!value || "Mohon dipilih ruang kelas mengajar!!!"
         ],
 
     }),
@@ -328,19 +328,19 @@ export default {
         {
             this.semester_akademik=semester;
         },        
-        initialize: async function () 
+        initialize: async function() 
         {
             this.datatableLoading=true;
             await this.$ajax.post('/akademik/perkuliahan/pembagiankelas',
             {
-                ta:this.tahun_akademik,
-                semester_akademik:this.semester_akademik,
+                ta: this.tahun_akademik,
+                semester_akademik: this.semester_akademik,
             },
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{                               
+            }).then(({ data })=>{                               
                 this.datatable = data.pembagiankelas;
                 this.datatableLoading=false;
             }).catch(()=>{
@@ -365,13 +365,13 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{
+            }).then(({ data })=>{
                 this.daftar_ruang_kelas = data.ruangan;                 
                 this.formdata = Object.assign({}, item);
                 this.dialogfrm = true;               
             });
         },    
-        save:async function () {
+        save:async function() {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading=true;
@@ -379,10 +379,10 @@ export default {
                 await this.$ajax.post('/akademik/perkuliahan/pembagiankelas/'+this.formdata.id,
                     {
                         '_method': 'PUT',                        
-                        hari:this.formdata.hari,                            
-                        jam_masuk:this.formdata.jam_masuk,
-                        jam_keluar:this.formdata.jam_keluar,                        
-                        ruang_kelas_id:this.formdata.ruang_kelas_id,                            
+                        hari: this.formdata.hari,                            
+                        jam_masuk: this.formdata.jam_masuk,
+                        jam_keluar: this.formdata.jam_keluar,                        
+                        ruang_kelas_id: this.formdata.ruang_kelas_id,                            
                     },
                     {
                         headers: {
@@ -390,11 +390,11 @@ export default {
                         }
                     }
                 ).then(()=>{
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                     this.closedialogfrm();
                     this.initialize();
                 }).catch(()=>{
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                 });
             }
         },            

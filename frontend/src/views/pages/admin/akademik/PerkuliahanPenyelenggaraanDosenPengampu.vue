@@ -207,7 +207,7 @@ export default {
             is_ketua: false,
         },        
         rule_dosen: [
-            value => !!value||"Mohon dipilih Dosen untuk matakuliah ini !!!"
+            value => !!value || "Mohon dipilih Dosen untuk matakuliah ini !!!"
         ],
     }),
     methods: {   
@@ -215,14 +215,14 @@ export default {
         {
             await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/pengampu',            
             {
-                idpenyelenggaraan:this.formdata.idpenyelenggaraan,
+                idpenyelenggaraan: this.formdata.idpenyelenggaraan,
                 pid: 'terdaftar'
             },
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{                               
+            }).then(({ data })=>{                               
                 this.datatable = data.dosen;                
             })  
         },
@@ -233,7 +233,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{                               
+            }).then(({ data })=>{                               
                 this.data_matkul = data.penyelenggaraan;                
             })  
         },
@@ -241,26 +241,26 @@ export default {
         {
             await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/pengampu',            
             {
-                idpenyelenggaraan:this.formdata.idpenyelenggaraan,
+                idpenyelenggaraan: this.formdata.idpenyelenggaraan,
                 pid: 'belumterdaftar'
             },
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{                               
+            }).then(({ data })=>{                               
                 this.daftar_dosen = data.dosen;                
             })  
         },
-        save:async function () {
+        save:async function() {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading=true;
                 await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/storedosenpengampu',
                     {
-                        penyelenggaraan_id:this.formdata.idpenyelenggaraan, 
-                        dosen_id:this.formdata.dosen_id,                                                    
-                        is_ketua:this.formdata.is_ketua,                                                                                                                               
+                        penyelenggaraan_id: this.formdata.idpenyelenggaraan, 
+                        dosen_id: this.formdata.dosen_id,                                                    
+                        is_ketua: this.formdata.is_ketua,                                                                                                                               
                     },
                     {
                         headers: {
@@ -269,13 +269,13 @@ export default {
                     }
                 ).then(()=>{   
                     setTimeout(() => {
-                        this.btnLoading=false;                    
+                        this.btnLoading = false;                    
                         this.$router.go();                                 
                         }, 500
                     );
                     
                 }).catch(()=>{
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                 });
             }
         },
@@ -324,7 +324,7 @@ export default {
                 );
                 
             }).catch(()=>{
-                this.btnLoading=false;
+                this.btnLoading = false;
             });
         }
     },

@@ -263,15 +263,15 @@ export default {
             dosen_id: ''           
         },
         rule_nim: [
-            value => !!value||"Nomor Induk Mahasiswa (NIM) mohon untuk diisi !!!",
+            value => !!value || "Nomor Induk Mahasiswa (NIM) mohon untuk diisi !!!",
             value => /^[0-9]+$/.test(value) || 'Nomor Induk Mahasiswa (NIM) hanya boleh angka',
         ], 
         rule_nirm: [
-            value => !!value||"Nomor Induk Registrasi Masuk (NIRM) mohon untuk diisi !!!",
+            value => !!value || "Nomor Induk Registrasi Masuk (NIRM) mohon untuk diisi !!!",
             value => /^[0-9]+$/.test(value) || 'Nomor Induk Registrasi Masuk (NIRM) hanya boleh angka',
         ], 
         rule_dw: [
-            value => !!value||"Mohon dipilih Dosen Wali untuk Mahasiswa ini !!!"
+            value => !!value || "Mohon dipilih Dosen Wali untuk Mahasiswa ini !!!"
         ],         
     }),
     methods: {
@@ -283,19 +283,19 @@ export default {
         {
             this.prodi_id=id;
         },
-        initialize: async function () 
+        initialize: async function() 
         {
             this.datatableLoading=true;
             await this.$ajax.post('/akademik/dulang/mhsbelumpunyanim',
             {
-                prodi_id:this.prodi_id,
-                ta:this.tahun_pendaftaran
+                prodi_id: this.prodi_id,
+                ta: this.tahun_pendaftaran
             },
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{               
+            }).then(({ data })=>{               
                 this.datatable = data.mahasiswa;
                 this.datatableLoading=false;
             }).catch(()=>{
@@ -321,7 +321,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{                  
+            }).then(({ data })=>{                  
                 this.data_mhs = item;
                 this.dialogfrm=true;
                 this.daftar_dw = data.users; 
@@ -333,10 +333,10 @@ export default {
                 this.btnLoading=true;  
                 this.$ajax.post('/akademik/dulang/mhsbelumpunyanim/store',
                 {
-                    user_id:this.data_mhs.user_id,
-                    nim:this.formdata.nim,
-                    nirm:this.formdata.nirm,
-                    dosen_id:this.formdata.dosen_id,                       
+                    user_id: this.data_mhs.user_id,
+                    nim: this.formdata.nim,
+                    nirm: this.formdata.nirm,
+                    dosen_id: this.formdata.dosen_id,                       
                 },                    
                 {
                     headers: {
@@ -344,11 +344,11 @@ export default {
                     }
                 }
                 ).then(()=>{               
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                     this.initialize();          
                     this.closedialogfrm();                        
                 }).catch(()=>{
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                 });   
             }
         },

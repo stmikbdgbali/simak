@@ -205,7 +205,7 @@ export default {
                         Authorization: this.$store.getters["auth/Token"]
                     }
                 }
-            ).then(({data})=>{   
+            ).then(({ data })=>{   
                 this.daftar_role=data.roles;
             });            
         }, 
@@ -214,8 +214,8 @@ export default {
             this.btnLoading=true;
             this.$ajax.post('/system/users/storeuserpermissions',
                 {
-                    user_id:this.user.id,
-                    chkpermission:this.permissions_selected
+                    user_id: this.user.id,
+                    chkpermission: this.permissions_selected
                 },
                 {
                     headers: {
@@ -233,7 +233,7 @@ export default {
             this.btnLoading=true;         
             this.$ajax.post('/system/users/revokeuserpermissions',
                 {
-                    user_id:this.user.id,
+                    user_id: this.user.id,
                     name:item.name
                 },
                 {
@@ -268,14 +268,14 @@ export default {
                     headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     }
-                }).then(({data})=>{
+                }).then(({ data })=>{
                     this.daftar_permissions = data.permissions;
                 });
                 await this.$ajax.get('/system/users/'+this.user.id+'/permission',{
                     headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     }
-                }).then(({data})=>{
+                }).then(({ data })=>{
                     this.permissions_selected = data.permissions;                    
                 });
                 this.datatableLoading=false;

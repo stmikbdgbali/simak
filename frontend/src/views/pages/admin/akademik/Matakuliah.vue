@@ -558,28 +558,28 @@ export default {
 
         //form rules    
         rule_group_matakuliah: [
-            value => !!value||"Mohon Group Matakuliah untuk dipilih !!!",              
+            value => !!value || "Mohon Group Matakuliah untuk dipilih !!!",              
         ],      
         rule_kode_matkul: [
-            value => !!value||"Kode Program Studi mohon untuk diisi !!!",            
+            value => !!value || "Kode Program Studi mohon untuk diisi !!!",            
         ], 
         rule_nama_matakuliah: [
-            value => !!value||"Mohon Nama Program Studi untuk diisi !!!",              
+            value => !!value || "Mohon Nama Program Studi untuk diisi !!!",              
         ], 
         rule_sks: [
-            value => !!value||"Mohon SKS Matakuliah untuk dipilih !!!",              
+            value => !!value || "Mohon SKS Matakuliah untuk dipilih !!!",              
         ],         
         rule_sks_tatap_muka: [
-            value => !!value||"Mohon SKS Matakuliah Tatap Muka untuk dipilih !!!",              
+            value => !!value || "Mohon SKS Matakuliah Tatap Muka untuk dipilih !!!",              
         ],         
         rule_semester: [
-            value => !!value||"Mohon Semester Matakuliah ini diselenggarakan untuk dipilih !!!",              
+            value => !!value || "Mohon Semester Matakuliah ini diselenggarakan untuk dipilih !!!",              
         ],         
         rule_minimal_nilai: [
-            value => !!value||"Mohon Minimal nilai kelulusan matakuliah untuk dipilih !!!",              
+            value => !!value || "Mohon Minimal nilai kelulusan matakuliah untuk dipilih !!!",              
         ], 
         rule_dari_tahun_akademik: [
-            value => !!value||"Mohon Tahun Akademik sumber data matakuliah untuk dipilih !!!",              
+            value => !!value || "Mohon Tahun Akademik sumber data matakuliah untuk dipilih !!!",              
         ],             
     }),
     methods: {
@@ -591,19 +591,19 @@ export default {
         {
             this.prodi_id=id;
         },
-        initialize: async function () 
+        initialize: async function() 
         {
             this.datatableLoading=true;
             await this.$ajax.post('/akademik/matakuliah',
             {
-                prodi_id:this.prodi_id,
-                ta:this.tahun_akademik
+                prodi_id: this.prodi_id,
+                ta: this.tahun_akademik
             },
             {
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
-            }).then(({data})=>{               
+            }).then(({ data })=>{               
                 this.datatable = data.matakuliah;
                 this.datatableLoading=false;
             }).catch(()=>{
@@ -628,9 +628,9 @@ export default {
             await this.$ajax.get('/akademik/groupmatakuliah',
             {
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
-            }).then(({data})=>{
+            }).then(({ data })=>{
                 this.group_matakuliah=data.group_matakuliah;
             });            
             this.dialogfrm=true;
@@ -640,9 +640,9 @@ export default {
             await this.$ajax.get('/akademik/matakuliah/'+item.id,
             {
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
-            }).then(({data})=>{
+            }).then(({ data })=>{
                 this.formdata=data.matakuliah;
             });
             this.dialogdetailitem=true;                        
@@ -652,18 +652,18 @@ export default {
             await this.$ajax.get('/akademik/groupmatakuliah',
             {
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
-            }).then(({data})=>{
+            }).then(({ data })=>{
                 this.group_matakuliah=data.group_matakuliah;
             });  
 
             await this.$ajax.get('/akademik/matakuliah/'+item.id,
             {
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
-            }).then(({data})=>{
+            }).then(({ data })=>{
                 this.formdata=data.matakuliah;
             });
             this.dialogfrm = true
@@ -684,7 +684,7 @@ export default {
             }            
             this.dialogcopymatkul=true;
         },
-        save:async function () {
+        save:async function() {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading=true;
@@ -693,72 +693,72 @@ export default {
                     await this.$ajax.post('/akademik/matakuliah/'+this.formdata.id,
                         {
                             '_method': 'PUT',
-                            id_group:this.formdata.id_group,                                                    
-                            nama_group:this.formdata.nama_group,                                                    
-                            group_alias:this.formdata.group_alias,                                                    
-                            kmatkul:this.formdata.kmatkul,         
-                            nmatkul:this.formdata.nmatkul, 
-                            sks:this.formdata.sks, 
-                            idkonsentrasi:this.formdata.idkonsentrasi, 
-                            ispilihan:this.formdata.ispilihan, 
-                            islintas_prodi:this.formdata.islintas_prodi, 
-                            semester:this.formdata.semester, 
-                            sks_tatap_muka:this.formdata.sks_tatap_muka, 
-                            sks_praktikum:this.formdata.sks_praktikum, 
-                            sks_praktik_lapangan:this.formdata.sks_praktik_lapangan, 
-                            minimal_nilai:this.formdata.minimal_nilai,  
-                            syarat_skripsi:this.formdata.syarat_skripsi,   
-                            status:this.formdata.status,                             
-                            ta:this.formdata.ta,                             
-                            kjur:this.formdata.kjur,  
-                            update_penyelenggaraan:this.formdata.update_penyelenggaraan,                                                       
+                            id_group: this.formdata.id_group,                                                    
+                            nama_group: this.formdata.nama_group,                                                    
+                            group_alias: this.formdata.group_alias,                                                    
+                            kmatkul: this.formdata.kmatkul,         
+                            nmatkul: this.formdata.nmatkul, 
+                            sks: this.formdata.sks, 
+                            idkonsentrasi: this.formdata.idkonsentrasi, 
+                            ispilihan: this.formdata.ispilihan, 
+                            islintas_prodi: this.formdata.islintas_prodi, 
+                            semester: this.formdata.semester, 
+                            sks_tatap_muka: this.formdata.sks_tatap_muka, 
+                            sks_praktikum: this.formdata.sks_praktikum, 
+                            sks_praktik_lapangan: this.formdata.sks_praktik_lapangan, 
+                            minimal_nilai: this.formdata.minimal_nilai,  
+                            syarat_skripsi: this.formdata.syarat_skripsi,   
+                            status: this.formdata.status,                             
+                            ta: this.formdata.ta,                             
+                            kjur: this.formdata.kjur,  
+                            update_penyelenggaraan: this.formdata.update_penyelenggaraan,                                                       
                         },
                         {
                             headers: {
-                                Authorization:this.TOKEN
+                                Authorization: this.TOKEN
                             }
                         }
                     ).then(()=>{   
                         this.initialize();
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                         this.closedialogfrm();                        
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });                 
                     
                 } else {                    
                     await this.$ajax.post('/akademik/matakuliah/store',
                         {
-                            id_group:this.formdata.id_group, 
-                            nama_group:this.formdata.nama_group,                                                    
-                            group_alias:this.formdata.group_alias,                                                                                                       
-                            kmatkul:this.formdata.kmatkul,         
-                            nmatkul:this.formdata.nmatkul, 
-                            sks:this.formdata.sks, 
-                            idkonsentrasi:this.formdata.idkonsentrasi, 
-                            ispilihan:this.formdata.ispilihan, 
-                            islintas_prodi:this.formdata.islintas_prodi, 
-                            semester:this.formdata.semester, 
-                            sks_tatap_muka:this.formdata.sks_tatap_muka, 
-                            sks_praktikum:this.formdata.sks_praktikum, 
-                            sks_praktik_lapangan:this.formdata.sks_praktik_lapangan, 
-                            minimal_nilai:this.formdata.minimal_nilai,  
-                            syarat_skripsi:this.formdata.syarat_skripsi,   
-                            status:this.formdata.status,   
-                            ta:this.tahun_akademik,                             
-                            kjur:this.prodi_id,                                                                                   
+                            id_group: this.formdata.id_group, 
+                            nama_group: this.formdata.nama_group,                                                    
+                            group_alias: this.formdata.group_alias,                                                                                                       
+                            kmatkul: this.formdata.kmatkul,         
+                            nmatkul: this.formdata.nmatkul, 
+                            sks: this.formdata.sks, 
+                            idkonsentrasi: this.formdata.idkonsentrasi, 
+                            ispilihan: this.formdata.ispilihan, 
+                            islintas_prodi: this.formdata.islintas_prodi, 
+                            semester: this.formdata.semester, 
+                            sks_tatap_muka: this.formdata.sks_tatap_muka, 
+                            sks_praktikum: this.formdata.sks_praktikum, 
+                            sks_praktik_lapangan: this.formdata.sks_praktik_lapangan, 
+                            minimal_nilai: this.formdata.minimal_nilai,  
+                            syarat_skripsi: this.formdata.syarat_skripsi,   
+                            status: this.formdata.status,   
+                            ta: this.tahun_akademik,                             
+                            kjur: this.prodi_id,                                                                                   
                         },
                         {
                             headers: {
-                                Authorization:this.TOKEN
+                                Authorization: this.TOKEN
                             }
                         }
                     ).then(()=>{   
                         this.initialize();                  
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                         this.closedialogfrm();
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
                 }
             }
@@ -770,20 +770,20 @@ export default {
                 this.btnLoading=true;
                 this.$ajax.post('/akademik/matakuliah/salinmatkul/'+this.tahun_akademik,
                     {
-                        dari_tahun_akademik:this.dari_tahun_akademik,
-                        prodi_id:this.prodi_id,
+                        dari_tahun_akademik: this.dari_tahun_akademik,
+                        prodi_id: this.prodi_id,
                     },
                     {
                         headers: {
-                            Authorization:this.TOKEN
+                            Authorization: this.TOKEN
                         }
                     }
-                ).then(({data})=>{   
+                ).then(({ data })=>{   
                     this.datatable=data.matakuliah;
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                     this.closedialogsalinmatkul();
                 }).catch(()=>{
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                 });            
             }
         },
@@ -798,15 +798,15 @@ export default {
                         },
                         {
                             headers: {
-                                Authorization:this.TOKEN
+                                Authorization: this.TOKEN
                             }
                         }
                     ).then(()=>{   
                         const index = this.datatable.indexOf(item);
                         this.datatable.splice(index, 1);
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
                 }                
             });

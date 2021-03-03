@@ -70,14 +70,14 @@ export default {
         daftar_jawaban: []
     }),
     methods: {
-        initialize: async function () 
+        initialize: async function() 
         {
             await this.$ajax.get('/spmb/ujianonline/soal/'+this.peserta.user_id,           
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{                       
+            }).then(({ data })=>{                       
                 if (data.status==0)
                 {
                     this.isprosesujian=true;
@@ -103,17 +103,17 @@ export default {
             await this.$ajax.post('/spmb/ujianonline/selesaiujian',    
             {
                 _method: 'put',
-                user_id:this.peserta.user_id
+                user_id: this.peserta.user_id
             },    
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(()=>{                       
-               this.btnLoading=false;
+               this.btnLoading = false;
                this.$router.push('/dashboard/'+this.$store.getters['auth/AccessToken']);
             }).catch(()=>{
-                this.btnLoading=false;
+                this.btnLoading = false;
             }); 
         }
     },    

@@ -256,7 +256,7 @@ export default {
         daftar_nilai: [],
     }),
     methods: {        
-        initialize: async function () 
+        initialize: async function() 
         {
             this.datatableLoading=true;
             await this.$ajax.get('/akademik/perkuliahan/pembagiankelas/'+this.kelas_mhs_id,            
@@ -264,7 +264,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{           
+            }).then(({ data })=>{           
                 this.data_kelas_mhs=data.pembagiankelas;                                         
             });
             await this.$ajax.get('/akademik/nilai/matakuliah/pesertakelas/'+this.kelas_mhs_id,            
@@ -272,7 +272,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{                                                                                 
+            }).then(({ data })=>{                                                                                 
                 this.datatableLoading=false;                
                 this.datatable_peserta=data.peserta;   
             })              
@@ -398,7 +398,7 @@ export default {
             });         
             await this.$ajax.post('/akademik/nilai/matakuliah/perdosen/storeperdosen',
                 {
-                    kelas_mhs_id:this.kelas_mhs_id,
+                    kelas_mhs_id: this.kelas_mhs_id,
                     daftar_nilai:JSON.stringify(Object.assign({},daftar_nilai)),                    
                 },
                 {

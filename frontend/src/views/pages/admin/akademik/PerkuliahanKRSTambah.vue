@@ -156,11 +156,11 @@ export default {
             dulang_id: ''
         },        
         rule_nim: [
-            value => !!value||"Nomor Induk Mahasiswa (NIM) mohon untuk diisi !!!",
+            value => !!value || "Nomor Induk Mahasiswa (NIM) mohon untuk diisi !!!",
             value => /^[0-9]+$/.test(value) || 'Nomor Induk Mahasiswa (NIM) hanya boleh angka',
         ], 
         rule_dulang: [
-            value => !!value||"Mohon dipilih Daftar Ulang yang telah dilakukan !!!"
+            value => !!value || "Mohon dipilih Daftar Ulang yang telah dilakukan !!!"
         ],         
     }),
     methods: {          
@@ -168,13 +168,13 @@ export default {
         {
             await this.$ajax.post('/akademik/dulang/dulangnotinkrs',
             {
-                nim:this.formdata.nim,                
+                nim: this.formdata.nim,                
             },
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{                               
+            }).then(({ data })=>{                               
                 this.daftar_dulang=data.daftar_dulang;                
             })
         }, 
@@ -185,24 +185,24 @@ export default {
                 this.fetchDulang();
             }
         },
-        save:async function () {
+        save:async function() {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading=true;
                 await this.$ajax.post('/akademik/perkuliahan/krs/store',
                 {
-                    nim:this.formdata.nim,
-                    dulang_id:this.formdata.dulang_id,                    
+                    nim: this.formdata.nim,
+                    dulang_id: this.formdata.dulang_id,                    
                 },
                 {
                     headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     }
-                }).then(({data})=>{               
+                }).then(({ data })=>{               
                     this.$router.push('/akademik/perkuliahan/krs/'+data.krs.id+'/detail');
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                 }).catch(()=>{
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                 });                  
             }
         },

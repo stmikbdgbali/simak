@@ -293,7 +293,7 @@ export default {
         {
             this.tahun_akademik=tahun;
         },
-        initialize: async function () 
+        initialize: async function() 
         {
             this.datatableLoading=true;            
             await this.$ajax.get('/keuangan/transaksi-spp/'+this.transaksi_id,                        
@@ -301,21 +301,21 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{       
+            }).then(({ data })=>{       
                 this.data_transaksi=data.transaksi;        
                 this.datatable = data.transaksi_detail;                
                 this.item_selected = data.item_selected;                
                 this.datatableLoading=false;
             });                     
         }, 
-        save:async function () {
+        save:async function() {
             if (this.$refs.frmdata.validate())
             {
                 
                 this.btnLoading=true;
                 await this.$ajax.post('/keuangan/transaksi-spp/store',
                     {
-                        id:this.transaksi_id,                        
+                        id: this.transaksi_id,                        
                         bulan_selected:JSON.stringify(Object.assign({},this.item_selected)),                                                                    
                     },
                     {
@@ -324,10 +324,10 @@ export default {
                         }
                     }
                 ).then(()=>{                       
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                     this.$router.go();
                 }).catch(()=>{
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                 });
             }
         },        
@@ -341,7 +341,7 @@ export default {
                     {
                         const index = this.item_selected.indexOf(item);
                         this.item_selected.splice(index, 1);
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     }                    
                     else
                     {
@@ -355,10 +355,10 @@ export default {
                                 }
                             }
                         ).then(()=>{   
-                            this.btnLoading=false;
+                            this.btnLoading = false;
                             this.$router.go();                            
                         }).catch(()=>{
-                            this.btnLoading=false;
+                            this.btnLoading = false;
                         });
                     }
                 }                

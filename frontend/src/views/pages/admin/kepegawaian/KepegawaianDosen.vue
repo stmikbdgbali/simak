@@ -275,7 +275,7 @@ export default {
         },
         //form rules        
         rule_user_name: [
-            value => !!value||"Mohon untuk di isi nama Dosen !!!",  
+            value => !!value || "Mohon untuk di isi nama Dosen !!!",  
             value => /^[A-Za-z\s]*$/.test(value) || 'Nama Dosen hanya boleh string dan spasi',                
         ],         
         rule_nidn: [                         
@@ -285,23 +285,23 @@ export default {
             value => /^[0-9]+$/.test(value) || 'Nomor Induk Pegawai Yayasan (NIPY) hanya boleh angka',                
         ], 
         rule_user_email: [
-            value => !!value||"Mohon untuk di isi email User !!!",  
+            value => !!value || "Mohon untuk di isi email User !!!",  
             value => /.+@.+\..+/.test(value) || 'Format E-mail harus benar',       
         ], 
         rule_user_nomorhp: [
-            value => !!value||"Nomor HP mohon untuk diisi !!!",
+            value => !!value || "Nomor HP mohon untuk diisi !!!",
             value => /^\+[1-9]{1}[0-9]{1,14}$/.test(value) || 'Nomor HP hanya boleh angka dan gunakan kode negara didepan seperti +6281214553388',
         ],         
     }),
     methods: {
-        initialize: async function () 
+        initialize: async function() 
         {
             this.datatableLoading=true;
             await this.$ajax.get('/kepegawaian/dosen',{
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
-            }).then(({data})=>{               
+            }).then(({ data })=>{               
                 this.daftar_dosen = data.dosen;                
                 this.datatableLoading=false;
             });          
@@ -322,10 +322,10 @@ export default {
             this.$ajax.get('/datamaster/jabatanakademik',                
                 {
                     headers: {
-                        Authorization:this.TOKEN
+                        Authorization: this.TOKEN
                     }
                 }
-            ).then(({data})=>{   
+            ).then(({ data })=>{   
                 this.daftar_jabatan=data.jabatan_akademik;
             });             
             
@@ -334,7 +334,7 @@ export default {
             this.dialogEdit = true;
         },        
         close () {            
-            this.btnLoading=false;            
+            this.btnLoading = false;            
             this.dialogEdit = false;            
             setTimeout(() => {
                 this.$refs.frmdata.resetValidation(); 
@@ -352,25 +352,25 @@ export default {
                     this.$ajax.post('/kepegawaian/dosen/'+this.editedItem.id,
                         {
                             '_method': 'PUT',
-                            name:this.editedItem.name,
-                            id_jabatan:this.editedItem.id_jabatan,
-                            gelar_depan:this.editedItem.gelar_depan,
-                            gelar_belakang:this.editedItem.gelar_belakang,
-                            nidn:this.editedItem.nidn,
-                            nipy:this.editedItem.nipy,
-                            email:this.editedItem.email,
-                            nomor_hp:this.editedItem.nomor_hp,                                                                                         
+                            name: this.editedItem.name,
+                            id_jabatan: this.editedItem.id_jabatan,
+                            gelar_depan: this.editedItem.gelar_depan,
+                            gelar_belakang: this.editedItem.gelar_belakang,
+                            nidn: this.editedItem.nidn,
+                            nipy: this.editedItem.nipy,
+                            email: this.editedItem.email,
+                            nomor_hp: this.editedItem.nomor_hp,                                                                                         
                         },
                         {
                             headers: {
-                                Authorization:this.TOKEN
+                                Authorization: this.TOKEN
                             }
                         }
                     ).then(()=>{   
                         this.initialize();
                         this.close();
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });                    
                     
                 } 

@@ -269,27 +269,27 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{                                           
+            }).then(({ data })=>{                                           
                 this.datatable = data.daftar_krs;
                 this.datatableLoading=false;
             }).catch(()=>{
                 this.datatableLoading=false;
             });              
         },
-        initialize: async function () 
+        initialize: async function() 
         {
             this.datatableLoading=true;
             await this.$ajax.post('/akademik/perkuliahan/krs',
             {
-                prodi_id:this.prodi_id,
-                ta:this.tahun_akademik,
-                semester_akademik:this.semester_akademik,
+                prodi_id: this.prodi_id,
+                ta: this.tahun_akademik,
+                semester_akademik: this.semester_akademik,
             },
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{                                        
+            }).then(({ data })=>{                                        
                 this.datatable = data.daftar_krs;
                 this.datatableLoading=false;
                 this.firstloading=false;     
@@ -344,12 +344,12 @@ export default {
                     },
                     
                 }
-            ).then(({data})=>{                              
+            ).then(({ data })=>{                              
                 this.file_pdf=data.pdf_file;
                 this.dialogprintpdf=true;
-                this.btnLoading=false;
+                this.btnLoading = false;
             }).catch(()=>{
-                this.btnLoading=false;
+                this.btnLoading = false;
             });                 
         },
         closedialogprintpdf () {                  
@@ -393,16 +393,16 @@ export default {
                         this.datatableLoading=true;            
                         await this.$ajax.post('/akademik/perkuliahan/krs',            
                         {
-                            prodi_id:this.prodi_id,
-                            ta:this.tahun_akademik,
-                            semester_akademik:this.semester_akademik,
-                            search:this.search
+                            prodi_id: this.prodi_id,
+                            ta: this.tahun_akademik,
+                            semester_akademik: this.semester_akademik,
+                            search: this.search
                         },
                         {
                             headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
-                        }).then(({data})=>{               
+                        }).then(({ data })=>{               
                             this.datatable = data.daftar_krs;
                             this.datatableLoading=false;
                         });                     

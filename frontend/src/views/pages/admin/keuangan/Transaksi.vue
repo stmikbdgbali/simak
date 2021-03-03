@@ -322,19 +322,19 @@ export default {
         {
             this.prodi_id=id;
         },
-        initialize: async function () 
+        initialize: async function() 
         {
             this.datatableLoading=true;            
             await this.$ajax.post('/keuangan/transaksi',            
             {
-                TA:this.tahun_akademik,
-                PRODI_ID:this.prodi_id,
+                TA: this.tahun_akademik,
+                PRODI_ID: this.prodi_id,
             },
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{               
+            }).then(({ data })=>{               
                 this.datatable = data.transaksi;                
                 this.datatableLoading=false;
             });                     
@@ -359,11 +359,11 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{                                                             
+            }).then(({ data })=>{                                                             
                 this.data_transaksi=item;   
                 this.data_transaksi_detail=data.transaksi_detail;   
                 this.dialogdetailitem=true;
-                this.btnLoading=false;
+                this.btnLoading = false;
             });                                        
         },
         closedialogdetailitem () {
@@ -403,15 +403,15 @@ export default {
                         this.datatableLoading=true;            
                         await this.$ajax.post('/keuangan/transaksi',                 
                         {
-                            PRODI_ID:this.prodi_id,
-                            TA:this.tahun_akademik,
-                            search:this.search
+                            PRODI_ID: this.prodi_id,
+                            TA: this.tahun_akademik,
+                            search: this.search
                         },
                         {
                             headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
-                        }).then(({data})=>{               
+                        }).then(({ data })=>{               
                             this.datatable = data.transaksi;                
                             this.datatableLoading=false;
                         });                     

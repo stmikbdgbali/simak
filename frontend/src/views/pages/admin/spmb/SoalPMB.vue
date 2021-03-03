@@ -419,16 +419,16 @@ export default {
 
         //form rules      
         rule_soal: [
-            value => !!value||"Mohon untuk di isi soal !!!",              
+            value => !!value || "Mohon untuk di isi soal !!!",              
         ], 
         rule_gambar: [            
             value =>  !value || value.size < 2000000 || 'File gambar harus kurang dari 2MB.'                
         ],
         rule_jawaban: [
-            value => !!value||"Mohon isi jawaban dari soal ini",              
+            value => !!value || "Mohon isi jawaban dari soal ini",              
         ], 
         rule_jawaban_benar: [
-            value => !!value||"Mohon pilih jawaban benar dari soal ini",              
+            value => !!value || "Mohon pilih jawaban benar dari soal ini",              
         ], 
     }),
     methods: {
@@ -440,19 +440,19 @@ export default {
         {
             this.semester_pendaftaran=semester;
         },
-        initialize: async function () 
+        initialize: async function() 
         {
             this.datatableLoading=true;
             await this.$ajax.post('/spmb/soalpmb',
             {
-                tahun_pendaftaran:this.tahun_pendaftaran,
-                semester_pendaftaran:this.semester_pendaftaran
+                tahun_pendaftaran: this.tahun_pendaftaran,
+                semester_pendaftaran: this.semester_pendaftaran
             },
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{                        
+            }).then(({ data })=>{                        
                 this.datatable = data.soal;
                 this.datatableLoading=false;
             }).catch(()=>{
@@ -477,7 +477,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{         
+            }).then(({ data })=>{         
                 this.formdata=item;      
                 this.dialogdetailitem=true;              
                 this.daftar_soal_jawaban=data.soal.jawaban;
@@ -488,7 +488,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{          
+            }).then(({ data })=>{          
                 this.editedIndex = this.datatable.indexOf(item);
                 this.formdata = Object.assign({}, item);
                 this.dialogeditfrm = true;
@@ -518,7 +518,7 @@ export default {
                 }                
             }          
         },   
-        save:async function () {
+        save:async function() {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading=true;
@@ -527,46 +527,46 @@ export default {
                     await this.$ajax.post('/spmb/soalpmb/'+this.formdata.id,
                         {
                             '_method': 'PUT',
-                            soal:this.formdata.soal, 
-                            jawaban_benar:this.formdata.jawaban_benar                      
+                            soal: this.formdata.soal, 
+                            jawaban_benar: this.formdata.jawaban_benar                      
                         },
                         {
                             headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
-                    ).then(({data})=>{   
+                    ).then(({ data })=>{   
                         Object.assign(this.datatable[this.editedIndex], data.soal);
                         this.closedialogeditfrm();
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });                 
                     
                 } else {
                     await this.$ajax.post('/spmb/soalpmb/store',
                         {  
-                            soal:this.formdata.soal,                            
+                            soal: this.formdata.soal,                            
                             gambar: 'gambar',                            
-                            jawaban1:this.formdata.jawaban1,                            
-                            jawaban2:this.formdata.jawaban2,                            
-                            jawaban3:this.formdata.jawaban3,                            
-                            jawaban4:this.formdata.jawaban4,                            
-                            jawaban_benar:this.formdata.jawaban_benar,                            
-                            tahun_pendaftaran:this.tahun_pendaftaran,
-                            semester_pendaftaran:this.semester_pendaftaran
+                            jawaban1: this.formdata.jawaban1,                            
+                            jawaban2: this.formdata.jawaban2,                            
+                            jawaban3: this.formdata.jawaban3,                            
+                            jawaban4: this.formdata.jawaban4,                            
+                            jawaban_benar: this.formdata.jawaban_benar,                            
+                            tahun_pendaftaran: this.tahun_pendaftaran,
+                            semester_pendaftaran: this.semester_pendaftaran
                         },                        
                         {
                             headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
-                    ).then(({data})=>{   
+                    ).then(({ data })=>{   
                         this.datatable.push(data.soal);
                         this.closedialogfrm();
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
                 }
             }
@@ -588,9 +588,9 @@ export default {
                     ).then(()=>{   
                         const index = this.datatable.indexOf(item);
                         this.datatable.splice(index, 1);
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
                 }                
             });

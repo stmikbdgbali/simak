@@ -235,23 +235,23 @@ export default {
 
         //form rules  
         rule_kode_fakultas: [
-            value => !!value||"Kode Fakultas mohon untuk diisi !!!",
+            value => !!value || "Kode Fakultas mohon untuk diisi !!!",
             value => /^[1-9]{1}[0-9]{1,14}$/.test(value) || 'Kode Fakultas hanya boleh angka',
         ], 
         rule_nama_fakultas: [
-            value => !!value||"Mohon Nama Fakultas untuk di isi !!!",  
+            value => !!value || "Mohon Nama Fakultas untuk di isi !!!",  
             value => /^[A-Za-z\s]*$/.test(value) || 'Nama Fakultas hanya boleh string dan spasi',                
         ], 
     }),
     methods: {
-        initialize: async function () 
+        initialize: async function() 
         {
             this.datatableLoading=true;
             await this.$ajax.get('/datamaster/fakultas',{
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
-            }).then(({data})=>{               
+            }).then(({ data })=>{               
                 this.datatable = data.fakultas;
                 this.datatableLoading=false;
             }).catch(()=>{
@@ -279,7 +279,7 @@ export default {
             this.formdata = Object.assign({}, item);
             this.dialogfrm = true
         },    
-        save:async function () {
+        save:async function() {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading=true;
@@ -288,39 +288,39 @@ export default {
                     await this.$ajax.post('/datamaster/fakultas/'+this.kode_fakultas,
                         {
                             '_method': 'PUT',
-                            kode_fakultas:this.formdata.kode_fakultas,                            
-                            nama_fakultas:this.formdata.nama_fakultas,                                                        
+                            kode_fakultas: this.formdata.kode_fakultas,                            
+                            nama_fakultas: this.formdata.nama_fakultas,                                                        
                         },
                         {
                             headers: {
-                                Authorization:this.TOKEN
+                                Authorization: this.TOKEN
                             }
                         }
-                    ).then(({data})=>{   
+                    ).then(({ data })=>{   
                         Object.assign(this.datatable[this.editedIndex], data.fakultas);
                         this.closedialogfrm();
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });                 
                     
                 } else {                    
                     await this.$ajax.post('/datamaster/fakultas/store',
                         {
-                            kode_fakultas:this.formdata.kode_fakultas,                            
-                            nama_fakultas:this.formdata.nama_fakultas,                                                        
+                            kode_fakultas: this.formdata.kode_fakultas,                            
+                            nama_fakultas: this.formdata.nama_fakultas,                                                        
                         },
                         {
                             headers: {
-                                Authorization:this.TOKEN
+                                Authorization: this.TOKEN
                             }
                         }
-                    ).then(({data})=>{   
+                    ).then(({ data })=>{   
                         this.datatable.push(data.fakultas);                        
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                         this.closedialogfrm();
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
                 }
             }
@@ -336,15 +336,15 @@ export default {
                         },
                         {
                             headers: {
-                                Authorization:this.TOKEN
+                                Authorization: this.TOKEN
                             }
                         }
                     ).then(()=>{   
                         const index = this.datatable.indexOf(item);
                         this.datatable.splice(index, 1);
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
                 }                
             });

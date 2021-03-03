@@ -492,7 +492,7 @@ export default {
                 id:0,                        
                 nama_kegiatan: "",             
                 jumlah_soal: "",                                   
-                tanggal_ujian:this.$date().format('YYYY-MM-DD'),   
+                tanggal_ujian: this.$date().format('YYYY-MM-DD'),   
                 jam_mulai_ujian: "",                    
                 jam_selesai_ujian: "",                              
                 tanggal_akhir_daftar:tanggal_ujian,                        
@@ -509,10 +509,10 @@ export default {
 
             //form rules          
             rule_nama_kegiatan: [
-                value => !!value||"Mohon untuk di isi nama ujian online !!!",                  
+                value => !!value || "Mohon untuk di isi nama ujian online !!!",                  
             ], 
             rule_jumlah_soal: [
-                value => !!value||"Mohon untuk di isi jumlah soal ujian !!!",  
+                value => !!value || "Mohon untuk di isi jumlah soal ujian !!!",  
                 value => /^[0-9]+$/.test(value) || 'Jumlah soal ujian hanya boleh angka',    
                 value => {
                     if (value && typeof value !== 'undefined' && value.length > 0) 
@@ -538,19 +538,19 @@ export default {
         {
             this.semester_pendaftaran=semester;
         },
-        initialize: async function () 
+        initialize: async function() 
         {
             this.datatableLoading=true;
             await this.$ajax.post('/spmb/jadwalujianpmb',
             {
-                tahun_pendaftaran:this.tahun_pendaftaran,
-                semester_pendaftaran:this.semester_pendaftaran
+                tahun_pendaftaran: this.tahun_pendaftaran,
+                semester_pendaftaran: this.semester_pendaftaran
             },
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{                      
+            }).then(({ data })=>{                      
                 this.jumlah_bank_soal=data.jumlah_bank_soal;                
                 this.datatable = data.jadwal_ujian;
                 this.datatableLoading=false;
@@ -569,7 +569,7 @@ export default {
                 this.expanded=[item];
             }               
         },
-        addItem:async function ()
+        addItem:async function()
         {
             this.btnLoading=true;
             await this.$ajax.get('/datamaster/ruangankelas',       
@@ -577,12 +577,12 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{               
+            }).then(({ data })=>{               
                 this.daftar_ruangan = data.ruangan;
-                this.btnLoading=false;
+                this.btnLoading = false;
                 this.dialogfrm=true;
             }).catch(()=>{
-                this.btnLoading=false;
+                this.btnLoading = false;
             });              
         },
         durasiUjian (item)
@@ -599,11 +599,11 @@ export default {
             //     headers: {
             //         Authorization: this.$store.getters["auth/Token"]
             //     }
-            // }).then(({data})=>{               
+            // }).then(({ data })=>{               
                                            
             // });                      
         },  
-        mulaiUjian:async function ()
+        mulaiUjian:async function()
         {
             this.btnLoading=true;
             await this.$ajax.post('/spmb/jadwalujianpmb/updatestatusujian/'+this.formdata.id,
@@ -617,9 +617,9 @@ export default {
                 }
             }
         ).then(()=>{                                       
-            this.btnLoading=false;            
+            this.btnLoading = false;            
         }).catch(()=>{
-            this.btnLoading=false;
+            this.btnLoading = false;
         });
         },
         editItem:async function (item) {            
@@ -628,17 +628,17 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{               
+            }).then(({ data })=>{               
                 this.daftar_ruangan = data.ruangan;
-                this.btnLoading=false;
+                this.btnLoading = false;
                 this.editedIndex = this.datatable.indexOf(item);
                 this.formdata = Object.assign({}, item);
                 this.dialogfrm=true;
             }).catch(()=>{
-                this.btnLoading=false;
+                this.btnLoading = false;
             });              
         },    
-        save:async function () {
+        save:async function() {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading=true;
@@ -647,14 +647,14 @@ export default {
                     await this.$ajax.post('/spmb/jadwalujianpmb/'+this.formdata.id,
                         {
                             '_method': 'PUT',
-                            nama_kegiatan:this.formdata.nama_kegiatan,
-                            jumlah_soal:this.formdata.jumlah_soal,
-                            tanggal_ujian:this.formdata.tanggal_ujian,    
-                            jam_mulai_ujian:this.formdata.jam_mulai_ujian,                    
-                            jam_selesai_ujian:this.formdata.jam_selesai_ujian,                    
-                            tanggal_akhir_daftar:this.formdata.tanggal_akhir_daftar,   
-                            durasi_ujian:this.durasiUjian(this.formdata),                                                                         
-                            ruangkelas_id:this.formdata.ruangkelas_id,                                  
+                            nama_kegiatan: this.formdata.nama_kegiatan,
+                            jumlah_soal: this.formdata.jumlah_soal,
+                            tanggal_ujian: this.formdata.tanggal_ujian,    
+                            jam_mulai_ujian: this.formdata.jam_mulai_ujian,                    
+                            jam_selesai_ujian: this.formdata.jam_selesai_ujian,                    
+                            tanggal_akhir_daftar: this.formdata.tanggal_akhir_daftar,   
+                            durasi_ujian: this.durasiUjian(this.formdata),                                                                         
+                            ruangkelas_id: this.formdata.ruangkelas_id,                                  
                         },
                         {
                             headers: {
@@ -663,25 +663,25 @@ export default {
                         }
                     ).then(()=>{                           
                         this.closedialogfrm();
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                         this.initialize();
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });                 
                     
                 } else {
                     await this.$ajax.post('/spmb/jadwalujianpmb/store',
                         {               
-                            nama_kegiatan:this.formdata.nama_kegiatan,
-                            jumlah_soal:this.formdata.jumlah_soal,
-                            tanggal_ujian:this.formdata.tanggal_ujian,    
-                            jam_mulai_ujian:this.formdata.jam_mulai_ujian,                    
-                            jam_selesai_ujian:this.formdata.jam_selesai_ujian,                    
-                            tanggal_akhir_daftar:this.formdata.tanggal_akhir_daftar,                                                                            
-                            durasi_ujian:this.durasiUjian(this.formdata),                                                                            
-                            ruangkelas_id:this.formdata.ruangkelas_id,
-                            ta:this.tahun_pendaftaran,                        
-                            idsmt:this.semester_pendaftaran,                                       
+                            nama_kegiatan: this.formdata.nama_kegiatan,
+                            jumlah_soal: this.formdata.jumlah_soal,
+                            tanggal_ujian: this.formdata.tanggal_ujian,    
+                            jam_mulai_ujian: this.formdata.jam_mulai_ujian,                    
+                            jam_selesai_ujian: this.formdata.jam_selesai_ujian,                    
+                            tanggal_akhir_daftar: this.formdata.tanggal_akhir_daftar,                                                                            
+                            durasi_ujian: this.durasiUjian(this.formdata),                                                                            
+                            ruangkelas_id: this.formdata.ruangkelas_id,
+                            ta: this.tahun_pendaftaran,                        
+                            idsmt: this.semester_pendaftaran,                                       
                         },
                         {
                             headers: {
@@ -690,10 +690,10 @@ export default {
                         }
                     ).then(()=>{                           
                         this.closedialogfrm();
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                         this.initialize();
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
                 }
             }
@@ -715,9 +715,9 @@ export default {
                     ).then(()=>{   
                         const index = this.datatable.indexOf(item);
                         this.datatable.splice(index, 1);
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
                 }                
             });

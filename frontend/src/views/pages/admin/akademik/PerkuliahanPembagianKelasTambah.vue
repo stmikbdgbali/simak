@@ -268,52 +268,52 @@ export default {
             ruang_kelas_id: "",
         },
         rule_dosen: [
-            value => !!value||"Mohon dipilih Dosen pengampu matakuliah !!!"
+            value => !!value || "Mohon dipilih Dosen pengampu matakuliah !!!"
         ],
         rule_kode_matkul: [
-            value => !!value||"Kode Program Studi mohon untuk diisi !!!",
+            value => !!value || "Kode Program Studi mohon untuk diisi !!!",
         ],
         rule_nama_matakuliah: [
-            value => !!value||"Mohon Nama Program Studi untuk diisi !!!",
+            value => !!value || "Mohon Nama Program Studi untuk diisi !!!",
         ],
         rule_sks: [
-            value => !!value||"Mohon SKS Matakuliah untuk dipilih !!!",
+            value => !!value || "Mohon SKS Matakuliah untuk dipilih !!!",
         ],
         rule_matakuliah: [
-            value => !!value||"Mohon dipilih matakuliah yang diselenggaran untuk dosen pengampu ini!!!"
+            value => !!value || "Mohon dipilih matakuliah yang diselenggaran untuk dosen pengampu ini!!!"
         ],
         rule_kelas: [
-            value => !!value||"Mohon dipilih kelas matakuliah ini!!!"
+            value => !!value || "Mohon dipilih kelas matakuliah ini!!!"
         ],
         rule_hari: [
-            value => !!value||"Mohon dipilih hari mengajar!!!"
+            value => !!value || "Mohon dipilih hari mengajar!!!"
         ],
         rule_jam_masuk: [
-            value => !!value||"Mohon diisi jam masuk mengajar!!!",
+            value => !!value || "Mohon diisi jam masuk mengajar!!!",
             value => /^([0-9]|0[0-9]|1[0-9]|2[0-3]): [0-5][0-9]$/.test(value) || 'Format jam masuk mengajar hh:mm, misalnya 15:30'
         ],
         rule_jam_keluar: [
-            value => !!value||"Mohon diisi jam keluar mengajar!!!",
+            value => !!value || "Mohon diisi jam keluar mengajar!!!",
             value => /^([0-9]|0[0-9]|1[0-9]|2[0-3]): [0-5][0-9]$/.test(value) || 'Format jam keluar mengajar hh:mm, misalnya 15:00'
         ],
         rule_ruang_kelas: [
-            value => !!value||"Mohon dipilih ruang kelas mengajar!!!"
+            value => !!value || "Mohon dipilih ruang kelas mengajar!!!"
         ],
     }),
     methods: {
-        initialize: async function ()
+        initialize: async function()
         {
             await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/pengampu',
             {
-                ta:this.$store.getters['uiadmin/getTahunAkademik'],
-                semester_akademik:this.$store.getters['uiadmin/getSemesterAkademik'],
+                ta: this.$store.getters['uiadmin/getTahunAkademik'],
+                semester_akademik: this.$store.getters['uiadmin/getSemesterAkademik'],
                 pid: 'daftarpengampu'
             },
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{
+            }).then(({ data })=>{
                 this.daftar_dosen = data.dosen;
             });
 
@@ -321,7 +321,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{
+            }).then(({ data })=>{
                 this.daftar_ruang_kelas = data.ruangan;
             });
 
@@ -330,30 +330,30 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{
+            }).then(({ data })=>{
                 this.daftar_zoom = data.zoom;
             });
             
         },
-        save:async function () {
+        save:async function() {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading=true;
                 await this.$ajax.post('/akademik/perkuliahan/pembagiankelas/store',
                     {
-                        user_id:this.dosen_id,
-                        zoom_id:this.formdata.zoom_id,
-                        idkelas:this.formdata.idkelas,
-                        kmatkul:this.formdata.kmatkul,
-                        nmatkul:this.formdata.nmatkul,
-                        sks:this.formdata.sks,
-                        hari:this.formdata.hari,
-                        jam_masuk:this.formdata.jam_masuk,
-                        jam_keluar:this.formdata.jam_keluar,
+                        user_id: this.dosen_id,
+                        zoom_id: this.formdata.zoom_id,
+                        idkelas: this.formdata.idkelas,
+                        kmatkul: this.formdata.kmatkul,
+                        nmatkul: this.formdata.nmatkul,
+                        sks: this.formdata.sks,
+                        hari: this.formdata.hari,
+                        jam_masuk: this.formdata.jam_masuk,
+                        jam_keluar: this.formdata.jam_keluar,
                         penyelenggaraan_dosen_id:JSON.stringify(Object.assign({},this.formdata.penyelenggaraan_dosen_id)),
-                        ruang_kelas_id:this.formdata.ruang_kelas_id,
-                        tahun:this.tahun_akademik,
-                        idsmt:this.semester_akademik,
+                        ruang_kelas_id: this.formdata.ruang_kelas_id,
+                        tahun: this.tahun_akademik,
+                        idsmt: this.semester_akademik,
 
                     },
                     {
@@ -362,10 +362,10 @@ export default {
                         }
                     }
                 ).then(()=>{
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                     this.$router.push('/akademik/perkuliahan/pembagiankelas/daftar');
                 }).catch(()=>{
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                 });
             }
         },
@@ -376,14 +376,14 @@ export default {
             await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/matakuliah',
             {
                 user_id:val,
-                ta:this.$store.getters['uiadmin/getTahunAkademik'],
-                semester_akademik:this.$store.getters['uiadmin/getSemesterAkademik'],
+                ta: this.$store.getters['uiadmin/getTahunAkademik'],
+                semester_akademik: this.$store.getters['uiadmin/getSemesterAkademik'],
             },
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{
+            }).then(({ data })=>{
                 this.daftar_matakuliah = data.matakuliah;
 
                 this.daftar_kelas=this.$store.getters['uiadmin/getDaftarKelas'];

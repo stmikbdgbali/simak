@@ -132,9 +132,9 @@ export default {
             this.datatableLoading=true;
             this.$ajax.get('/system/users/'+this.ATTRIBUTE_USER('id')+'/mypermission',{
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
-            }).then(({data})=>{                
+            }).then(({ data })=>{                
                 this.daftar_permissions = data.permissions;
                 this.datatableLoading=false;
             });          

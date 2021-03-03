@@ -313,7 +313,7 @@ export default {
         {
             this.prodi_id=id;
         },
-        initialize: async function () 
+        initialize: async function() 
         {
             this.datatableLoading=true;
             await this.$ajax.get('/akademik/nilai/transkripkurikulum/'+this.user_id,           
@@ -321,7 +321,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{                              
+            }).then(({ data })=>{                              
                 this.data_mhs=data.mahasiswa;
                 this.jumlahMatkul=data.jumlah_matkul;
                 this.totalSKS=data.jumlah_sks;
@@ -341,7 +341,7 @@ export default {
             this.btnLoading=true;
             await this.$ajax.post('/akademik/nilai/transkripkurikulum/'+item.id+'/history',                
                 {
-                    user_id:this.data_mhs.user_id,
+                    user_id: this.data_mhs.user_id,
                 },
                 {
                     headers: {
@@ -349,13 +349,13 @@ export default {
                     },
                     
                 }
-            ).then(({data})=>{                              
+            ).then(({ data })=>{                              
                 this.data_matkul=data.matakuliah;
                 this.data_history=data.history;
                 this.dialoghistory=true;
-                this.btnLoading=false;
+                this.btnLoading = false;
             }).catch(()=>{
-                this.btnLoading=false;
+                this.btnLoading = false;
             });   
         },        
         dataTableRowClicked(item)
@@ -379,12 +379,12 @@ export default {
                     },
                     
                 }
-            ).then(({data})=>{                              
+            ).then(({ data })=>{                              
                 this.file_pdf=data.pdf_file;
                 this.dialogprintpdf=true;
-                this.btnLoading=false;
+                this.btnLoading = false;
             }).catch(()=>{
-                this.btnLoading=false;
+                this.btnLoading = false;
             });                 
         },
         async printpdf2()
@@ -397,12 +397,12 @@ export default {
                     },
                     
                 }
-            ).then(({data})=>{                              
+            ).then(({ data })=>{                              
                 this.file_pdf=data.pdf_file;
                 this.dialogprintpdf=true;
-                this.btnLoading=false;
+                this.btnLoading = false;
             }).catch(()=>{
-                this.btnLoading=false;
+                this.btnLoading = false;
             });                 
         },
         closedialogprintpdf () {                  

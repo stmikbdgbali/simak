@@ -226,19 +226,19 @@ export default {
         {
             this.prodi_id=id;
         },
-        initialize: async function () 
+        initialize: async function() 
         {
             this.datatableLoading=true;
             await this.$ajax.post('/akademik/nilai/transkripkurikulum',
             {
-                prodi_id:this.prodi_id,
-                ta:this.tahun_pendaftaran
+                prodi_id: this.prodi_id,
+                ta: this.tahun_pendaftaran
             },
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{               
+            }).then(({ data })=>{               
                 this.datatable = data.mahasiswa;
                 this.datatableLoading=false;
             }).catch(()=>{
@@ -272,12 +272,12 @@ export default {
                     },
                     
                 }
-            ).then(({data})=>{                              
+            ).then(({ data })=>{                              
                 this.file_pdf=data.pdf_file;
                 this.dialogprintpdf=true;
-                this.btnLoading=false;
+                this.btnLoading = false;
             }).catch(()=>{
-                this.btnLoading=false;
+                this.btnLoading = false;
             });                 
         },
         closedialogprintpdf () {                  
@@ -314,15 +314,15 @@ export default {
                         this.datatableLoading=true;            
                         await this.$ajax.post('/akademik/nilai/transkripkurikulum',
                         {
-                            prodi_id:this.prodi_id,
-                            ta:this.tahun_pendaftaran,            
-                            search:this.search
+                            prodi_id: this.prodi_id,
+                            ta: this.tahun_pendaftaran,            
+                            search: this.search
                         },
                         {
                             headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
-                        }).then(({data})=>{               
+                        }).then(({ data })=>{               
                             this.datatable = data.mahasiswa;
                             this.datatableLoading=false;
                         });                     

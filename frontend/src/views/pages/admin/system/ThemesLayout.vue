@@ -128,19 +128,19 @@ export default {
         },
         //form rules        
         rule_required: [
-            value => !!value||"Mohon untuk diisi dengan nama class !!!",             
+            value => !!value || "Mohon untuk diisi dengan nama class !!!",             
         ], 
     }),
     methods: {
-        initialize:async function () 
+        initialize:async function() 
         {
             this.datatableLoading=true;
             await this.$ajax.get('/system/setting/variables',
             {
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
-            }).then(({data})=>{  
+            }).then(({ data })=>{  
                 let setting = data.setting;                           
                 this.formdata.V_SYSTEM_BAR_CSS_CLASS=setting.V_SYSTEM_BAR_CSS_CLASS;
                 this.formdata.V_APP_BAR_NAV_ICON_CSS_CLASS=setting.V_APP_BAR_NAV_ICON_CSS_CLASS;
@@ -159,23 +159,23 @@ export default {
                         '_method': 'PUT', 
                         'pid': 'Class Css Layout',
                         setting:JSON.stringify({
-                            801:this.formdata.V_SYSTEM_BAR_CSS_CLASS,
-                            802:this.formdata.V_APP_BAR_NAV_ICON_CSS_CLASS,
-                            803:this.formdata.V_NAVIGATION_DRAWER_CSS_CLASS,
-                            804:this.formdata.V_LIST_ITEM_BOARD_CSS_CLASS,
-                            805:this.formdata.V_LIST_ITEM_BOARD_COLOR,
-                            806:this.formdata.V_LIST_ITEM_ACTIVE_CSS_CLASS,
+                            801: this.formdata.V_SYSTEM_BAR_CSS_CLASS,
+                            802: this.formdata.V_APP_BAR_NAV_ICON_CSS_CLASS,
+                            803: this.formdata.V_NAVIGATION_DRAWER_CSS_CLASS,
+                            804: this.formdata.V_LIST_ITEM_BOARD_CSS_CLASS,
+                            805: this.formdata.V_LIST_ITEM_BOARD_COLOR,
+                            806: this.formdata.V_LIST_ITEM_ACTIVE_CSS_CLASS,
                         }),                                                                                                                            
                     },
                     {
                         headers: {
-                            Authorization:this.TOKEN
+                            Authorization: this.TOKEN
                         }
                     }
                 ).then(()=>{                       
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                 }).catch(()=>{
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                 });        
                 this.$store.dispatch('uiadmin/init',this.$ajax); 
             }

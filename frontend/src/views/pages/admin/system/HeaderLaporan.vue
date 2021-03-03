@@ -121,15 +121,15 @@ export default {
         },        
     }),
     methods: {
-        initialize: async function () 
+        initialize: async function() 
         {
             this.datatableLoading=true;
             await this.$ajax.get('/system/setting/variables',
             {
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
-            }).then(({data})=>{  
+            }).then(({ data })=>{  
                 let setting = data.setting;                           
                 this.formdata.header_1=setting.HEADER_1;
                 this.formdata.header_2=setting.HEADER_2;
@@ -148,16 +148,16 @@ export default {
                         '_method': 'PUT', 
                         'pid': 'Header Laporan',
                         setting:JSON.stringify({
-                            701:this.formdata.header_1,
-                            702:this.formdata.header_2,
-                            703:this.formdata.header_3,
-                            704:this.formdata.header_4,
-                            705:this.formdata.header_address,
+                            701: this.formdata.header_1,
+                            702: this.formdata.header_2,
+                            703: this.formdata.header_3,
+                            704: this.formdata.header_4,
+                            705: this.formdata.header_address,
                         }),                                                                                                                            
                     },
                     {
                         headers: {
-                            Authorization:this.TOKEN
+                            Authorization: this.TOKEN
                         }
                     }
                 ).then(()=>{                       

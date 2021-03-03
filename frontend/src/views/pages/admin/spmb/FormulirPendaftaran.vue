@@ -217,14 +217,14 @@ export default {
                     this.datatableLoading=true;            
                     await this.$ajax.post('/spmb/formulirpendaftaran',
                     {
-                        TA:this.tahun_pendaftaran,
-                        prodi_id:this.prodi_id,
+                        TA: this.tahun_pendaftaran,
+                        prodi_id: this.prodi_id,
                     },
                     {
                         headers: {
                             Authorization: this.$store.getters["auth/Token"]
                         }
-                    }).then(({data})=>{               
+                    }).then(({ data })=>{               
                         this.datatable = data.pmb;                
                         this.datatableLoading=false;
                     });         

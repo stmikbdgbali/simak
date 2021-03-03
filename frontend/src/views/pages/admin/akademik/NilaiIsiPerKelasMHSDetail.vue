@@ -195,14 +195,14 @@ export default {
         
     }),
     methods: {        
-        initialize: async function () 
+        initialize: async function() 
         {
             await this.$ajax.get('/akademik/perkuliahan/pembagiankelas/'+this.kelas_mhs_id,            
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{           
+            }).then(({ data })=>{           
                 this.data_kelas_mhs=data.pembagiankelas;                                         
             });
             this.datatableLoading=true;
@@ -211,7 +211,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{                                                                                 
+            }).then(({ data })=>{                                                                                 
                 this.datatableLoading=false;
                 this.datatable_peserta=data.peserta;   
             })              
@@ -224,7 +224,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{                                                      
+            }).then(({ data })=>{                                                      
                 this.datatable_peserta=data.peserta;                                
                 this.datatableLoading=false;
             })   

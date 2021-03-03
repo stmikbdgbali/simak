@@ -216,15 +216,15 @@ export default {
                     this.datatableLoading=true;            
                     await this.$ajax.post('/spmb/reportspmbkelulusan',
                     {
-                        TA:this.tahun_pendaftaran,
-                        prodi_id:this.prodi_id,
-                        filter_status:this.filter_status
+                        TA: this.tahun_pendaftaran,
+                        prodi_id: this.prodi_id,
+                        filter_status: this.filter_status
                     },
                     {
                         headers: {
                             Authorization: this.$store.getters["auth/Token"]
                         }
-                    }).then(({data})=>{               
+                    }).then(({ data })=>{               
                         this.datatable = data.pmb;                
                         this.datatableLoading=false;
                     });         
@@ -257,15 +257,15 @@ export default {
             this.datamhsbaru = item;
             this.dialogprofilmhsbaru = true;
         },                
-        printtoexcel:async function ()
+        printtoexcel:async function()
         {
             this.btnLoading=true;
             await this.$ajax.post('/spmb/reportspmbkelulusan/printtoexcel',
                 {
-                    TA:this.tahun_pendaftaran,                                                                
-                    prodi_id:this.prodi_id,    
-                    nama_prodi:this.nama_prodi,                 
-                    filter_status:this.filter_status,                 
+                    TA: this.tahun_pendaftaran,                                                                
+                    prodi_id: this.prodi_id,    
+                    nama_prodi: this.nama_prodi,                 
+                    filter_status: this.filter_status,                 
                 },
                 {
                     headers: {
@@ -273,7 +273,7 @@ export default {
                     },
                     responseType: 'arraybuffer'
                 }
-            ).then(({data})=>{              
+            ).then(({ data })=>{              
                 const url = window.URL.createObjectURL(new Blob([data]));
                 const link = document.createElement('a');
                 link.href = url;
@@ -282,9 +282,9 @@ export default {
                 document.body.appendChild(link);
                 link.click();                     
                 document.body.removeChild(link);
-                this.btnLoading=false;
+                this.btnLoading = false;
             }).catch(()=>{
-                this.btnLoading=false;
+                this.btnLoading = false;
             });     
         },             
         closeProfilMahasiswaBaru ()

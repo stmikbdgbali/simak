@@ -313,33 +313,33 @@ export default {
 
         //form rules 
         rule_kode_fakultas: [
-            value => !!value||"Mohon fakultas untuk dipilih !!!",              
+            value => !!value || "Mohon fakultas untuk dipilih !!!",              
         ],  
         rule_kode_prodi: [
-            value => !!value||"Kode Program Studi mohon untuk diisi !!!",
+            value => !!value || "Kode Program Studi mohon untuk diisi !!!",
             value => /^[1-9]{1}[0-9]{1,14}$/.test(value) || 'Kode Program Studi hanya boleh angka',
         ], 
         rule_nama_prodi: [
-            value => !!value||"Mohon Nama Program Studi untuk diisi !!!",  
+            value => !!value || "Mohon Nama Program Studi untuk diisi !!!",  
             value => /^[A-Za-z\s]*$/.test(value) || 'Nama Program Studi hanya boleh string dan spasi',                
         ], 
         rule_nama_prodi_alias: [
-            value => !!value||"Mohon Nama Singkat Program Studi untuk diisi !!!",  
+            value => !!value || "Mohon Nama Singkat Program Studi untuk diisi !!!",  
             value => /^[A-Za-z\s]*$/.test(value) || 'Nama Singkat Program Studi hanya boleh string dan spasi',                
         ], 
         rule_kode_jenjang: [
-            value => !!value||"Mohon Jenjang Studi untuk dipilih !!!",              
+            value => !!value || "Mohon Jenjang Studi untuk dipilih !!!",              
         ], 
     }),
     methods: {
-        initialize: async function () 
+        initialize: async function() 
         {
             this.datatableLoading=true;
             await this.$ajax.get('/datamaster/programstudi',{
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
-            }).then(({data})=>{               
+            }).then(({ data })=>{               
                 this.datatable = data.prodi;
                 this.datatableLoading=false;
             }).catch(()=>{
@@ -374,11 +374,11 @@ export default {
         {   
             if (this.$store.getters['uifront/getBentukPT']=='universitas')
             {                
-                await this.$ajax.get('/datamaster/fakultas').then(({data})=>{
+                await this.$ajax.get('/datamaster/fakultas').then(({ data })=>{
                     this.daftar_fakultas=data.fakultas;
                 });
             }
-            await this.$ajax.get('/datamaster/programstudi/jenjangstudi').then(({data})=>{
+            await this.$ajax.get('/datamaster/programstudi/jenjangstudi').then(({ data })=>{
                 this.daftar_jenjang=data.jenjangstudi;
             });
 
@@ -389,9 +389,9 @@ export default {
             this.datatableLoading=true;
             await this.$ajax.get('/system/usersdosen',{
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
-            }).then(({data})=>{    
+            }).then(({ data })=>{    
                 this.daftar_dosen = data.users;   
                 this.dosen_id=item.config;
                 if (item.config)
@@ -411,13 +411,13 @@ export default {
 
             if (this.$store.getters['uifront/getBentukPT']=='universitas')
             {                
-                await this.$ajax.get('/datamaster/fakultas').then(({data})=>{                    
+                await this.$ajax.get('/datamaster/fakultas').then(({ data })=>{                    
                     this.daftar_fakultas=data.fakultas;                    
                     this.formdata.kode_fakultas=item.kode_fakultas;
                 });
             }
 
-            await this.$ajax.get('/datamaster/programstudi/jenjangstudi').then(({data})=>{
+            await this.$ajax.get('/datamaster/programstudi/jenjangstudi').then(({ data })=>{
                 this.daftar_jenjang=data.jenjangstudi;
             });
 
@@ -427,7 +427,7 @@ export default {
             }
             this.dialogfrm = true
         },    
-        save:async function () {
+        save:async function() {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading=true;
@@ -436,47 +436,47 @@ export default {
                     await this.$ajax.post('/datamaster/programstudi/'+this.formdata.id,
                         {
                             '_method': 'PUT',
-                            kode_fakultas:this.formdata.kode_fakultas,                            
-                            kode_prodi:this.formdata.kode_prodi,                            
-                            nama_prodi:this.formdata.nama_prodi,                                                        
-                            nama_prodi_alias:this.formdata.nama_prodi_alias,                                                        
-                            kode_jenjang:this.formdata.kode_jenjang,                                                        
-                            nama_jenjang:this.formdata.nama_jenjang,                                                                                                             
+                            kode_fakultas: this.formdata.kode_fakultas,                            
+                            kode_prodi: this.formdata.kode_prodi,                            
+                            nama_prodi: this.formdata.nama_prodi,                                                        
+                            nama_prodi_alias: this.formdata.nama_prodi_alias,                                                        
+                            kode_jenjang: this.formdata.kode_jenjang,                                                        
+                            nama_jenjang: this.formdata.nama_jenjang,                                                                                                             
                         },
                         {
                             headers: {
-                                Authorization:this.TOKEN
+                                Authorization: this.TOKEN
                             }
                         }
                     ).then(()=>{   
                         this.initialize();
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                         this.closedialogfrm();                        
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });                 
                     
                 } else {                    
                     await this.$ajax.post('/datamaster/programstudi/store',
                         {
-                            kode_fakultas:this.formdata.kode_fakultas,                            
-                            kode_prodi:this.formdata.kode_prodi,                            
-                            nama_prodi:this.formdata.nama_prodi,   
-                            nama_prodi_alias:this.formdata.nama_prodi_alias,                                                        
-                            kode_jenjang:this.jenjang_studi.kode_jenjang,                                                        
-                            nama_jenjang:this.jenjang_studi.nama_jenjang,                                                                                                             
+                            kode_fakultas: this.formdata.kode_fakultas,                            
+                            kode_prodi: this.formdata.kode_prodi,                            
+                            nama_prodi: this.formdata.nama_prodi,   
+                            nama_prodi_alias: this.formdata.nama_prodi_alias,                                                        
+                            kode_jenjang: this.jenjang_studi.kode_jenjang,                                                        
+                            nama_jenjang: this.jenjang_studi.nama_jenjang,                                                                                                             
                         },
                         {
                             headers: {
-                                Authorization:this.TOKEN
+                                Authorization: this.TOKEN
                             }
                         }
                     ).then(()=>{   
                         this.initialize();                  
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                         this.closedialogfrm();
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
                 }
             }
@@ -492,15 +492,15 @@ export default {
                         },
                         {
                             headers: {
-                                Authorization:this.TOKEN
+                                Authorization: this.TOKEN
                             }
                         }
                     ).then(()=>{   
                         const index = this.datatable.indexOf(item);
                         this.datatable.splice(index, 1);
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
                 }                
             });
@@ -572,14 +572,14 @@ export default {
                     },
                     {
                         headers: {
-                            Authorization:this.TOKEN
+                            Authorization: this.TOKEN
                         }
                     }
                 ).then(()=>{   
                     this.initialize();
-                    this.btnLoading=false;                    
+                    this.btnLoading = false;                    
                 }).catch(()=>{
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                 });        
             }            
         }  

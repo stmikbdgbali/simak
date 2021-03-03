@@ -161,7 +161,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{                                               
+            }).then(({ data })=>{                                               
                 this.datakrs=data.krs;
                 if (Object.keys(this.datakrs).length)
                 {
@@ -177,17 +177,17 @@ export default {
                 this.datatableLoading=true;
                 await this.$ajax.post('/akademik/perkuliahan/krs/penyelenggaraan',
                 {
-                    nim:this.datakrs.nim,
-                    prodi_id:this.datakrs.kjur,
-                    ta:this.datakrs.tahun,
-                    semester_akademik:this.datakrs.idsmt,
+                    nim: this.datakrs.nim,
+                    prodi_id: this.datakrs.kjur,
+                    ta: this.datakrs.tahun,
+                    semester_akademik: this.datakrs.idsmt,
                     pid: 'belumterdaftar'
                 },
                 {
                     headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     }
-                }).then(({data})=>{               
+                }).then(({ data })=>{               
                     this.datatable = data.penyelenggaraan;
                     this.datatableLoading=false;
                 }).catch(()=>{
@@ -195,14 +195,14 @@ export default {
                 });  
             }
         },    
-        save:async function () {
+        save:async function() {
             if (this.$refs.frmdata.validate())
             {
                 
                 this.btnLoading=true;
                 await this.$ajax.post('/akademik/perkuliahan/krs/storematkul',
                     {
-                        krs_id:this.krs_id,                        
+                        krs_id: this.krs_id,                        
                         matkul_selected:JSON.stringify(Object.assign({},this.daftar_matkul_selected)),
                     },
                     {
@@ -211,10 +211,10 @@ export default {
                         }
                     }
                 ).then(()=>{                       
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                     this.closedialogfrm();
                 }).catch(()=>{
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                 });
             }
         }, 

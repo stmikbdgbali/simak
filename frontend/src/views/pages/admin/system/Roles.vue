@@ -294,7 +294,7 @@ export default {
         },
         //form rules        
         rule_role_name: [
-            value => !!value||"Mohon untuk di isi nama Role !!!",  
+            value => !!value || "Mohon untuk di isi nama Role !!!",  
             value => /^[A-Za-z]*$/.test(value) || 'Nama Role hanya boleh string',                
         ], 
         form_error_message: ''
@@ -305,7 +305,7 @@ export default {
             this.datatableLoading=true;
             this.$ajax.get('/system/setting/roles',{
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
             }).then(({data,status})=>{
                 if (status==200)
@@ -334,7 +334,7 @@ export default {
 
             this.$ajax.get('/system/setting/roles/'+item.id+'/permission',{
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
             }).then(({data,status})=>{
                 if (status==200)
@@ -353,7 +353,7 @@ export default {
         setPermission (item) {            
             this.$ajax.get('/system/setting/permissions',{
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
             }).then(({data,status})=>{
                 if (status==200)
@@ -364,7 +364,7 @@ export default {
 
             this.$ajax.get('/system/setting/roles/'+item.id+'/permission',{
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
             }).then(({data,status})=>{
                 if (status==200)
@@ -401,14 +401,14 @@ export default {
                     this.$ajax.post('/system/setting/roles/'+this.editedItem.id,
                         {
                             '_method': 'PUT',
-                            name:this.editedItem.name.toLowerCase(),
+                            name: this.editedItem.name.toLowerCase(),
                         },
                         {
                             headers: {
-                                Authorization:this.TOKEN
+                                Authorization: this.TOKEN
                             }
                         }
-                    ).then(({data})=>{   
+                    ).then(({ data })=>{   
                         Object.assign(this.datatable[this.editedIndex], data.roles);
                         this.close();
                     }).catch(()=>{
@@ -418,14 +418,14 @@ export default {
                 } else {
                     this.$ajax.post('/system/setting/roles/store',
                         {
-                            name:this.editedItem.name.toLowerCase()
+                            name: this.editedItem.name.toLowerCase()
                         },
                         {
                             headers: {
-                                Authorization:this.TOKEN
+                                Authorization: this.TOKEN
                             }
                         }
-                    ).then(({data})=>{   
+                    ).then(({ data })=>{   
                         this.datatable.push(data.roles);
                         this.close();
                     }).catch(()=>{

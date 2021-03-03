@@ -387,7 +387,7 @@ export default {
         },
         //form rules        
         rule_user_name: [
-            value => !!value||"Mohon untuk di isi nama Dosen !!!",  
+            value => !!value || "Mohon untuk di isi nama Dosen !!!",  
             value => /^[A-Za-z\s]*$/.test(value) || 'Nama Dosen hanya boleh string dan spasi',                
         ],         
         rule_nidn: [                         
@@ -397,19 +397,19 @@ export default {
             value => /^[0-9]+$/.test(value) || 'Nomor Induk Pegawai Yayasan (NIPY) hanya boleh angka',                
         ], 
         rule_user_email: [
-            value => !!value||"Mohon untuk di isi email User !!!",  
+            value => !!value || "Mohon untuk di isi email User !!!",  
             value => /.+@.+\..+/.test(value) || 'Format E-mail harus benar',       
         ], 
         rule_user_nomorhp: [
-            value => !!value||"Nomor HP mohon untuk diisi !!!",
+            value => !!value || "Nomor HP mohon untuk diisi !!!",
             value => /^\+[1-9]{1}[0-9]{1,14}$/.test(value) || 'Nomor HP hanya boleh angka dan gunakan kode negara didepan seperti +6281214553388',
         ], 
         rule_user_username: [
-            value => !!value||"Mohon untuk di isi username User !!!",  
+            value => !!value || "Mohon untuk di isi username User !!!",  
             value => /^[A-Za-z_]*$/.test(value) || 'Username hanya boleh string dan underscore',                    
         ], 
         rule_user_password: [
-            value => !!value||"Mohon untuk di isi password User !!!",
+            value => !!value || "Mohon untuk di isi password User !!!",
             value => {
                 if (value && typeof value !== 'undefined' && value.length > 0){
                     return value.length >= 8 || 'Minimial Password 8 karaketer';
@@ -433,14 +433,14 @@ export default {
         ],
     }),
     methods: {
-        initialize: async function () 
+        initialize: async function() 
         {
             this.datatableLoading=true;
             await this.$ajax.get('/system/usersdosen',{
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
-            }).then(({data})=>{               
+            }).then(({ data })=>{               
                 this.daftar_users = data.users;                
                 this.datatableLoading=false;
             });          
@@ -457,7 +457,7 @@ export default {
                 this.expanded=[item];
             }               
         },        
-        showDialogTambahUserDosen:async function ()
+        showDialogTambahUserDosen:async function()
         {
             this.dialog = true;            
         },
@@ -491,18 +491,18 @@ export default {
                     this.$ajax.post('/system/usersdosen/'+this.editedItem.id,
                         {
                             '_method': 'PUT',
-                            name:this.editedItem.onlyname,
-                            nidn:this.editedItem.nidn,
-                            nipy:this.editedItem.nipy,
-                            email:this.editedItem.email,
-                            nomor_hp:this.editedItem.nomor_hp,     
-                            username:this.editedItem.username,
-                            password:this.editedItem.password,    
-                            is_dw:this.editedItem.is_dw,                                
+                            name: this.editedItem.onlyname,
+                            nidn: this.editedItem.nidn,
+                            nipy: this.editedItem.nipy,
+                            email: this.editedItem.email,
+                            nomor_hp: this.editedItem.nomor_hp,     
+                            username: this.editedItem.username,
+                            password: this.editedItem.password,    
+                            is_dw: this.editedItem.is_dw,                                
                         },
                         {
                             headers: {
-                                Authorization:this.TOKEN
+                                Authorization: this.TOKEN
                             }
                         }
                     ).then(()=>{   
@@ -515,21 +515,21 @@ export default {
                 } else {
                     this.$ajax.post('/system/usersdosen/store',
                         {
-                            name:this.editedItem.onlyname,
-                            nidn:this.editedItem.nidn,
-                            nipy:this.editedItem.nipy,
-                            email:this.editedItem.email,
-                            nomor_hp:this.editedItem.nomor_hp,     
-                            username:this.editedItem.username,
-                            password:this.editedItem.password,                                        
-                            is_dw:this.editedItem.is_dw,                                        
+                            name: this.editedItem.onlyname,
+                            nidn: this.editedItem.nidn,
+                            nipy: this.editedItem.nipy,
+                            email: this.editedItem.email,
+                            nomor_hp: this.editedItem.nomor_hp,     
+                            username: this.editedItem.username,
+                            password: this.editedItem.password,                                        
+                            is_dw: this.editedItem.is_dw,                                        
                         },
                         {
                             headers: {
-                                Authorization:this.TOKEN
+                                Authorization: this.TOKEN
                             }
                         }
-                    ).then(({data})=>{   
+                    ).then(({ data })=>{   
                         this.daftar_users.push(data.user);
                         this.close();
                     }).catch(()=>{
@@ -576,7 +576,7 @@ export default {
                         },
                         {
                             headers: {
-                                Authorization:this.TOKEN
+                                Authorization: this.TOKEN
                             }
                         }
                     ).then(()=>{   

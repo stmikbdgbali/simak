@@ -217,14 +217,14 @@ export default {
             this.datatableLoading=true;            
             await this.$ajax.post('/keuangan/biayakomponenperiode',            
             {
-                TA:this.tahun_pendaftaran,
-                prodi_id:this.prodi_id
+                TA: this.tahun_pendaftaran,
+                prodi_id: this.prodi_id
             },
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{               
+            }).then(({ data })=>{               
                 this.datatable = data.kombi;                
                 this.datatableLoading=false;
             });                     
@@ -245,21 +245,21 @@ export default {
                 this.expanded=[item];
             }               
         },
-        loadkombiperiode:async function ()
+        loadkombiperiode:async function()
         {
             this.btnLoading=true;            
             await this.$ajax.post('/keuangan/biayakomponenperiode/loadkombiperiode',            
             {
-                TA:this.tahun_pendaftaran,
-                prodi_id:this.prodi_id
+                TA: this.tahun_pendaftaran,
+                prodi_id: this.prodi_id
             },
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{               
+            }).then(({ data })=>{               
                 this.datatable = data.kombi;                
-                this.btnLoading=false;
+                this.btnLoading = false;
             });   
         },
         saveItem:async function ({id,biaya})
@@ -315,15 +315,15 @@ export default {
                     this.datatableLoading=true;            
                     this.$ajax.post('/keuangan/biayakomponenperiode',            
                     {
-                        TA:this.tahun_pendaftaran,
-                        prodi_id:this.prodi_id,
+                        TA: this.tahun_pendaftaran,
+                        prodi_id: this.prodi_id,
                         filter_idkelas:val
                     },
                     {
                         headers: {
                             Authorization: this.$store.getters["auth/Token"]
                         }
-                    }).then(({data})=>{               
+                    }).then(({ data })=>{               
                         this.datatable = data.kombi;                
                         this.datatableLoading=false;
                     });                     

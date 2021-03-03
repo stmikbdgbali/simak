@@ -96,15 +96,15 @@ export default {
         
     }),
     methods: {
-        initialize: async function () 
+        initialize: async function() 
         {
             this.datatableLoading=true;
             await this.$ajax.get('/system/setting/variables',
             {
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
-            }).then(({data})=>{                  
+            }).then(({ data })=>{                  
                 let setting = data.setting;             
                 this.formdata.email_mhs_isvalid=parseInt(setting.EMAIL_MHS_ISVALID);                
             });          
@@ -119,12 +119,12 @@ export default {
                         '_method': 'PUT', 
                         'pid': 'email',
                         setting:JSON.stringify({
-                            910:this.formdata.email_mhs_isvalid,                            
+                            910: this.formdata.email_mhs_isvalid,                            
                         }),                                                                                                                            
                     },
                     {
                         headers: {
-                            Authorization:this.TOKEN
+                            Authorization: this.TOKEN
                         }
                     }
                 ).then(()=>{                       

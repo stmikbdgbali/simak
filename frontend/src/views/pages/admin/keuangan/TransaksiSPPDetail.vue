@@ -238,7 +238,7 @@ export default {
         {
             this.tahun_akademik=tahun;
         },
-        initialize: async function () 
+        initialize: async function() 
         {
             this.datatableLoading=true;            
             await this.$ajax.get('/keuangan/transaksi-spp/'+this.transaksi_id,                        
@@ -246,7 +246,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{       
+            }).then(({ data })=>{       
                 this.data_transaksi=data.transaksi;                                       
                 this.item_selected = data.item_selected;                
                 this.datatableLoading=false;
@@ -269,9 +269,9 @@ export default {
                     ).then(()=>{   
                         const index = this.datatable.indexOf(item);
                         this.item_selected.splice(index, 1);
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
                 }                
             });

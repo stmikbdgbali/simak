@@ -263,7 +263,7 @@ export default {
             no_formulir: "",            
         },
         rule_no_formulir: [
-            value => !!value||"Nomor Formulir mohon untuk diisi !!!",
+            value => !!value || "Nomor Formulir mohon untuk diisi !!!",
             value => /^[0-9]+$/.test(value) || 'Nomor Formulir hanya boleh angka',
         ],        
     }),
@@ -276,19 +276,19 @@ export default {
         {
             this.prodi_id=id;
         },
-        initialize: async function () 
+        initialize: async function() 
         {
             this.datatableLoading=true;            
             await this.$ajax.post('/keuangan/transaksi-dulangmhsbaru',            
             {
-                TA:this.tahun_pendaftaran, 
-                PRODI_ID:this.prodi_id               
+                TA: this.tahun_pendaftaran, 
+                PRODI_ID: this.prodi_id               
             },
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{               
+            }).then(({ data })=>{               
                 this.datatable = data.transaksi;                
                 this.datatableLoading=false;
             });                     
@@ -314,14 +314,14 @@ export default {
         {
             this.$router.push('/keuangan/transaksi-dulangmhsbaru/'+item.transaksi_id);
         },
-        save:async function () {
+        save:async function() {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading=true;
                 await this.$ajax.post('/keuangan/transaksi-dulangmhsbaru/store',
                     {
-                        no_formulir:this.formdata.no_formulir,                         
-                        TA:this.tahun_pendaftaran,                                                     
+                        no_formulir: this.formdata.no_formulir,                         
+                        TA: this.tahun_pendaftaran,                                                     
                     },
                     {
                         headers: {
@@ -330,11 +330,11 @@ export default {
                     }
                 ).then(()=>{   
                     this.closedialogfrm();
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                     this.initialize();                    
                     
                 }).catch(()=>{
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                 });
             }            
         },
@@ -367,9 +367,9 @@ export default {
                     ).then(()=>{   
                         const index = this.datatable.indexOf(item);
                         this.datatable.splice(index, 1);
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
                 }                
             });
@@ -436,15 +436,15 @@ export default {
                         this.datatableLoading=true;            
                         await this.$ajax.post('/keuangan/transaksi-dulangmhsbaru',                 
                         {
-                            PRODI_ID:this.prodi_id,
-                            TA:this.tahun_pendaftaran,
-                            search:this.search
+                            PRODI_ID: this.prodi_id,
+                            TA: this.tahun_pendaftaran,
+                            search: this.search
                         },
                         {
                             headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
-                        }).then(({data})=>{               
+                        }).then(({ data })=>{               
                             this.datatable = data.transaksi;                
                             this.datatableLoading=false;
                         });                     

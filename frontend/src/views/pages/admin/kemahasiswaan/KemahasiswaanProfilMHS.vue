@@ -301,7 +301,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{                              
+            }).then(({ data })=>{                              
                 this.datamhs=data.mahasiswa;
                 
                 this.totalSKS=data.jumlah_sks;
@@ -313,14 +313,14 @@ export default {
             this.datatableLoading=true;     
             await this.$ajax.post('/keuangan/transaksi',            
             {
-                TA:this.$store.getters['uiadmin/getTahunAkademik'],
-                user_id:this.user_id
+                TA: this.$store.getters['uiadmin/getTahunAkademik'],
+                user_id: this.user_id
             },
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{               
+            }).then(({ data })=>{               
                 this.datatable = data.transaksi;                
                 this.datatableLoading=false;
             });                     
@@ -343,11 +343,11 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{                                                             
+            }).then(({ data })=>{                                                             
                 this.data_transaksi=item;   
                 this.data_transaksi_detail=data.transaksi_detail;   
                 this.dialogdetailitem=true;
-                this.btnLoading=false;
+                this.btnLoading = false;
             });                                        
         },
         closedialogdetailitem () {

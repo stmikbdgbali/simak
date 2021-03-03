@@ -119,25 +119,25 @@ export default {
         },
         //form rules        
         rule_nama_pt: [
-            value => !!value||"Mohon untuk di isi Nama Perguruan Tinggi !!!",             
+            value => !!value || "Mohon untuk di isi Nama Perguruan Tinggi !!!",             
         ], 
         rule_nama_singkatan_pt: [
-            value => !!value||"Mohon untuk di isi Nama Alias Perguruan Tinggi !!!",             
+            value => !!value || "Mohon untuk di isi Nama Alias Perguruan Tinggi !!!",             
         ],
         rule_kode_pt: [
-            value => !!value||"Mohon untuk di isi Kode Perguruan Tinggi !!!",                     
+            value => !!value || "Mohon untuk di isi Kode Perguruan Tinggi !!!",                     
             value => /^[0-9]+$/.test(value) || 'Kode Perguruan Tinggi hanya boleh angka',
         ]
     }),
     methods: {
-        initialize: async function () 
+        initialize: async function() 
         {
             await this.$ajax.get('/system/setting/variables',
             {
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
-            }).then(({data})=>{  
+            }).then(({ data })=>{  
                 let setting = data.setting;                           
                 this.formdata.nama_pt=setting.NAMA_PT;
                 this.formdata.nama_alias_pt=setting.NAMA_PT_ALIAS;
@@ -155,15 +155,15 @@ export default {
                         '_method': 'PUT', 
                         'pid': 'Identitas Perguruan Tinggi',
                         setting:JSON.stringify({
-                            101:this.formdata.nama_pt,
-                            102:this.formdata.nama_alias_pt,
-                            103:this.formdata.bentuk_pt,
-                            104:this.formdata.kode_pt,
+                            101: this.formdata.nama_pt,
+                            102: this.formdata.nama_alias_pt,
+                            103: this.formdata.bentuk_pt,
+                            104: this.formdata.kode_pt,
                         }),                                                                                                                            
                     },
                     {
                         headers: {
-                            Authorization:this.TOKEN
+                            Authorization: this.TOKEN
                         }
                     }
                 ).then(()=>{                       

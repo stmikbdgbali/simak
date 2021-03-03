@@ -257,11 +257,11 @@ export default {
             semester_akademik: ''
         },
         rule_nim: [
-            value => !!value||"Nomor Induk Mahasiswa (NIM) mohon untuk diisi !!!",
+            value => !!value || "Nomor Induk Mahasiswa (NIM) mohon untuk diisi !!!",
             value => /^[0-9]+$/.test(value) || 'Nomor Induk Mahasiswa (NIM) hanya boleh angka',
         ], 
         rule_semester: [
-            value => !!value||"Mohon dipilih Semester untuk transaksi ini !!!"
+            value => !!value || "Mohon dipilih Semester untuk transaksi ini !!!"
         ],    
 
     }),
@@ -274,19 +274,19 @@ export default {
         {
             this.tahun_akademik=tahun;
         },
-        initialize: async function () 
+        initialize: async function() 
         {
             this.datatableLoading=true;            
             await this.$ajax.post('/keuangan/transaksi-spp',            
             {
-                prodi_id:this.prodi_id,
-                TA:this.tahun_akademik,
+                prodi_id: this.prodi_id,
+                TA: this.tahun_akademik,
             },
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{               
+            }).then(({ data })=>{               
                 this.datatable = data.transaksi;                
                 this.datatableLoading=false;
             });                     
@@ -318,25 +318,25 @@ export default {
         {
             this.$router.push('/keuangan/transaksi-spp/'+item.transaksi_id);
         },
-        buatTransaksi:async function () {
+        buatTransaksi:async function() {
             if (this.$refs.frmdata.validate())
             {
                 await this.$ajax.post('/keuangan/transaksi-spp/new',
                     {
-                        nim:this.formdata.nim, 
-                        semester_akademik:this.formdata.semester_akademik,                                                                            
-                        TA:this.tahun_akademik,                                                     
+                        nim: this.formdata.nim, 
+                        semester_akademik: this.formdata.semester_akademik,                                                                            
+                        TA: this.tahun_akademik,                                                     
                     },
                     {
                         headers: {
                             Authorization: this.$store.getters["auth/Token"]
                         }
                     }
-                ).then(({data})=>{                                        
-                    this.btnLoading=false;                                        
+                ).then(({ data })=>{                                        
+                    this.btnLoading = false;                                        
                     this.$router.push('/keuangan/transaksi-spp/tambah/'+data.transaksi.id);
                 }).catch(()=>{
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                 });                
             }            
         },
@@ -410,15 +410,15 @@ export default {
                         this.datatableLoading=true;            
                         await this.$ajax.post('/keuangan/transaksi-spp',            
                         {
-                            prodi_id:this.prodi_id,
-                            TA:this.tahun_akademik,
-                            search:this.search
+                            prodi_id: this.prodi_id,
+                            TA: this.tahun_akademik,
+                            search: this.search
                         },
                         {
                             headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
-                        }).then(({data})=>{               
+                        }).then(({ data })=>{               
                             this.datatable = data.transaksi;                
                             this.datatableLoading=false;
                         });                     

@@ -210,7 +210,7 @@ export default {
                         }
                     },
                     
-                ).then(({data})=>{                       
+                ).then(({ data })=>{                       
                     this.showcomponentpersyaratan=data.formulir.idkelas==null||data.formulir.idkelas==''?false: true;                    
                 });  
             }
@@ -219,14 +219,14 @@ export default {
                 this.datatableLoading=true;
                 await this.$ajax.post('/spmb/pmbpersyaratan',
                 {
-                    TA:this.tahun_pendaftaran,
-                    prodi_id:this.prodi_id,
+                    TA: this.tahun_pendaftaran,
+                    prodi_id: this.prodi_id,
                 },
                 {
                     headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     }
-                }).then(({data})=>{                                   
+                }).then(({ data })=>{                                   
                     this.datatable = data.persyaratan;   
                     this.datatableLoading=false;
                 });  

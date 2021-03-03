@@ -130,24 +130,24 @@ export default {
         },
         //form rules        
         rule_default_ta: [
-            value => !!value||"Mohon untuk dipilih Tahun Akademik !!!",             
+            value => !!value || "Mohon untuk dipilih Tahun Akademik !!!",             
         ], 
         rule_default_semester: [
-            value => !!value||"Mohon untuk diisi Semester !!!",             
+            value => !!value || "Mohon untuk diisi Semester !!!",             
         ],
         rule_tahun_pendaftaran: [
-            value => !!value||"Mohon untuk dipilih Tahun Pendaftaran !!!",                                 
+            value => !!value || "Mohon untuk dipilih Tahun Pendaftaran !!!",                                 
         ]
     }),
     methods: {
-        initialize: async function () 
+        initialize: async function() 
         {
             await this.$ajax.get('/system/setting/variables',
             {
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
-            }).then(({data})=>{  
+            }).then(({ data })=>{  
                 let setting = data.setting;                           
                 this.formdata.default_ta=setting.DEFAULT_TA;
                 this.formdata.default_semester=setting.DEFAULT_SEMESTER;                
@@ -164,14 +164,14 @@ export default {
                         '_method': 'PUT', 
                         'pid': 'Variable default sistem',
                         setting:JSON.stringify({
-                            201:this.formdata.default_ta,
-                            202:this.formdata.default_semester,                            
-                            203:this.formdata.tahun_pendaftaran,
+                            201: this.formdata.default_ta,
+                            202: this.formdata.default_semester,                            
+                            203: this.formdata.tahun_pendaftaran,
                         }),                                                                                                                            
                     },
                     {
                         headers: {
-                            Authorization:this.TOKEN
+                            Authorization: this.TOKEN
                         }
                     }
                 ).then(()=>{                       

@@ -282,7 +282,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{
+            }).then(({ data })=>{
                 this.datakrs=data.krs;
                 this.datatable=data.krsmatkul;
                 if (Object.keys(this.datakrs).length)
@@ -301,21 +301,21 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{
+            }).then(({ data })=>{
                 this.dialogfrm=true;
                 this.datamatkul=item;
                 this.daftar_kelas=data.daftarkelas;
                 this.formdata.kelas_mhs_id=item.kelas_mhs_id;
             })
         },
-        save:async function () {
+        save:async function() {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading=true;                
                 await this.$ajax.post('/akademik/perkuliahan/pembagiankelas/storepeserta',
                     {
-                        kelas_mhs_id:this.formdata.kelas_mhs_id,                        
-                        krsmatkul_id:this.datamatkul.id                                                                                                    
+                        kelas_mhs_id: this.formdata.kelas_mhs_id,                        
+                        krsmatkul_id: this.datamatkul.id                                                                                                    
                     },
                     {
                         headers: {
@@ -325,9 +325,9 @@ export default {
                 ).then(()=>{                           
                     this.closedialogfrm();
                     this.fetchKRS();
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                 }).catch(()=>{
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                 });
             }
         },

@@ -164,18 +164,18 @@ export default {
         ],
     }),
     methods: {
-        initialize: async function () 
+        initialize: async function() 
         {
             this.datatableLoading=true;
             await this.$ajax.post('/spmb/passinggrade',
             {
-                jadwal_ujian_id:this.jadwal_ujian_id,                
+                jadwal_ujian_id: this.jadwal_ujian_id,                
             },
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{                 
+            }).then(({ data })=>{                 
                 this.datatableLoading=false;
                 this.jadwal_ujian=data.jadwal_ujian;      
                 this.datatable=data.passing_grade;                               
@@ -194,12 +194,12 @@ export default {
                 this.expanded=[item];
             }               
         },
-        loadprodi:async function ()
+        loadprodi:async function()
         {
             this.btnLoading=true;
             await this.$ajax.post('/spmb/passinggrade/loadprodi',
                 {
-                    jadwal_ujian_id:this.jadwal_ujian_id,               
+                    jadwal_ujian_id: this.jadwal_ujian_id,               
                 },
                 {
                     headers: {
@@ -207,10 +207,10 @@ export default {
                     }
                 }
             ).then(()=>{         
-                this.btnLoading=false;
+                this.btnLoading = false;
                 this.initialize();
             }).catch(()=>{
-                this.btnLoading=false;
+                this.btnLoading = false;
             });        
         },
         saveItem:async function ({id,nilai})
@@ -227,7 +227,7 @@ export default {
                     Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(()=>{        
-                this.btnLoading=false;       
+                this.btnLoading = false;       
                 this.initialize();                        
             });  
         },

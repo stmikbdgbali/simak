@@ -436,28 +436,28 @@ export default {
         editedIndex: -1,
 
         rule_name: [
-            value => !!value||"Nama Mahasiswa mohon untuk diisi !!!",
+            value => !!value || "Nama Mahasiswa mohon untuk diisi !!!",
             value => /^[A-Za-z\s\\,\\.]*$/.test(value) || 'Nama Mahasiswa hanya boleh string dan spasi',
         ], 
         rule_nomorhp: [
-            value => !!value||"Nomor HP mohon untuk diisi !!!",
+            value => !!value || "Nomor HP mohon untuk diisi !!!",
             value => /^\+[1-9]{1}[0-9]{1,14}$/.test(value) || 'Nomor HP hanya boleh angka dan gunakan kode negara didepan seperti +6281214553388',
         ], 
         rule_email: [
-            value => !!value||"Email mohon untuk diisi !!!",
+            value => !!value || "Email mohon untuk diisi !!!",
             v => /.+@.+\..+/.test(v) || 'Format E-mail mohon di isi dengan benar',
         ],   
         rule_fakultas: [
-            value => !!value||"Fakultas mohon untuk dipilih !!!"
+            value => !!value || "Fakultas mohon untuk dipilih !!!"
         ], 
         rule_prodi: [
-            value => !!value||"Program studi mohon untuk dipilih !!!"
+            value => !!value || "Program studi mohon untuk dipilih !!!"
         ],      
         rule_username: [
-            value => !!value||"Username mohon untuk diisi !!!"
+            value => !!value || "Username mohon untuk diisi !!!"
         ], 
         rule_password: [
-            value => !!value||"Password mohon untuk diisi !!!"
+            value => !!value || "Password mohon untuk diisi !!!"
         ], 
     }),
     methods: {
@@ -469,19 +469,19 @@ export default {
         {
             this.prodi_id=id;
         },
-        initialize: async function () 
+        initialize: async function() 
         {
             this.datatableLoading=true;            
             await this.$ajax.post('/spmb/pmb',
             {
-                TA:this.tahun_pendaftaran,
-                prodi_id:this.prodi_id,
+                TA: this.tahun_pendaftaran,
+                prodi_id: this.prodi_id,
             },
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{               
+            }).then(({ data })=>{               
                 this.datatable = data.pmb;                
                 this.datatableLoading=false;
             });          
@@ -522,19 +522,19 @@ export default {
                 }
             ).then(()=>{   
                 this.initialize();
-                this.btnLoading=false;
+                this.btnLoading = false;
             }).catch(()=>{
-                this.btnLoading=false;
+                this.btnLoading = false;
             });
         },
-        syncPermission:async function ()
+        syncPermission:async function()
         {
             this.btnLoading=true;
             await this.$ajax.post('/system/users/syncallpermissions',
                 {
                     role_name: 'mahasiswabaru',
-                    TA:this.tahun_pendaftaran,                    
-                    prodi_id:this.prodi_id                     
+                    TA: this.tahun_pendaftaran,                    
+                    prodi_id: this.prodi_id                     
                 },
                 {
                     headers: {
@@ -542,9 +542,9 @@ export default {
                     }
                 }
             ).then(()=>{                   
-                this.btnLoading=false;
+                this.btnLoading = false;
             }).catch(()=>{
-                this.btnLoading=false;
+                this.btnLoading = false;
             });     
         },
         async addItem ()
@@ -555,19 +555,19 @@ export default {
 
             if (this.$store.getters['uifront/getBentukPT']=='universitas')
             {                
-                await this.$ajax.get('/datamaster/fakultas').then(({data})=>{                    
+                await this.$ajax.get('/datamaster/fakultas').then(({ data })=>{                    
                     this.daftar_fakultas=data.fakultas;
                 });
             }
             else
             {
-                await this.$ajax.get('/datamaster/programstudi').then(({data})=>{
+                await this.$ajax.get('/datamaster/programstudi').then(({ data })=>{
                     this.daftar_prodi=data.prodi;
                 });
             }   
             this.dialogfrm = true;                       
         },
-        save:async function () {
+        save:async function() {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading=true;
@@ -576,13 +576,13 @@ export default {
                     await this.$ajax.post('/spmb/pmb/updatependaftar/'+this.formdata.id,
                         {
                             '_method': 'PUT',
-                            name:this.formdata.name,
-                            email:this.formdata.email,                    
-                            nomor_hp:this.formdata.nomor_hp,
-                            prodi_id:this.formdata.prodi_id,
-                            tahun_pendaftaran:this.formdata.ta,
-                            username:this.formdata.username,                                                                  
-                            password:this.formdata.password,                     
+                            name: this.formdata.name,
+                            email: this.formdata.email,                    
+                            nomor_hp: this.formdata.nomor_hp,
+                            prodi_id: this.formdata.prodi_id,
+                            tahun_pendaftaran: this.formdata.ta,
+                            username: this.formdata.username,                                                                  
+                            password: this.formdata.password,                     
                         },
                         {
                             headers: {
@@ -592,33 +592,33 @@ export default {
                     ).then(()=>{   
                         this.initialize();
                         this.closedialogfrm();
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });                 
                     
                 } else {
                     await this.$ajax.post('/spmb/pmb/storependaftar',
                         {
-                            name:this.formdata.name,
-                            email:this.formdata.email,                    
-                            nomor_hp:this.formdata.nomor_hp,
-                            username:this.formdata.username,                                      
-                            prodi_id:this.formdata.prodi_id,                            
-                            tahun_pendaftaran:this.formdata.ta,
-                            password:this.formdata.password,                            
+                            name: this.formdata.name,
+                            email: this.formdata.email,                    
+                            nomor_hp: this.formdata.nomor_hp,
+                            username: this.formdata.username,                                      
+                            prodi_id: this.formdata.prodi_id,                            
+                            tahun_pendaftaran: this.formdata.ta,
+                            password: this.formdata.password,                            
                         },
                         {
                             headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
-                    ).then(({data})=>{                           
+                    ).then(({ data })=>{                           
                         this.datatable.push(data.pendaftar);
                         this.closedialogfrm();
-                        this.btnLoading=false;                        
+                        this.btnLoading = false;                        
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
                 }
             }
@@ -637,9 +637,9 @@ export default {
                 }
             ).then(()=>{                                           
                 this.closedialogdetailitem();
-                this.btnLoading=false;
+                this.btnLoading = false;
             }).catch(()=>{
-                this.btnLoading=false;
+                this.btnLoading = false;
             });
         },
         viewItem (item) {           
@@ -653,16 +653,16 @@ export default {
             this.daftar_ta=this.$store.getters['uiadmin/getDaftarTA'];  
             if (this.$store.getters['uifront/getBentukPT']=='universitas')
             {                
-                await this.$ajax.get('/datamaster/fakultas').then(({data})=>{                    
+                await this.$ajax.get('/datamaster/fakultas').then(({ data })=>{                    
                     this.daftar_fakultas=data.fakultas;
                 });
-                await this.$ajax.get('/datamaster/programstudi').then(({data})=>{
+                await this.$ajax.get('/datamaster/programstudi').then(({ data })=>{
                     this.daftar_prodi=data.prodi;
                 });
             }
             else
             {
-                await this.$ajax.get('/datamaster/programstudi').then(({data})=>{
+                await this.$ajax.get('/datamaster/programstudi').then(({ data })=>{
                     this.daftar_prodi=data.prodi;
                 });
             }   
@@ -672,7 +672,7 @@ export default {
                         Authorization: this.$store.getters["auth/Token"]
                     }
                 }
-            ).then(({data})=>{           
+            ).then(({ data })=>{           
                 this.registered = data.status==1;                                        
                 this.dialogfrm = true; 
             this.dialogfrm = true;
@@ -698,9 +698,9 @@ export default {
                     ).then(()=>{   
                         const index = this.datatable.indexOf(item);
                         this.datatable.splice(index, 1);
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
                 }
             });
@@ -736,7 +736,7 @@ export default {
             if (val != null && val != '')
             {
                 this.btnLoadingFakultas=true;
-                this.$ajax.get('/datamaster/fakultas/'+val+'/programstudi').then(({data})=>{                                
+                this.$ajax.get('/datamaster/fakultas/'+val+'/programstudi').then(({ data })=>{                                
                     this.daftar_prodi=data.programstudi;
                     this.btnLoadingFakultas=false;
                 });
@@ -760,15 +760,15 @@ export default {
                         this.datatableLoading=true;            
                         await this.$ajax.post('/spmb/pmb',
                         {
-                            prodi_id:this.prodi_id,
-                            TA:this.tahun_pendaftaran,
-                            search:this.search
+                            prodi_id: this.prodi_id,
+                            TA: this.tahun_pendaftaran,
+                            search: this.search
                         },
                         {
                             headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
-                        }).then(({data})=>{               
+                        }).then(({ data })=>{               
                             this.datatable = data.pmb;                
                             this.datatableLoading=false;
                         });                     

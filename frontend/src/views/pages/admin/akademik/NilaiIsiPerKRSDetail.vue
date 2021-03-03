@@ -244,7 +244,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{                                               
+            }).then(({ data })=>{                                               
                 this.datakrs=data.krs;                
                 this.datatable=data.krsmatkul;                
                 if (Object.keys(this.datakrs).length)
@@ -270,7 +270,7 @@ export default {
             });            
             await this.$ajax.post('/akademik/nilai/matakuliah/perkrs/storeperkrs',
                 {
-                    krs_id:this.krs_id,
+                    krs_id: this.krs_id,
                     daftar_nilai:JSON.stringify(Object.assign({},daftar_nilai)),                    
                 },
                 {

@@ -373,28 +373,28 @@ export default {
 
 		//form rules  
 		rule_email: [
-			value => !!value||"Mohon untuk mengisi Email !!!",
+			value => !!value || "Mohon untuk mengisi Email !!!",
 			v => /.+@.+\..+/.test(v) || "Format E-mail mohon di isi dengan benar",
 		], 
 		rule_api_key: [
-			value => !!value||"Mohon untuk mengisi API Key !!!",  
+			value => !!value || "Mohon untuk mengisi API Key !!!",  
 		], 
 		rule_api_secret: [
-			value => !!value||"Mohon untuk mengisi API Secret !!!",  
+			value => !!value || "Mohon untuk mengisi API Secret !!!",  
 		],
 		rule_im_token: [
-			value => !!value||"Mohon mengisi IM Token !!!",  
+			value => !!value || "Mohon mengisi IM Token !!!",  
 		],
 	}),
 	methods: {
-		initialize: async function () 
+		initialize: async function() 
 		{
 			this.datatableLoading=true;
 			await this.$ajax.get(process.env.VUE_APP_HOST+"/h2h/zoom",{
 				headers: {
 					Authorization: this.$store.getters["auth/Token"]
 				}
-			}).then(({data})=>{
+			}).then(({ data })=>{
 				this.datatable = data.zoom;
 				this.datatableLoading=false;
 			}).catch(() => {
@@ -419,7 +419,7 @@ export default {
 			// headers: {
 			// Authorization: this.$store.getters["auth/Token"]
 			// }
-			// }).then(({data})=>{
+			// }).then(({ data })=>{
 										
 			// });  
 		},
@@ -428,7 +428,7 @@ export default {
 			this.formdata = Object.assign({}, item);
 			this.dialogfrm = true;
 		},
-		save:async function () {
+		save:async function() {
 			if (this.$refs.frmdata.validate())
 			{
 				this.btnLoading=true;
@@ -437,17 +437,17 @@ export default {
 					await this.$ajax.post(process.env.VUE_APP_HOST+"/h2h/zoom/"+this.formdata.id,
 						{
 							_method: "PUT",
-							email:this.formdata.email,
-							api_key:this.formdata.api_key, 
-							api_secret:this.formdata.api_secret,
-							im_token:this.formdata.im_token, 
+							email: this.formdata.email,
+							api_key: this.formdata.api_key, 
+							api_secret: this.formdata.api_secret,
+							im_token: this.formdata.im_token, 
 						},
 						{
 							headers: {
 								Authorization: this.$store.getters["auth/Token"]
 							}
 						}
-					).then(({data})=>{
+					).then(({ data })=>{
 						Object.assign(this.datatable[this.editedIndex], data.zoom);
 						this.closedialogfrm();
 						this.btnLoading = false;
@@ -458,17 +458,17 @@ export default {
 				} else {
 					await this.$ajax.post(process.env.VUE_APP_HOST+"/h2h/zoom/store",
 						{
-							email:this.formdata.email,
-							api_key:this.formdata.api_key, 
-							api_secret:this.formdata.api_secret,
-							im_token:this.formdata.im_token,
+							email: this.formdata.email,
+							api_key: this.formdata.api_key, 
+							api_secret: this.formdata.api_secret,
+							im_token: this.formdata.im_token,
 						},
 						{
 							headers: {
 								Authorization: this.$store.getters["auth/Token"]
 							}
 						}
-					).then(({data})=>{
+					).then(({ data })=>{
 						this.datatable.push(data.zoom);
 						this.closedialogfrm();
 						this.btnLoading = false;

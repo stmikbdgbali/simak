@@ -331,10 +331,10 @@ export default {
 
         //form rules      
         rule_nama_persyaratan: [
-            value => !!value||"Mohon Nama Program Studi untuk diisi !!!",              
+            value => !!value || "Mohon Nama Program Studi untuk diisi !!!",              
         ],         
         rule_dari_tahun_pendaftaran: [
-            value => !!value||"Mohon Tahun Pendaftaran sumber persyaratan untuk dipilih !!!",              
+            value => !!value || "Mohon Tahun Pendaftaran sumber persyaratan untuk dipilih !!!",              
         ],             
     }),
     methods: {
@@ -342,18 +342,18 @@ export default {
         {
             this.tahun_pendaftaran=tahun;
         },        
-        initialize: async function () 
+        initialize: async function() 
         {
             this.datatableLoading=true;
             await this.$ajax.post('/datamaster/persyaratan',
             {
-                TA:this.tahun_pendaftaran
+                TA: this.tahun_pendaftaran
             },
             {
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
-            }).then(({data})=>{               
+            }).then(({ data })=>{               
                 this.datatable = data.persyaratan;
                 this.datatableLoading=false;
             }).catch(()=>{
@@ -402,7 +402,7 @@ export default {
             }            
             this.dialogcopypersyaratan=true;
         },
-        save:async function () {
+        save:async function() {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading=true;
@@ -411,39 +411,39 @@ export default {
                     await this.$ajax.post('/datamaster/persyaratan/'+this.formdata.id,
                         {
                             '_method': 'PUT',                            
-                            nama_persyaratan:this.formdata.nama_persyaratan,                                                                            
+                            nama_persyaratan: this.formdata.nama_persyaratan,                                                                            
                         },
                         {
                             headers: {
-                                Authorization:this.TOKEN
+                                Authorization: this.TOKEN
                             }
                         }
                     ).then(()=>{   
                         this.initialize();
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                         this.closedialogfrm();                        
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });                 
                     
                 } else {                    
                     await this.$ajax.post('/datamaster/persyaratan/store',
                         {
-                            proses:this.formdata.proses,                                                    
-                            nama_persyaratan:this.formdata.nama_persyaratan,                                                                                                       
-                            ta:this.tahun_pendaftaran,                                     
+                            proses: this.formdata.proses,                                                    
+                            nama_persyaratan: this.formdata.nama_persyaratan,                                                                                                       
+                            ta: this.tahun_pendaftaran,                                     
                         },
                         {
                             headers: {
-                                Authorization:this.TOKEN
+                                Authorization: this.TOKEN
                             }
                         }
                     ).then(()=>{   
                         this.initialize();                  
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                         this.closedialogfrm();
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
                 }
             }
@@ -455,20 +455,20 @@ export default {
                 this.btnLoading=true;
                 this.$ajax.post('/datamaster/persyaratan/salin/'+this.tahun_pendaftaran,
                     {
-                        dari_tahun_pendaftaran:this.dari_tahun_pendaftaran,
+                        dari_tahun_pendaftaran: this.dari_tahun_pendaftaran,
                         proses: 'pmb',
                     },
                     {
                         headers: {
-                            Authorization:this.TOKEN
+                            Authorization: this.TOKEN
                         }
                     }
-                ).then(({data})=>{   
+                ).then(({ data })=>{   
                     this.datatable=data.persyaratan;
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                     this.closedialogsalinpersyaratan();
                 }).catch(()=>{
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                 });            
             }
         },
@@ -483,15 +483,15 @@ export default {
                         },
                         {
                             headers: {
-                                Authorization:this.TOKEN
+                                Authorization: this.TOKEN
                             }
                         }
                     ).then(()=>{   
                         const index = this.datatable.indexOf(item);
                         this.datatable.splice(index, 1);
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
                 }                
             });
