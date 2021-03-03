@@ -79,24 +79,24 @@ export default {
     {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.ACCESS_TOKEN
+                href: '/dashboard/'+this.ACCESS_TOKEN
             },
             {
-                text:'KONFIGURASI SISTEM',
+                text: 'KONFIGURASI SISTEM',
                 disabled: false,
-                href:'/system-setting'
+                href: '/system-setting'
             },  
             {
-                text:'THEMES',
+                text: 'THEMES',
                 disabled: false,
-                href:'#'
+                href: '#'
             },
             {
-                text:'WARNA DASHBOARD',
-                disabled:true,
-                href:'#'
+                text: 'WARNA DASHBOARD',
+                disabled: true,
+                href: '#'
             }
         ];
         this.initialize();
@@ -106,9 +106,9 @@ export default {
         datatableLoading: false,
         btnLoading: false,   
         //form
-        form_valid:true, 
-        currentBox:'dmaster',
-        color:'#fff',          
+        form_valid: true, 
+        currentBox: 'dmaster',
+        color: '#fff',          
         formdata: {
             dmaster:null,            
             perencanaan:null,            
@@ -123,15 +123,15 @@ export default {
         },        
     }),
     methods: {
-        initialize:async function () 
+        initialize:async function() 
         {
             this.datatableLoading=true;
             await this.$ajax.get('/system/setting/variables',
             {
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
-            }).then(({data})=>{  
+            }).then(({ data })=>{  
                 let setting = JSON.parse(data.setting.COLOR_DASHBOARD);              
                 this.showColor=setting.dmaster;                             
                 this.formdata.dmaster=setting.dmaster;            
@@ -188,32 +188,32 @@ export default {
                             
                 this.$ajax.post('/system/setting/variables',
                     {
-                        '_method':'PUT', 
-                        'pid':'Color Dashboard',
+                        '_method': 'PUT', 
+                        'pid': 'Color Dashboard',
                         setting:JSON.stringify({
-                            807:this.formdata,                            
+                            807: this.formdata,                            
                         }),                                                                                                                            
                     },
                     {
-                        headers:{
-                            Authorization:this.TOKEN
+                        headers: {
+                            Authorization: this.TOKEN
                         }
                     }
                 ).then(()=>{                       
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                 }).catch(()=>{
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                 });        
                 this.$store.dispatch('uiadmin/init',this.$ajax); 
             }
         }
     },
-    computed:{ 
+    computed: { 
         ...mapGetters('auth',{            
-            ACCESS_TOKEN:'AccessToken',          
-            TOKEN:'Token',                                  
+            ACCESS_TOKEN: 'AccessToken',          
+            TOKEN: 'Token',                                  
         }),
-        showColor:{
+        showColor: {
             set(val)
             {
                 this.color=val;                
@@ -225,7 +225,7 @@ export default {
             }
         }
     },
-    watch:{
+    watch: {
         currentBox(val)
         {
             switch (val)
@@ -263,7 +263,7 @@ export default {
             }
         }
     },
-    components:{
+    components: {
 		SystemConfigLayout,
         ModuleHeader,        
 	}

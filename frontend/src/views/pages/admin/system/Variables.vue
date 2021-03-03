@@ -92,24 +92,24 @@ export default {
     {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.ACCESS_TOKEN
+                href: '/dashboard/'+this.ACCESS_TOKEN
             },
             {
-                text:'KONFIGURASI SISTEM',
+                text: 'KONFIGURASI SISTEM',
                 disabled: false,
-                href:'/system-setting'
+                href: '/system-setting'
             },  
             {
-                text:'PERGURUAN TINGGI',
+                text: 'PERGURUAN TINGGI',
                 disabled: false,
-                href:'#'
+                href: '#'
             },
             {
-                text:'VARIABLES',
-                disabled:true,
-                href:'#'
+                text: 'VARIABLES',
+                disabled: true,
+                href: '#'
             }
         ];
         this.daftar_ta=this.$store.getters['uiadmin/getDaftarTA'];  
@@ -130,24 +130,24 @@ export default {
         },
         //form rules        
         rule_default_ta: [
-            value => !!value||"Mohon untuk dipilih Tahun Akademik !!!",             
+            value => !!value || "Mohon untuk dipilih Tahun Akademik !!!",             
         ], 
         rule_default_semester: [
-            value => !!value||"Mohon untuk diisi Semester !!!",             
+            value => !!value || "Mohon untuk diisi Semester !!!",             
         ],
         rule_tahun_pendaftaran: [
-            value => !!value||"Mohon untuk dipilih Tahun Pendaftaran !!!",                                 
+            value => !!value || "Mohon untuk dipilih Tahun Pendaftaran !!!",                                 
         ]
     }),
     methods: {
-        initialize: async function () 
+        initialize: async function() 
         {
             await this.$ajax.get('/system/setting/variables',
             {
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
-            }).then(({data})=>{  
+            }).then(({ data })=>{  
                 let setting = data.setting;                           
                 this.formdata.default_ta=setting.DEFAULT_TA;
                 this.formdata.default_semester=setting.DEFAULT_SEMESTER;                
@@ -161,17 +161,17 @@ export default {
                 this.btnLoading=true;                
                 this.$ajax.post('/system/setting/variables',
                     {
-                        '_method':'PUT', 
-                        'pid':'Variable default sistem',
+                        '_method': 'PUT', 
+                        'pid': 'Variable default sistem',
                         setting:JSON.stringify({
-                            201:this.formdata.default_ta,
-                            202:this.formdata.default_semester,                            
-                            203:this.formdata.tahun_pendaftaran,
+                            201: this.formdata.default_ta,
+                            202: this.formdata.default_semester,                            
+                            203: this.formdata.tahun_pendaftaran,
                         }),                                                                                                                            
                     },
                     {
-                        headers:{
-                            Authorization:this.TOKEN
+                        headers: {
+                            Authorization: this.TOKEN
                         }
                     }
                 ).then(()=>{                       
@@ -184,11 +184,11 @@ export default {
     },
     computed: { 
         ...mapGetters('auth',{            
-            ACCESS_TOKEN:'AccessToken',          
-            TOKEN:'Token',                                  
+            ACCESS_TOKEN: 'AccessToken',          
+            TOKEN: 'Token',                                  
         }),
     },
-    components:{
+    components: {
 		SystemConfigLayout,
         ModuleHeader,        
 	}

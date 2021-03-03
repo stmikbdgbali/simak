@@ -145,7 +145,7 @@
                             </v-toolbar>
                         </template>
                         <template v-slot:item.nidn="{ item }">
-                            {{(item.nidn && item.nidn.length > 0) > 0 ? item.nidn:'N.A'}}
+                            {{(item.nidn && item.nidn.length > 0) > 0 ? item.nidn: 'N.A'}}
                         </template>
                         <template v-slot:item.actions="{ item }">                                           
                             <v-tooltip bottom>             
@@ -175,7 +175,7 @@
                             <td :colspan="headers.length" class="text-center">
                                 <v-col cols="12">
                                     <strong>ID:</strong>{{ item.id }}
-                                    <strong>DW:</strong>{{item.is_dw == false ? 'BUKAN':'YA'}}
+                                    <strong>DW:</strong>{{item.is_dw == false ? 'BUKAN': 'YA'}}
                                     <strong>Email:</strong>{{ item.email }}
                                     <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
@@ -201,19 +201,19 @@ export default {
     created () {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.ACCESS_TOKEN
+                href: '/dashboard/'+this.ACCESS_TOKEN
             },
             {
-                text:'KEPEGAWAIAN',
+                text: 'KEPEGAWAIAN',
                 disabled: false,
-                href:'/kepegawaian'
+                href: '/kepegawaian'
             },
             {
-                text:'DOSEN',
-                disabled:true,
-                href:'#'
+                text: 'DOSEN',
+                disabled: true,
+                href: '#'
             }
         ];
         this.initialize()
@@ -225,11 +225,11 @@ export default {
         //tables
         headers: [                        
             { text:  "", value: 'foto' },            
-            { text: 'NAMA DOSEN', value: 'nama_dosen',sortable:true, width:250 },
-            { text: 'NIDN', value: 'nidn',sortable:true },     
-            { text: 'NIPY', value: 'nipy',sortable:true },     
-            { text: 'NOMOR HP', value: 'nomor_hp',sortable:true },     
-            { text: 'JABATAN AKADEMIK', value: 'nama_jabatan',sortable:true },  
+            { text: 'NAMA DOSEN', value: 'nama_dosen',sortable: true, width:250 },
+            { text: 'NIDN', value: 'nidn',sortable: true },     
+            { text: 'NIPY', value: 'nipy',sortable: true },     
+            { text: 'NOMOR HP', value: 'nomor_hp',sortable: true },     
+            { text: 'JABATAN AKADEMIK', value: 'nama_jabatan',sortable: true },  
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],
         expanded: [],
@@ -248,7 +248,7 @@ export default {
             nama_dosen:  "",                                   
             id_jabatan:1,           
             gelar_depan: "",           
-            gelar_belakang:'1',                       
+            gelar_belakang: '1',                       
             nidn: "",   
             nipy: "",         
             email:  "",           
@@ -264,7 +264,7 @@ export default {
             nama_dosen:  "",                       
             id_jabatan:1,      
             gelar_depan: "",           
-            gelar_belakang:'1',                             
+            gelar_belakang: '1',                             
             nidn: "",
             nipy: "",       
             email:  "",           
@@ -275,7 +275,7 @@ export default {
         },
         //form rules        
         rule_user_name: [
-            value => !!value||"Mohon untuk di isi nama Dosen !!!",  
+            value => !!value || "Mohon untuk di isi nama Dosen !!!",  
             value => /^[A-Za-z\s]*$/.test(value) || 'Nama Dosen hanya boleh string dan spasi',                
         ],         
         rule_nidn: [                         
@@ -285,23 +285,23 @@ export default {
             value => /^[0-9]+$/.test(value) || 'Nomor Induk Pegawai Yayasan (NIPY) hanya boleh angka',                
         ], 
         rule_user_email: [
-            value => !!value||"Mohon untuk di isi email User !!!",  
+            value => !!value || "Mohon untuk di isi email User !!!",  
             value => /.+@.+\..+/.test(value) || 'Format E-mail harus benar',       
         ], 
         rule_user_nomorhp: [
-            value => !!value||"Nomor HP mohon untuk diisi !!!",
+            value => !!value || "Nomor HP mohon untuk diisi !!!",
             value => /^\+[1-9]{1}[0-9]{1,14}$/.test(value) || 'Nomor HP hanya boleh angka dan gunakan kode negara didepan seperti +6281214553388',
         ],         
     }),
     methods: {
-        initialize: async function () 
+        initialize: async function() 
         {
             this.datatableLoading=true;
             await this.$ajax.get('/kepegawaian/dosen',{
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
-            }).then(({data})=>{               
+            }).then(({ data })=>{               
                 this.daftar_dosen = data.dosen;                
                 this.datatableLoading=false;
             });          
@@ -321,11 +321,11 @@ export default {
         editItem:async function (item) {
             this.$ajax.get('/datamaster/jabatanakademik',                
                 {
-                    headers:{
-                        Authorization:this.TOKEN
+                    headers: {
+                        Authorization: this.TOKEN
                     }
                 }
-            ).then(({data})=>{   
+            ).then(({ data })=>{   
                 this.daftar_jabatan=data.jabatan_akademik;
             });             
             
@@ -334,7 +334,7 @@ export default {
             this.dialogEdit = true;
         },        
         close () {            
-            this.btnLoading=false;            
+            this.btnLoading = false;            
             this.dialogEdit = false;            
             setTimeout(() => {
                 this.$refs.frmdata.resetValidation(); 
@@ -351,26 +351,26 @@ export default {
                 {
                     this.$ajax.post('/kepegawaian/dosen/'+this.editedItem.id,
                         {
-                            '_method':'PUT',
-                            name:this.editedItem.name,
-                            id_jabatan:this.editedItem.id_jabatan,
-                            gelar_depan:this.editedItem.gelar_depan,
-                            gelar_belakang:this.editedItem.gelar_belakang,
-                            nidn:this.editedItem.nidn,
-                            nipy:this.editedItem.nipy,
-                            email:this.editedItem.email,
-                            nomor_hp:this.editedItem.nomor_hp,                                                                                         
+                            '_method': 'PUT',
+                            name: this.editedItem.name,
+                            id_jabatan: this.editedItem.id_jabatan,
+                            gelar_depan: this.editedItem.gelar_depan,
+                            gelar_belakang: this.editedItem.gelar_belakang,
+                            nidn: this.editedItem.nidn,
+                            nipy: this.editedItem.nipy,
+                            email: this.editedItem.email,
+                            nomor_hp: this.editedItem.nomor_hp,                                                                                         
                         },
                         {
-                            headers:{
-                                Authorization:this.TOKEN
+                            headers: {
+                                Authorization: this.TOKEN
                             }
                         }
                     ).then(()=>{   
                         this.initialize();
                         this.close();
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });                    
                     
                 } 
@@ -379,8 +379,8 @@ export default {
     },
     computed: {        
         ...mapGetters('auth',{            
-            ACCESS_TOKEN:'AccessToken',          
-            TOKEN:'Token',                                  
+            ACCESS_TOKEN: 'AccessToken',          
+            TOKEN: 'Token',                                  
         }),
     },
 
@@ -389,7 +389,7 @@ export default {
             val || this.close()
         },        
     },    
-    components:{
+    components: {
         KepegawaianLayout,
         ModuleHeader,         
     },

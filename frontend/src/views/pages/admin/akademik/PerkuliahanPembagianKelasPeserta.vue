@@ -260,29 +260,29 @@ export default {
     created () {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
-                text:'AKADEMIK',
+                text: 'AKADEMIK',
                 disabled: false,
-                href:'/akademik'
+                href: '/akademik'
             },
             {
-                text:'PERKULIAHAN',
+                text: 'PERKULIAHAN',
                 disabled: false,
-                href:'#'
+                href: '#'
             },
             {
-                text:'PEMBAGIAN KELAS',
+                text: 'PEMBAGIAN KELAS',
                 disabled: false,
-                href:'/akademik/perkuliahan/pembagiankelas/daftar'
+                href: '/akademik/perkuliahan/pembagiankelas/daftar'
             },
             {
-                text:'PESERTA',
-                disabled:true,
-                href:'#'
+                text: 'PESERTA',
+                disabled: true,
+                href: '#'
             }
         ];        
         this.kelas_mhs_id=this.$route.params.kelas_mhs_id;        
@@ -334,13 +334,13 @@ export default {
         //formdata
         form_valid: true,  
         members_selected: [],
-        formdata:{                        
+        formdata: {                        
             penyelenggaraan_dosen_id: "",                        
         },  
         
     }),
     methods: {        
-        initialize: async function () 
+        initialize: async function() 
         {
             this.datatableLoading=true;
             await this.$ajax.get('/akademik/perkuliahan/pembagiankelas/'+this.kelas_mhs_id,            
@@ -348,7 +348,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{           
+            }).then(({ data })=>{           
                 this.data_kelas_mhs=data.pembagiankelas;    
                 this.datatable=data.penyelenggaraan;                                
                 this.datatable_peserta=data.peserta;                                
@@ -363,7 +363,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{                                                      
+            }).then(({ data })=>{                                                      
                 this.datatable=data.penyelenggaraan;                                
                 this.datatableLoading=false;
             })   
@@ -376,7 +376,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{                                                      
+            }).then(({ data })=>{                                                      
                 this.datatable_peserta=data.peserta;                                
                 this.datatableLoading=false;
             })   
@@ -385,15 +385,15 @@ export default {
         {
             await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/matakuliah',            
             {
-                user_id:this.data_kelas_mhs.user_id,
-                ta:this.data_kelas_mhs.tahun,                
-                semester_akademik:this.data_kelas_mhs.idsmt,                
+                user_id: this.data_kelas_mhs.user_id,
+                ta: this.data_kelas_mhs.tahun,                
+                semester_akademik: this.data_kelas_mhs.idsmt,                
             },
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{                                                               
+            }).then(({ data })=>{                                                               
                 this.daftar_matakuliah = data.matakuliah; 
                 this.showdialogmatakuliah=true;                      
             })  
@@ -402,83 +402,83 @@ export default {
         {
             await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/members',            
             {
-                pid:'belumterdaftar',
-                kelas_mhs_id:this.kelas_mhs_id,
+                pid: 'belumterdaftar',
+                kelas_mhs_id: this.kelas_mhs_id,
                 penyelenggaraan:JSON.stringify(Object.assign({},this.datatable))
             },
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{           
+            }).then(({ data })=>{           
                 this.datatable_members=data.members;                
                 this.showdialogpeserta=true;
             })             
         },
-        save:async function () {
+        save:async function() {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading=true;
                 await this.$ajax.post('/akademik/perkuliahan/pembagiankelas/storepeserta',
                     {
-                        kelas_mhs_id:this.kelas_mhs_id,                        
+                        kelas_mhs_id: this.kelas_mhs_id,                        
                         members_selected:JSON.stringify(Object.assign({},this.members_selected)),                                                                    
                     },
                     {
-                        headers:{
+                        headers: {
                             Authorization: this.$store.getters["auth/Token"]
                         }
                     }
                 ).then(()=>{                       
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                     this.closedialogpeserta();
                 }).catch(()=>{
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                 });
             }            
         },
-        savematakuliah:async function () {
+        savematakuliah:async function() {
             if (this.$refs.frmdatamatkul.validate())
             {
                 this.btnLoading=true;
                 await this.$ajax.post('/akademik/perkuliahan/pembagiankelas/storematakuliah',
                     {
-                        kelas_mhs_id:this.kelas_mhs_id,                        
+                        kelas_mhs_id: this.kelas_mhs_id,                        
                         penyelenggaraan_dosen_id:JSON.stringify(Object.assign({},this.formdata.penyelenggaraan_dosen_id)),
                     },
                     {
-                        headers:{
+                        headers: {
                             Authorization: this.$store.getters["auth/Token"]
                         }
                     }
                 ).then(()=>{                       
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                     this.closedialogmatakuliah();
                 }).catch(()=>{
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                 });
             }            
         },
         deleteMatkul(item)
         {
-            this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus data matakuliah di kelas ini dengan ID '+item.id+' ?', { color: 'red', width:600,'desc':'proses ini juga menghapus seluruh mahasiswa yang mengontrak matakuliah di kelas ini.' }).then((confirm) => {
+            this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus data matakuliah di kelas ini dengan ID '+item.id+' ?', { color: 'red', width:600,'desc': 'proses ini juga menghapus seluruh mahasiswa yang mengontrak matakuliah di kelas ini.' }).then((confirm) => {
                 if (confirm)
                 {
                     this.btnLoading=true;
                     this.$ajax.post('/akademik/perkuliahan/pembagiankelas/deletematkul/'+item.id,
                         {
-                            '_method':'DELETE',
+                            '_method': 'DELETE',
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
                     ).then(()=>{                           
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                         this.$router.go();
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
                 }                
             });
@@ -491,18 +491,18 @@ export default {
                     this.btnLoading=true;
                     this.$ajax.post('/akademik/perkuliahan/pembagiankelas/deletepeserta/'+item.id,
                         {
-                            '_method':'DELETE',
+                            '_method': 'DELETE',
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
                     ).then(()=>{                           
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                         this.$router.go();
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
                 }                
             });
@@ -525,10 +525,10 @@ export default {
             );
         },
     },
-    watch:{
+    watch: {
         
     },    
-    components:{
+    components: {
         AkademikLayout,
         ModuleHeader,     
         DataKelasMHS       

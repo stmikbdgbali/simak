@@ -352,29 +352,29 @@ export default {
         this.nilai_konversi_id=this.$route.params.nilai_konversi_id;        
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
-                text:'AKADEMIK',
+                text: 'AKADEMIK',
                 disabled: false,
-                href:'/akademik'
+                href: '/akademik'
             },
             {
-                text:'NILAI',
+                text: 'NILAI',
                 disabled: false,
-                href:'#'
+                href: '#'
             },            
             {
-                text:'KONVERSI MAHASISWA PINDAHAN/AMPULAN',
+                text: 'KONVERSI MAHASISWA PINDAHAN/AMPULAN',
                 disabled: false,
-                href:'/akademik/nilai/konversi'
+                href: '/akademik/nilai/konversi'
             },
             {
-                text:'DETAIL',
-                disabled:true,
-                href:'#'
+                text: 'DETAIL',
+                disabled: true,
+                href: '#'
             }
         ];
         let prodi_id=this.$store.getters['uiadmin/getProdiID'];
@@ -397,7 +397,7 @@ export default {
             { text: 'KODE', value: 'kmatkul', sortable: false, width:100  },               
             { text: 'NAMA', value: 'nmatkul', sortable: false, width:250  },               
             { text: 'SKS', value: 'sks',sortable: false, width:70 },                           
-            { text: 'SMT', value: 'semester',sortable:true,width:70, },                           
+            { text: 'SMT', value: 'semester',sortable: true,width:70, },                           
             { text: 'KODE MATKUL ASAL', value: 'kmatkul_asal',sortable: false,width:120 },                           
             { text: 'MATAKULIAH ASAL', value: 'matkul_asal',sortable: false,width:170 },                           
             { text: 'SKS ASAL', value: 'sks_asal',sortable: false,width:70},                           
@@ -409,7 +409,7 @@ export default {
 
         form_valid: true,   
         daftar_jenjang: [],                        
-        data_konversi:{
+        data_konversi: {
             'id':null,
             'user_id': "",
             'nim': "",
@@ -435,7 +435,7 @@ export default {
         search:null
     }),
     methods: {        
-        initialize: async function () 
+        initialize: async function() 
         {      
             this.datatableLoading=true;
             await this.$ajax.get('/akademik/nilai/konversi/'+this.nilai_konversi_id,            
@@ -443,18 +443,18 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{               
+            }).then(({ data })=>{               
                 this.datatable = data.nilai_konversi;
                 this.data_konversi = data.data_konversi;
                 this.datatableLoading=false;
             }).catch(()=>{
                 this.datatableLoading=false;
             });         
-            await this.$ajax.get('/datamaster/programstudi/jenjangstudi').then(({data})=>{
+            await this.$ajax.get('/datamaster/programstudi/jenjangstudi').then(({ data })=>{
                 this.daftar_jenjang=data.jenjangstudi;
             }); 
         },   
-        save:async function () {
+        save:async function() {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading=true;  
@@ -475,31 +475,31 @@ export default {
 
                 await this.$ajax.post('/akademik/nilai/konversi/'+this.nilai_konversi_id,
                     {
-                        _method:'put',
-                        nim_asal:this.data_konversi.nim_asal,                            
-                        nama_mhs:this.data_konversi.nama_mhs,                            
-                        alamat:this.data_konversi.alamat,   
-                        no_telp:this.data_konversi.no_telp,                                                        
-                        email:this.data_konversi.email,                                                        
-                        kode_jenjang:this.data_konversi.kode_jenjang,                                                        
-                        kode_pt_asal:this.data_konversi.kode_pt_asal,                                                                                                             
-                        nama_pt_asal:this.data_konversi.nama_pt_asal,                                                                                                             
-                        kode_ps_asal:this.data_konversi.kode_ps_asal,                                                                                                             
-                        nama_ps_asal:this.data_konversi.nama_ps_asal,                                                                                                             
-                        tahun:this.tahun_pendaftaran,                                                                                                             
-                        kjur:this.prodi_id,  
+                        _method: 'put',
+                        nim_asal: this.data_konversi.nim_asal,                            
+                        nama_mhs: this.data_konversi.nama_mhs,                            
+                        alamat: this.data_konversi.alamat,   
+                        no_telp: this.data_konversi.no_telp,                                                        
+                        email: this.data_konversi.email,                                                        
+                        kode_jenjang: this.data_konversi.kode_jenjang,                                                        
+                        kode_pt_asal: this.data_konversi.kode_pt_asal,                                                                                                             
+                        nama_pt_asal: this.data_konversi.nama_pt_asal,                                                                                                             
+                        kode_ps_asal: this.data_konversi.kode_ps_asal,                                                                                                             
+                        nama_ps_asal: this.data_konversi.nama_ps_asal,                                                                                                             
+                        tahun: this.tahun_pendaftaran,                                                                                                             
+                        kjur: this.prodi_id,  
                         daftar_nilai:JSON.stringify(Object.assign({},daftar_nilai)),                    
                     },
                     {
-                        headers:{
+                        headers: {
                             Authorization: this.$store.getters["auth/Token"]
                         }
                     }
                 ).then(()=>{   
                     this.$router.go();        
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                 }).catch(()=>{
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                 });                
             }
         },  
@@ -528,17 +528,17 @@ export default {
             this.btnLoading=true;
             await this.$ajax.get('/akademik/nilai/transkripkurikulum/printpdf2/'+item.user_id,                
                 {
-                    headers:{
+                    headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     },
                     
                 }
-            ).then(({data})=>{                              
+            ).then(({ data })=>{                              
                 this.file_pdf=data.pdf_file;
                 this.dialogprintpdf=true;
-                this.btnLoading=false;
+                this.btnLoading = false;
             }).catch(()=>{
-                this.btnLoading=false;
+                this.btnLoading = false;
             });                 
         },
         closedialogprintpdf () {                  
@@ -553,11 +553,11 @@ export default {
             this.btnLoading=true;
             await this.$ajax.post('/akademik/nilai/konversi/plugtomhs',                
                 {
-                    nilai_konversi_id:this.nilai_konversi_id,
-                    user_id:this.data_mhs.user_id
+                    nilai_konversi_id: this.nilai_konversi_id,
+                    user_id: this.data_mhs.user_id
                 },
                 {
-                    headers:{
+                    headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     },
                     
@@ -565,7 +565,7 @@ export default {
             ).then(()=>{                              
                 this.$router.go();
             }).catch(()=>{
-                this.btnLoading=false;
+                this.btnLoading = false;
             }); 
         },
         putuskan ()
@@ -576,17 +576,17 @@ export default {
                     this.btnLoading=true;
                     this.$ajax.post('/akademik/nilai/konversi/unplugtomhs',
                         {
-                            nilai_konversi_id:this.nilai_konversi_id,                            
+                            nilai_konversi_id: this.nilai_konversi_id,                            
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
                     ).then(()=>{   
                         this.$router.go();
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
                 }                
             });
@@ -630,7 +630,7 @@ export default {
             })
         },           
     },
-    watch:{
+    watch: {
         search (val) 
         {
             if (this.isLoading) return;
@@ -647,7 +647,7 @@ export default {
                         headers: {
                             Authorization: this.$store.getters["auth/Token"]
                         }
-                    }).then(({data})=>{                                                       
+                    }).then(({ data })=>{                                                       
                         const { jumlah, daftar_mhs } = data;
                         this.count = jumlah;
                         this.entries = daftar_mhs;
@@ -660,7 +660,7 @@ export default {
             }
         },
     },
-    components:{
+    components: {
         AkademikLayout,
         ModuleHeader,            
     },

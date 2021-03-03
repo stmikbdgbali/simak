@@ -140,14 +140,14 @@ export default {
 	{
 		this.breadcrumbs = [
 			{
-				text:'HOME',
+				text: 'HOME',
 				disabled: false,
-				href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+				href: '/dashboard/'+this.$store.getters['auth/AccessToken']
 			},
 			{
-				text:'MIGRASI SISTEM',
-				disabled:true,
-				href:'#'
+				text: 'MIGRASI SISTEM',
+				disabled: true,
+				href: '#'
 			}
         ];				
         this.tahun_pendaftaran = this.$store.getters['uiadmin/getTahunPendaftaran']; 
@@ -157,7 +157,7 @@ export default {
         this.initialize();
     },
     data: () => ({        
-        firstloading:true,
+        firstloading: true,
         breadcrumbs: [],        
         tahun_pendaftaran:0,  
         
@@ -181,25 +181,25 @@ export default {
             status_mhs: [],
         },
         rule_nim: [
-            value => !!value||"Nomor Induk Mahasiswa (NIM) mohon untuk diisi !!!",
+            value => !!value || "Nomor Induk Mahasiswa (NIM) mohon untuk diisi !!!",
             value => /^[0-9]+$/.test(value) || 'Nomor Induk Mahasiswa (NIM) hanya boleh angka',
         ], 
         rule_nirm: [
-            value => !!value||"Nomor Induk Registrasi Masuk (NIRM) mohon untuk diisi !!!",
+            value => !!value || "Nomor Induk Registrasi Masuk (NIRM) mohon untuk diisi !!!",
             value => /^[0-9]+$/.test(value) || 'Nomor Induk Registrasi Masuk (NIRM) hanya boleh angka',
         ], 
         rule_nama_mhs: [
-            value => !!value||"Nama Mahasiswa mohon untuk diisi !!!",
+            value => !!value || "Nama Mahasiswa mohon untuk diisi !!!",
             value => /^[A-Za-z\s\\,\\.]*$/.test(value) || 'Nama Mahasiswa hanya boleh string dan spasi',
         ],         
         rule_prodi: [
-            value => !!value||"Program studi mohon untuk dipilih !!!"
+            value => !!value || "Program studi mohon untuk dipilih !!!"
         ], 
         rule_kelas: [
-            value => !!value||"Kelas mohon untuk dipilih !!!"
+            value => !!value || "Kelas mohon untuk dipilih !!!"
         ],
         rule_dw: [
-            value => !!value||"Mohon dipilih Dosen Wali untuk Mahasiswa ini !!!"
+            value => !!value || "Mohon dipilih Dosen Wali untuk Mahasiswa ini !!!"
         ],         
         
         datatableLoading: false,
@@ -223,20 +223,20 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{                              
+            }).then(({ data })=>{                              
                 this.daftar_dw = data.users; 
             });
 
             this.datatableLoading=true;
             await this.$ajax.post('/system/migration',
             {
-                TA:this.tahun_pendaftaran
+                TA: this.tahun_pendaftaran
             },
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{                              
+            }).then(({ data })=>{                              
                 this.daftar_tasmt = data.daftar_tasmt; 
                 var dt = this.daftar_tasmt;
                 var i=0;
@@ -258,17 +258,17 @@ export default {
                 
                 this.$ajax.post('/system/migration/store',
                     {
-                        nim:this.formdata.nim,
-                        nirm:this.formdata.nirm,
-                        nama_mhs:this.formdata.nama_mhs,
-                        dosen_id:this.formdata.dosen_id,
-                        prodi_id:this.formdata.prodi_id,     
-                        idkelas:this.formdata.idkelas,       
-                        tahun_pendaftaran:this.tahun_pendaftaran,                 
+                        nim: this.formdata.nim,
+                        nirm: this.formdata.nirm,
+                        nama_mhs: this.formdata.nama_mhs,
+                        dosen_id: this.formdata.dosen_id,
+                        prodi_id: this.formdata.prodi_id,     
+                        idkelas: this.formdata.idkelas,       
+                        tahun_pendaftaran: this.tahun_pendaftaran,                 
                         status_mhs:JSON.stringify(Object.assign({},this.formdata.status_mhs)),                                                                                                          
                     },
                     {
-                        headers:{
+                        headers: {
                             Authorization: this.$store.getters["auth/Token"]
                         }
                     }
@@ -285,7 +285,7 @@ export default {
             }
         },
     },
-    watch:{
+    watch: {
         tahun_pendaftaran()
         {
             if (!this.firstloading)
@@ -294,7 +294,7 @@ export default {
             }            
         },
     },
-    components:{
+    components: {
         SystemMigrationLayout,
         ModuleHeader,           
         Filter9,        

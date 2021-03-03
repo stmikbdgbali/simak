@@ -46,14 +46,14 @@ export default {
 	{
 		this.breadcrumbs = [
 			{
-				text:'HOME',
+				text: 'HOME',
 				disabled: false,
-				href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+				href: '/dashboard/'+this.$store.getters['auth/AccessToken']
 			},
 			{
-				text:'E-LEARNING',
-				disabled:true,
-				href:'#'
+				text: 'E-LEARNING',
+				disabled: true,
+				href: '#'
 			}
         ];				
         this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];         
@@ -64,7 +64,7 @@ export default {
     },
     data: () => ({
         datatableLoading: false,
-        firstloading:true,
+        firstloading: true,
         breadcrumbs: [],        
         tahun_akademik:0,
         
@@ -83,7 +83,7 @@ export default {
 
         }
     },
-    watch:{
+    watch: {
         tahun_akademik()
         {
             if (!this.firstloading)
@@ -92,7 +92,7 @@ export default {
             }            
         },
     },
-    components:{
+    components: {
         ElearningLayout,
         ModuleHeader,           
         Filter1,        

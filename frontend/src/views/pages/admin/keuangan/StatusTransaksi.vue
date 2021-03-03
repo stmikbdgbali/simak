@@ -96,30 +96,30 @@ import KeuanganLayout from '@/views/layouts/KeuanganLayout';
 import ModuleHeader from '@/components/ModuleHeader';
 
 export default {
-    name:'StatusTransaksi',
+    name: 'StatusTransaksi',
     created()
     {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
-                text:'KEUANGAN',
+                text: 'KEUANGAN',
                 disabled: false,
-                href:'/keuangan'
+                href: '/keuangan'
             },
             {
-                text:'STATUS TRANSAKSI',
-                disabled:true,
-                href:'#'
+                text: 'STATUS TRANSAKSI',
+                disabled: true,
+                href: '#'
             }
         ];        
         this.initialize();
     },  
     data: () => ({
-        firstloading:true,
+        firstloading: true,
         breadcrumbs: [],         
         
         btnLoading: false,
@@ -142,7 +142,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{               
+            }).then(({ data })=>{               
                 this.datatable = data.status;                
                 this.datatableLoading=false;
             });                     
@@ -163,7 +163,7 @@ export default {
         {
             await this.$ajax.post('/keuangan/statustransaksi/'+id,            
             {
-                _method:'put',                
+                _method: 'put',                
                 id_status:id,
                 style:style
             },
@@ -188,7 +188,7 @@ export default {
 
         },
     },   
-    components:{
+    components: {
         KeuanganLayout,
         ModuleHeader,            
     },

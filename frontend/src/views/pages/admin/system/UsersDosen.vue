@@ -223,10 +223,10 @@
                             </v-toolbar>
                         </template>
                         <template v-slot:item.nidn="{ item }">
-                            {{(item.nidn && item.nidn.length > 0) > 0 ? item.nidn:'N.A'}}
+                            {{(item.nidn && item.nidn.length > 0) > 0 ? item.nidn: 'N.A'}}
                         </template>
                         <template v-slot:item.is_dw="{ item }">
-                            {{item.is_dw == false ? 'BUKAN':'YA'}}
+                            {{item.is_dw == false ? 'BUKAN': 'YA'}}
                         </template>
                         <template v-slot:item.actions="{ item }">               
                             <v-tooltip bottom v-if="item.default_role=='dosen'">             
@@ -314,19 +314,19 @@ export default {
     created () {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.ACCESS_TOKEN
+                href: '/dashboard/'+this.ACCESS_TOKEN
             },
             {
-                text:'USER SISTEM',
+                text: 'USER SISTEM',
                 disabled: false,
-                href:'/system-users'
+                href: '/system-users'
             },
             {
-                text:'USERS DOSEN',
-                disabled:true,
-                href:'#'
+                text: 'USERS DOSEN',
+                disabled: true,
+                href: '#'
             }
         ];
         this.initialize()
@@ -338,13 +338,13 @@ export default {
         //tables
         headers: [                        
             { text:  "", value: 'foto' },
-            { text: 'USERNAME', value: 'username',sortable:true, width:150 },
-            { text: 'NAMA DOSEN', value: 'name',sortable:true, width:250 },
-            { text: 'NIDN', value: 'nidn',sortable:true },     
-            { text: 'NIPY', value: 'nipy',sortable:true },     
-            { text: 'NOMOR HP', value: 'nomor_hp',sortable:true },     
-            { text: 'DW', value: 'is_dw',sortable:true },     
-            { text: 'ROLE ASAL', value: 'default_role',sortable:true },     
+            { text: 'USERNAME', value: 'username',sortable: true, width:150 },
+            { text: 'NAMA DOSEN', value: 'name',sortable: true, width:250 },
+            { text: 'NIDN', value: 'nidn',sortable: true },     
+            { text: 'NIPY', value: 'nipy',sortable: true },     
+            { text: 'NOMOR HP', value: 'nomor_hp',sortable: true },     
+            { text: 'DW', value: 'is_dw',sortable: true },     
+            { text: 'ROLE ASAL', value: 'default_role',sortable: true },     
             { text: 'AKSI', value: 'actions', sortable: false,width:120 },
         ],
         expanded: [],
@@ -387,7 +387,7 @@ export default {
         },
         //form rules        
         rule_user_name: [
-            value => !!value||"Mohon untuk di isi nama Dosen !!!",  
+            value => !!value || "Mohon untuk di isi nama Dosen !!!",  
             value => /^[A-Za-z\s]*$/.test(value) || 'Nama Dosen hanya boleh string dan spasi',                
         ],         
         rule_nidn: [                         
@@ -397,19 +397,19 @@ export default {
             value => /^[0-9]+$/.test(value) || 'Nomor Induk Pegawai Yayasan (NIPY) hanya boleh angka',                
         ], 
         rule_user_email: [
-            value => !!value||"Mohon untuk di isi email User !!!",  
+            value => !!value || "Mohon untuk di isi email User !!!",  
             value => /.+@.+\..+/.test(value) || 'Format E-mail harus benar',       
         ], 
         rule_user_nomorhp: [
-            value => !!value||"Nomor HP mohon untuk diisi !!!",
+            value => !!value || "Nomor HP mohon untuk diisi !!!",
             value => /^\+[1-9]{1}[0-9]{1,14}$/.test(value) || 'Nomor HP hanya boleh angka dan gunakan kode negara didepan seperti +6281214553388',
         ], 
         rule_user_username: [
-            value => !!value||"Mohon untuk di isi username User !!!",  
+            value => !!value || "Mohon untuk di isi username User !!!",  
             value => /^[A-Za-z_]*$/.test(value) || 'Username hanya boleh string dan underscore',                    
         ], 
         rule_user_password: [
-            value => !!value||"Mohon untuk di isi password User !!!",
+            value => !!value || "Mohon untuk di isi password User !!!",
             value => {
                 if (value && typeof value !== 'undefined' && value.length > 0){
                     return value.length >= 8 || 'Minimial Password 8 karaketer';
@@ -433,14 +433,14 @@ export default {
         ],
     }),
     methods: {
-        initialize: async function () 
+        initialize: async function() 
         {
             this.datatableLoading=true;
             await this.$ajax.get('/system/usersdosen',{
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
-            }).then(({data})=>{               
+            }).then(({ data })=>{               
                 this.daftar_users = data.users;                
                 this.datatableLoading=false;
             });          
@@ -457,7 +457,7 @@ export default {
                 this.expanded=[item];
             }               
         },        
-        showDialogTambahUserDosen:async function ()
+        showDialogTambahUserDosen:async function()
         {
             this.dialog = true;            
         },
@@ -490,19 +490,19 @@ export default {
                 {
                     this.$ajax.post('/system/usersdosen/'+this.editedItem.id,
                         {
-                            '_method':'PUT',
-                            name:this.editedItem.onlyname,
-                            nidn:this.editedItem.nidn,
-                            nipy:this.editedItem.nipy,
-                            email:this.editedItem.email,
-                            nomor_hp:this.editedItem.nomor_hp,     
-                            username:this.editedItem.username,
-                            password:this.editedItem.password,    
-                            is_dw:this.editedItem.is_dw,                                
+                            '_method': 'PUT',
+                            name: this.editedItem.onlyname,
+                            nidn: this.editedItem.nidn,
+                            nipy: this.editedItem.nipy,
+                            email: this.editedItem.email,
+                            nomor_hp: this.editedItem.nomor_hp,     
+                            username: this.editedItem.username,
+                            password: this.editedItem.password,    
+                            is_dw: this.editedItem.is_dw,                                
                         },
                         {
-                            headers:{
-                                Authorization:this.TOKEN
+                            headers: {
+                                Authorization: this.TOKEN
                             }
                         }
                     ).then(()=>{   
@@ -515,21 +515,21 @@ export default {
                 } else {
                     this.$ajax.post('/system/usersdosen/store',
                         {
-                            name:this.editedItem.onlyname,
-                            nidn:this.editedItem.nidn,
-                            nipy:this.editedItem.nipy,
-                            email:this.editedItem.email,
-                            nomor_hp:this.editedItem.nomor_hp,     
-                            username:this.editedItem.username,
-                            password:this.editedItem.password,                                        
-                            is_dw:this.editedItem.is_dw,                                        
+                            name: this.editedItem.onlyname,
+                            nidn: this.editedItem.nidn,
+                            nipy: this.editedItem.nipy,
+                            email: this.editedItem.email,
+                            nomor_hp: this.editedItem.nomor_hp,     
+                            username: this.editedItem.username,
+                            password: this.editedItem.password,                                        
+                            is_dw: this.editedItem.is_dw,                                        
                         },
                         {
-                            headers:{
-                                Authorization:this.TOKEN
+                            headers: {
+                                Authorization: this.TOKEN
                             }
                         }
-                    ).then(({data})=>{   
+                    ).then(({ data })=>{   
                         this.daftar_users.push(data.user);
                         this.close();
                     }).catch(()=>{
@@ -550,10 +550,10 @@ export default {
                     this.btnLoading=true;
                     await this.$ajax.post('/system/users/syncallpermissions',
                         {
-                            role_name:'dosen',                    
+                            role_name: 'dosen',                    
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
@@ -572,11 +572,11 @@ export default {
                     this.btnLoading=true;
                     this.$ajax.post('/system/usersdosen/'+item.id,
                         {
-                            '_method':'DELETE',
+                            '_method': 'DELETE',
                         },
                         {
-                            headers:{
-                                Authorization:this.TOKEN
+                            headers: {
+                                Authorization: this.TOKEN
                             }
                         }
                     ).then(()=>{   
@@ -595,8 +595,8 @@ export default {
             return this.editedIndex === -1 ? 'TAMBAH USER DOSEN' : 'EDIT USER DOSEN'
         },
         ...mapGetters('auth',{            
-            ACCESS_TOKEN:'AccessToken',          
-            TOKEN:'Token',                                  
+            ACCESS_TOKEN: 'AccessToken',          
+            TOKEN: 'Token',                                  
         }),
     },
 
@@ -608,7 +608,7 @@ export default {
             val || this.close()
         },        
     },    
-    components:{
+    components: {
         SystemUserLayout,
         ModuleHeader, 
         UserPermissions       

@@ -62,7 +62,7 @@ class UsersPMBController extends Controller {
                 'password'=>Hash::make($request->input('password')),                        
                 'theme'=>'default',
                 'default_role'=>'pmb',            
-                'foto'=> 'storage/images/users/no_photo.png',
+                'foto'=> 'storages/images/users/no_photo.png',
                 'created_at'=>$now, 
                 'updated_at'=>$now
             ]);            

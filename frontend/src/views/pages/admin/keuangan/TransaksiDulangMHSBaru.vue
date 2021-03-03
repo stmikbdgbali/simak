@@ -193,25 +193,25 @@ import ModuleHeader from '@/components/ModuleHeader';
 import Filter7 from '@/components/sidebar/FilterMode7';
 import DialogPrintoutKeuangan from '@/components/DialogPrintoutKeuangan';
 export default {
-    name:'TransaksiDulangMHSBaru',
+    name: 'TransaksiDulangMHSBaru',
     created()
     {
         this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];   
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
-                text:'KEUANGAN',
+                text: 'KEUANGAN',
                 disabled: false,
-                href:'/keuangan'
+                href: '/keuangan'
             },
             {
-                text:'TRANSAKSI DAFTAR ULANG MAHASISWA BARU',
-                disabled:true,
-                href:'#'
+                text: 'TRANSAKSI DAFTAR ULANG MAHASISWA BARU',
+                disabled: true,
+                href: '#'
             }
         ];        
         let prodi_id=this.$store.getters['uiadmin/getProdiID'];
@@ -225,7 +225,7 @@ export default {
     },
     data: () => ({
         dashboard:null,
-        firstloading:true,
+        firstloading: true,
         breadcrumbs: [],    
         prodi_id:null,
         nama_prodi:null, 
@@ -239,12 +239,12 @@ export default {
         datatableLoading: false,       
         datatable: [], 
         headers: [                                                
-            { text: 'KODE BILLING', value: 'no_transaksi',width:100,sortable:true },
-            { text: 'TANGGAL', value: 'tanggal',width:90,sortable:true },
-            { text: 'NO. FORMULIR', value: 'no_formulir',sortable:true,width:100 },            
-            { text: 'NAMA MAHASISWA', value: 'nama_mhs',sortable:true, width:250 },            
+            { text: 'KODE BILLING', value: 'no_transaksi',width:100,sortable: true },
+            { text: 'TANGGAL', value: 'tanggal',width:90,sortable: true },
+            { text: 'NO. FORMULIR', value: 'no_formulir',sortable: true,width:100 },            
+            { text: 'NAMA MAHASISWA', value: 'nama_mhs',sortable: true, width:250 },            
             { text: 'SMT', value: 'idsmt',width:100,sortable: false },
-            { text: 'JUMLAH', value: 'sub_total',width:100,sortable: false,align:'right' },
+            { text: 'JUMLAH', value: 'sub_total',width:100,sortable: false,align: 'right' },
             { text: 'STATUS', value: 'nama_status',width:100,sortable: false },            
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],        
@@ -263,7 +263,7 @@ export default {
             no_formulir: "",            
         },
         rule_no_formulir: [
-            value => !!value||"Nomor Formulir mohon untuk diisi !!!",
+            value => !!value || "Nomor Formulir mohon untuk diisi !!!",
             value => /^[0-9]+$/.test(value) || 'Nomor Formulir hanya boleh angka',
         ],        
     }),
@@ -276,19 +276,19 @@ export default {
         {
             this.prodi_id=id;
         },
-        initialize: async function () 
+        initialize: async function() 
         {
             this.datatableLoading=true;            
             await this.$ajax.post('/keuangan/transaksi-dulangmhsbaru',            
             {
-                TA:this.tahun_pendaftaran, 
-                PRODI_ID:this.prodi_id               
+                TA: this.tahun_pendaftaran, 
+                PRODI_ID: this.prodi_id               
             },
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{               
+            }).then(({ data })=>{               
                 this.datatable = data.transaksi;                
                 this.datatableLoading=false;
             });                     
@@ -314,27 +314,27 @@ export default {
         {
             this.$router.push('/keuangan/transaksi-dulangmhsbaru/'+item.transaksi_id);
         },
-        save:async function () {
+        save:async function() {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading=true;
                 await this.$ajax.post('/keuangan/transaksi-dulangmhsbaru/store',
                     {
-                        no_formulir:this.formdata.no_formulir,                         
-                        TA:this.tahun_pendaftaran,                                                     
+                        no_formulir: this.formdata.no_formulir,                         
+                        TA: this.tahun_pendaftaran,                                                     
                     },
                     {
-                        headers:{
+                        headers: {
                             Authorization: this.$store.getters["auth/Token"]
                         }
                     }
                 ).then(()=>{   
                     this.closedialogfrm();
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                     this.initialize();                    
                     
                 }).catch(()=>{
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                 });
             }            
         },
@@ -351,25 +351,25 @@ export default {
             );
         },
         deleteItem (item) {           
-            this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus data transaksi daftar ulang mahasiswa baru dengan ID '+item.id+' ?', { color: 'red',width:'500px' }).then((confirm) => {
+            this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus data transaksi daftar ulang mahasiswa baru dengan ID '+item.id+' ?', { color: 'red',width: '500px' }).then((confirm) => {
                 if (confirm)
                 {
                     this.btnLoading=true;
                     this.$ajax.post('/keuangan/transaksi-dulangmhsbaru/'+item.transaksi_id,
                         {
-                            '_method':'DELETE',
+                            '_method': 'DELETE',
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
                     ).then(()=>{   
                         const index = this.datatable.indexOf(item);
                         this.datatable.splice(index, 1);
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
                 }                
             });
@@ -410,7 +410,7 @@ export default {
             return total;
         }
     },
-    watch:{
+    watch: {
         tahun_pendaftaran()
         {
             if (!this.firstloading)
@@ -436,15 +436,15 @@ export default {
                         this.datatableLoading=true;            
                         await this.$ajax.post('/keuangan/transaksi-dulangmhsbaru',                 
                         {
-                            PRODI_ID:this.prodi_id,
-                            TA:this.tahun_pendaftaran,
-                            search:this.search
+                            PRODI_ID: this.prodi_id,
+                            TA: this.tahun_pendaftaran,
+                            search: this.search
                         },
                         {
                             headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
-                        }).then(({data})=>{               
+                        }).then(({ data })=>{               
                             this.datatable = data.transaksi;                
                             this.datatableLoading=false;
                         });                     
@@ -455,7 +455,7 @@ export default {
             this.awaiting_search = true;
         }
     }, 
-    components:{
+    components: {
         KeuanganLayout,
         ModuleHeader,     
         Filter7,

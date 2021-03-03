@@ -12,10 +12,10 @@ export default {
     data:()=>({
         slides: [
             {
-                src:'storage/images/sliders/slider1.jpg',
+                src: 'storage/images/sliders/slider1.jpg',
             },
             {
-                src:'storage/images/sliders/slider2.jpg',
+                src: 'storage/images/sliders/slider2.jpg',
             }
         ],
     }), 

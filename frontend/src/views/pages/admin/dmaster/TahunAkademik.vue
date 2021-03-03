@@ -340,23 +340,23 @@ import {mapGetters} from "vuex";
 import DataMasterLayout from '@/views/layouts/DataMasterLayout';
 import ModuleHeader from '@/components/ModuleHeader';
 export default {
-    name:'TahunAkademik',
+    name: 'TahunAkademik',
     created () {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.ACCESS_TOKEN
+                href: '/dashboard/'+this.ACCESS_TOKEN
             },
             {
-                text:'DATA MASTER',
+                text: 'DATA MASTER',
                 disabled: false,
-                href:'#'
+                href: '#'
             },
             {
-                text:'TAHUN AKADEMIK',
-                disabled:true,
-                href:'#'
+                text: 'TAHUN AKADEMIK',
+                disabled: true,
+                href: '#'
             }
         ];
         this.initialize()
@@ -420,7 +420,7 @@ export default {
 
             //form rules
             rule_tahun: [
-                value => !!value||"Tahun Akademik mohon untuk diisi Misalnya 2020 !!!",
+                value => !!value || "Tahun Akademik mohon untuk diisi Misalnya 2020 !!!",
                 value => /^[0-9]+$/.test(value) || 'Tahun Akademik hanya boleh angka',                
                 value => {                    
                     if (value && typeof value !== 'undefined' && value.length > 0){
@@ -433,19 +433,19 @@ export default {
                 }
             ],
             rule_tahun_akademik: [                
-                value => !!value||"Mohon untuk di isi nama tahun akademik !!!",
+                value => !!value || "Mohon untuk di isi nama tahun akademik !!!",
             ],            
         }
     },
     methods: {
-        initialize: async function ()
+        initialize: async function()
         {
             this.datatableLoading=true;
             await this.$ajax.get('/datamaster/tahunakademik',{
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
-            }).then(({data})=>{
+            }).then(({ data })=>{
                 this.datatable = data.ta;
                 this.datatableLoading=false;
             }).catch(()=>{
@@ -477,7 +477,7 @@ export default {
             this.old_tahun=item.tahun;
             this.dialogfrm = true
         },
-        save:async function () {
+        save:async function() {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading=true;
@@ -485,48 +485,48 @@ export default {
                 {
                     await this.$ajax.post('/datamaster/tahunakademik/'+this.old_tahun,
                         {
-                            '_method':'PUT',
-                            tahun:this.formdata.tahun,
-                            tahun_akademik:this.formdata.tahun_akademik,
-                            awal_ganjil:this.semester_ganjil[0],
-                            akhir_ganjil:this.semester_ganjil[1],
-                            awal_genap:this.semester_genap[0],
-                            akhir_genap:this.semester_genap[1],
+                            '_method': 'PUT',
+                            tahun: this.formdata.tahun,
+                            tahun_akademik: this.formdata.tahun_akademik,
+                            awal_ganjil: this.semester_ganjil[0],
+                            akhir_ganjil: this.semester_ganjil[1],
+                            awal_genap: this.semester_genap[0],
+                            akhir_genap: this.semester_genap[1],
                         },
                         {
-                            headers:{
-                                Authorization:this.TOKEN
+                            headers: {
+                                Authorization: this.TOKEN
                             }
                         }
-                    ).then(({data})=>{
+                    ).then(({ data })=>{
                         Object.assign(this.datatable[this.editedIndex], data.ta);
                         this.closedialogfrm();
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
 
                 } else {
                     await this.$ajax.post('/datamaster/tahunakademik/store',
                         {
-                            tahun:this.formdata.tahun,
-                            tahun_akademik:this.formdata.tahun_akademik,
-                            awal_ganjil:this.semester_ganjil[0],
-                            akhir_ganjil:this.semester_ganjil[1],
-                            awal_genap:this.semester_genap[0],
-                            akhir_genap:this.semester_genap[1],
+                            tahun: this.formdata.tahun,
+                            tahun_akademik: this.formdata.tahun_akademik,
+                            awal_ganjil: this.semester_ganjil[0],
+                            akhir_ganjil: this.semester_ganjil[1],
+                            awal_genap: this.semester_genap[0],
+                            akhir_genap: this.semester_genap[1],
                         },
                         {
-                            headers:{
-                                Authorization:this.TOKEN
+                            headers: {
+                                Authorization: this.TOKEN
                             }
                         }
-                    ).then(({data})=>{
+                    ).then(({ data })=>{
                         this.datatable.push(data.ta);
                         this.closedialogfrm();
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
                 }
             }
@@ -538,19 +538,19 @@ export default {
                     this.btnLoading=true;
                     this.$ajax.post('/datamaster/tahunakademik/'+item.tahun,
                         {
-                            '_method':'DELETE',
+                            '_method': 'DELETE',
                         },
                         {
-                            headers:{
-                                Authorization:this.TOKEN
+                            headers: {
+                                Authorization: this.TOKEN
                             }
                         }
                     ).then(()=>{
                         const index = this.datatable.indexOf(item);
                         this.datatable.splice(index, 1);
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
                 }
             });
@@ -575,8 +575,8 @@ export default {
     },
     computed: {
         ...mapGetters('auth',{
-            ACCESS_TOKEN:'AccessToken',
-            TOKEN:'Token',
+            ACCESS_TOKEN: 'AccessToken',
+            TOKEN: 'Token',
         }),
         formTitle () {
             return this.editedIndex === -1 ? 'TAMBAH DATA' : 'UBAH DATA'
@@ -591,7 +591,7 @@ export default {
                 return this.semester_ganjil.join(' ~ ');
             }
         },
-        semesterGenapText:{
+        semesterGenapText: {
             set()
             {
 
@@ -602,7 +602,7 @@ export default {
             }
         },           
     },
-    components:{
+    components: {
         DataMasterLayout,
         ModuleHeader,
     },

@@ -237,23 +237,23 @@ import {mapGetters} from "vuex";
 import KeuanganLayout from '@/views/layouts/KeuanganLayout';
 import ModuleHeader from '@/components/ModuleHeader';
 export default {
-    name:'Kelas',
+    name: 'Kelas',
     created () {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.ACCESS_TOKEN
+                href: '/dashboard/'+this.ACCESS_TOKEN
             },
             {
-                text:'KEUANGAN',
+                text: 'KEUANGAN',
                 disabled: false,
-                href:'#'
+                href: '#'
             },
             {
-                text:'TRANSFER BANK',
-                disabled:true,
-                href:'#'
+                text: 'TRANSFER BANK',
+                disabled: true,
+                href: '#'
             }
         ];
         this.initialize()
@@ -300,31 +300,31 @@ export default {
 
         //form rules  
         rule_nama_bank: [
-            value => !!value||"Mohon untuk di isi nama bank !!!",  
+            value => !!value || "Mohon untuk di isi nama bank !!!",  
             value => /^[A-Za-z\s]*$/.test(value) || 'Nama bank hanya boleh string dan spasi',                
         ],   
         rule_nama_cabang: [
-            value => !!value||"Mohon untuk di isi nama cabang bank !!!",  
+            value => !!value || "Mohon untuk di isi nama cabang bank !!!",  
             value => /^[A-Za-z\s]*$/.test(value) || 'Nama cabang bank hanya boleh string dan spasi',                
         ],         
         rule_no_rekening: [
-            value => !!value||"Mohon untuk di isi nomor rekening !!!",                     
+            value => !!value || "Mohon untuk di isi nomor rekening !!!",                     
             value => /^[0-9]+$/.test(value) || 'Nomor rekening hanya boleh angka',
         ],
         rule_pemilik: [
-            value => !!value||"Mohon untuk di isi nama pemilik rekening !!!",  
+            value => !!value || "Mohon untuk di isi nama pemilik rekening !!!",  
             value => /^[A-Za-z\s]*$/.test(value) || 'Nama pemilik rekening hanya boleh string dan spasi',                
         ],
     }),
     methods: {
-        initialize: async function () 
+        initialize: async function() 
         {
             this.datatableLoading=true;
             await this.$ajax.get('/keuangan/transferbank',{
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
-            }).then(({data})=>{               
+            }).then(({ data })=>{               
                 this.datatable = data.bank;
                 this.datatableLoading=false;
             }).catch(()=>{
@@ -351,7 +351,7 @@ export default {
             this.formdata = Object.assign({}, item);            
             this.dialogfrm = true
         },    
-        save:async function () {
+        save:async function() {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading=true;
@@ -359,44 +359,44 @@ export default {
                 {
                     await this.$ajax.post('/keuangan/transferbank/'+this.formdata.id,
                         {
-                            '_method':'PUT',
-                            nama_bank:this.formdata.nama_bank,                            
-                            nama_cabang:this.formdata.nama_cabang,                            
-                            nomor_rekening:this.formdata.nomor_rekening,                            
-                            pemilik_rekening:this.formdata.pemilik_rekening,                            
+                            '_method': 'PUT',
+                            nama_bank: this.formdata.nama_bank,                            
+                            nama_cabang: this.formdata.nama_cabang,                            
+                            nomor_rekening: this.formdata.nomor_rekening,                            
+                            pemilik_rekening: this.formdata.pemilik_rekening,                            
                         },
                         {
-                            headers:{
-                                Authorization:this.TOKEN
+                            headers: {
+                                Authorization: this.TOKEN
                             }
                         }
-                    ).then(({data})=>{   
+                    ).then(({ data })=>{   
                         Object.assign(this.datatable[this.editedIndex], data.bank);
                         this.closedialogfrm();
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });                 
                     
                 } else {
                     await this.$ajax.post('/keuangan/transferbank/store',
                         {
-                            nama_bank:this.formdata.nama_bank,                            
-                            nama_cabang:this.formdata.nama_cabang,                            
-                            nomor_rekening:this.formdata.nomor_rekening,                            
-                            pemilik_rekening:this.formdata.pemilik_rekening,                            
+                            nama_bank: this.formdata.nama_bank,                            
+                            nama_cabang: this.formdata.nama_cabang,                            
+                            nomor_rekening: this.formdata.nomor_rekening,                            
+                            pemilik_rekening: this.formdata.pemilik_rekening,                            
                         },
                         {
-                            headers:{
-                                Authorization:this.TOKEN
+                            headers: {
+                                Authorization: this.TOKEN
                             }
                         }
-                    ).then(({data})=>{   
+                    ).then(({ data })=>{   
                         this.datatable.push(data.bank);
                         this.closedialogfrm();
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
                 }
             }
@@ -408,19 +408,19 @@ export default {
                     this.btnLoading=true;
                     this.$ajax.post('/keuangan/transferbank/'+item.id,
                         {
-                            '_method':'DELETE',
+                            '_method': 'DELETE',
                         },
                         {
-                            headers:{
-                                Authorization:this.TOKEN
+                            headers: {
+                                Authorization: this.TOKEN
                             }
                         }
                     ).then(()=>{   
                         const index = this.datatable.indexOf(item);
                         this.datatable.splice(index, 1);
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
                 }                
             });
@@ -445,14 +445,14 @@ export default {
     },
     computed: {
         ...mapGetters('auth',{            
-            ACCESS_TOKEN:'AccessToken',          
-            TOKEN:'Token',                                  
+            ACCESS_TOKEN: 'AccessToken',          
+            TOKEN: 'Token',                                  
         }),
         formTitle () {
             return this.editedIndex === -1 ? 'TAMBAH DATA' : 'UBAH DATA'
         },        
     },
-    components:{
+    components: {
         KeuanganLayout,
         ModuleHeader,        
     },

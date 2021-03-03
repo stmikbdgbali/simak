@@ -76,30 +76,30 @@ import KeuanganLayout from '@/views/layouts/KeuanganLayout';
 import ModuleHeader from '@/components/ModuleHeader';
 
 export default {
-    name:'ChannelPembayaran',
+    name: 'ChannelPembayaran',
     created()
     {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
-                text:'KEUANGAN',
+                text: 'KEUANGAN',
                 disabled: false,
-                href:'/keuangan'
+                href: '/keuangan'
             },
             {
-                text:'CHANNEL PEMBAYARAN',
-                disabled:true,
-                href:'#'
+                text: 'CHANNEL PEMBAYARAN',
+                disabled: true,
+                href: '#'
             }
         ];        
         this.initialize();
     },  
     data: () => ({
-        firstloading:true,
+        firstloading: true,
         breadcrumbs: [],         
         
         btnLoading: false,
@@ -121,7 +121,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{               
+            }).then(({ data })=>{               
                 this.datatable = data.channel;                
                 this.datatableLoading=false;
             });                     
@@ -139,7 +139,7 @@ export default {
             }               
         },                
     },   
-    components:{
+    components: {
         KeuanganLayout,
         ModuleHeader,            
     },

@@ -138,12 +138,12 @@ export default {
             this.btnLoading=true;
             this.$ajax.post('/system/setting/roles/storerolepermissions',
                 {
-                    role_id:this.role.id,
-                    chkpermission:this.permissions_selected
+                    role_id: this.role.id,
+                    chkpermission: this.permissions_selected
                 },
                 {
-                    headers:{
-                        Authorization:this.TOKEN
+                    headers: {
+                        Authorization: this.TOKEN
                     }
                 }
             ).then(()=>{   
@@ -158,12 +158,12 @@ export default {
             this.btnLoading=true;         
             this.$ajax.post('/system/setting/roles/revokerolepermissions',
                 {
-                    role_id:this.role.id,
+                    role_id: this.role.id,
                     name:item.name
                 },
                 {
-                    headers:{
-                        Authorization:this.TOKEN
+                    headers: {
+                        Authorization: this.TOKEN
                     }
                 }
             ).then(()=>{   
@@ -180,14 +180,14 @@ export default {
             this.$emit('closeRolePermissions',this.role.id);
         }
     },
-    props:{
+    props: {
         role:Object,
         daftarpermissions:Array,
         permissionsselected:Array,
     },
     computed: {
         ...mapGetters('auth',{                             
-            TOKEN:'Token',                                  
+            TOKEN: 'Token',                                  
         }),
         daftar_permissions()
         {

@@ -6,8 +6,8 @@
 <script>
 import KepegawaianLayout from '@/views/layouts/KepegawaianLayout';
 export default {
-    name:'Kepegawaian',
-    components:{
+    name: 'Kepegawaian',
+    components: {
         KepegawaianLayout,      
     },
 }

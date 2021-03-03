@@ -185,23 +185,23 @@ import {mapGetters} from "vuex";
 import DataMasterLayout from '@/views/layouts/DataMasterLayout';
 import ModuleHeader from '@/components/ModuleHeader';
 export default {
-    name:'TahunAkademik',
+    name: 'TahunAkademik',
     created () {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.ACCESS_TOKEN
+                href: '/dashboard/'+this.ACCESS_TOKEN
             },
             {
-                text:'DATA MASTER',
+                text: 'DATA MASTER',
                 disabled: false,
-                href:'#'
+                href: '#'
             },
             {
-                text:'RUANG KELAS',
-                disabled:true,
-                href:'#'
+                text: 'RUANG KELAS',
+                disabled: true,
+                href: '#'
             }
         ];
         this.initialize()
@@ -238,22 +238,22 @@ export default {
 
         //form rules
         rule_nama_ruang: [
-            value => !!value||"Mohon untuk di isi nama ruang !!!",
+            value => !!value || "Mohon untuk di isi nama ruang !!!",
         ],
         rule_kapasitas: [
-            value => !!value||"Kapasitas Ruangan mohon untuk diisi !!!",
+            value => !!value || "Kapasitas Ruangan mohon untuk diisi !!!",
             value => /^[0-9]+$/.test(value) || 'Kapasitas Ruangan Kelas hanya boleh angka',            
         ],        
     }),
     methods: {
-        initialize: async function ()
+        initialize: async function()
         {
             this.datatableLoading=true;
             await this.$ajax.get('/datamaster/ruangankelas',{
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
-            }).then(({data})=>{
+            }).then(({ data })=>{
                 this.datatable = data.ruangan;
                 this.datatableLoading=false;
             }).catch(()=>{
@@ -280,7 +280,7 @@ export default {
             this.formdata = Object.assign({}, item);            
             this.dialogfrm = true
         },
-        save:async function () {
+        save:async function() {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading=true;
@@ -288,40 +288,40 @@ export default {
                 {
                     await this.$ajax.post('/datamaster/ruangankelas/'+this.formdata.id,
                         {
-                            '_method':'PUT',
-                            namaruang:this.formdata.namaruang,
-                            kapasitas:this.formdata.kapasitas,
+                            '_method': 'PUT',
+                            namaruang: this.formdata.namaruang,
+                            kapasitas: this.formdata.kapasitas,
                         },
                         {
-                            headers:{
-                                Authorization:this.TOKEN
+                            headers: {
+                                Authorization: this.TOKEN
                             }
                         }
-                    ).then(({data})=>{
+                    ).then(({ data })=>{
                         Object.assign(this.datatable[this.editedIndex], data.ruangan);
                         this.closedialogfrm();
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
 
                 } else {
                     await this.$ajax.post('/datamaster/ruangankelas/store',
                         {
-                            namaruang:this.formdata.namaruang,
-                            kapasitas:this.formdata.kapasitas,
+                            namaruang: this.formdata.namaruang,
+                            kapasitas: this.formdata.kapasitas,
                         },
                         {
-                            headers:{
-                                Authorization:this.TOKEN
+                            headers: {
+                                Authorization: this.TOKEN
                             }
                         }
-                    ).then(({data})=>{
+                    ).then(({ data })=>{
                         this.datatable.push(data.ruangan);
                         this.closedialogfrm();
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
                 }
             }
@@ -333,19 +333,19 @@ export default {
                     this.btnLoading=true;
                     this.$ajax.post('/datamaster/ruangankelas/'+item.id,
                         {
-                            '_method':'DELETE',
+                            '_method': 'DELETE',
                         },
                         {
-                            headers:{
-                                Authorization:this.TOKEN
+                            headers: {
+                                Authorization: this.TOKEN
                             }
                         }
                     ).then(()=>{
                         const index = this.datatable.indexOf(item);
                         this.datatable.splice(index, 1);
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
                 }
             });
@@ -370,14 +370,14 @@ export default {
     },
     computed: {
         ...mapGetters('auth',{
-            ACCESS_TOKEN:'AccessToken',
-            TOKEN:'Token',
+            ACCESS_TOKEN: 'AccessToken',
+            TOKEN: 'Token',
         }),
         formTitle () {
             return this.editedIndex === -1 ? 'TAMBAH DATA' : 'UBAH DATA'
         },
     },
-    components:{
+    components: {
         DataMasterLayout,
         ModuleHeader,
     },

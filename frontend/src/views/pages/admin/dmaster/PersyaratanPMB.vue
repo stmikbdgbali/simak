@@ -266,30 +266,30 @@ import DataMasterLayout from '@/views/layouts/DataMasterLayout';
 import ModuleHeader from '@/components/ModuleHeader';
 import Filter9 from '@/components/sidebar/FilterMode9';
 export default {
-    name:'PersyaratanPMB',
+    name: 'PersyaratanPMB',
     created () {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.ACCESS_TOKEN
+                href: '/dashboard/'+this.ACCESS_TOKEN
             },
             {
-                text:'DATA MASTER',
+                text: 'DATA MASTER',
                 disabled: false,
-                href:'/dmaster'
+                href: '/dmaster'
             },
             {
-                text:'PERSYARATAN PMB',
-                disabled:true,
-                href:'#'
+                text: 'PERSYARATAN PMB',
+                disabled: true,
+                href: '#'
             }
         ];        
         this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];                
         this.initialize()
     },  
     data: () => ({ 
-        firstloading:true,        
+        firstloading: true,        
         tahun_pendaftaran:null,        
 
         btnLoading: false,
@@ -297,9 +297,9 @@ export default {
         expanded: [],
         datatable: [],      
         headers: [
-            { text: 'PROSES', value: 'proses', sortable:true,width:120  },   
-            { text: 'NAMA PERSYARATAN', value: 'nama_persyaratan',sortable:true },                           
-            { text: 'TA', value: 'ta',sortable:true,width:80, align:'center' },                           
+            { text: 'PROSES', value: 'proses', sortable: true,width:120  },   
+            { text: 'NAMA PERSYARATAN', value: 'nama_persyaratan',sortable: true },                           
+            { text: 'TA', value: 'ta',sortable: true,width:80, align: 'center' },                           
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],  
         search: "",    
@@ -315,14 +315,14 @@ export default {
         dari_tahun_pendaftaran:null,          
         formdata: {
             id: "",                        
-            proses:'pmb',                        
+            proses: 'pmb',                        
             nama_persyaratan:null,                        
             prodi_id:null, 
             ta: "",                   
         },
         formdefault: {
             id: "",                        
-            proses:'pmb',                                         
+            proses: 'pmb',                                         
             nama_persyaratan:null,                        
             prodi_id:null, 
             ta: "",                   
@@ -331,10 +331,10 @@ export default {
 
         //form rules      
         rule_nama_persyaratan: [
-            value => !!value||"Mohon Nama Program Studi untuk diisi !!!",              
+            value => !!value || "Mohon Nama Program Studi untuk diisi !!!",              
         ],         
         rule_dari_tahun_pendaftaran: [
-            value => !!value||"Mohon Tahun Pendaftaran sumber persyaratan untuk dipilih !!!",              
+            value => !!value || "Mohon Tahun Pendaftaran sumber persyaratan untuk dipilih !!!",              
         ],             
     }),
     methods: {
@@ -342,18 +342,18 @@ export default {
         {
             this.tahun_pendaftaran=tahun;
         },        
-        initialize: async function () 
+        initialize: async function() 
         {
             this.datatableLoading=true;
             await this.$ajax.post('/datamaster/persyaratan',
             {
-                TA:this.tahun_pendaftaran
+                TA: this.tahun_pendaftaran
             },
             {
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
-            }).then(({data})=>{               
+            }).then(({ data })=>{               
                 this.datatable = data.persyaratan;
                 this.datatableLoading=false;
             }).catch(()=>{
@@ -402,7 +402,7 @@ export default {
             }            
             this.dialogcopypersyaratan=true;
         },
-        save:async function () {
+        save:async function() {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading=true;
@@ -410,40 +410,40 @@ export default {
                 {
                     await this.$ajax.post('/datamaster/persyaratan/'+this.formdata.id,
                         {
-                            '_method':'PUT',                            
-                            nama_persyaratan:this.formdata.nama_persyaratan,                                                                            
+                            '_method': 'PUT',                            
+                            nama_persyaratan: this.formdata.nama_persyaratan,                                                                            
                         },
                         {
-                            headers:{
-                                Authorization:this.TOKEN
+                            headers: {
+                                Authorization: this.TOKEN
                             }
                         }
                     ).then(()=>{   
                         this.initialize();
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                         this.closedialogfrm();                        
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });                 
                     
                 } else {                    
                     await this.$ajax.post('/datamaster/persyaratan/store',
                         {
-                            proses:this.formdata.proses,                                                    
-                            nama_persyaratan:this.formdata.nama_persyaratan,                                                                                                       
-                            ta:this.tahun_pendaftaran,                                     
+                            proses: this.formdata.proses,                                                    
+                            nama_persyaratan: this.formdata.nama_persyaratan,                                                                                                       
+                            ta: this.tahun_pendaftaran,                                     
                         },
                         {
-                            headers:{
-                                Authorization:this.TOKEN
+                            headers: {
+                                Authorization: this.TOKEN
                             }
                         }
                     ).then(()=>{   
                         this.initialize();                  
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                         this.closedialogfrm();
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
                 }
             }
@@ -455,20 +455,20 @@ export default {
                 this.btnLoading=true;
                 this.$ajax.post('/datamaster/persyaratan/salin/'+this.tahun_pendaftaran,
                     {
-                        dari_tahun_pendaftaran:this.dari_tahun_pendaftaran,
-                        proses:'pmb',
+                        dari_tahun_pendaftaran: this.dari_tahun_pendaftaran,
+                        proses: 'pmb',
                     },
                     {
-                        headers:{
-                            Authorization:this.TOKEN
+                        headers: {
+                            Authorization: this.TOKEN
                         }
                     }
-                ).then(({data})=>{   
+                ).then(({ data })=>{   
                     this.datatable=data.persyaratan;
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                     this.closedialogsalinpersyaratan();
                 }).catch(()=>{
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                 });            
             }
         },
@@ -479,19 +479,19 @@ export default {
                     this.btnLoading=true;
                     this.$ajax.post('/datamaster/persyaratan/'+item.id,
                         {
-                            '_method':'DELETE',
+                            '_method': 'DELETE',
                         },
                         {
-                            headers:{
-                                Authorization:this.TOKEN
+                            headers: {
+                                Authorization: this.TOKEN
                             }
                         }
                     ).then(()=>{   
                         const index = this.datatable.indexOf(item);
                         this.datatable.splice(index, 1);
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
                 }                
             });
@@ -524,14 +524,14 @@ export default {
     },
     computed: {
         ...mapGetters('auth',{            
-            ACCESS_TOKEN:'AccessToken',          
-            TOKEN:'Token',                                  
+            ACCESS_TOKEN: 'AccessToken',          
+            TOKEN: 'Token',                                  
         }),
         formTitle () {
             return this.editedIndex === -1 ? 'TAMBAH PERSYARATAN PMB' : 'UBAH PERSYARATAN PMB'
         },         
     },
-    watch:{
+    watch: {
         tahun_pendaftaran()
         {
             if (!this.firstloading)
@@ -540,7 +540,7 @@ export default {
             }            
         },        
     },
-    components:{
+    components: {
         DataMasterLayout,
         ModuleHeader,
         Filter9        

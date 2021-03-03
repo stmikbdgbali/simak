@@ -110,36 +110,36 @@
 import SPMBLayout from '@/views/layouts/SPMBLayout';
 import ModuleHeader from '@/components/ModuleHeader';
 export default {
-    name:'PassingGrade',
+    name: 'PassingGrade',
     created () {
         this.jadwal_ujian_id = this.$route.params.idjadwalujian;     
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
-                text:'SPMB',
+                text: 'SPMB',
                 disabled: false,
-                href:'#'
+                href: '#'
             },
             {
-                text:'JADWAL UJIAN PMB',
+                text: 'JADWAL UJIAN PMB',
                 disabled: false,
-                href:'/spmb/jadwalujianpmb'
+                href: '/spmb/jadwalujianpmb'
             },
             {
-                text:'PASSING GRADE',
-                disabled:true,
-                href:'#'
+                text: 'PASSING GRADE',
+                disabled: true,
+                href: '#'
             }
         ]; 
         this.initialize();    
     },
     data:()=>({
         jadwal_ujian_id:null,
-        jadwal_ujian:{
+        jadwal_ujian: {
             id:0,                        
             nama_kegiatan: "",            
             ta: "",                        
@@ -164,18 +164,18 @@ export default {
         ],
     }),
     methods: {
-        initialize: async function () 
+        initialize: async function() 
         {
             this.datatableLoading=true;
             await this.$ajax.post('/spmb/passinggrade',
             {
-                jadwal_ujian_id:this.jadwal_ujian_id,                
+                jadwal_ujian_id: this.jadwal_ujian_id,                
             },
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{                 
+            }).then(({ data })=>{                 
                 this.datatableLoading=false;
                 this.jadwal_ujian=data.jadwal_ujian;      
                 this.datatable=data.passing_grade;                               
@@ -194,23 +194,23 @@ export default {
                 this.expanded=[item];
             }               
         },
-        loadprodi:async function ()
+        loadprodi:async function()
         {
             this.btnLoading=true;
             await this.$ajax.post('/spmb/passinggrade/loadprodi',
                 {
-                    jadwal_ujian_id:this.jadwal_ujian_id,               
+                    jadwal_ujian_id: this.jadwal_ujian_id,               
                 },
                 {
-                    headers:{
+                    headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     }
                 }
             ).then(()=>{         
-                this.btnLoading=false;
+                this.btnLoading = false;
                 this.initialize();
             }).catch(()=>{
-                this.btnLoading=false;
+                this.btnLoading = false;
             });        
         },
         saveItem:async function ({id,nilai})
@@ -218,7 +218,7 @@ export default {
             this.btnLoading=true;
             await this.$ajax.post('/spmb/passinggrade/'+id,            
             {
-                _method:'put',
+                _method: 'put',
                 id:id,
                 nilai:nilai
             },
@@ -227,7 +227,7 @@ export default {
                     Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(()=>{        
-                this.btnLoading=false;       
+                this.btnLoading = false;       
                 this.initialize();                        
             });  
         },
@@ -247,7 +247,7 @@ export default {
     computed: {        
         
     },
-    components:{
+    components: {
         SPMBLayout,
         ModuleHeader,        
     },

@@ -143,19 +143,19 @@ export default {
     {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.ACCESS_TOKEN
+                href: '/dashboard/'+this.ACCESS_TOKEN
             },
             {
-                text:'USER SISTEM',
+                text: 'USER SISTEM',
                 disabled: false,
-                href:'/system-users'
+                href: '/system-users'
             },
             {
-                text:'PERMISSIONS',
-                disabled:true,
-                href:'#'
+                text: 'PERMISSIONS',
+                disabled: true,
+                href: '#'
             }
         ];
         this.initialize();
@@ -193,7 +193,7 @@ export default {
         },
         //form rules        
         rule_permission_name: [
-            value => !!value||"Mohon untuk di isi nama Permission !!!",  
+            value => !!value || "Mohon untuk di isi nama Permission !!!",  
             value => /^[0-9\\a-zA-Z\\-]+$/.test(value) || 'Nama Permission hanya boleh angka,huruf,dan tanda -',                
         ], 
     }),
@@ -203,9 +203,9 @@ export default {
             this.datatableLoading=true;
             this.$ajax.get('/system/setting/permissions',{
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
-            }).then(({data})=>{                
+            }).then(({ data })=>{                
                 this.daftar_permissions = data.permissions;
                 this.datatableLoading=false;
             });          
@@ -245,11 +245,11 @@ export default {
                     this.btnLoading=true;
                     this.$ajax.post('/system/setting/permissions/store',
                         {
-                            name:this.editedItem.name.toLowerCase()
+                            name: this.editedItem.name.toLowerCase()
                         },
                         {
-                            headers:{
-                                Authorization:this.TOKEN
+                            headers: {
+                                Authorization: this.TOKEN
                             }
                         }
                     ).then(()=>{   
@@ -268,11 +268,11 @@ export default {
                     this.btnLoading=true;
                     this.$ajax.post('/system/setting/permissions/'+item.id,
                     {
-                        '_method':'DELETE',
+                        '_method': 'DELETE',
                     },
                     {
-                        headers:{
-                            Authorization:this.TOKEN
+                        headers: {
+                            Authorization: this.TOKEN
                         }
                     }
                     ).then(()=>{   
@@ -291,10 +291,10 @@ export default {
             return this.editedIndex === -1 ? 'TAMBAH PERMISSION' : 'EDIT PERMISSION'
         },
         ...mapGetters('auth',{            
-            ACCESS_TOKEN:'AccessToken',          
-            TOKEN:'Token',          
-            CAN_ACCESS:'can',         
-            ATTRIBUTE_USER:'AttributeUser',          
+            ACCESS_TOKEN: 'AccessToken',          
+            TOKEN: 'Token',          
+            CAN_ACCESS: 'can',         
+            ATTRIBUTE_USER: 'AttributeUser',          
         }),
     },
     watch: {
@@ -302,7 +302,7 @@ export default {
             val || this.close()
         },
     },   
-    components:{
+    components: {
 		SystemUserLayout,
 		ModuleHeader,
 	}

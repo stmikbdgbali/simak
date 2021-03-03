@@ -79,7 +79,7 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
-    name:'TransaksiInvoice',
+    name: 'TransaksiInvoice',
     created()
     {
         this.transaksi_id=this.$route.params.transaksi_id;   
@@ -94,7 +94,7 @@ export default {
         
         errormessage: "",
 
-        headers:{
+        headers: {
             header_1: "",
             header_2: "",
             header_3: "",
@@ -111,7 +111,7 @@ export default {
         ],
     }),    
     methods: {
-        initialize: async function () 
+        initialize: async function() 
         {
             this.datatableLoading=true;
 
@@ -120,7 +120,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{  
+            }).then(({ data })=>{  
                 let setting = data.setting;                           
                 this.headers.header_1=setting.HEADER_1;
                 this.headers.header_2=setting.HEADER_2;
@@ -134,7 +134,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{       
+            }).then(({ data })=>{       
                 this.data_transaksi=data.transaksi;                                       
                 this.transaksi_detail = data.transaksi_detail;                
                 this.datatableLoading=false;
@@ -145,7 +145,7 @@ export default {
 
         },
     },    
-    computed :{
+    computed : {
         ...mapGetters('uifront',{
             namaPTAlias: 'getNamaPTAlias'
         })

@@ -183,23 +183,23 @@ import {mapGetters} from "vuex";
 import DataMasterLayout from '@/views/layouts/DataMasterLayout';
 import ModuleHeader from '@/components/ModuleHeader';
 export default {
-    name:'Kelas',
+    name: 'Kelas',
     created () {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.ACCESS_TOKEN
+                href: '/dashboard/'+this.ACCESS_TOKEN
             },
             {
-                text:'DATA MASTER',
+                text: 'DATA MASTER',
                 disabled: false,
-                href:'#'
+                href: '#'
             },
             {
-                text:'KELAS',
-                disabled:true,
-                href:'#'
+                text: 'KELAS',
+                disabled: true,
+                href: '#'
             }
         ];
         this.initialize()
@@ -235,23 +235,23 @@ export default {
 
         //form rules
         rule_kode_kelas: [
-            value => !!value||"ID Kelas mohon untuk diisi !!!",
+            value => !!value || "ID Kelas mohon untuk diisi !!!",
             value => /^[A-Z]*$/.test(value) || 'Name hanya boleh string dan huruf besar',
             value => (value && value.length == 1) || 'Kode kelas hanya boleh 1 karakter'
         ],
         rule_nama_kelas: [
-            value => !!value||"Mohon untuk di isi nama kelas !!!",            
+            value => !!value || "Mohon untuk di isi nama kelas !!!",            
         ],
     }),
     methods: {
-        initialize: async function ()
+        initialize: async function()
         {
             this.datatableLoading=true;
             await this.$ajax.get('/datamaster/kelas',{
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
-            }).then(({data})=>{
+            }).then(({ data })=>{
                 this.datatable = data.kelas;
                 this.datatableLoading=false;
             }).catch(()=>{
@@ -279,7 +279,7 @@ export default {
             this.old_idkelas=item.idkelas;
             this.dialogfrm = true
         },
-        save:async function () {
+        save:async function() {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading=true;
@@ -287,40 +287,40 @@ export default {
                 {
                     await this.$ajax.post('/datamaster/kelas/'+this.old_idkelas,
                         {
-                            '_method':'PUT',
-                            idkelas:this.formdata.idkelas,
-                            nkelas:this.formdata.nkelas,
+                            '_method': 'PUT',
+                            idkelas: this.formdata.idkelas,
+                            nkelas: this.formdata.nkelas,
                         },
                         {
-                            headers:{
-                                Authorization:this.TOKEN
+                            headers: {
+                                Authorization: this.TOKEN
                             }
                         }
-                    ).then(({data})=>{
+                    ).then(({ data })=>{
                         Object.assign(this.datatable[this.editedIndex], data.kelas);
                         this.closedialogfrm();
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
 
                 } else {
                     await this.$ajax.post('/datamaster/kelas/store',
                         {
-                            idkelas:this.formdata.idkelas,
-                            nkelas:this.formdata.nkelas,
+                            idkelas: this.formdata.idkelas,
+                            nkelas: this.formdata.nkelas,
                         },
                         {
-                            headers:{
-                                Authorization:this.TOKEN
+                            headers: {
+                                Authorization: this.TOKEN
                             }
                         }
-                    ).then(({data})=>{
+                    ).then(({ data })=>{
                         this.datatable.push(data.kelas);
                         this.closedialogfrm();
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
                 }
             }
@@ -332,19 +332,19 @@ export default {
                     this.btnLoading=true;
                     this.$ajax.post('/datamaster/kelas/'+item.idkelas,
                         {
-                            '_method':'DELETE',
+                            '_method': 'DELETE',
                         },
                         {
-                            headers:{
-                                Authorization:this.TOKEN
+                            headers: {
+                                Authorization: this.TOKEN
                             }
                         }
                     ).then(()=>{
                         const index = this.datatable.indexOf(item);
                         this.datatable.splice(index, 1);
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     }).catch(()=>{
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
                 }
             });
@@ -369,14 +369,14 @@ export default {
     },
     computed: {
         ...mapGetters('auth',{
-            ACCESS_TOKEN:'AccessToken',
-            TOKEN:'Token',
+            ACCESS_TOKEN: 'AccessToken',
+            TOKEN: 'Token',
         }),
         formTitle () {
             return this.editedIndex === -1 ? 'TAMBAH DATA' : 'UBAH DATA'
         },
     },
-    components:{
+    components: {
         DataMasterLayout,
         ModuleHeader,
     },

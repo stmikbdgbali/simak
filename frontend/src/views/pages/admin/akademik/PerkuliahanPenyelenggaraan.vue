@@ -140,24 +140,24 @@ export default {
     created () {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
-                text:'AKADEMIK',
+                text: 'AKADEMIK',
                 disabled: false,
-                href:'/akademik'
+                href: '/akademik'
             },
             {
-                text:'PERKULIAHAN',
+                text: 'PERKULIAHAN',
                 disabled: false,
-                href:'#'
+                href: '#'
             },
             {
-                text:'PENYELENGGARAAN MATAKULIAH',
-                disabled:true,
-                href:'#'
+                text: 'PENYELENGGARAAN MATAKULIAH',
+                disabled: true,
+                href: '#'
             }
         ];
         let prodi_id=this.$store.getters['uiadmin/getProdiID'];
@@ -168,7 +168,7 @@ export default {
         this.initialize()
     },  
     data: () => ({ 
-        firstloading:true,
+        firstloading: true,
         prodi_id:null,
         nama_prodi:null,        
         tahun_akademik:null,
@@ -179,14 +179,14 @@ export default {
         expanded: [],
         datatable: [],      
         headers: [
-            { text: 'KODE', value: 'kmatkul', sortable:true,width:120  },   
-            { text: 'NAMA MATAKULIAH', value: 'nmatkul', sortable:true  },   
-            { text: 'SKS', value: 'sks', sortable:true, width:50  },               
-            { text: 'SMT. MATKUL', value: 'semester', sortable:true, width:50  },               
-            { text: 'TAHUN MATKUL', value: 'ta_matkul', sortable:true, width:50 },               
-            { text: 'KETUA GROUP', value: 'nama_dosen', sortable:true },               
-            { text: 'JUMLAH DOSEN', value: 'jumlah_dosen',sortable:true, width:50 },                           
-            { text: 'JUMLAH MHS', value: 'jumlah_mhs',sortable:true, width:50},                           
+            { text: 'KODE', value: 'kmatkul', sortable: true,width:120  },   
+            { text: 'NAMA MATAKULIAH', value: 'nmatkul', sortable: true  },   
+            { text: 'SKS', value: 'sks', sortable: true, width:50  },               
+            { text: 'SMT. MATKUL', value: 'semester', sortable: true, width:50  },               
+            { text: 'TAHUN MATKUL', value: 'ta_matkul', sortable: true, width:50 },               
+            { text: 'KETUA GROUP', value: 'nama_dosen', sortable: true },               
+            { text: 'JUMLAH DOSEN', value: 'jumlah_dosen',sortable: true, width:50 },                           
+            { text: 'JUMLAH MHS', value: 'jumlah_mhs',sortable: true, width:50},                           
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],  
         search: "", 
@@ -205,20 +205,20 @@ export default {
         {
             this.prodi_id=id;
         },
-        initialize: async function () 
+        initialize: async function() 
         {
             this.datatableLoading=true;
             await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah',
             {
-                prodi_id:this.prodi_id,
-                ta:this.tahun_akademik,
-                semester_akademik:this.semester_akademik,
+                prodi_id: this.prodi_id,
+                ta: this.tahun_akademik,
+                semester_akademik: this.semester_akademik,
             },
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{               
+            }).then(({ data })=>{               
                 this.datatable = data.penyelenggaraan;
                 this.datatableLoading=false;
             }).catch(()=>{
@@ -240,16 +240,16 @@ export default {
         },        
         deleteItem (item)
         {
-            this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus penyelenggaraan matakuliah ('+item.nmatkul+') ?', { color: 'red',width:600,'desc':'proses ini juga menghapus seluruh data kontrak matakuliah MHS.' }).then((confirm) => {
+            this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus penyelenggaraan matakuliah ('+item.nmatkul+') ?', { color: 'red',width:600,'desc': 'proses ini juga menghapus seluruh data kontrak matakuliah MHS.' }).then((confirm) => {
                 if (confirm)
                 {
                     this.btnLoadingTable=true;
                     this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/'+item.id,
                         {
-                            '_method':'DELETE',
+                            '_method': 'DELETE',
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
@@ -264,7 +264,7 @@ export default {
             });
         },
     },
-    watch:{
+    watch: {
         tahun_akademik()
         {
             if (!this.firstloading)
@@ -290,10 +290,10 @@ export default {
     },
     computed: {
         ...mapGetters('auth',{            
-            CAN_ACCESS:'can',                     
+            CAN_ACCESS: 'can',                     
         }),
     },
-    components:{
+    components: {
         AkademikLayout,
         ModuleHeader,    
         Filter6               

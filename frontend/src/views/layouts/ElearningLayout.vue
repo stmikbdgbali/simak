@@ -76,7 +76,7 @@
 			</v-list-item>
 			<v-divider></v-divider>
             <v-list expand>
-                <v-list-item :to="{path:'/elearning'}" link :class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_BOARD_CSS_CLASS')" :color="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_BOARD_COLOR')" v-if="CAN_ACCESS('ELEARNING-GROUP')">
+                <v-list-item :to="{path: '/elearning'}" link :class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_BOARD_CSS_CLASS')" :color="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_BOARD_COLOR')" v-if="CAN_ACCESS('ELEARNING-GROUP')">
                     <v-list-item-icon class="mr-2">
                         <v-icon>mdi-monitor-dashboard</v-icon>
                     </v-list-item-icon>
@@ -140,17 +140,17 @@
 <script>
 import {mapGetters} from 'vuex';
 export default {
-    name:'AkademikLayout',     
+    name: 'AkademikLayout',     
     created()
     {
         this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];          
     },
-    props:{
-        showrightsidebar:{
+    props: {
+        showrightsidebar: {
             type:Boolean,
-            default:true
+            default: true
         },
-        temporaryleftsidebar:{
+        temporaryleftsidebar: {
             type:Boolean,
             default: false
         },
@@ -169,7 +169,7 @@ export default {
             this.$ajax.post('/auth/logout',
                 {},
                 {
-                    headers:{
+                    headers: {
                         'Authorization': this.TOKEN,
                     }
                 }
@@ -191,14 +191,14 @@ export default {
             return this.$store.getters['uifront/getBentukPT']==bentuk_pt?true: false;
         }
 	},
-    computed:{
+    computed: {
         ...mapGetters('auth',{
-            AUTHENTICATED:'Authenticated',  
-            ACCESS_TOKEN:'AccessToken',          
-            TOKEN:'Token',          
-            ROLE:'Role',
-            CAN_ACCESS:'can',         
-            ATTRIBUTE_USER:'AttributeUser',               
+            AUTHENTICATED: 'Authenticated',  
+            ACCESS_TOKEN: 'AccessToken',          
+            TOKEN: 'Token',          
+            ROLE: 'Role',
+            CAN_ACCESS: 'can',         
+            ATTRIBUTE_USER: 'AttributeUser',               
         }),
         APP_NAME ()
         {
@@ -240,7 +240,7 @@ export default {
         }
     },
     watch: {
-        loginTime:{
+        loginTime: {
             handler(value)
             {
                 
@@ -256,7 +256,7 @@ export default {
                     this.$router.replace('/login');
                 }
             },
-            immediate:true
+            immediate: true
         },        
     }
 }

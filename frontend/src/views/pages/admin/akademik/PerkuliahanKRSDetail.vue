@@ -40,7 +40,7 @@
                         <v-card-title>
                             DAFTAR MATAKULIAH
                             <v-spacer></v-spacer>
-                            <v-btn color="primary" icon outlined small class="ma-2" :to="{path:'/akademik/perkuliahan/krs/'+this.krs_id+'/tambahmatkul'}">
+                            <v-btn color="primary" icon outlined small class="ma-2" :to="{path: '/akademik/perkuliahan/krs/'+this.krs_id+'/tambahmatkul'}">
                                 <v-icon>mdi-plus</v-icon>
                             </v-btn>
                         </v-card-title>
@@ -212,35 +212,35 @@ export default {
         this.krs_id=this.$route.params.krsid;
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
-                text:'AKADEMIK',
+                text: 'AKADEMIK',
                 disabled: false,
-                href:'/akademik'
+                href: '/akademik'
             },
             {
-                text:'PERKULIAHAN',
+                text: 'PERKULIAHAN',
                 disabled: false,
-                href:'#'
+                href: '#'
             },
             {
-                text:'KRS',
+                text: 'KRS',
                 disabled: false,
-                href:'/akademik/perkuliahan/krs/daftar'
+                href: '/akademik/perkuliahan/krs/daftar'
             },
             {
-                text:'DETAIL',
-                disabled:true,
-                href:'#'
+                text: 'DETAIL',
+                disabled: true,
+                href: '#'
             },
         ];
         this.fetchKRS();
     },
     data: () => ({
-        firstloading:true,
+        firstloading: true,
         nama_prodi:null,
         tahun_akademik:null,
         semester_akademik:null,
@@ -251,13 +251,13 @@ export default {
         //formdata
         form_valid: true,         
         krs_id:null,
-        datakrs:{},
-        datamatkul:{},
+        datakrs: {},
+        datamatkul: {},
 
         dialogfrm: false,
 
         daftar_kelas: [],
-        formdata:{
+        formdata: {
             kelas_mhs_id:null
         },
         //table
@@ -265,8 +265,8 @@ export default {
         expanded: [],
         datatable: [],
         headers: [
-            { text: 'KODE', value: 'kmatkul', sortable:true,width:100  },
-            { text: 'NAMA MATAKULIAH', value: 'nmatkul',sortable:true, width:300 },
+            { text: 'KODE', value: 'kmatkul', sortable: true,width:100  },
+            { text: 'NAMA MATAKULIAH', value: 'nmatkul',sortable: true, width:300 },
             { text: 'SKS', value: 'sks', sortable: false,width:50 },
             { text: 'SMT', value: 'semester', sortable: false,width:50 },
             { text: 'KELAS', value: 'nama_kelas', sortable: false,width:200 },
@@ -282,7 +282,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{
+            }).then(({ data })=>{
                 this.datakrs=data.krs;
                 this.datatable=data.krsmatkul;
                 if (Object.keys(this.datakrs).length)
@@ -301,48 +301,48 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{
+            }).then(({ data })=>{
                 this.dialogfrm=true;
                 this.datamatkul=item;
                 this.daftar_kelas=data.daftarkelas;
                 this.formdata.kelas_mhs_id=item.kelas_mhs_id;
             })
         },
-        save:async function () {
+        save:async function() {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading=true;                
                 await this.$ajax.post('/akademik/perkuliahan/pembagiankelas/storepeserta',
                     {
-                        kelas_mhs_id:this.formdata.kelas_mhs_id,                        
-                        krsmatkul_id:this.datamatkul.id                                                                                                    
+                        kelas_mhs_id: this.formdata.kelas_mhs_id,                        
+                        krsmatkul_id: this.datamatkul.id                                                                                                    
                     },
                     {
-                        headers:{
+                        headers: {
                             Authorization: this.$store.getters["auth/Token"]
                         }
                     }
                 ).then(()=>{                           
                     this.closedialogfrm();
                     this.fetchKRS();
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                 }).catch(()=>{
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                 });
             }
         },
         deleteItem (item)
         {
-            this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus matakuliah ('+item.nmatkul+') ?', { color: 'red',width:600,'desc':'proses ini juga menghapus seluruh data yang terkait dengan matkul ini.' }).then((confirm) => {
+            this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus matakuliah ('+item.nmatkul+') ?', { color: 'red',width:600,'desc': 'proses ini juga menghapus seluruh data yang terkait dengan matkul ini.' }).then((confirm) => {
                 if (confirm)
                 {
                     this.btnLoadingTable=true;
                     this.$ajax.post('/akademik/perkuliahan/krs/deletematkul/'+item.id,
                         {
-                            '_method':'DELETE',
+                            '_method': 'DELETE',
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
@@ -381,7 +381,7 @@ export default {
             return total;
         }
     },
-    components:{
+    components: {
         AkademikLayout,
         ModuleHeader,
         DataKRS

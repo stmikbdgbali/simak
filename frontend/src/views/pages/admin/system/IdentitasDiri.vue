@@ -84,24 +84,24 @@ export default {
     {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.ACCESS_TOKEN
+                href: '/dashboard/'+this.ACCESS_TOKEN
             },
             {
-                text:'KONFIGURASI SISTEM',
+                text: 'KONFIGURASI SISTEM',
                 disabled: false,
-                href:'/system-setting'
+                href: '/system-setting'
             },  
             {
-                text:'PERGURUAN TINGGI',
+                text: 'PERGURUAN TINGGI',
                 disabled: false,
-                href:'#'
+                href: '#'
             },
             {
-                text:'IDENTITAS DIRI',
-                disabled:true,
-                href:'#'
+                text: 'IDENTITAS DIRI',
+                disabled: true,
+                href: '#'
             }
         ];
         this.initialize();
@@ -119,25 +119,25 @@ export default {
         },
         //form rules        
         rule_nama_pt: [
-            value => !!value||"Mohon untuk di isi Nama Perguruan Tinggi !!!",             
+            value => !!value || "Mohon untuk di isi Nama Perguruan Tinggi !!!",             
         ], 
         rule_nama_singkatan_pt: [
-            value => !!value||"Mohon untuk di isi Nama Alias Perguruan Tinggi !!!",             
+            value => !!value || "Mohon untuk di isi Nama Alias Perguruan Tinggi !!!",             
         ],
         rule_kode_pt: [
-            value => !!value||"Mohon untuk di isi Kode Perguruan Tinggi !!!",                     
+            value => !!value || "Mohon untuk di isi Kode Perguruan Tinggi !!!",                     
             value => /^[0-9]+$/.test(value) || 'Kode Perguruan Tinggi hanya boleh angka',
         ]
     }),
     methods: {
-        initialize: async function () 
+        initialize: async function() 
         {
             await this.$ajax.get('/system/setting/variables',
             {
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
-            }).then(({data})=>{  
+            }).then(({ data })=>{  
                 let setting = data.setting;                           
                 this.formdata.nama_pt=setting.NAMA_PT;
                 this.formdata.nama_alias_pt=setting.NAMA_PT_ALIAS;
@@ -152,18 +152,18 @@ export default {
                 this.btnLoading=true;                
                 this.$ajax.post('/system/setting/variables',
                     {
-                        '_method':'PUT', 
-                        'pid':'Identitas Perguruan Tinggi',
+                        '_method': 'PUT', 
+                        'pid': 'Identitas Perguruan Tinggi',
                         setting:JSON.stringify({
-                            101:this.formdata.nama_pt,
-                            102:this.formdata.nama_alias_pt,
-                            103:this.formdata.bentuk_pt,
-                            104:this.formdata.kode_pt,
+                            101: this.formdata.nama_pt,
+                            102: this.formdata.nama_alias_pt,
+                            103: this.formdata.bentuk_pt,
+                            104: this.formdata.kode_pt,
                         }),                                                                                                                            
                     },
                     {
-                        headers:{
-                            Authorization:this.TOKEN
+                        headers: {
+                            Authorization: this.TOKEN
                         }
                     }
                 ).then(()=>{                       
@@ -176,11 +176,11 @@ export default {
     },
     computed: { 
         ...mapGetters('auth',{            
-            ACCESS_TOKEN:'AccessToken',          
-            TOKEN:'Token',                                  
+            ACCESS_TOKEN: 'AccessToken',          
+            TOKEN: 'Token',                                  
         }),
     },
-    components:{
+    components: {
 		SystemConfigLayout,
         ModuleHeader,        
 	}

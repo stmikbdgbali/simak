@@ -186,7 +186,7 @@ class TransaksiController extends Controller {
                             'nama_bank_pengirim'=>'BANK RIAU KEPRI SYARIAH',
                             'desc'=>'',
                             'tanggal_bayar'=>date ('Y-m-d H:m:s'),                
-                            'bukti_bayar'=>"storage/images/buktibayar/paid.png",  
+                            'bukti_bayar'=>"storages/images/buktibayar/paid.png",  
                             'verified'=>true
                         ]);                        
                         $transaksi=$konfirmasi_insert->transaksi;                        

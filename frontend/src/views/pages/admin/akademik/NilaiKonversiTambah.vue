@@ -186,29 +186,29 @@ export default {
     created () {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
-                text:'AKADEMIK',
+                text: 'AKADEMIK',
                 disabled: false,
-                href:'/akademik'
+                href: '/akademik'
             },
             {
-                text:'NILAI',
+                text: 'NILAI',
                 disabled: false,
-                href:'#'
+                href: '#'
             },            
             {
-                text:'KONVERSI MAHASISWA PINDAHAN/AMPULAN',
+                text: 'KONVERSI MAHASISWA PINDAHAN/AMPULAN',
                 disabled: false,
-                href:'/akademik/nilai/konversi'
+                href: '/akademik/nilai/konversi'
             },
             {
-                text:'TAMBAH',
-                disabled:true,
-                href:'#'
+                text: 'TAMBAH',
+                disabled: true,
+                href: '#'
             }
         ];
         let prodi_id=this.$store.getters['uiadmin/getProdiID'];
@@ -230,7 +230,7 @@ export default {
             { text: 'KODE', value: 'kmatkul', sortable: false, width:100  },               
             { text: 'NAMA', value: 'nmatkul', sortable: false, width:250  },               
             { text: 'SKS', value: 'sks',sortable: false, width:70 },                           
-            { text: 'SMT', value: 'semester',sortable:true,width:70, },                           
+            { text: 'SMT', value: 'semester',sortable: true,width:70, },                           
             { text: 'KODE MATKUL ASAL', value: 'kmatkul_asal',sortable: false,width:120 },                           
             { text: 'MATAKULIAH ASAL', value: 'matkul_asal',sortable: false,width:170 },                           
             { text: 'SKS ASAL', value: 'sks_asal',sortable: false,width:70},                           
@@ -240,7 +240,7 @@ export default {
                 
         form_valid: true,   
         daftar_jenjang: [],                        
-        formdata:{
+        formdata: {
             'id': "",
             'user_id': "",
             'nim': "",
@@ -258,7 +258,7 @@ export default {
             'kjur': "",
             'perpanjangan': "",   
         },
-        formdefault:{
+        formdefault: {
             'id': "",
             'user_id': "",
             'nim': "",
@@ -277,65 +277,65 @@ export default {
             'perpanjangan': "",   
         },
         rule_nim_asal: [
-            value => !!value||"Mohon di isi nim mahasiswa pindahan/ampulan dengan  nim dari perguruan tinggi asal !!!",              
+            value => !!value || "Mohon di isi nim mahasiswa pindahan/ampulan dengan  nim dari perguruan tinggi asal !!!",              
         ],
         rule_nama_mhs: [
-            value => !!value||"Mohon di isi nama mahasiswa pindahan/ampulan dari perguruan tinggi asal !!!", 
+            value => !!value || "Mohon di isi nama mahasiswa pindahan/ampulan dari perguruan tinggi asal !!!", 
             value => /^[A-Za-z\s]*$/.test(value) || 'Nama mahasiswa pindahan/ampulan hanya boleh string dan spasi',                
         ],
         rule_alamat: [
-            value => !!value||"Mohon di isi alamat mahasiswa pindahan/ampulan !!!",              
+            value => !!value || "Mohon di isi alamat mahasiswa pindahan/ampulan !!!",              
         ],
         rule_telepon: [
-            value => !!value||"Mohon di isi nomor hp mahasiswa pindahan/ampulan !!!",          
+            value => !!value || "Mohon di isi nomor hp mahasiswa pindahan/ampulan !!!",          
             value => /^\+[1-9]{1}[0-9]{1,14}$/.test(value) || 'Nomor HP/Telepon hanya boleh angka dan gunakan kode negara didepan seperti +6281214553388',    
         ],       
         rule_email: [
-            value => !!value||"Mohon di isi email mahasiswa pindahan/ampulan !!!",          
+            value => !!value || "Mohon di isi email mahasiswa pindahan/ampulan !!!",          
             value => /.+@.+\..+/.test(value) || 'Format E-mail mohon di isi dengan benar',
         ],       
         rule_kode_pt_asal: [
-            value => !!value||"Mohon di isi kode perguruan tinggi asal !!!",      
+            value => !!value || "Mohon di isi kode perguruan tinggi asal !!!",      
             value => /^[0-9]+$/.test(value) || 'Kode perguruan tinggi asal hanya boleh angka',        
         ],
         rule_nama_pt_asal: [
-            value => !!value||"Mohon di isi nama perguruan tinggi asal !!!",              
+            value => !!value || "Mohon di isi nama perguruan tinggi asal !!!",              
         ],
         rule_kode_jenjang: [
-            value => !!value||"Mohon dipilih Jenjang Studi dari perguruan tinggi asal !!!",              
+            value => !!value || "Mohon dipilih Jenjang Studi dari perguruan tinggi asal !!!",              
         ],
         rule_kode_ps_asal: [
-            value => !!value||"Mohon di isi kode program studi dari perguruan tinggi asal !!!",        
+            value => !!value || "Mohon di isi kode program studi dari perguruan tinggi asal !!!",        
             value => /^[0-9]+$/.test(value) || 'Kode program studi asal hanya boleh angka',              
         ],
         rule_nama_ps_asal: [
-            value => !!value||"Mohon di isi nama program studi dari tinggi asal !!!",              
+            value => !!value || "Mohon di isi nama program studi dari tinggi asal !!!",              
         ],
     }),
     methods: {        
-        initialize: async function () 
+        initialize: async function() 
         {      
             this.datatableLoading=true;
             await this.$ajax.post('/akademik/nilai/konversi/matakuliah',
             {
-                prodi_id:this.prodi_id,
-                ta:this.tahun_pendaftaran
+                prodi_id: this.prodi_id,
+                ta: this.tahun_pendaftaran
             },
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{               
+            }).then(({ data })=>{               
                 this.datatable = data.matakuliah;
                 this.datatableLoading=false;
             }).catch(()=>{
                 this.datatableLoading=false;
             });         
-            await this.$ajax.get('/datamaster/programstudi/jenjangstudi').then(({data})=>{
+            await this.$ajax.get('/datamaster/programstudi/jenjangstudi').then(({ data })=>{
                 this.daftar_jenjang=data.jenjangstudi;
             }); 
         },   
-        save:async function () {
+        save:async function() {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading=true;  
@@ -356,35 +356,35 @@ export default {
 
                 await this.$ajax.post('/akademik/nilai/konversi/store',
                     {
-                        nim_asal:this.formdata.nim_asal,                            
-                        nama_mhs:this.formdata.nama_mhs,                            
-                        alamat:this.formdata.alamat,   
-                        no_telp:this.formdata.no_telp,                                                        
-                        email:this.formdata.email,                                                        
-                        kode_jenjang:this.formdata.kode_jenjang,                                                        
-                        kode_pt_asal:this.formdata.kode_pt_asal,                                                                                                             
-                        nama_pt_asal:this.formdata.nama_pt_asal,                                                                                                             
-                        kode_ps_asal:this.formdata.kode_ps_asal,                                                                                                             
-                        nama_ps_asal:this.formdata.nama_ps_asal,                                                                                                             
-                        tahun:this.tahun_pendaftaran,                                                                                                             
-                        kjur:this.prodi_id,  
+                        nim_asal: this.formdata.nim_asal,                            
+                        nama_mhs: this.formdata.nama_mhs,                            
+                        alamat: this.formdata.alamat,   
+                        no_telp: this.formdata.no_telp,                                                        
+                        email: this.formdata.email,                                                        
+                        kode_jenjang: this.formdata.kode_jenjang,                                                        
+                        kode_pt_asal: this.formdata.kode_pt_asal,                                                                                                             
+                        nama_pt_asal: this.formdata.nama_pt_asal,                                                                                                             
+                        kode_ps_asal: this.formdata.kode_ps_asal,                                                                                                             
+                        nama_ps_asal: this.formdata.nama_ps_asal,                                                                                                             
+                        tahun: this.tahun_pendaftaran,                                                                                                             
+                        kjur: this.prodi_id,  
                         daftar_nilai:JSON.stringify(Object.assign({},daftar_nilai)),                    
                     },
                     {
-                        headers:{
+                        headers: {
                             Authorization: this.$store.getters["auth/Token"]
                         }
                     }
-                ).then(({data})=>{   
+                ).then(({ data })=>{   
                     this.$router.push('/akademik/nilai/konversi/'+data.data_konversi.id+'/edit');                   
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                 }).catch(()=>{
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                 });                
             }
         },        
     },    
-    components:{
+    components: {
         AkademikLayout,
         ModuleHeader,            
     },

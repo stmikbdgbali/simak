@@ -93,7 +93,7 @@ class SystemMigrationController extends Controller {
                 'code'=>0,     
                 'default_role'=>'mahasiswa',     
                 'active'=>1,         
-                'foto'=>'storage/images/users/no_photo.png', 
+                'foto'=>'storages/images/users/no_photo.png', 
                 'created_at'=>$now, 
                 'updated_at'=>$now
             ]);    

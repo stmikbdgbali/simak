@@ -153,25 +153,25 @@ import KeuanganLayout from '@/views/layouts/KeuanganLayout';
 import ModuleHeader from '@/components/ModuleHeader';
 import Filter7 from '@/components/sidebar/FilterMode7';
 export default {
-    name:'BiayaKomponenPeriode',
+    name: 'BiayaKomponenPeriode',
     created()
     {
         this.dashboard=this.$store.getters['uiadmin/getDefaultDashboard'];
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
-                text:'KEUANGAN',
+                text: 'KEUANGAN',
                 disabled: false,
-                href:'/keuangan'
+                href: '/keuangan'
             },
             {
-                text:'BIAYA KOMPONEN PER PERIODE',
-                disabled:true,
-                href:'#'
+                text: 'BIAYA KOMPONEN PER PERIODE',
+                disabled: true,
+                href: '#'
             }
         ];
         this.tahun_pendaftaran = this.$store.getters['uiadmin/getTahunPendaftaran'];         
@@ -182,7 +182,7 @@ export default {
     },  
     data: () => ({
         dashboard:null,
-        firstloading:true,
+        firstloading: true,
         breadcrumbs: [],  
         tahun_pendaftaran:0,
         prodi_id:null,
@@ -217,14 +217,14 @@ export default {
             this.datatableLoading=true;            
             await this.$ajax.post('/keuangan/biayakomponenperiode',            
             {
-                TA:this.tahun_pendaftaran,
-                prodi_id:this.prodi_id
+                TA: this.tahun_pendaftaran,
+                prodi_id: this.prodi_id
             },
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{               
+            }).then(({ data })=>{               
                 this.datatable = data.kombi;                
                 this.datatableLoading=false;
             });                     
@@ -245,21 +245,21 @@ export default {
                 this.expanded=[item];
             }               
         },
-        loadkombiperiode:async function ()
+        loadkombiperiode:async function()
         {
             this.btnLoading=true;            
             await this.$ajax.post('/keuangan/biayakomponenperiode/loadkombiperiode',            
             {
-                TA:this.tahun_pendaftaran,
-                prodi_id:this.prodi_id
+                TA: this.tahun_pendaftaran,
+                prodi_id: this.prodi_id
             },
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{               
+            }).then(({ data })=>{               
                 this.datatable = data.kombi;                
-                this.btnLoading=false;
+                this.btnLoading = false;
             });   
         },
         saveItem:async function ({id,biaya})
@@ -290,7 +290,7 @@ export default {
 
         },
     },
-    watch:{
+    watch: {
         tahun_pendaftaran()
         {
             if (!this.firstloading)
@@ -315,15 +315,15 @@ export default {
                     this.datatableLoading=true;            
                     this.$ajax.post('/keuangan/biayakomponenperiode',            
                     {
-                        TA:this.tahun_pendaftaran,
-                        prodi_id:this.prodi_id,
+                        TA: this.tahun_pendaftaran,
+                        prodi_id: this.prodi_id,
                         filter_idkelas:val
                     },
                     {
                         headers: {
                             Authorization: this.$store.getters["auth/Token"]
                         }
-                    }).then(({data})=>{               
+                    }).then(({ data })=>{               
                         this.datatable = data.kombi;                
                         this.datatableLoading=false;
                     });                     
@@ -335,7 +335,7 @@ export default {
             }  
         }
     },
-    components:{
+    components: {
         KeuanganLayout,
         ModuleHeader,    
         Filter7,       

@@ -103,19 +103,19 @@ export default {
 	{
 		this.breadcrumbs = [
 			{
-				text:'HOME',
+				text: 'HOME',
 				disabled: false,
-				href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+				href: '/dashboard/'+this.$store.getters['auth/AccessToken']
 			},
 			{
-				text:'E-LEARNING',
-				disabled:true,
-				href:'#'
+				text: 'E-LEARNING',
+				disabled: true,
+				href: '#'
             },
             {
-				text:'KELAS',
-				disabled:true,
-				href:'#'
+				text: 'KELAS',
+				disabled: true,
+				href: '#'
 			}
         ];				
         this.tahun_akademik=this.$store.getters['uiadmin/getTahunAkademik'];                
@@ -127,7 +127,7 @@ export default {
     },
     data: () => ({
         datatableLoading: false,
-        firstloading:true,
+        firstloading: true,
         breadcrumbs: [],        
         datatable: [],      
         tahun_akademik:null,
@@ -143,19 +143,19 @@ export default {
         {
             this.semester_akademik=semester;
         },
-		initialize:async function () 
+		initialize:async function() 
         {
             this.datatableLoading=true;
             await this.$ajax.post('/akademik/perkuliahan/pembagiankelas',
             {
-                ta:this.tahun_akademik,
-                semester_akademik:this.semester_akademik,
+                ta: this.tahun_akademik,
+                semester_akademik: this.semester_akademik,
             },
             {
                 headers: {
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters['auth/Token']
                 }
-            }).then(({data})=>{                               
+            }).then(({ data })=>{                               
                 this.datatable = data.pembagiankelas;
                 this.datatableLoading=false;
             }).catch(()=>{
@@ -165,7 +165,7 @@ export default {
             this.$refs.filter2.setFirstTimeLoading(this.firstloading); 
         },
     },
-    watch:{
+    watch: {
         tahun_akademik()
         {
             if (!this.firstloading)
@@ -181,7 +181,7 @@ export default {
             }            
         },
     },
-    components:{
+    components: {
         ElearningLayout,
         ModuleHeader,           
         Filter2,        

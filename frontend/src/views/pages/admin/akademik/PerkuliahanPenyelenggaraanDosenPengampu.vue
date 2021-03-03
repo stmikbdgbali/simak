@@ -94,7 +94,7 @@
                                 <template v-slot:item.is_ketua="{ item }">                                    
                                     <v-switch
                                         v-model="item.is_ketua"
-                                        :label="item.is_ketua == 1?'YA':'TIDAK'"
+                                        :label="item.is_ketua == 1?'YA': 'TIDAK'"
                                         @change="updateketua(item)">
                                     </v-switch>  
                                 </template>
@@ -130,29 +130,29 @@ export default {
     created () {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
-                text:'AKADEMIK',
+                text: 'AKADEMIK',
                 disabled: false,
-                href:'/akademik'
+                href: '/akademik'
             },
             {
-                text:'PERKULIAHAN',
+                text: 'PERKULIAHAN',
                 disabled: false,
-                href:'#'
+                href: '#'
             },
             {
-                text:'PENYELENGGARAAN MATAKULIAH',
+                text: 'PENYELENGGARAAN MATAKULIAH',
                 disabled: false,
-                href:'/akademik/perkuliahan/penyelenggaraan/daftar'
+                href: '/akademik/perkuliahan/penyelenggaraan/daftar'
             },
             {
-                text:'DOSEN PENGAMPU',
-                disabled:true,
-                href:'#'
+                text: 'DOSEN PENGAMPU',
+                disabled: true,
+                href: '#'
             },
         ];
         let prodi_id=this.$store.getters['uiadmin/getProdiID'];
@@ -170,7 +170,7 @@ export default {
         this.fetchDosenPengampu(); 
     },
     data: () => ({ 
-        firstloading:true,
+        firstloading: true,
         prodi_id:null,
         nama_prodi:null,
         tahun_akademik:null,        
@@ -196,18 +196,18 @@ export default {
         daftar_dosen: [],
 
        
-        formdata:{
+        formdata: {
             idpenyelenggaraan:null,
             dosen_id:null,
             is_ketua: false,
         },        
-        formdefault:{
+        formdefault: {
             idpenyelenggaraan:null,
             dosen_id:null,
             is_ketua: false,
         },        
         rule_dosen: [
-            value => !!value||"Mohon dipilih Dosen untuk matakuliah ini !!!"
+            value => !!value || "Mohon dipilih Dosen untuk matakuliah ini !!!"
         ],
     }),
     methods: {   
@@ -215,14 +215,14 @@ export default {
         {
             await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/pengampu',            
             {
-                idpenyelenggaraan:this.formdata.idpenyelenggaraan,
-                pid:'terdaftar'
+                idpenyelenggaraan: this.formdata.idpenyelenggaraan,
+                pid: 'terdaftar'
             },
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{                               
+            }).then(({ data })=>{                               
                 this.datatable = data.dosen;                
             })  
         },
@@ -233,7 +233,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{                               
+            }).then(({ data })=>{                               
                 this.data_matkul = data.penyelenggaraan;                
             })  
         },
@@ -241,56 +241,56 @@ export default {
         {
             await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/pengampu',            
             {
-                idpenyelenggaraan:this.formdata.idpenyelenggaraan,
-                pid:'belumterdaftar'
+                idpenyelenggaraan: this.formdata.idpenyelenggaraan,
+                pid: 'belumterdaftar'
             },
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{                               
+            }).then(({ data })=>{                               
                 this.daftar_dosen = data.dosen;                
             })  
         },
-        save:async function () {
+        save:async function() {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading=true;
                 await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/storedosenpengampu',
                     {
-                        penyelenggaraan_id:this.formdata.idpenyelenggaraan, 
-                        dosen_id:this.formdata.dosen_id,                                                    
-                        is_ketua:this.formdata.is_ketua,                                                                                                                               
+                        penyelenggaraan_id: this.formdata.idpenyelenggaraan, 
+                        dosen_id: this.formdata.dosen_id,                                                    
+                        is_ketua: this.formdata.is_ketua,                                                                                                                               
                     },
                     {
-                        headers:{
+                        headers: {
                             Authorization: this.$store.getters["auth/Token"]
                         }
                     }
                 ).then(()=>{   
                     setTimeout(() => {
-                        this.btnLoading=false;                    
+                        this.btnLoading = false;                    
                         this.$router.go();                                 
                         }, 500
                     );
                     
                 }).catch(()=>{
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                 });
             }
         },
         deleteItem (item)
         {
-            this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus DOSEN PENGAMPU matakuliah ('+item.nama_dosen+') ?', { color: 'red',width:600,'desc':'proses ini juga menghapus seluruh data yang terkait dalam penyelenggaraan matkul ini.' }).then((confirm) => {
+            this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus DOSEN PENGAMPU matakuliah ('+item.nama_dosen+') ?', { color: 'red',width:600,'desc': 'proses ini juga menghapus seluruh data yang terkait dalam penyelenggaraan matkul ini.' }).then((confirm) => {
                 if (confirm)
                 {
                     this.btnLoadingTable=true;
                     this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/deletepengampu/'+item.id,
                         {
-                            '_method':'DELETE',
+                            '_method': 'DELETE',
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
@@ -308,12 +308,12 @@ export default {
         {
             await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/updateketua/'+item.id,
                 {
-                    _method:'put',
+                    _method: 'put',
                     penyelenggaraan_id:item.penyelenggaraan_id,                                                                                                                               
                     is_ketua:item.is_ketua,                                                                                                                               
                 },
                 {
-                    headers:{
+                    headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     }
                 }
@@ -324,12 +324,12 @@ export default {
                 );
                 
             }).catch(()=>{
-                this.btnLoading=false;
+                this.btnLoading = false;
             });
         }
     },
    
-    components:{
+    components: {
         AkademikLayout,
         ModuleHeader, 
         DataMatakuliahPenyelenggaraan           

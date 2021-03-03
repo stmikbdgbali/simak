@@ -128,24 +128,24 @@ export default {
     created () {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
-                text:'AKADEMIK',
+                text: 'AKADEMIK',
                 disabled: false,
-                href:'/akademik'
+                href: '/akademik'
             },
             {
-                text:'ISI NILAI',
+                text: 'ISI NILAI',
                 disabled: false,
-                href:'#'
+                href: '#'
             },
             {
-                text:'PER KELAS MAHASISWA',
-                disabled:true,
-                href:'#'
+                text: 'PER KELAS MAHASISWA',
+                disabled: true,
+                href: '#'
             }
         ];
         this.kelas_mhs_id=this.$route.params.kelas_mhs_id;        
@@ -195,14 +195,14 @@ export default {
         
     }),
     methods: {        
-        initialize: async function () 
+        initialize: async function() 
         {
             await this.$ajax.get('/akademik/perkuliahan/pembagiankelas/'+this.kelas_mhs_id,            
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{           
+            }).then(({ data })=>{           
                 this.data_kelas_mhs=data.pembagiankelas;                                         
             });
             this.datatableLoading=true;
@@ -211,7 +211,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{                                                                                 
+            }).then(({ data })=>{                                                                                 
                 this.datatableLoading=false;
                 this.datatable_peserta=data.peserta;   
             })              
@@ -224,7 +224,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{                                                      
+            }).then(({ data })=>{                                                      
                 this.datatable_peserta=data.peserta;                                
                 this.datatableLoading=false;
             })   
@@ -234,10 +234,10 @@ export default {
             
         }      
     },
-    watch:{
+    watch: {
         
     },    
-    components:{
+    components: {
         AkademikLayout,
         ModuleHeader,     
         DataKelasMHS       

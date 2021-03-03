@@ -179,10 +179,10 @@
                             </v-toolbar>
                         </template>
                         <template v-slot:item.nidn="{ item }">
-                            {{(item.nidn && item.nidn.length > 0) > 0 ? item.nidn:'N.A'}}
+                            {{(item.nidn && item.nidn.length > 0) > 0 ? item.nidn: 'N.A'}}
                         </template>
                         <template v-slot:item.is_dw="{ item }">
-                            {{item.is_dw == false ? 'BUKAN':'YA'}}
+                            {{item.is_dw == false ? 'BUKAN': 'YA'}}
                         </template>
                         <template v-slot:item.actions="{ item }">                            
                             <v-tooltip bottom>             
@@ -236,24 +236,24 @@ export default {
         this.dosen_id = this.$route.params.dosen_id;
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.ACCESS_TOKEN
+                href: '/dashboard/'+this.ACCESS_TOKEN
             },
             {
-                text:'AKADEMIK',
+                text: 'AKADEMIK',
                 disabled: false,
-                href:'/akademik'
+                href: '/akademik'
             },
             {
-                text:'DOSEN WALI',
+                text: 'DOSEN WALI',
                 disabled: false,
-                href:'/akademik/dosenwali'
+                href: '/akademik/dosenwali'
             },
             {
-                text:'DETAIL',
-                disabled:true,
-                href:'#'
+                text: 'DETAIL',
+                disabled: true,
+                href: '#'
             }
         ];
         this.initialize()
@@ -261,17 +261,17 @@ export default {
    
     data: () => ({ 
         dosen_id:null,
-        data_dosen:{},
+        data_dosen: {},
         datatableLoading: false,
         btnLoading: false,      
         //tables
         headers: [                        
             { text:  "", value: 'foto',width:70, },
-            { text: 'NIM', value: 'nim',width:100,sortable:true },
-            { text: 'NAMA MAHASISWA', value: 'nama_mhs',width:250,sortable:true },
-            { text: 'PROGRAM STUDI', value: 'nama_prodi',width:150,sortable:true },     
-            { text: 'KELAS', value: 'nkelas',width:150,sortable:true },     
-            { text: 'TAHUN MASUK', value: 'tahun',sortable:true },                 
+            { text: 'NIM', value: 'nim',width:100,sortable: true },
+            { text: 'NAMA MAHASISWA', value: 'nama_mhs',width:250,sortable: true },
+            { text: 'PROGRAM STUDI', value: 'nama_prodi',width:150,sortable: true },     
+            { text: 'KELAS', value: 'nkelas',width:150,sortable: true },     
+            { text: 'TAHUN MASUK', value: 'tahun',sortable: true },                 
             { text: 'AKSI', value: 'actions', sortable: false,width:50 },
         ],
         expanded: [],
@@ -281,40 +281,40 @@ export default {
         //form mahasiswa ganti dw
         dialogfrm: false,
         form_valid: true,   
-        data_mhs:{},
+        data_mhs: {},
         daftar_dw: [],     
 
         formdata: {                                    
-            dosen_id:''           
+            dosen_id: ''           
         },
         formdefault: {                                    
-            dosen_id:''           
+            dosen_id: ''           
         },
 
         rule_dw: [
-            value => !!value||"Mohon dipilih Dosen Wali untuk Mahasiswa ini !!!"
+            value => !!value || "Mohon dipilih Dosen Wali untuk Mahasiswa ini !!!"
         ],         
     }),
     methods: {
-        initialize: async function () 
+        initialize: async function() 
         {
             this.datatableLoading=true;
             await this.$ajax.get('/system/usersdosen/biodatadiri/'+this.dosen_id,             
                 {
-                    headers:{
+                    headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     }
                 },
                 
-            ).then(({data})=>{   
+            ).then(({ data })=>{   
                 this.data_dosen=data.biodatadiri;                                           
             });       
 
             await this.$ajax.get('/akademik/dosenwali/'+this.dosen_id,{
                 headers: {
-                    Authorization:this.TOKEN
+                    Authorization: this.TOKEN
                 }
-            }).then(({data})=>{               
+            }).then(({ data })=>{               
                 this.daftar_mahasiswa = data.daftar_mahasiswa;                
                 this.datatableLoading=false;
             });          
@@ -339,7 +339,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{                                  
+            }).then(({ data })=>{                                  
                 this.dialogfrm=true;
                 this.daftar_dw = data.users; 
                 this.formdata.dosen_id = this.dosen_id;
@@ -350,19 +350,19 @@ export default {
             this.btnLoading=true;
             this.$ajax.post('/akademik/kemahasiswaan/updatedw/'+this.data_mhs.user_id,
                 {
-                    '_method':'PUT',
-                    'dosen_id':this.formdata.dosen_id,
+                    '_method': 'PUT',
+                    'dosen_id': this.formdata.dosen_id,
                 },
                 {
-                    headers:{
-                        Authorization:this.TOKEN
+                    headers: {
+                        Authorization: this.TOKEN
                     }
                 }
             ).then(()=>{   
                 this.$router.go();
-                this.btnLoading=false;
+                this.btnLoading = false;
             }).catch(()=>{
-                this.btnLoading=false;
+                this.btnLoading = false;
             });
         },        
         closedialogfrm () {            
@@ -376,11 +376,11 @@ export default {
     },
     computed: {        
         ...mapGetters('auth',{            
-            ACCESS_TOKEN:'AccessToken',          
-            TOKEN:'Token',                                  
+            ACCESS_TOKEN: 'AccessToken',          
+            TOKEN: 'Token',                                  
         }),
     },    
-    components:{
+    components: {
         AkademikLayout,
         ModuleHeader,
         ProfilDosen          

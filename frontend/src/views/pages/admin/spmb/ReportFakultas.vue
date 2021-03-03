@@ -124,19 +124,19 @@ export default {
         this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
-                text:'SPMB',
+                text: 'SPMB',
                 disabled: false,
-                href:'/spmb'
+                href: '/spmb'
             },
             {
-                text:'LAPORAN PMB FAKULTAS',
-                disabled:true,
-                href:'#'
+                text: 'LAPORAN PMB FAKULTAS',
+                disabled: true,
+                href: '#'
             }
         ];
         let fakultas_id=this.$store.getters['uiadmin/getFakultasID'];
@@ -146,7 +146,7 @@ export default {
         this.initialize()   
     },  
     data: () => ({
-        firstloading:true,
+        firstloading: true,
         fakultas_id:null,
         tahun_pendaftaran:null,
         nama_fakultas:null,
@@ -161,13 +161,13 @@ export default {
         datatable: [],
         headers: [                        
             { text:  "", value: 'foto', width:70 },               
-            { text: 'NAMA MAHASISWA', value: 'name',width:350,sortable:true },
+            { text: 'NAMA MAHASISWA', value: 'name',width:350,sortable: true },
             { text: 'NOMOR HP', value: 'nomor_hp',width:100},
-            { text: 'KELAS', value: 'nkelas',width:100,sortable:true },            
+            { text: 'KELAS', value: 'nkelas',width:100,sortable: true },            
         ],
         search: "",  
         
-        datamhsbaru:{}
+        datamhsbaru: {}
     }),
     methods : {
         changeTahunPendaftaran (tahun)
@@ -189,14 +189,14 @@ export default {
                     this.datatableLoading=true;            
                     await this.$ajax.post('/spmb/reportspmbfakultas',
                     {
-                        TA:this.tahun_pendaftaran,
-                        fakultas_id:this.fakultas_id,
+                        TA: this.tahun_pendaftaran,
+                        fakultas_id: this.fakultas_id,
                     },
                     {
                         headers: {
                             Authorization: this.$store.getters["auth/Token"]
                         }
-                    }).then(({data})=>{               
+                    }).then(({ data })=>{               
                         this.datatable = data.pmb;                
                         this.datatableLoading=false;
                     });         
@@ -217,28 +217,28 @@ export default {
         },
         badgeColor(item)
         {
-            return item.active == 1 ? 'success':'error'
+            return item.active == 1 ? 'success': 'error'
         },
         badgeIcon(item)
         {
-            return item.active == 1 ? 'mdi-check-bold':'mdi-close-thick'
+            return item.active == 1 ? 'mdi-check-bold': 'mdi-close-thick'
         },
-        printtoexcel:async function ()
+        printtoexcel:async function()
         {
             this.btnLoading=true;
             await this.$ajax.post('/spmb/reportspmbfakultas/printtoexcel',
                 {
-                    TA:this.tahun_pendaftaran,                                                                
-                    fakultas_id:this.fakultas_id,    
-                    nama_fakultas:this.nama_fakultas,                 
+                    TA: this.tahun_pendaftaran,                                                                
+                    fakultas_id: this.fakultas_id,    
+                    nama_fakultas: this.nama_fakultas,                 
                 },
                 {
-                    headers:{
+                    headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     },
-                    responseType:'arraybuffer'
+                    responseType: 'arraybuffer'
                 }
-            ).then(({data})=>{              
+            ).then(({ data })=>{              
                 const url = window.URL.createObjectURL(new Blob([data]));
                 const link = document.createElement('a');
                 link.href = url;
@@ -247,13 +247,13 @@ export default {
                 document.body.appendChild(link);
                 link.click();                   
                 document.body.removeChild(link);  
-                this.btnLoading=false;
+                this.btnLoading = false;
             }).catch(()=>{
-                this.btnLoading=false;
+                this.btnLoading = false;
             });     
         }     
     },
-    watch:{
+    watch: {
         tahun_pendaftaran()
         {
             if (!this.firstloading)
@@ -270,7 +270,7 @@ export default {
             }            
         }
     },
-    components:{
+    components: {
         SPMBLayout,
         ModuleHeader,                
         Filter20    

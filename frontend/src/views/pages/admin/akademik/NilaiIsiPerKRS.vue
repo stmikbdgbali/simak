@@ -139,24 +139,24 @@ export default {
     created () {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
-                text:'AKADEMIK',
+                text: 'AKADEMIK',
                 disabled: false,
-                href:'/akademik'
+                href: '/akademik'
             },
             {
-                text:'ISI NILAI',
+                text: 'ISI NILAI',
                 disabled: false,
-                href:'#'
+                href: '#'
             },
             {
-                text:'PER KRS',
-                disabled:true,
-                href:'#'
+                text: 'PER KRS',
+                disabled: true,
+                href: '#'
             }
         ];  
         if (this.$store.getters['uiadmin/getDefaultDashboard']=='mahasiswa')
@@ -180,7 +180,7 @@ export default {
         }
     },
     data: () => ({ 
-        firstloading:true,
+        firstloading: true,
         prodi_id:null,
         nama_prodi:null,
         daftar_ta: [],
@@ -192,13 +192,13 @@ export default {
         expanded: [],
         datatable: [],      
         headers: [
-            { text: 'NIM', value: 'nim', sortable:true,width:100  },   
-            { text: 'NAMA', value: 'nama_mhs', sortable:true,width:250  },   
-            { text: 'ANGK.', value: 'tahun_masuk', sortable:true, width:80  },               
-            { text: 'JUMLAH MATKUL', value: 'jumlah_matkul', sortable:true, width:80  },               
-            { text: 'JUMLAH SKS', value: 'jumlah_sks', sortable:true, width:80 },               
-            { text: 'TA.SMT', value: 'tasmt',sortable:true, width:80 },                           
-            { text: 'SAH', value: 'sah',sortable:true, width:50},                           
+            { text: 'NIM', value: 'nim', sortable: true,width:100  },   
+            { text: 'NAMA', value: 'nama_mhs', sortable: true,width:250  },   
+            { text: 'ANGK.', value: 'tahun_masuk', sortable: true, width:80  },               
+            { text: 'JUMLAH MATKUL', value: 'jumlah_matkul', sortable: true, width:80  },               
+            { text: 'JUMLAH SKS', value: 'jumlah_sks', sortable: true, width:80 },               
+            { text: 'TA.SMT', value: 'tasmt',sortable: true, width:80 },                           
+            { text: 'SAH', value: 'sah',sortable: true, width:50},                           
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],  
         search: "", 
@@ -230,27 +230,27 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{                                           
+            }).then(({ data })=>{                                           
                 this.datatable = data.daftar_krs;
                 this.datatableLoading=false;
             }).catch(()=>{
                 this.datatableLoading=false;
             });              
         },
-        initialize: async function () 
+        initialize: async function() 
         {
             this.datatableLoading=true;
             await this.$ajax.post('/akademik/perkuliahan/krs',
             {
-                prodi_id:this.prodi_id,
-                ta:this.tahun_akademik,
-                semester_akademik:this.semester_akademik,
+                prodi_id: this.prodi_id,
+                ta: this.tahun_akademik,
+                semester_akademik: this.semester_akademik,
             },
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{                                        
+            }).then(({ data })=>{                                        
                 this.datatable = data.daftar_krs;
                 this.datatableLoading=false;
                 this.firstloading=false;     
@@ -272,16 +272,16 @@ export default {
         },  
         deleteItem (item)
         {
-            this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus krs dengan NIM ('+item.nim+') ?', { color: 'red',width:600,'desc':'proses ini juga menghapus seluruh data yang berkaitan dengan krs ini.' }).then((confirm) => {
+            this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus krs dengan NIM ('+item.nim+') ?', { color: 'red',width:600,'desc': 'proses ini juga menghapus seluruh data yang berkaitan dengan krs ini.' }).then((confirm) => {
                 if (confirm)
                 {
                     this.btnLoadingTable=true;
                     this.$ajax.post('/akademik/perkuliahan/krs/'+item.id,
                         {
-                            '_method':'DELETE',
+                            '_method': 'DELETE',
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
@@ -300,12 +300,12 @@ export default {
             this.btnLoadingTable=true;
             await this.$ajax.get('/akademik/perkuliahan/krs/printpdf/'+item.id,                
                 {
-                    headers:{
+                    headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     },
                     
                 }
-            ).then(({data})=>{                              
+            ).then(({ data })=>{                              
                 this.file_pdf=data.pdf_file;
                 this.dialogprintpdf=true;
                 this.btnLoadingTable=false;
@@ -321,7 +321,7 @@ export default {
             );
         },    
     },
-    watch:{
+    watch: {
         tahun_akademik()
         {
             if (!this.firstloading)
@@ -345,7 +345,7 @@ export default {
             }            
         }
     },
-    components:{
+    components: {
         AkademikLayout,
         ModuleHeader,    
         Filter6               

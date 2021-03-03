@@ -84,29 +84,29 @@ export default {
     created () {
         this.breadcrumbs = [
             {
-                text:'HOME',
+                text: 'HOME',
                 disabled: false,
-                href:'/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
             },
             {
-                text:'AKADEMIK',
+                text: 'AKADEMIK',
                 disabled: false,
-                href:'/akademik'
+                href: '/akademik'
             },
             {
-                text:'PERKULIAHAN',
+                text: 'PERKULIAHAN',
                 disabled: false,
-                href:'#'
+                href: '#'
             },
             {
-                text:'KRS',
+                text: 'KRS',
                 disabled: false,
-                href:'/akademik/perkuliahan/krs/daftar'
+                href: '/akademik/perkuliahan/krs/daftar'
             },
             {
-                text:'TAMBAH',
-                disabled:true,
-                href:'#'
+                text: 'TAMBAH',
+                disabled: true,
+                href: '#'
             },
         ];
         let prodi_id=this.$store.getters['uiadmin/getProdiID'];
@@ -124,7 +124,7 @@ export default {
         }
     },  
     data: () => ({ 
-        firstloading:true,
+        firstloading: true,
         prodi_id:null,
         nama_prodi:null,
         tahun_akademik:null,
@@ -139,11 +139,11 @@ export default {
         expanded: [],
         datatable: [],      
         headers: [
-            { text: 'KODE', value: 'kmatkul', sortable:true,width:120  },   
-            { text: 'NAMA MATAKULIAH', value: 'nmatkul',sortable:true },               
-            { text: 'KELOMPOK', value: 'group_alias', sortable:true,width:120 },               
-            { text: 'SKS', value: 'sks',sortable:true,width:80, align:'center' },               
-            { text: 'SMT', value: 'semester', sortable:true,width:80 },               
+            { text: 'KODE', value: 'kmatkul', sortable: true,width:120  },   
+            { text: 'NAMA MATAKULIAH', value: 'nmatkul',sortable: true },               
+            { text: 'KELOMPOK', value: 'group_alias', sortable: true,width:120 },               
+            { text: 'SKS', value: 'sks',sortable: true,width:80, align: 'center' },               
+            { text: 'SMT', value: 'semester', sortable: true,width:80 },               
             { text: 'AKSI', value: 'actions', sortable: false,width:100 },
         ],  
         search: "",    
@@ -151,16 +151,16 @@ export default {
         //formdata
         form_valid: true,   
         daftar_dulang: [],
-        formdata:{
+        formdata: {
             nim: "",
-            dulang_id:''
+            dulang_id: ''
         },        
         rule_nim: [
-            value => !!value||"Nomor Induk Mahasiswa (NIM) mohon untuk diisi !!!",
+            value => !!value || "Nomor Induk Mahasiswa (NIM) mohon untuk diisi !!!",
             value => /^[0-9]+$/.test(value) || 'Nomor Induk Mahasiswa (NIM) hanya boleh angka',
         ], 
         rule_dulang: [
-            value => !!value||"Mohon dipilih Daftar Ulang yang telah dilakukan !!!"
+            value => !!value || "Mohon dipilih Daftar Ulang yang telah dilakukan !!!"
         ],         
     }),
     methods: {          
@@ -168,13 +168,13 @@ export default {
         {
             await this.$ajax.post('/akademik/dulang/dulangnotinkrs',
             {
-                nim:this.formdata.nim,                
+                nim: this.formdata.nim,                
             },
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({data})=>{                               
+            }).then(({ data })=>{                               
                 this.daftar_dulang=data.daftar_dulang;                
             })
         }, 
@@ -185,24 +185,24 @@ export default {
                 this.fetchDulang();
             }
         },
-        save:async function () {
+        save:async function() {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading=true;
                 await this.$ajax.post('/akademik/perkuliahan/krs/store',
                 {
-                    nim:this.formdata.nim,
-                    dulang_id:this.formdata.dulang_id,                    
+                    nim: this.formdata.nim,
+                    dulang_id: this.formdata.dulang_id,                    
                 },
                 {
                     headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     }
-                }).then(({data})=>{               
+                }).then(({ data })=>{               
                     this.$router.push('/akademik/perkuliahan/krs/'+data.krs.id+'/detail');
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                 }).catch(()=>{
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                 });                  
             }
         },
@@ -215,7 +215,7 @@ export default {
         },
     },
     
-    components:{
+    components: {
         AkademikLayout,
         ModuleHeader,            
     },

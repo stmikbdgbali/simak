@@ -6,6 +6,7 @@ export default {
 		});
 		Vue.prototype.$api = {
 			url: process.env.VUE_APP_HOST,
+			storageURL: process.env.VUE_APP_STORAGE_URL,
 			post: async function(path) {
 				return await ajax.post(path);
 			},
