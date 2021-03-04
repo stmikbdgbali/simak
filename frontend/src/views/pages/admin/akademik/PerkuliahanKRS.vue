@@ -132,7 +132,7 @@
                             <v-btn
                                 small
                                 icon
-                                @click.stop="$router.push('/akademik/perkuliahan/krs/" + item.id+'/detail')">
+                                @click.stop="$router.push('/akademik/perkuliahan/krs/' + item.id+'/detail')">
                                 <v-icon>
                                     mdi-eye
                                 </v-icon>

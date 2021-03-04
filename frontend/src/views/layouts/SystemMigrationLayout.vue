@@ -76,7 +76,7 @@
 			</v-list-item>
 			<v-divider></v-divider>
             <v-list expand>
-                <v-list-item :to="{path: "/system-migration'}" link  class="yellow" color="green" v-if="CAN_ACCESS('SYSTEM-MIGRATION_BROWSE')">
+                <v-list-item :to="{path: '/system-migration'}" link  class="yellow" color="green" v-if="CAN_ACCESS('SYSTEM-MIGRATION_BROWSE')">
                     <v-list-item-icon class="mr-2">
                         <v-icon>mdi-bank-transfer-in</v-icon>
                     </v-list-item-icon>

@@ -73,7 +73,7 @@
 			</v-list-item>
 			<v-divider></v-divider>
 			<v-list expand>
-				<v-list-item :to="{path: "/system-setting'}" v-if="CAN_ACCESS('SYSTEM-SETTING-GROUP')" link class="yellow" color="green" >
+				<v-list-item :to="{path: '/system-setting'}" v-if="CAN_ACCESS('SYSTEM-SETTING-GROUP')" link class="yellow" color="green" >
 					<v-list-item-icon class="mr-2">
 						<v-icon>mdi-account</v-icon>
 					</v-list-item-icon>
@@ -82,7 +82,7 @@
 					</v-list-item-content>
 				</v-list-item>
 				<v-subheader>PERGURUAN TINGGI</v-subheader>
-				<v-list-item link v-if="CAN_ACCESS('SYSTEM-SETTING-IDENTITAS-DIRI")" to="/system-setting/identitasdiri">
+				<v-list-item link v-if="CAN_ACCESS('SYSTEM-SETTING-IDENTITAS-DIRI')" to="/system-setting/identitasdiri">
 					<v-list-item-icon class="mr-2">
 						<v-icon>mdi-identifier</v-icon>
 					</v-list-item-icon>
@@ -92,7 +92,7 @@
 						</v-list-item-title>
 					</v-list-item-content>
 				</v-list-item>    
-				<v-list-item link v-if="CAN_ACCESS('SYSTEM-SETTING-VARIABLES")" to="/system-setting/variables">
+				<v-list-item link v-if="CAN_ACCESS('SYSTEM-SETTINGp-VARIABLES')" to="/system-setting/variables">
 					<v-list-item-icon class="mr-2">
 						<v-icon>mdi-variable</v-icon>
 					</v-list-item-icon>
@@ -103,7 +103,7 @@
 					</v-list-item-content>
 				</v-list-item>    
 				<v-subheader>HEADER</v-subheader>
-				<v-list-item link v-if="CAN_ACCESS('SYSTEM-SETTING-IDENTITAS-DIRI")" to="/system-setting/headerlaporan">
+				<v-list-item link v-if="CAN_ACCESS('SYSTEM-SETTING-IDENTITAS-DIRI')" to="/system-setting/headerlaporan">
 					<v-list-item-icon class="mr-2">
 						<v-icon>mdi-page-layout-header</v-icon>
 					</v-list-item-icon>
@@ -114,7 +114,7 @@
 					</v-list-item-content>
 				</v-list-item>    
 				<v-subheader>SERVER</v-subheader>
-				<v-list-item link v-if="CAN_ACCESS('SYSTEM-SETTING-VARIABLES")" to="/system-setting/captcha">
+				<v-list-item link v-if="CAN_ACCESS('SYSTEM-SETTINGp-VARIABLES')" to="/system-setting/captcha">
 					<v-list-item-icon class="mr-2">
 						<v-icon>mdi-account</v-icon>
 					</v-list-item-icon>
@@ -124,7 +124,7 @@
 						</v-list-item-title>
 					</v-list-item-content>
 				</v-list-item>    
-				<v-list-item link v-if="CAN_ACCESS('SYSTEM-SETTING-VARIABLES")" to="/system-setting/email">
+				<v-list-item link v-if="CAN_ACCESS('SYSTEM-SETTINGp-VARIABLES')" to="/system-setting/email">
 					<v-list-item-icon class="mr-2">
 						<v-icon>mdi-account</v-icon>
 					</v-list-item-icon>
@@ -134,7 +134,7 @@
 						</v-list-item-title>
 					</v-list-item-content>
 				</v-list-item> 
-				<v-list-item link v-if="CAN_ACCESS('SYSTEM-SETTING-VARIABLES")" to="/system-setting/cache">
+				<v-list-item link v-if="CAN_ACCESS('SYSTEM-SETTINGp-VARIABLES')" to="/system-setting/cache">
 					<v-list-item-icon class="mr-2">
 						<v-icon>mdi-cached</v-icon>
 					</v-list-item-icon>
