@@ -226,7 +226,7 @@ export default {
     },
     computed: {
         photoPersyaratan:{
-            get ()
+            get()
             {   
                 if (this.image_prev==null)
                 {
@@ -237,7 +237,7 @@ export default {
                     return this.image_prev;
                 }
             },
-            set (val)
+            set(val)
             {
                 this.image_prev=val;
             }

@@ -233,7 +233,7 @@
     </KeuanganLayout>
 </template>
 <script>
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 import KeuanganLayout from '@/views/layouts/KeuanganLayout';
 import ModuleHeader from "@/components/ModuleHeader";
 export default {
@@ -264,11 +264,11 @@ export default {
         expanded: [],
         datatable: [],
         headers: [                        
-            { text: "NAMA BANK", value: "nama_bank",width:350 },   
+            { text: "NAMA BANK", value: "nama_bank", width: 350 },   
             { text: "CABANG", value: "nama_cabang" },   
             { text: "NOMOR REKENING", value: "nomor_rekening" },   
             { text: "PEMILIK REKENING", value: "pemilik_rekening" },   
-            { text: "AKSI", value: "actions", sortable: false,width:100 },
+            { text: "AKSI", value: "actions", sortable: false, width:100 },
         ],
         search: "",    
 

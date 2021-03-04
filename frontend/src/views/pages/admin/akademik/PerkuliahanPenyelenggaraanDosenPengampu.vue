@@ -281,7 +281,7 @@ export default {
         },
         deleteItem (item)
         {
-            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus DOSEN PENGAMPU matakuliah ("+item.nama_dosen+") ?", { color: "red",width:600,'desc': "proses ini juga menghapus seluruh data yang terkait dalam penyelenggaraan matkul ini." }).then((confirm) => {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus DOSEN PENGAMPU matakuliah ("+item.nama_dosen+") ?", { color: "red", width: 600,'desc': "proses ini juga menghapus seluruh data yang terkait dalam penyelenggaraan matkul ini." }).then((confirm) => {
                 if (confirm)
                 {
                     this.btnLoadingTable=true;

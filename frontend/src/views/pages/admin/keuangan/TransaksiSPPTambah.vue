@@ -279,11 +279,11 @@ export default {
         datatableLoading: false,       
         datatable: [], 
         headers: [                                                
-            { text: "NO. BULAN", value: "no_bulan",width:120,sortable: false },
+            { text: "NO. BULAN", value: "no_bulan", width: 120,sortable: false },
             { text: "BULAN", value: "nama_bulan",sortable: false },            
             { text: "TAHUN", value: "tahun",sortable: false },            
             { text: "BIAYA KOMBI", value: "biaya_kombi",sortable: false },   
-            { text: "AKSI", value: "actions", sortable: false,width:100 },           
+            { text: "AKSI", value: "actions", sortable: false, width:100 },           
         ],              
         //form
         form_valid: true  

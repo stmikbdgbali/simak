@@ -373,14 +373,14 @@ export default {
             datatable: [],
             headers: [
                 { text: "TA", value: "tahun", width:50 },
-                { text: "TAHUN AKADEMIK", value: "tahun_akademik",width:150 },
-                { text: "AWAL GANJIL", value: "awal_ganjil",width:50 },
-                { text: "AKHIR GANJIL", value: "akhir_ganjil",width:50 },
-                { text: "AWAL GENAP", value: "awal_genap",width:50 },
-                { text: "AKHIR GENAP", value: "akhir_genap",width:50 },
-                { text: "AWAL PENDEK", value: "awal_pendek",width:50 },
-                { text: "AKHIR PENDEK", value: "akhir_pendek",width:50 },
-                { text: "AKSI", value: "actions", sortable: false,width:100 },
+                { text: "TAHUN AKADEMIK", value: "tahun_akademik", width: 150 },
+                { text: "AWAL GANJIL", value: "awal_ganjil", width: 50 },
+                { text: "AKHIR GANJIL", value: "akhir_ganjil", width: 50 },
+                { text: "AWAL GENAP", value: "awal_genap", width: 50 },
+                { text: "AKHIR GENAP", value: "akhir_genap", width: 50 },
+                { text: "AWAL PENDEK", value: "awal_pendek", width: 50 },
+                { text: "AKHIR PENDEK", value: "akhir_pendek", width: 50 },
+                { text: "AKSI", value: "actions", sortable: false, width:100 },
             ],
             search: "",
 
@@ -574,7 +574,7 @@ export default {
             {
                 
             },
-            get ()
+            get()
             {
                 return this.semester_ganjil.join(" ~ ");
             }
@@ -584,7 +584,7 @@ export default {
             {
 
             },
-            get ()
+            get()
             {
                   return this.semester_genap.join(" ~ ");
             }

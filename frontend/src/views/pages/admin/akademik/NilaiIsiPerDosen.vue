@@ -117,7 +117,7 @@ import AkademikLayout from '@/views/layouts/AkademikLayout';
 import ModuleHeader from "@/components/ModuleHeader";
 import Filter2 from '@/components/sidebar/FilterMode2';
 
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
     name: "NilaiIsiPerKelasMHS",

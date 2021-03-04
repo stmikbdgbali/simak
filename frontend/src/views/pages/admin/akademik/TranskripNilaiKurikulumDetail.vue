@@ -52,7 +52,7 @@
                                         class="ma-2" 
                                         @click.stop="printpdf1"
                                         :loading="btnLoading"
-                                        :disabled="btnLoading || !data_mhs.hasOwnProperty("user_id")">
+                                        :disabled="btnLoading || !data_mhs.hasOwnProperty('user_id')">
                                         <v-icon>mdi-printer</v-icon>
                                     </v-btn>     
                                 </template>
@@ -70,7 +70,7 @@
                                         class="ma-2" 
                                         @click.stop="printpdf2"
                                         :loading="btnLoading"
-                                        :disabled="btnLoading || !data_mhs.hasOwnProperty("user_id")">
+                                        :disabled="btnLoading || !data_mhs.hasOwnProperty('user_id')">
                                         <v-icon>mdi-printer</v-icon>
                                     </v-btn>     
                                 </template>
@@ -272,10 +272,10 @@ export default {
             { text: "KODE", value: "kmatkul",sortable: true,width:120, },                           
             { text: "SMT", value: "semester",sortable: true,width:80, },                           
             { text: "KLP", value: "group_alias",sortable: true,width:100, },                           
-            { text: "HM", value: "HM",sortable: false,width:100, },                           
-            { text: "AM", value: "AM",sortable: false,width:100, },                           
+            { text: "HM", value: "HM",sortable: false, width:100, },                           
+            { text: "AM", value: "AM",sortable: false, width:100, },                           
             { text: "K", value: "sks",sortable: true,width:100, },                           
-            { text: "M", value: "M", sortable: false,width:100 },
+            { text: "M", value: "M", sortable: false, width:100 },
             { text: "AKSI", value: "actions", sortable: false,width:50 },
         ],  
         search: "", 
@@ -293,11 +293,11 @@ export default {
         expanded: [],
         history_headers: [                                    
             { text: "NILAI HURUF", value: "n_kual",sortable: true,width:80, },                                       
-            { text: "NILAI AKHIR", value: "n_kuan",sortable: false,width:100, },                           
+            { text: "NILAI AKHIR", value: "n_kuan",sortable: false, width:100, },                           
             { text: "NILAI MUTU", value: "n_mutu",sortable: true,width:100, },                           
-            { text: "TA.SMT", value: "tasmt",sortable: false,width:100, },                           
-            { text: "TA.MATKUL", value: "ta_matkul",sortable: false,width:100, },                                       
-            { text: "DI INPUT OLEH", value: "username",sortable: false,width:100, },                                       
+            { text: "TA.SMT", value: "tasmt",sortable: false, width:100, },                           
+            { text: "TA.MATKUL", value: "ta_matkul",sortable: false, width:100, },                                       
+            { text: "DI INPUT OLEH", value: "username",sortable: false, width:100, },                                       
         ],  
 
         dialoghistory: false,

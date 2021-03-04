@@ -119,7 +119,7 @@
     </AkademikLayout>
 </template>
 <script>
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 import AkademikLayout from '@/views/layouts/AkademikLayout';
 import ModuleHeader from "@/components/ModuleHeader";
 export default {
@@ -157,7 +157,7 @@ export default {
             { text: "NIDN", value: "nidn",sortable: true },     
             { text: "NIPY", value: "nipy",sortable: true },     
             { text: "NOMOR HP", value: "nomor_hp",sortable: true },                 
-            { text: "AKSI", value: "actions", sortable: false,width:100 },
+            { text: "AKSI", value: "actions", sortable: false, width:100 },
         ],
         expanded: [],
         search: "",

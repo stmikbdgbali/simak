@@ -64,7 +64,7 @@
     </SystemConfigLayout>
 </template>
 <script>
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 import SystemConfigLayout from '@/views/layouts/SystemConfigLayout';
 import ModuleHeader from "@/components/ModuleHeader";
 export default {

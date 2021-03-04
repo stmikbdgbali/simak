@@ -253,7 +253,7 @@
 					max-width="344"
 					min-height="210"
 					:color="color_dashboard.migrasi_sistem"
-					@click.native="$router.push("/system-migration")">
+					@click.native="$router.push('/system-migration')">
 						<div class="text-center pt-4">
 							<v-btn
 								class="mx-2"

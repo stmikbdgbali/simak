@@ -210,7 +210,7 @@ export default {
             { text: "IPS", value: "ips",sortable: true, width:50},                           
             { text: "IPK", value: "ipk",sortable: true, width:50},                           
             { text: "TA.SMT", value: "tasmt",sortable: true, width:100 },                                       
-            { text: "AKSI", value: "actions", sortable: false,width:100 },
+            { text: "AKSI", value: "actions", sortable: false, width:100 },
         ],  
         search: "", 
 

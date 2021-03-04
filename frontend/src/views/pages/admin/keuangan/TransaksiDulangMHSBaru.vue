@@ -239,14 +239,14 @@ export default {
         datatableLoading: false,       
         datatable: [], 
         headers: [                                                
-            { text: "KODE BILLING", value: "no_transaksi",width:100,sortable: true },
-            { text: "TANGGAL", value: "tanggal",width:90,sortable: true },
+            { text: "KODE BILLING", value: "no_transaksi", width: 100,sortable: true },
+            { text: "TANGGAL", value: "tanggal", width: 90,sortable: true },
             { text: "NO. FORMULIR", value: "no_formulir",sortable: true,width:100 },            
             { text: "NAMA MAHASISWA", value: "nama_mhs",sortable: true, width:250 },            
-            { text: "SMT", value: "idsmt",width:100,sortable: false },
-            { text: "JUMLAH", value: "sub_total",width:100,sortable: false,align: "right" },
-            { text: "STATUS", value: "nama_status",width:100,sortable: false },            
-            { text: "AKSI", value: "actions", sortable: false,width:100 },
+            { text: "SMT", value: "idsmt", width: 100,sortable: false },
+            { text: "JUMLAH", value: "sub_total", width: 100,sortable: false,align: "right" },
+            { text: "STATUS", value: "nama_status", width: 100,sortable: false },            
+            { text: "AKSI", value: "actions", sortable: false, width:100 },
         ],        
         expanded: [],
         search: "", 
@@ -351,7 +351,7 @@ export default {
             );
         },
         deleteItem (item) {           
-            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data transaksi daftar ulang mahasiswa baru dengan ID '+item.id+' ?", { color: "red",width: "500px" }).then((confirm) => {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data transaksi daftar ulang mahasiswa baru dengan ID '+item.id+' ?", { color: "red", width:  "500px" }).then((confirm) => {
                 if (confirm)
                 {
                     this.btnLoading=true;
@@ -459,7 +459,7 @@ export default {
         KeuanganLayout,
         ModuleHeader,     
         Filter7,
-        'dialog-printout':DialogPrintoutKeuangan    
+        "dialog-printout": DialogPrintoutKeuangan    
     },
 }
 </script>

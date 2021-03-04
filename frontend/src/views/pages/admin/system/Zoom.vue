@@ -333,7 +333,7 @@
 				{ text: "API KEY", value: "api_key" },
 				{ text: "STATUS", value: "status" },
 				{ text: "KETERANGAN", value: "desc" },
-				{ text: "AKSI", value: "actions", sortable: false,width:100 },
+				{ text: "AKSI", value: "actions", sortable: false, width:100 },
 			],
 			search: "",
 

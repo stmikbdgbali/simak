@@ -193,7 +193,7 @@
                 { text: "TGL. AKHIR PENDAFTARAN", value: "tanggal_akhir_daftar", sortable: true,width:100 },
                 { text: "DURASI UJIAN", value: "durasi_ujian", sortable: true,width:100 },
                 { text: "RUANGAN", value: "namaruang", sortable: true,width:100 },
-                { text: "AKSI", value: "actions", sortable: false,width:100 },
+                { text: "AKSI", value: "actions", sortable: false, width:100 },
             ],
             dialogpilihjadwal: false,
             ismulai: true,

@@ -383,25 +383,7 @@ const routes = [
 			requiresAuth: true,
         },
 		component: () => import("../views/pages/admin/keuangan/TransaksiSPPTambah.vue"),		
-	},
-	{
-		path: "/keuangan/transaksi-registrasikrs",
-		name: "KeuanganTransaksiRegistrasiKRS",
-		meta: {
-			title: "KEUANGAN - TRANSAKSI REGISTRASI KRS",
-			requiresAuth: true,
-        },
-		component: () => import("../views/pages/admin/keuangan/TransaksiRegistrasiKRS.vue"),		
-	},
-	{
-		path: "/keuangan/transaksi-registrasikrs/:transaksi_id",
-		name: "KeuanganTransaksiRegistrasiKRSDetail",
-		meta: {
-			title: "KEUANGAN - TRANSAKSI REGISTRASI KRS",
-			requiresAuth: true,
-        },
-		component: () => import("../views/pages/admin/keuangan/TransaksiInvoice.vue"),		
-	},
+	},	
 	{
 		path: "/keuangan/konfirmasipembayaran",
 		name: "KeuanganKonfirmasiPembayaran",

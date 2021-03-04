@@ -454,7 +454,7 @@ export default {
                 { text: "TGL. AKHIR PENDAFTARAN", value: "tanggal_akhir_daftar", sortable: true,width:100 },
                 { text: "DURASI UJIAN", value: "durasi_ujian", sortable: true,width:100 },
                 { text: "JUMLAH PESERTA", value: "jumlah_peserta", sortable: true,width:100 },
-                { text: "AKSI", value: "actions", sortable: false,width:100 },
+                { text: "AKSI", value: "actions", sortable: false, width:100 },
             ],
             search: "",    
 

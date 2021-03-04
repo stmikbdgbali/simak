@@ -167,18 +167,8 @@
                             DAFTAR ULANG MHS. BARU
                         </v-list-item-title>
                     </v-list-item-content>
-                </v-list-item>                                                     
-                <v-list-item link v-if="CAN_ACCESS('KEUANGAN-TRANSAKSI-REGISTRASIKRS_BROWSE')" to="/keuangan/transaksi-registrasikrs">
-                    <v-list-item-icon class="mr-2">
-                        <v-icon>mdi-account-cash</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-content>
-                        <v-list-item-title>
-                            REGISTRASI KRS
-                        </v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>                                                     
-                <v-list-item link v-if="CAN_ACCESS('KEUANGAN-TRANSAKSI-SPP_BROWSE')" to="/keuangan/transaksi-spp">
+                </v-list-item>                                                                     
+                <v-list-item link v-if="CAN_ACCESS('KEUANGAN-TRANSAKSI-SPP-KEMAHASISWAAN_BROWSE')" to="/keuangan/transaksi-spp">
                     <v-list-item-icon class="mr-2">
                         <v-icon>mdi-account-cash</v-icon>
                     </v-list-item-icon>

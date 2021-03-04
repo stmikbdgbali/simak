@@ -112,7 +112,7 @@
                                 small
                                 @click.stop="deleteItem(item)"
                                 :loading="btnLoading"
-                                :disabled="!CAN_ACCESS('PERMISSIONS_DESTROY")||btnLoading"
+                                :disabled="!CAN_ACCESS('PERMISSIONS_DESTROY')||btnLoading"
                             >
                                 mdi-delete
                             </v-icon>
@@ -134,7 +134,7 @@
     </SystemUserLayout>
 </template>
 <script>
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 import SystemUserLayout from '@/views/layouts/SystemUserLayout';
 import ModuleHeader from "@/components/ModuleHeader";
 export default {
@@ -170,7 +170,7 @@ export default {
         headers: [                        
             { text: "NAMA PERMISSION", value: "name" },
             { text: "GUARD", value: "guard_name" },            
-            { text: "AKSI", value: "actions", sortable: false,width:100 },
+            { text: "AKSI", value: "actions", sortable: false, width:100 },
         ],
         search: "",        
         //form

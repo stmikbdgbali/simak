@@ -144,7 +144,7 @@ export default {
             { text: "KELOMPOK", value: "group_alias", sortable: true,width:120 },               
             { text: "SKS", value: "sks",sortable: true,width:80, align: "center" },               
             { text: "SMT", value: "semester", sortable: true,width:80 },               
-            { text: "AKSI", value: "actions", sortable: false,width:100 },
+            { text: "AKSI", value: "actions", sortable: false, width:100 },
         ],  
         search: "",    
 

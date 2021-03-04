@@ -90,7 +90,7 @@
                             <v-btn
                                 small
                                 icon
-                                @click.stop="$router.push('/akademik/perkuliahan/penyelenggaraan/'+item.id+'/dosenpengampu")">
+                                @click.stop="$router.push('/akademik/perkuliahan/penyelenggaraan/'+item.id+'/dosenpengampu')">
                                 <v-icon>
                                     mdi-account-child-outline
                                 </v-icon>
@@ -133,7 +133,7 @@ import AkademikLayout from '@/views/layouts/AkademikLayout';
 import ModuleHeader from "@/components/ModuleHeader";
 import Filter6 from '@/components/sidebar/FilterMode6';
 
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
     name: "PerkuliahanPenyelenggaraan",
@@ -187,7 +187,7 @@ export default {
             { text: "KETUA GROUP", value: "nama_dosen", sortable: true },               
             { text: "JUMLAH DOSEN", value: "jumlah_dosen",sortable: true, width:50 },                           
             { text: "JUMLAH MHS", value: "jumlah_mhs",sortable: true, width:50},                           
-            { text: "AKSI", value: "actions", sortable: false,width:100 },
+            { text: "AKSI", value: "actions", sortable: false, width:100 },
         ],  
         search: "", 
 
@@ -240,7 +240,7 @@ export default {
         },        
         deleteItem (item)
         {
-            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus penyelenggaraan matakuliah ("+item.nmatkul+") ?", { color: "red",width:600,'desc': "proses ini juga menghapus seluruh data kontrak matakuliah MHS." }).then((confirm) => {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus penyelenggaraan matakuliah ("+item.nmatkul+") ?", { color: "red", width: 600,'desc': "proses ini juga menghapus seluruh data kontrak matakuliah MHS." }).then((confirm) => {
                 if (confirm)
                 {
                     this.btnLoadingTable=true;

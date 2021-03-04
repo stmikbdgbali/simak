@@ -181,7 +181,7 @@
     </DataMasterLayout>
 </template>
 <script>
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 import DataMasterLayout from '@/views/layouts/DataMasterLayout';
 import ModuleHeader from "@/components/ModuleHeader";
 export default {
@@ -214,7 +214,7 @@ export default {
         headers: [
             { text: "NAMA RUANG", value: "namaruang" },
             { text: "KAPASITAS", value: "kapasitas" },
-            { text: "AKSI", value: "actions", sortable: false,width:100 },
+            { text: "AKSI", value: "actions", sortable: false, width:100 },
         ],
         search: "",
 

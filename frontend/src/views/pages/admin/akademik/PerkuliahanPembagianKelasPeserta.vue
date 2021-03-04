@@ -305,7 +305,7 @@ export default {
         datatable_peserta: [], 
         datatable_members: [],          
         headers: [
-            { text: "KODE", value: "kmatkul", sortable: false,width:100  },   
+            { text: "KODE", value: "kmatkul", sortable: false, width:100  },   
             { text: "NAMA", value: "nmatkul", sortable: false  },   
             { text: "SKS", value: "sks", sortable: false  },                           
             { text: "PROGRAM STUDI", value: "kjur", sortable: false, width:200 },                           
@@ -313,7 +313,7 @@ export default {
             { text: "AKSI", value: "actions", sortable: false,width:60 },
         ],  
         headers_peserta: [
-            { text: "NIM", value: "nim", sortable: false,width:100  },   
+            { text: "NIM", value: "nim", sortable: false, width:100  },   
             { text: "NAMA", value: "nama_mhs", sortable: false  },   
             { text: "PROGRAM STUDI", value: "kjur", sortable: false  },   
             { text: "KELAS", value: "idkelas", sortable: false  },                           
@@ -321,7 +321,7 @@ export default {
             { text: "AKSI", value: "actions", sortable: false,width:60 },
         ],  
         headers_members: [
-            { text: "NIM", value: "nim", sortable: false,width:100  },   
+            { text: "NIM", value: "nim", sortable: false, width:100  },   
             { text: "NAMA", value: "nama_mhs", sortable: false  },   
             { text: "KELAS", value: "idkelas", sortable: false  },                           
             { text: "TAHUN MASUK", value: "tahun", sortable: false },                                                   

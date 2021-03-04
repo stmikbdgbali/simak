@@ -199,7 +199,7 @@ export default {
             { text: "JUMLAH SKS", value: "jumlah_sks", sortable: true, width:80 },               
             { text: "TA.SMT", value: "tasmt",sortable: true, width:80 },                           
             { text: "SAH", value: "sah",sortable: true, width:50},                           
-            { text: "AKSI", value: "actions", sortable: false,width:100 },
+            { text: "AKSI", value: "actions", sortable: false, width:100 },
         ],  
         search: "", 
 
@@ -272,7 +272,7 @@ export default {
         },  
         deleteItem (item)
         {
-            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus krs dengan NIM ("+item.nim+") ?", { color: "red",width:600,'desc': "proses ini juga menghapus seluruh data yang berkaitan dengan krs ini." }).then((confirm) => {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus krs dengan NIM ("+item.nim+") ?", { color: "red", width: 600,'desc': "proses ini juga menghapus seluruh data yang berkaitan dengan krs ini." }).then((confirm) => {
                 if (confirm)
                 {
                     this.btnLoadingTable=true;

@@ -193,7 +193,7 @@
     </KepegawaianLayout>
 </template>
 <script>
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 import KepegawaianLayout from '@/views/layouts/KepegawaianLayout';
 import ModuleHeader from "@/components/ModuleHeader";
 export default {
@@ -230,7 +230,7 @@ export default {
             { text: "NIPY", value: "nipy",sortable: true },     
             { text: "NOMOR HP", value: "nomor_hp",sortable: true },     
             { text: "JABATAN AKADEMIK", value: "nama_jabatan",sortable: true },  
-            { text: "AKSI", value: "actions", sortable: false,width:100 },
+            { text: "AKSI", value: "actions", sortable: false, width:100 },
         ],
         expanded: [],
         search: "",

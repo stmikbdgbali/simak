@@ -96,7 +96,7 @@ export default {
         expanded: [],
         datatable: [],
         headers: [                                            
-            { text: "ID", value: "kode_jenjang",width:10,sortable: false },
+            { text: "ID", value: "kode_jenjang", width: 10,sortable: false },
             { text: "NAMA JENJANG", value: "nama_jenjang",sortable: false},                        
         ],        
     }),

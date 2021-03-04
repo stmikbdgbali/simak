@@ -85,7 +85,7 @@
     </SystemUserLayout>
 </template>
 <script>
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 import SystemUserLayout from '@/views/layouts/SystemUserLayout';
 import ModuleHeader from "@/components/ModuleHeader";
 export default {

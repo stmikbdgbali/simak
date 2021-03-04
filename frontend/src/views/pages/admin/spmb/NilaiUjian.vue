@@ -296,13 +296,13 @@ export default {
         datatable: [],
         headers: [                        
             { text: "", value: "foto", width:70 },               
-            { text: "NO. FORMULIR", value: "no_formulir",width:135,sortable: true },
-            { text: "NAMA MAHASISWA", value: "name",width:350,sortable: true },
-            { text: "NOMOR HP", value: "nomor_hp",width:100},
-            { text: "KELAS", value: "nkelas",width:100,sortable: true },
-            { text: "NILAI", value: "nilai",width:100,sortable: true },
-            { text: "STATUS", value: "status",width:100,sortable: true },
-            { text: "AKSI", value: "actions", sortable: false,width:100 },
+            { text: "NO. FORMULIR", value: "no_formulir", width: 135,sortable: true },
+            { text: "NAMA MAHASISWA", value: "name", width: 350,sortable: true },
+            { text: "NOMOR HP", value: "nomor_hp", width: 100},
+            { text: "KELAS", value: "nkelas", width: 100,sortable: true },
+            { text: "NILAI", value: "nilai", width: 100,sortable: true },
+            { text: "STATUS", value: "status", width: 100,sortable: true },
+            { text: "AKSI", value: "actions", sortable: false, width:100 },
         ],
         search: "",  
         
@@ -453,7 +453,7 @@ export default {
                 }       
                 else
                 {
-                    this.$root.$confirm.open("Warning", "Mahasiswa ini belum melakukan pembayaran PMB", { color: "warning",width:400,action: "ok" });
+                    this.$root.$confirm.open("Warning", "Mahasiswa ini belum melakukan pembayaran PMB", { color: "warning", width: 400,action: "ok" });
                 }         
             });              
         },

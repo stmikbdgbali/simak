@@ -226,7 +226,7 @@
     </AkademikLayout>
 </template>
 <script>
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 import AkademikLayout from '@/views/layouts/AkademikLayout';
 import ModuleHeader from "@/components/ModuleHeader";
 import ProfilDosen from '@/components/ProfilDosen';
@@ -266,11 +266,11 @@ export default {
         btnLoading: false,      
         //tables
         headers: [                        
-            { text: "", value: "foto",width:70, },
-            { text: "NIM", value: "nim",width:100,sortable: true },
-            { text: "NAMA MAHASISWA", value: "nama_mhs",width:250,sortable: true },
-            { text: "PROGRAM STUDI", value: "nama_prodi",width:150,sortable: true },     
-            { text: "KELAS", value: "nkelas",width:150,sortable: true },     
+            { text: "", value: "foto", width: 70, },
+            { text: "NIM", value: "nim", width: 100,sortable: true },
+            { text: "NAMA MAHASISWA", value: "nama_mhs", width: 250,sortable: true },
+            { text: "PROGRAM STUDI", value: "nama_prodi", width: 150,sortable: true },     
+            { text: "KELAS", value: "nkelas", width: 150,sortable: true },     
             { text: "TAHUN MASUK", value: "tahun",sortable: true },                 
             { text: "AKSI", value: "actions", sortable: false,width:50 },
         ],

@@ -260,7 +260,7 @@
     </DataMasterLayout>
 </template>
 <script>
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 import DataMasterLayout from '@/views/layouts/DataMasterLayout';
 import ModuleHeader from "@/components/ModuleHeader";
 import Filter9 from '@/components/sidebar/FilterMode9';
@@ -299,7 +299,7 @@ export default {
             { text: "PROSES", value: "proses", sortable: true,width:120  },   
             { text: "NAMA PERSYARATAN", value: "nama_persyaratan",sortable: true },                           
             { text: "TA", value: "ta",sortable: true,width:80, align: "center" },                           
-            { text: "AKSI", value: "actions", sortable: false,width:100 },
+            { text: "AKSI", value: "actions", sortable: false, width:100 },
         ],  
         search: "",    
 

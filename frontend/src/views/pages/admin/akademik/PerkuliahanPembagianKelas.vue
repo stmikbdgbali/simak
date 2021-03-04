@@ -199,7 +199,7 @@ import AkademikLayout from '@/views/layouts/AkademikLayout';
 import ModuleHeader from "@/components/ModuleHeader";
 import Filter2 from '@/components/sidebar/FilterMode2';
 
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
     name: "PerkuliahanPembagianKelas",
@@ -400,7 +400,7 @@ export default {
         },            
         deleteItem (item)
         {
-            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus pembagian kelas matakuliah ("+item.nmatkul+") ?", { color: "red",width:600,'desc': "proses ini membuat mahasiswa tidak memiliki kelas." }).then((confirm) => {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus pembagian kelas matakuliah ("+item.nmatkul+") ?", { color: "red", width: 600,'desc': "proses ini membuat mahasiswa tidak memiliki kelas." }).then((confirm) => {
                 if (confirm)
                 {
                     this.btnLoadingTable=true;

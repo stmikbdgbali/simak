@@ -304,7 +304,7 @@ export default {
         },  
         deleteItem (item)
         {
-            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus krs dengan NIM ("+item.nim+") ?", { color: "red",width:600,'desc': "proses ini juga menghapus seluruh data yang berkaitan dengan krs ini." }).then((confirm) => {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus krs dengan NIM ("+item.nim+") ?", { color: "red", width: 600,'desc': "proses ini juga menghapus seluruh data yang berkaitan dengan krs ini." }).then((confirm) => {
                 if (confirm)
                 {
                     this.btnLoadingTable=true;

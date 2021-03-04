@@ -240,7 +240,7 @@
 	</SystemUserLayout>
 </template>
 <script>
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 import SystemUserLayout from "@/views/layouts/SystemUserLayout";
 import ModuleHeader from "@/components/ModuleHeader";
 export default {
@@ -277,7 +277,7 @@ export default {
 			{ text: "NAME", value: "name",sortable: true },
 			{ text: "EMAIL", value: "email",sortable: true }, 
 			{ text: "NOMOR HP", value: "nomor_hp",sortable: true }, 
-			{ text: "AKSI", value: "actions", sortable: false,width:100 },
+			{ text: "AKSI", value: "actions", sortable: false, width:100 },
 		],
 		expanded: [],
 		search:"",

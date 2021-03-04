@@ -166,7 +166,7 @@ export default {
         datatable: [],            
         datatable_peserta: [],                 
         headers_peserta: [
-            { text: "NIM", value: "nim", sortable: false,width:100  },   
+            { text: "NIM", value: "nim", sortable: false, width:100  },   
             { text: "NAMA", value: "nama_mhs", sortable: false  },   
             { text: "PROGRAM STUDI", value: "kjur", sortable: false  },   
             { text: "KELAS", value: "idkelas", sortable: false  },                           

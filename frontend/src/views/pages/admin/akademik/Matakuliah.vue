@@ -421,7 +421,7 @@
     </AkademikLayout>
 </template>
 <script>
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 import AkademikLayout from '@/views/layouts/AkademikLayout';
 import ModuleHeader from "@/components/ModuleHeader";
 import Filter18 from '@/components/sidebar/FilterMode18';
@@ -473,7 +473,7 @@ export default {
             { text: "SKS", value: "sks",sortable: true,width:80, align: "center" },               
             { text: "SMT", value: "semester", sortable: true,width:80 },               
             { text: "JUMLAH PENYELENGGARAAN", value: "jummlah_penyelenggaraan", sortable: true,width:100 },               
-            { text: "AKSI", value: "actions", sortable: false,width:100 },
+            { text: "AKSI", value: "actions", sortable: false, width:100 },
         ],  
         search: "",    
 
