@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-system-bar app dark :class="this.$store.getters['uiadmin/getTheme']("V-SYSTEM-BAR-CSS-CLASS")">
+        <v-system-bar app dark :class="this.$store.getters['uiadmin/getTheme']('V-SYSTEM-BAR-CSS-CLASS')">
             <strong>Hak Akses Sebagai :</strong> {{ ROLE }}
 		</v-system-bar>	
         <v-app-bar app>
@@ -76,7 +76,7 @@
 			</v-list-item>
 			<v-divider></v-divider>
             <v-list expand>
-                <v-list-item :to="{path: "/keuangan'}" link class="yellow" color="green" v-if="CAN_ACCESS('KEUANGAN-GROUP") && dashboard!='mahasiswabaru' && dashboard!='mahasiswa'">
+                <v-list-item :to="{path: '/keuangan'}" link class="yellow" color="green" v-if="CAN_ACCESS('KEUANGAN-GROUP") && dashboard!='mahasiswabaru' && dashboard!='mahasiswa'">
                     <v-list-item-icon class="mr-2">
                         <v-icon>mdi-monitor-dashboard</v-icon>
                     </v-list-item-icon>

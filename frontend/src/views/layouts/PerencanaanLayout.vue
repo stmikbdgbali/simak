@@ -76,7 +76,7 @@
 			</v-list-item>
 			<v-divider></v-divider>
             <v-list expand>
-                <v-list-item :to="{path: "/perencanaan'}" v-if="CAN_ACCESS('PERENCANAAN-GROUP')" link :class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_BOARD_CSS_CLASS')" :color="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_BOARD_COLOR')">
+                <v-list-item :to="{path: '/perencanaan'}" v-if="CAN_ACCESS('PERENCANAAN-GROUP')" link :class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_BOARD_CSS_CLASS')" :color="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_BOARD_COLOR')">
                     <v-list-item-icon class="mr-2">
                         <v-icon>mdi-home-floor-b</v-icon>
                     </v-list-item-icon>

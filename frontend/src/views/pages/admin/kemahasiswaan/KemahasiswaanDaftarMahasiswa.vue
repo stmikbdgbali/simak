@@ -81,7 +81,7 @@
                                     color="warning" 
                                     class="mb-2 mr-2" 
                                     @click.stop="syncPermission" 
-                                    v-if="$store.getters['auth/can']('USER_STOREPERMISSIONS")">
+                                    v-if="$store.getters['auth/can']('USER_STOREPERMISSIONS')">
                                     SYNC PERMISSION
                                 </v-btn>
                                 <v-btn

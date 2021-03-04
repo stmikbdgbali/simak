@@ -47,7 +47,7 @@
                                     outlined
                                     append-outer-icon="mdi-send"
                                     @click:append-outer="cekNIM"
-                                    :disabled="(this.$store.getters['uiadmin/getDefaultDashboard']=='mahasiswa")"
+                                    :disabled="(this.$store.getters['uiadmin/getDefaultDashboard']=='mahasiswa')"
                                     /> 
                                 <v-select
                                     v-model="formdata.dulang_id"

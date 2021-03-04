@@ -1,10 +1,10 @@
 <template>
     <div>
-        <v-system-bar app dark :class="this.$store.getters['uiadmin/getTheme']("V-SYSTEM-BAR-CSS-CLASS")">
+        <v-system-bar app dark :class="this.$store.getters['uiadmin/getTheme']('V-SYSTEM-BAR-CSS-CLASS')">
             <strong>Hak Akses Sebagai :</strong> {{ ROLE }}
 		</v-system-bar>	
         <v-app-bar app>
-            <v-app-bar-nav-icon @click.stop="drawer = !drawer" :class="this.$store.getters['uiadmin/getTheme']("V-APP-BAR-NAV-ICON-CSS-CLASS")"></v-app-bar-nav-icon>
+            <v-app-bar-nav-icon @click.stop="drawer = !drawer" :class="this.$store.getters['uiadmin/getTheme']('V-APP-BAR-NAV-ICON-CSS-CLASS')"></v-app-bar-nav-icon>
             <v-toolbar-title class="headline clickable" @click.stop="$router.push('/dashboard/'+$store.getters['auth/AccessToken']).catch(err => {})">
 				<span class="hidden-sm-and-down">{{ APP_NAME }}</span>
 			</v-toolbar-title>
@@ -60,7 +60,7 @@
                 <v-icon>mdi-menu-open</v-icon>
 			</v-app-bar-nav-icon>            
         </v-app-bar>    
-        <v-navigation-drawer v-model="drawer" width="300" dark :class="this.$store.getters['uiadmin/getTheme']("V-NAVIGATION-DRAWER-CSS-CLASS")" :temporary="temporaryleftsidebar" app>
+        <v-navigation-drawer v-model="drawer" width="300" dark :class="this.$store.getters['uiadmin/getTheme']('V-NAVIGATION-DRAWER-CSS-CLASS')" :temporary="temporaryleftsidebar" app>
 			<v-list-item>
 				<v-list-item-avatar>
 					<v-img :src="photoUser" @click.stop="toProfile"></v-img>
@@ -76,7 +76,7 @@
 			</v-list-item>
 			<v-divider></v-divider>
             <v-list expand>
-                <v-list-item :to="{path: "/kemahasiswaan'}" link :class="this.$store.getters['uiadmin/getTheme']("V-LIST-ITEM-BOARD-CSS-CLASS")" :color="this.$store.getters['uiadmin/getTheme']("V-LIST-ITEM-BOARD-COLOR")" v-if="CAN_ACCESS('KEMAHASISWAAN-GROUP')">
+                <v-list-item :to="{path: '/kemahasiswaan'}" link :class="this.$store.getters['uiadmin/getTheme']('V-LIST-ITEM-BOARD-CSS-CLASS')" :color="this.$store.getters['uiadmin/getTheme']('V-LIST-ITEM-BOARD-COLOR')" v-if="CAN_ACCESS('KEMAHASISWAAN-GROUP')">
                     <v-list-item-icon class="mr-2">
                         <v-icon>mdi-monitor-dashboard</v-icon>
                     </v-list-item-icon>
@@ -84,7 +84,7 @@
                         <v-list-item-title>BOARD KEMAHASISWAAN</v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>     
-                <v-list-item link to="/kemahasiswaan/daftarmahasiswa" :active-class="this.$store.getters['uiadmin/getTheme']("V-LIST-ITEM-ACTIVE-CSS-CLASS")" v-if="CAN_ACCESS('AKADEMIK-KEMAHASISWAAN-DAFTAR-MAHASISWA_BROWSE')">
+                <v-list-item link to="/kemahasiswaan/daftarmahasiswa" :active-class="this.$store.getters['uiadmin/getTheme']('V-LIST-ITEM-ACTIVE-CSS-CLASS')" v-if="CAN_ACCESS('AKADEMIK-KEMAHASISWAAN-DAFTAR-MAHASISWA_BROWSE')">
                     <v-list-item-icon class="mr-2">
                         <v-icon>mdi-account-box-multiple</v-icon>
                     </v-list-item-icon>
@@ -109,7 +109,7 @@
                     </v-list-item-content>
                 </v-list-item>
                 <v-divider></v-divider>
-                <v-list-item :class="this.$store.getters['uiadmin/getTheme']("V-LIST-ITEM-ACTIVE-CSS-CLASS")">
+                <v-list-item :class="this.$store.getters['uiadmin/getTheme']('V-LIST-ITEM-ACTIVE-CSS-CLASS')">
                     <v-list-item-icon class="mr-2">
                         <v-icon>mdi-filter</v-icon>
                     </v-list-item-icon>
