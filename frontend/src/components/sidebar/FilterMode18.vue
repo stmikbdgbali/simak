@@ -18,7 +18,7 @@
 </template>
 <script>
 export default {
-    name:'FilterMode18',
+    name: "FilterMode18",
     created()
     {
         this.daftar_prodi=this.$store.getters['uiadmin/getDaftarProdi'];  
@@ -28,12 +28,12 @@ export default {
         this.tahun_akademik=this.$store.getters['uiadmin/getTahunAkademik'];  
     },
     data:()=>({
-        firstloading:true,
-        daftar_prodi:[],
-        prodi_id:null,
+        firstloading: true,
+        daftar_prodi: [],
+        prodi_id: null,
 
-        daftar_ta:[],
-        tahun_akademik:null
+        daftar_ta: [],
+        tahun_akademik: null
     }),
     methods:{
         setFirstTimeLoading (bool)
@@ -46,16 +46,16 @@ export default {
         {
             if (!this.firstloading)
             {
-                this.$store.dispatch('uiadmin/updateTahunAkademik',val);  
-                this.$emit('changeTahunAkademik',val);          
+                this.$store.dispatch("uiadmin/updateTahunAkademik",val);  
+                this.$emit("changeTahunAkademik",val);          
             }            
         },
         prodi_id(val)
         {
             if (!this.firstloading)
             {
-                this.$store.dispatch('uiadmin/updateProdi',val);  
-                this.$emit('changeProdi',val);          
+                this.$store.dispatch("uiadmin/updateProdi",val);  
+                this.$emit("changeProdi",val);          
             }
         },
     }

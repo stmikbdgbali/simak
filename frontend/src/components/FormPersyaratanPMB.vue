@@ -9,7 +9,7 @@
 <script>
 import FileUpload from '@/components/FileUploadPersyaratan';
 export default {
-    name:'FormPersyaratanPMB',
+    name: "FormPersyaratanPMB",
     created()
     {
         this.initialize();
@@ -17,20 +17,20 @@ export default {
     props:{
         user_id: {
             type:String,
-            required:true
+            required: true
         }
     },
     data:()=>({
         //form        
-        daftar_persyaratan:[],        
+        daftar_persyaratan: [],        
     }),    
     methods: {
-        initialize:async function ()
+        initialize: async function ()
         {
-            await this.$ajax.get('/spmb/pmbpersyaratan/'+this.user_id,             
+            await this.$ajax.get("/spmb/pmbpersyaratan/" + this.user_id,             
                 {
                     headers:{
-                        Authorization:this.$store.getters['auth/Token']
+                        Authorization: this.$store.getters['auth/Token']
                     }
                 }
             ).then(({data})=>{                   

@@ -132,22 +132,22 @@
 </template>
 <script>
 import SystemMigrationLayout from '@/views/layouts/SystemMigrationLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 import Filter9 from '@/components/sidebar/FilterMode9';
 export default {
-    name: 'SystemMigration',
+    name: "SystemMigration",
     created ()
 	{
 		this.breadcrumbs = [
 			{
-				text: 'HOME',
+				text: "HOME",
 				disabled: false,
-				href: '/dashboard/'+this.$store.getters['auth/AccessToken']
+				href: "/dashboard/" + this.$store.getters['auth/AccessToken']
 			},
 			{
-				text: 'MIGRASI SISTEM',
+				text: "MIGRASI SISTEM",
 				disabled: true,
-				href: '#'
+				href: "#"
 			}
         ];				
         this.tahun_pendaftaran = this.$store.getters['uiadmin/getTahunPendaftaran']; 
@@ -182,15 +182,15 @@ export default {
         },
         rule_nim: [
             value => !!value || "Nomor Induk Mahasiswa (NIM) mohon untuk diisi !!!",
-            value => /^[0-9]+$/.test(value) || 'Nomor Induk Mahasiswa (NIM) hanya boleh angka',
+            value => /^[0-9]+$/.test(value) || "Nomor Induk Mahasiswa (NIM) hanya boleh angka",
         ], 
         rule_nirm: [
             value => !!value || "Nomor Induk Registrasi Masuk (NIRM) mohon untuk diisi !!!",
-            value => /^[0-9]+$/.test(value) || 'Nomor Induk Registrasi Masuk (NIRM) hanya boleh angka',
+            value => /^[0-9]+$/.test(value) || "Nomor Induk Registrasi Masuk (NIRM) hanya boleh angka",
         ], 
         rule_nama_mhs: [
             value => !!value || "Nama Mahasiswa mohon untuk diisi !!!",
-            value => /^[A-Za-z\s\\,\\.]*$/.test(value) || 'Nama Mahasiswa hanya boleh string dan spasi',
+            value => /^[A-Za-z\s\\,\\.]*$/.test(value) || "Nama Mahasiswa hanya boleh string dan spasi",
         ],         
         rule_prodi: [
             value => !!value || "Program studi mohon untuk dipilih !!!"
@@ -204,22 +204,22 @@ export default {
         
         datatableLoading: false,
         headers: [                                                
-            { text: 'TAHUN AKADEMIK', value: 'ta',sortable: false },
-            { text: 'SEMESTER', value: 'semester',sortable: false },
-            { text: 'STATUS', value: 'k_status',sortable: false, width:250 },                 
+            { text: "TAHUN AKADEMIK", value: "ta",sortable: false },
+            { text: "SEMESTER", value: "semester",sortable: false },
+            { text: "STATUS", value: "k_status",sortable: false, width:250 },                 
         ],
     }),
-    methods : {
+    methods: {
         changeTahunPendaftaran (tahun)
         {
-            this.tahun_pendaftaran=tahun;
+            this.tahun_pendaftaran = tahun;
         },
-		initialize:async function()
+		initialize: async function()
 		{	
             this.daftar_prodi=this.$store.getters['uiadmin/getDaftarProdi'];  
             this.daftar_kelas=this.$store.getters['uiadmin/getDaftarKelas'];                      
 
-            await this.$ajax.get('/akademik/dosenwali',{
+            await this.$ajax.get("/akademik/dosenwali",{
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
@@ -227,8 +227,8 @@ export default {
                 this.daftar_dw = data.users; 
             });
 
-            this.datatableLoading=true;
-            await this.$ajax.post('/system/migration',
+            this.datatableLoading = true;
+            await this.$ajax.post("/system/migration",
             {
                 TA: this.tahun_pendaftaran
             },
@@ -244,11 +244,11 @@ export default {
                     this.formdata.status_mhs[i]='A';
                     i+=1;
                 });
-                this.datatableLoading=false;
+                this.datatableLoading = false;
             });
             this.daftar_status_mhs=this.$store.getters['uiadmin/getDaftarStatusMahasiswa'];  
 
-            this.firstloading=false;            
+            this.firstloading = false;            
             this.$refs.filter9.setFirstTimeLoading(this.firstloading); 
         },
         save () {
@@ -256,7 +256,7 @@ export default {
             {
                 this.btnLoading=true;
                 
-                this.$ajax.post('/system/migration/store',
+                this.$ajax.post("/system/migration/store",
                     {
                         nim: this.formdata.nim,
                         nirm: this.formdata.nirm,

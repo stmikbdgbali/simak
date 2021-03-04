@@ -37,36 +37,36 @@
 </template>
 <script>
 import SPMBLayout from '@/views/layouts/SPMBLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 export default {
-    name: 'NilaiUjianHasil', 
+    name: "NilaiUjianHasil", 
     created()
     {
         this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];
         this.user_id=this.$route.params.user_id;     
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
             },
             {
-                text: 'SPMB',
+                text: "SPMB",
                 disabled: false,
-                href: '/spmb'
+                href: "/spmb"
             },
             {
-                text: 'NILAI UJIAN',
+                text: "NILAI UJIAN",
                 disabled: false,
-                href: '/spmb/nilaiujian'
+                href: "/spmb/nilaiujian"
             },
             {
-                text: 'HASIL',
+                text: "HASIL",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];
-        this.breadcrumbs[1].disabled=(this.dashboard=='mahasiswabaru'||this.dashboard=='mahasiswa');
+        this.breadcrumbs[1].disabled=(this.dashboard=='mahasiswabaru'||this.dashboard == "mahasiswa");
         
         let prodi_id=this.$store.getters['uiadmin/getProdiID'];
         this.prodi_id=prodi_id;
@@ -75,27 +75,27 @@ export default {
         this.initialize()   
     },  
     data: () => ({        
-        prodi_id:null,
-        tahun_pendaftaran:null,
-        nama_prodi:null,
+        prodi_id: null,
+        tahun_pendaftaran: null,
+        nama_prodi: null,
 
         breadcrumbs: [],        
-        dashboard:null,
-        user_id:null,
+        dashboard: null,
+        user_id: null,
 
         btnLoading: false,
         datatableLoading: false,
         expanded: [],
         datatable: [],
         headers: [                        
-            { text:  "", value: 'foto', width:70 },               
-            { text: 'NO.FORMULIR', value: 'no_formulir',width:120,sortable: true },
-            { text: 'NAMA MAHASISWA', value: 'name',width:350,sortable: true },
-            { text: 'NOMOR HP', value: 'nomor_hp',width:100},
-            { text: 'KELAS', value: 'nkelas',width:100,sortable: true },
-            { text: 'NILAI', value: 'nilai',width:100,sortable: true },
-            { text: 'STATUS', value: 'status',width:100,sortable: true },
-            { text: 'AKSI', value: 'actions', sortable: false,width:100 },
+            { text: "", value: "foto", width:70 },               
+            { text: "NO.FORMULIR", value: "no_formulir",width:120,sortable: true },
+            { text: "NAMA MAHASISWA", value: "name",width:350,sortable: true },
+            { text: "NOMOR HP", value: "nomor_hp",width:100},
+            { text: "KELAS", value: "nkelas",width:100,sortable: true },
+            { text: "NILAI", value: "nilai",width:100,sortable: true },
+            { text: "STATUS", value: "status",width:100,sortable: true },
+            { text: "AKSI", value: "actions", sortable: false,width:100 },
         ],
         datamhsbaru: {},
 
@@ -108,33 +108,33 @@ export default {
 
         daftar_status: [
             {
-                value: '0',
-                text: 'TIDAK LULUS',
+                value: "0",
+                text: "TIDAK LULUS",
             },
             {
-                value: '1',
-                text: 'LULUS',
+                value: "1",
+                text: "LULUS",
             },
         ],
         formdata: {            
             user_id: "",            
-            jadwal_ujian_id:null,            
-            jumlah_soal:null,            
-            jawaban_benar:null,            
-            jawaban_salah:null,            
-            soal_tidak_terjawab:null,            
-            passing_grade_1:null,            
-            passing_grade_2:null,            
+            jadwal_ujian_id: null,            
+            jumlah_soal: null,            
+            jawaban_benar: null,            
+            jawaban_salah: null,            
+            soal_tidak_terjawab: null,            
+            passing_grade_1: null,            
+            passing_grade_2: null,            
             nilai:0,            
             ket_lulus: "",            
-            kjur:null,            
+            kjur: null,            
             desc: "",            
             created_at: "",            
             updated_at: "",            
         }, 
     }),
-    methods : {        
-		initialize:async function()
+    methods: {        
+		initialize: async function()
 		{	
             switch(this.dashboard)
             {
@@ -142,8 +142,8 @@ export default {
 
                 break;
                 default :
-                    this.datatableLoading=true;            
-                    await this.$ajax.post('/spmb/nilaiujian',
+                    this.datatableLoading = true;            
+                    await this.$ajax.post("/spmb/nilaiujian",
                     {
                         TA: this.tahun_pendaftaran,
                         prodi_id: this.prodi_id,
@@ -154,7 +154,7 @@ export default {
                         }
                     }).then(({ data })=>{               
                         this.datatable = data.pmb;                
-                        this.datatableLoading=false;
+                        this.datatableLoading = false;
                     });                             
             }
             
@@ -163,20 +163,20 @@ export default {
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded = [];                
             }
             else
             {
-                this.expanded=[item];
+                this.expanded = [item];
             }               
         },
         badgeColor(item)
         {
-            return item.active == 1 ? 'success': 'error'
+            return item.active == 1 ? 'success': "error"
         },
         badgeIcon(item)
         {
-            return item.active == 1 ? 'mdi-check-bold': 'mdi-close-thick'
+            return item.active == 1 ? "mdi-check-bold": "mdi-close-thick"
         },     
         viewItem(item)
         {
@@ -184,19 +184,19 @@ export default {
         },
         async addItem(item)
         {
-            await this.$ajax.get('/spmb/nilaiujian/'+item.id,
+            await this.$ajax.get("/spmb/nilaiujian/" + item.id,
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({ data })=>{   
-                if (data.transaksi_status==1)
+                if (data.transaksi_status== 1)
                 {
                     this.dialogfrm=true;        
                     this.data_mhs=item;
                     this.data_mhs['no_transaksi']=data.no_transaksi;                                        
                     this.daftar_prodi=data.daftar_prodi;
-                    if (JSON.stringify(data.data_nilai_ujian)=='{}')
+                    if (JSON.stringify(data.data_nilai_ujian)== "{}")
                     {
                         this.formdata.kjur=data.kjur;  
                     }
@@ -210,7 +210,7 @@ export default {
                 }       
                 else
                 {
-                    this.$root.$confirm.open('Warning', 'Mahasiswa ini belum melakukan pembayaran PMB', { color: 'warning',width:400,action: 'ok' });
+                    this.$root.$confirm.open("Warning", "Mahasiswa ini belum melakukan pembayaran PMB", { color: "warning",width:400,action: "ok" });
                 }         
             });              
         },
@@ -220,9 +220,9 @@ export default {
                 this.btnLoading=true;                      
                 if (this.editedItem > 0)
                 {
-                    this.$ajax.post('/spmb/nilaiujian/'+this.formdata.user_id,
+                    this.$ajax.post("/spmb/nilaiujian/" + this.formdata.user_id,
                     {
-                        _method: 'put',
+                        _method: "put",
                         no_transaksi: this.data_mhs.no_transaksi,
                         nilai: this.formdata.nilai,
                         kjur: this.formdata.kjur,
@@ -244,7 +244,7 @@ export default {
                 }
                 else
                 {
-                    this.$ajax.post('/spmb/nilaiujian/store',
+                    this.$ajax.post("/spmb/nilaiujian/store",
                     {
                         no_transaksi: this.data_mhs.no_transaksi,
                         user_id: this.data_mhs.id,
@@ -271,12 +271,12 @@ export default {
         },
         ulangujian (item)
         {
-            this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus data dengan ID '+item.id+' ?', { color: 'red' }).then((confirm) => {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data dengan ID '+item.id+' ?", { color: "red" }).then((confirm) => {
                 if (confirm)
                 {
-                    this.$ajax.post('/spmb/nilaiujian/'+item.id,
+                    this.$ajax.post("/spmb/nilaiujian/" + item.id,
                     {
-                        '_method': 'DELETE',
+                        _method: "DELETE",
                     },                    
                     {
                         headers: {

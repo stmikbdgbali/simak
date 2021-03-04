@@ -69,10 +69,10 @@
                             </v-toolbar>
                         </template>
                         <template v-slot:item.nidn="{ item }">
-                            {{(item.nidn && item.nidn.length > 0) > 0 ? item.nidn: 'N.A'}}
+                            {{ (item.nidn && item.nidn.length > 0) > 0 ? item.nidn: "N.A" }}
                         </template>
                         <template v-slot:item.is_dw="{ item }">
-                            {{item.is_dw == false ? 'BUKAN': 'YA'}}
+                            {{ item.is_dw == false ? 'BUKAN': "YA" }}
                         </template>
                         <template v-slot:item.actions="{ item }">                            
                             <v-icon
@@ -103,8 +103,8 @@
                                 <v-col cols="12">
                                     <strong>ID:</strong>{{ item.id }}
                                     <strong>Email:</strong>{{ item.email }}
-                                    <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
-                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
+                                    <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
+                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
                                 </v-col>                                
                             </td>
                         </template>
@@ -121,43 +121,43 @@
 <script>
 import {mapGetters} from "vuex";
 import AkademikLayout from '@/views/layouts/AkademikLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 export default {
-    name: 'DosenWali',  
-    created () {
+    name: "DosenWali",  
+    created() {
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.ACCESS_TOKEN
+                href: "/dashboard/" + this.ACCESS_TOKEN
             },
             {
-                text: 'AKADEMIK',
+                text: "AKADEMIK",
                 disabled: false,
-                href: '/akademik'
+                href: "/akademik",
             },
             {
-                text: 'DOSEN WALI',
+                text: "DOSEN WALI",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];
         this.initialize()
     },  
    
     data: () => ({ 
-        role_id:0,
+        role_id: 0,
         datatableLoading: false,
         btnLoading: false,      
         //tables
         headers: [                        
-            { text:  "", value: 'foto' },
-            { text: 'USERNAME', value: 'username',sortable: true },
-            { text: 'NAMA DOSEN', value: 'name',sortable: true },
-            { text: 'NIDN', value: 'nidn',sortable: true },     
-            { text: 'NIPY', value: 'nipy',sortable: true },     
-            { text: 'NOMOR HP', value: 'nomor_hp',sortable: true },                 
-            { text: 'AKSI', value: 'actions', sortable: false,width:100 },
+            { text: "", value: "foto" },
+            { text: "USERNAME", value: "username",sortable: true },
+            { text: "NAMA DOSEN", value: "name",sortable: true },
+            { text: "NIDN", value: "nidn",sortable: true },     
+            { text: "NIPY", value: "nipy",sortable: true },     
+            { text: "NOMOR HP", value: "nomor_hp",sortable: true },                 
+            { text: "AKSI", value: "actions", sortable: false,width:100 },
         ],
         expanded: [],
         search: "",
@@ -166,15 +166,15 @@ export default {
     methods: {
         initialize: async function() 
         {
-            this.datatableLoading=true;
-            await this.$ajax.get('/akademik/dosenwali',{
+            this.datatableLoading = true;
+            await this.$ajax.get("/akademik/dosenwali",{
                 headers: {
                     Authorization: this.TOKEN
                 }
             }).then(({ data })=>{               
                 this.daftar_users = data.users;
                 this.role_id=data.role.id;
-                this.datatableLoading=false;
+                this.datatableLoading = false;
             });          
             
         },
@@ -182,24 +182,24 @@ export default {
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded = [];                
             }
             else
             {
-                this.expanded=[item];
+                this.expanded = [item];
             }               
         },                
-        viewItem:async function (item) {
-            this.$router.push('/akademik/dosenwali/'+item.id)
+        viewItem: async function(item) {
+            this.$router.push("/akademik/dosenwali" + item.id)
         },                
         deleteItem (item) {           
-            this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus dosen wali '+item.username+' ?', { color: 'red' }).then((confirm) => {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus dosen wali '+item.username+' ?", { color: "red" }).then((confirm) => {
                 if (confirm)
                 {
                     this.btnLoading=true;
-                    this.$ajax.post('/akademik/dosenwali/'+item.id,
+                    this.$ajax.post("/akademik/dosenwali" + item.id,
                         {
-                            '_method': 'DELETE',
+                            _method: "DELETE",
                         },
                         {
                             headers: {
@@ -218,9 +218,9 @@ export default {
         },
     },
     computed: {        
-        ...mapGetters('auth',{            
-            ACCESS_TOKEN: 'AccessToken',          
-            TOKEN: 'Token',                                  
+        ...mapGetters("auth",{            
+            ACCESS_TOKEN: "AccessToken",          
+            TOKEN: "Token",                                  
         }),
     },
     watch: {

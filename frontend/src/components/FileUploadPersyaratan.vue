@@ -24,7 +24,7 @@
                 <v-spacer/>          
                 <v-btn
                     icon
-                    :href="this.$api.url+'/'+this.item.path"
+                    :href="this.$api.url+'/' + this.item.path"
                     target="_blank"                    
                     v-if="verified == 1">
                     <v-icon>
@@ -64,7 +64,7 @@
 </template>
 <script>
 export default {
-    name:'FileUploadPersyaratan',
+    name: "FileUploadPersyaratan",
     created ()
     {
         this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];   
@@ -75,7 +75,7 @@ export default {
         else
         {            
             this.btnHapus=this.isVerified(this.item);
-            this.image_prev=this.$api.url+'/'+this.item.path;
+            this.image_prev=this.$api.url + "/" + this.item.path;
             this.badgeColor=this.item.verified;
             this.badgeIcon=this.item.verified;
         }        
@@ -83,40 +83,40 @@ export default {
     props:{
         user_id:{
             type:String,
-            required:true
+            required: true
         },
         index:{
             type:Number,
-            required:true
+            required: true
         },
         item:{
             type:Object,
-            required:true
+            required: true
         }
     },
     data:()=>({     
-        dashboard:null,
+        dashboard: null,
 
-        btnSimpan:true,  
-        btnHapus:true,  
-        btnVerifikasi:true,       
-        btnLoading:false,
-        image_prev:null,
+        btnSimpan: true,  
+        btnHapus: true,  
+        btnVerifikasi: true,       
+        btnLoading: false,
+        image_prev: null,
 
         //form
         verified:0,
-        form_valid:true,
-        filepersyaratan:[],
+        form_valid: true,
+        filepersyaratan: [],
         //form rules  
-        rule_foto:[
+        rule_foto: [
             value => !!value||"Mohon pilih foto !!!",  
-            value =>  !value || value.size < 2000000 || 'File foto harus kurang dari 2MB.'                
+            value =>  !value || value.size < 2000000 || "File foto harus kurang dari 2MB."                
         ],
     }),
     methods: {        
-        previewImage (e)
+        previewImage(e)
         {
-            if (typeof e === 'undefined')
+            if (typeof e === "undefined")
             {
                 this.image_prev=null;
                 this.btnSimpan=true;
@@ -131,24 +131,24 @@ export default {
                 this.btnSimpan=false;
             }          
         },
-        upload:async function (index,item)
+        upload: async function (index,item)
         {
             let data = item;   
             if (this.$refs.frmpersyaratan.validate())
             {
-                if (typeof this.filepersyaratan[index] !== 'undefined')
+                if (typeof this.filepersyaratan[index] !== "undefined")
                 {
                     this.btnLoading=true;
                     var formdata = new FormData();                    
-                    formdata.append('nama_persyaratan',data.nama_persyaratan);
-                    formdata.append('persyaratan_id',data.persyaratan_id);
-                    formdata.append('persyaratan_pmb_id',data.persyaratan_pmb_id);
-                    formdata.append('foto',this.filepersyaratan[index]);
-                    await this.$ajax.post('/spmb/pmbpersyaratan/upload/'+this.user_id,formdata,                    
+                    formdata.append("nama_persyaratan",data.nama_persyaratan);
+                    formdata.append("persyaratan_id",data.persyaratan_id);
+                    formdata.append("persyaratan_pmb_id",data.persyaratan_pmb_id);
+                    formdata.append("foto",this.filepersyaratan[index]);
+                    await this.$ajax.post("/spmb/pmbpersyaratan/upload/" + this.user_id,formdata,                    
                         {
                             headers:{
-                                Authorization:this.$store.getters['auth/Token'],
-                                'Content-Type': 'multipart/form-data'                      
+                                Authorization: this.$store.getters['auth/Token'],
+                                'Content-Type': "multipart/form-data"                    
                             }
                         }
                     ).then(()=>{                                                   
@@ -163,21 +163,21 @@ export default {
         },
         hapusfilepersysaratan(item)
         {
-            this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus persyaratan '+item.nama_persyaratan+' ?', { color: 'red' }).then((confirm) => {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus persyaratan " + item.nama_persyaratan + " ?", { color: "red" }).then((confirm) => {
                 if (confirm)
                 {
-                    this.$ajax.post('/spmb/pmbpersyaratan/hapusfilepersyaratan/'+item.persyaratan_pmb_id,
+                    this.$ajax.post("/spmb/pmbpersyaratan/hapusfilepersyaratan/" + item.persyaratan_pmb_id,
                         {
                             _method:'DELETE'
                         },                    
                         {
                             headers:{
-                                Authorization:this.$store.getters['auth/Token']                
+                                Authorization: this.$store.getters['auth/Token']                
                             }
                         }
                     ).then(()=>{                   
                         this.btnHapus=true;
-                        this.photoPersyaratan=require('@/assets/no-image.png');        
+                        this.photoPersyaratan=require("@/assets/no-image.png");        
                         this.btnLoading=false;                        
                     }).catch(()=>{
                         this.btnLoading=false;
@@ -204,13 +204,13 @@ export default {
         verifikasipersyaratan: async function (item)
         {
             this.btnLoading=true;                    
-            await this.$ajax.post('/spmb/pmbpersyaratan/verifikasipersyaratan/'+item.persyaratan_pmb_id,
+            await this.$ajax.post("/spmb/pmbpersyaratan/verifikasipersyaratan/" + item.persyaratan_pmb_id,
             {                    
                 
             },
             {
                 headers:{
-                    Authorization:this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters['auth/Token']
                 }
             }
             ).then(({data})=>{   
@@ -230,7 +230,7 @@ export default {
             {   
                 if (this.image_prev==null)
                 {
-                    return require('@/assets/no-image.png');
+                    return require("@/assets/no-image.png");
                 }
                 else
                 {

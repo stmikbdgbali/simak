@@ -148,7 +148,7 @@
                                                     <v-card flat>
                                                         <v-card-title>CREATED :</v-card-title>
                                                         <v-card-subtitle>
-                                                            {{ $date(formdata.created_at).format('DD/MM/YYYY HH:mm') }}
+                                                            {{ $date(formdata.created_at).format("DD/MM/YYYY HH:mm") }}
                                                         </v-card-subtitle>
                                                     </v-card>
                                                 </v-col>
@@ -168,7 +168,7 @@
                                                     <v-card flat>
                                                         <v-card-title>UPDATED :</v-card-title>
                                                         <v-card-subtitle>
-                                                            {{ $date(formdata.updated_at).format('DD/MM/YYYY HH:mm') }}
+                                                            {{ $date(formdata.updated_at).format("DD/MM/YYYY HH:mm") }}
                                                         </v-card-subtitle>
                                                     </v-card>
                                                 </v-col>
@@ -200,8 +200,7 @@
                                                     :rules="rule_dari_tahun_pendaftaran"
                                                     outlined/>                                        
                                             </v-card-text>
-                                            <v-card-actions>
-                                                <v-spacer></v-spacer>
+                                            <v-card-actions>                                                
                                                 <v-spacer></v-spacer>
                                                     <v-btn color="blue darken-1" text @click.stop="closedialogsalinpersyaratan">BATAL</v-btn>
                                                     <v-btn 
@@ -243,8 +242,8 @@
                             <td :colspan="headers.length" class="text-center">
                                 <v-col cols="12">                          
                                     <strong>ID:</strong>{{ item.id }}          
-                                    <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
-                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
+                                    <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
+                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
                                 </v-col>                                
                             </td>
                         </template>                        
@@ -263,26 +262,26 @@
 <script>
 import {mapGetters} from "vuex";
 import DataMasterLayout from '@/views/layouts/DataMasterLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 import Filter9 from '@/components/sidebar/FilterMode9';
 export default {
-    name: 'PersyaratanPMB',
-    created () {
+    name: "PersyaratanPMB",
+    created() {
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.ACCESS_TOKEN
+                href: "/dashboard/" + this.ACCESS_TOKEN
             },
             {
-                text: 'DATA MASTER',
+                text: "DATA MASTER",
                 disabled: false,
-                href: '/dmaster'
+                href: "/dmaster"
             },
             {
-                text: 'PERSYARATAN PMB',
+                text: "PERSYARATAN PMB",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];        
         this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];                
@@ -290,17 +289,17 @@ export default {
     },  
     data: () => ({ 
         firstloading: true,        
-        tahun_pendaftaran:null,        
+        tahun_pendaftaran: null,        
 
         btnLoading: false,
         datatableLoading: false,
         expanded: [],
         datatable: [],      
         headers: [
-            { text: 'PROSES', value: 'proses', sortable: true,width:120  },   
-            { text: 'NAMA PERSYARATAN', value: 'nama_persyaratan',sortable: true },                           
-            { text: 'TA', value: 'ta',sortable: true,width:80, align: 'center' },                           
-            { text: 'AKSI', value: 'actions', sortable: false,width:100 },
+            { text: "PROSES", value: "proses", sortable: true,width:120  },   
+            { text: "NAMA PERSYARATAN", value: "nama_persyaratan",sortable: true },                           
+            { text: "TA", value: "ta",sortable: true,width:80, align: "center" },                           
+            { text: "AKSI", value: "actions", sortable: false,width:100 },
         ],  
         search: "",    
 
@@ -312,19 +311,19 @@ export default {
         //form data   
         form_valid: true, 
         daftar_ta: [],         
-        dari_tahun_pendaftaran:null,          
+        dari_tahun_pendaftaran: null,          
         formdata: {
             id: "",                        
-            proses: 'pmb',                        
-            nama_persyaratan:null,                        
-            prodi_id:null, 
+            proses: "pmb",                        
+            nama_persyaratan: null,                        
+            prodi_id: null, 
             ta: "",                   
         },
         formdefault: {
             id: "",                        
-            proses: 'pmb',                                         
-            nama_persyaratan:null,                        
-            prodi_id:null, 
+            proses: "pmb",                                         
+            nama_persyaratan: null,                        
+            prodi_id: null, 
             ta: "",                   
         },
         editedIndex: -1,
@@ -340,12 +339,12 @@ export default {
     methods: {
         ChangeTahunPendaftaran (tahun)
         {
-            this.tahun_pendaftaran=tahun;
+            this.tahun_pendaftaran = tahun;
         },        
         initialize: async function() 
         {
-            this.datatableLoading=true;
-            await this.$ajax.post('/datamaster/persyaratan',
+            this.datatableLoading = true;
+            await this.$ajax.post("/datamaster/persyaratan",
             {
                 TA: this.tahun_pendaftaran
             },
@@ -355,35 +354,35 @@ export default {
                 }
             }).then(({ data })=>{               
                 this.datatable = data.persyaratan;
-                this.datatableLoading=false;
+                this.datatableLoading = false;
             }).catch(()=>{
-                this.datatableLoading=false;
+                this.datatableLoading = false;
             });  
-            this.firstloading=false;
+            this.firstloading = false;
             this.$refs.filter19.setFirstTimeLoading(this.firstloading); 
         },
         dataTableRowClicked(item)
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded = [];                
             }
             else
             {
-                this.expanded=[item];
+                this.expanded = [item];
             }               
         },
-        tambahItem:async function()
+        tambahItem: async function()
         {   
             this.dialogfrm=true;
         },
-        viewItem (item) {
-            this.formdata=item;                 
-            this.dialogdetailitem=true;                        
+        viewItem(item) {
+            this.formdata = item;               
+            this.dialogdetailitem = true;                      
         },    
-        editItem:async function (item) {            
+        editItem: async function(item) {            
             this.editedIndex = this.datatable.indexOf(item);                  
-            this.formdata=item;      
+            this.formdata = item;    
             this.dialogfrm = true
         },    
         showDialogCopyPersyaratan()
@@ -402,15 +401,15 @@ export default {
             }            
             this.dialogcopypersyaratan=true;
         },
-        save:async function() {
+        save: async function() {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading=true;
                 if (this.editedIndex > -1) 
                 {
-                    await this.$ajax.post('/datamaster/persyaratan/'+this.formdata.id,
+                    await this.$ajax.post("/datamaster/persyaratan/" + this.formdata.id,
                         {
-                            '_method': 'PUT',                            
+                            _method: "PUT",                            
                             nama_persyaratan: this.formdata.nama_persyaratan,                                                                            
                         },
                         {
@@ -427,7 +426,7 @@ export default {
                     });                 
                     
                 } else {                    
-                    await this.$ajax.post('/datamaster/persyaratan/store',
+                    await this.$ajax.post("/datamaster/persyaratan/store",
                         {
                             proses: this.formdata.proses,                                                    
                             nama_persyaratan: this.formdata.nama_persyaratan,                                                                                                       
@@ -453,10 +452,10 @@ export default {
             if (this.$refs.frmdialogcopypersyaratan.validate())
             {
                 this.btnLoading=true;
-                this.$ajax.post('/datamaster/persyaratan/salin/'+this.tahun_pendaftaran,
+                this.$ajax.post("/datamaster/persyaratan/salin/" + this.tahun_pendaftaran,
                     {
                         dari_tahun_pendaftaran: this.dari_tahun_pendaftaran,
-                        proses: 'pmb',
+                        proses: "pmb",
                     },
                     {
                         headers: {
@@ -473,13 +472,13 @@ export default {
             }
         },
         deleteItem (item) {           
-            this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus persyaratan '+item.nama_persyaratan+' ?', { color: 'red' }).then((confirm) => {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus persyaratan " + item.nama_persyaratan + " ?", { color: "red" }).then((confirm) => {
                 if (confirm)
                 {
                     this.btnLoading=true;
-                    this.$ajax.post('/datamaster/persyaratan/'+item.id,
+                    this.$ajax.post("/datamaster/persyaratan/" + item.id,
                         {
-                            '_method': 'DELETE',
+                            _method: "DELETE",
                         },
                         {
                             headers: {
@@ -523,12 +522,12 @@ export default {
         },
     },
     computed: {
-        ...mapGetters('auth',{            
-            ACCESS_TOKEN: 'AccessToken',          
-            TOKEN: 'Token',                                  
+        ...mapGetters("auth",{            
+            ACCESS_TOKEN: "AccessToken",          
+            TOKEN: "Token",                                  
         }),
         formTitle () {
-            return this.editedIndex === -1 ? 'TAMBAH PERSYARATAN PMB' : 'UBAH PERSYARATAN PMB'
+            return this.editedIndex === -1 ? "TAMBAH PERSYARATAN PMB" : "UBAH PERSYARATAN PMB";
         },         
     },
     watch: {

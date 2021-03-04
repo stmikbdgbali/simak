@@ -7,7 +7,7 @@
             <template v-slot:name>
                 PROFIL MAHASISWA
             </template>
-            <template v-slot:subtitle v-if="datamhs.hasOwnProperty('user_id')">
+            <template v-slot:subtitle v-if="datamhs.hasOwnProperty("user_id")">
                 [{{datamhs.nim}}] {{datamhs.nama_mhs}}
             </template>
             <template v-slot:breadcrumbs>
@@ -18,7 +18,7 @@
                 </v-breadcrumbs>
             </template>            
         </ModuleHeader>      
-        <v-container fluid v-if="datamhs.hasOwnProperty('user_id')">            
+        <v-container fluid v-if="datamhs.hasOwnProperty("user_id")">            
             <v-row> 
                 <v-col cols="12">                  
                     <ProfilMahasiswa :datamhs="datamhs" url="/kemahasiswaan" />
@@ -150,7 +150,7 @@
                                                     <v-card flat>
                                                         <v-card-title>TANGGAL TRANSAKSI :</v-card-title>
                                                         <v-card-subtitle>
-                                                            {{$date(data_transaksi.tanggal).format('DD/MM/YYYY')}}
+                                                            {{$date(data_transaksi.tanggal).format("DD/MM/YYYY")}}
                                                         </v-card-subtitle>
                                                     </v-card>
                                                 </v-col>
@@ -191,7 +191,7 @@
                             </v-toolbar>
                         </template>
                         <template v-slot:item.tanggal="{ item }">    
-                            {{$date(item.tanggal).format('DD/MM/YYYY')}}
+                            {{$date(item.tanggal).format("DD/MM/YYYY")}}
                         </template>
                         <template v-slot:item.idsmt="{ item }">    
                             {{item.ta}} {{$store.getters['uiadmin/getNamaSemester'](item.idsmt)}}
@@ -214,8 +214,8 @@
                             <td :colspan="headers.length" class="text-center">
                                 <v-col cols="12">                          
                                     <strong>ID:</strong>{{ item.id }}          
-                                    <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
-                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
+                                    <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
+                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
                                 </v-col>                                
                             </td>
                         </template>
@@ -230,28 +230,28 @@
 </template>
 <script>
 import KemahasiswaanLayout from '@/views/layouts/KemahasiswaanLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 import ProfilMahasiswa from '@/components/ProfilMahasiswaLama';
 export default {
-    name: 'Kemahasiswaan',
+    name: "Kemahasiswaan",
     created ()
 	{
         this.user_id=this.$route.params.user_id;
 		this.breadcrumbs = [
 			{
-				text: 'HOME',
+				text: "HOME",
 				disabled: false,
-				href: '/dashboard/'+this.$store.getters['auth/AccessToken']
+				href: "/dashboard/" + this.$store.getters['auth/AccessToken']
 			},
 			{
-				text: 'KEMAHASISWAAN',
+				text: "KEMAHASISWAAN",
 				disabled: false,
-				href: '/kemahasiswaan'
+				href: "/kemahasiswaan'
 			},
 			{
-				text: 'PROFIL',
+				text: "PROFIL",
 				disabled: true,
-				href: '#'
+				href: "#"
 			}
         ];				                        
     },
@@ -264,9 +264,9 @@ export default {
         breadcrumbs: [],              
         
         //profil mahasiswa      
-        user_id:null,  
+        user_id: null,  
         datamhs: {
-            nama_mhs: ''
+            nama_mhs: ""
         },        
         totalSKS:0, 
         totalM:0, 
@@ -277,14 +277,14 @@ export default {
         datatableLoading: false,       
         datatable: [], 
         headers: [                                                
-            { text: 'KODE BILLING', value: 'no_transaksi',width:100,sortable: true },
-            { text: 'TANGGAL', value: 'tanggal',width:100,sortable: true },
-            { text: 'NIM', value: 'nim',width:100,sortable: true },
-            { text: 'NAMA MAHASISWA', value: 'nama_mhs',sortable: true,width:250 },
-            { text: 'T.A/SMT', value: 'idsmt',width:100,sortable: true },
-            { text: 'TOTAL', value: 'total',width:100,sortable: true },
-            { text: 'STATUS', value: 'nama_status',width:50,sortable: true },            
-            { text: 'AKSI', value: 'actions', sortable: false,width:50 },
+            { text: "KODE BILLING", value: "no_transaksi",width:100,sortable: true },
+            { text: "TANGGAL", value: "tanggal",width:100,sortable: true },
+            { text: "NIM", value: "nim",width:100,sortable: true },
+            { text: "NAMA MAHASISWA", value: "nama_mhs",sortable: true,width:250 },
+            { text: "T.A/SMT", value: "idsmt",width:100,sortable: true },
+            { text: "TOTAL", value: "total",width:100,sortable: true },
+            { text: "STATUS", value: "nama_status",width:50,sortable: true },            
+            { text: "AKSI", value: "actions", sortable: false,width:50 },
         ],        
         expanded: [],
         search: "", 
@@ -293,10 +293,10 @@ export default {
         data_transaksi: {}, 
         data_transaksi_detail: {},  
     }),
-    methods : {        
-		initialize:async function()
+    methods: {        
+		initialize: async function()
 		{	
-            await this.$ajax.get('/akademik/nilai/transkripkurikulum/'+this.user_id,           
+            await this.$ajax.get("/akademik/nilai/transkripkurikulum/" + this.user_id,           
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
@@ -310,8 +310,8 @@ export default {
                 this.ipk=data.ipk;                
             });
 
-            this.datatableLoading=true;     
-            await this.$ajax.post('/keuangan/transaksi',            
+            this.datatableLoading = true;     
+            await this.$ajax.post("/keuangan/transaksi",            
             {
                 TA: this.$store.getters['uiadmin/getTahunAkademik'],
                 user_id: this.user_id
@@ -322,23 +322,23 @@ export default {
                 }
             }).then(({ data })=>{               
                 this.datatable = data.transaksi;                
-                this.datatableLoading=false;
+                this.datatableLoading = false;
             });                     
         },     
         dataTableRowClicked(item)
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded = [];                
             }
             else
             {
-                this.expanded=[item];
+                this.expanded = [item];
             }               
         },   
-        async viewItem (item) {
+        async viewItem(item) {
             this.btnLoading=true;
-            await this.$ajax.get('/keuangan/transaksi/'+item.id,  
+            await this.$ajax.get("/keuangan/transaksi/" + item.id,
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
@@ -346,7 +346,7 @@ export default {
             }).then(({ data })=>{                                                             
                 this.data_transaksi=item;   
                 this.data_transaksi_detail=data.transaksi_detail;   
-                this.dialogdetailitem=true;
+                this.dialogdetailitem = true;
                 this.btnLoading = false;
             });                                        
         },

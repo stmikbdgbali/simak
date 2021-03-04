@@ -28,7 +28,7 @@
                         </v-list-item-avatar>
                         <v-list-item-content>					
                             <v-list-item-title class="title">
-                                {{ATTRIBUTE_USER('username')}}
+                                {{ATTRIBUTE_USER("username")}}
                             </v-list-item-title>
                             <v-list-item-subtitle>                                
                                 [{{DEFAULT_ROLE}}]
@@ -67,7 +67,7 @@
 				</v-list-item-avatar>
 				<v-list-item-content>					
 					<v-list-item-title class="title">
-						{{ATTRIBUTE_USER('username')}}
+						{{ATTRIBUTE_USER("username")}}
 					</v-list-item-title>
 					<v-list-item-subtitle>
 						[{{DEFAULT_ROLE}}]
@@ -219,7 +219,7 @@
                                 </v-list-item-title>
                             </v-list-item-content>
                         </v-list-item>   						 					 
-						<v-list-item link v-if="CAN_ACCESS('AKADEMIK-PERKULIAHAN-KRS_SHOW')" :active-class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_ACTIVE_CSS_CLASS')" disabled :to="{path: '/akademik/perkuliahan/krs/'+paramid+'/detail'}">
+						<v-list-item link v-if="CAN_ACCESS('AKADEMIK-PERKULIAHAN-KRS_SHOW')" :active-class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_ACTIVE_CSS_CLASS')" disabled :to="{path: '/akademik/perkuliahan/krs/' + paramid+'/detail'}">
                             <v-list-item-icon class="mr-2">
                                 <v-icon>mdi-arrow-right-bold-hexagon-outline</v-icon>
                             </v-list-item-icon>
@@ -229,7 +229,7 @@
                                 </v-list-item-title>
                             </v-list-item-content>
                         </v-list-item>   						 												
-                        <v-list-item link v-if="CAN_ACCESS('AKADEMIK-PERKULIAHAN-KRS_STORE')" :active-class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_ACTIVE_CSS_CLASS')" disabled :to="{path: '/akademik/perkuliahan/krs/'+paramid+'/tambahmatkul'}">
+                        <v-list-item link v-if="CAN_ACCESS('AKADEMIK-PERKULIAHAN-KRS_STORE')" :active-class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_ACTIVE_CSS_CLASS')" disabled :to="{path: '/akademik/perkuliahan/krs/' + paramid+'/tambahmatkul'}">
                             <v-list-item-icon class="mr-2">
                                 <v-icon>mdi-arrow-right-bold-hexagon-outline</v-icon>
                             </v-list-item-icon>
@@ -370,7 +370,7 @@
 <script>
 import {mapGetters} from 'vuex';
 export default {
-    name: 'AkademikLayout',     
+    name: "AkademikLayout",     
     created()
     {
         this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];          
@@ -387,16 +387,16 @@ export default {
     },
     data:()=>({
         loginTime:0,
-        drawer:null,
-        drawerRight:null, 
+        drawer: null,
+        drawerRight: null, 
         
-        dashboard:null,
+        dashboard: null,
     }),       
     methods: {        
         logout ()
         {
             this.loginTime=0;
-            this.$ajax.post('/auth/logout',
+            this.$ajax.post("/auth/logout",
                 {},
                 {
                     headers: {
@@ -404,16 +404,16 @@ export default {
                     }
                 }
             ).then(()=> {     
-                this.$store.dispatch('auth/logout');	
-                this.$store.dispatch('uifront/reinit');	
-                this.$store.dispatch('uiadmin/reinit');	
-                this.$router.push('/');
+                this.$store.dispatch("auth/logout");	
+                this.$store.dispatch("uifront/reinit");	
+                this.$store.dispatch("uiadmin/reinit");	
+                this.$router.push("/");
             })
             .catch(() => {
-                this.$store.dispatch('auth/logout');	
-                this.$store.dispatch('uifront/reinit');	
-                this.$store.dispatch('uiadmin/reinit');	
-                this.$router.push('/');
+                this.$store.dispatch("auth/logout");	
+                this.$store.dispatch("uifront/reinit");	
+                this.$store.dispatch("uiadmin/reinit");	
+                this.$router.push("/");
             });
         },
         isBentukPT (bentuk_pt)
@@ -422,14 +422,14 @@ export default {
         }
 	},
     computed: {
-        ...mapGetters('auth',{
-            AUTHENTICATED: 'Authenticated',  
-            ACCESS_TOKEN: 'AccessToken',          
-            TOKEN: 'Token',          
-            DEFAULT_ROLE: 'DefaultRole',
-            ROLE: 'Role',
-            CAN_ACCESS: 'can',         
-            ATTRIBUTE_USER: 'AttributeUser',               
+        ...mapGetters("auth",{
+            AUTHENTICATED: "Authenticated",  
+            ACCESS_TOKEN: "AccessToken",          
+            TOKEN: "Token",          
+            DEFAULT_ROLE: "DefaultRole",
+            ROLE: "Role",
+            CAN_ACCESS: "can",         
+            ATTRIBUTE_USER: "AttributeUser",               
         }),
         APP_NAME ()
         {
@@ -437,9 +437,9 @@ export default {
         },
         photoUser()
 		{
-			let img=this.ATTRIBUTE_USER('foto');
+			let img=this.ATTRIBUTE_USER("foto");
 			var photo;
-			if (img == '')
+			if (img == "")
 			{
 				photo = this.$api.storageURL+'/storage/images/users/no_photo.png';	
 			}
@@ -483,8 +483,8 @@ export default {
                 }
                 else
                 {
-                    this.$store.dispatch('auth/logout');
-                    this.$router.replace('/login');
+                    this.$store.dispatch("auth/logout");
+                    this.$router.replace("/login");
                 }
             },
             immediate: true

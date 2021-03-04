@@ -11,17 +11,17 @@
 </template>
 <script>
 export default {
-    name:'FilterMode1',
+    name: "FilterMode1",
     created()
     {
         this.daftar_ta=this.$store.getters['uiadmin/getDaftarTA'];  
         this.tahun_akademik=this.$store.getters['uiadmin/getTahunAkademik'];  
     },
     data:()=>({
-        firstloading:true,
+        firstloading: true,
         
-        daftar_ta:[],
-        tahun_akademik:null
+        daftar_ta: [],
+        tahun_akademik: null
     }),
     methods:{
         setFirstTimeLoading (bool)
@@ -34,8 +34,8 @@ export default {
         {
             if (!this.firstloading)
             {
-                this.$store.dispatch('uiadmin/updateTahunAkademik',val);  
-                this.$emit('changeTahunAkademik',val);          
+                this.$store.dispatch("uiadmin/updateTahunAkademik",val);  
+                this.$emit("changeTahunAkademik",val);          
             }            
         },
     }

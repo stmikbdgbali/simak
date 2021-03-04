@@ -173,121 +173,121 @@
 </template>
 <script>
 export default {
-    name:'FormBiodataDiriDosen',
+    name: "FormBiodataDiriDosen",
     created()
     {
         this.initialize();
     },
     data:()=>({
-        btnLoading:false,
-        btnLoadingProv:false,
-        btnLoadingKab:false,
-        btnLoadingKec:false,
-        btnLoadingFakultas:false,
+        btnLoading: false,
+        btnLoadingProv: false,
+        btnLoadingKab: false,
+        btnLoadingKec: false,
+        btnLoadingFakultas: false,
 
         //form
-        kode_billing:'N.A',
-        form_valid:true,
+        kode_billing: "N.A",
+        form_valid: true,
 
-        menuTanggalLahir:false,
+        menuTanggalLahir: false,
 
-        daftar_provinsi:[],
-        provinsi_id:0,
+        daftar_provinsi: [],
+        provinsi_id: 0,
 
-        daftar_kabupaten:[],
-        kabupaten_id:0,
+        daftar_kabupaten: [],
+        kabupaten_id: 0,
 
-        daftar_kecamatan:[],
-        kecamatan_id:0,
+        daftar_kecamatan: [],
+        kecamatan_id: 0,
 
-        daftar_desa:[],
-        desa_id:0,
+        daftar_desa: [],
+        desa_id: 0,
 
-        daftar_fakultas:[],
-        kode_fakultas:'',
+        daftar_fakultas: [],
+        kode_fakultas: "",
 
-        daftar_prodi:[],        
-        daftar_kelas:[],
+        daftar_prodi: [],        
+        daftar_kelas: [],
         
         formdata:{
-            user_id:'',
-            nidn:'',
-            nipy:'',
-            nama_dosen:'',
-            gelar_depan:'',
-            gelar_belakang:'',
+            user_id: "",
+            nidn: "",
+            nipy: "",
+            nama_dosen: "",
+            gelar_depan: "",
+            gelar_belakang: "",
             
-            tempat_lahir:'', 
-            tanggal_lahir:'', 
+            tempat_lahir: "", 
+            tanggal_lahir: "", 
 
-            address1_desa_id:'', 
-            address1_kelurahan:'', 
-            address1_kecamatan_id:'',
-            address1_kecamatan:'', 
-            address1_kabupaten_id:'', 
-            address1_kabupaten:'', 
-            address1_provinsi_id:'',
-            address1_provinsi:'', 
-            alamat_rumah:'', 
+            address1_desa_id: "", 
+            address1_kelurahan: "", 
+            address1_kecamatan_id: "",
+            address1_kecamatan: "", 
+            address1_kabupaten_id: "", 
+            address1_kabupaten: "", 
+            address1_provinsi_id: "",
+            address1_provinsi: "", 
+            alamat_rumah: "", 
             
-            nik:'',
-            email:'',
-            nomor_hp:'',
-            address2_desa_id:'', 
-            address2_kelurahan:'', 
-            address2_kecamatan_id:'',
-            address2_kecamatan:'', 
-            address2_kabupaten_id:'', 
-            address2_kabupaten:'', 
-            address2_provinsi_id:'', 
-            address2_provinsi:'', 
-            alamat_ktp:'', 
+            nik: "",
+            email: "",
+            nomor_hp: "",
+            address2_desa_id: "", 
+            address2_kelurahan: "", 
+            address2_kecamatan_id: "",
+            address2_kecamatan: "", 
+            address2_kabupaten_id: "", 
+            address2_kabupaten: "", 
+            address2_provinsi_id: "", 
+            address2_provinsi: "", 
+            alamat_ktp: "", 
 
-            is_dw:'',
-            desc:'',
-            active:'',
+            is_dw: "",
+            desc: "",
+            active: "",
         },
-        rule_nidn:[                         
-            value => /^[0-9]+$/.test(value) || 'NIDN hanya boleh angka',                
+        rule_nidn: [                         
+            value => /^[0-9]+$/.test(value) || "NIDN hanya boleh angka",                
         ],         
-        rule_nipy:[            
-            value => /^[0-9]+$/.test(value) || 'Nomor Induk Pegawai Yayasan (NIPY) hanya boleh angka',                
+        rule_nipy: [            
+            value => /^[0-9]+$/.test(value) || "Nomor Induk Pegawai Yayasan (NIPY) hanya boleh angka",                
         ], 
-        rule_nama_dosen:[
+        rule_nama_dosen: [
             value => !!value||"Nama Mahasiswa mohon untuk diisi !!!",
-            value => /^[A-Za-z\s\\,\\.]*$/.test(value) || 'Nama Mahasiswa hanya boleh string dan spasi',
+            value => /^[A-Za-z\s\\,\\.]*$/.test(value) || "Nama Mahasiswa hanya boleh string dan spasi",
         ],         
-        rule_tempat_lahir:[
+        rule_tempat_lahir: [
             value => !!value||"Tempat Lahir mohon untuk diisi !!!"
         ], 
-        rule_tanggal_lahir:[
+        rule_tanggal_lahir: [
             value => !!value||"Tanggal Lahir mohon untuk diisi !!!"
         ], 
-        rule_nomorhp:[
+        rule_nomorhp: [
             value => !!value||"Nomor HP mohon untuk diisi !!!",
-            value => /^\+[1-9]{1}[0-9]{1,14}$/.test(value) || 'Nomor HP hanya boleh angka dan gunakan kode negara didepan seperti +6281214553388',
+            value => /^\+[1-9]{1}[0-9]{1,14}$/.test(value) || "Nomor HP hanya boleh angka dan gunakan kode negara didepan seperti +6281214553388",
         ], 
-        rule_email:[
+        rule_email: [
             value => !!value||"Email mohon untuk diisi !!!",
-            value => /.+@.+\..+/.test(value) || 'Format E-mail mohon di isi dengan benar',
+            value => /.+@.+\..+/.test(value) || "Format E-mail mohon di isi dengan benar",
         ],   
-        rule_desa:[
+        rule_desa: [
             value => !!value||"Mohon Desa mohon untuk diisi !!!"
         ], 
-        rule_alamat_rumah:[
+        rule_alamat_rumah: [
             value => !!value||"Alamat Rumah mohon untuk diisi !!!"
         ],         
     }),
     methods: {
-        initialize:async function ()
+        initialize: async function ()
         {
-            this.$ajax.get('/datamaster/provinsi').then(({data})=>{                
-                this.daftar_provinsi=data.provinsi;                
+            this.$ajax.get("/datamaster/provinsi").then(({data})=>{                
+                this.daftar_provinsi = data.provinsi;           
             });                       
-            await this.$ajax.get('/system/usersdosen/biodatadiri/'+this.$store.getters['auth/AttributeUser']('id'),             
+            await this.$ajax.get("/system/usersdosen/biodatadiri/" + this.$store.getters['auth/AttributeUser']("id"),             
                 {
                     headers:{
-                        Authorization:this.$store.getters['auth/Token']
+                        Authorization: this.$store.getters['auth/Token']
                     }
                 },
                 
@@ -319,35 +319,35 @@ export default {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading=true;                
-                await this.$ajax.post('/system/usersdosen/biodatadiri/'+this.$store.getters['auth/AttributeUser']('id'),{                    
-                    _method:'put',
-                    nidn:this.formdata.nidn,           
-                    nipy:this.formdata.nipy,           
-                    gelar_depan:this.formdata.gelar_depan,                               
-                    nama_dosen:this.formdata.nama_dosen,           
-                    gelar_belakang:this.formdata.gelar_belakang,           
+                await this.$ajax.post("/system/usersdosen/biodatadiri/" + this.$store.getters['auth/AttributeUser']("id"),{                    
+                    _method: "put",
+                    nidn: this.formdata.nidn,           
+                    nipy: this.formdata.nipy,           
+                    gelar_depan: this.formdata.gelar_depan,                               
+                    nama_dosen: this.formdata.nama_dosen,           
+                    gelar_belakang: this.formdata.gelar_belakang,           
 
-                    tempat_lahir:this.formdata.tempat_lahir,           
-                    tanggal_lahir:this.formdata.tanggal_lahir,           
-                    jk:this.formdata.jk,           
-                    nomor_hp:this.formdata.nomor_hp,           
-                    email:this.formdata.email,    
+                    tempat_lahir: this.formdata.tempat_lahir,           
+                    tanggal_lahir: this.formdata.tanggal_lahir,           
+                    jk: this.formdata.jk,           
+                    nomor_hp: this.formdata.nomor_hp,           
+                    email: this.formdata.email,    
                        
-                    address1_provinsi_id:this.provinsi_id.id,
-                    address1_provinsi:this.provinsi_id.nama,
-                    address1_kabupaten_id:this.kabupaten_id.id,
-                    address1_kabupaten:this.kabupaten_id.nama,
-                    address1_kecamatan_id:this.kecamatan_id.id,
-                    address1_kecamatan:this.kecamatan_id.nama,
-                    address1_desa_id:this.desa_id.id,
-                    address1_kelurahan:this.desa_id.nama,
-                    alamat_rumah:this.formdata.alamat_rumah,    
+                    address1_provinsi_id: this.provinsi_id.id,
+                    address1_provinsi: this.provinsi_id.nama,
+                    address1_kabupaten_id: this.kabupaten_id.id,
+                    address1_kabupaten: this.kabupaten_id.nama,
+                    address1_kecamatan_id: this.kecamatan_id.id,
+                    address1_kecamatan: this.kecamatan_id.nama,
+                    address1_desa_id: this.desa_id.id,
+                    address1_kelurahan: this.desa_id.nama,
+                    alamat_rumah: this.formdata.alamat_rumah,    
 
                     
                 },
                 {
                     headers:{
-                        Authorization:this.$store.getters['auth/Token']
+                        Authorization: this.$store.getters['auth/Token']
                     }
                 }
                 ).then(()=>{                                   
@@ -362,10 +362,10 @@ export default {
     watch:{
         provinsi_id(val)
         {
-            if (val.id != null && val.id != '')
+            if (val.id != null && val.id != "")
             {
                 this.btnLoadingProv=true;
-                this.$ajax.get('/datamaster/provinsi/'+val.id+'/kabupaten').then(({data})=>{                
+                this.$ajax.get("/datamaster/provinsi/'+val.id+'/kabupaten").then(({data})=>{                
                     this.daftar_kabupaten=data.kabupaten;
                     this.btnLoadingProv=false;
                 });
@@ -374,10 +374,10 @@ export default {
         },
         kabupaten_id(val)
         {
-            if (val.id != null && val.id != '')
+            if (val.id != null && val.id != "")
             {
                 this.btnLoadingKab=true;
-                this.$ajax.get('/datamaster/kabupaten/'+val.id+'/kecamatan').then(({data})=>{                                
+                this.$ajax.get("/datamaster/kabupaten/'+val.id+'/kecamatan").then(({data})=>{                                
                     this.daftar_kecamatan=data.kecamatan;
                     this.btnLoadingKab=false;
                 });
@@ -385,10 +385,10 @@ export default {
         },
         kecamatan_id(val)
         {
-            if (val.id != null && val.id != '')
+            if (val.id != null && val.id != "")
             {
                 this.btnLoadingKec=true;
-                this.$ajax.get('/datamaster/kecamatan/'+val.id+'/desa').then(({data})=>{                                
+                this.$ajax.get("/datamaster/kecamatan/'+val.id+'/desa").then(({data})=>{                                
                     this.daftar_desa=data.desa;
                     this.btnLoadingKec=false;
                 });
@@ -397,7 +397,7 @@ export default {
         kode_fakultas (val)
         {
             this.btnLoadingFakultas=true;
-            this.$ajax.get('/datamaster/fakultas/'+val+'/programstudi').then(({data})=>{                                
+            this.$ajax.get("/datamaster/fakultas/" + val + "/programstudi").then(({data})=>{                                
                 this.daftar_prodi=data.programstudi;
                 this.btnLoadingFakultas=false;
             });

@@ -80,52 +80,52 @@
 </template>
 <script>
 import AkademikLayout from '@/views/layouts/AkademikLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 import DataKRS from '@/components/DataKRS';
 export default {
-    name: 'PerkuliahanKRSDetail',
-    created () {
+    name: "PerkuliahanKRSDetail",
+    created() {
         this.krs_id=this.$route.params.krsid;        
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
             },
             {
-                text: 'AKADEMIK',
+                text: "AKADEMIK",
                 disabled: false,
-                href: '/akademik'
+                href: "/akademik",
             },
             {
-                text: 'PERKULIAHAN',
+                text: "PERKULIAHAN",
                 disabled: false,
-                href: '#'
+                href: "#"
             },
             {
-                text: 'KRS',
+                text: "KRS",
                 disabled: false,
-                href: '/akademik/perkuliahan/krs/daftar'
+                href: "/akademik/perkuliahan/krs/daftar"
             },
             {
-                text: 'DETAIL',
+                text: "DETAIL",
                 disabled: true,
-                href: '#'
+                href: "#"
             },
         ];
         this.fetchKRS();               
     },  
     data: () => ({ 
         firstloading: true,        
-        nama_prodi:null,
-        tahun_akademik:null,        
-        semester_akademik:null,
+        nama_prodi: null,
+        tahun_akademik: null,        
+        semester_akademik: null,
     
         btnLoading: false, 
         btnLoadingTable: false,
 
         //formdata
-        krs_id:null,
+        krs_id: null,
         datakrs: {},
         
         //table        
@@ -133,18 +133,18 @@ export default {
         expanded: [],
         datatable: [],      
         headers: [
-            { text: 'KODE', value: 'kmatkul', sortable: true,width:120  },   
-            { text: 'NAMA MATAKULIAH', value: 'nmatkul',sortable: true },               
-            { text: 'SKS', value: 'sks', sortable: false,width:50 },                           
-            { text: 'SMT', value: 'semester', sortable: false,width:50 },                           
-            { text: 'KELAS', value: 'nama_kelas', sortable: false,width:200 },                           
-            { text: 'NAMA DOSEN', value: 'nama_dosen', sortable: false,width:200 },                                                                
+            { text: "KODE", value: "kmatkul", sortable: true,width:120  },   
+            { text: "NAMA MATAKULIAH", value: "nmatkul",sortable: true },               
+            { text: "SKS", value: "sks", sortable: false,width:50 },                           
+            { text: "SMT", value: "semester", sortable: false,width:50 },                           
+            { text: "KELAS", value: "nama_kelas", sortable: false,width:200 },                           
+            { text: "NAMA DOSEN", value: "nama_dosen", sortable: false,width:200 },                                                                
         ],  
     }),
     methods: {          
         async fetchKRS()
         {
-            await this.$ajax.get('/akademik/perkuliahan/krs/'+this.krs_id,                        
+            await this.$ajax.get("/akademik/perkuliahan/krs/" + this.krs_id,                        
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]

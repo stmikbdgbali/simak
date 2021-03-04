@@ -173,8 +173,8 @@
                             <td :colspan="headers.length" class="text-center">
                                 <v-col cols="12">                          
                                     <strong>userid:</strong>{{ item.user_id }}          
-                                    <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
-                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
+                                    <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
+                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
                                 </v-col>                                
                             </td>
                         </template>
@@ -193,31 +193,31 @@
 <script>
 
 import AkademikLayout from '@/views/layouts/AkademikLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 import Filter7 from '@/components/sidebar/FilterMode7';
 export default {
-    name: 'MHSBelumPunyaNIM',
-    created () {
+    name: "MHSBelumPunyaNIM",
+    created() {
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
             },
             {
-                text: 'AKADEMIK',
+                text: "AKADEMIK",
                 disabled: false,
-                href: '/akademik'
+                href: "/akademik",
             },
             {
-                text: 'DAFTAR ULANG',
+                text: "DAFTAR ULANG",
                 disabled: false,
-                href: '#'
+                href: "#"
             },
             {
-                text: 'MAHASISWA BARU BELUM PUNYA NIM',
+                text: "MAHASISWA BARU BELUM PUNYA NIM",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];
         let prodi_id=this.$store.getters['uiadmin/getProdiID'];
@@ -228,20 +228,20 @@ export default {
     },  
     data: () => ({ 
         firstloading: true,
-        prodi_id:null,
-        nama_prodi:null,
-        tahun_pendaftaran:null,        
+        prodi_id: null,
+        nama_prodi: null,
+        tahun_pendaftaran: null,        
 
         btnLoading: false,
         datatableLoading: false,
         expanded: [],
         datatable: [],      
         headers: [
-            { text: 'NO. FORMULIR', value: 'no_formulir', sortable: true,width:150  },   
-            { text: 'NAMA MAHASISWA', value: 'nama_mhs',sortable: true },               
-            { text: 'TELP. HP', value: 'telp_hp', sortable: true,width:150 },               
-            { text: 'KELAS', value: 'idkelas',sortable: true,width:120, },                           
-            { text: 'AKSI', value: 'actions', sortable: false,width:100 },
+            { text: "NO. FORMULIR", value: "no_formulir", sortable: true,width:150  },   
+            { text: "NAMA MAHASISWA", value: "nama_mhs",sortable: true },               
+            { text: "TELP. HP", value: "telp_hp", sortable: true,width:150 },               
+            { text: "KELAS", value: "idkelas",sortable: true,width:120, },                           
+            { text: "AKSI", value: "actions", sortable: false,width:100 },
         ],  
         search: "", 
         
@@ -255,20 +255,20 @@ export default {
         formdata: {                        
             nim: "",
             nirm: "",
-            dosen_id: ''           
+            dosen_id: ""           
         },
         formdefault: {                        
             nim: "",
             nirm: "",
-            dosen_id: ''           
+            dosen_id: ""           
         },
         rule_nim: [
             value => !!value || "Nomor Induk Mahasiswa (NIM) mohon untuk diisi !!!",
-            value => /^[0-9]+$/.test(value) || 'Nomor Induk Mahasiswa (NIM) hanya boleh angka',
+            value => /^[0-9]+$/.test(value) || "Nomor Induk Mahasiswa (NIM) hanya boleh angka",
         ], 
         rule_nirm: [
             value => !!value || "Nomor Induk Registrasi Masuk (NIRM) mohon untuk diisi !!!",
-            value => /^[0-9]+$/.test(value) || 'Nomor Induk Registrasi Masuk (NIRM) hanya boleh angka',
+            value => /^[0-9]+$/.test(value) || "Nomor Induk Registrasi Masuk (NIRM) hanya boleh angka",
         ], 
         rule_dw: [
             value => !!value || "Mohon dipilih Dosen Wali untuk Mahasiswa ini !!!"
@@ -277,16 +277,16 @@ export default {
     methods: {
         changeTahunPendaftaran (tahun)
         {
-            this.tahun_pendaftaran=tahun;
+            this.tahun_pendaftaran = tahun;
         },
         changeProdi (id)
         {
-            this.prodi_id=id;
+            this.prodi_id = id;
         },
         initialize: async function() 
         {
-            this.datatableLoading=true;
-            await this.$ajax.post('/akademik/dulang/mhsbelumpunyanim',
+            this.datatableLoading = true;
+            await this.$ajax.post("/akademik/dulang/mhsbelumpunyanim",
             {
                 prodi_id: this.prodi_id,
                 ta: this.tahun_pendaftaran
@@ -297,27 +297,27 @@ export default {
                 }
             }).then(({ data })=>{               
                 this.datatable = data.mahasiswa;
-                this.datatableLoading=false;
+                this.datatableLoading = false;
             }).catch(()=>{
-                this.datatableLoading=false;
+                this.datatableLoading = false;
             });  
-            this.firstloading=false;
+            this.firstloading = false;
             this.$refs.filter7.setFirstTimeLoading(this.firstloading); 
         },
         dataTableRowClicked(item)
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded = [];                
             }
             else
             {
-                this.expanded=[item];
+                this.expanded = [item];
             }               
         },
         async addItem (item)
         {
-            await this.$ajax.get('/akademik/dosenwali',{
+            await this.$ajax.get("/akademik/dosenwali",{
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
@@ -331,7 +331,7 @@ export default {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading=true;  
-                this.$ajax.post('/akademik/dulang/mhsbelumpunyanim/store',
+                this.$ajax.post("/akademik/dulang/mhsbelumpunyanim/store",
                 {
                     user_id: this.data_mhs.user_id,
                     nim: this.formdata.nim,

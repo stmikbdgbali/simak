@@ -23,7 +23,7 @@
                                     <tr>
                                         <td width="120">Tanggal Faktur</td>
                                         <td width="15">:</td>
-                                        <td>{{$date(data_transaksi.created_at).format('DD/MM/YYYY HH:mm')}}</td>
+                                        <td>{{$date(data_transaksi.created_at).format("DD/MM/YYYY HH:mm")}}</td>
                                     </tr>
                                     <tr>
                                         <td>Kode Billing</td>
@@ -79,15 +79,15 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
-    name: 'TransaksiInvoice',
+    name: "TransaksiInvoice",
     created()
     {
         this.transaksi_id=this.$route.params.transaksi_id;   
         this.initialize();
     },
     data: () => ({
-        transaksi_id:null,
-        data_transaksi:null,
+        transaksi_id: null,
+        data_transaksi: null,
         transaksi_detail: [],
 
         datatableLoading: false,       
@@ -102,20 +102,20 @@ export default {
             header_address: "",
         },
         headers_detail: [
-            { text: 'KODE', value: 'kombi_id',width:50,sortable: false },
-            { text: 'NAMA KOMPONEN', value: 'nama_kombi',sortable: false },
-            { text: 'BIAYA', value: 'biaya',width:60,sortable: false },
-            { text: 'JUMLAH', value: 'jumlah',width:60,sortable: false },
-            { text: 'BULAN', value: 'bulan',width:60,sortable: false },
-            { text: 'JUMLAH', value: 'sub_total',width:60,sortable: false },
+            { text: "KODE", value: "kombi_id",width:50,sortable: false },
+            { text: "NAMA KOMPONEN", value: "nama_kombi",sortable: false },
+            { text: "BIAYA", value: "biaya",width:60,sortable: false },
+            { text: "JUMLAH", value: "jumlah",width:60,sortable: false },
+            { text: "BULAN", value: "bulan",width:60,sortable: false },
+            { text: "JUMLAH", value: "sub_total",width:60,sortable: false },
         ],
     }),    
     methods: {
         initialize: async function() 
         {
-            this.datatableLoading=true;
+            this.datatableLoading = true;
 
-            await this.$ajax.get('/system/setting/variables',
+            await this.$ajax.get("/system/setting/variables",
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
@@ -129,7 +129,7 @@ export default {
                 this.headers.header_address=setting.HEADER_ADDRESS;
             });          
             
-            await this.$ajax.get('/keuangan/transaksi/'+this.transaksi_id,                        
+            await this.$ajax.get("/keuangan/transaksi/" + this.transaksi_id,                        
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
@@ -137,17 +137,17 @@ export default {
             }).then(({ data })=>{       
                 this.data_transaksi=data.transaksi;                                       
                 this.transaksi_detail = data.transaksi_detail;                
-                this.datatableLoading=false;
+                this.datatableLoading = false;
             }).catch(()=>{
-                this.datatableLoading=false;
+                this.datatableLoading = false;
                 this.errormessage='Gagal memperoleh data';
             });
 
         },
     },    
     computed : {
-        ...mapGetters('uifront',{
-            namaPTAlias: 'getNamaPTAlias'
+        ...mapGetters("uifront",{
+            namaPTAlias: "getNamaPTAlias"
         })
     }
 }

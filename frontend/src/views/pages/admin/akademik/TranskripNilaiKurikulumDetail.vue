@@ -52,7 +52,7 @@
                                         class="ma-2" 
                                         @click.stop="printpdf1"
                                         :loading="btnLoading"
-                                        :disabled="btnLoading || !data_mhs.hasOwnProperty('user_id')">
+                                        :disabled="btnLoading || !data_mhs.hasOwnProperty("user_id")">
                                         <v-icon>mdi-printer</v-icon>
                                     </v-btn>     
                                 </template>
@@ -70,7 +70,7 @@
                                         class="ma-2" 
                                         @click.stop="printpdf2"
                                         :loading="btnLoading"
-                                        :disabled="btnLoading || !data_mhs.hasOwnProperty('user_id')">
+                                        :disabled="btnLoading || !data_mhs.hasOwnProperty("user_id")">
                                         <v-icon>mdi-printer</v-icon>
                                     </v-btn>     
                                 </template>
@@ -198,8 +198,8 @@
                             <td :colspan="headers.length" class="text-center">
                                 <v-col cols="12">
                                     <strong>ID:</strong>{{ item.krsmatkul_id }}
-                                    <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
-                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
+                                    <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
+                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
                                 </v-col>                                
                             </td>
                         </template>
@@ -215,38 +215,38 @@
 </template>
 <script>
 import AkademikLayout from '@/views/layouts/AkademikLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 import ProfilMahasiswa from '@/components/ProfilMahasiswaLama';
 
 export default {
-    name: 'TranskripNilaiKurikulumDetail',
-    created () {
+    name: "TranskripNilaiKurikulumDetail",
+    created() {
         this.user_id=this.$route.params.user_id;        
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
             },
             {
-                text: 'AKADEMIK',
+                text: "AKADEMIK",
                 disabled: false,
-                href: '/akademik'
+                href: "/akademik",
             },
             {
-                text: 'NILAI',
+                text: "NILAI",
                 disabled: false,
-                href: '#'
+                href: "#"
             },
             {
-                text: 'TRANSKRIP KURIKULUM',
+                text: "TRANSKRIP KURIKULUM",
                 disabled: false,
-                href: '/akademik/nilai/transkripkurikulum'
+                href: "/akademik/nilai/transkripkurikulum"
             },
             {
-                text: 'DETAIL',
+                text: "DETAIL",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];
         let prodi_id=this.$store.getters['uiadmin/getProdiID'];
@@ -256,27 +256,27 @@ export default {
         this.initialize()
     },  
     data: () => ({ 
-        user_id:null,
+        user_id: null,
         firstloading: true,
-        prodi_id:null,
-        nama_prodi:null,
-        tahun_pendaftaran:null,
+        prodi_id: null,
+        nama_prodi: null,
+        tahun_pendaftaran: null,
 
         btnLoading: false,
         btnLoadingTable: false,
         datatableLoading: false,        
         datatable: [],      
         headers: [            
-            { text: 'NO', value: 'no', sortable: true,width:50  },               
-            { text: 'MATAKULIAH', value: 'nmatkul',sortable: true,width:350 },                           
-            { text: 'KODE', value: 'kmatkul',sortable: true,width:120, },                           
-            { text: 'SMT', value: 'semester',sortable: true,width:80, },                           
-            { text: 'KLP', value: 'group_alias',sortable: true,width:100, },                           
-            { text: 'HM', value: 'HM',sortable: false,width:100, },                           
-            { text: 'AM', value: 'AM',sortable: false,width:100, },                           
-            { text: 'K', value: 'sks',sortable: true,width:100, },                           
-            { text: 'M', value: 'M', sortable: false,width:100 },
-            { text: 'AKSI', value: 'actions', sortable: false,width:50 },
+            { text: "NO", value: "no", sortable: true,width:50  },               
+            { text: "MATAKULIAH", value: "nmatkul",sortable: true,width:350 },                           
+            { text: "KODE", value: "kmatkul",sortable: true,width:120, },                           
+            { text: "SMT", value: "semester",sortable: true,width:80, },                           
+            { text: "KLP", value: "group_alias",sortable: true,width:100, },                           
+            { text: "HM", value: "HM",sortable: false,width:100, },                           
+            { text: "AM", value: "AM",sortable: false,width:100, },                           
+            { text: "K", value: "sks",sortable: true,width:100, },                           
+            { text: "M", value: "M", sortable: false,width:100 },
+            { text: "AKSI", value: "actions", sortable: false,width:50 },
         ],  
         search: "", 
 
@@ -292,31 +292,31 @@ export default {
         data_history: [],
         expanded: [],
         history_headers: [                                    
-            { text: 'NILAI HURUF', value: 'n_kual',sortable: true,width:80, },                                       
-            { text: 'NILAI AKHIR', value: 'n_kuan',sortable: false,width:100, },                           
-            { text: 'NILAI MUTU', value: 'n_mutu',sortable: true,width:100, },                           
-            { text: 'TA.SMT', value: 'tasmt',sortable: false,width:100, },                           
-            { text: 'TA.MATKUL', value: 'ta_matkul',sortable: false,width:100, },                                       
-            { text: 'DI INPUT OLEH', value: 'username',sortable: false,width:100, },                                       
+            { text: "NILAI HURUF", value: "n_kual",sortable: true,width:80, },                                       
+            { text: "NILAI AKHIR", value: "n_kuan",sortable: false,width:100, },                           
+            { text: "NILAI MUTU", value: "n_mutu",sortable: true,width:100, },                           
+            { text: "TA.SMT", value: "tasmt",sortable: false,width:100, },                           
+            { text: "TA.MATKUL", value: "ta_matkul",sortable: false,width:100, },                                       
+            { text: "DI INPUT OLEH", value: "username",sortable: false,width:100, },                                       
         ],  
 
         dialoghistory: false,
         dialogprintpdf: false,
-        file_pdf:null
+        file_pdf: null
     }),
     methods: {
         changeTahunPendaftaran (tahun)
         {
-            this.tahun_pendaftaran=tahun;
+            this.tahun_pendaftaran = tahun;
         },
         changeProdi (id)
         {
-            this.prodi_id=id;
+            this.prodi_id = id;
         },
         initialize: async function() 
         {
-            this.datatableLoading=true;
-            await this.$ajax.get('/akademik/nilai/transkripkurikulum/'+this.user_id,           
+            this.datatableLoading = true;
+            await this.$ajax.get("/akademik/nilai/transkripkurikulum/" + this.user_id,           
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
@@ -330,16 +330,16 @@ export default {
                 this.ipk=data.ipk;
 
                 this.datatable=data.nilai_matakuliah;
-                this.datatableLoading=false;
+                this.datatableLoading = false;
             }).catch(()=>{
-                this.datatableLoading=false;
+                this.datatableLoading = false;
             });  
-            this.firstloading=false;                        
+            this.firstloading = false;                        
         },        
         async viewItem(item)
         {
             this.btnLoading=true;
-            await this.$ajax.post('/akademik/nilai/transkripkurikulum/'+item.id+'/history',                
+            await this.$ajax.post("/akademik/nilai/transkripkurikulum/" + item.id + "/history",                
                 {
                     user_id: this.data_mhs.user_id,
                 },
@@ -362,17 +362,17 @@ export default {
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded = [];                
             }
             else
             {
-                this.expanded=[item];
+                this.expanded = [item];
             }               
         },
         async printpdf1()
         {
             this.btnLoading=true;
-            await this.$ajax.get('/akademik/nilai/transkripkurikulum/printpdf1/'+this.data_mhs.user_id,                
+            await this.$ajax.get("/akademik/nilai/transkripkurikulum/printpdf1/" + this.data_mhs.user_id,                
                 {
                     headers: {
                         Authorization: this.$store.getters["auth/Token"]
@@ -390,7 +390,7 @@ export default {
         async printpdf2()
         {
             this.btnLoading=true;
-            await this.$ajax.get('/akademik/nilai/transkripkurikulum/printpdf2/'+this.data_mhs.user_id,                
+            await this.$ajax.get("/akademik/nilai/transkripkurikulum/printpdf2/" + this.data_mhs.user_id,                
                 {
                     headers: {
                         Authorization: this.$store.getters["auth/Token"]

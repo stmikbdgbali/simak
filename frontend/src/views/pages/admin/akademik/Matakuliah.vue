@@ -296,7 +296,7 @@
                                                     <v-card flat>
                                                         <v-card-title>SYARAT SKRIPSI :</v-card-title>
                                                         <v-card-subtitle>
-                                                            {{formdata.syarat_skripsi == 1 ? 'YA' : 'TIDAK'}}
+                                                            {{formdata.syarat_skripsi == 1 ? "YA" : "TIDAK"}}
                                                         </v-card-subtitle>
                                                     </v-card>
                                                 </v-col>
@@ -316,7 +316,7 @@
                                                     <v-card flat>
                                                         <v-card-title>STATUS :</v-card-title>
                                                         <v-card-subtitle>
-                                                            {{formdata.status == 1 ? 'AKTIF' : 'NON-AKTIF'}}
+                                                            {{formdata.status == 1 ? "AKTIF" : "NON-AKTIF"}}
                                                         </v-card-subtitle>
                                                     </v-card>
                                                 </v-col>
@@ -394,8 +394,8 @@
                             <td :colspan="headers.length" class="text-center">
                                 <v-col cols="12">                          
                                     <strong>ID:</strong>{{ item.id }}          
-                                    <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
-                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
+                                    <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
+                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
                                 </v-col>                                
                             </td>
                         </template>
@@ -423,31 +423,31 @@
 <script>
 import {mapGetters} from "vuex";
 import AkademikLayout from '@/views/layouts/AkademikLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 import Filter18 from '@/components/sidebar/FilterMode18';
 export default {
-    name: 'Matakuliah',
-    created () {
+    name: "Matakuliah",
+    created() {
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.ACCESS_TOKEN
+                href: "/dashboard/" + this.ACCESS_TOKEN
             },
             {
-                text: 'AKADEMIK',
+                text: "AKADEMIK",
                 disabled: false,
-                href: '/akademik'
+                href: "/akademik",
             },
             {
-                text: 'PERKULIAHAN',
+                text: "PERKULIAHAN",
                 disabled: false,
-                href: '#'
+                href: "#"
             },
             {
-                text: 'MATAKULIAH',
+                text: "MATAKULIAH",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];
         let prodi_id=this.$store.getters['uiadmin/getProdiID'];
@@ -458,22 +458,22 @@ export default {
     },  
     data: () => ({ 
         firstloading: true,
-        prodi_id:null,
-        nama_prodi:null,
-        tahun_akademik:null,        
+        prodi_id: null,
+        nama_prodi: null,
+        tahun_akademik: null,        
 
         btnLoading: false,
         datatableLoading: false,
         expanded: [],
         datatable: [],      
         headers: [
-            { text: 'KODE', value: 'kmatkul', sortable: true,width:120  },   
-            { text: 'NAMA MATAKULIAH', value: 'nmatkul',sortable: true },               
-            { text: 'KELOMPOK', value: 'group_alias', sortable: true,width:120 },               
-            { text: 'SKS', value: 'sks',sortable: true,width:80, align: 'center' },               
-            { text: 'SMT', value: 'semester', sortable: true,width:80 },               
-            { text: 'JUMLAH PENYELENGGARAAN', value: 'jummlah_penyelenggaraan', sortable: true,width:100 },               
-            { text: 'AKSI', value: 'actions', sortable: false,width:100 },
+            { text: "KODE", value: "kmatkul", sortable: true,width:120  },   
+            { text: "NAMA MATAKULIAH", value: "nmatkul",sortable: true },               
+            { text: "KELOMPOK", value: "group_alias", sortable: true,width:120 },               
+            { text: "SKS", value: "sks",sortable: true,width:80, align: "center" },               
+            { text: "SMT", value: "semester", sortable: true,width:80 },               
+            { text: "JUMLAH PENYELENGGARAAN", value: "jummlah_penyelenggaraan", sortable: true,width:100 },               
+            { text: "AKSI", value: "actions", sortable: false,width:100 },
         ],  
         search: "",    
 
@@ -485,7 +485,7 @@ export default {
         //form data   
         form_valid: true, 
         daftar_ta: [],         
-        dari_tahun_akademik:null,  
+        dari_tahun_akademik: null,  
         group_matakuliah: [],   
         daftar_konsentrasi: [],   
         daftar_semester: [
@@ -495,37 +495,37 @@ export default {
             1,2,3,4,5,6,7,8,9,10,11,12
         ],
         daftar_nilai: [
-            'A',
-            'A-',
-            'A/B',
-            '(B+)',
-            'B',
-            'B-',
-            'B/C',
-            '(C+)',
-            'C',
-            'C-',
-            'C/D',
-            '(D+)',
-            'D',
-            'E'
+            "A",
+            "A-",
+            "A/B",
+            "(B+)",
+            "B",
+            "B-",
+            "B/C",
+            "(C+)",
+            "C",
+            "C-",
+            "C/D",
+            "(D+)",
+            "D",
+            "E",
         ],
         formdata: {
             id: "",                        
-            id_group:null,                        
-            nama_group:null,                        
-            group_alias:null, 
+            id_group: null,                        
+            nama_group: null,                        
+            group_alias: null, 
             kmatkul: "",         
             nmatkul: "", 
             sks: "", 
-            idkonsentrasi:null, 
+            idkonsentrasi: null, 
             ispilihan: false, 
             islintas_prodi: false, 
             semester: "", 
             sks_tatap_muka: "", 
-            sks_praktikum:null, 
-            sks_praktik_lapangan:null, 
-            minimal_nilai: 'C', 
+            sks_praktikum: null, 
+            sks_praktik_lapangan: null, 
+            minimal_nilai: "C", 
             syarat_skripsi: true, 
             status: true, 
             ta: "", 
@@ -534,20 +534,20 @@ export default {
         },
         formdefault: {
             id: "",                        
-            id_group:null,                        
-            nama_group:null,                        
-            group_alias:null, 
+            id_group: null,                        
+            nama_group: null,                        
+            group_alias: null, 
             kmatkul: "",         
             nmatkul: "", 
             sks: "", 
-            idkonsentrasi:null, 
+            idkonsentrasi: null, 
             ispilihan: false, 
             islintas_prodi: false, 
             semester: "", 
             sks_tatap_muka: "", 
-            sks_praktikum:null, 
-            sks_praktik_lapangan:null, 
-            minimal_nilai: 'C', 
+            sks_praktikum: null, 
+            sks_praktik_lapangan: null, 
+            minimal_nilai: "C", 
             syarat_skripsi: true, 
             status: true, 
             ta: "", 
@@ -589,12 +589,12 @@ export default {
         },
         changeProdi (id)
         {
-            this.prodi_id=id;
+            this.prodi_id = id;
         },
         initialize: async function() 
         {
-            this.datatableLoading=true;
-            await this.$ajax.post('/akademik/matakuliah',
+            this.datatableLoading = true;
+            await this.$ajax.post("/akademik/matakuliah",
             {
                 prodi_id: this.prodi_id,
                 ta: this.tahun_akademik
@@ -605,27 +605,27 @@ export default {
                 }
             }).then(({ data })=>{               
                 this.datatable = data.matakuliah;
-                this.datatableLoading=false;
+                this.datatableLoading = false;
             }).catch(()=>{
-                this.datatableLoading=false;
+                this.datatableLoading = false;
             });  
-            this.firstloading=false;
+            this.firstloading = false;
             this.$refs.filter18.setFirstTimeLoading(this.firstloading); 
         },
         dataTableRowClicked(item)
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded = [];                
             }
             else
             {
-                this.expanded=[item];
+                this.expanded = [item];
             }               
         },
-        tambahItem:async function()
+        tambahItem: async function()
         {   
-            await this.$ajax.get('/akademik/groupmatakuliah',
+            await this.$ajax.get("/akademik/groupmatakuliah",
             {
                 headers: {
                     Authorization: this.TOKEN
@@ -635,9 +635,9 @@ export default {
             });            
             this.dialogfrm=true;
         },
-        async viewItem (item) {
-            this.formdata=item;      
-            await this.$ajax.get('/akademik/matakuliah/'+item.id,
+        async viewItem(item) {
+            this.formdata = item;    
+            await this.$ajax.get("/akademik/matakuliah/" + item.id,
             {
                 headers: {
                     Authorization: this.TOKEN
@@ -645,11 +645,11 @@ export default {
             }).then(({ data })=>{
                 this.formdata=data.matakuliah;
             });
-            this.dialogdetailitem=true;                        
+            this.dialogdetailitem = true;                      
         },    
-        editItem:async function (item) {            
+        editItem: async function(item) {            
             this.editedIndex = this.datatable.indexOf(item);            
-            await this.$ajax.get('/akademik/groupmatakuliah',
+            await this.$ajax.get("/akademik/groupmatakuliah",
             {
                 headers: {
                     Authorization: this.TOKEN
@@ -658,7 +658,7 @@ export default {
                 this.group_matakuliah=data.group_matakuliah;
             });  
 
-            await this.$ajax.get('/akademik/matakuliah/'+item.id,
+            await this.$ajax.get("/akademik/matakuliah/" + item.id,
             {
                 headers: {
                     Authorization: this.TOKEN
@@ -684,15 +684,15 @@ export default {
             }            
             this.dialogcopymatkul=true;
         },
-        save:async function() {
+        save: async function() {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading=true;
                 if (this.editedIndex > -1) 
                 {
-                    await this.$ajax.post('/akademik/matakuliah/'+this.formdata.id,
+                    await this.$ajax.post("/akademik/matakuliah/" + this.formdata.id,
                         {
-                            '_method': 'PUT',
+                            _method: "PUT",
                             id_group: this.formdata.id_group,                                                    
                             nama_group: this.formdata.nama_group,                                                    
                             group_alias: this.formdata.group_alias,                                                    
@@ -727,7 +727,7 @@ export default {
                     });                 
                     
                 } else {                    
-                    await this.$ajax.post('/akademik/matakuliah/store',
+                    await this.$ajax.post("/akademik/matakuliah/store",
                         {
                             id_group: this.formdata.id_group, 
                             nama_group: this.formdata.nama_group,                                                    
@@ -768,7 +768,7 @@ export default {
             if (this.$refs.frmdialogcopymatkul.validate())
             {
                 this.btnLoading=true;
-                this.$ajax.post('/akademik/matakuliah/salinmatkul/'+this.tahun_akademik,
+                this.$ajax.post("/akademik/matakuliah/salinmatkul/" + this.tahun_akademik,
                     {
                         dari_tahun_akademik: this.dari_tahun_akademik,
                         prodi_id: this.prodi_id,
@@ -788,13 +788,13 @@ export default {
             }
         },
         deleteItem (item) {           
-            this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus matakuliah '+item.nmatkul+' ?', { color: 'red' }).then((confirm) => {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus matakuliah '+item.nmatkul+' ?", { color: "red" }).then((confirm) => {
                 if (confirm)
                 {
                     this.btnLoading=true;
-                    this.$ajax.post('/akademik/matakuliah/'+item.id,
+                    this.$ajax.post("/akademik/matakuliah/" + item.id,
                         {
-                            '_method': 'DELETE',
+                            _method: "DELETE",
                         },
                         {
                             headers: {
@@ -838,12 +838,12 @@ export default {
         },
     },
     computed: {
-        ...mapGetters('auth',{            
-            ACCESS_TOKEN: 'AccessToken',          
-            TOKEN: 'Token',                                  
+        ...mapGetters("auth",{            
+            ACCESS_TOKEN: "AccessToken",          
+            TOKEN: "Token",                                  
         }),
         formTitle () {
-            return this.editedIndex === -1 ? 'TAMBAH DATA' : 'UBAH DATA'
+            return this.editedIndex === -1 ? "TAMBAH DATA" : "UBAH DATA"
         },    
         totalSKS()
         {

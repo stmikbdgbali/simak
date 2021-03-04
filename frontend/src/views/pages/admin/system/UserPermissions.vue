@@ -89,7 +89,7 @@
                         <v-card flat class="mb-2">
                             <v-card-title>CREATED/UPDATED:</v-card-title>  
                             <v-card-subtitle>
-                                {{$date(user.created_at).format('DD/MM/YYYY HH:mm')}} ~ {{$date(user.updated_at).format('DD/MM/YYYY HH:mm')}}
+                                {{$date(user.created_at).format("DD/MM/YYYY HH:mm")}} ~ {{$date(user.updated_at).format("DD/MM/YYYY HH:mm")}}
                             </v-card-subtitle>
                         </v-card>
                     </v-col>
@@ -163,7 +163,7 @@
 </template>
 <script>
 export default {
-    name: 'UserPermissions',
+    name: "UserPermissions",
     mounted()
     {
         this.role_name=this.role_default;
@@ -174,13 +174,13 @@ export default {
         datatableLoading: false,
         //tables
         headers: [                        
-            { text: 'NAMA PERMISSION', value: 'name' },
-            { text: 'GUARD', value: 'guard_name' },   
-            { text: 'AKSI', value: 'actions', sortable: false,width:100 },         
+            { text: "NAMA PERMISSION", value: "name" },
+            { text: "GUARD", value: "guard_name" },   
+            { text: "AKSI", value: "actions", sortable: false,width:100 },         
         ],
         search: "",
 
-        role_name:null,
+        role_name: null,
         daftar_role: [],
 
         daftar_permissions: [],
@@ -199,7 +199,7 @@ export default {
     methods: {
         initialize()
         {
-            this.$ajax.get('/system/users/'+this.user.id+'/roles',                
+            this.$ajax.get("/system/users/" + this.user.id+"/roles",                
                 {
                     headers: {
                         Authorization: this.$store.getters["auth/Token"]
@@ -212,7 +212,7 @@ export default {
         save()
         {
             this.btnLoading=true;
-            this.$ajax.post('/system/users/storeuserpermissions',
+            this.$ajax.post("/system/users/storeuserpermissions",
                 {
                     user_id: this.user.id,
                     chkpermission: this.permissions_selected
@@ -231,7 +231,7 @@ export default {
         revoke(item)
         {   
             this.btnLoading=true;         
-            this.$ajax.post('/system/users/revokeuserpermissions',
+            this.$ajax.post("/system/users/revokeuserpermissions",
                 {
                     user_id: this.user.id,
                     name:item.name
@@ -249,13 +249,13 @@ export default {
         },
         exit()
         {
-            this.$emit('closeUserPermissions');           
+            this.$emit("closeUserPermissions");           
         }
     },
     computed: {
         role_user()
         {
-            return this.daftar_role.join(',').toUpperCase();
+            return this.daftar_role.join(",").toUpperCase();
         }
     },
     watch: {
@@ -263,22 +263,22 @@ export default {
         {
             if(val)
             {
-                this.datatableLoading=true;
-                await this.$ajax.get('/system/setting/rolesbyname/'+this.role_name+'/permission',{
+                this.datatableLoading = true;
+                await this.$ajax.get("/system/setting/rolesbyname/" + this.role_name + "/permission",{
                     headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     }
                 }).then(({ data })=>{
                     this.daftar_permissions = data.permissions;
                 });
-                await this.$ajax.get('/system/users/'+this.user.id+'/permission',{
+                await this.$ajax.get("/system/users/" + this.user.id + "/permission",{
                     headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     }
                 }).then(({ data })=>{
                     this.permissions_selected = data.permissions;                    
                 });
-                this.datatableLoading=false;
+                this.datatableLoading = false;
             }
         }
     }

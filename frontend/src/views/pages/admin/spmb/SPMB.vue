@@ -240,22 +240,22 @@
 </template>
 <script>
 import SPMBLayout from '@/views/layouts/SPMBLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 import Filter9 from '@/components/sidebar/FilterMode9';
 export default {
-    name: 'SPMB',
+    name: "SPMB",
     created ()
 	{
 		this.breadcrumbs = [
 			{
-				text: 'HOME',
+				text: "HOME",
 				disabled: false,
-				href: '/dashboard/'+this.$store.getters['auth/AccessToken']
+				href: "/dashboard/" + this.$store.getters['auth/AccessToken']
 			},
 			{
-				text: 'SPMB',
+				text: "SPMB",
 				disabled: true,
-				href: '#'
+				href: "#"
 			}
         ];				
         this.tahun_pendaftaran = this.$store.getters['uiadmin/getTahunPendaftaran']; 
@@ -283,20 +283,20 @@ export default {
         total_tidak_lulus:0,
         daftar_tidak_lulus: [],        
         headers: [                        
-            { text: 'NAMA PRODI', value: 'nama_prodi', sortable: false},               
-            { text: 'JENJANG', value: 'nama_jenjang', sortable: false},               
-            { text: 'JUMLAH', align: 'end',value: 'jumlah', sortable: false},                
+            { text: "NAMA PRODI", value: "nama_prodi", sortable: false},               
+            { text: "JENJANG", value: "nama_jenjang", sortable: false},               
+            { text: "JUMLAH", align: "end",value: "jumlah", sortable: false},                
         ], 
     }),
-    methods : {
+    methods: {
         changeTahunPendaftaran (tahun)
         {
-            this.tahun_pendaftaran=tahun;
+            this.tahun_pendaftaran = tahun;
         },
-		initialize:async function()
+		initialize: async function()
 		{	
-            this.datatableLoading=true;            
-            await this.$ajax.post('/dashboard/pmb',
+            this.datatableLoading = true;            
+            await this.$ajax.post("/dashboard/pmb",
             {
                 TA: this.tahun_pendaftaran,                
             },
@@ -317,11 +317,11 @@ export default {
                 this.daftar_tidak_lulus = data.daftar_tidak_lulus;
                 this.total_tidak_lulus = data.total_tidak_lulus;
 
-                this.datatableLoading=false;
+                this.datatableLoading = false;
             }).catch(()=>{
-                this.datatableLoading=false;
+                this.datatableLoading = false;
             });
-            this.firstloading=false;            
+            this.firstloading = false;            
             this.$refs.filter9.setFirstTimeLoading(this.firstloading); 
         }
     },

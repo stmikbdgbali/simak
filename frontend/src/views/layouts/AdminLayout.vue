@@ -62,101 +62,93 @@
     </div>    
 </template>
 <script>
-import { mapGetters } from "vuex";
-export default {
-    name: 'AdminLayout',  
-    props: {
-        showrightsidebar: {
-            type: Boolean,
-            default: true
-        },
-        temporaryleftsidebar: {
-            type: Boolean,
-            default: false
-        },
-    },      
-    data: () => ({
-        loginTime: 0,
-        drawer: null,
-        drawerRight:null,   
-    }),       
-    methods: {        
-        logout()
-        {
-            this.loginTime = 0;
-            this.$ajax.post("/auth/logout",
-                {},
-                {
-                    headers: {
-                        Authorization: this.TOKEN,
-                    }
-                }
-            ).then(()=> {     
-                this.$store.dispatch("auth/logout");	
-                this.$store.dispatch("uifront/reinit");
-                this.$store.dispatch("uiadmin/reinit");
-                this.$router.push("/");
-            })
-            .catch(() => {
-                this.$store.dispatch("auth/logout");	
-                this.$store.dispatch("uifront/reinit");
-                this.$store.dispatch("uiadmin/reinit");
-                this.$router.push("/");
-            });
-        },
-        isBentukPT (bentuk_pt)
-        {
-            return this.$store.getters['uifront/getBentukPT']==bentuk_pt?true: false;
-        }
-	},
-    computed: {
-        ...mapGetters('auth',{
-            AUTHENTICATED: 'Authenticated',  
-            ACCESS_TOKEN: 'AccessToken',          
-            TOKEN: 'Token', 
-            DEFAULT_ROLE: 'DefaultRole',         
-            ROLE: 'Role',
-            CAN_ACCESS: 'can',         
-            ATTRIBUTE_USER: 'AttributeUser',               
-        }),
-        APP_NAME ()
-        {
-            return process.env.VUE_APP_NAME;
-        },
-        photoUser()
-		{
-			let img=this.ATTRIBUTE_USER("foto");
-			var photo;
-			if (img == '')
-			{
-				photo = this.$api.storageURL+'/storage/images/users/no_photo.png';	
-			}
-			else
-			{
-				photo = this.$api.storageURL+'/'+img;	
-			}
-			return photo;
-        },  
-    },
-    watch: {
-        loginTime: {
-            handler(value)
-            {
-                
-                if (value >= 0)
-                {
-                    setTimeout(() => { 
-                        this.loginTime=this.AUTHENTICATED==true?this.loginTime+1:-1;                                                                     
-					}, 1000);
-                }
-                else
-                {
-                    this.$store.dispatch("auth/logout");
-                    this.$router.replace("/login");
-                }
+    import { mapGetters } from "vuex";
+    export default {
+        name: "AdminLayout",  
+        props: {
+            showrightsidebar: {
+                type: Boolean,
+                default: true
             },
-            immediate: true
-        },        
-    }
-}
+            temporaryleftsidebar: {
+                type: Boolean,
+                default: false
+            },
+        },      
+        data: () => ({
+            loginTime: 0,
+            drawer: null,
+            drawerRight: null,   
+        }),       
+        methods: {        
+            logout()
+            {
+                this.loginTime = 0;
+                this.$ajax.post("/auth/logout",
+                    {},
+                    {
+                        headers: {
+                            Authorization: this.TOKEN,
+                        }
+                    }
+                ).then(()=> {     
+                    this.$store.dispatch("auth/logout");	
+                    this.$store.dispatch("uifront/reinit");
+                    this.$store.dispatch("uiadmin/reinit");
+                    this.$router.push("/");
+                })
+                .catch(() => {
+                    this.$store.dispatch("auth/logout");	
+                    this.$store.dispatch("uifront/reinit");
+                    this.$store.dispatch("uiadmin/reinit");
+                    this.$router.push("/");
+                });
+            },
+            isBentukPT (bentuk_pt)
+            {
+                return this.$store.getters['uifront/getBentukPT']==bentuk_pt?true: false;
+            }
+        },
+        computed: {
+            ...mapGetters("auth",{
+                AUTHENTICATED: "Authenticated",  
+                ACCESS_TOKEN: "AccessToken",          
+                TOKEN: "Token", 
+                DEFAULT_ROLE: "DefaultRole",         
+                ROLE: "Role",
+                CAN_ACCESS: "can",         
+                ATTRIBUTE_USER: "AttributeUser",               
+            }),
+            APP_NAME ()
+            {
+                return process.env.VUE_APP_NAME;
+            },
+            photoUser()
+            {
+                let img=this.ATTRIBUTE_USER("foto");
+                var photo;
+                if (img == "") {
+                    photo = this.$api.storageURL+'/storage/images/users/no_photo.png';	
+                } else {
+                    photo = this.$api.storageURL+'/'+img;	
+                }
+                return photo;
+            },  
+        },
+        watch: {
+            loginTime: {
+                handler(value) {
+                    if (value >= 0) {
+                        setTimeout(() => { 
+                            this.loginTime=this.AUTHENTICATED==true?this.loginTime+1:-1;                                                                     
+                        }, 1000);
+                    } else {
+                        this.$store.dispatch("auth/logout");
+                        this.$router.replace("/login");
+                    }
+                },
+                immediate: true
+            },        
+        },
+    };
 </script>

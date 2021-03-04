@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-system-bar app dark :class="this.$store.getters['uiadmin/getTheme']('V-SYSTEM-BAR-CSS-CLASS')">
+        <v-system-bar app dark :class="this.$store.getters['uiadmin/getTheme']("V-SYSTEM-BAR-CSS-CLASS")">
             <strong>Hak Akses Sebagai :</strong> {{ ROLE }}
 		</v-system-bar>	
         <v-app-bar app>
@@ -76,7 +76,7 @@
 			</v-list-item>
 			<v-divider></v-divider>
             <v-list expand>
-                <v-list-item :to="{path: '/system-migration'}" link  class="yellow" color="green" v-if="CAN_ACCESS('SYSTEM-MIGRATION_BROWSE')">
+                <v-list-item :to="{path: "/system-migration'}" link  class="yellow" color="green" v-if="CAN_ACCESS('SYSTEM-MIGRATION_BROWSE')">
                     <v-list-item-icon class="mr-2">
                         <v-icon>mdi-bank-transfer-in</v-icon>
                     </v-list-item-icon>
@@ -129,7 +129,7 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
-    name: 'SystemMigrationLayout',    
+    name: "SystemMigrationLayout",    
     props: {
         showrightsidebar: {
             type: Boolean,
@@ -147,7 +147,7 @@ export default {
     data: () => ({
         loginTime: 0,
         drawer: null,
-        drawerRight:null, 
+        drawerRight: null, 
         
         dashboard: null,
     }),       
@@ -181,14 +181,14 @@ export default {
         }
 	},
     computed: {
-        ...mapGetters('auth',{
-            AUTHENTICATED: 'Authenticated',  
-            ACCESS_TOKEN: 'AccessToken',          
-            TOKEN: 'Token',      
-            DEFAULT_ROLE: 'DefaultRole',    
-            ROLE: 'Role',
-            CAN_ACCESS: 'can',         
-            ATTRIBUTE_USER: 'AttributeUser',               
+        ...mapGetters("auth",{
+            AUTHENTICATED: "Authenticated",  
+            ACCESS_TOKEN: "AccessToken",          
+            TOKEN: "Token",      
+            DEFAULT_ROLE: "DefaultRole",    
+            ROLE: "Role",
+            CAN_ACCESS: "can",         
+            ATTRIBUTE_USER: "AttributeUser",               
         }),
         APP_NAME ()
         {
@@ -198,7 +198,7 @@ export default {
 		{
 			let img=this.ATTRIBUTE_USER("foto");
 			var photo;
-			if (img == '')
+			if (img == "")
 			{
 				photo = this.$api.url+'/storage/images/users/no_photo.png';	
 			}

@@ -50,7 +50,7 @@
                                     <v-card flat>
                                         <v-card-title>SAH :</v-card-title>
                                         <v-card-subtitle>
-                                            <v-chip label outlined color="info">{{datakrs.sah==1?'YA': 'TIDAK'}}</v-chip>
+                                            <v-chip label outlined color="info">{{datakrs.sah== 1?"YA": "TIDAK"}}</v-chip>
                                         </v-card-subtitle>
                                     </v-card>
                                 </v-col>
@@ -68,7 +68,7 @@
                                     <v-card flat>
                                         <v-card-title>CREATED :</v-card-title>
                                         <v-card-subtitle>
-                                            {{$date(datakrs.created_at).format('DD/MM/YYYY HH:mm')}}
+                                            {{$date(datakrs.created_at).format("DD/MM/YYYY HH:mm")}}
                                         </v-card-subtitle>
                                     </v-card>
                                 </v-col>
@@ -86,7 +86,7 @@
                                     <v-card flat>
                                         <v-card-title>UPDATED :</v-card-title>
                                         <v-card-subtitle>
-                                            {{$date(datakrs.updated_at).format('DD/MM/YYYY HH:mm')}}
+                                            {{$date(datakrs.updated_at).format("DD/MM/YYYY HH:mm")}}
                                         </v-card-subtitle>
                                     </v-card>
                                 </v-col>
@@ -172,51 +172,51 @@
 </template>
 <script>
 import AkademikLayout from '@/views/layouts/AkademikLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 export default {
-    name: 'NilaiKHSDetail',
-    created () {
+    name: "NilaiKHSDetail",
+    created() {
         this.krs_id=this.$route.params.krs_id;          
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
             },
             {
-                text: 'AKADEMIK',
+                text: "AKADEMIK",
                 disabled: false,
-                href: '/akademik'
+                href: "/akademik",
             },
             {
-                text: 'NILAI',
+                text: "NILAI",
                 disabled: false,
-                href: '#'
+                href: "#"
             },
             {
-                text: 'KHS',
+                text: "KHS",
                 disabled: false,
-                href: '/akademik/nilai/khs'
+                href: "/akademik/nilai/khs",
             },
             {
-                text: 'DETAIL',
+                text: "DETAIL",
                 disabled: true,
-                href: '#'
+                href: "#"
             },
         ];
         this.fetchKHS();               
     },  
     data: () => ({ 
         firstloading: true,        
-        nama_prodi:null,
-        tahun_akademik:null,        
-        semester_akademik:null,
+        nama_prodi: null,
+        tahun_akademik: null,        
+        semester_akademik: null,
     
         btnLoading: false, 
         btnLoadingTable: false,
 
         //formdata
-        krs_id:null,
+        krs_id: null,
         datakrs: {},
         
         //table        
@@ -224,13 +224,13 @@ export default {
         expanded: [],
         datatable: [],      
         headers: [
-            { text: 'KODE', value: 'kmatkul', sortable: true,width:100  },   
-            { text: 'NAMA MATAKULIAH', value: 'nmatkul',sortable: true },               
-            { text: 'SKS', value: 'sks', sortable: false,width:50 },                           
-            { text: 'HM', value: 'HM', sortable: false,width:50 },                           
-            { text: 'AM', value: 'AM', sortable: false,width:50 },                           
-            { text: 'M', value: 'M', sortable: false,width:50 },                           
-            { text: 'NAMA DOSEN', value: 'nama_dosen', sortable: false,width:200 },                                                                
+            { text: "KODE", value: "kmatkul", sortable: true,width:100  },   
+            { text: "NAMA MATAKULIAH", value: "nmatkul",sortable: true },               
+            { text: "SKS", value: "sks", sortable: false,width:50 },                           
+            { text: "HM", value: "HM", sortable: false,width:50 },                           
+            { text: "AM", value: "AM", sortable: false,width:50 },                           
+            { text: "M", value: "M", sortable: false,width:50 },                           
+            { text: "NAMA DOSEN", value: "nama_dosen", sortable: false,width:200 },                                                                
         ],  
 
         jumlah_sks:0,
@@ -241,12 +241,12 @@ export default {
         ipk:0,
 
         dialogprintpdf: false,
-        file_pdf:null
+        file_pdf: null
     }),
     methods: {          
         async fetchKHS()
         {
-            await this.$ajax.get('/akademik/nilai/khs/'+this.krs_id,                        
+            await this.$ajax.get("/akademik/nilai/khs/" + this.krs_id,                        
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
@@ -273,7 +273,7 @@ export default {
         async printpdf()
         {
             this.btnLoading=true;
-            await this.$ajax.get('/akademik/nilai/khs/printpdf/'+this.krs_id,                
+            await this.$ajax.get("/akademik/nilai/khs/printpdf/" + this.krs_id,                
                 {
                     headers: {
                         Authorization: this.$store.getters["auth/Token"]

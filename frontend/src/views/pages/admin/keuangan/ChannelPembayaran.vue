@@ -57,8 +57,8 @@
                             <td :colspan="headers.length" class="text-center">
                                 <v-col cols="12">                          
                                     <strong>ID:</strong>{{ item.id_channel }}          
-                                    <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
-                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
+                                    <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
+                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
                                 </v-col>                                
                             </td>
                         </template>
@@ -73,27 +73,27 @@
 </template>
 <script>
 import KeuanganLayout from '@/views/layouts/KeuanganLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 
 export default {
-    name: 'ChannelPembayaran',
+    name: "ChannelPembayaran",
     created()
     {
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
             },
             {
-                text: 'KEUANGAN',
+                text: "KEUANGAN",
                 disabled: false,
-                href: '/keuangan'
+                href: "/keuangan"
             },
             {
-                text: 'CHANNEL PEMBAYARAN',
+                text: "CHANNEL PEMBAYARAN",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];        
         this.initialize();
@@ -107,35 +107,35 @@ export default {
         expanded: [],
         datatable: [],
         headers: [            
-            { text: 'ID', value: 'id_channel',width:10,sortable: false },                                           
-            { text: 'NAMA CHANNEL', value: 'nama_channel',sortable: false},                                   
+            { text: "ID", value: "id_channel",width:10,sortable: false },                                           
+            { text: "NAMA CHANNEL", value: "nama_channel",sortable: false},                                   
         ],      
         
     }),
-    methods : {        
-        initialize:async function()
+    methods: {        
+        initialize: async function()
 		{
-            this.datatableLoading=true;            
-            await this.$ajax.get('/keuangan/channelpembayaran',
+            this.datatableLoading = true;            
+            await this.$ajax.get("/keuangan/channelpembayaran",
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({ data })=>{               
                 this.datatable = data.channel;                
-                this.datatableLoading=false;
+                this.datatableLoading = false;
             });                     
-            this.firstloading=false;                        
+            this.firstloading = false;                        
         },
         dataTableRowClicked(item)
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded = [];                
             }
             else
             {
-                this.expanded=[item];
+                this.expanded = [item];
             }               
         },                
     },   

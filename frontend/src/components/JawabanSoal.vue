@@ -9,7 +9,7 @@
 </template>
 <script>
 export default {
-    name:'JawabanSoal',
+    name: "JawabanSoal",
     created ()
     {
              
@@ -17,32 +17,32 @@ export default {
     props:{
         index:{
             type:Number,
-            required:true
+            required: true
         },
         item:{
             type:Object,
-            required:true
+            required: true
         }
     },
     data:()=>({     
         
     }),
     methods: {        
-        jawabSoal:async function ()
+        jawabSoal: async function ()
         {
-            await this.$ajax.post('/spmb/ujianonline/store',
+            await this.$ajax.post("/spmb/ujianonline/store",
             {
-                user_id:this.$store.getters['auth/AttributeUser']('id'),
-                soal_id:this.item.soal_id,
-                jawaban_id:this.item.id
+                user_id: this.$store.getters['auth/AttributeUser']("id"),
+                soal_id: this.item.soal_id,
+                jawaban_id: this.item.id
             },
             {
                 headers:{
-                    Authorization:this.$store.getters['auth/Token'],                                          
+                    Authorization: this.$store.getters['auth/Token'],                                          
                 }
             }
             ).then(()=>{                                                   
-                this.$emit('selesaiJawab');
+                this.$emit("selesaiJawab");
             }).catch(()=>{
                 
             });

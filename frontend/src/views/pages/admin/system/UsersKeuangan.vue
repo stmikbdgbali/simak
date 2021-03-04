@@ -71,7 +71,7 @@
                                     :disabled="btnLoading"
                                     class="mb-2 mr-2" 
                                     @click.stop="syncPermission" 
-                                    v-if="$store.getters['auth/can']('USER_STOREPERMISSIONS')">
+                                    v-if="$store.getters['auth/can']('USER_STOREPERMISSIONS")">
                                     SYNC PERMISSION
                                 </v-btn>
                                 <v-btn color="primary"                                    
@@ -118,7 +118,7 @@
                                                 <v-text-field 
                                                     v-model="editedItem.password" 
                                                     label="PASSWORD"
-                                                    :type="'password'"
+                                                    :type="password"
                                                     outlined
                                                     :rules="rule_user_password">
                                                 </v-text-field>
@@ -193,7 +193,7 @@
                                                 <v-text-field 
                                                     v-model="editedItem.password" 
                                                     label="PASSWORD"
-                                                    :type="'password'"
+                                                    :type="password"
                                                     outlined
                                                     :rules="rule_user_passwordEdit">
                                                 </v-text-field>   
@@ -271,8 +271,8 @@
                             <td :colspan="headers.length" class="text-center">
                                 <v-col cols="12">
                                     <strong>ID:</strong>{{ item.id }}
-                                    <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
-                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
+                                    <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
+                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
                                 </v-col>                                
                             </td>
                         </template>
@@ -288,43 +288,43 @@
 <script>
 import {mapGetters} from "vuex";
 import SystemUserLayout from '@/views/layouts/SystemUserLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 import UserPermissions from '@/views/pages/admin/system/UserPermissions';
 export default {
-    name: 'UsersKeuangan',  
-    created () {
+    name: "UsersKeuangan",  
+    created() {
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.ACCESS_TOKEN
+                href: "/dashboard/" + this.ACCESS_TOKEN
             },
             {
-                text: 'USER SISTEM',
+                text: "USER SISTEM",
                 disabled: false,
-                href: '/system-users'
+                href: "/system-users"
             },
             {
-                text: 'USERS KEUANGAN',
+                text: "USERS KEUANGAN",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];
         this.initialize()
     },  
    
     data: () => ({ 
-        role_id:0,
+        role_id: 0,
         datatableLoading: false,
         btnLoading: false,      
         //tables
         headers: [                        
-            { text:  "", value: 'foto' },
-            { text: 'USERNAME', value: 'username',sortable: true },
-            { text: 'NAME', value: 'name',sortable: true },
-            { text: 'EMAIL', value: 'email',sortable: true },     
-            { text: 'NOMOR HP', value: 'nomor_hp',sortable: true },     
-            { text: 'AKSI', value: 'actions', sortable: false,width:100 },
+            { text: "", value: "foto" },
+            { text: "USERNAME", value: "username",sortable: true },
+            { text: "NAME", value: "name",sortable: true },
+            { text: "EMAIL", value: "email",sortable: true },     
+            { text: "NOMOR HP", value: "nomor_hp",sortable: true },     
+            { text: "AKSI", value: "actions", sortable: false,width:100 },
         ],
         expanded: [],
         search: "",
@@ -339,51 +339,51 @@ export default {
         editedIndex: -1,
         daftar_prodi: [],
         editedItem: {
-            id:0,
-            username:  "",           
-            password:  "",           
-            name:  "",           
-            email:  "",           
+            id: 0,
+            username: "",           
+            password: "",           
+            name: "",           
+            email: "",           
             nomor_hp: "",           
             prodi_id: [],   
             role_id: ['keuangan'],         
-            created_at:  "",           
-            updated_at:  "",   
+            created_at: "",           
+            updated_at: "",   
         },
         defaultItem: {
-            id:0,
-            username:  "",           
-            password:  "",           
-            name:  "",           
-            email:  "",           
-            nomor_hp:  "",  
+            id: 0,
+            username: "",           
+            password: "",           
+            name: "",           
+            email: "",           
+            nomor_hp: "",  
             prodi_id: [],         
             role_id: ['keuangan'],             
-            created_at:  "",           
-            updated_at:  "",        
+            created_at: "",           
+            updated_at: "",        
         },
         //form rules        
         rule_user_name: [
             value => !!value || "Mohon untuk di isi nama User !!!",  
-            value => /^[A-Za-z\s]*$/.test(value) || 'Nama User hanya boleh string dan spasi',                
+            value => /^[A-Za-z\s]*$/.test(value) || "Nama User hanya boleh string dan spasi",                
         ], 
         rule_user_email: [
             value => !!value || "Mohon untuk di isi email User !!!",  
-            value => /.+@.+\..+/.test(value) || 'Format E-mail harus benar',       
+            value => /.+@.+\..+/.test(value) || "Format E-mail harus benar",       
         ], 
         rule_user_nomorhp: [
             value => !!value || "Nomor HP mohon untuk diisi !!!",
-            value => /^\+[1-9]{1}[0-9]{1,14}$/.test(value) || 'Nomor HP hanya boleh angka dan gunakan kode negara didepan seperti +6281214553388',
+            value => /^\+[1-9]{1}[0-9]{1,14}$/.test(value) || "Nomor HP hanya boleh angka dan gunakan kode negara didepan seperti +6281214553388",
         ], 
         rule_user_username: [
             value => !!value || "Mohon untuk di isi username User !!!",  
-            value => /^[A-Za-z_]*$/.test(value) || 'Username hanya boleh string dan underscore',                    
+            value => /^[A-Za-z_]*$/.test(value) || "Username hanya boleh string dan underscore",                    
         ], 
         rule_user_password: [
             value => !!value || "Mohon untuk di isi password User !!!",
             value => {
                 if (value && typeof value !== 'undefined' && value.length > 0){
-                    return value.length >= 8 || 'Minimial Password 8 karaketer';
+                    return value.length >= 8 || "Minimial Password 8 karaketer";
                 }
                 else
                 {
@@ -394,7 +394,7 @@ export default {
         rule_user_passwordEdit: [
             value => {
                 if (value && typeof value !== 'undefined' && value.length > 0){
-                    return value.length >= 8 || 'Minimial Password 8 karaketer';
+                    return value.length >= 8 || "Minimial Password 8 karaketer";
                 }
                 else
                 {
@@ -406,15 +406,15 @@ export default {
     methods: {
         initialize: async function() 
         {
-            this.datatableLoading=true;
-            await this.$ajax.get('/system/userskeuangan',{
+            this.datatableLoading = true;
+            await this.$ajax.get("/system/userskeuangan",{
                 headers: {
                     Authorization: this.TOKEN
                 }
             }).then(({ data })=>{               
                 this.daftar_users = data.users;
                 this.role_id=data.role.id;
-                this.datatableLoading=false;
+                this.datatableLoading = false;
             });          
             
         },
@@ -422,22 +422,22 @@ export default {
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded = [];                
             }
             else
             {
-                this.expanded=[item];
+                this.expanded = [item];
             }               
         },
         syncPermission ()
         {
-            this.$root.$confirm.open('Konfirmasi Sinkronisasi', 'Sinkronisasi hanya untuk user dalam role keuangan, bila user memiliki role lain akan terhapus permission-nya ?', { color: 'warning',width:500 }).then(async (confirm) => {
+            this.$root.$confirm.open("Konfirmasi Sinkronisasi", "Sinkronisasi hanya untuk user dalam role keuangan, bila user memiliki role lain akan terhapus permission-nya ?", { color: "warning",width:500 }).then(async (confirm) => {
                 if (confirm)
                 {
                     this.btnLoading=true;
-                    await this.$ajax.post('/system/users/syncallpermissions',
+                    await this.$ajax.post("/system/users/syncallpermissions",
                         {
-                            role_name: 'keuangan',                    
+                            role_name: "keuangan",                    
                         },
                         {
                             headers: {
@@ -452,9 +452,9 @@ export default {
                 }
             });
         },
-        showDialogTambahUserKeuangan:async function()
+        showDialogTambahUserKeuangan: async function()
         {
-            await this.$ajax.get('/system/setting/roles',{
+            await this.$ajax.get("/system/setting/roles",{
                 headers: {
                     Authorization: this.TOKEN
                 }
@@ -462,14 +462,14 @@ export default {
                 let roles = data.roles;
                 var daftar_roles=[];
                 roles.forEach(element => {
-                    if (element.name=='keuangan')
+                    if (element.name == "keuangan")
                     {                        
                         daftar_roles.push({
                             text:element.name,
                             disabled: true,
                         });                        
                     }
-                    else if (element.name=='dosen'||element.name=='dosenwali')
+                    else if (element.name == "dosen" || element.name == "dosenwali")
                     {
                         daftar_roles.push({
                             text:element.name,
@@ -482,12 +482,12 @@ export default {
                 this.dialog = true;            
             });               
         },
-        editItem:async function (item) {
+        editItem: async function(item) {
             this.editedIndex = this.daftar_users.indexOf(item)
             item.password='';            
             this.editedItem = Object.assign({}, item);      
             this.daftar_prodi=this.$store.getters['uiadmin/getDaftarProdi'];  
-            await this.$ajax.get('/system/users/'+item.id+'/prodi',               
+            await this.$ajax.get("/system/users/"  + item.id + "/prodi",               
                 {
                     headers: {
                         Authorization: this.TOKEN
@@ -502,7 +502,7 @@ export default {
                 this.editedItem.prodi_id=prodi;                 
             });                     
 
-            await this.$ajax.get('/system/setting/roles',{
+            await this.$ajax.get("/system/setting/roles",{
                 headers: {
                     Authorization: this.TOKEN
                 }
@@ -510,14 +510,14 @@ export default {
                 let roles = data.roles;
                 var daftar_roles=[];
                 roles.forEach(element => {
-                    if (element.name=='keuangan')
+                    if (element.name == "keuangan")
                     {                        
                         daftar_roles.push({
                             text:element.name,
                             disabled: true,
                         });                        
                     }
-                    else if (element.name=='dosen'||element.name=='dosenwali')
+                    else if (element.name == "dosen" || element.name == "dosenwali")
                     {
                         daftar_roles.push({
                             text:element.name,
@@ -529,7 +529,7 @@ export default {
             });    
 
             this.btnLoading=true;
-            await this.$ajax.get('/system/users/'+item.id+'/roles',
+            await this.$ajax.get("/system/users/" +item.id+"/roles",
             {
                 headers: {
                     Authorization: this.TOKEN
@@ -540,7 +540,7 @@ export default {
                 this.dialogEdit = true;
             });
         },
-        setPermission: async function (item) {
+        setPermission: async function(item) {
             this.editedItem=item;            
             this.dialogUserPermission = true;
         },        
@@ -565,9 +565,9 @@ export default {
                 this.btnLoading=true;
                 if (this.editedIndex > -1) 
                 {
-                    this.$ajax.post('/system/userskeuangan/'+this.editedItem.id,
+                    this.$ajax.post("/system/userskeuangan/" + this.editedItem.id,
                         {
-                            '_method': 'PUT',
+                            _method: "PUT",
                             name: this.editedItem.name,
                             email: this.editedItem.email,
                             nomor_hp: this.editedItem.nomor_hp,     
@@ -589,7 +589,7 @@ export default {
                     });                    
                     
                 } else {
-                    this.$ajax.post('/system/userskeuangan/store',
+                    this.$ajax.post("/system/userskeuangan/store",
                         {
                             name: this.editedItem.name,
                             email: this.editedItem.email,
@@ -614,13 +614,13 @@ export default {
             }
         },
         deleteItem (item) {           
-            this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus username '+item.username+' ?', { color: 'red' }).then((confirm) => {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus username '+item.username+' ?", { color: "red" }).then((confirm) => {
                 if (confirm)
                 {
                     this.btnLoading=true;
-                    this.$ajax.post('/system/userskeuangan/'+item.id,
+                    this.$ajax.post("/system/userskeuangan/" + item.id,
                         {
-                            '_method': 'DELETE',
+                            _method: "DELETE",
                         },
                         {
                             headers: {
@@ -640,11 +640,11 @@ export default {
     },
     computed: {
         formTitle () {
-            return this.editedIndex === -1 ? 'TAMBAH USER KEUANGAN' : 'EDIT USER KEUANGAN'
+            return this.editedIndex === -1 ? "TAMBAH USER KEUANGAN" : "EDIT USER KEUANGAN"
         },
-        ...mapGetters('auth',{            
-            ACCESS_TOKEN: 'AccessToken',          
-            TOKEN: 'Token',                                  
+        ...mapGetters("auth",{            
+            ACCESS_TOKEN: "AccessToken",          
+            TOKEN: "Token",                                  
         }),
     },
 

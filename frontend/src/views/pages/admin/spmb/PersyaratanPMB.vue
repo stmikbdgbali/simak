@@ -39,7 +39,7 @@
             </template>
         </ModuleHeader> 
         <v-container fluid v-if="dashboard=='mahasiswabaru'">
-            <FormPersyaratan :user_id="$store.getters['auth/AttributeUser']('id')" v-if="showcomponentpersyaratan"/>
+            <FormPersyaratan :user_id="$store.getters['auth/AttributeUser']("id")" v-if="showcomponentpersyaratan"/>
         </v-container>
         <v-container fluid v-else>
             <v-row class="mb-4" no-gutters>
@@ -110,8 +110,8 @@
                             <td :colspan="headers.length" class="text-center">
                                 <v-col cols="12">
                                     <strong>ID:</strong>{{ item.id }}
-                                    <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
-                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
+                                    <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
+                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
                                 </v-col>                                
                             </td>
                         </template>
@@ -129,31 +129,31 @@
 </template>
 <script>
 import SPMBLayout from '@/views/layouts/SPMBLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 import FormPersyaratan from '@/components/FormPersyaratanPMB';
 import ProfilMahasiswaBaru from '@/components/ProfilMahasiswaBaru';
 import Filter7 from '@/components/sidebar/FilterMode7';
 export default {
-    name: 'PersyaratanPMB', 
-    created () {
+    name: "PersyaratanPMB", 
+    created() {
         this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];   
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
             },
             {
-                text: 'SPMB',
+                text: "SPMB",
                 disabled: false,
-                href: '/spmb'
+                href: "/spmb"
             },
             {
-                text: 'FORMULIR PENDAFTARAN',
+                text: "FORMULIR PENDAFTARAN",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
-        ];this.breadcrumbs[1].disabled=(this.dashboard=='mahasiswabaru'||this.dashboard=='mahasiswa');
+        ];this.breadcrumbs[1].disabled=(this.dashboard=='mahasiswabaru'||this.dashboard == "mahasiswa");
         
         let prodi_id=this.$store.getters['uiadmin/getProdiID'];
         this.prodi_id=prodi_id;
@@ -163,25 +163,25 @@ export default {
     },   
     data: () => ({
         firstloading: true,
-        prodi_id:null,
-        tahun_pendaftaran:null,
-        nama_prodi:null,
+        prodi_id: null,
+        tahun_pendaftaran: null,
+        nama_prodi: null,
 
         dialogprofilmhsbaru: false,
         breadcrumbs: [],        
-        dashboard:null,
+        dashboard: null,
 
         btnLoading: false,
         datatableLoading: false,
         expanded: [],
         datatable: [],
         headers: [                        
-            { text:  "", value: 'foto', width:70 },               
-            { text: 'NAMA MAHASISWA', value: 'name',width:350,sortable: true },
-            { text: 'NOMOR HP', value: 'nomor_hp',width:100},
-            { text: 'KELAS', value: 'nkelas',width:100,sortable: true },
-            { text: 'STATUS', value: 'status',width:120,sortable: true },
-            { text: 'AKSI', value: 'actions', sortable: false,width:50 },
+            { text: "", value: "foto", width:70 },               
+            { text: "NAMA MAHASISWA", value: "name",width:350,sortable: true },
+            { text: "NOMOR HP", value: "nomor_hp",width:100},
+            { text: "KELAS", value: "nkelas",width:100,sortable: true },
+            { text: "STATUS", value: "status",width:120,sortable: true },
+            { text: "AKSI", value: "actions", sortable: false,width:50 },
         ],
         search: "",
 
@@ -190,20 +190,20 @@ export default {
             
         }
     }),
-    methods : {
+    methods: {
         changeTahunPendaftaran (tahun)
         {
-            this.tahun_pendaftaran=tahun;
+            this.tahun_pendaftaran = tahun;
         },
         changeProdi (id)
         {
-            this.prodi_id=id;
+            this.prodi_id = id;
         },
-		initialize:async function()
+		initialize: async function()
 		{	
-            if (this.dashboard == 'mahasiswabaru' || this.dashboard =='mahasiswa')
+            if (this.dashboard == "mahasiswabaru' || this.dashboard =='mahasiswa")
             {
-                await this.$ajax.get('/spmb/formulirpendaftaran/'+this.$store.getters['auth/AttributeUser']('id'),             
+                await this.$ajax.get("/spmb/formulirpendaftaran/" + this.$store.getters['auth/AttributeUser']("id"),             
                     {
                         headers: {
                             Authorization: this.$store.getters["auth/Token"]
@@ -216,8 +216,8 @@ export default {
             }
             else
             {
-                this.datatableLoading=true;
-                await this.$ajax.post('/spmb/pmbpersyaratan',
+                this.datatableLoading = true;
+                await this.$ajax.post("/spmb/pmbpersyaratan",
                 {
                     TA: this.tahun_pendaftaran,
                     prodi_id: this.prodi_id,
@@ -228,9 +228,9 @@ export default {
                     }
                 }).then(({ data })=>{                                   
                     this.datatable = data.persyaratan;   
-                    this.datatableLoading=false;
+                    this.datatableLoading = false;
                 });  
-                this.firstloading=false; 
+                this.firstloading = false; 
                 this.$refs.filter7.setFirstTimeLoading(this.firstloading);               
             }               
         },
@@ -238,20 +238,20 @@ export default {
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded = [];                
             }
             else
             {
-                this.expanded=[item];
+                this.expanded = [item];
             }               
         },
         badgeColor(item)
         {
-            return item.persyaratan<item.jumlah_persyaratan ? 'error': 'success' ;           
+            return item.persyaratan<item.jumlah_persyaratan ? 'error': "success" ;           
         },
         badgeIcon(item)
         {
-            return item.persyaratan<item.jumlah_persyaratan == 1 ? 'mdi-close-thick': 'mdi-check-bold';            
+            return item.persyaratan<item.jumlah_persyaratan == 1 ? "mdi-close-thick" : "mdi-check-bold";            
         },     
         viewItem(item)
         {

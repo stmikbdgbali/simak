@@ -99,7 +99,7 @@
 			<v-divider></v-divider>
 			<v-list expand>
 				<v-list-item
-					:to="{ path: '/system-users' }"
+					:to="{ path: "/system-users' }"
 					v-if="CAN_ACCESS('SYSTEM-USERS-GROUP')"
 					link
 					class="yellow"
@@ -125,7 +125,7 @@
 				<v-divider />
 				<v-list-item
 					link
-					v-if="CAN_ACCESS('SYSTEM-SETTING-PERMISSIONS')"
+					v-if="CAN_ACCESS('SYSTEM-SETTING-PERMISSIONS")"
 					to="/system-users/permissions"
 				>
 					<v-list-item-icon class="mr-2">
@@ -139,7 +139,7 @@
 				</v-list-item>
 				<v-list-item
 					link
-					v-if="CAN_ACCESS('SYSTEM-SETTING-ROLES')"
+					v-if="CAN_ACCESS('SYSTEM-SETTING-ROLES")"
 					to="/system-users/roles"
 				>
 					<v-list-item-icon class="mr-2">
@@ -151,7 +151,7 @@
 						</v-list-item-title>
 					</v-list-item-content>
 				</v-list-item>
-				<v-divider v-if="CAN_ACCESS('SYSTEM-SETTING-ROLES')" />
+				<v-divider v-if="CAN_ACCESS('SYSTEM-SETTING-ROLES")" />
 				<v-list-item
 					link
 					v-if="CAN_ACCESS('SYSTEM-USERS-SUPERADMIN_BROWSE')"

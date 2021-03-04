@@ -2,39 +2,39 @@
 const getDefaultState = () => 
 {
     return {      
-        loaded:false, 
+        loaded: false, 
         //page
-        default_dashboard:null,
-        pages:[],
+        default_dashboard: null,
+        pages: [],
 
-        daftar_ta:[],
-        tahun_pendaftaran:null,
-        tahun_akademik:null,
+        daftar_ta: [],
+        tahun_pendaftaran: null,
+        tahun_akademik: null,
 
-        daftar_semester:[],
-        semester_pendaftaran:null,
-        semester_akademik:null,
+        daftar_semester: [],
+        semester_pendaftaran: null,
+        semester_akademik: null,
 
-        daftar_fakultas:[],
-        fakultas_id:null,
+        daftar_fakultas: [],
+        fakultas_id: null,
         
-        daftar_prodi:[],
-        prodi_id:null,
+        daftar_prodi: [],
+        prodi_id: null,
 
-        daftar_kelas:[],
-        idkelas:null,
+        daftar_kelas: [],
+        idkelas: null,
 
-        daftar_status_mhs:[],
-        k_status:null,
+        daftar_status_mhs: [],
+        k_status: null,
         
-        skala_nilai:[
-            'A',                               
-            'B',            
-            'C',            
-            'D',
-            'E'
+        skala_nilai: [
+            "A",                               
+            "B",            
+            "C",            
+            "D",
+            "E",
         ],       
-        theme:null
+        theme: null
     }
 }
 const state = getDefaultState();
@@ -191,7 +191,7 @@ const getters= {
     {   
         var nama_semester='';
         let found = state.daftar_semester.find(semester => semester.id==key);                                 
-        if (typeof found !=='undefined')
+        if (typeof found !=="undefined")
         {
             nama_semester=found.text;
         }               
@@ -231,7 +231,7 @@ const getters= {
     {   
         var nama_fakultas='';
         let found = state.daftar_fakultas.find(fakultas => fakultas.id==key);                                 
-        if (typeof found !=='undefined')
+        if (typeof found !=="undefined")
         {
             nama_fakultas=found.text;
         }               
@@ -250,7 +250,7 @@ const getters= {
     {
         var nama_kelas='N.A';
         let found = state.daftar_kelas.find(kelas => kelas.id==id);                          
-        if (typeof found !=='undefined')
+        if (typeof found !=="undefined")
         {
             nama_kelas=found.text;
         }               
@@ -269,7 +269,7 @@ const getters= {
     {
         var nama_status='N.A';
         let found = state.daftar_status_mhs.find(status_mhs => status_mhs.id==id);                          
-        if (typeof found !=='undefined')
+        if (typeof found !=="undefined")
         {
             nama_status=found.text;
         }               
@@ -291,23 +291,23 @@ const actions = {
     init: async function ({commit,state,rootGetters},ajax)
     {   
         //dipindahkan kesini karena ada beberapa kasus yang melaporkan ini membuat bermasalah.
-        commit('setLoaded',false);              
+        commit("setLoaded",false);              
         if (!state.loaded && rootGetters['auth/Authenticated'])
         {   
-            commit('setSemesterPendaftaran',rootGetters['uifront/getSemesterPendaftaran']);   
+            commit("setSemesterPendaftaran",rootGetters['uifront/getSemesterPendaftaran']);   
             let token=rootGetters['auth/Token'];                                                     
-            await ajax.get('/system/setting/uiadmin',               
+            await ajax.get("/system/setting/uiadmin",               
                 {
                     headers:{
                         Authorization:token
                     }
                 }
             ).then(({data})=>{                   
-                commit('setDaftarTA',data.daftar_ta); 
-                commit('setTahunPendaftaran',data.tahun_pendaftaran);   
-                commit('setTahunAkademik',data.tahun_akademik);           
-                commit('setDaftarSemester',data.daftar_semester);         
-                commit('setSemesterAkademik',data.semester_akademik);
+                commit("setDaftarTA",data.daftar_ta); 
+                commit("setTahunPendaftaran",data.tahun_pendaftaran);   
+                commit("setTahunAkademik",data.tahun_akademik);           
+                commit("setDaftarSemester",data.daftar_semester);         
+                commit("setSemesterAkademik",data.semester_akademik);
 
                 let daftar_fakultas = data.daftar_fakultas;
                 var fakultas=[];
@@ -318,30 +318,30 @@ const actions = {
                         nama_fakultas:element.nama_fakultas,                  
                     });
                 });                           
-                commit('setDaftarFakultas',fakultas);            
-                commit('setFakultasID',data.fakultas_id); 
+                commit("setDaftarFakultas",fakultas);            
+                commit("setFakultasID",data.fakultas_id); 
 
                 let daftar_prodi = data.daftar_prodi;
                 var prodi=[];
                 daftar_prodi.forEach(element => {
                     prodi[element.id]={
                         id:element.id,
-                        text:element.nama_prodi_alias + ' ('+element.nama_jenjang+')',
-                        nama_prodi:element.nama_prodi + ' ('+element.nama_jenjang+')',                  
+                        text:element.nama_prodi_alias + " (" + element.nama_jenjang + ")",
+                        nama_prodi:element.nama_prodi + " (" + element.nama_jenjang + ")",                  
                     };
                 });                           
-                commit('setDaftarProdi',prodi);            
-                commit('setProdiID',data.prodi_id);            
+                commit("setDaftarProdi",prodi);            
+                commit("setProdiID",data.prodi_id);            
                       
-                commit('setDaftarKelas',data.daftar_kelas);            
-                commit('setIDKelas',data.idkelas);            
+                commit("setDaftarKelas",data.daftar_kelas);            
+                commit("setIDKelas",data.idkelas);            
                 
-                commit('setDaftarStatusMahasiswa',data.daftar_status_mhs);            
-                commit('setStatusMahasiswa',data.k_status);  
+                commit("setDaftarStatusMahasiswa",data.daftar_status_mhs);            
+                commit("setStatusMahasiswa",data.k_status);  
                 
-                commit('setTheme',data.theme);            
+                commit("setTheme",data.theme);            
 
-                commit('setLoaded',true);              
+                commit("setLoaded",true);              
             });      
         }
     }, 
@@ -351,7 +351,7 @@ const actions = {
         let found = state.pages.find(halaman => halaman.name==page.name);
         if (!found)
         {
-            commit('setNewPage',page);
+            commit("setNewPage",page);
         }
     },    
     updatePage ({commit,state},page)
@@ -364,52 +364,52 @@ const actions = {
                 break;
             }
         }
-        commit('replacePage',page,i)
+        commit("replacePage",page,i)
     }, 
     deletePage({commit},name)
     {
-        commit('removePage',name);
+        commit("removePage",name);
     },
 
     changeDashboard({commit},name)
     {        
-        commit('setDashboard',name);
+        commit("setDashboard",name);
     },
 
     updateFakultas({commit},id)
     {
-        commit('setFakultasID',id);
+        commit("setFakultasID",id);
     },
     updateProdi({commit},id)
     {
-        commit('setProdiID',id);
+        commit("setProdiID",id);
     },
     
     updateTahunPendaftaran({commit},tahun)
     {
-        commit('setTahunPendaftaran',tahun);
+        commit("setTahunPendaftaran",tahun);
     },
     updateTahunAkademik({commit},tahun)
     {
-        commit('setTahunAkademik',tahun);
+        commit("setTahunAkademik",tahun);
     },
 
     updateSemesterPendaftaran({commit},semester)
     {
-        commit('setSemesterPendaftaran',semester);
+        commit("setSemesterPendaftaran",semester);
     },
     updateSemesterAkademik({commit},semester)
     {
-        commit('setSemesterAkademik',semester);
+        commit("setSemesterAkademik",semester);
     },
 
     updateIDKelas({commit},idkelas)
     {
-        commit('setIDKelas',idkelas);
+        commit("setIDKelas",idkelas);
     },
     reinit ({ commit }) 
     {
-        commit('resetState');
+        commit("resetState");
     },
 }
 export default {

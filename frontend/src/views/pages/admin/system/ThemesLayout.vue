@@ -84,31 +84,31 @@
 <script>
 import {mapGetters} from 'vuex';
 import SystemConfigLayout from '@/views/layouts/SystemConfigLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 export default {
-    name: 'ThemesLayout',
+    name: "ThemesLayout",
     created()
     {
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.ACCESS_TOKEN
+                href: "/dashboard/" + this.ACCESS_TOKEN
             },
             {
-                text: 'KONFIGURASI SISTEM',
+                text: "KONFIGURASI SISTEM",
                 disabled: false,
-                href: '/system-setting'
+                href: "/system-setting"
             },  
             {
-                text: 'THEMES',
+                text: "THEMES",
                 disabled: false,
-                href: '#'
+                href: "#"
             },
             {
-                text: 'LAYOUT',
+                text: "LAYOUT",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];
         this.initialize();
@@ -120,11 +120,11 @@ export default {
         //form
         form_valid: true,   
         formdata: {
-            V_SYSTEM_BAR_CSS_CLASS: '',
-            V_APP_BAR_NAV_ICON_CSS_CLASS: '',
-            V_NAVIGATION_DRAWER_CSS_CLASS: '',
-            V_LIST_ITEM_BOARD_CSS_CLASS: '',
-            V_LIST_ITEM_ACTIVE_CSS_CLASS: '',
+            V_SYSTEM_BAR_CSS_CLASS: "",
+            V_APP_BAR_NAV_ICON_CSS_CLASS: "",
+            V_NAVIGATION_DRAWER_CSS_CLASS: "",
+            V_LIST_ITEM_BOARD_CSS_CLASS: "",
+            V_LIST_ITEM_ACTIVE_CSS_CLASS: "",
         },
         //form rules        
         rule_required: [
@@ -132,10 +132,10 @@ export default {
         ], 
     }),
     methods: {
-        initialize:async function() 
+        initialize: async function() 
         {
-            this.datatableLoading=true;
-            await this.$ajax.get('/system/setting/variables',
+            this.datatableLoading = true;
+            await this.$ajax.get("/system/setting/variables",
             {
                 headers: {
                     Authorization: this.TOKEN
@@ -154,10 +154,10 @@ export default {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading=true;                
-                this.$ajax.post('/system/setting/variables',
+                this.$ajax.post("/system/setting/variables",
                     {
-                        '_method': 'PUT', 
-                        'pid': 'Class Css Layout',
+                        _method: "PUT", 
+                        'pid': "Class Css Layout",
                         setting:JSON.stringify({
                             801: this.formdata.V_SYSTEM_BAR_CSS_CLASS,
                             802: this.formdata.V_APP_BAR_NAV_ICON_CSS_CLASS,
@@ -177,14 +177,14 @@ export default {
                 }).catch(()=>{
                     this.btnLoading = false;
                 });        
-                this.$store.dispatch('uiadmin/init',this.$ajax); 
+                this.$store.dispatch("uiadmin/init",this.$ajax); 
             }
         }
     },
     computed: { 
-        ...mapGetters('auth',{            
-            ACCESS_TOKEN: 'AccessToken',          
-            TOKEN: 'Token',                                  
+        ...mapGetters("auth",{            
+            ACCESS_TOKEN: "AccessToken",          
+            TOKEN: "Token",                                  
         }),
     },
     components: {

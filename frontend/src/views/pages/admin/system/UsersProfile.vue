@@ -40,25 +40,25 @@
                                             <v-img :src="$api.url+'/'+formdata.foto" />
                                         </v-card-text>
                                     </v-card>
-                                    <v-card flat v-if="dashboard=='mahasiswa'">
+                                    <v-card flat v-if="dashboard == 'mahasiswa'">
                                         <v-card-title>NIM / NIRM</v-card-title>  
                                         <v-card-subtitle>
                                             {{data_mhs.nim}} / {{data_mhs.nirm}}
                                         </v-card-subtitle>
                                     </v-card>
-                                    <v-card flat v-if="dashboard=='mahasiswa'">
+                                    <v-card flat v-if="dashboard == 'mahasiswa'">
                                         <v-card-title>PROGRAM STUDI</v-card-title>  
                                         <v-card-subtitle>
                                             {{data_mhs.nama_prodi}}
                                         </v-card-subtitle>
                                     </v-card>
-                                    <v-card flat v-if="dashboard=='mahasiswa'">
+                                    <v-card flat v-if="dashboard == 'mahasiswa'">
                                         <v-card-title>KELAS</v-card-title>  
                                         <v-card-subtitle>
                                             {{data_mhs.nama_kelas}}
                                         </v-card-subtitle>
                                     </v-card>
-                                    <v-card flat v-if="dashboard=='mahasiswa'">
+                                    <v-card flat v-if="dashboard == 'mahasiswa'">
                                         <v-card-title>DOSEN WALI</v-card-title>  
                                         <v-card-subtitle>
                                             {{data_mhs.dosen_wali}}
@@ -125,7 +125,7 @@
                                                         :color="userstatus"
                                                         label
                                                         outlined>
-                                                        {{formdata.active==1?'AKTIF': 'TIDAK AKTIF'}}
+                                                        {{formdata.active== 1?'AKTIF': "TIDAK AKTIF'}}
                                                     </v-chip>
                                                 </v-card-subtitle>
                                             </v-card>
@@ -137,7 +137,7 @@
                                             <v-card flat>
                                                 <v-card-title>CREATED_AT:</v-card-title>  
                                                 <v-card-subtitle>
-                                                    {{$date(formdata.created_at).format('DD/MM/YYYY HH:mm')}}
+                                                    {{$date(formdata.created_at).format("DD/MM/YYYY HH:mm")}}
                                                 </v-card-subtitle>
                                             </v-card>
                                         </v-col>
@@ -146,7 +146,7 @@
                                             <v-card flat>
                                                 <v-card-title>UPDATED_AT:</v-card-title>  
                                                 <v-card-subtitle>
-                                                    {{$date(formdata.updated_at).format('DD/MM/YYYY HH:mm')}}
+                                                    {{$date(formdata.updated_at).format("DD/MM/YYYY HH:mm")}}
                                                 </v-card-subtitle>
                                             </v-card>
                                         </v-col>
@@ -174,7 +174,7 @@
                                  <v-text-field 
                                     v-model="formdata.password" 
                                     label="PASSWORD BARU"
-                                    :type="'password'"
+                                    :type="password"
                                     outlined
                                     :rules="rule_user_password">
                                 </v-text-field> 
@@ -197,39 +197,37 @@
     </SystemUserLayout>
 </template>
 <script>
-import SystemUserLayout from '@/views/layouts/SystemUserLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import SystemUserLayout from "@/views/layouts/SystemUserLayout";
+import ModuleHeader from "@/components/ModuleHeader";
 export default {
-    name: 'UsersProfile',
-    created () {
+    name: "UsersProfile",
+    created() {
         this.dashboard=this.$store.getters['uiadmin/getDefaultDashboard'];
         this.formdata=this.$store.getters['auth/User'];
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters['auth/AccessToken'],
             },
             {
-                text: 'SYSTEM',
+                text: "SYSTEM",
                 disabled: false,
-                href: '#'
+                href: "#",
             },
             {
-                text: 'PROFILE USER',
+                text: "PROFILE USER",
                 disabled: true,
-                href: '#'
-            }
+                href: "#",
+            },
         ];
-        if (this.dashboard=='mahasiswa')
-        {
+        if (this.dashboard=="mahasiswa") {
             this.fetchMahasiswa();
         }
     }, 
-    data ()
-    {
+    data() {
         return {
-            dashboard:null,
+            dashboard: null,
 
             btnLoading: false,
             datatable: [],
@@ -237,17 +235,17 @@ export default {
 
             //form data        
             data_mhs: {
-                nim: 'N.A',
-                nirm: 'N.A',
-                nama_prodi: 'N.A',
-                nama_kelas: 'N.A',
-                dosen_wali: 'N.A',
+                nim: "N.A",
+                nirm: "N.A",
+                nama_prodi: "N.A",
+                nama_kelas: "N.A",
+                dosen_wali: "N.A",
             },       
             form_valid: true,         
             formdata: {
-                id:0,                        
+                id: 0,                        
                 username: "",         
-                password:  "",                
+                password: "",                
                 name: "",                        
                 email: "",                        
                 nomor_hp: "",                        
@@ -256,13 +254,13 @@ export default {
                 active: "",                                                                                               
                 default_role: "",                                        
                 locked: "",                                        
-                created_at:  "",           
-                updated_at:  "",           
+                created_at: "",           
+                updated_at: "",           
             },
             formdefault: {
-                id:0,                        
+                id: 0,                        
                 username: "",         
-                password:  "",                
+                password: "",                
                 name: "",                        
                 email: "",                        
                 nomor_hp: "",                        
@@ -271,19 +269,19 @@ export default {
                 active: "",                                                                                               
                 default_role: "",                                        
                 locked: "",                                        
-                created_at:  "",           
-                updated_at:  "",           
+                created_at: "",           
+                updated_at: "",           
             },
             //form rules  
             rule_foto: [
                 value => !!value || "Mohon pilih gambar !!!",  
-                value =>  !value || value.size < 2000000 || 'File foto harus kurang dari 2MB.'                
+                value =>  !value || value.size < 2000000 || "File foto harus kurang dari 2MB."             
             ], 
             rule_user_password: [
                 value => !!value || "Mohon untuk di isi password User !!!",
                 value => {
-                    if (value && typeof value !== 'undefined' && value.length > 0){
-                        return value.length >= 8 || 'Minimial Password 8 karaketer';
+                    if (value && typeof value !== 'undefined' && value.length > 0) {
+                        return value.length >= 8 || "Minimial Password 8 karaketer";
                     }
                     else
                     {
@@ -299,9 +297,9 @@ export default {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading=true;
-                this.$ajax.post('/system/users/updatepassword/'+this.$store.getters['auth/AttributeUser']('id'),
+                this.$ajax.post("/system/users/updatepassword/" + this.$store.getters['auth/AttributeUser']("id"),
                     {
-                        '_method': 'PUT',                        
+                        _method: "PUT",                        
                         password: this.formdata.password,                           
                     },
                     {
@@ -319,41 +317,33 @@ export default {
                 });                     
             }
         },
-        previewImage (e)
-        {
-            if (typeof e === 'undefined')
-            {
-                this.avatar=null;
-            }
-            else
-            {
+        previewImage(e) {
+            if (typeof e === "undefined") {
+                this.avatar = null;
+            } else {
                 let reader = new FileReader();
                 reader.readAsDataURL(e);
                 reader.onload = img => {                    
-                    this.photoUser=img.target.result;
+                    this.photoUser = img.target.result;
                 }
-            }            
-            
+            }
         },
-        uploadFoto:async function() 
-        {
-            if (this.$refs.frmuploadfoto.validate())
-            {
-                if (this.formdata.foto)
-                {                
+        uploadFoto: async function() {
+            if (this.$refs.frmuploadfoto.validate()) {
+                if (this.formdata.foto) {                
                     this.btnLoading=true;
                     var formdata = new FormData();
-                    formdata.append('foto',this.formdata.foto);
-                    await this.$ajax.post('/setting/users/uploadfoto/'+this.$store.getters.User.id,formdata,                    
+                    formdata.append("foto",this.formdata.foto);
+                    await this.$ajax.post("/setting/users/uploadfoto/" + this.$store.getters.User.id,formdata,                    
                         {
                             headers: {
                                 Authorization: this.$store.getters["auth/Token"],  
-                                'Content-Type': 'multipart/form-data'                      
+                                'Content-Type': "multipart/form-data"                      
                             }
                         }
                     ).then(({ data })=>{                           
                         this.btnLoading = false;
-                        this.$store.dispatch('updateFoto',data.user.foto);                        
+                        this.$store.dispatch("updateFoto",data.user.foto);                        
                     }).catch(()=>{
                         this.btnLoading = false;
                     });    
@@ -361,10 +351,10 @@ export default {
                 }   
             }
         },
-        resetFoto:async function() 
+        resetFoto: async function() 
         {
             this.btnLoading=true;
-            await this.$ajax.post('/setting/users/resetfoto/'+this.$store.getters.User.id,{},                    
+            await this.$ajax.post("/setting/users/resetfoto/" + this.$store.getters.User.id,{},                    
                 {
                     headers: {
                         Authorization: this.$store.getters["auth/Token"],                              
@@ -372,14 +362,14 @@ export default {
                 }
             ).then(({ data })=>{                           
                 this.btnLoading = false;
-                this.$store.dispatch('updateFoto',data.user.foto);
+                this.$store.dispatch("updateFoto",data.user.foto);
             }).catch(()=>{
                 this.btnLoading = false;
             });    
         },
         async fetchMahasiswa()
         {
-            await this.$ajax.get('/akademik/kemahasiswaan/biodatamhs1/'+this.$store.getters['auth/AttributeUser']('id'),                    
+            await this.$ajax.get("/akademik/kemahasiswaan/biodatamhs1/" + this.$store.getters['auth/AttributeUser']("id"),                    
                 {
                     headers: {
                         Authorization: this.$store.getters["auth/Token"],                              
@@ -397,7 +387,7 @@ export default {
             {
                 if (this.avatar==null)
                 {
-                    let photo = this.$api.url+'/'+this.$store.getters.User.foto;			
+                    let photo = this.$api.url + "/" + this.$store.getters.User.foto;			
                     return photo;
                 }
                 else
@@ -413,7 +403,7 @@ export default {
         },
         userstatus()
         {
-            return this.formdata.active == 1 ?'green': 'red';
+            return this.formdata.active == 1 ?'green': "red";
         }
     },
     components: {

@@ -116,8 +116,8 @@
                             <td :colspan="headers.length" class="text-center">
                                 <v-col cols="12">
                                     <strong>ID:</strong>{{ item.id }}
-                                    <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
-                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
+                                    <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
+                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
                                 </v-col>                                
                             </td>
                         </template>
@@ -135,33 +135,32 @@
 </template>
 <script>
 import SPMBLayout from '@/views/layouts/SPMBLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 import FormMhsBaru from '@/components/FormMahasiswaBaru';
 import ProfilMahasiswaBaru from '@/components/ProfilMahasiswaBaru';
 import Filter7 from '@/components/sidebar/FilterMode7';
 export default {
-    name: 'FormulirPendaftaran', 
-    created()
-    {
+    name: "FormulirPendaftaran", 
+    created() {
         this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
             },
             {
-                text: 'SPMB',
+                text: "SPMB",
                 disabled: false,
-                href: '/spmb'
+                href: "/spmb",
             },
             {
-                text: 'BIODATA',
+                text: "BIODATA",
                 disabled: true,
-                href: '#'
+                href: "#",
             }
         ];
-        this.breadcrumbs[1].disabled=(this.dashboard=='mahasiswabaru'||this.dashboard=='mahasiswa');
+        this.breadcrumbs[1].disabled=(this.dashboard=='mahasiswabaru'||this.dashboard=="mahasiswa");
         
         let prodi_id=this.$store.getters['uiadmin/getProdiID'];
         this.prodi_id=prodi_id;
@@ -171,42 +170,42 @@ export default {
     },  
     data: () => ({
         firstloading: true,
-        prodi_id:null,
-        tahun_pendaftaran:null,
-        nama_prodi:null,
+        prodi_id: null,
+        tahun_pendaftaran: null,
+        nama_prodi: null,
 
         dialogprofilmhsbaru: false,
         breadcrumbs: [],        
-        dashboard:null,
+        dashboard: null,
 
         btnLoading: false,
         datatableLoading: false,
         expanded: [],
         datatable: [],
         headers: [                        
-            { text:  "", value: 'foto', width:70 },               
-            { text: 'NO. FORMULIR', value: 'no_formulir',width:140,sortable: true },
-            { text: 'USERNAME', value: 'username',width:150,sortable: true },
-            { text: 'NAMA MAHASISWA', value: 'name',width:350,sortable: true },
-            { text: 'JK', value: 'jk',width:70 },
-            { text: 'NOMOR HP', value: 'nomor_hp',width:100},
-            { text: 'KELAS', value: 'nkelas',width:150,sortable: true },
-            { text: 'AKSI', value: 'actions', sortable: false,width:100 },
+            { text: "", value: "foto", width:70 },               
+            { text: "NO. FORMULIR", value: "no_formulir",width:140,sortable: true },
+            { text: "USERNAME", value: "username",width:150,sortable: true },
+            { text: "NAMA MAHASISWA", value: "name",width:350,sortable: true },
+            { text: "JK", value: "jk",width:70 },
+            { text: "NOMOR HP", value: "nomor_hp",width:100},
+            { text: "KELAS", value: "nkelas",width:150,sortable: true },
+            { text: "AKSI", value: "actions", sortable: false,width:100 },
         ],
         search: "",  
         
         datamhsbaru: {}
     }),
-    methods : {
+    methods: {
         changeTahunPendaftaran (tahun)
         {
-            this.tahun_pendaftaran=tahun;
+            this.tahun_pendaftaran = tahun;
         },
         changeProdi (id)
         {
-            this.prodi_id=id;
+            this.prodi_id = id;
         },
-		initialize:async function()
+		initialize: async function()
 		{	
             switch(this.dashboard)
             {
@@ -214,8 +213,8 @@ export default {
 
                 break;
                 default :
-                    this.datatableLoading=true;            
-                    await this.$ajax.post('/spmb/formulirpendaftaran',
+                    this.datatableLoading = true;            
+                    await this.$ajax.post("/spmb/formulirpendaftaran",
                     {
                         TA: this.tahun_pendaftaran,
                         prodi_id: this.prodi_id,
@@ -226,9 +225,9 @@ export default {
                         }
                     }).then(({ data })=>{               
                         this.datatable = data.pmb;                
-                        this.datatableLoading=false;
+                        this.datatableLoading = false;
                     });         
-                    this.firstloading=false;
+                    this.firstloading = false;
                     this.$refs.filter7.setFirstTimeLoading(this.firstloading); 
             }
             
@@ -237,20 +236,20 @@ export default {
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded = [];                
             }
             else
             {
-                this.expanded=[item];
+                this.expanded = [item];
             }               
         },
         badgeColor(item)
         {
-            return item.active == 1 ? 'success': 'error'
+            return item.active == 1 ? 'success': "error"
         },
         badgeIcon(item)
         {
-            return item.active == 1 ? 'mdi-check-bold': 'mdi-close-thick'
+            return item.active == 1 ? "mdi-check-bold": "mdi-close-thick"
         },     
         viewItem(item)
         {
@@ -259,7 +258,7 @@ export default {
         },
         editItem(item)
         {
-            this.$router.push('/spmb/formulirpendaftaran/'+item.id+'/edit')
+            this.$router.push("/spmb/formulirpendaftaran/"+item.id+"/edit")
         },
         closeProfilMahasiswaBaru ()
         {

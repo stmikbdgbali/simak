@@ -93,8 +93,8 @@
                             <td :colspan="headers.length" class="text-center">
                                 <v-col cols="12">                          
                                     <strong>id:</strong>{{ item.id }}          
-                                    <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
-                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
+                                    <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
+                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
                                 </v-col>                                
                             </td>
                         </template>
@@ -109,32 +109,32 @@
 </template>
 <script>
 import AkademikLayout from '@/views/layouts/AkademikLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 import Filter6 from '@/components/sidebar/FilterMode6';
 export default {
-    name: 'DulangMahasiswaBaru',
-    created () {
+    name: "DulangMahasiswaBaru",
+    created() {
         this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];   
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
             },
             {
-                text: 'AKADEMIK',
+                text: "AKADEMIK",
                 disabled: false,
-                href: '/akademik'
+                href: "/akademik",
             },
             {
-                text: 'DAFTAR ULANG',
+                text: "DAFTAR ULANG",
                 disabled: false,
-                href: '#'
+                href: "#"
             },
             {
-                text: 'DAFTAR ULANG MAHASISWA LAMA',
+                text: "DAFTAR ULANG MAHASISWA LAMA",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];
         let prodi_id=this.$store.getters['uiadmin/getProdiID'];
@@ -145,12 +145,12 @@ export default {
         this.initialize()
     },  
     data: () => ({ 
-        dashboard:null,
+        dashboard: null,
         firstloading: true,
-        prodi_id:null,
-        nama_prodi:null,
-        tahun_akademik:null,
-        semester_akademik:null,
+        prodi_id: null,
+        nama_prodi: null,
+        tahun_akademik: null,
+        semester_akademik: null,
 
         btnLoading: false,
         btnLoadingTable: false,
@@ -158,13 +158,13 @@ export default {
         expanded: [],
         datatable: [],      
         headers: [
-            { text: 'NO. FORMULIR', value: 'no_formulir', sortable: true,width:100  },   
-            { text: 'NIM', value: 'nim', sortable: true,width:100  },   
-            { text: 'NIRM', value: 'nirm', sortable: true,width:100  },   
-            { text: 'NAMA MAHASISWA', value: 'nama_mhs',sortable: true,width:250 },                           
-            { text: 'KELAS', value: 'idkelas',sortable: true,width:120, },                           
-            { text: 'STATUS', value: 'n_status',sortable: true,width:120, },                           
-            { text: 'AKSI', value: 'actions', sortable: false,width:100 },
+            { text: "NO. FORMULIR", value: "no_formulir", sortable: true,width:100  },   
+            { text: "NIM", value: "nim", sortable: true,width:100  },   
+            { text: "NIRM", value: "nirm", sortable: true,width:100  },   
+            { text: "NAMA MAHASISWA", value: "nama_mhs",sortable: true,width:250 },                           
+            { text: "KELAS", value: "idkelas",sortable: true,width:120, },                           
+            { text: "STATUS", value: "n_status",sortable: true,width:120, },                           
+            { text: "AKSI", value: "actions", sortable: false,width:100 },
         ],  
         search: "", 
     }),
@@ -179,12 +179,12 @@ export default {
         },
         changeProdi (id)
         {
-            this.prodi_id=id;
+            this.prodi_id = id;
         },
         initialize: async function() 
         {
-            this.datatableLoading=true;
-            await this.$ajax.post('/akademik/dulang/mhslama',
+            this.datatableLoading = true;
+            await this.$ajax.post("/akademik/dulang/mhslama",
             {
                 prodi_id: this.prodi_id,
                 ta: this.tahun_akademik,
@@ -196,33 +196,33 @@ export default {
                 }
             }).then(({ data })=>{               
                 this.datatable = data.mahasiswa;
-                this.datatableLoading=false;
+                this.datatableLoading = false;
             }).catch(()=>{
-                this.datatableLoading=false;
+                this.datatableLoading = false;
             });  
-            this.firstloading=false;
+            this.firstloading = false;
             this.$refs.filter6.setFirstTimeLoading(this.firstloading); 
         },
         dataTableRowClicked(item)
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded = [];                
             }
             else
             {
-                this.expanded=[item];
+                this.expanded = [item];
             }               
         },        
         deleteItem (item)
         {
-            this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus daftar ulang '+item.nama_mhs+' ?', { color: 'red',width:600,'desc': 'proses ini juga menghapus seluruh data akademik namun KEUANGAN TETAP ADA.' }).then((confirm) => {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus daftar ulang '+item.nama_mhs+' ?", { color: "red",width:600,'desc': "proses ini juga menghapus seluruh data akademik namun KEUANGAN TETAP ADA." }).then((confirm) => {
                 if (confirm)
                 {
                     this.btnLoadingTable=true;
-                    this.$ajax.post('/akademik/dulang/mhslama'+item.id,
+                    this.$ajax.post("/akademik/dulang/mhslama/" + item.id,
                         {
-                            '_method': 'DELETE',
+                            _method: "DELETE",
                         },
                         {
                             headers: {

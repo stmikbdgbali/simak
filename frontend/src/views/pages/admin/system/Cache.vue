@@ -57,26 +57,26 @@
 <script>
 import {mapGetters} from "vuex";
 import SystemConfigLayout from '@/views/layouts/SystemConfigLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 export default {
-    name: 'Cache',
+    name: "Cache",
     created()
     {
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.ACCESS_TOKEN
+                href: "/dashboard/" + this.ACCESS_TOKEN
             },
             {
-                text: 'KONFIGURASI SISTEM',
+                text: "KONFIGURASI SISTEM",
                 disabled: false,
-                href: '/system-setting'
+                href: "/system-setting"
             },  
             {
-                text: 'SERVER - CACHE',
+                text: "SERVER - CACHE",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];
         this.initialize();
@@ -93,14 +93,14 @@ export default {
         //form rules
         rule_ttl_token_expire: [
             value => !!value || "Mohon untuk di isi TTL (Time To Live) expire dari token !!!",
-            value => /^[0-9]+$/.test(value) || 'TTL Expire dari token hanya boleh angka',    
+            value => /^[0-9]+$/.test(value) || "TTL Expire dari token hanya boleh angka",    
         ],        
     }),
     methods: {
         initialize: async function()
         {
-            this.datatableLoading=true;
-            await this.$ajax.get('/system/setting/variables',
+            this.datatableLoading = true;
+            await this.$ajax.get("/system/setting/variables",
             {
                 headers: {
                     Authorization: this.TOKEN
@@ -115,10 +115,10 @@ export default {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading=true;
-                this.$ajax.post('/system/setting/variables',
+                this.$ajax.post("/system/setting/variables",
                     {
-                        '_method': 'PUT',
-                        'pid': 'token_ttl_expire',
+                        _method: "PUT",
+                        'pid': "token_ttl_expire",
                         setting:JSON.stringify({
                             903: this.formdata.token_ttl_expire,                            
                         }),
@@ -137,9 +137,9 @@ export default {
         }
     },
     computed: {
-        ...mapGetters('auth',{
-            ACCESS_TOKEN: 'AccessToken',
-            TOKEN: 'Token',
+        ...mapGetters("auth",{
+            ACCESS_TOKEN: "AccessToken",
+            TOKEN: "Token",
         }),
     },
     components: {

@@ -28,13 +28,12 @@
     </v-container>
 </template>
 <script>
-export default {
-    name:'ModuleHeader',
-    computed : {        
-        isReportPage ()
-		{
-			return true;
-		},
-    }
-}
+    export default {
+        name: "ModuleHeader",
+        computed: {        
+            isReportPage () {
+                return true;
+            },
+        },
+    };
 </script>

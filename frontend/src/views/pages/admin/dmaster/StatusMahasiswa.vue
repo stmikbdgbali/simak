@@ -48,8 +48,8 @@
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
                                 <v-col cols="12">                                    
-                                    <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
-                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
+                                    <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
+                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
                                 </v-col>                                
                             </td>
                         </template>
@@ -64,26 +64,26 @@
 </template>
 <script>
 import DataMasterLayout from '@/views/layouts/DataMasterLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 export default {
-    name: 'StatusMahasiswa',
+    name: "StatusMahasiswa",
     created()
     {
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
             },
             {
-                text: 'DATA MASTER',
+                text: "DATA MASTER",
                 disabled: false,
-                href: '/dmaster'
+                href: "/dmaster"
             },
             {
-                text: 'STATUS MAHASISWA',
+                text: "STATUS MAHASISWA",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];
         this.initialize();
@@ -96,33 +96,33 @@ export default {
         expanded: [],
         datatable: [],
         headers: [                                            
-            { text: 'ID', value: 'k_status',width:10,sortable: false },
-            { text: 'NAMA STATUS', value: 'n_status',sortable: false},                        
+            { text: "ID", value: "k_status",width:10,sortable: false },
+            { text: "NAMA STATUS", value: "n_status",sortable: false},                        
         ],        
     }),
-    methods : {
-        initialize:async function()
+    methods: {
+        initialize: async function()
 		{
-            this.datatableLoading=true;            
-            await this.$ajax.get('/datamaster/statusmahasiswa',            
+            this.datatableLoading = true;            
+            await this.$ajax.get("/datamaster/statusmahasiswa",            
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({ data })=>{               
                 this.datatable = data.status_mahasiswa;                
-                this.datatableLoading=false;
+                this.datatableLoading = false;
             });                     
         },
         dataTableRowClicked(item)
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded = [];                
             }
             else
             {
-                this.expanded=[item];
+                this.expanded = [item];
             }               
         },
     },

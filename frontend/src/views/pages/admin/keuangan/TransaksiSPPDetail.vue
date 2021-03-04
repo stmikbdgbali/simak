@@ -111,7 +111,7 @@
                                     <v-card flat>
                                         <v-card-title>CREATED / UPDATED :</v-card-title>
                                         <v-card-subtitle>
-                                            {{$date(data_transaksi.created_at).format('DD/MM/YYYY HH:mm')}} / {{$date(data_transaksi.updated_at).format('DD/MM/YYYY HH:mm')}}
+                                            {{$date(data_transaksi.created_at).format("DD/MM/YYYY HH:mm")}} / {{$date(data_transaksi.updated_at).format("DD/MM/YYYY HH:mm")}}
                                         </v-card-subtitle>
                                     </v-card>
                                 </v-col>
@@ -142,7 +142,7 @@
                                         vertical
                                     ></v-divider>
                                     <v-spacer></v-spacer>                                        
-                                    <v-btn color="primary" icon outlined small class="ma-2" :to="{path: '/keuangan/transaksi-spp/tambah/'+transaksi_id}" :disabled="data_transaksi.status==1 || data_transaksi.status==2">
+                                    <v-btn color="primary" icon outlined small class="ma-2" :to="{path: "/keuangan/transaksi-spp/tambah/'+transaksi_id}" :disabled="data_transaksi.status== 1 || data_transaksi.status==2">
                                         <v-icon>mdi-plus</v-icon>
                                     </v-btn>                                        
                                 </v-toolbar>
@@ -180,41 +180,41 @@
 </template>
 <script>
 import KeuanganLayout from '@/views/layouts/KeuanganLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 export default {
-    name: 'TransaksiSPPDetail',
+    name: "TransaksiSPPDetail",
     created()
     {
         this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];   
         this.transaksi_id=this.$route.params.transaksi_id;        
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
             },
             {
-                text: 'KEUANGAN',
+                text: "KEUANGAN",
                 disabled: false,
-                href: '/keuangan'
+                href: "/keuangan"
             },
             {
-                text: 'TRANSAKSI SPP',
+                text: "TRANSAKSI SPP",
                 disabled: false,
-                href: '/keuangan/transaksi-spp'
+                href: "/keuangan/transaksi-spp"
             },
             {
-                text: 'DETAIL',
+                text: "DETAIL",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];                          
         this.initialize();
         this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];  
     },    
     data: () => ({
-        transaksi_id:null,
-        data_transaksi:null,
+        transaksi_id: null,
+        data_transaksi: null,
         item_selected: [],
 
         breadcrumbs: [],     
@@ -224,24 +224,24 @@ export default {
         datatableLoading: false,       
         datatable: [], 
         headers: [                                                
-            { text: 'NO. BULAN', value: 'no_bulan',width:120,sortable: false },
-            { text: 'BULAN', value: 'nama_bulan',sortable: false },            
-            { text: 'TAHUN', value: 'tahun',sortable: false },            
-            { text: 'BIAYA KOMBI', value: 'biaya_kombi',sortable: false },    
-            { text: 'AKSI', value: 'actions', sortable: false,width:100 },        
+            { text: "NO. BULAN", value: "no_bulan",width:120,sortable: false },
+            { text: "BULAN", value: "nama_bulan",sortable: false },            
+            { text: "TAHUN", value: "tahun",sortable: false },            
+            { text: "BIAYA KOMBI", value: "biaya_kombi",sortable: false },    
+            { text: "AKSI", value: "actions", sortable: false,width:100 },        
         ],              
         //form
         form_valid: true  
     }),
-    methods : {
+    methods: {
         changeTahunAkademik (tahun)
         {
             this.tahun_akademik=tahun;
         },
         initialize: async function() 
         {
-            this.datatableLoading=true;            
-            await this.$ajax.get('/keuangan/transaksi-spp/'+this.transaksi_id,                        
+            this.datatableLoading = true;            
+            await this.$ajax.get("/keuangan/transaksi-spp/" + this.transaksi_id,                        
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
@@ -249,17 +249,17 @@ export default {
             }).then(({ data })=>{       
                 this.data_transaksi=data.transaksi;                                       
                 this.item_selected = data.item_selected;                
-                this.datatableLoading=false;
+                this.datatableLoading = false;
             });                     
         }, 
         deleteItem (item) {           
-            this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus data dengan ID '+item.id+' ?', { color: 'red' }).then((confirm) => {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data dengan ID '+item.id+' ?", { color: "red" }).then((confirm) => {
                 if (confirm)
                 {
                     this.btnLoading=true;
-                    this.$ajax.post('/keuangan/transaksi-spp/'+item.id,
+                    this.$ajax.post("/keuangan/transaksi-spp/" + item.id,
                         {
-                            '_method': 'DELETE',
+                            _method: "DELETE",
                         },
                         {
                             headers: {
@@ -278,7 +278,7 @@ export default {
         },
         closeDetailTransaksi ()
         {
-            this.$router.push('/keuangan/transaksi-spp');
+            this.$router.push("/keuangan/transaksi-spp");
         },
     }, 
     computed: {

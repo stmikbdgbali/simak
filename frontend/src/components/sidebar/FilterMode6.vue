@@ -25,7 +25,7 @@
 </template>
 <script>
 export default {
-    name:'FilterMode6',
+    name: "FilterMode6",
     created()
     {
         this.daftar_prodi=this.$store.getters['uiadmin/getDaftarProdi'];  
@@ -38,15 +38,15 @@ export default {
         this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];  
     },
     data:()=>({
-        firstloading:true,
-        daftar_prodi:[],
-        prodi_id:null,
+        firstloading: true,
+        daftar_prodi: [],
+        prodi_id: null,
 
-        daftar_ta:[],
-        tahun_akademik:null,
+        daftar_ta: [],
+        tahun_akademik: null,
 
-        daftar_semester:[],
-        semester_akademik:null
+        daftar_semester: [],
+        semester_akademik: null
     }),
     methods:{
         setFirstTimeLoading (bool)
@@ -59,24 +59,24 @@ export default {
         {
             if (!this.firstloading)
             {
-                this.$store.dispatch('uiadmin/updateTahunAkademik',val);  
-                this.$emit('changeTahunAkademik',val);          
+                this.$store.dispatch("uiadmin/updateTahunAkademik",val);  
+                this.$emit("changeTahunAkademik",val);          
             }            
         },
         prodi_id(val)
         {
             if (!this.firstloading)
             {
-                this.$store.dispatch('uiadmin/updateProdi',val);  
-                this.$emit('changeProdi',val);          
+                this.$store.dispatch("uiadmin/updateProdi",val);  
+                this.$emit("changeProdi",val);          
             }
         },
         semester_akademik(val)
         {
             if (!this.firstloading)
             {
-                this.$store.dispatch('uiadmin/updateSemesterAkademik',val);  
-                this.$emit('changeSemesterAkademik',val);          
+                this.$store.dispatch("uiadmin/updateSemesterAkademik",val);  
+                this.$emit("changeSemesterAkademik",val);          
             }
         },
     }

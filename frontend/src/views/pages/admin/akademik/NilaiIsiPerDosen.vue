@@ -98,8 +98,8 @@
                             <td :colspan="headers.length" class="text-center">
                                 <v-col cols="12">                          
                                     <strong>ID:</strong>{{ item.id }}          
-                                    <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
-                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
+                                    <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
+                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
                                 </v-col>                                
                             </td>
                         </template>
@@ -114,34 +114,34 @@
 </template>
 <script>
 import AkademikLayout from '@/views/layouts/AkademikLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 import Filter2 from '@/components/sidebar/FilterMode2';
 
 import {mapGetters} from "vuex";
 
 export default {
-    name: 'NilaiIsiPerKelasMHS',
-    created () {
+    name: "NilaiIsiPerKelasMHS",
+    created() {
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
             },
             {
-                text: 'AKADEMIK',
+                text: "AKADEMIK",
                 disabled: false,
-                href: '/akademik'
+                href: "/akademik",
             },
             {
-                text: 'ISI NILAI',
+                text: "ISI NILAI",
                 disabled: false,
-                href: '#'
+                href: "#"
             },
             {
-                text: 'PER KELAS MAHASISWA',
+                text: "PER KELAS MAHASISWA",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];
         this.tahun_akademik=this.$store.getters['uiadmin/getTahunAkademik'];                
@@ -151,22 +151,22 @@ export default {
     data: () => ({ 
         firstloading: true,        
         daftar_ta: [],
-        tahun_akademik:null,
-        semester_akademik:null,
+        tahun_akademik: null,
+        semester_akademik: null,
 
         btnLoadingTable: false,
         datatableLoading: false,
         expanded: [],
         datatable: [],      
         headers: [
-            { text: 'KODE', value: 'kmatkul', sortable: true,width:100  },   
-            { text: 'NAMA MATAKULIAH/KELAS', value: 'nmatkul', sortable: true,width:250  },   
-            { text: 'NAMA DOSEN', value: 'nama_dosen', sortable: true,width:250  },                           
-            { text: 'HARI', value: 'nama_hari', sortable: true, width:70 },               
-            { text: 'JAM', value: 'jam_masuk',sortable: true, width:70 },                           
-            { text: 'RUANG', value: 'namaruang',sortable: true, width:100},                           
-            { text: 'JUMLAH PESERTA', value: 'jumlah_mhs',sortable: true, width:100},                           
-            { text: 'AKSI', value: 'actions', sortable: false,width:120 },
+            { text: "KODE", value: "kmatkul", sortable: true,width:100  },   
+            { text: "NAMA MATAKULIAH/KELAS", value: "nmatkul", sortable: true,width:250  },   
+            { text: "NAMA DOSEN", value: "nama_dosen", sortable: true,width:250  },                           
+            { text: "HARI", value: "nama_hari", sortable: true, width:70 },               
+            { text: "JAM", value: "jam_masuk",sortable: true, width:70 },                           
+            { text: "RUANG", value: "namaruang",sortable: true, width:100},                           
+            { text: "JUMLAH PESERTA", value: "jumlah_mhs",sortable: true, width:100},                           
+            { text: "AKSI", value: "actions", sortable: false,width:120 },
         ],  
         search: "", 
 
@@ -182,8 +182,8 @@ export default {
         },        
         initialize: async function() 
         {
-            this.datatableLoading=true;
-            await this.$ajax.post('/akademik/perkuliahan/pembagiankelas',
+            this.datatableLoading = true;
+            await this.$ajax.post("/akademik/perkuliahan/pembagiankelas",
             {
                 ta: this.tahun_akademik,
                 semester_akademik: this.semester_akademik,
@@ -194,22 +194,22 @@ export default {
                 }
             }).then(({ data })=>{                               
                 this.datatable = data.pembagiankelas;
-                this.datatableLoading=false;
+                this.datatableLoading = false;
             }).catch(()=>{
-                this.datatableLoading=false;
+                this.datatableLoading = false;
             });  
-            this.firstloading=false;
+            this.firstloading = false;
             this.$refs.filter2.setFirstTimeLoading(this.firstloading); 
         },
         dataTableRowClicked(item)
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded = [];                
             }
             else
             {
-                this.expanded=[item];
+                this.expanded = [item];
             }               
         },                
     },
@@ -230,8 +230,8 @@ export default {
         },        
     },
     computed: {
-        ...mapGetters('auth',{            
-            CAN_ACCESS: 'can',                     
+        ...mapGetters("auth",{            
+            CAN_ACCESS: "can",                     
         }),
     },
     components: {

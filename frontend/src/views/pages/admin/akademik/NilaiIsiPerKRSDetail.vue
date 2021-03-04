@@ -50,7 +50,7 @@
                                     <v-card flat>
                                         <v-card-title>SAH :</v-card-title>
                                         <v-card-subtitle>
-                                            <v-chip label outlined color="info">{{datakrs.sah==1?'YA': 'TIDAK'}}</v-chip>
+                                            <v-chip label outlined color="info">{{datakrs.sah== 1?"YA": "TIDAK"}}</v-chip>
                                         </v-card-subtitle>
                                     </v-card>
                                 </v-col>
@@ -86,7 +86,7 @@
                                     <v-card flat>
                                         <v-card-title>CREATED / UPDATED :</v-card-title>
                                         <v-card-subtitle>
-                                            {{$date(datakrs.created_at).format('DD/MM/YYYY HH:mm')}} / {{$date(datakrs.updated_at).format('DD/MM/YYYY HH:mm')}}
+                                            {{$date(datakrs.created_at).format("DD/MM/YYYY HH:mm")}} / {{$date(datakrs.updated_at).format("DD/MM/YYYY HH:mm")}}
                                         </v-card-subtitle>
                                     </v-card>
                                 </v-col>
@@ -175,32 +175,32 @@
 </template>
 <script>
 import AkademikLayout from '@/views/layouts/AkademikLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 import VAngkaNilai from '@/components/VAngkaNilai';
 export default {
-    name: 'NilaiIsiPerKRSDetail',
-    created () {
+    name: "NilaiIsiPerKRSDetail",
+    created() {
         this.krs_id=this.$route.params.krsid;        
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
             },
             {
-                text: 'AKADEMIK',
+                text: "AKADEMIK",
                 disabled: false,
-                href: '/akademik'
+                href: "/akademik",
             },
             {
-                text: 'ISI NILAI',
+                text: "ISI NILAI",
                 disabled: false,
-                href: '#'
+                href: "#"
             },
             {
-                text: 'PER KRS',
+                text: "PER KRS",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];  
         this.fetchKRS();               
@@ -208,15 +208,15 @@ export default {
     data: () => ({ 
         test:100,
         firstloading: true,        
-        nama_prodi:null,
-        tahun_akademik:null,        
-        semester_akademik:null,
+        nama_prodi: null,
+        tahun_akademik: null,        
+        semester_akademik: null,
     
         btnLoading: false, 
         btnLoadingTable: false,
 
         //formdata
-        krs_id:null,
+        krs_id: null,
         datakrs: {},
         
         //table        
@@ -224,13 +224,13 @@ export default {
         expanded: [],
         datatable: [],      
         headers: [
-            { text: 'KODE', value: 'kmatkul', sortable: true,width:100  },   
-            { text: 'NAMA MATAKULIAH', value: 'nmatkul',sortable: true,width:260 },               
-            { text: 'SKS', value: 'sks', sortable: false,width:50 },                           
-            { text: 'SMT', value: 'semester', sortable: false,width:50 },                           
-            { text: 'KELAS', value: 'nama_kelas', sortable: false,width:200 },                           
-            { text: 'NILAI ANGKA (0 s.d 100)', value: 'n_kuan', sortable: false,width:70 },                           
-            { text: 'NILAI HURUF', value: 'n_kual', sortable: false,width:100 },                           
+            { text: "KODE", value: "kmatkul", sortable: true,width:100  },   
+            { text: "NAMA MATAKULIAH", value: "nmatkul",sortable: true,width:260 },               
+            { text: "SKS", value: "sks", sortable: false,width:50 },                           
+            { text: "SMT", value: "semester", sortable: false,width:50 },                           
+            { text: "KELAS", value: "nama_kelas", sortable: false,width:200 },                           
+            { text: "NILAI ANGKA (0 s.d 100)", value: "n_kuan", sortable: false,width:70 },                           
+            { text: "NILAI HURUF", value: "n_kual", sortable: false,width:100 },                           
                                    
         ],  
         //formdata
@@ -239,7 +239,7 @@ export default {
     methods: {          
         async fetchKRS()
         {
-            await this.$ajax.get('/akademik/nilai/matakuliah/perkrs/'+this.krs_id,                        
+            await this.$ajax.get("/akademik/nilai/matakuliah/perkrs/" + this.krs_id,                        
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
@@ -268,7 +268,7 @@ export default {
                     n_kual:item.n_kual
                 });
             });            
-            await this.$ajax.post('/akademik/nilai/matakuliah/perkrs/storeperkrs',
+            await this.$ajax.post("/akademik/nilai/matakuliah/perkrs/storeperkrs",
                 {
                     krs_id: this.krs_id,
                     daftar_nilai:JSON.stringify(Object.assign({},daftar_nilai)),                    

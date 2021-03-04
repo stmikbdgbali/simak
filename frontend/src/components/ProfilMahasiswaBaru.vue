@@ -88,7 +88,7 @@
                                             <v-card flat>
                                                 <v-card-title>TEMPAT DAN TGL. LAHIR :</v-card-title>
                                                 <v-card-subtitle>
-                                                    {{datamhs.tempat_lahir}}, {{$date(datamhs.tanggal_lahir).format('DD/MM/YYYY')}}
+                                                    {{datamhs.tempat_lahir}}, {{$date(datamhs.tanggal_lahir).format("DD/MM/YYYY")}}
                                                 </v-card-subtitle>
                                             </v-card>
                                         </v-col>
@@ -97,7 +97,7 @@
                                             <v-card flat>
                                                 <v-card-title>TAHUN PENDAFTARAN :</v-card-title>
                                                 <v-card-subtitle>
-                                                    {{datamhs.ta}}, ({{$date(item.created_at).format('DD/MM/YYYY HH:mm')}})
+                                                    {{datamhs.ta}}, ({{$date(item.created_at).format("DD/MM/YYYY HH:mm")}})
                                                 </v-card-subtitle>
                                             </v-card>
                                         </v-col>
@@ -118,7 +118,7 @@
                                             <v-card flat>
                                                 <v-card-title>TGL. UBAH :</v-card-title>
                                                 <v-card-subtitle>
-                                                    {{$date(item.created_at).format('DD/MM/YYYY HH:mm')}}
+                                                    {{$date(item.created_at).format("DD/MM/YYYY HH:mm")}}
                                                 </v-card-subtitle>
                                             </v-card>
                                         </v-col>
@@ -170,7 +170,7 @@
 <script>    
 import FormPersyaratan from '@/components/FormPersyaratanPMB';
 export default {
-    name:'ProfilMahasiswaBaru',
+    name: "ProfilMahasiswaBaru",
     created()
     {
         this.initialize();                     
@@ -180,11 +180,11 @@ export default {
     },
     data()
     {
-        let tanggal_lahir=this.$date().format('YYYY-MM-DD');
-        let tanggal_sekarang=this.$date().format('YYYY-MM-DD HH:mm:ss');
+        let tanggal_lahir=this.$date().format("YYYY-MM-DD");
+        let tanggal_sekarang=this.$date().format("YYYY-MM-DD HH:mm:ss");
         return {           
-            slides:[],
-            dialogpreviewpersyaratan:false,         
+            slides: [],
+            dialogpreviewpersyaratan: false,         
 
             datamhs:{                    
                 tanggal_lahir:tanggal_lahir,
@@ -194,25 +194,25 @@ export default {
         }
     },
     methods: {
-        initialize:async function ()
+        initialize: async function ()
         {
-            await this.$ajax.get('/spmb/formulirpendaftaran/'+this.item.id,             
+            await this.$ajax.get("/spmb/formulirpendaftaran/" + this.item.id,             
                 {
                     headers:{
-                        Authorization:this.$store.getters['auth/Token']
+                        Authorization: this.$store.getters['auth/Token']
                     }
                 },                
             ).then(({data})=>{   
                 this.datamhs=Object.assign(data.formulir,{
-                                                            nama_prodi:this.$store.getters['uiadmin/getProdiName'](data.formulir.kjur1),
-                                                            nama_kelas:this.$store.getters['uiadmin/getNamaKelas'](data.formulir.idkelas)
+                                                            nama_prodi: this.$store.getters['uiadmin/getProdiName'](data.formulir.kjur1),
+                                                            nama_kelas: this.$store.getters['uiadmin/getNamaKelas'](data.formulir.idkelas)
                                                         }); 
             });
 
-            await this.$ajax.get('/spmb/pmbpersyaratan/'+this.item.id,             
+            await this.$ajax.get("/spmb/pmbpersyaratan/" + this.item.id,             
                 {
                     headers:{
-                        Authorization:this.$store.getters['auth/Token']
+                        Authorization: this.$store.getters['auth/Token']
                     }
                 }
             ).then(({data})=>{    
@@ -221,7 +221,7 @@ export default {
                     if (element.path != null)
                     {
                         this.slides.push({
-                            path:this.$api.url+'/'+element.path,
+                            path: this.$api.url+'/'+element.path,
                             nama_persyaratan:element.nama_persyaratan
                         });
                     }
@@ -239,7 +239,7 @@ export default {
         closeDialog() 
         {
             setTimeout(() => {
-                this.$emit('closeProfilMahasiswaBaru');                
+                this.$emit("closeProfilMahasiswaBaru");                
                 }, 300
             );            
         }

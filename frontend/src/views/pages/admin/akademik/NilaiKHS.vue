@@ -123,8 +123,8 @@
                             <td :colspan="headers.length" class="text-center">
                                 <v-col cols="12">                          
                                     <strong>krs_id:</strong>{{ item.id }}          
-                                    <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
-                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
+                                    <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
+                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
                                 </v-col>                                
                             </td>
                         </template>
@@ -139,34 +139,34 @@
 </template>
 <script>
 import AkademikLayout from '@/views/layouts/AkademikLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 import Filter6 from '@/components/sidebar/FilterMode6';
 export default {
-    name: 'NilaiKHS',
-    created () {
+    name: "NilaiKHS",
+    created() {
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
             },
             {
-                text: 'AKADEMIK',
+                text: "AKADEMIK",
                 disabled: false,
-                href: '/akademik'
+                href: "/akademik",
             },
             {
-                text: 'NILAI',
+                text: "NILAI",
                 disabled: false,
-                href: '#'
+                href: "#"
             },
             {
-                text: 'KHS',
+                text: "KHS",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];  
-        if (this.$store.getters['uiadmin/getDefaultDashboard']=='mahasiswa')
+        if (this.$store.getters['uiadmin/getDefaultDashboard']=="mahasiswa")
         {
             this.initializeMhs();
         }   
@@ -181,18 +181,18 @@ export default {
     },  
     mounted()
     {
-        if (this.$store.getters['uiadmin/getDefaultDashboard']!='mahasiswa')        
+        if (this.$store.getters['uiadmin/getDefaultDashboard']!="mahasiswa")        
         {            
             this.initialize();                   
         }
     },
     data: () => ({ 
         firstloading: true,
-        prodi_id:null,
-        nama_prodi:null,
+        prodi_id: null,
+        nama_prodi: null,
         daftar_ta: [],
-        tahun_akademik:null,
-        semester_akademik:null,
+        tahun_akademik: null,
+        semester_akademik: null,
         filter_ignore: false, 
         awaiting_search: false,
         
@@ -202,20 +202,20 @@ export default {
         expanded: [],
         datatable: [],      
         headers: [
-            { text: 'NIM', value: 'nim', sortable: true,width:100  },   
-            { text: 'NAMA', value: 'nama_mhs', sortable: true,width:250  },   
-            { text: 'ANGK.', value: 'tahun_masuk', sortable: true, width:100  },               
-            { text: 'JUMLAH MATKUL', value: 'jumlah_matkul', sortable: true, width:100  },               
-            { text: 'JUMLAH SKS', value: 'jumlah_sks', sortable: true, width:100 },               
-            { text: 'IPS', value: 'ips',sortable: true, width:50},                           
-            { text: 'IPK', value: 'ipk',sortable: true, width:50},                           
-            { text: 'TA.SMT', value: 'tasmt',sortable: true, width:100 },                                       
-            { text: 'AKSI', value: 'actions', sortable: false,width:100 },
+            { text: "NIM", value: "nim", sortable: true,width:100  },   
+            { text: "NAMA", value: "nama_mhs", sortable: true,width:250  },   
+            { text: "ANGK.", value: "tahun_masuk", sortable: true, width:100  },               
+            { text: "JUMLAH MATKUL", value: "jumlah_matkul", sortable: true, width:100  },               
+            { text: "JUMLAH SKS", value: "jumlah_sks", sortable: true, width:100 },               
+            { text: "IPS", value: "ips",sortable: true, width:50},                           
+            { text: "IPK", value: "ipk",sortable: true, width:50},                           
+            { text: "TA.SMT", value: "tasmt",sortable: true, width:100 },                                       
+            { text: "AKSI", value: "actions", sortable: false,width:100 },
         ],  
         search: "", 
 
         dialogprintpdf: false,
-        file_pdf:null
+        file_pdf: null
     }),
     methods: {
         changeTahunAkademik (tahun)
@@ -228,12 +228,12 @@ export default {
         },
         changeProdi (id)
         {
-            this.prodi_id=id;
+            this.prodi_id = id;
         },
         async initializeMhs ()
         {
-            this.datatableLoading=true;
-            await this.$ajax.post('/akademik/nilai/khs',
+            this.datatableLoading = true;
+            await this.$ajax.post("/akademik/nilai/khs",
             {
                 
             },
@@ -243,15 +243,15 @@ export default {
                 }
             }).then(({ data })=>{                                           
                 this.datatable = data.daftar_khs;
-                this.datatableLoading=false;
+                this.datatableLoading = false;
             }).catch(()=>{
-                this.datatableLoading=false;
+                this.datatableLoading = false;
             });              
         },
         initialize: async function() 
         {
-            this.datatableLoading=true;
-            await this.$ajax.post('/akademik/nilai/khs',
+            this.datatableLoading = true;
+            await this.$ajax.post("/akademik/nilai/khs",
             {
                 prodi_id: this.prodi_id,
                 ta: this.tahun_akademik,
@@ -263,28 +263,28 @@ export default {
                 }
             }).then(({ data })=>{                                        
                 this.datatable = data.daftar_khs;
-                this.datatableLoading=false;
-                this.firstloading=false;     
+                this.datatableLoading = false;
+                this.firstloading = false;     
                 this.$refs.filter6.setFirstTimeLoading(this.firstloading); 
             }).catch(()=>{
-                this.datatableLoading=false;
+                this.datatableLoading = false;
             });              
         },
         dataTableRowClicked(item)
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded = [];                
             }
             else
             {
-                this.expanded=[item];
+                this.expanded = [item];
             }               
         },          
         async printpdf(item)
         {
             this.btnLoading=true;
-            await this.$ajax.get('/akademik/nilai/khs/printpdf/'+item.id,                
+            await this.$ajax.get("/akademik/nilai/khs/printpdf/" + item.id,                
                 {
                     headers: {
                         Authorization: this.$store.getters["auth/Token"]
@@ -337,8 +337,8 @@ export default {
                 setTimeout(async () => {
                     if (this.search.length > 0 && this.filter_ignore)
                     {
-                        this.datatableLoading=true;            
-                        await this.$ajax.post('/akademik/nilai/khs/',            
+                        this.datatableLoading = true;            
+                        await this.$ajax.post("/akademik/nilai/khs/",            
                         {
                             prodi_id: this.prodi_id,
                             ta: this.tahun_akademik,
@@ -351,7 +351,7 @@ export default {
                             }
                         }).then(({ data })=>{               
                             this.datatable = data.daftar_khs;
-                            this.datatableLoading=false;
+                            this.datatableLoading = false;
                         });                     
                     }
                     this.awaiting_search = false;

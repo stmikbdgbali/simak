@@ -77,31 +77,31 @@
 <script>
 import {mapGetters} from "vuex";
 import SystemConfigLayout from '@/views/layouts/SystemConfigLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 export default {
-    name: 'IdentitasDiri',
+    name: "IdentitasDiri",
     created()
     {
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.ACCESS_TOKEN
+                href: "/dashboard/" + this.ACCESS_TOKEN
             },
             {
-                text: 'KONFIGURASI SISTEM',
+                text: "KONFIGURASI SISTEM",
                 disabled: false,
-                href: '/system-setting'
+                href: "/system-setting"
             },  
             {
-                text: 'PERGURUAN TINGGI',
+                text: "PERGURUAN TINGGI",
                 disabled: false,
-                href: '#'
+                href: "#"
             },
             {
-                text: 'IDENTITAS DIRI',
+                text: "IDENTITAS DIRI",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];
         this.initialize();
@@ -126,13 +126,13 @@ export default {
         ],
         rule_kode_pt: [
             value => !!value || "Mohon untuk di isi Kode Perguruan Tinggi !!!",                     
-            value => /^[0-9]+$/.test(value) || 'Kode Perguruan Tinggi hanya boleh angka',
+            value => /^[0-9]+$/.test(value) || "Kode Perguruan Tinggi hanya boleh angka",
         ]
     }),
     methods: {
         initialize: async function() 
         {
-            await this.$ajax.get('/system/setting/variables',
+            await this.$ajax.get("/system/setting/variables",
             {
                 headers: {
                     Authorization: this.TOKEN
@@ -150,10 +150,10 @@ export default {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading=true;                
-                this.$ajax.post('/system/setting/variables',
+                this.$ajax.post("/system/setting/variables",
                     {
-                        '_method': 'PUT', 
-                        'pid': 'Identitas Perguruan Tinggi',
+                        _method: "PUT", 
+                        'pid': "Identitas Perguruan Tinggi",
                         setting:JSON.stringify({
                             101: this.formdata.nama_pt,
                             102: this.formdata.nama_alias_pt,
@@ -175,9 +175,9 @@ export default {
         }
     },
     computed: { 
-        ...mapGetters('auth',{            
-            ACCESS_TOKEN: 'AccessToken',          
-            TOKEN: 'Token',                                  
+        ...mapGetters("auth",{            
+            ACCESS_TOKEN: "AccessToken",          
+            TOKEN: "Token",                                  
         }),
     },
     components: {

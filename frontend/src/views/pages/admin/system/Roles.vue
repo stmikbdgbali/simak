@@ -143,8 +143,8 @@
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
                                 <strong>ID:</strong>{{ item.id }}
-                                <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
-                                <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
+                                <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
+                                <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -175,7 +175,7 @@
                                                 TANGGAL BUAT :
                                             </v-card-title>
                                             <v-card-subtitle>
-                                                {{$date(editedItem.created_at).format('DD/MM/YYYY HH:mm')}}
+                                                {{$date(editedItem.created_at).format("DD/MM/YYYY HH:mm")}}
                                             </v-card-subtitle>
                                         </v-card>
                                     </v-col>
@@ -195,7 +195,7 @@
                                         <v-card flat>
                                             <v-card-title>TANGGAL UBAH :</v-card-title>
                                             <v-card-subtitle>
-                                                {{$date(editedItem.updated_at).format('DD/MM/YYYY HH:mm')}}
+                                                {{$date(editedItem.updated_at).format("DD/MM/YYYY HH:mm")}}
                                             </v-card-subtitle>
                                         </v-card>
                                     </v-col>
@@ -227,27 +227,27 @@
 <script>
 import {mapGetters} from "vuex";
 import SystemUserLayout from '@/views/layouts/SystemUserLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 import RolePermissions from '@/views/pages/admin/system/RolePermissions';
 export default {
-    name: 'Roles',
+    name: "Roles",
     created()
     {
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.ACCESS_TOKEN
+                href: "/dashboard/" + this.ACCESS_TOKEN
             },
             {
-                text: 'USER SISTEM',
+                text: "USER SISTEM",
                 disabled: false,
-                href: '/system-users'
+                href: "/system-users"
             },
             {
-                text: 'ROLES',
+                text: "ROLES",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];
         this.initialize()
@@ -262,14 +262,14 @@ export default {
         permissions_selected: [],
         //tables
         headers: [                        
-            { text: 'NAMA ROLE', value: 'name' },
-            { text: 'GUARD', value: 'guard_name' },            
-            { text: 'AKSI', value: 'actions', sortable: false,width:130 },
+            { text: "NAMA ROLE", value: "name" },
+            { text: "GUARD", value: "guard_name" },            
+            { text: "AKSI", value: "actions", sortable: false,width:130 },
         ],
         //tables
         headersdetail: [                        
-            { text: 'NAMA PERMISSION', value: 'name' },
-            { text: 'GUARD', value: 'guard_name' },                          
+            { text: "NAMA PERMISSION", value: "name" },
+            { text: "GUARD", value: "guard_name" },                          
         ],
         search: "",
         //form
@@ -279,31 +279,31 @@ export default {
         dialogRolePermission: false,
         editedIndex: -1,
         editedItem: {
-            id:0,
-            name:  "",           
-            guard:  "",           
-            created_at:  "",           
-            updated_at:  "",           
+            id: 0,
+            name: "",           
+            guard: "",           
+            created_at: "",           
+            updated_at: "",           
         },
         defaultItem: {
-            id:0,
-            name:  "",           
-            guard: 'api',           
-            created_at:  "",           
-            updated_at:  "",           
+            id: 0,
+            name: "",           
+            guard: "api",           
+            created_at: "",           
+            updated_at: "",           
         },
         //form rules        
         rule_role_name: [
             value => !!value || "Mohon untuk di isi nama Role !!!",  
-            value => /^[A-Za-z]*$/.test(value) || 'Nama Role hanya boleh string',                
+            value => /^[A-Za-z]*$/.test(value) || "Nama Role hanya boleh string",                
         ], 
-        form_error_message: ''
+        form_error_message: ""
     }),
     methods: {
         initialize () 
         {
-            this.datatableLoading=true;
-            this.$ajax.get('/system/setting/roles',{
+            this.datatableLoading = true;
+            this.$ajax.get("/system/setting/roles",{
                 headers: {
                     Authorization: this.TOKEN
                 }
@@ -311,7 +311,7 @@ export default {
                 if (status==200)
                 {
                     this.datatable = data.roles;
-                    this.datatableLoading=false;
+                    this.datatableLoading = false;
                 }     
             
             });          
@@ -321,18 +321,18 @@ export default {
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded = [];                
             }
             else
             {
-                this.expanded=[item];
+                this.expanded = [item];
             }               
         },
-        viewItem (item) {
+        viewItem(item) {
             this.editedIndex = this.datatable.indexOf(item);
             this.editedItem = Object.assign({}, item);
 
-            this.$ajax.get('/system/setting/roles/'+item.id+'/permission',{
+            this.$ajax.get("/system/setting/roles/" + item.id + "/permission",{
                 headers: {
                     Authorization: this.TOKEN
                 }
@@ -345,13 +345,13 @@ export default {
             
             this.dialogdetail = true;
         },
-        editItem (item) {
+        editItem(item) {
             this.editedIndex = this.datatable.indexOf(item)
             this.editedItem = Object.assign({}, item)
             this.dialog = true
         },
         setPermission (item) {            
-            this.$ajax.get('/system/setting/permissions',{
+            this.$ajax.get("/system/setting/permissions",{
                 headers: {
                     Authorization: this.TOKEN
                 }
@@ -362,7 +362,7 @@ export default {
                 }                 
             });          
 
-            this.$ajax.get('/system/setting/roles/'+item.id+'/permission',{
+            this.$ajax.get("/system/setting/roles/" + item.id + "/permission",{
                 headers: {
                     Authorization: this.TOKEN
                 }
@@ -398,9 +398,9 @@ export default {
                 this.btnLoading=true;
                 if (this.editedIndex > -1) 
                 {
-                    this.$ajax.post('/system/setting/roles/'+this.editedItem.id,
+                    this.$ajax.post("/system/setting/roles/" + this.editedItem.id,
                         {
-                            '_method': 'PUT',
+                            _method: "PUT",
                             name: this.editedItem.name.toLowerCase(),
                         },
                         {
@@ -416,7 +416,7 @@ export default {
                     });                    
                     
                 } else {
-                    this.$ajax.post('/system/setting/roles/store',
+                    this.$ajax.post("/system/setting/roles/store",
                         {
                             name: this.editedItem.name.toLowerCase()
                         },
@@ -437,11 +437,11 @@ export default {
     },
     computed: {        
         formTitle () {
-            return this.editedIndex === -1 ? 'TAMBAH ROLE' : 'EDIT ROLE'
+            return this.editedIndex === -1 ? "TAMBAH ROLE" : "EDIT ROLE"
         },
-        ...mapGetters('auth',{            
-            ACCESS_TOKEN: 'AccessToken',          
-            TOKEN: 'Token',                                  
+        ...mapGetters("auth",{            
+            ACCESS_TOKEN: "AccessToken",          
+            TOKEN: "Token",                                  
         }),
     },
     watch: {

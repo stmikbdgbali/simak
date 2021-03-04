@@ -72,31 +72,31 @@
 <script>
 import {mapGetters} from 'vuex';
 import SystemConfigLayout from '@/views/layouts/SystemConfigLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 export default {
-    name: 'ThemesColorDashboard',
+    name: "ThemesColorDashboard",
     created()
     {
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.ACCESS_TOKEN
+                href: "/dashboard/" + this.ACCESS_TOKEN
             },
             {
-                text: 'KONFIGURASI SISTEM',
+                text: "KONFIGURASI SISTEM",
                 disabled: false,
-                href: '/system-setting'
+                href: "/system-setting"
             },  
             {
-                text: 'THEMES',
+                text: "THEMES",
                 disabled: false,
-                href: '#'
+                href: "#"
             },
             {
-                text: 'WARNA DASHBOARD',
+                text: "WARNA DASHBOARD",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];
         this.initialize();
@@ -107,26 +107,26 @@ export default {
         btnLoading: false,   
         //form
         form_valid: true, 
-        currentBox: 'dmaster',
-        color: '#fff',          
+        currentBox: "dmaster",
+        color: "#fff",          
         formdata: {
-            dmaster:null,            
-            perencanaan:null,            
-            spmb:null,            
-            keuangan:null,            
-            akademik:null,            
-            kemahasiswaan:null,            
-            elearning:null,            
-            user_sistem:null,            
-            konfigurasi_sistem:null,            
-            migrasi_sistem:null,            
+            dmaster: null,            
+            perencanaan: null,            
+            spmb: null,            
+            keuangan: null,            
+            akademik: null,            
+            kemahasiswaan: null,            
+            elearning: null,            
+            user_sistem: null,            
+            konfigurasi_sistem: null,            
+            migrasi_sistem: null,            
         },        
     }),
     methods: {
-        initialize:async function() 
+        initialize: async function() 
         {
-            this.datatableLoading=true;
-            await this.$ajax.get('/system/setting/variables',
+            this.datatableLoading = true;
+            await this.$ajax.get("/system/setting/variables",
             {
                 headers: {
                     Authorization: this.TOKEN
@@ -186,10 +186,10 @@ export default {
                     break;                
                 }
                             
-                this.$ajax.post('/system/setting/variables',
+                this.$ajax.post("/system/setting/variables",
                     {
-                        '_method': 'PUT', 
-                        'pid': 'Color Dashboard',
+                        _method: "PUT", 
+                        'pid': "Color Dashboard",
                         setting:JSON.stringify({
                             807: this.formdata,                            
                         }),                                                                                                                            
@@ -204,14 +204,14 @@ export default {
                 }).catch(()=>{
                     this.btnLoading = false;
                 });        
-                this.$store.dispatch('uiadmin/init',this.$ajax); 
+                this.$store.dispatch("uiadmin/init",this.$ajax); 
             }
         }
     },
     computed: { 
-        ...mapGetters('auth',{            
-            ACCESS_TOKEN: 'AccessToken',          
-            TOKEN: 'Token',                                  
+        ...mapGetters("auth",{            
+            ACCESS_TOKEN: "AccessToken",          
+            TOKEN: "Token",                                  
         }),
         showColor: {
             set(val)

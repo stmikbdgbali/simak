@@ -37,32 +37,32 @@
 </template>
 <script>
 import KeuanganLayout from '@/views/layouts/KeuanganLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 import Filter1 from '@/components/sidebar/FilterMode1';
 import DashboardKeuanganMHS from '@/components/DashboardKeuanganMHS';
 import DashboardKeuanganAdmin from '@/components/DashboardKeuanganAdmin';
 export default {
-    name: 'Keuangan',
+    name: "Keuangan",
     created ()
 	{
         this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard']; 
 		this.breadcrumbs = [
 			{
-				text: 'HOME',
+				text: "HOME",
 				disabled: false,
-				href: '/dashboard/'+this.$store.getters['auth/AccessToken']
+				href: "/dashboard/" + this.$store.getters['auth/AccessToken']
 			},
 			{
-				text: 'KEUANGAN',
+				text: "KEUANGAN",
 				disabled: true,
-				href: '#'
+				href: "#"
 			}
         ];				
         this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];         
     },
     mounted()
     {
-        this.firstloading=false;            
+        this.firstloading = false;            
         this.$refs.filter1.setFirstTimeLoading(this.firstloading);
     },
     data: () => ({
@@ -70,9 +70,9 @@ export default {
         breadcrumbs: [],        
         tahun_akademik:0,
 
-        dashboard:null
+        dashboard: null
     }),
-    methods : {
+    methods: {
         changeTahunAkademik (tahun)
         {
             this.tahun_akademik=tahun;

@@ -126,7 +126,7 @@
                             </v-toolbar>
                         </template>
                         <template v-slot:item.tanggal="{ item }">    
-                            {{$date(item.tanggal).format('DD/MM/YYYY')}}
+                            {{$date(item.tanggal).format("DD/MM/YYYY")}}
                         </template>
                         <template v-slot:item.sub_total="{ item }">    
                             {{item.sub_total|formatUang}}
@@ -182,28 +182,28 @@
 </template>
 <script>
 import KeuanganLayout from '@/views/layouts/KeuanganLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 import Filter18 from '@/components/sidebar/FilterMode18';
 export default {
-    name: 'TransaksiSPP',
+    name: "TransaksiSPP",
     created()
     {
         this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];   
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
             },
             {
-                text: 'KEUANGAN',
+                text: "KEUANGAN",
                 disabled: false,
-                href: '/keuangan'
+                href: "/keuangan"
             },
             {
-                text: 'TRANSAKSI SPP',
+                text: "TRANSAKSI SPP",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];        
         let prodi_id=this.$store.getters['uiadmin/getProdiID'];
@@ -218,8 +218,8 @@ export default {
     data: () => ({
         firstloading: true,
         breadcrumbs: [],     
-        prodi_id:null,
-        nama_prodi:null,
+        prodi_id: null,
+        nama_prodi: null,
         tahun_akademik:0,
         filter_ignore: false, 
         awaiting_search: false,
@@ -230,15 +230,15 @@ export default {
         datatableLoading: false,       
         datatable: [], 
         headers: [                                                
-            { text: 'KODE BILLING', value: 'no_transaksi',width:100,sortable: true },
-            { text: 'TANGGAL', value: 'tanggal',width:90,sortable: true },
-            { text: 'NIM', value: 'nim',sortable: true,width:100 },
-            { text: 'NAMA MAHASISWA', value: 'nama_mhs',sortable: true, width:250 },            
-            { text: 'BULAN', value: 'nama_bulan',width:100,sortable: true },
-            { text: 'TA/SMT', value: 'idsmt',width:50,sortable: false },
-            { text: 'JUMLAH', value: 'sub_total',width:100,sortable: false,align: 'right' },
-            { text: 'STATUS', value: 'nama_status',width:100,sortable: false },            
-            { text: 'AKSI', value: 'actions', sortable: false,width:50 },
+            { text: "KODE BILLING", value: "no_transaksi",width:100,sortable: true },
+            { text: "TANGGAL", value: "tanggal",width:90,sortable: true },
+            { text: "NIM", value: "nim",sortable: true,width:100 },
+            { text: "NAMA MAHASISWA", value: "nama_mhs",sortable: true, width:250 },            
+            { text: "BULAN", value: "nama_bulan",width:100,sortable: true },
+            { text: "TA/SMT", value: "idsmt",width:50,sortable: false },
+            { text: "JUMLAH", value: "sub_total",width:100,sortable: false,align: "right" },
+            { text: "STATUS", value: "nama_status",width:100,sortable: false },            
+            { text: "AKSI", value: "actions", sortable: false,width:50 },
         ],        
         expanded: [],
         search: "", 
@@ -250,25 +250,25 @@ export default {
         daftar_semester: [],        
         formdata: {
             nim: "",
-            semester_akademik: ''
+            semester_akademik: ""
         },
         formdefault: {
             nim: "",
-            semester_akademik: ''
+            semester_akademik: ""
         },
         rule_nim: [
             value => !!value || "Nomor Induk Mahasiswa (NIM) mohon untuk diisi !!!",
-            value => /^[0-9]+$/.test(value) || 'Nomor Induk Mahasiswa (NIM) hanya boleh angka',
+            value => /^[0-9]+$/.test(value) || "Nomor Induk Mahasiswa (NIM) hanya boleh angka",
         ], 
         rule_semester: [
             value => !!value || "Mohon dipilih Semester untuk transaksi ini !!!"
         ],    
 
     }),
-    methods : {
+    methods: {
         changeProdi (id)
         {
-            this.prodi_id=id;
+            this.prodi_id = id;
         },
         changeTahunAkademik (tahun)
         {
@@ -276,8 +276,8 @@ export default {
         },
         initialize: async function() 
         {
-            this.datatableLoading=true;            
-            await this.$ajax.post('/keuangan/transaksi-spp',            
+            this.datatableLoading = true;            
+            await this.$ajax.post("/keuangan/transaksi-spp",            
             {
                 prodi_id: this.prodi_id,
                 TA: this.tahun_akademik,
@@ -288,40 +288,40 @@ export default {
                 }
             }).then(({ data })=>{               
                 this.datatable = data.transaksi;                
-                this.datatableLoading=false;
+                this.datatableLoading = false;
             });                     
-            this.firstloading=false;
+            this.firstloading = false;
             this.$refs.filter18.setFirstTimeLoading(this.firstloading);       
         },
         dataTableRowClicked(item)
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded = [];                
             }
             else
             {
-                this.expanded=[item];
+                this.expanded = [item];
             }               
         },
         async addItem ()
         {
             this.daftar_semester=this.$store.getters['uiadmin/getDaftarSemester'];  
             this.formdata.semester_akademik=this.semester_akademik;
-            if (this.dashboard =='mahasiswa')
+            if (this.dashboard == "mahasiswa")
             {
-                this.formdata.nim=this.$store.getters['auth/AttributeUser']('username');
+                this.formdata.nim=this.$store.getters['auth/AttributeUser']("username");
             }
             this.dialogfrm=true;            
         },
         viewItem(item)
         {
-            this.$router.push('/keuangan/transaksi-spp/'+item.transaksi_id);
+            this.$router.push("/keuangan/transaksi-spp/" + item.transaksi_id);
         },
-        buatTransaksi:async function() {
+        buatTransaksi: async function() {
             if (this.$refs.frmdata.validate())
             {
-                await this.$ajax.post('/keuangan/transaksi-spp/new',
+                await this.$ajax.post("/keuangan/transaksi-spp/new",
                     {
                         nim: this.formdata.nim, 
                         semester_akademik: this.formdata.semester_akademik,                                                                            
@@ -334,7 +334,7 @@ export default {
                     }
                 ).then(({ data })=>{                                        
                     this.btnLoading = false;                                        
-                    this.$router.push('/keuangan/transaksi-spp/tambah/'+data.transaksi.id);
+                    this.$router.push("/keuangan/transaksi-spp/tambah/" + data.transaksi.id);
                 }).catch(()=>{
                     this.btnLoading = false;
                 });                
@@ -354,7 +354,7 @@ export default {
         {
             var total=0;
             this.datatable.forEach(item => {
-                if (item.status==1)
+                if (item.status== 1)
                 {
                     total+=item.sub_total;
                 }
@@ -407,8 +407,8 @@ export default {
                 setTimeout(async () => {
                     if (this.search.length > 0 && this.filter_ignore)
                     {
-                        this.datatableLoading=true;            
-                        await this.$ajax.post('/keuangan/transaksi-spp',            
+                        this.datatableLoading = true;            
+                        await this.$ajax.post("/keuangan/transaksi-spp",            
                         {
                             prodi_id: this.prodi_id,
                             TA: this.tahun_akademik,
@@ -420,7 +420,7 @@ export default {
                             }
                         }).then(({ data })=>{               
                             this.datatable = data.transaksi;                
-                            this.datatableLoading=false;
+                            this.datatableLoading = false;
                         });                     
                     }
                     this.awaiting_search = false;

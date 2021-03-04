@@ -145,7 +145,7 @@
                             </v-toolbar>
                         </template>
                         <template v-slot:item.nidn="{ item }">
-                            {{(item.nidn && item.nidn.length > 0) > 0 ? item.nidn: 'N.A'}}
+                            {{(item.nidn && item.nidn.length > 0) > 0 ? item.nidn: "N.A'}}
                         </template>
                         <template v-slot:item.actions="{ item }">                                           
                             <v-tooltip bottom>             
@@ -175,10 +175,10 @@
                             <td :colspan="headers.length" class="text-center">
                                 <v-col cols="12">
                                     <strong>ID:</strong>{{ item.id }}
-                                    <strong>DW:</strong>{{item.is_dw == false ? 'BUKAN': 'YA'}}
+                                    <strong>DW:</strong>{{item.is_dw == false ? 'BUKAN': "YA'}}
                                     <strong>Email:</strong>{{ item.email }}
-                                    <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
-                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
+                                    <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
+                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
                                 </v-col>                                
                             </td>
                         </template>
@@ -195,25 +195,25 @@
 <script>
 import {mapGetters} from "vuex";
 import KepegawaianLayout from '@/views/layouts/KepegawaianLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 export default {
-    name: 'KepegawaianDosen',  
-    created () {
+    name: "KepegawaianDosen",  
+    created() {
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.ACCESS_TOKEN
+                href: "/dashboard/" + this.ACCESS_TOKEN
             },
             {
-                text: 'KEPEGAWAIAN',
+                text: "KEPEGAWAIAN",
                 disabled: false,
-                href: '/kepegawaian'
+                href: "/kepegawaian"
             },
             {
-                text: 'DOSEN',
+                text: "DOSEN",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];
         this.initialize()
@@ -224,13 +224,13 @@ export default {
         btnLoading: false,      
         //tables
         headers: [                        
-            { text:  "", value: 'foto' },            
-            { text: 'NAMA DOSEN', value: 'nama_dosen',sortable: true, width:250 },
-            { text: 'NIDN', value: 'nidn',sortable: true },     
-            { text: 'NIPY', value: 'nipy',sortable: true },     
-            { text: 'NOMOR HP', value: 'nomor_hp',sortable: true },     
-            { text: 'JABATAN AKADEMIK', value: 'nama_jabatan',sortable: true },  
-            { text: 'AKSI', value: 'actions', sortable: false,width:100 },
+            { text: "", value: "foto" },            
+            { text: "NAMA DOSEN", value: "nama_dosen",sortable: true, width:250 },
+            { text: "NIDN", value: "nidn",sortable: true },     
+            { text: "NIPY", value: "nipy",sortable: true },     
+            { text: "NOMOR HP", value: "nomor_hp",sortable: true },     
+            { text: "JABATAN AKADEMIK", value: "nama_jabatan",sortable: true },  
+            { text: "AKSI", value: "actions", sortable: false,width:100 },
         ],
         expanded: [],
         search: "",
@@ -242,68 +242,68 @@ export default {
         editedIndex: -1,      
         daftar_jabatan: [],  
         editedItem: {
-            id:0,
-            username:  "",           
-            name:  "",                       
-            nama_dosen:  "",                                   
+            id: 0,
+            username: "",           
+            name: "",                       
+            nama_dosen: "",                                   
             id_jabatan:1,           
             gelar_depan: "",           
-            gelar_belakang: '1',                       
+            gelar_belakang: "1",                       
             nidn: "",   
             nipy: "",         
-            email:  "",           
+            email: "",           
             nomor_hp: "",                 
             is_dw: false,      
-            created_at:  "",           
-            updated_at:  "",   
+            created_at: "",           
+            updated_at: "",   
         },
         defaultItem: {
-            id:0,
-            username:  "",                       
-            name:  "",                       
-            nama_dosen:  "",                       
+            id: 0,
+            username: "",                       
+            name: "",                       
+            nama_dosen: "",                       
             id_jabatan:1,      
             gelar_depan: "",           
-            gelar_belakang: '1',                             
+            gelar_belakang: "1",                             
             nidn: "",
             nipy: "",       
-            email:  "",           
-            nomor_hp:  "",          
+            email: "",           
+            nomor_hp: "",          
             is_dw: false,    
-            created_at:  "",           
-            updated_at:  "",        
+            created_at: "",           
+            updated_at: "",        
         },
         //form rules        
         rule_user_name: [
             value => !!value || "Mohon untuk di isi nama Dosen !!!",  
-            value => /^[A-Za-z\s]*$/.test(value) || 'Nama Dosen hanya boleh string dan spasi',                
+            value => /^[A-Za-z\s]*$/.test(value) || "Nama Dosen hanya boleh string dan spasi",                
         ],         
         rule_nidn: [                         
-            value => /^[0-9]+$/.test(value) || 'NIDN hanya boleh angka',                
+            value => /^[0-9]+$/.test(value) || "NIDN hanya boleh angka",                
         ],         
         rule_nipy: [            
-            value => /^[0-9]+$/.test(value) || 'Nomor Induk Pegawai Yayasan (NIPY) hanya boleh angka',                
+            value => /^[0-9]+$/.test(value) || "Nomor Induk Pegawai Yayasan (NIPY) hanya boleh angka",                
         ], 
         rule_user_email: [
             value => !!value || "Mohon untuk di isi email User !!!",  
-            value => /.+@.+\..+/.test(value) || 'Format E-mail harus benar',       
+            value => /.+@.+\..+/.test(value) || "Format E-mail harus benar",       
         ], 
         rule_user_nomorhp: [
             value => !!value || "Nomor HP mohon untuk diisi !!!",
-            value => /^\+[1-9]{1}[0-9]{1,14}$/.test(value) || 'Nomor HP hanya boleh angka dan gunakan kode negara didepan seperti +6281214553388',
+            value => /^\+[1-9]{1}[0-9]{1,14}$/.test(value) || "Nomor HP hanya boleh angka dan gunakan kode negara didepan seperti +6281214553388",
         ],         
     }),
     methods: {
         initialize: async function() 
         {
-            this.datatableLoading=true;
-            await this.$ajax.get('/kepegawaian/dosen',{
+            this.datatableLoading = true;
+            await this.$ajax.get("/kepegawaian/dosen",{
                 headers: {
                     Authorization: this.TOKEN
                 }
             }).then(({ data })=>{               
                 this.daftar_dosen = data.dosen;                
-                this.datatableLoading=false;
+                this.datatableLoading = false;
             });          
             
         },
@@ -311,15 +311,15 @@ export default {
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded = [];                
             }
             else
             {
-                this.expanded=[item];
+                this.expanded = [item];
             }               
         },                        
-        editItem:async function (item) {
-            this.$ajax.get('/datamaster/jabatanakademik',                
+        editItem: async function(item) {
+            this.$ajax.get("/datamaster/jabatanakademik",                
                 {
                     headers: {
                         Authorization: this.TOKEN
@@ -349,9 +349,9 @@ export default {
                 this.btnLoading=true;
                 if (this.editedIndex > -1) 
                 {
-                    this.$ajax.post('/kepegawaian/dosen/'+this.editedItem.id,
+                    this.$ajax.post("/kepegawaian/dosen/" + this.editedItem.id,
                         {
-                            '_method': 'PUT',
+                            _method: "PUT",
                             name: this.editedItem.name,
                             id_jabatan: this.editedItem.id_jabatan,
                             gelar_depan: this.editedItem.gelar_depan,
@@ -378,9 +378,9 @@ export default {
         },                
     },
     computed: {        
-        ...mapGetters('auth',{            
-            ACCESS_TOKEN: 'AccessToken',          
-            TOKEN: 'Token',                                  
+        ...mapGetters("auth",{            
+            ACCESS_TOKEN: "AccessToken",          
+            TOKEN: "Token",                                  
         }),
     },
 

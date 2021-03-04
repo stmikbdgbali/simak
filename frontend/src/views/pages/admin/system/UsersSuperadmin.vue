@@ -107,7 +107,7 @@
 												<v-text-field 
 													v-model="editedItem.password" 
 													label="PASSWORD"
-													:type="'password'"
+													:type="password"
 													outlined
 													:rules="rule_user_password">
 												</v-text-field> 
@@ -169,7 +169,7 @@
 												<v-text-field 
 													v-model="editedItem.password" 
 													label="PASSWORD"
-													:type="'password'"
+													:type="password"
 													outlined
 													:rules="rule_user_passwordEdit">
 												</v-text-field> 
@@ -245,7 +245,7 @@ import SystemUserLayout from "@/views/layouts/SystemUserLayout";
 import ModuleHeader from "@/components/ModuleHeader";
 export default {
 	name: "UsersSuperAdmin",
-	created () {
+	created() {
 		this.breadcrumbs = [
 			{
 				text: "HOME",
@@ -267,7 +267,7 @@ export default {
 	},
  
 	data: () => ({ 
-		role_id:0,
+		role_id: 0,
 		datatableLoading: false,
 		btnLoading: false,
 		//tables
@@ -290,7 +290,7 @@ export default {
 		dialogEdit: false,
 		editedIndex: -1,
 		editedItem: {
-			id:0,
+			id: 0,
 			username: "", 
 			password: "", 
 			name: "", 
@@ -301,7 +301,7 @@ export default {
 			updated_at: "", 
 		},
 		defaultItem: {
-			id:0,
+			id: 0,
 			username: "", 
 			password: "", 
 			name: "", 
@@ -355,7 +355,7 @@ export default {
 	methods: {
 		initialize: async function() 
 		{
-			this.datatableLoading=true;
+			this.datatableLoading = true;
 			await this.$ajax.get("/system/users",{
 				headers: {
 					Authorization: this.TOKEN
@@ -363,7 +363,7 @@ export default {
 			}).then(({ data })=>{ 
 				this.daftar_users = data.users;
 				this.role_id=data.role.id;
-				this.datatableLoading=false;
+				this.datatableLoading = false;
 			});
 			
 		},
@@ -371,14 +371,14 @@ export default {
 		{
 			if ( item === this.expanded[0])
 			{
-				this.expanded=[];
+				this.expanded = [];
 			}
 			else
 			{
-				this.expanded=[item];
+				this.expanded = [item];
 			} 
 		},
-		showDialogTambahUserSuperAdmin:async function()
+		showDialogTambahUserSuperAdmin: async function()
 		{
 			await this.$ajax.get("/system/setting/roles",{
 				headers: {
@@ -408,7 +408,7 @@ export default {
 			}); 
 			
 		},
-		editItem:async function (item) {
+		editItem: async function(item) {
 			this.editedIndex = this.daftar_users.indexOf(item)
 			item.password= "";
 			this.editedItem = Object.assign({}, item); 

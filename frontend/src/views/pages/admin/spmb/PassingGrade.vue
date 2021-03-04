@@ -92,8 +92,8 @@
                             <td :colspan="headers.length" class="text-center">
                                 <v-col cols="12">                          
                                     <strong>ID:</strong>{{ item.id }}          
-                                    <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
-                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
+                                    <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
+                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
                                 </v-col>                                
                             </td>
                         </template>
@@ -108,66 +108,66 @@
 </template>
 <script>
 import SPMBLayout from '@/views/layouts/SPMBLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 export default {
-    name: 'PassingGrade',
-    created () {
+    name: "PassingGrade",
+    created() {
         this.jadwal_ujian_id = this.$route.params.idjadwalujian;     
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
             },
             {
-                text: 'SPMB',
+                text: "SPMB",
                 disabled: false,
-                href: '#'
+                href: "#"
             },
             {
-                text: 'JADWAL UJIAN PMB',
+                text: "JADWAL UJIAN PMB",
                 disabled: false,
-                href: '/spmb/jadwalujianpmb'
+                href: "/spmb/jadwalujianpmb"
             },
             {
-                text: 'PASSING GRADE',
+                text: "PASSING GRADE",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ]; 
         this.initialize();    
     },
     data:()=>({
-        jadwal_ujian_id:null,
+        jadwal_ujian_id: null,
         jadwal_ujian: {
-            id:0,                        
+            id: 0,                        
             nama_kegiatan: "",            
             ta: "",                        
             idsmt: "",                                    
         },
         breadcrumbs: [],        
-        dashboard:null,
+        dashboard: null,
 
         btnLoading: false,
         datatableLoading: false,        
         expanded: [],
         datatable: [],
         headers: [                                        
-            { text: 'PROGRAM STUDI', value: 'kjur', sortable: true},
-            { text: 'NILAI', value: 'nilai', sortable: false,width:100 },                        
+            { text: "PROGRAM STUDI", value: "kjur", sortable: true},
+            { text: "NILAI", value: "nilai", sortable: false,width:100 },                        
         ],
         search: "",
 
         //form rules
         rule_angka: [
-            value => /^(100(\.0{1,2})?|[1-9]?\d(\.\d{1,2})?)$/.test(value) || 'Isi dengan nilai antara 0.00 s.d 100.00', 
+            value => /^(100(\.0{1,2})?|[1-9]?\d(\.\d{1,2})?)$/.test(value) || "Isi dengan nilai antara 0.00 s.d 100.00", 
         ],
     }),
     methods: {
         initialize: async function() 
         {
-            this.datatableLoading=true;
-            await this.$ajax.post('/spmb/passinggrade',
+            this.datatableLoading = true;
+            await this.$ajax.post("/spmb/passinggrade",
             {
                 jadwal_ujian_id: this.jadwal_ujian_id,                
             },
@@ -176,28 +176,28 @@ export default {
                     Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({ data })=>{                 
-                this.datatableLoading=false;
+                this.datatableLoading = false;
                 this.jadwal_ujian=data.jadwal_ujian;      
                 this.datatable=data.passing_grade;                               
             }).catch(()=>{
-                this.datatableLoading=false;                
+                this.datatableLoading = false;                
             });  
         },
         dataTableRowClicked(item)
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded = [];                
             }
             else
             {
-                this.expanded=[item];
+                this.expanded = [item];
             }               
         },
-        loadprodi:async function()
+        loadprodi: async function()
         {
             this.btnLoading=true;
-            await this.$ajax.post('/spmb/passinggrade/loadprodi',
+            await this.$ajax.post("/spmb/passinggrade/loadprodi",
                 {
                     jadwal_ujian_id: this.jadwal_ujian_id,               
                 },
@@ -213,12 +213,12 @@ export default {
                 this.btnLoading = false;
             });        
         },
-        saveItem:async function ({id,nilai})
+        saveItem: async function({id,nilai})
         {
             this.btnLoading=true;
-            await this.$ajax.post('/spmb/passinggrade/'+id,            
+            await this.$ajax.post("/spmb/passinggrade/" + id,            
             {
-                _method: 'put',
+                _method: "put",
                 id:id,
                 nilai:nilai
             },

@@ -31,7 +31,7 @@
         <v-container fluid v-if="Object.keys(datakrs).length">   
             <v-row>
                 <v-col cols="12">
-                    <DataKRS :datakrs="datakrs" :url="'/akademik/perkuliahan/krs/'+datakrs.id+'/detail'" :totalmatkul="totalMatkul" :totalsks="totalSKS" />                    
+                    <DataKRS :datakrs="datakrs" :url="'/akademik/perkuliahan/krs/' + datakrs.id+'/detail'" :totalmatkul="totalMatkul" :totalsks="totalSKS" />                    
                 </v-col>
             </v-row>
             <v-row>
@@ -90,52 +90,52 @@
 </template>
 <script>
 import AkademikLayout from '@/views/layouts/AkademikLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 import DataKRS from '@/components/DataKRS';
 export default {
-    name: 'PerkuliahanKRSDetail',
-    created () {
+    name: "PerkuliahanKRSDetail",
+    created() {
         this.krs_id=this.$route.params.krsid;        
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
             },
             {
-                text: 'AKADEMIK',
+                text: "AKADEMIK",
                 disabled: false,
-                href: '/akademik'
+                href: "/akademik",
             },
             {
-                text: 'PERKULIAHAN',
+                text: "PERKULIAHAN",
                 disabled: false,
-                href: '#'
+                href: "#"
             },
             {
-                text: 'KRS',
+                text: "KRS",
                 disabled: false,
-                href: '/akademik/perkuliahan/krs/daftar'
+                href: "/akademik/perkuliahan/krs/daftar"
             },
             {
-                text: 'TAMBAH MATAKULIAH',
+                text: "TAMBAH MATAKULIAH",
                 disabled: true,
-                href: '#'
+                href: "#"
             },
         ];
         this.fetchKRS();               
     },  
     data: () => ({ 
         firstloading: true,        
-        nama_prodi:null,
-        tahun_akademik:null,        
-        semester_akademik:null,
+        nama_prodi: null,
+        tahun_akademik: null,        
+        semester_akademik: null,
     
         btnLoading: false, 
         
         //formdata
         form_valid: true,   
-        krs_id:null,
+        krs_id: null,
         datakrs: {},
         jumlah_matkul:0,
         jumlah_sks:0,
@@ -146,17 +146,17 @@ export default {
         expanded: [],
         datatable: [],      
         headers: [
-            { text: 'KODE', value: 'kmatkul', sortable: true,width:120  },   
-            { text: 'NAMA MATAKULIAH', value: 'nmatkul',sortable: true },               
-            { text: 'SKS', value: 'sks', sortable: false,width:120 },                           
-            { text: 'SMT', value: 'semester', sortable: false,width:120 },                                       
-            { text: 'TAHUN MATKUL', value: 'ta_matkul', sortable: false,width:120 },                                       
+            { text: "KODE", value: "kmatkul", sortable: true,width:120  },   
+            { text: "NAMA MATAKULIAH", value: "nmatkul",sortable: true },               
+            { text: "SKS", value: "sks", sortable: false,width:120 },                           
+            { text: "SMT", value: "semester", sortable: false,width:120 },                                       
+            { text: "TAHUN MATKUL", value: "ta_matkul", sortable: false,width:120 },                                       
         ],  
     }),
     methods: {          
         async fetchKRS()
         {
-            await this.$ajax.get('/akademik/perkuliahan/krs/'+this.krs_id,                        
+            await this.$ajax.get("/akademik/perkuliahan/krs/" + this.krs_id,                        
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
@@ -174,14 +174,14 @@ export default {
 
             if (Object.keys(this.datakrs).length)
             {
-                this.datatableLoading=true;
-                await this.$ajax.post('/akademik/perkuliahan/krs/penyelenggaraan',
+                this.datatableLoading = true;
+                await this.$ajax.post("/akademik/perkuliahan/krs/penyelenggaraan",
                 {
                     nim: this.datakrs.nim,
                     prodi_id: this.datakrs.kjur,
                     ta: this.datakrs.tahun,
                     semester_akademik: this.datakrs.idsmt,
-                    pid: 'belumterdaftar'
+                    pid: "belumterdaftar"
                 },
                 {
                     headers: {
@@ -189,18 +189,18 @@ export default {
                     }
                 }).then(({ data })=>{               
                     this.datatable = data.penyelenggaraan;
-                    this.datatableLoading=false;
+                    this.datatableLoading = false;
                 }).catch(()=>{
-                    this.datatableLoading=false;
+                    this.datatableLoading = false;
                 });  
             }
         },    
-        save:async function() {
+        save: async function() {
             if (this.$refs.frmdata.validate())
             {
                 
                 this.btnLoading=true;
-                await this.$ajax.post('/akademik/perkuliahan/krs/storematkul',
+                await this.$ajax.post("/akademik/perkuliahan/krs/storematkul",
                     {
                         krs_id: this.krs_id,                        
                         matkul_selected:JSON.stringify(Object.assign({},this.daftar_matkul_selected)),
@@ -220,7 +220,7 @@ export default {
         }, 
         closedialogfrm () {                             
             setTimeout(() => {                       
-                this.$router.push('/akademik/perkuliahan/krs/'+this.krs_id+'/detail');
+                this.$router.push("/akademik/perkuliahan/krs/" + this.krs_id + "/detail");
                 }, 300
             );
         },   

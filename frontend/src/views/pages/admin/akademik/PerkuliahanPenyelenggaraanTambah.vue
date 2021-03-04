@@ -170,7 +170,7 @@
                                                             <v-card flat>
                                                                 <v-card-title>SYARAT SKRIPSI :</v-card-title>
                                                                 <v-card-subtitle>
-                                                                    {{formdata.syarat_skripsi == 1 ? 'YA' : 'TIDAK'}}
+                                                                    {{formdata.syarat_skripsi == 1 ? "YA" : "TIDAK"}}
                                                                 </v-card-subtitle>
                                                             </v-card>
                                                         </v-col>
@@ -190,7 +190,7 @@
                                                             <v-card flat>
                                                                 <v-card-title>STATUS :</v-card-title>
                                                                 <v-card-subtitle>
-                                                                    {{formdata.status == 1 ? 'AKTIF' : 'NON-AKTIF'}}
+                                                                    {{formdata.status == 1 ? "AKTIF" : "NON-AKTIF" }}
                                                                 </v-card-subtitle>
                                                             </v-card>
                                                         </v-col>
@@ -216,8 +216,8 @@
                                         <td :colspan="headers.length" class="text-center">
                                             <v-col cols="12">                          
                                                 <strong>ID:</strong>{{ item.id }}          
-                                                <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
-                                                <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
+                                                <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
+                                                <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
                                             </v-col>                                
                                         </td>
                                     </template>                                    
@@ -247,35 +247,35 @@
 </template>
 <script>
 import AkademikLayout from '@/views/layouts/AkademikLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 export default {
-    name: 'PerkuliahanPenyelenggaraanTambah',
-    created () {
+    name: "PerkuliahanPenyelenggaraanTambah",
+    created() {
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
             },
             {
-                text: 'AKADEMIK',
+                text: "AKADEMIK",
                 disabled: false,
-                href: '/akademik'
+                href: "/akademik"
             },
             {
-                text: 'PERKULIAHAN',
+                text: "PERKULIAHAN",
                 disabled: false,
-                href: '#'
+                href: "#"
             },
             {
-                text: 'PENYELENGGARAAN MATAKULIAH',
+                text: "PENYELENGGARAAN MATAKULIAH",
                 disabled: false,
-                href: '/akademik/perkuliahan/penyelenggaraan/daftar'
+                href: "/akademik/perkuliahan/penyelenggaraan/daftar"
             },
             {
-                text: 'TAMBAH',
+                text: "TAMBAH",
                 disabled: true,
-                href: '#'
+                href: "#"
             },
         ];
         let prodi_id=this.$store.getters['uiadmin/getProdiID'];
@@ -288,11 +288,11 @@ export default {
     },  
     data: () => ({ 
         firstloading: true,
-        prodi_id:null,
-        nama_prodi:null,
-        tahun_akademik:null,
-        ta_matkul:null,
-        semester_akademik:null,
+        prodi_id: null,
+        nama_prodi: null,
+        tahun_akademik: null,
+        ta_matkul: null,
+        semester_akademik: null,
 
         btnLoading: false,        
 
@@ -302,12 +302,12 @@ export default {
         expanded: [],
         datatable: [],      
         headers: [
-            { text: 'KODE', value: 'kmatkul', sortable: true,width:120  },   
-            { text: 'NAMA MATAKULIAH', value: 'nmatkul',sortable: true },               
-            { text: 'KELOMPOK', value: 'group_alias', sortable: true,width:120 },               
-            { text: 'SKS', value: 'sks',sortable: true,width:80, align: 'center' },               
-            { text: 'SMT', value: 'semester', sortable: true,width:80 },               
-            { text: 'AKSI', value: 'actions', sortable: false,width:100 },
+            { text: "KODE", value: "kmatkul", sortable: true,width:120  },   
+            { text: "NAMA MATAKULIAH", value: "nmatkul",sortable: true },               
+            { text: "KELOMPOK", value: "group_alias", sortable: true,width:120 },               
+            { text: "SKS", value: "sks",sortable: true,width:80, align: "center" },               
+            { text: "SMT", value: "semester", sortable: true,width:80 },               
+            { text: "AKSI", value: "actions", sortable: false,width:100 },
         ],  
         search: "",    
 
@@ -325,17 +325,17 @@ export default {
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded = [];                
             }
             else
             {
-                this.expanded=[item];
+                this.expanded = [item];
             }               
         },
-        fetchMatkul:async function (val) 
+        fetchMatkul: async function(val) 
         {
-            this.datatableLoading=true;
-            await this.$ajax.post('/akademik/matakuliah/penyelenggaraan',
+            this.datatableLoading = true;
+            await this.$ajax.post("/akademik/matakuliah/penyelenggaraan",
             {
                 prodi_id: this.prodi_id,
                 ta_matkul:val,
@@ -348,14 +348,14 @@ export default {
                 }
             }).then(({ data })=>{               
                 this.datatable = data.matakuliah;
-                this.datatableLoading=false;
+                this.datatableLoading = false;
             }).catch(()=>{
-                this.datatableLoading=false;
+                this.datatableLoading = false;
             });  
         },
-        async viewItem (item) {
-            this.formdata=item;      
-            await this.$ajax.get('/akademik/matakuliah/'+item.id,
+        async viewItem(item) {
+            this.formdata = item;    
+            await this.$ajax.get("/akademik/matakuliah/"+item.id,
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
@@ -363,13 +363,13 @@ export default {
             }).then(({ data })=>{
                 this.formdata=data.matakuliah;
             });
-            this.dialogdetailitem=true;                        
+            this.dialogdetailitem = true;                      
         },    
-        save:async function() {
+        save: async function() {
             if (this.$refs.frmdata.validate())
             {                
                 this.btnLoading=true;
-                await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/store',
+                await this.$ajax.post("/akademik/perkuliahan/penyelenggaraanmatakuliah/store",
                     {
                         prodi_id: this.prodi_id,
                         ta: this.tahun_akademik,
@@ -400,7 +400,7 @@ export default {
         closedialogfrm () {                             
             setTimeout(() => {       
                 this.formdata = Object.assign({}, this.formdefault);                                
-                this.$router.push('/akademik/perkuliahan/penyelenggaraan/daftar');
+                this.$router.push("/akademik/perkuliahan/penyelenggaraan/daftar");
                 }, 300
             );
         },

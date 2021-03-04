@@ -4,7 +4,7 @@ import VCurrencyField from "v-currency-field";
 import { VTextField } from "vuetify/lib";  //Globally import VTextField
 
 Vue.use(Vuetify);
-Vue.component('v-text-field', VTextField);
+Vue.component("v-text-field", VTextField);
 
 Vue.use(VCurrencyField, { 
 	decimalLength: 0,

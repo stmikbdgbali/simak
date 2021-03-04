@@ -90,7 +90,7 @@
                             <v-btn
                                 small
                                 icon
-                                @click.stop="$router.push('/akademik/perkuliahan/penyelenggaraan/'+item.id+'/dosenpengampu')">
+                                @click.stop="$router.push('/akademik/perkuliahan/penyelenggaraan/'+item.id+'/dosenpengampu")">
                                 <v-icon>
                                     mdi-account-child-outline
                                 </v-icon>
@@ -114,8 +114,8 @@
                                 <v-col cols="12">                          
                                     <strong>id:</strong>{{ item.id }}          
                                     <strong>matkul_id:</strong>{{ item.matkul_id }}          
-                                    <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
-                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
+                                    <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
+                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
                                 </v-col>                                
                             </td>
                         </template>
@@ -130,34 +130,34 @@
 </template>
 <script>
 import AkademikLayout from '@/views/layouts/AkademikLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 import Filter6 from '@/components/sidebar/FilterMode6';
 
 import {mapGetters} from "vuex";
 
 export default {
-    name: 'PerkuliahanPenyelenggaraan',
-    created () {
+    name: "PerkuliahanPenyelenggaraan",
+    created() {
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
             },
             {
-                text: 'AKADEMIK',
+                text: "AKADEMIK",
                 disabled: false,
-                href: '/akademik'
+                href: "/akademik",
             },
             {
-                text: 'PERKULIAHAN',
+                text: "PERKULIAHAN",
                 disabled: false,
-                href: '#'
+                href: "#"
             },
             {
-                text: 'PENYELENGGARAAN MATAKULIAH',
+                text: "PENYELENGGARAAN MATAKULIAH",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];
         let prodi_id=this.$store.getters['uiadmin/getProdiID'];
@@ -169,25 +169,25 @@ export default {
     },  
     data: () => ({ 
         firstloading: true,
-        prodi_id:null,
-        nama_prodi:null,        
-        tahun_akademik:null,
-        semester_akademik:null,
+        prodi_id: null,
+        nama_prodi: null,        
+        tahun_akademik: null,
+        semester_akademik: null,
 
         btnLoadingTable: false,
         datatableLoading: false,
         expanded: [],
         datatable: [],      
         headers: [
-            { text: 'KODE', value: 'kmatkul', sortable: true,width:120  },   
-            { text: 'NAMA MATAKULIAH', value: 'nmatkul', sortable: true  },   
-            { text: 'SKS', value: 'sks', sortable: true, width:50  },               
-            { text: 'SMT. MATKUL', value: 'semester', sortable: true, width:50  },               
-            { text: 'TAHUN MATKUL', value: 'ta_matkul', sortable: true, width:50 },               
-            { text: 'KETUA GROUP', value: 'nama_dosen', sortable: true },               
-            { text: 'JUMLAH DOSEN', value: 'jumlah_dosen',sortable: true, width:50 },                           
-            { text: 'JUMLAH MHS', value: 'jumlah_mhs',sortable: true, width:50},                           
-            { text: 'AKSI', value: 'actions', sortable: false,width:100 },
+            { text: "KODE", value: "kmatkul", sortable: true,width:120  },   
+            { text: "NAMA MATAKULIAH", value: "nmatkul", sortable: true  },   
+            { text: "SKS", value: "sks", sortable: true, width:50  },               
+            { text: "SMT. MATKUL", value: "semester", sortable: true, width:50  },               
+            { text: "TAHUN MATKUL", value: "ta_matkul", sortable: true, width:50 },               
+            { text: "KETUA GROUP", value: "nama_dosen", sortable: true },               
+            { text: "JUMLAH DOSEN", value: "jumlah_dosen",sortable: true, width:50 },                           
+            { text: "JUMLAH MHS", value: "jumlah_mhs",sortable: true, width:50},                           
+            { text: "AKSI", value: "actions", sortable: false,width:100 },
         ],  
         search: "", 
 
@@ -203,12 +203,12 @@ export default {
         },
         changeProdi (id)
         {
-            this.prodi_id=id;
+            this.prodi_id = id;
         },
         initialize: async function() 
         {
-            this.datatableLoading=true;
-            await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah',
+            this.datatableLoading = true;
+            await this.$ajax.post("/akademik/perkuliahan/penyelenggaraanmatakuliah",
             {
                 prodi_id: this.prodi_id,
                 ta: this.tahun_akademik,
@@ -220,33 +220,33 @@ export default {
                 }
             }).then(({ data })=>{               
                 this.datatable = data.penyelenggaraan;
-                this.datatableLoading=false;
+                this.datatableLoading = false;
             }).catch(()=>{
-                this.datatableLoading=false;
+                this.datatableLoading = false;
             });  
-            this.firstloading=false;
+            this.firstloading = false;
             this.$refs.filter6.setFirstTimeLoading(this.firstloading); 
         },
         dataTableRowClicked(item)
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded = [];                
             }
             else
             {
-                this.expanded=[item];
+                this.expanded = [item];
             }               
         },        
         deleteItem (item)
         {
-            this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus penyelenggaraan matakuliah ('+item.nmatkul+') ?', { color: 'red',width:600,'desc': 'proses ini juga menghapus seluruh data kontrak matakuliah MHS.' }).then((confirm) => {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus penyelenggaraan matakuliah ("+item.nmatkul+") ?", { color: "red",width:600,'desc': "proses ini juga menghapus seluruh data kontrak matakuliah MHS." }).then((confirm) => {
                 if (confirm)
                 {
                     this.btnLoadingTable=true;
-                    this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/'+item.id,
+                    this.$ajax.post("/akademik/perkuliahan/penyelenggaraanmatakuliah/" + item.id,
                         {
-                            '_method': 'DELETE',
+                            _method: "DELETE",
                         },
                         {
                             headers: {
@@ -289,8 +289,8 @@ export default {
         }
     },
     computed: {
-        ...mapGetters('auth',{            
-            CAN_ACCESS: 'can',                     
+        ...mapGetters("auth",{            
+            CAN_ACCESS: "can",                     
         }),
     },
     components: {

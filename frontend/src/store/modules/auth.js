@@ -2,10 +2,10 @@
 const getDefaultState = () => 
 {
     return {              
-        access_token:null,
-        token_type:null,
-        expires_in:null,
-        user:null
+        access_token: null,
+        token_type: null,
+        expires_in: null,
+        user: null
     }
 }
 const state = getDefaultState();
@@ -38,13 +38,9 @@ const getters= {
         return state.user.role;
     },
     DefaultRole:state=>{
-        if (state.user===null || typeof state.user === 'undefined')
-        {
-            return 'N.A';
-            
-        }
-        else
-        {
+        if (state.user===null || typeof state.user === "undefined"){
+            return "N.A";            
+        } else {
             return state.user.default_role;
         }
     },
@@ -98,12 +94,12 @@ const getters= {
 const actions = {
     afterLoginSuccess ({commit},data)
     {
-        commit('setToken',data.token);
-        commit('setUser',data.user);
+        commit("setToken",data.token);
+        commit("setUser",data.user);
     },
     logout({commit})
     {
-        commit('resetState');
+        commit("resetState");
     }
 }
 export default {

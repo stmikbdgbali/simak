@@ -18,7 +18,7 @@
 </template>
 <script>
 export default {
-    name:'FilterMode20',
+    name: "FilterMode20",
     created()
     {
         this.daftar_fakultas=this.$store.getters['uiadmin/getDaftarFakultas'];  
@@ -28,12 +28,12 @@ export default {
         this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran']; 
     },
     data:()=>({
-        firstloading:true,
-        daftar_fakultas:[],
-        fakultas_id:null,
+        firstloading: true,
+        daftar_fakultas: [],
+        fakultas_id: null,
 
-        daftar_ta:[],
-        tahun_pendaftaran:null
+        daftar_ta: [],
+        tahun_pendaftaran: null
     }),
     methods:{
         setFirstTimeLoading (bool)
@@ -46,16 +46,16 @@ export default {
         {
             if (!this.firstloading)
             {
-                this.$store.dispatch('uiadmin/updateTahunPendaftaran',val);  
-                this.$emit('changeTahunPendaftaran',val);          
+                this.$store.dispatch("uiadmin/updateTahunPendaftaran",val);  
+                this.$emit("changeTahunPendaftaran",val);          
             }            
         },
         fakultas_id(val)
         {
             if (!this.firstloading)
             {
-                this.$store.dispatch('uiadmin/updateFakultas',val);  
-                this.$emit('changeFakultas',val);          
+                this.$store.dispatch("uiadmin/updateFakultas",val);  
+                this.$emit("changeFakultas",val);          
             }
         },
     }

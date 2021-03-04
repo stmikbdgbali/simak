@@ -120,32 +120,32 @@
 </template>
 <script>
 import AkademikLayout from '@/views/layouts/AkademikLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 import DataKelasMHS from '@/components/DataKelasMHS';
 
 export default {
-    name: 'NilaiIsiPerKelasMHSDetail',
-    created () {
+    name: "NilaiIsiPerKelasMHSDetail",
+    created() {
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
             },
             {
-                text: 'AKADEMIK',
+                text: "AKADEMIK",
                 disabled: false,
-                href: '/akademik'
+                href: "/akademik",
             },
             {
-                text: 'ISI NILAI',
+                text: "ISI NILAI",
                 disabled: false,
-                href: '#'
+                href: "#"
             },
             {
-                text: 'PER KELAS MAHASISWA',
+                text: "PER KELAS MAHASISWA",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];
         this.kelas_mhs_id=this.$route.params.kelas_mhs_id;        
@@ -154,10 +154,10 @@ export default {
         this.initialize()
     },  
     data: () => ({ 
-        kelas_mhs_id:null,
-        data_kelas_mhs:null,
-        tahun_akademik:null,
-        semester_akademik:null,
+        kelas_mhs_id: null,
+        data_kelas_mhs: null,
+        tahun_akademik: null,
+        semester_akademik: null,
 
         btnLoadingTable: false,
         datatableLoading: false,
@@ -166,38 +166,30 @@ export default {
         datatable: [],            
         datatable_peserta: [],                 
         headers_peserta: [
-            { text: 'NIM', value: 'nim', sortable: false,width:100  },   
-            { text: 'NAMA', value: 'nama_mhs', sortable: false  },   
-            { text: 'PROGRAM STUDI', value: 'kjur', sortable: false  },   
-            { text: 'KELAS', value: 'idkelas', sortable: false  },                           
-            { text: 'TAHUN MASUK', value: 'tahun', sortable: false },                                                   
-            { text: 'NILAI ANGKA (0 s.d 100)', value: 'n_kuan', sortable: false },                                                   
-            { text: 'NILAI HURUP', value: 'n_kual', sortable: false },                                                   
+            { text: "NIM", value: "nim", sortable: false,width:100  },   
+            { text: "NAMA", value: "nama_mhs", sortable: false  },   
+            { text: "PROGRAM STUDI", value: "kjur", sortable: false  },   
+            { text: "KELAS", value: "idkelas", sortable: false  },                           
+            { text: "TAHUN MASUK", value: "tahun", sortable: false },                                                   
+            { text: "NILAI ANGKA (0 s.d 100)", value: "n_kuan", sortable: false },                                                   
+            { text: "NILAI HURUP", value: "n_kual", sortable: false },                                                   
         ],                
 
         //formdata
         form_valid: true, 
         daftar_nilai: [],        
         skala_nilai: [
-            'A',
-            'A-',
-            'A/B',
-            'B+',
-            'B-',
-            'B/C',
-            'C+',
-            'C-',
-            'C/D',
-            'D+',
-            'D',
-            'E'
-        ]       
-        
+            "A",
+            "B",
+            "C",
+            "D",            
+            "E",
+        ],               
     }),
     methods: {        
         initialize: async function() 
         {
-            await this.$ajax.get('/akademik/perkuliahan/pembagiankelas/'+this.kelas_mhs_id,            
+            await this.$ajax.get("/akademik/perkuliahan/pembagiankelas/" + this.kelas_mhs_id,            
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
@@ -205,28 +197,28 @@ export default {
             }).then(({ data })=>{           
                 this.data_kelas_mhs=data.pembagiankelas;                                         
             });
-            this.datatableLoading=true;
-            await this.$ajax.get('/akademik/nilai/matakuliah/pesertakelas/'+this.kelas_mhs_id,            
+            this.datatableLoading = true;
+            await this.$ajax.get("/akademik/nilai/matakuliah/pesertakelas/" + this.kelas_mhs_id,            
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({ data })=>{                                                                                 
-                this.datatableLoading=false;
+                this.datatableLoading = false;
                 this.datatable_peserta=data.peserta;   
             })              
         },        
         async fetchPeserta()
         {
-            this.datatableLoading=true;
-            await this.$ajax.get('/akademik/perkuliahan/pembagiankelas/peserta/'+this.kelas_mhs_id,            
+            this.datatableLoading = true;
+            await this.$ajax.get("/akademik/perkuliahan/pembagiankelas/peserta/" + this.kelas_mhs_id,            
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({ data })=>{                                                      
                 this.datatable_peserta=data.peserta;                                
-                this.datatableLoading=false;
+                this.datatableLoading = false;
             })   
         },          
         save()

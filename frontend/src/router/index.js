@@ -1,879 +1,877 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import store from '../store/index'
-import NotFoundComponent from '../components/NotFoundComponent'
+import Vue from "vue";
+import VueRouter from "vue-router";
+import store from "../store/index";
+import NotFoundComponent from "../components/NotFoundComponent";
 
 Vue.use(VueRouter)
 const routes = [
 	{
-		path: '/',
-		name: 'FrontDashboard',
-		meta:{
+		path: "/",
+		name: "FrontDashboard",
+		meta: {
 			title: "DASHBOARD"
 		},
-		component: () => import('../views/pages/front/Home.vue')
+		component: () => import("../views/pages/front/Home.vue")
 	},
 	{
-		path: '/pmb',
-		name: 'FrontPMB',
-		meta:{
+		path: "/pmb",
+		name: "FrontPMB",
+		meta: {
 			title: "PENDAFTARAN MAHASISWA BARU"
 		},
-		component: () => import('../views/pages/front/PMB.vue')
+		component: () => import("../views/pages/front/PMB.vue")
 	},
 	{
-		path: '/login',
-		name: 'FrontLogin',
-		meta:{
+		path: "/login",
+		name: "FrontLogin",
+		meta: {
 			title: "LOGIN"
 		},
-		component: () => import('../views/pages/front/Login.vue')
+		component: () => import("../views/pages/front/Login.vue")
 	},
 	{
-		path: '/dashboard/:token',
-		name: 'AdminDashboard',
-		meta:{
+		path: "/dashboard/:token",
+		name: "AdminDashboard",
+		meta: {
 			title: "DASHBOARD",			
         },
-		component: () => import('../views/pages/admin/Dashboard.vue'),		
+		component: () => import("../views/pages/admin/Dashboard.vue"),		
 	},
 	//dmaster	
 	{
-		path: '/dmaster',
-		name: 'DMaster',
-		meta:{
+		path: "/dmaster",
+		name: "DMaster",
+		meta: {
 			title: "DATA MASTER",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/dmaster/DMaster.vue'),		
+		component: () => import("../views/pages/admin/dmaster/DMaster.vue"),		
 	},
 	{
-		path: '/dmaster/ruangkelas',
-		name: 'DMasterRuangKelas',
-		meta:{
+		path: "/dmaster/ruangkelas",
+		name: "DMasterRuangKelas",
+		meta: {
 			title: "DATA MASTER - RUANG KELAS",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/dmaster/RuangKelas.vue'),		
+		component: () => import("../views/pages/admin/dmaster/RuangKelas.vue"),		
 	},
 	{
-		path: '/dmaster/kelas',
-		name: 'DMasterKelas',
-		meta:{
+		path: "/dmaster/kelas",
+		name: "DMasterKelas",
+		meta: {
 			title: "DATA MASTER - KELAS",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/dmaster/Kelas.vue'),		
+		component: () => import("../views/pages/admin/dmaster/Kelas.vue"),		
 	},
 	//pmb
 	{
-		path: '/dmaster/persyaratanpmb',
-		name: 'DMasterPersyaratanPMB',
-		meta:{
+		path: "/dmaster/persyaratanpmb",
+		name: "DMasterPersyaratanPMB",
+		meta: {
 			title: "DATA MASTER - PERSYARATAN PMB",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/dmaster/PersyaratanPMB.vue'),		
+		component: () => import("../views/pages/admin/dmaster/PersyaratanPMB.vue"),		
 	},
 	{
-		path: '/dmaster/jabatanakademik',
-		name: 'DMasterJabatanAkademik',
-		meta:{
+		path: "/dmaster/jabatanakademik",
+		name: "DMasterJabatanAkademik",
+		meta: {
 			title: "DATA MASTER - JABATAN AKADEMIK",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/dmaster/JabatanAkademik.vue'),		
+		component: () => import("../views/pages/admin/dmaster/JabatanAkademik.vue"),		
 	},	
 	{
-		path: '/dmaster/jenjangstudi',
-		name: 'DMasterJenjangStudi',
-		meta:{
+		path: "/dmaster/jenjangstudi",
+		name: "DMasterJenjangStudi",
+		meta: {
 			title: "DATA MASTER - JENJANG STUDI",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/dmaster/JenjangStudi.vue'),		
+		component: () => import("../views/pages/admin/dmaster/JenjangStudi.vue"),		
 	},	
 	{
-		path: '/dmaster/statusmahasiswa',
-		name: 'DMasterStatusMahasiswa',
-		meta:{
+		path: "/dmaster/statusmahasiswa",
+		name: "DMasterStatusMahasiswa",
+		meta: {
 			title: "DATA MASTER - STATUS MAHASISWA",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/dmaster/StatusMahasiswa.vue'),		
+		component: () => import("../views/pages/admin/dmaster/StatusMahasiswa.vue"),		
 	},	
 	{
-		path: '/dmaster/ta',
-		name: 'DMasterTahunAkademik',
-		meta:{
+		path: "/dmaster/ta",
+		name: "DMasterTahunAkademik",
+		meta: {
 			title: "DATA MASTER - TAHUN AKADEMIK",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/dmaster/TahunAkademik.vue'),		
+		component: () => import("../views/pages/admin/dmaster/TahunAkademik.vue"),		
 	},
 	{
-		path: '/dmaster/fakultas',
-		name: 'DMasterFakultas',
-		meta:{
+		path: "/dmaster/fakultas",
+		name: "DMasterFakultas",
+		meta: {
 			title: "DATA MASTER - FAKULTAS",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/dmaster/Fakultas.vue'),		
+		component: () => import("../views/pages/admin/dmaster/Fakultas.vue"),		
 		beforeEnter: (to, from, next) => {
-			if(store.getters['uifront/getBentukPT']=='sekolahtinggi')
+			if(store.getters['uifront/getBentukPT'] == "sekolahtinggi")
 			{
-				next('/dashboard/'+store.getters['auth/AccessToken']);
-			}
-			else
-			{
+				next("/dashboard/" + store.getters['auth/AccessToken']);
+			} else {
 				next();
 			}			
 		}
 	},
 	{
-		path: '/dmaster/programstudi',
-		name: 'DMasterProgramStudi',
-		meta:{
+		path: "/dmaster/programstudi",
+		name: "DMasterProgramStudi",
+		meta: {
 			title: "DATA MASTER - PROGRAM STUDI",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/dmaster/ProgramStudi.vue'),		
+		component: () => import("../views/pages/admin/dmaster/ProgramStudi.vue"),		
 	},		
 	{
-		path: '/dmaster/konsentrasi',
-		name: 'DMasterKonsentrasi',
-		meta:{
+		path: "/dmaster/konsentrasi",
+		name: "DMasterKonsentrasi",
+		meta: {
 			title: "DATA MASTER - KONSENTRASI",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/dmaster/Konsentrasi.vue'),		
+		component: () => import("../views/pages/admin/dmaster/Konsentrasi.vue"),		
 	},		
 	//perencanaan	
 	{
-		path: '/perencanaan',
-		name: 'Perencanaan',
-		meta:{
+		path: "/perencanaan",
+		name: "Perencanaan",
+		meta: {
 			title: "PERENCANAAN",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/perencanaan/Perencanaan.vue'),		
+		component: () => import("../views/pages/admin/perencanaan/Perencanaan.vue"),		
 	},
 	{
-		path: '/perencanaan/renstra/visi',
-		name: 'RenstraVisi',
-		meta:{
+		path: "/perencanaan/renstra/visi",
+		name: "RenstraVisi",
+		meta: {
 			title: "RENSTRA - VISI",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/perencanaan/RenstraVisi.vue'),		
+		component: () => import("../views/pages/admin/perencanaan/RenstraVisi.vue"),		
 	},
 	{
-		path: '/perencanaan/renstra/misi',
-		name: 'RenstraMisi',
-		meta:{
+		path: "/perencanaan/renstra/misi",
+		name: "RenstraMisi",
+		meta: {
 			title: "RENSTRA - MISI",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/perencanaan/RenstraMisi.vue'),		
+		component: () => import("../views/pages/admin/perencanaan/RenstraMisi.vue"),		
 	},
 	//spmb	
 	{
-		path: '/spmb',
-		name: 'SPMB',
-		meta:{
+		path: "/spmb",
+		name: "SPMB",
+		meta: {
 			title: "SPMB",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/spmb/SPMB.vue'),		
+		component: () => import("../views/pages/admin/spmb/SPMB.vue"),		
 	},	
 	{
-		path: '/spmb/soalpmb',
-		name: 'SPMBSoal',
-		meta:{
+		path: "/spmb/soalpmb",
+		name: "SPMBSoal",
+		meta: {
 			title: "SPMB - SOAL PMB",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/spmb/SoalPMB.vue'),		
+		component: () => import("../views/pages/admin/spmb/SoalPMB.vue"),		
 	},
 	{
-		path: '/spmb/pendaftaranbaru',
-		name: 'SPMBPendaftaranBaru',
-		meta:{
+		path: "/spmb/pendaftaranbaru",
+		name: "SPMBPendaftaranBaru",
+		meta: {
 			title: "SPMB - PENDAFTARAN BARU",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/spmb/PendaftaranBaru.vue'),		
+		component: () => import("../views/pages/admin/spmb/PendaftaranBaru.vue"),		
 	},	
 	{
-		path: '/spmb/formulirpendaftaran',
-		name: 'SPMBFormulirPendaftaran',
-		meta:{
+		path: "/spmb/formulirpendaftaran",
+		name: "SPMBFormulirPendaftaran",
+		meta: {
 			title: "SPMB - FORMULIR PENDAFTARAN",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/spmb/FormulirPendaftaran.vue'),		
+		component: () => import("../views/pages/admin/spmb/FormulirPendaftaran.vue"),		
 	},
 	{
-		path: '/spmb/formulirpendaftaran/:user_id/edit',
-		name: 'SPMBFormulirPendaftaranEdit',
-		meta:{
+		path: "/spmb/formulirpendaftaran/:user_id/edit",
+		name: "SPMBFormulirPendaftaranEdit",
+		meta: {
 			title: "SPMB - FORMULIR PENDAFTARAN",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/spmb/FormulirPendaftaranEdit.vue'),		
+		component: () => import("../views/pages/admin/spmb/FormulirPendaftaranEdit.vue"),		
 	},
 	{
-		path: '/spmb/persyaratan',
-		name: 'SPMBPersyaratan',
-		meta:{
+		path: "/spmb/persyaratan",
+		name: "SPMBPersyaratan",
+		meta: {
 			title: "SPMB - PERSYARATAN",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/spmb/PersyaratanPMB.vue'),		
+		component: () => import("../views/pages/admin/spmb/PersyaratanPMB.vue"),		
 	},
 	{
-		path: '/spmb/jadwalujianpmb',
-		name: 'SPMBJadwalUjianPMB',
-		meta:{
+		path: "/spmb/jadwalujianpmb",
+		name: "SPMBJadwalUjianPMB",
+		meta: {
 			title: "SPMB - JADWAL UJIAN PMB",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/spmb/JadwalUjianPMB.vue'),		
+		component: () => import("../views/pages/admin/spmb/JadwalUjianPMB.vue"),		
 	},
 	{
-		path: '/spmb/ujianonline',
-		name: 'SPMBUjianOnline',
-		meta:{
+		path: "/spmb/ujianonline",
+		name: "SPMBUjianOnline",
+		meta: {
 			title: "SPMB - UJIAN ONLINE",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/spmb/UjianOnline.vue'),		
+		component: () => import("../views/pages/admin/spmb/UjianOnline.vue"),		
 	},
 	{
-		path: '/spmb/nilaiujian',
-		name: 'SPMBNilaiUjian',
-		meta:{
+		path: "/spmb/nilaiujian",
+		name: "SPMBNilaiUjian",
+		meta: {
 			title: "SPMB - NILAI UJIAN",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/spmb/NilaiUjian.vue'),		
+		component: () => import("../views/pages/admin/spmb/NilaiUjian.vue"),		
 	},	
 	{
-		path: '/spmb/jadwalujianpmb/passinggrade/:idjadwalujian',
-		name: 'SPMBPassingGrade',
-		meta:{
+		path: "/spmb/jadwalujianpmb/passinggrade/:idjadwalujian",
+		name: "SPMBPassingGrade",
+		meta: {
 			title: "SPMB - PASSING GRADE",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/spmb/PassingGrade.vue'),		
+		component: () => import("../views/pages/admin/spmb/PassingGrade.vue"),		
 	},	
 	{
-		path: '/spmb/laporanfakultas',
-		name: 'SPMBReportFakultas',
-		meta:{
+		path: "/spmb/laporanfakultas",
+		name: "SPMBReportFakultas",
+		meta: {
 			title: "SPMB - LAPORAN FAKULTAS",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/spmb/ReportFakultas.vue'),		
+		component: () => import("../views/pages/admin/spmb/ReportFakultas.vue"),		
 	},
 	{
-		path: '/spmb/laporanprodi',
-		name: 'SPMBReportProdi',
-		meta:{
+		path: "/spmb/laporanprodi",
+		name: "SPMBReportProdi",
+		meta: {
 			title: "SPMB - LAPORAN PROGRAM STUDI",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/spmb/ReportProdi.vue'),		
+		component: () => import("../views/pages/admin/spmb/ReportProdi.vue"),		
 	},
 	{
-		path: '/spmb/laporankelulusan',
-		name: 'SPMBReportKelulusan',
-		meta:{
+		path: "/spmb/laporankelulusan",
+		name: "SPMBReportKelulusan",
+		meta: {
 			title: "SPMB - LAPORAN KELULUSAN",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/spmb/ReportKelulusan.vue'),		
+		component: () => import("../views/pages/admin/spmb/ReportKelulusan.vue"),		
 	},
 	
 	//keuangan
 	{
-		path: '/keuangan',
-		name: 'Keuangan',
-		meta:{
+		path: "/keuangan",
+		name: "Keuangan",
+		meta: {
 			title: "KEUANGAN",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/keuangan/Keuangan.vue'),		
+		component: () => import("../views/pages/admin/keuangan/Keuangan.vue"),		
 	},	
 	{
-		path: '/keuangan/channelpembayaran',
-		name: 'KeuanganChanelPembayaran',
-		meta:{
+		path: "/keuangan/channelpembayaran",
+		name: "KeuanganChanelPembayaran",
+		meta: {
 			title: "KEUANGAN - CHANNEL PEMBAYARAN",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/keuangan/ChannelPembayaran.vue'),		
+		component: () => import("../views/pages/admin/keuangan/ChannelPembayaran.vue"),		
 	},	
 	{
-		path: '/keuangan/statustransaksi',
-		name: 'KeuanganStatusTransaksi',
-		meta:{
+		path: "/keuangan/statustransaksi",
+		name: "KeuanganStatusTransaksi",
+		meta: {
 			title: "KEUANGAN - STATUS TRANSAKSI",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/keuangan/StatusTransaksi.vue'),		
+		component: () => import("../views/pages/admin/keuangan/StatusTransaksi.vue"),		
 	},	
 	{
-		path: '/keuangan/biayakomponen',
-		name: 'KeuanganBiayaKomponen',
-		meta:{
+		path: "/keuangan/biayakomponen",
+		name: "KeuanganBiayaKomponen",
+		meta: {
 			title: "KEUANGAN - BIAYA KOMPONEN",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/keuangan/BiayaKomponen.vue'),		
+		component: () => import("../views/pages/admin/keuangan/BiayaKomponen.vue"),		
 	},	
 	{
-		path: '/keuangan/biayakomponenperiode',
-		name: 'KeuanganBiayaKomponenPeriode',
-		meta:{
+		path: "/keuangan/biayakomponenperiode",
+		name: "KeuanganBiayaKomponenPeriode",
+		meta: {
 			title: "KEUANGAN - BIAYA KOMPONEN PERIODE",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/keuangan/BiayaKomponenPeriode.vue'),		
+		component: () => import("../views/pages/admin/keuangan/BiayaKomponenPeriode.vue"),		
 	},	
 	{
-		path: '/keuangan/transferbank',
-		name: 'KeuanganTransferBank',
-		meta:{
+		path: "/keuangan/transferbank",
+		name: "KeuanganTransferBank",
+		meta: {
 			title: "KEUANGAN - TRANSFER BANK",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/keuangan/TransferBank.vue'),		
+		component: () => import("../views/pages/admin/keuangan/TransferBank.vue"),		
 	},
 	{
-		path: '/keuangan/transaksi',
-		name: 'KeuanganTransaksi',
-		meta:{
+		path: "/keuangan/transaksi",
+		name: "KeuanganTransaksi",
+		meta: {
 			title: "KEUANGAN - TRANSAKSI",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/keuangan/Transaksi.vue'),		
+		component: () => import("../views/pages/admin/keuangan/Transaksi.vue"),		
 	},
 	{
-		path: '/keuangan/transaksi-spp',
-		name: 'KeuanganTransaksiSPP',
-		meta:{
+		path: "/keuangan/transaksi-spp",
+		name: "KeuanganTransaksiSPP",
+		meta: {
 			title: "KEUANGAN - TRANSAKSI SPP",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/keuangan/TransaksiSPP.vue'),		
+		component: () => import("../views/pages/admin/keuangan/TransaksiSPP.vue"),		
 	},
 	{
-		path: '/keuangan/transaksi-spp/:transaksi_id',
-		name: 'KeuanganTransaksiSPPDetail',
-		meta:{
+		path: "/keuangan/transaksi-spp/:transaksi_id",
+		name: "KeuanganTransaksiSPPDetail",
+		meta: {
 			title: "KEUANGAN - TRANSAKSI SPP",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/keuangan/TransaksiSPPDetail.vue'),		
+		component: () => import("../views/pages/admin/keuangan/TransaksiSPPDetail.vue"),		
 	},
 	{
-		path: '/keuangan/transaksi-spp/tambah/:transaksi_id',
-		name: 'KeuanganTransaksiSPPTambah',
-		meta:{
+		path: "/keuangan/transaksi-spp/tambah/:transaksi_id",
+		name: "KeuanganTransaksiSPPTambah",
+		meta: {
 			title: "KEUANGAN - TRANSAKSI SPP",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/keuangan/TransaksiSPPTambah.vue'),		
+		component: () => import("../views/pages/admin/keuangan/TransaksiSPPTambah.vue"),		
 	},
 	{
-		path: '/keuangan/transaksi-registrasikrs',
-		name: 'KeuanganTransaksiRegistrasiKRS',
-		meta:{
+		path: "/keuangan/transaksi-registrasikrs",
+		name: "KeuanganTransaksiRegistrasiKRS",
+		meta: {
 			title: "KEUANGAN - TRANSAKSI REGISTRASI KRS",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/keuangan/TransaksiRegistrasiKRS.vue'),		
+		component: () => import("../views/pages/admin/keuangan/TransaksiRegistrasiKRS.vue"),		
 	},
 	{
-		path: '/keuangan/transaksi-registrasikrs/:transaksi_id',
-		name: 'KeuanganTransaksiRegistrasiKRSDetail',
-		meta:{
+		path: "/keuangan/transaksi-registrasikrs/:transaksi_id",
+		name: "KeuanganTransaksiRegistrasiKRSDetail",
+		meta: {
 			title: "KEUANGAN - TRANSAKSI REGISTRASI KRS",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/keuangan/TransaksiInvoice.vue'),		
+		component: () => import("../views/pages/admin/keuangan/TransaksiInvoice.vue"),		
 	},
 	{
-		path: '/keuangan/konfirmasipembayaran',
-		name: 'KeuanganKonfirmasiPembayaran',
-		meta:{
+		path: "/keuangan/konfirmasipembayaran",
+		name: "KeuanganKonfirmasiPembayaran",
+		meta: {
 			title: "KEUANGAN - KONFIRMASI PEMBAYARAN",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/keuangan/KonfirmasiPembayaran.vue'),		
+		component: () => import("../views/pages/admin/keuangan/KonfirmasiPembayaran.vue"),		
 	},
 
 	//akademik
 	{
-		path: '/akademik',
-		name: 'AKADEMIK',
-		meta:{
+		path: "/akademik",
+		name: "AKADEMIK",
+		meta: {
 			title: "AKADEMIK",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/akademik/Akademik.vue'),		
+		component: () => import("../views/pages/admin/akademik/Akademik.vue"),		
 	},	
 	{
-		path: '/akademik/matakuliah',
-		name: 'AkademikMatakuliah',
-		meta:{
+		path: "/akademik/matakuliah",
+		name: "AkademikMatakuliah",
+		meta: {
 			title: "AKADEMIK - MATAKULIAH",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/akademik/Matakuliah.vue'),		
+		component: () => import("../views/pages/admin/akademik/Matakuliah.vue"),		
 	},	
 	{
-		path: '/akademik/dosenwali',
-		name: 'AkademikDosenWali',
-		meta:{
+		path: "/akademik/dosenwali",
+		name: "AkademikDosenWali",
+		meta: {
 			title: "AKADEMIK - DOSEN WALI",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/akademik/DosenWali.vue'),		
+		component: () => import("../views/pages/admin/akademik/DosenWali.vue"),		
 	},	
 	//akademik - daftar ulang
 	{
-		path: '/akademik/dulang/mhsbelumpunyanim',
-		name: 'AkademikDulangMHSBelumPunyaNIM',
-		meta:{
+		path: "/akademik/dulang/mhsbelumpunyanim",
+		name: "AkademikDulangMHSBelumPunyaNIM",
+		meta: {
 			title: "AKADEMIK - MHS. BARU BELUM PUNYA NIM",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/akademik/MHSBelumPunyaNIM.vue'),		
+		component: () => import("../views/pages/admin/akademik/MHSBelumPunyaNIM.vue"),		
 	},	
 	{
-		path: '/akademik/dulang/mahasiswabaru',
-		name: 'AkademikDulangMHSBaru',
-		meta:{
+		path: "/akademik/dulang/mahasiswabaru",
+		name: "AkademikDulangMHSBaru",
+		meta: {
 			title: "AKADEMIK - DAFTAR ULANG MAHASISWA BARU",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/akademik/DulangMahasiswaBaru.vue'),		
+		component: () => import("../views/pages/admin/akademik/DulangMahasiswaBaru.vue"),		
 	},	
 	{
-		path: '/akademik/dulang/mahasiswalama',
-		name: 'AkademikDulangMHSLama',
-		meta:{
+		path: "/akademik/dulang/mahasiswalama",
+		name: "AkademikDulangMHSLama",
+		meta: {
 			title: "AKADEMIK - DAFTAR ULANG MAHASISWA LAMA",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/akademik/DulangMahasiswaLama.vue'),		
+		component: () => import("../views/pages/admin/akademik/DulangMahasiswaLama.vue"),		
 	},	
 
 	//akademik - daftar mahasiswa
 	{
-		path: '/akademik/kemahasiswaan/daftarmahasiswa',
-		name: 'KemahasiswaanDaftarMahasiswa',
-		meta:{
+		path: "/akademik/kemahasiswaan/daftarmahasiswa",
+		name: "KemahasiswaanDaftarMahasiswa",
+		meta: {
 			title: "AKADEMIK - DAFTAR MAHASISWA",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/akademik/KemahasiswaanDaftarMahasiswa.vue'),		
+		component: () => import("../views/pages/admin/akademik/KemahasiswaanDaftarMahasiswa.vue"),		
 	},	
 	
 	//akademik - perkuliahan - penyelenggaraan
 	{
-		path: '/akademik/perkuliahan/penyelenggaraan/daftar',
-		name: 'PerkuliahanPenyelenggaraan',
-		meta:{
+		path: "/akademik/perkuliahan/penyelenggaraan/daftar",
+		name: "PerkuliahanPenyelenggaraan",
+		meta: {
 			title: "AKADEMIK - PENYELENGGARAAN MATAKULIAH",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/akademik/PerkuliahanPenyelenggaraan.vue'),		
+		component: () => import("../views/pages/admin/akademik/PerkuliahanPenyelenggaraan.vue"),		
 	},	
 	{
-		path: '/akademik/perkuliahan/penyelenggaraan/tambah',
-		name: 'PerkuliahanPenyelenggaraanTambah',
-		meta:{
+		path: "/akademik/perkuliahan/penyelenggaraan/tambah",
+		name: "PerkuliahanPenyelenggaraanTambah",
+		meta: {
 			title: "AKADEMIK - PENYELENGGARAAN MATAKULIAH",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/akademik/PerkuliahanPenyelenggaraanTambah.vue'),		
+		component: () => import("../views/pages/admin/akademik/PerkuliahanPenyelenggaraanTambah.vue"),		
 	},	
 	{
-		path: '/akademik/perkuliahan/penyelenggaraan/:idpenyelenggaraan/dosenpengampu/',
-		name: 'PerkuliahanPenyelenggaraanDosenPengampu',
-		meta:{
+		path: "/akademik/perkuliahan/penyelenggaraan/:idpenyelenggaraan/dosenpengampu/",
+		name: "PerkuliahanPenyelenggaraanDosenPengampu",
+		meta: {
 			title: "AKADEMIK - PENYELENGGARAAN MATAKULIAH",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/akademik/PerkuliahanPenyelenggaraanDosenPengampu.vue'),		
+		component: () => import("../views/pages/admin/akademik/PerkuliahanPenyelenggaraanDosenPengampu.vue"),		
 	},	
 	
 	//akademik - perkuliahan - krs
 	{
-		path: '/akademik/perkuliahan/krs/daftar',
-		name: 'PerkuliahanKRS',
-		meta:{
+		path: "/akademik/perkuliahan/krs/daftar",
+		name: "PerkuliahanKRS",
+		meta: {
 			title: "AKADEMIK - KRS",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/akademik/PerkuliahanKRS.vue'),		
+		component: () => import("../views/pages/admin/akademik/PerkuliahanKRS.vue"),		
 	},	
 	{
-		path: '/akademik/perkuliahan/krs/:krsid/detail',
-		name: 'PerkuliahanKRSDetail',
-		meta:{
+		path: "/akademik/perkuliahan/krs/:krsid/detail",
+		name: "PerkuliahanKRSDetail",
+		meta: {
 			title: "AKADEMIK - KRS",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/akademik/PerkuliahanKRSDetail.vue'),		
+		component: () => import("../views/pages/admin/akademik/PerkuliahanKRSDetail.vue"),		
 	},	
 	{
-		path: '/akademik/perkuliahan/krs/tambah',
-		name: 'PerkuliahanKRSTambah',
-		meta:{
+		path: "/akademik/perkuliahan/krs/tambah",
+		name: "PerkuliahanKRSTambah",
+		meta: {
 			title: "AKADEMIK - KRS",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/akademik/PerkuliahanKRSTambah.vue'),		
+		component: () => import("../views/pages/admin/akademik/PerkuliahanKRSTambah.vue"),		
 	},	
 	{
-		path: '/akademik/perkuliahan/krs/:krsid/tambahmatkul',
-		name: 'PerkuliahanKRSTambahMatkul',
-		meta:{
+		path: "/akademik/perkuliahan/krs/:krsid/tambahmatkul",
+		name: "PerkuliahanKRSTambahMatkul",
+		meta: {
 			title: "AKADEMIK - KRS",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/akademik/PerkuliahanKRSTambahMatkul.vue'),		
+		component: () => import("../views/pages/admin/akademik/PerkuliahanKRSTambahMatkul.vue"),		
 	},	
 	//akademik - perkuliahan - pembagian kelas
 	{
-		path: '/akademik/perkuliahan/pembagiankelas/daftar',
-		name: 'PerkuliahanPembagianKelas',
-		meta:{
+		path: "/akademik/perkuliahan/pembagiankelas/daftar",
+		name: "PerkuliahanPembagianKelas",
+		meta: {
 			title: "AKADEMIK - PEMBAGIAN KELAS",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/akademik/PerkuliahanPembagianKelas.vue'),		
+		component: () => import("../views/pages/admin/akademik/PerkuliahanPembagianKelas.vue"),		
 	},	
 	{
-		path: '/akademik/perkuliahan/pembagiankelas/tambah',
-		name: 'PerkuliahanPembagianKelasTambah',
-		meta:{
+		path: "/akademik/perkuliahan/pembagiankelas/tambah",
+		name: "PerkuliahanPembagianKelasTambah",
+		meta: {
 			title: "AKADEMIK - PEMBAGIAN KELAS",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/akademik/PerkuliahanPembagianKelasTambah.vue'),		
+		component: () => import("../views/pages/admin/akademik/PerkuliahanPembagianKelasTambah.vue"),		
 	},	
 	{
-		path: '/akademik/perkuliahan/pembagiankelas/:kelas_mhs_id/peserta',
-		name: 'PerkuliahanPembagianKelasPeserta',
-		meta:{
+		path: "/akademik/perkuliahan/pembagiankelas/:kelas_mhs_id/peserta",
+		name: "PerkuliahanPembagianKelasPeserta",
+		meta: {
 			title: "AKADEMIK - PEMBAGIAN KELAS",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/akademik/PerkuliahanPembagianKelasPeserta.vue'),		
+		component: () => import("../views/pages/admin/akademik/PerkuliahanPembagianKelasPeserta.vue"),		
 	},	
 	//akademik - nilai
 	{
-		path: '/akademik/nilai/matakuliah/isiperkelasmhs',
-		name: 'AkademikNilaiIsiPerKelasMHS',
-		meta:{
+		path: "/akademik/nilai/matakuliah/isiperkelasmhs",
+		name: "AkademikNilaiIsiPerKelasMHS",
+		meta: {
 			title: "AKADEMIK - ISI NILAI MATAKULIAH PER KELAS",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/akademik/NilaiIsiPerKelasMHS.vue'),		
+		component: () => import("../views/pages/admin/akademik/NilaiIsiPerKelasMHS.vue"),		
 	},	
 	{
-		path: '/akademik/nilai/matakuliah/isiperkelasmhs/:kelas_mhs_id',
-		name: 'AkademikNilaiIsiPerKelasMHSDetail',
-		meta:{
+		path: "/akademik/nilai/matakuliah/isiperkelasmhs/:kelas_mhs_id",
+		name: "AkademikNilaiIsiPerKelasMHSDetail",
+		meta: {
 			title: "AKADEMIK - ISI NILAI MATAKULIAH PER KELAS",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/akademik/NilaiIsiPerKelasMHSDetail.vue'),		
+		component: () => import("../views/pages/admin/akademik/NilaiIsiPerKelasMHSDetail.vue"),		
 	},	
 	{
-		path: '/akademik/nilai/matakuliah/isiperkrs',
-		name: 'AkademikNilaiIsiPerKRS',
-		meta:{
+		path: "/akademik/nilai/matakuliah/isiperkrs",
+		name: "AkademikNilaiIsiPerKRS",
+		meta: {
 			title: "AKADEMIK - ISI NILAI MATAKULIAH PER KRS",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/akademik/NilaiIsiPerKRS.vue'),		
+		component: () => import("../views/pages/admin/akademik/NilaiIsiPerKRS.vue"),		
 	},	
 	{
-		path: '/akademik/nilai/matakuliah/isiperkrs/:krsid',
-		name: 'AkademikNilaiIsiPerKRSMHSDetail',
-		meta:{
+		path: "/akademik/nilai/matakuliah/isiperkrs/:krsid",
+		name: "AkademikNilaiIsiPerKRSMHSDetail",
+		meta: {
 			title: "AKADEMIK - ISI NILAI MATAKULIAH PER KRS",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/akademik/NilaiIsiPerKRSDetail.vue'),		
+		component: () => import("../views/pages/admin/akademik/NilaiIsiPerKRSDetail.vue"),		
 	},	
 	{
-		path: '/akademik/nilai/khs',
-		name: 'NilaiKHS',
-		meta:{
+		path: "/akademik/nilai/khs",
+		name: "NilaiKHS",
+		meta: {
 			title: "AKADEMIK - NILAI KHS",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/akademik/NilaiKHS.vue'),		
+		component: () => import("../views/pages/admin/akademik/NilaiKHS.vue"),		
 	},	
 	{
-		path: '/akademik/nilai/khs/:krs_id',
-		name: 'NilaiKHSDetail',
-		meta:{
+		path: "/akademik/nilai/khs/:krs_id",
+		name: "NilaiKHSDetail",
+		meta: {
 			title: "AKADEMIK - NILAI KHS",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/akademik/NilaiKHSDetail.vue'),		
+		component: () => import("../views/pages/admin/akademik/NilaiKHSDetail.vue"),		
 	},	
 	{
-		path: '/akademik/nilai/transkripkurikulum',
-		name: 'TranskripNilaiKurikulum',
-		meta:{
+		path: "/akademik/nilai/transkripkurikulum",
+		name: "TranskripNilaiKurikulum",
+		meta: {
 			title: "AKADEMIK - TRANSKRIP KURIKULUM",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/akademik/TranskripNilaiKurikulum.vue'),		
+		component: () => import("../views/pages/admin/akademik/TranskripNilaiKurikulum.vue"),		
 	},	
 	{
-		path: '/akademik/nilai/transkripkurikulum/:user_id',
-		name: 'TranskripNilaiKurikulumDetail',
-		meta:{
+		path: "/akademik/nilai/transkripkurikulum/:user_id",
+		name: "TranskripNilaiKurikulumDetail",
+		meta: {
 			title: "AKADEMIK - TRANSKRIP KURIKULUM",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/akademik/TranskripNilaiKurikulumDetail.vue'),		
+		component: () => import("../views/pages/admin/akademik/TranskripNilaiKurikulumDetail.vue"),		
 	},
 	
 	//elearning
 	{
-		path: '/elearning',
-		name: 'Elearning',
-		meta:{
+		path: "/elearning",
+		name: "Elearning",
+		meta: {
 			title: "E-LEARNING",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/elearning/Elearning.vue'),		
+		component: () => import("../views/pages/admin/elearning/Elearning.vue"),		
 	},
 	{
-		path: '/elearning/kelas',
-		name: 'Elearning Kelas',
-		meta:{
+		path: "/elearning/kelas",
+		name: "Elearning Kelas",
+		meta: {
 			title: "E-LEARNING - KELAS",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/elearning/ElearningKelas.vue'),		
+		component: () => import("../views/pages/admin/elearning/ElearningKelas.vue"),		
 	},
 
 	//system	
 	{
-		path: '/system-setting',
-		name: 'SystemSetting',
-		meta:{
+		path: "/system-setting",
+		name: "SystemSetting",
+		meta: {
 			title: "SETTING - SISTEM",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/system/SystemSetting.vue'),		
+		component: () => import("../views/pages/admin/system/SystemSetting.vue"),		
 	},	
 	{
-		path: '/system-setting/identitasdiri',
-		name: 'IdentitasDiri',
-		meta:{
+		path: "/system-setting/identitasdiri",
+		name: "IdentitasDiri",
+		meta: {
 			title: "SETTING - IDENTITAS DIRI",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/system/IdentitasDiri.vue'),		
+		component: () => import("../views/pages/admin/system/IdentitasDiri.vue"),		
 	},	
 	{
-		path: '/system-setting/variables',
-		name: 'Variables',
-		meta:{
+		path: "/system-setting/variables",
+		name: "Variables",
+		meta: {
 			title: "SETTING - VARIABLES",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/system/Variables.vue'),		
+		component: () => import("../views/pages/admin/system/Variables.vue"),		
 	},	
 	{
-		path: '/system-setting/headerlaporan',
-		name: 'HeaderLaporan',
-		meta:{
+		path: "/system-setting/headerlaporan",
+		name: "HeaderLaporan",
+		meta: {
 			title: "SETTING - HEADER LAPORAN",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/system/HeaderLaporan.vue'),		
+		component: () => import("../views/pages/admin/system/HeaderLaporan.vue"),		
 	},
 	{
-		path: '/system-setting/zoom',
-		name: 'SettingZoom',
-		meta:{
+		path: "/system-setting/zoom",
+		name: "SettingZoom",
+		meta: {
 			title: "SETTING - ZOOM",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/system/Zoom.vue'),		
+		component: () => import("../views/pages/admin/system/Zoom.vue"),		
 	},	
 	{
-		path: '/system-setting/captcha',
-		name: 'SettingCaptcha',
-		meta:{
+		path: "/system-setting/captcha",
+		name: "SettingCaptcha",
+		meta: {
 			title: "SETTING - CAPTCHA",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/system/Captcha.vue'),		
+		component: () => import("../views/pages/admin/system/Captcha.vue"),		
 	},
 	{
-		path: '/system-setting/email',
-		name: 'SettingEmail',
-		meta:{
+		path: "/system-setting/email",
+		name: "SettingEmail",
+		meta: {
 			title: "SETTING - EMAIL",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/system/Email.vue'),		
+		component: () => import("../views/pages/admin/system/Email.vue"),		
 	},
 	{
-		path: '/system-setting/themes/colordashboard',
-		name: 'SettingThemesColorDashboard',
-		meta:{
+		path: "/system-setting/themes/colordashboard",
+		name: "SettingThemesColorDashboard",
+		meta: {
 			title: "SETTING - THEMES - WARNA DASHBOARD",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/system/ThemesColorDashboard.vue'),		
+		component: () => import("../views/pages/admin/system/ThemesColorDashboard.vue"),		
 	},
 	{
-		path: '/system-setting/themes/layout',
-		name: 'SettingThemesLayout',
-		meta:{
+		path: "/system-setting/themes/layout",
+		name: "SettingThemesLayout",
+		meta: {
 			title: "SETTING - THEMES - LAYOUT",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/system/ThemesLayout.vue'),		
+		component: () => import("../views/pages/admin/system/ThemesLayout.vue"),		
 	},
 	{
-		path: '/system-users',
-		name: 'SystemUsers',
-		meta:{
+		path: "/system-users",
+		name: "SystemUsers",
+		meta: {
 			title: "SYSTEM - USERS",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/system/SystemUsers.vue'),		
+		component: () => import("../views/pages/admin/system/SystemUsers.vue"),		
 	},
 	{
-		path: '/system-users/permissions',
-		name: 'UsersPermissions',
-		meta:{
+		path: "/system-users/permissions",
+		name: "UsersPermissions",
+		meta: {
 			title: "USERS - PERMISSIONS",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/system/Permissions.vue'),		
+		component: () => import("../views/pages/admin/system/Permissions.vue"),		
 	},
 	{
-		path: '/system-users/roles',
-		name: 'UsersRoles',
-		meta:{
+		path: "/system-users/roles",
+		name: "UsersRoles",
+		meta: {
 			title: "USERS - ROLES",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/system/Roles.vue'),		
+		component: () => import("../views/pages/admin/system/Roles.vue"),		
 	},
 	{
-		path: '/system-users/superadmin',
-		name: 'UsersSuperadmin',
-		meta:{
+		path: "/system-users/superadmin",
+		name: "UsersSuperadmin",
+		meta: {
 			title: "USERS - SUPER ADMIN",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/system/UsersSuperadmin.vue'),		
+		component: () => import("../views/pages/admin/system/UsersSuperadmin.vue"),		
 	},
 	{
-		path: '/system-users/pmb',
-		name: 'UsersPMB',
-		meta:{
+		path: "/system-users/pmb",
+		name: "UsersPMB",
+		meta: {
 			title: "USERS - PMB",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/system/UsersPMB.vue'),		
+		component: () => import("../views/pages/admin/system/UsersPMB.vue"),		
 	},
 	{
-		path: '/system-users/akademik',
-		name: 'UsersAkademik',
-		meta:{
+		path: "/system-users/akademik",
+		name: "UsersAkademik",
+		meta: {
 			title: "USERS - AKADEMIK",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/system/UsersAkademik.vue'),		
+		component: () => import("../views/pages/admin/system/UsersAkademik.vue"),		
 	},
 	{
-		path: '/system-users/prodi',
-		name: 'UsersProdi',
-		meta:{
+		path: "/system-users/prodi",
+		name: "UsersProdi",
+		meta: {
 			title: "USERS - PROGRAM STUDI",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/system/UsersProdi.vue'),		
+		component: () => import("../views/pages/admin/system/UsersProdi.vue"),		
 	},
 	{
-		path: '/system-users/puslahta',
-		name: 'UsersPuslahta',
-		meta:{
+		path: "/system-users/puslahta",
+		name: "UsersPuslahta",
+		meta: {
 			title: "USERS - PUSLAHTA",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/system/UsersPuslahta.vue'),		
+		component: () => import("../views/pages/admin/system/UsersPuslahta.vue"),		
 	},
 	{
-		path: '/system-users/dosen',
-		name: 'UsersDosen',
-		meta:{
+		path: "/system-users/dosen",
+		name: "UsersDosen",
+		meta: {
 			title: "USERS - DOSEN",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/system/UsersDosen.vue'),		
+		component: () => import("../views/pages/admin/system/UsersDosen.vue"),		
 	},
 	{
-		path: '/system-users/keuangan',
-		name: 'UsersKeuangan',
-		meta:{
+		path: "/system-users/keuangan",
+		name: "UsersKeuangan",
+		meta: {
 			title: "USERS - KEUANGAN",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/system/UsersKeuangan.vue'),		
+		component: () => import("../views/pages/admin/system/UsersKeuangan.vue"),		
 	},
 	{
-		path: '/system-users/profil',
-		name: 'UsersProfil',
-		meta:{
+		path: "/system-users/profil",
+		name: "UsersProfil",
+		meta: {
 			title: "USERS - PROFILE",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/system/UsersProfile.vue'),		
+		component: () => import("../views/pages/admin/system/UsersProfile.vue"),		
 	},
 	//dosen
 	{
-		path: '/system-users/biodatadiridosen',
-		name: 'BiodataDiriDosen',
-		meta:{
+		path: "/system-users/biodatadiridosen",
+		name: "BiodataDiriDosen",
+		meta: {
 			title: "USERS - BIODATA DIRI DOSEN",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/system/BiodataDiriDosen.vue'),		
+		component: () => import("../views/pages/admin/system/BiodataDiriDosen.vue"),		
 	},
 	{
-		path: '/system-migration',
-		name: 'SystemMigration',
-		meta:{
+		path: "/system-migration",
+		name: "SystemMigration",
+		meta: {
 			title: "MIGRASI SISTEM",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/system/SystemMigration.vue'),		
+		component: () => import("../views/pages/admin/system/SystemMigration.vue"),		
 	},	
 	{
-		path: '/404',
-		name: 'NotFoundComponent',
-		meta:{
+		path: "/404",
+		name: "NotFoundComponent",
+		meta: {
             title: "PAGE NOT FOUND"
         },
 		component: NotFoundComponent
@@ -881,26 +879,24 @@ const routes = [
 
 	//kemahasiswaan
 	{
-		path: '/kemahasiswaan',
-		name: 'Kemahasiswaan',
-		meta:{
+		path: "/kemahasiswaan",
+		name: "Kemahasiswaan",
+		meta: {
 			title: "KEMAHASISWAAN",
-			requiresAuth:true,
+			requiresAuth: true,
         },
-		component: () => import('../views/pages/admin/kemahasiswaan/Kemahasiswaan.vue'),		
+		component: () => import("../views/pages/admin/kemahasiswaan/Kemahasiswaan.vue"),		
 	},
-	
-
 	{ 
-		path: '*', 
-		redirect: '/404' 
+		path: "*", 
+		redirect: "/404", 
 	},
 ]
 
 const router = new VueRouter({
-	mode: 'history',
+	mode: "history",
 	base: process.env.BASE_URL,
-	routes
+	routes,
 })
 
 router.beforeEach((to, from, next) => {
@@ -912,7 +908,7 @@ router.beforeEach((to, from, next) => {
 			next();
 			return;
 		}
-		next('/login');
+		next("/login");
 	}
 	else
 	{

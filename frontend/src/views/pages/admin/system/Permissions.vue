@@ -112,7 +112,7 @@
                                 small
                                 @click.stop="deleteItem(item)"
                                 :loading="btnLoading"
-                                :disabled="!CAN_ACCESS('PERMISSIONS_DESTROY')||btnLoading"
+                                :disabled="!CAN_ACCESS('PERMISSIONS_DESTROY")||btnLoading"
                             >
                                 mdi-delete
                             </v-icon>
@@ -120,8 +120,8 @@
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
                                 <strong>ID:</strong>{{ item.id }}
-                                <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
-                                <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
+                                <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
+                                <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -136,26 +136,26 @@
 <script>
 import {mapGetters} from "vuex";
 import SystemUserLayout from '@/views/layouts/SystemUserLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 export default {
-    name: 'Permissions',
+    name: "Permissions",
     created()
     {
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.ACCESS_TOKEN
+                href: "/dashboard/" + this.ACCESS_TOKEN
             },
             {
-                text: 'USER SISTEM',
+                text: "USER SISTEM",
                 disabled: false,
-                href: '/system-users'
+                href: "/system-users"
             },
             {
-                text: 'PERMISSIONS',
+                text: "PERMISSIONS",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];
         this.initialize();
@@ -168,9 +168,9 @@ export default {
         daftar_permissions: [],
         //tables
         headers: [                        
-            { text: 'NAMA PERMISSION', value: 'name' },
-            { text: 'GUARD', value: 'guard_name' },            
-            { text: 'AKSI', value: 'actions', sortable: false,width:100 },
+            { text: "NAMA PERMISSION", value: "name" },
+            { text: "GUARD", value: "guard_name" },            
+            { text: "AKSI", value: "actions", sortable: false,width:100 },
         ],
         search: "",        
         //form
@@ -178,36 +178,36 @@ export default {
         dialog: false,
         editedIndex: -1,
         editedItem: {
-            id:0,
-            name:  "",           
-            guard:  "",           
-            created_at:  "",           
-            updated_at:  "",           
+            id: 0,
+            name: "",           
+            guard: "",           
+            created_at: "",           
+            updated_at: "",           
         },
         defaultItem: {
-            id:0,
-            name:  "",           
-            guard: 'api',           
-            created_at:  "",           
-            updated_at:  "",           
+            id: 0,
+            name: "",           
+            guard: "api",           
+            created_at: "",           
+            updated_at: "",           
         },
         //form rules        
         rule_permission_name: [
             value => !!value || "Mohon untuk di isi nama Permission !!!",  
-            value => /^[0-9\\a-zA-Z\\-]+$/.test(value) || 'Nama Permission hanya boleh angka,huruf,dan tanda -',                
+            value => /^[0-9\\a-zA-Z\\-]+$/.test(value) || "Nama Permission hanya boleh angka,huruf,dan tanda -",                
         ], 
     }),
     methods: {
         initialize () 
         {
-            this.datatableLoading=true;
-            this.$ajax.get('/system/setting/permissions',{
+            this.datatableLoading = true;
+            this.$ajax.get("/system/setting/permissions",{
                 headers: {
                     Authorization: this.TOKEN
                 }
             }).then(({ data })=>{                
                 this.daftar_permissions = data.permissions;
-                this.datatableLoading=false;
+                this.datatableLoading = false;
             });          
             
         },
@@ -215,14 +215,14 @@ export default {
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded = [];                
             }
             else
             {
-                this.expanded=[item];
+                this.expanded = [item];
             }               
         },
-        editItem (item) {
+        editItem(item) {
             this.editedIndex = this.daftar_permissions.indexOf(item)
             this.editedItem = Object.assign({}, item)
             this.dialog = true
@@ -243,7 +243,7 @@ export default {
                 if (!(this.editedIndex > -1)) 
                 {
                     this.btnLoading=true;
-                    this.$ajax.post('/system/setting/permissions/store',
+                    this.$ajax.post("/system/setting/permissions/store",
                         {
                             name: this.editedItem.name.toLowerCase()
                         },
@@ -262,13 +262,13 @@ export default {
             }
         },
         deleteItem (item) {   
-            this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus permission '+item.name+' ?', { color: 'red' }).then((confirm) => {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus permission '+item.name+' ?", { color: "red" }).then((confirm) => {
                 if (confirm)
                 {
                     this.btnLoading=true;
-                    this.$ajax.post('/system/setting/permissions/'+item.id,
+                    this.$ajax.post("/system/setting/permissions/" + item.id,
                     {
-                        '_method': 'DELETE',
+                        _method: "DELETE",
                     },
                     {
                         headers: {
@@ -288,13 +288,13 @@ export default {
     },
     computed: {
         formTitle () {
-            return this.editedIndex === -1 ? 'TAMBAH PERMISSION' : 'EDIT PERMISSION'
+            return this.editedIndex === -1 ? "TAMBAH PERMISSION" : "EDIT PERMISSION"
         },
-        ...mapGetters('auth',{            
-            ACCESS_TOKEN: 'AccessToken',          
-            TOKEN: 'Token',          
-            CAN_ACCESS: 'can',         
-            ATTRIBUTE_USER: 'AttributeUser',          
+        ...mapGetters("auth",{            
+            ACCESS_TOKEN: "AccessToken",          
+            TOKEN: "Token",          
+            CAN_ACCESS: "can",         
+            ATTRIBUTE_USER: "AttributeUser",          
         }),
     },
     watch: {

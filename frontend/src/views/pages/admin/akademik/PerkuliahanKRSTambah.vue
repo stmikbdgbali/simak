@@ -47,7 +47,7 @@
                                     outlined
                                     append-outer-icon="mdi-send"
                                     @click:append-outer="cekNIM"
-                                    :disabled="(this.$store.getters['uiadmin/getDefaultDashboard']=='mahasiswa')"
+                                    :disabled="(this.$store.getters['uiadmin/getDefaultDashboard']=='mahasiswa")"
                                     /> 
                                 <v-select
                                     v-model="formdata.dulang_id"
@@ -78,35 +78,35 @@
 </template>
 <script>
 import AkademikLayout from '@/views/layouts/AkademikLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 export default {
-    name: 'PerkuliahanKRSTambah',
-    created () {
+    name: "PerkuliahanKRSTambah",
+    created() {
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
             },
             {
-                text: 'AKADEMIK',
+                text: "AKADEMIK",
                 disabled: false,
-                href: '/akademik'
+                href: "/akademik",
             },
             {
-                text: 'PERKULIAHAN',
+                text: "PERKULIAHAN",
                 disabled: false,
-                href: '#'
+                href: "#"
             },
             {
-                text: 'KRS',
+                text: "KRS",
                 disabled: false,
-                href: '/akademik/perkuliahan/krs/daftar'
+                href: "/akademik/perkuliahan/krs/daftar"
             },
             {
-                text: 'TAMBAH',
+                text: "TAMBAH",
                 disabled: true,
-                href: '#'
+                href: "#"
             },
         ];
         let prodi_id=this.$store.getters['uiadmin/getProdiID'];
@@ -117,19 +117,19 @@ export default {
         this.ta_matkul=this.tahun_akademik;
         this.daftar_semester=this.$store.getters['uiadmin/getDaftarSemester'];          
         this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];                
-        if (this.$store.getters['uiadmin/getDefaultDashboard']=='mahasiswa')
+        if (this.$store.getters['uiadmin/getDefaultDashboard' ] == "mahasiswa")
         {
-            this.formdata.nim=this.$store.getters['auth/AttributeUser']('username');
+            this.formdata.nim=this.$store.getters['auth/AttributeUser']("username");
             this.fetchDulang();
         }
     },  
     data: () => ({ 
         firstloading: true,
-        prodi_id:null,
-        nama_prodi:null,
-        tahun_akademik:null,
-        ta_matkul:null,
-        semester_akademik:null,
+        prodi_id: null,
+        nama_prodi: null,
+        tahun_akademik: null,
+        ta_matkul: null,
+        semester_akademik: null,
 
         btnLoading: false,        
 
@@ -139,12 +139,12 @@ export default {
         expanded: [],
         datatable: [],      
         headers: [
-            { text: 'KODE', value: 'kmatkul', sortable: true,width:120  },   
-            { text: 'NAMA MATAKULIAH', value: 'nmatkul',sortable: true },               
-            { text: 'KELOMPOK', value: 'group_alias', sortable: true,width:120 },               
-            { text: 'SKS', value: 'sks',sortable: true,width:80, align: 'center' },               
-            { text: 'SMT', value: 'semester', sortable: true,width:80 },               
-            { text: 'AKSI', value: 'actions', sortable: false,width:100 },
+            { text: "KODE", value: "kmatkul", sortable: true,width:120  },   
+            { text: "NAMA MATAKULIAH", value: "nmatkul",sortable: true },               
+            { text: "KELOMPOK", value: "group_alias", sortable: true,width:120 },               
+            { text: "SKS", value: "sks",sortable: true,width:80, align: "center" },               
+            { text: "SMT", value: "semester", sortable: true,width:80 },               
+            { text: "AKSI", value: "actions", sortable: false,width:100 },
         ],  
         search: "",    
 
@@ -153,11 +153,11 @@ export default {
         daftar_dulang: [],
         formdata: {
             nim: "",
-            dulang_id: ''
+            dulang_id: ""
         },        
         rule_nim: [
             value => !!value || "Nomor Induk Mahasiswa (NIM) mohon untuk diisi !!!",
-            value => /^[0-9]+$/.test(value) || 'Nomor Induk Mahasiswa (NIM) hanya boleh angka',
+            value => /^[0-9]+$/.test(value) || "Nomor Induk Mahasiswa (NIM) hanya boleh angka",
         ], 
         rule_dulang: [
             value => !!value || "Mohon dipilih Daftar Ulang yang telah dilakukan !!!"
@@ -166,7 +166,7 @@ export default {
     methods: {          
         async fetchDulang()
         {
-            await this.$ajax.post('/akademik/dulang/dulangnotinkrs',
+            await this.$ajax.post("/akademik/dulang/dulangnotinkrs",
             {
                 nim: this.formdata.nim,                
             },
@@ -185,11 +185,11 @@ export default {
                 this.fetchDulang();
             }
         },
-        save:async function() {
+        save: async function() {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading=true;
-                await this.$ajax.post('/akademik/perkuliahan/krs/store',
+                await this.$ajax.post("/akademik/perkuliahan/krs/store",
                 {
                     nim: this.formdata.nim,
                     dulang_id: this.formdata.dulang_id,                    
@@ -199,7 +199,7 @@ export default {
                         Authorization: this.$store.getters["auth/Token"]
                     }
                 }).then(({ data })=>{               
-                    this.$router.push('/akademik/perkuliahan/krs/'+data.krs.id+'/detail');
+                    this.$router.push("/akademik/perkuliahan/krs/" + data.krs.id + "/detail");
                     this.btnLoading = false;
                 }).catch(()=>{
                     this.btnLoading = false;
@@ -209,7 +209,7 @@ export default {
         closedialogfrm () {                             
             setTimeout(() => {       
                 this.formdata = Object.assign({}, this.formdefault);                                
-                this.$router.push('/akademik/perkuliahan/krs/daftar');
+                this.$router.push("/akademik/perkuliahan/krs/daftar");
                 }, 300
             );
         },

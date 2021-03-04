@@ -126,7 +126,7 @@
                                                 <v-text-field 
                                                     v-model="editedItem.password" 
                                                     label="PASSWORD"
-                                                    :type="'password'"
+                                                    :type="password"
                                                     outlined
                                                     :rules="rule_user_password">
                                                 </v-text-field>   
@@ -195,7 +195,7 @@
                                                 <v-text-field 
                                                     v-model="editedItem.password" 
                                                     label="PASSWORD"
-                                                    :type="'password'"
+                                                    :type="password"
                                                     outlined
                                                     :rules="rule_user_passwordEdit">
                                                 </v-text-field> 
@@ -223,10 +223,10 @@
                             </v-toolbar>
                         </template>
                         <template v-slot:item.nidn="{ item }">
-                            {{(item.nidn && item.nidn.length > 0) > 0 ? item.nidn: 'N.A'}}
+                            {{(item.nidn && item.nidn.length > 0) > 0 ? item.nidn: "N.A"}}
                         </template>
                         <template v-slot:item.is_dw="{ item }">
-                            {{item.is_dw == false ? 'BUKAN': 'YA'}}
+                            {{item.is_dw == false ? "BUKAN" : "YA"}}
                         </template>
                         <template v-slot:item.actions="{ item }">               
                             <v-tooltip bottom v-if="item.default_role=='dosen'">             
@@ -289,8 +289,8 @@
                                 <v-col cols="12">
                                     <strong>ID:</strong>{{ item.id }}
                                     <strong>Email:</strong>{{ item.email }}
-                                    <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
-                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
+                                    <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
+                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
                                 </v-col>                                
                             </td>
                         </template>
@@ -306,27 +306,27 @@
 </template>
 <script>
 import {mapGetters} from "vuex";
-import SystemUserLayout from '@/views/layouts/SystemUserLayout';
-import ModuleHeader from '@/components/ModuleHeader';
-import UserPermissions from '@/views/pages/admin/system/UserPermissions';
+import SystemUserLayout from "@/views/layouts/SystemUserLayout";
+import ModuleHeader from "@/components/ModuleHeader";
+import UserPermissions from "@/views/pages/admin/system/UserPermissions";
 export default {
-    name: 'UsersDosen',  
-    created () {
+    name: "UsersDosen",  
+    created() {
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.ACCESS_TOKEN
+                href: "/dashboard/" + this.ACCESS_TOKEN
             },
             {
-                text: 'USER SISTEM',
+                text: "USER SISTEM",
                 disabled: false,
-                href: '/system-users'
+                href: "/system-users"
             },
             {
-                text: 'USERS DOSEN',
+                text: "USERS DOSEN",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];
         this.initialize()
@@ -337,15 +337,15 @@ export default {
         btnLoading: false,      
         //tables
         headers: [                        
-            { text:  "", value: 'foto' },
-            { text: 'USERNAME', value: 'username',sortable: true, width:150 },
-            { text: 'NAMA DOSEN', value: 'name',sortable: true, width:250 },
-            { text: 'NIDN', value: 'nidn',sortable: true },     
-            { text: 'NIPY', value: 'nipy',sortable: true },     
-            { text: 'NOMOR HP', value: 'nomor_hp',sortable: true },     
-            { text: 'DW', value: 'is_dw',sortable: true },     
-            { text: 'ROLE ASAL', value: 'default_role',sortable: true },     
-            { text: 'AKSI', value: 'actions', sortable: false,width:120 },
+            { text: "", value: "foto" },
+            { text: "USERNAME", value: "username",sortable: true, width:150 },
+            { text: "NAMA DOSEN", value: "name",sortable: true, width:250 },
+            { text: "NIDN", value: "nidn",sortable: true },     
+            { text: "NIPY", value: "nipy",sortable: true },     
+            { text: "NOMOR HP", value: "nomor_hp",sortable: true },     
+            { text: "DW", value: "is_dw",sortable: true },     
+            { text: "ROLE ASAL", value: "default_role",sortable: true },     
+            { text: "AKSI", value: "actions", sortable: false,width:120 },
         ],
         expanded: [],
         search: "",
@@ -358,64 +358,62 @@ export default {
         dialogUserPermission: false,     
         editedIndex: -1,        
         editedItem: {
-            id:0,
-            username:  "",           
-            password:  "",           
-            onlyname:  "",      
-            name:  "",      
+            id: 0,
+            username: "",           
+            password: "",           
+            onlyname: "",      
+            name: "",      
             nidn: "",   
             nipy: "",         
-            email:  "",           
+            email: "",           
             nomor_hp: "",                 
             is_dw: false,      
-            created_at:  "",           
-            updated_at:  "",   
+            created_at: "",           
+            updated_at: "",   
         },
         defaultItem: {
-            id:0,
-            username:  "",           
-            password:  "",           
-            onlyname:  "",    
-            name:  "",    
+            id: 0,
+            username: "",           
+            password: "",           
+            onlyname: "",    
+            name: "",    
             nidn: "",
             nipy: "",       
-            email:  "",           
-            nomor_hp:  "",          
+            email: "",           
+            nomor_hp: "",          
             is_dw: false,    
-            created_at:  "",           
-            updated_at:  "",        
+            created_at: "",           
+            updated_at: "",        
         },
         //form rules        
         rule_user_name: [
             value => !!value || "Mohon untuk di isi nama Dosen !!!",  
-            value => /^[A-Za-z\s]*$/.test(value) || 'Nama Dosen hanya boleh string dan spasi',                
+            value => /^[A-Za-z\s]*$/.test(value) || "Nama Dosen hanya boleh string dan spasi",                
         ],         
         rule_nidn: [                         
-            value => /^[0-9]+$/.test(value) || 'NIDN hanya boleh angka',                
+            value => /^[0-9]+$/.test(value) || "NIDN hanya boleh angka",                
         ],         
         rule_nipy: [            
-            value => /^[0-9]+$/.test(value) || 'Nomor Induk Pegawai Yayasan (NIPY) hanya boleh angka',                
+            value => /^[0-9]+$/.test(value) || "Nomor Induk Pegawai Yayasan (NIPY) hanya boleh angka",                
         ], 
         rule_user_email: [
             value => !!value || "Mohon untuk di isi email User !!!",  
-            value => /.+@.+\..+/.test(value) || 'Format E-mail harus benar',       
+            value => /.+@.+\..+/.test(value) || "Format E-mail harus benar",       
         ], 
         rule_user_nomorhp: [
             value => !!value || "Nomor HP mohon untuk diisi !!!",
-            value => /^\+[1-9]{1}[0-9]{1,14}$/.test(value) || 'Nomor HP hanya boleh angka dan gunakan kode negara didepan seperti +6281214553388',
+            value => /^\+[1-9]{1}[0-9]{1,14}$/.test(value) || "Nomor HP hanya boleh angka dan gunakan kode negara didepan seperti +6281214553388",
         ], 
         rule_user_username: [
             value => !!value || "Mohon untuk di isi username User !!!",  
-            value => /^[A-Za-z_]*$/.test(value) || 'Username hanya boleh string dan underscore',                    
+            value => /^[A-Za-z_]*$/.test(value) || "Username hanya boleh string dan underscore",                    
         ], 
         rule_user_password: [
             value => !!value || "Mohon untuk di isi password User !!!",
             value => {
-                if (value && typeof value !== 'undefined' && value.length > 0){
-                    return value.length >= 8 || 'Minimial Password 8 karaketer';
-                }
-                else
-                {
+                if (value && typeof value !== 'undefined' && value.length > 0) {
+                    return value.length >= 8 || "Minimial Password 8 karaketer";
+                } else {
                     return true;
                 }
             }
@@ -423,26 +421,24 @@ export default {
         rule_user_passwordEdit: [
             value => {
                 if (value && typeof value !== 'undefined' && value.length > 0){
-                    return value.length >= 8 || 'Minimial Password 8 karaketer';
-                }
-                else
-                {
+                    return value.length >= 8 || "Minimial Password 8 karaketer";
+                } else {
                     return true;
                 }
-            }
+            },
         ],
     }),
     methods: {
         initialize: async function() 
         {
-            this.datatableLoading=true;
-            await this.$ajax.get('/system/usersdosen',{
+            this.datatableLoading = true;
+            await this.$ajax.get("/system/usersdosen",{
                 headers: {
                     Authorization: this.TOKEN
                 }
             }).then(({ data })=>{               
                 this.daftar_users = data.users;                
-                this.datatableLoading=false;
+                this.datatableLoading = false;
             });          
             
         },
@@ -450,20 +446,20 @@ export default {
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded = [];                
             }
             else
             {
-                this.expanded=[item];
+                this.expanded = [item];
             }               
         },        
-        showDialogTambahUserDosen:async function()
+        showDialogTambahUserDosen: async function()
         {
             this.dialog = true;            
         },
-        editItem:async function (item) {
+        editItem: async function(item) {
             this.editedIndex = this.daftar_users.indexOf(item)
-            item.password='';            
+            item.password = "";            
             this.editedItem = Object.assign({}, item);                              
             this.dialogEdit = true;
         },        
@@ -483,14 +479,12 @@ export default {
             this.dialogUserPermission = false;
         },
         save () {
-            if (this.$refs.frmdata.validate())
-            {
+            if (this.$refs.frmdata.validate()) {
                 this.btnLoading=true;
-                if (this.editedIndex > -1) 
-                {
-                    this.$ajax.post('/system/usersdosen/'+this.editedItem.id,
+                if (this.editedIndex > -1) {
+                    this.$ajax.post("/system/usersdosen/" + this.editedItem.id,
                         {
-                            '_method': 'PUT',
+                            _method: "PUT",
                             name: this.editedItem.onlyname,
                             nidn: this.editedItem.nidn,
                             nipy: this.editedItem.nipy,
@@ -513,7 +507,7 @@ export default {
                     });                    
                     
                 } else {
-                    this.$ajax.post('/system/usersdosen/store',
+                    this.$ajax.post("/system/usersdosen/store",
                         {
                             name: this.editedItem.onlyname,
                             nidn: this.editedItem.nidn,
@@ -538,19 +532,19 @@ export default {
                 }
             }
         },
-        setPermission: async function (item) {
+        setPermission: async function(item) {
             this.editedItem=item;            
             this.dialogUserPermission = true;
         },
         syncPermission ()
         {
-            this.$root.$confirm.open('Konfirmasi Sinkronisasi', 'Sinkronisasi hanya untuk user dalam role dosen, bila user memiliki role lain akan terhapus permission-nya ?', { color: 'warning',width:500 }).then(async (confirm) => {
+            this.$root.$confirm.open("Konfirmasi Sinkronisasi", "Sinkronisasi hanya untuk user dalam role dosen, bila user memiliki role lain akan terhapus permission-nya ?", { color: "warning",width:500 }).then(async (confirm) => {
                 if (confirm)
                 {
                     this.btnLoading=true;
-                    await this.$ajax.post('/system/users/syncallpermissions',
+                    await this.$ajax.post("/system/users/syncallpermissions",
                         {
-                            role_name: 'dosen',                    
+                            role_name: "dosen",                    
                         },
                         {
                             headers: {
@@ -566,13 +560,13 @@ export default {
             });
         },
         deleteItem (item) {           
-            this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus username '+item.username+' ?', { color: 'red' }).then((confirm) => {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus username '+item.username+' ?", { color: "red" }).then((confirm) => {
                 if (confirm)
                 {
                     this.btnLoading=true;
-                    this.$ajax.post('/system/usersdosen/'+item.id,
+                    this.$ajax.post("/system/usersdosen/" + item.id,
                         {
-                            '_method': 'DELETE',
+                            _method: "DELETE",
                         },
                         {
                             headers: {
@@ -592,11 +586,11 @@ export default {
     },
     computed: {
         formTitle () {
-            return this.editedIndex === -1 ? 'TAMBAH USER DOSEN' : 'EDIT USER DOSEN'
+            return this.editedIndex === -1 ? "TAMBAH USER DOSEN" : "EDIT USER DOSEN"
         },
-        ...mapGetters('auth',{            
-            ACCESS_TOKEN: 'AccessToken',          
-            TOKEN: 'Token',                                  
+        ...mapGetters("auth",{            
+            ACCESS_TOKEN: "AccessToken",          
+            TOKEN: "Token",                                  
         }),
     },
 

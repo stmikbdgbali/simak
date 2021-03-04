@@ -96,8 +96,8 @@
                             <td :colspan="headers.length" class="text-center">
                                 <v-col cols="12">
                                     <strong>ID:</strong>{{ item.id }}
-                                    <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
-                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
+                                    <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
+                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
                                 </v-col>                                
                             </td>
                         </template>
@@ -115,28 +115,28 @@
 </template>
 <script>
 import SPMBLayout from '@/views/layouts/SPMBLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 import Filter20 from '@/components/sidebar/FilterMode20';
 export default {
-    name: 'ReportFakultas', 
+    name: "ReportFakultas", 
     created()
     {
         this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
             },
             {
-                text: 'SPMB',
+                text: "SPMB",
                 disabled: false,
-                href: '/spmb'
+                href: "/spmb"
             },
             {
-                text: 'LAPORAN PMB FAKULTAS',
+                text: "LAPORAN PMB FAKULTAS",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];
         let fakultas_id=this.$store.getters['uiadmin/getFakultasID'];
@@ -147,38 +147,38 @@ export default {
     },  
     data: () => ({
         firstloading: true,
-        fakultas_id:null,
-        tahun_pendaftaran:null,
-        nama_fakultas:null,
+        fakultas_id: null,
+        tahun_pendaftaran: null,
+        nama_fakultas: null,
 
         dialogprofilmhsbaru: false,
         breadcrumbs: [],        
-        dashboard:null,
+        dashboard: null,
 
         btnLoading: false,
         datatableLoading: false,
         expanded: [],
         datatable: [],
         headers: [                        
-            { text:  "", value: 'foto', width:70 },               
-            { text: 'NAMA MAHASISWA', value: 'name',width:350,sortable: true },
-            { text: 'NOMOR HP', value: 'nomor_hp',width:100},
-            { text: 'KELAS', value: 'nkelas',width:100,sortable: true },            
+            { text: "", value: "foto", width:70 },               
+            { text: "NAMA MAHASISWA", value: "name",width:350,sortable: true },
+            { text: "NOMOR HP", value: "nomor_hp",width:100},
+            { text: "KELAS", value: "nkelas",width:100,sortable: true },            
         ],
         search: "",  
         
         datamhsbaru: {}
     }),
-    methods : {
+    methods: {
         changeTahunPendaftaran (tahun)
         {
-            this.tahun_pendaftaran=tahun;
+            this.tahun_pendaftaran = tahun;
         },
         changeFakultas (id)
         {
             this.fakultas_id=id;
         },
-		initialize:async function()
+		initialize: async function()
 		{	
             switch(this.dashboard)
             {
@@ -186,8 +186,8 @@ export default {
 
                 break;
                 default :
-                    this.datatableLoading=true;            
-                    await this.$ajax.post('/spmb/reportspmbfakultas',
+                    this.datatableLoading = true;            
+                    await this.$ajax.post("/spmb/reportspmbfakultas",
                     {
                         TA: this.tahun_pendaftaran,
                         fakultas_id: this.fakultas_id,
@@ -198,35 +198,35 @@ export default {
                         }
                     }).then(({ data })=>{               
                         this.datatable = data.pmb;                
-                        this.datatableLoading=false;
+                        this.datatableLoading = false;
                     });         
             }
-            this.firstloading=false;
+            this.firstloading = false;
             this.$refs.filter20.setFirstTimeLoading(this.firstloading); 
         },
         dataTableRowClicked(item)
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded = [];                
             }
             else
             {
-                this.expanded=[item];
+                this.expanded = [item];
             }               
         },
         badgeColor(item)
         {
-            return item.active == 1 ? 'success': 'error'
+            return item.active == 1 ? 'success': "error"
         },
         badgeIcon(item)
         {
-            return item.active == 1 ? 'mdi-check-bold': 'mdi-close-thick'
+            return item.active == 1 ? "mdi-check-bold": "mdi-close-thick"
         },
-        printtoexcel:async function()
+        printtoexcel: async function()
         {
             this.btnLoading=true;
-            await this.$ajax.post('/spmb/reportspmbfakultas/printtoexcel',
+            await this.$ajax.post("/spmb/reportspmbfakultas/printtoexcel",
                 {
                     TA: this.tahun_pendaftaran,                                                                
                     fakultas_id: this.fakultas_id,    
@@ -236,14 +236,14 @@ export default {
                     headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     },
-                    responseType: 'arraybuffer'
+                    responseType: "arraybuffer"
                 }
             ).then(({ data })=>{              
                 const url = window.URL.createObjectURL(new Blob([data]));
-                const link = document.createElement('a');
+                const link = document.createElement("a");
                 link.href = url;
-                link.setAttribute('download', 'laporan_fakultas_'+Date.now()+'.xlsx');
-                link.setAttribute('id', 'download_laporan');                
+                link.setAttribute("download", 'laporan_fakultas_'+Date.now() + ".xlsx");
+                link.setAttribute("id", "download_laporan");                
                 document.body.appendChild(link);
                 link.click();                   
                 document.body.removeChild(link);  

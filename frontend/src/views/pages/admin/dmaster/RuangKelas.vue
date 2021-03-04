@@ -166,8 +166,8 @@
                             <td :colspan="headers.length" class="text-center">
                                 <v-col cols="12">
                                     <strong>ID:</strong>{{ item.id }}
-                                    <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
-                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
+                                    <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
+                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
                                 </v-col>
                             </td>
                         </template>
@@ -183,25 +183,25 @@
 <script>
 import {mapGetters} from "vuex";
 import DataMasterLayout from '@/views/layouts/DataMasterLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 export default {
-    name: 'TahunAkademik',
-    created () {
+    name: "TahunAkademik",
+    created() {
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.ACCESS_TOKEN
+                href: "/dashboard/" + this.ACCESS_TOKEN
             },
             {
-                text: 'DATA MASTER',
+                text: "DATA MASTER",
                 disabled: false,
-                href: '#'
+                href: "#"
             },
             {
-                text: 'RUANG KELAS',
+                text: "RUANG KELAS",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];
         this.initialize()
@@ -212,9 +212,9 @@ export default {
         expanded: [],
         datatable: [],
         headers: [
-            { text: 'NAMA RUANG', value: 'namaruang' },
-            { text: 'KAPASITAS', value: 'kapasitas' },
-            { text: 'AKSI', value: 'actions', sortable: false,width:100 },
+            { text: "NAMA RUANG", value: "namaruang" },
+            { text: "KAPASITAS", value: "kapasitas" },
+            { text: "AKSI", value: "actions", sortable: false,width:100 },
         ],
         search: "",
 
@@ -242,53 +242,53 @@ export default {
         ],
         rule_kapasitas: [
             value => !!value || "Kapasitas Ruangan mohon untuk diisi !!!",
-            value => /^[0-9]+$/.test(value) || 'Kapasitas Ruangan Kelas hanya boleh angka',            
+            value => /^[0-9]+$/.test(value) || "Kapasitas Ruangan Kelas hanya boleh angka",            
         ],        
     }),
     methods: {
         initialize: async function()
         {
-            this.datatableLoading=true;
-            await this.$ajax.get('/datamaster/ruangankelas',{
+            this.datatableLoading = true;
+            await this.$ajax.get("/datamaster/ruangankelas",{
                 headers: {
                     Authorization: this.TOKEN
                 }
             }).then(({ data })=>{
                 this.datatable = data.ruangan;
-                this.datatableLoading=false;
+                this.datatableLoading = false;
             }).catch(()=>{
-                this.datatableLoading=false;
+                this.datatableLoading = false;
             });
         },
         dataTableRowClicked(item)
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];
+                this.expanded = [];
             }
             else
             {
-                this.expanded=[item];
+                this.expanded = [item];
             }
         },
-        viewItem (item) {
-            this.formdata=item;
-            this.dialogdetailitem=true;
+        viewItem(item) {
+            this.formdata = item;
+            this.dialogdetailitem = true;
         },
-        editItem (item) {
+        editItem(item) {
             this.editedIndex = this.datatable.indexOf(item);
             this.formdata = Object.assign({}, item);            
             this.dialogfrm = true
         },
-        save:async function() {
+        save: async function() {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading=true;
                 if (this.editedIndex > -1)
                 {
-                    await this.$ajax.post('/datamaster/ruangankelas/'+this.formdata.id,
+                    await this.$ajax.post("/datamaster/ruangankelas/" + this.formdata.id,
                         {
-                            '_method': 'PUT',
+                            _method: "PUT",
                             namaruang: this.formdata.namaruang,
                             kapasitas: this.formdata.kapasitas,
                         },
@@ -306,7 +306,7 @@ export default {
                     });
 
                 } else {
-                    await this.$ajax.post('/datamaster/ruangankelas/store',
+                    await this.$ajax.post("/datamaster/ruangankelas/store",
                         {
                             namaruang: this.formdata.namaruang,
                             kapasitas: this.formdata.kapasitas,
@@ -327,13 +327,13 @@ export default {
             }
         },
         deleteItem (item) {
-            this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus data dengan ID '+item.id+' ?', { color: 'red' }).then((confirm) => {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data dengan ID '+item.id+' ?", { color: "red" }).then((confirm) => {
                 if (confirm)
                 {
                     this.btnLoading=true;
-                    this.$ajax.post('/datamaster/ruangankelas/'+item.id,
+                    this.$ajax.post("/datamaster/ruangankelas/" + item.id,
                         {
-                            '_method': 'DELETE',
+                            _method: "DELETE",
                         },
                         {
                             headers: {
@@ -369,12 +369,12 @@ export default {
         },
     },
     computed: {
-        ...mapGetters('auth',{
-            ACCESS_TOKEN: 'AccessToken',
-            TOKEN: 'Token',
+        ...mapGetters("auth",{
+            ACCESS_TOKEN: "AccessToken",
+            TOKEN: "Token",
         }),
         formTitle () {
-            return this.editedIndex === -1 ? 'TAMBAH DATA' : 'UBAH DATA'
+            return this.editedIndex === -1 ? "TAMBAH DATA" : "UBAH DATA"
         },
     },
     components: {

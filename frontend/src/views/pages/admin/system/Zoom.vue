@@ -15,17 +15,12 @@
 				</v-breadcrumbs>
 			</template>
 			<template v-slot:desc>
-				<v-alert
-					color="cyan"
-					border="left"
-					colored-border
-					type="info"
-					>
+				<v-alert color="cyan" border="left" colored-border type="info">
 					Setting akun Zoom untuk pertemuan tatap muka
 				</v-alert>
 			</template>
 		</ModuleHeader>
-		<v-container> 
+		<v-container>
 			<v-row class="mb-4" no-gutters>
 				<v-col cols="12">
 					<v-card>
@@ -55,18 +50,24 @@
 						@click:row="dataTableRowClicked"
 						class="elevation-1"
 						:loading="datatableLoading"
-						loading-text="Loading... Please wait">
-
+						loading-text="Loading... Please wait"
+					>
 						<template v-slot:top>
 							<v-toolbar flat color="white">
-								<v-toolbar-title>DATA AKUN ZOOM</v-toolbar-title>
+								<v-toolbar-title>
+									DATA AKUN ZOOM
+								</v-toolbar-title>
 								<v-divider
 									class="mx-4"
 									inset
 									vertical
 								></v-divider>
 								<v-spacer></v-spacer>
-								<v-dialog v-model="dialogfrm" max-width="600px" persistent>
+								<v-dialog
+									v-model="dialogfrm"
+									max-width="600px"
+									persistent
+								>
 									<template v-slot:activator="{ on }">
 										<v-btn color="primary" icon outlined small class="ma-2"  v-on="on">
 											<v-icon>mdi-plus</v-icon>
@@ -297,253 +298,252 @@
 	</SystemConfigLayout>
 </template>
 <script>
-import SystemConfigLayout from "@/views/layouts/SystemConfigLayout";
-import ModuleHeader from "@/components/ModuleHeader";
-export default {
-	name:"Zoom",
-	created () {
-		this.breadcrumbs = [
-			{
-				text:"HOME",
-				disabled: false,
-				href:"/dashboard/"+this.$store.getters["auth/AccessToken"]
-			},
-			{
-				text:"KONFIGURASI SISTEM",
-				disabled: false,
-				href:"/system-setting"
-			},
-			{
-				text:"PLUGIN - ZOOM",
-				disabled: true,
-				href:"#"
-			}
-		];
-		this.initialize()
-	},  
-	data: () => ({ 
-		btnLoading: false,
-		datatableLoading: false,
-		expanded: [],
-		datatable: [],
-		headers: [ 
-			{ text: "ZOOM ID", value: "zoom_id" },
-			{ text: "EMAIL ZOOM", value: "email" },
-			{ text: "API KEY", value: "api_key" },
-			{ text: "STATUS", value: "status" },
-			{ text: "KETERANGAN", value: "desc" },
-			{ text: "AKSI", value: "actions", sortable: false,width:100 },
-		],
-		search:"",
-
-		//dialog
-		dialogfrm: false,
-		dialogdetailitem: false,
-
-		//form data
-		form_valid: true, 
-		formdata: {
-			id:0,
-			zoom_id:"",
-			email:"",
-			api_key:"",
-			api_secret:"",
-			im_token:"",
-			jwt_token:"",
-			status:"",
-			desc:"",
-			created_at: "",
-			updated_at: "",
-
-		},
-		formdefault: {
-			id:0,
-			zoom_id:"",
-			email:"",
-			api_key:"",
-			api_secret:"",
-			im_token:"",
-			jwt_token:"",
-			status:"",
-			desc:"",
-			created_at: "",
-			updated_at: "", 
-		},
-		editedIndex: -1,
-
-		//form rules  
-		rule_email: [
-			value => !!value || "Mohon untuk mengisi Email !!!",
-			v => /.+@.+\..+/.test(v) || "Format E-mail mohon di isi dengan benar",
-		], 
-		rule_api_key: [
-			value => !!value || "Mohon untuk mengisi API Key !!!",  
-		], 
-		rule_api_secret: [
-			value => !!value || "Mohon untuk mengisi API Secret !!!",  
-		],
-		rule_im_token: [
-			value => !!value || "Mohon mengisi IM Token !!!",  
-		],
-	}),
-	methods: {
-		initialize: async function() 
-		{
-			this.datatableLoading=true;
-			await this.$ajax.get(process.env.VUE_APP_HOST+"/h2h/zoom",{
-				headers: {
-					Authorization: this.$store.getters["auth/Token"]
-				}
-			}).then(({ data })=>{
-				this.datatable = data.zoom;
-				this.datatableLoading=false;
-			}).catch(() => {
-				this.datatableLoading=false;
-			});  
-		},
-		dataTableRowClicked(item)
-		{
-			if ( item === this.expanded[0])
-			{
-				this.expanded=[];
-			}
-			else
-			{
-				this.expanded=[item];
-			}
-		},
-		viewItem (item) {
-			this.formdata=item;  
-			this.dialogdetailitem=true;  
-			// this.$ajax.get("/path/"+item.id,{
-			// headers: {
-			// Authorization: this.$store.getters["auth/Token"]
-			// }
-			// }).then(({ data })=>{
-										
-			// });  
-		},
-		editItem (item) {
-			this.editedIndex = this.datatable.indexOf(item);
-			this.formdata = Object.assign({}, item);
-			this.dialogfrm = true;
-		},
-		save:async function() {
-			if (this.$refs.frmdata.validate())
-			{
-				this.btnLoading=true;
-				if (this.editedIndex > -1) 
+	import SystemConfigLayout from "@/views/layouts/SystemConfigLayout";
+	import ModuleHeader from "@/components/ModuleHeader";
+	export default {
+		name: "Zoom",
+		created() {
+			this.breadcrumbs = [
 				{
-					await this.$ajax.post(process.env.VUE_APP_HOST+"/h2h/zoom/"+this.formdata.id,
-						{
-							_method: "PUT",
-							email: this.formdata.email,
-							api_key: this.formdata.api_key, 
-							api_secret: this.formdata.api_secret,
-							im_token: this.formdata.im_token, 
-						},
-						{
-							headers: {
-								Authorization: this.$store.getters["auth/Token"]
-							}
-						}
-					).then(({ data })=>{
-						Object.assign(this.datatable[this.editedIndex], data.zoom);
-						this.closedialogfrm();
-						this.btnLoading = false;
-					}).catch(() => {
-						this.btnLoading = false;
-					}); 
-					 
+					text: "HOME",
+					disabled: false,
+					href: "/dashboard/"+this.$store.getters["auth/AccessToken"]
+				},
+				{
+					text: "KONFIGURASI SISTEM",
+					disabled: false,
+					href: "/system-setting"
+				},
+				{
+					text: "PLUGIN - ZOOM",
+					disabled: true,
+					href: "#"
+				}
+			];
+			this.initialize()
+		},  
+		data: () => ({ 
+			btnLoading: false,
+			datatableLoading: false,
+			expanded: [],
+			datatable: [],
+			headers: [ 
+				{ text: "ZOOM ID", value: "zoom_id" },
+				{ text: "EMAIL ZOOM", value: "email" },
+				{ text: "API KEY", value: "api_key" },
+				{ text: "STATUS", value: "status" },
+				{ text: "KETERANGAN", value: "desc" },
+				{ text: "AKSI", value: "actions", sortable: false,width:100 },
+			],
+			search: "",
+
+			//dialog
+			dialogfrm: false,
+			dialogdetailitem: false,
+
+			//form data
+			form_valid: true, 
+			formdata: {
+				id: 0,
+				zoom_id: "",
+				email: "",
+				api_key: "",
+				api_secret: "",
+				im_token: "",
+				jwt_token: "",
+				status: "",
+				desc: "",
+				created_at: "",
+				updated_at: "",
+
+			},
+			formdefault: {
+				id: 0,
+				zoom_id: "",
+				email: "",
+				api_key: "",
+				api_secret: "",
+				im_token: "",
+				jwt_token: "",
+				status: "",
+				desc: "",
+				created_at: "",
+				updated_at: "", 
+			},
+			editedIndex: -1,
+
+			//form rules  
+			rule_email: [
+				value => !!value || "Mohon untuk mengisi Email !!!",
+				v => /.+@.+\..+/.test(v) || "Format E-mail mohon di isi dengan benar",
+			], 
+			rule_api_key: [
+				value => !!value || "Mohon untuk mengisi API Key !!!",  
+			], 
+			rule_api_secret: [
+				value => !!value || "Mohon untuk mengisi API Secret !!!",  
+			],
+			rule_im_token: [
+				value => !!value || "Mohon mengisi IM Token !!!",  
+			],
+		}),
+		methods: {
+			initialize: async function() {
+				this.datatableLoading = true;
+				await this.$ajax.get(process.env.VUE_APP_HOST+"/h2h/zoom",{
+					headers: {
+						Authorization: this.$store.getters[
+							"auth/Token"
+						],
+					}
+				}).then(({ data })=>{
+					this.datatable = data.zoom;
+					this.datatableLoading = false;
+				}).catch(() => {
+					this.datatableLoading = false;
+				});  
+			},
+			dataTableRowClicked(item) {
+				if ( item === this.expanded[0]) {
+					this.expanded = [];
 				} else {
-					await this.$ajax.post(process.env.VUE_APP_HOST+"/h2h/zoom/store",
-						{
-							email: this.formdata.email,
-							api_key: this.formdata.api_key, 
-							api_secret: this.formdata.api_secret,
-							im_token: this.formdata.im_token,
-						},
-						{
-							headers: {
-								Authorization: this.$store.getters["auth/Token"]
-							}
-						}
-					).then(({ data })=>{
-						this.datatable.push(data.zoom);
-						this.closedialogfrm();
-						this.btnLoading = false;
-					}).catch(() => {
-						this.btnLoading = false;
-					});
+					this.expanded = [item];
 				}
-			}
-		},
-		sink(item) {
-			this.$root.$confirm.open("Sinkronisasi", "Sinkronasi Akun Zoom dengan ID "+item.id+" ?", { color: "yellow" }).then((confirm) => {
-					if (confirm) {
-						this.btnLoading = true;
-						this.$ajax.get(process.env.VUE_APP_HOST + "/h2h/zoom/sync/" + item.id, {
-							headers: {
-								Authorization: this.$store.getters["auth/Token"]
-							}
-						}
-					).then(() => {
-						this.$router.go();
-						this.btnLoading = false;
-					}).catch(() => {
-						this.btnLoading = false;
-					});
-				}
-			});
-		},
-		deleteItem(item) {
-			this.$root.$confirm
-				.open("Delete", "Apakah Anda ingin menghapus Akun Zoom dengan ID " + item.id + " ?", { color: "red" }).then((confirm) => {
-				if (confirm) {
+			},
+			viewItem(item) {
+				this.formdata = item;
+				this.dialogdetailitem = true;
+				// this.$ajax.get("/path/"+item.id,{
+				// headers: {
+				// Authorization: this.$store.getters["auth/Token"]
+				// }
+				// }).then(({ data })=>{
+											
+				// });  
+			},
+			editItem(item) {
+				this.editedIndex = this.datatable.indexOf(item);
+				this.formdata = Object.assign({}, item);
+				this.dialogfrm = true;
+			},
+			save: async function() {
+				if (this.$refs.frmdata.validate())
+				{
 					this.btnLoading=true;
-					this.$ajax.post(process.env.VUE_APP_HOST + "/h2h/zoom/" + item.id,
-						{
-							_method: "DELETE",
-						},
-						{
-							headers: {
-								Authorization: this.$store.getters["auth/Token"],
+					if (this.editedIndex > -1) 
+					{
+						await this.$ajax.post(process.env.VUE_APP_HOST+"/h2h/zoom/"+this.formdata.id,
+							{
+								_method: "PUT",
+								email: this.formdata.email,
+								api_key: this.formdata.api_key, 
+								api_secret: this.formdata.api_secret,
+								im_token: this.formdata.im_token, 
 							},
-						}
-					).then(() => {
-						const index = this.datatable.indexOf(item);
-						this.datatable.splice(index, 1);
-						this.btnLoading = false;
-					}).catch(() => {
-						this.btnLoading = false;
-					});
+							{
+								headers: {
+									Authorization: this.$store.getters["auth/Token"]
+								}
+							}
+						).then(({ data })=>{
+							Object.assign(this.datatable[this.editedIndex], data.zoom);
+							this.closedialogfrm();
+							this.btnLoading = false;
+						}).catch(() => {
+							this.btnLoading = false;
+						}); 
+						
+					} else {
+						await this.$ajax.post(process.env.VUE_APP_HOST+"/h2h/zoom/store",
+							{
+								email: this.formdata.email,
+								api_key: this.formdata.api_key, 
+								api_secret: this.formdata.api_secret,
+								im_token: this.formdata.im_token,
+							},
+							{
+								headers: {
+									Authorization: this.$store.getters["auth/Token"]
+								}
+							}
+						).then(({ data })=>{
+							this.datatable.push(data.zoom);
+							this.closedialogfrm();
+							this.btnLoading = false;
+						}).catch(() => {
+							this.btnLoading = false;
+						});
+					}
 				}
-			});
+			},
+			sink(item) {
+				this.$root.$confirm.open("Sinkronisasi", "Sinkronasi Akun Zoom dengan ID "+item.id+" ?", { color: "yellow" }).then((confirm) => {
+						if (confirm) {
+							this.btnLoading = true;
+							this.$ajax.get(process.env.VUE_APP_HOST + "/h2h/zoom/sync/" + item.id, {
+								headers: {
+									Authorization: this.$store.getters["auth/Token"]
+								}
+							}
+						).then(() => {
+							this.$router.go();
+							this.btnLoading = false;
+						}).catch(() => {
+							this.btnLoading = false;
+						});
+					}
+				});
+			},
+			deleteItem(item) {
+				this.$root.$confirm
+					.open("Delete", "Apakah Anda ingin menghapus Akun Zoom dengan ID " + item.id + " ?", { color: "red" }).then((confirm) => {
+					if (confirm) {
+						this.btnLoading=true;
+						this.$ajax.post(process.env.VUE_APP_HOST + "/h2h/zoom/" + item.id,
+							{
+								_method: "DELETE",
+							},
+							{
+								headers: {
+									Authorization: this.$store.getters[
+										"auth/Token"
+									],
+								},
+							}
+						).then(() => {
+							const index = this.datatable.indexOf(item);
+							this.datatable.splice(index, 1);
+							this.btnLoading = false;
+						}).catch(() => {
+							this.btnLoading = false;
+						});
+					}
+				});
+			},
+			closedialogdetailitem() {
+				this.dialogdetailitem = false;
+				setTimeout(() => {
+					this.formdata = Object.assign({}, this.formdefault);
+					this.editedIndex = -1;
+				}, 300);
+			},
+			closedialogfrm() {
+				this.dialogfrm = false;
+				setTimeout(() => {
+					this.formdata = Object.assign({}, this.formdefault);
+					this.editedIndex = -1;
+					this.$refs.frmdata.reset();
+				}, 300);
+			},
 		},
-		closedialogdetailitem() {
-			this.dialogdetailitem = false;
-			setTimeout(() => {
-				this.formdata = Object.assign({}, this.formdefault);
-				this.editedIndex = -1;
-			}, 300);
+		computed: {
+			formTitle() {
+				return this.editedIndex === -1 ? "TAMBAH DATA" : "UBAH DATA";
+			},
 		},
-		closedialogfrm() {
-			this.dialogfrm = false;
-			setTimeout(() => {
-				this.formdata = Object.assign({}, this.formdefault);
-				this.editedIndex = -1;
-				this.$refs.frmdata.reset();
-			}, 300);
+		components: {
+			SystemConfigLayout,
+			ModuleHeader,
 		},
-	},
-	computed: {
-		formTitle() {
-			return this.editedIndex === -1 ? "TAMBAH DATA" : "UBAH DATA";
-		},
-	},
-	components: {
-		SystemConfigLayout,
-		ModuleHeader,
-	},
-};
+	};
 </script>

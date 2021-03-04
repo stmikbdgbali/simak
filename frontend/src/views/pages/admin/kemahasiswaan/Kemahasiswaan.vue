@@ -112,22 +112,22 @@
 </template>
 <script>
 import KemahasiswaanLayout from '@/views/layouts/KemahasiswaanLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 import Filter1 from '@/components/sidebar/FilterMode1';
 export default {
-    name: 'Kemahasiswaan',
+    name: "Kemahasiswaan",
     created ()
 	{
 		this.breadcrumbs = [
 			{
-				text: 'HOME',
+				text: "HOME",
 				disabled: false,
-				href: '/dashboard/'+this.$store.getters['auth/AccessToken']
+				href: "/dashboard/" + this.$store.getters['auth/AccessToken']
 			},
 			{
-				text: 'KEMAHASISWAAN',
+				text: "KEMAHASISWAAN",
 				disabled: true,
-				href: '#'
+				href: "#"
 			}
         ];				
         this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];                 
@@ -144,18 +144,18 @@ export default {
         //profil mahasiswa        
         entries: [],
         isLoading: false,
-        data_mhs:null,
-        search:null
+        data_mhs: null,
+        search: null
         
     }),
-    methods : {
+    methods: {
         changeTahunAkademik (tahun)
         {
             this.tahun_akademik=tahun;
         },
-		initialize:async function()
+		initialize: async function()
 		{	            
-            this.firstloading=false;            
+            this.firstloading = false;            
             this.$refs.filter1.setFirstTimeLoading(this.firstloading); 
         },
         field_alias(atr)
@@ -180,7 +180,7 @@ export default {
         },
         goProfilMhs()
         {
-            this.$router.push('/kemahasiswaan/profil/'+this.data_mhs.user_id);
+            this.$router.push("/kemahasiswaan/profil/" + this.data_mhs.user_id);
         },
         clearDataMhs()
         {
@@ -194,7 +194,7 @@ export default {
             return Object.keys(this.data_mhs).map(key => {
                 return {
                     key,
-                    value: this.data_mhs[key] || 'n/a',
+                    value: this.data_mhs[key] || "n/a",
                 }
             })
         },        
@@ -215,7 +215,7 @@ export default {
             {
                 setTimeout(async () => {
                     this.isLoading = true 
-                    await this.$ajax.post('/kemahasiswaan/profil/search',
+                    await this.$ajax.post("/kemahasiswaan/profil/search",
                     {
                         search:val,                    
                     },

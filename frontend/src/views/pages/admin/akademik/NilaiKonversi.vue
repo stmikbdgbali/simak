@@ -161,8 +161,8 @@
                             <td :colspan="headers.length" class="text-center">
                                 <v-col cols="12">                          
                                     <strong>ID:</strong>{{ item.id}}     
-                                    <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
-                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}                                         
+                                    <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
+                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}                                         
                                 </v-col>                                
                             </td>
                         </template>
@@ -196,31 +196,31 @@
 </template>
 <script>
 import AkademikLayout from '@/views/layouts/AkademikLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 import Filter7 from '@/components/sidebar/FilterMode7';
 export default {
-    name: 'NilaiKonversi',
-    created () {
+    name: "NilaiKonversi",
+    created() {
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
             },
             {
-                text: 'AKADEMIK',
+                text: "AKADEMIK",
                 disabled: false,
-                href: '/akademik'
+                href: "/akademik",
             },
             {
-                text: 'NILAI',
+                text: "NILAI",
                 disabled: false,
-                href: '#'
+                href: "#"
             },
             {
-                text: 'KONVERSI MAHASISWA PINDAHAN/AMPULAN',
+                text: "KONVERSI MAHASISWA PINDAHAN/AMPULAN",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];
         let prodi_id=this.$store.getters['uiadmin/getProdiID'];
@@ -231,9 +231,9 @@ export default {
     },  
     data: () => ({ 
         firstloading: true,
-        prodi_id:null,
-        nama_prodi:null,
-        tahun_pendaftaran:null,
+        prodi_id: null,
+        nama_prodi: null,
+        tahun_pendaftaran: null,
 
         btnLoading: false,
         btnLoadingTable: false,
@@ -241,33 +241,33 @@ export default {
         expanded: [],
         datatable: [],      
         headers: [            
-            { text: 'NIM', value: 'nim_asal', sortable: true,width:100  },               
-            { text: 'NAMA', value: 'nama_mhs', sortable: true,width:250  },               
-            { text: 'ALAMAT', value: 'alamat',sortable: true,width:200 },                           
-            { text: 'NO. TELP', value: 'no_telp',sortable: true,width:120, },                           
-            { text: 'JUMLAH MATKUL', value: 'jumlah_matkul',sortable: false,width:100, },                           
-            { text: 'JUMLAH SKS', value: 'jumlah_sks',sortable: false,width:100, },                           
-            { text: 'NIM SISTEM', value: 'nim',sortable: true,width:100, },                           
-            { text: 'AKSI', value: 'actions', sortable: false,width:150 },
+            { text: "NIM", value: "nim_asal", sortable: true,width:100  },               
+            { text: "NAMA", value: "nama_mhs", sortable: true,width:250  },               
+            { text: "ALAMAT", value: "alamat",sortable: true,width:200 },                           
+            { text: "NO. TELP", value: "no_telp",sortable: true,width:120, },                           
+            { text: "JUMLAH MATKUL", value: "jumlah_matkul",sortable: false,width:100, },                           
+            { text: "JUMLAH SKS", value: "jumlah_sks",sortable: false,width:100, },                           
+            { text: "NIM SISTEM", value: "nim",sortable: true,width:100, },                           
+            { text: "AKSI", value: "actions", sortable: false,width:150 },
         ],  
         search: "", 
 
         dialogprintpdf: false,
-        file_pdf:null
+        file_pdf: null
     }),
     methods: {
         changeTahunPendaftaran (tahun)
         {
-            this.tahun_pendaftaran=tahun;
+            this.tahun_pendaftaran = tahun;
         },
         changeProdi (id)
         {
-            this.prodi_id=id;
+            this.prodi_id = id;
         },
         initialize: async function() 
         {
-            this.datatableLoading=true;
-            await this.$ajax.post('/akademik/nilai/konversi',
+            this.datatableLoading = true;
+            await this.$ajax.post("/akademik/nilai/konversi",
             {
                 prodi_id: this.prodi_id,
                 ta: this.tahun_pendaftaran
@@ -278,40 +278,40 @@ export default {
                 }
             }).then(({ data })=>{               
                 this.datatable = data.mahasiswa;
-                this.datatableLoading=false;
+                this.datatableLoading = false;
             }).catch(()=>{
-                this.datatableLoading=false;
+                this.datatableLoading = false;
             });  
-            this.firstloading=false;
+            this.firstloading = false;
             this.$refs.filter7.setFirstTimeLoading(this.firstloading); 
         },
         dataTableRowClicked(item)
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded = [];                
             }
             else
             {
-                this.expanded=[item];
+                this.expanded = [item];
             }               
         },
         viewItem(item)
         {
-            this.$router.push('/akademik/nilai/konversi/'+item.id+'/detail');
+            this.$router.push("/akademik/nilai/konversi/'+item.id + "/detail");
         },
         editItem(item)
         {
-            this.$router.push('/akademik/nilai/konversi/'+item.id+'/edit');
+            this.$router.push("/akademik/nilai/konversi/'+item.id+'/edit");
         },
         deleteItem (item) {           
-            this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus data nilai konvesi dengan ID '+item.id+' ?', { color: 'red' }).then((confirm) => {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data nilai konvesi dengan ID '+item.id+' ?", { color: "red" }).then((confirm) => {
                 if (confirm)
                 {
                     this.btnLoading=true;
-                    this.$ajax.post('/akademik/nilai/konversi/'+item.id,
+                    this.$ajax.post("/akademik/nilai/konversi/" + item.id,
                         {
-                            '_method': 'DELETE',
+                            _method: "DELETE",
                         },
                         {
                             headers: {
@@ -331,7 +331,7 @@ export default {
         async printpdf1(item)
         {
             this.btnLoading=true;
-            await this.$ajax.get('/akademik/nilai/konversi/printpdf1/'+item.id,                
+            await this.$ajax.get("/akademik/nilai/konversi/printpdf1/" + item.id,                
                 {
                     headers: {
                         Authorization: this.$store.getters["auth/Token"]

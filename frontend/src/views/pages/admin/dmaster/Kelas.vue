@@ -181,25 +181,25 @@
 <script>
 import {mapGetters} from "vuex";
 import DataMasterLayout from '@/views/layouts/DataMasterLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 export default {
-    name: 'Kelas',
-    created () {
+    name: "Kelas",
+    created() {
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.ACCESS_TOKEN
+                href: "/dashboard/" + this.ACCESS_TOKEN
             },
             {
-                text: 'DATA MASTER',
+                text: "DATA MASTER",
                 disabled: false,
-                href: '#'
+                href: "#"
             },
             {
-                text: 'KELAS',
+                text: "KELAS",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];
         this.initialize()
@@ -210,9 +210,9 @@ export default {
         expanded: [],
         datatable: [],
         headers: [
-            { text: 'KODE KELAS', value: 'idkelas',width:150 },
-            { text: 'NAMA KELAS', value: 'nkelas' },
-            { text: 'AKSI', value: 'actions', sortable: false,width:100 },
+            { text: "KODE KELAS", value: "idkelas",width:150 },
+            { text: "NAMA KELAS", value: "nkelas" },
+            { text: "AKSI", value: "actions", sortable: false,width:100 },
         ],
         search: "",
 
@@ -236,8 +236,8 @@ export default {
         //form rules
         rule_kode_kelas: [
             value => !!value || "ID Kelas mohon untuk diisi !!!",
-            value => /^[A-Z]*$/.test(value) || 'Name hanya boleh string dan huruf besar',
-            value => (value && value.length == 1) || 'Kode kelas hanya boleh 1 karakter'
+            value => /^[A-Z]*$/.test(value) || "Name hanya boleh string dan huruf besar",
+            value => (value && value.length == 1) || "Kode kelas hanya boleh 1 karakter"
         ],
         rule_nama_kelas: [
             value => !!value || "Mohon untuk di isi nama kelas !!!",            
@@ -246,48 +246,48 @@ export default {
     methods: {
         initialize: async function()
         {
-            this.datatableLoading=true;
-            await this.$ajax.get('/datamaster/kelas',{
+            this.datatableLoading = true;
+            await this.$ajax.get("/datamaster/kelas",{
                 headers: {
                     Authorization: this.TOKEN
                 }
             }).then(({ data })=>{
                 this.datatable = data.kelas;
-                this.datatableLoading=false;
+                this.datatableLoading = false;
             }).catch(()=>{
-                this.datatableLoading=false;
+                this.datatableLoading = false;
             });
         },
         dataTableRowClicked(item)
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];
+                this.expanded = [];
             }
             else
             {
-                this.expanded=[item];
+                this.expanded = [item];
             }
         },
-        viewItem (item) {
-            this.formdata=item;
-            this.dialogdetailitem=true;
+        viewItem(item) {
+            this.formdata = item;
+            this.dialogdetailitem = true;
         },
-        editItem (item) {
+        editItem(item) {
             this.editedIndex = this.datatable.indexOf(item);
             this.formdata = Object.assign({}, item);
             this.old_idkelas=item.idkelas;
             this.dialogfrm = true
         },
-        save:async function() {
+        save: async function() {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading=true;
                 if (this.editedIndex > -1)
                 {
-                    await this.$ajax.post('/datamaster/kelas/'+this.old_idkelas,
+                    await this.$ajax.post("/datamaster/kelas/" + this.old_idkelas,
                         {
-                            '_method': 'PUT',
+                            _method: "PUT",
                             idkelas: this.formdata.idkelas,
                             nkelas: this.formdata.nkelas,
                         },
@@ -305,7 +305,7 @@ export default {
                     });
 
                 } else {
-                    await this.$ajax.post('/datamaster/kelas/store',
+                    await this.$ajax.post("/datamaster/kelas/store",
                         {
                             idkelas: this.formdata.idkelas,
                             nkelas: this.formdata.nkelas,
@@ -326,13 +326,13 @@ export default {
             }
         },
         deleteItem (item) {
-            this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus data dengan ID '+item.idkelas+' ?', { color: 'red' }).then((confirm) => {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data dengan ID '+item.idkelas+' ?", { color: "red" }).then((confirm) => {
                 if (confirm)
                 {
                     this.btnLoading=true;
-                    this.$ajax.post('/datamaster/kelas/'+item.idkelas,
+                    this.$ajax.post("/datamaster/kelas/" + item.idkelas,
                         {
-                            '_method': 'DELETE',
+                            _method: "DELETE",
                         },
                         {
                             headers: {
@@ -368,12 +368,12 @@ export default {
         },
     },
     computed: {
-        ...mapGetters('auth',{
-            ACCESS_TOKEN: 'AccessToken',
-            TOKEN: 'Token',
+        ...mapGetters("auth",{
+            ACCESS_TOKEN: "AccessToken",
+            TOKEN: "Token",
         }),
         formTitle () {
-            return this.editedIndex === -1 ? 'TAMBAH DATA' : 'UBAH DATA'
+            return this.editedIndex === -1 ? "TAMBAH DATA" : "UBAH DATA"
         },
     },
     components: {

@@ -85,31 +85,31 @@
 <script>
 import {mapGetters} from "vuex";
 import SystemConfigLayout from '@/views/layouts/SystemConfigLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 export default {
-    name: 'Variables',
+    name: "Variables",
     created()
     {
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.ACCESS_TOKEN
+                href: "/dashboard/" + this.ACCESS_TOKEN
             },
             {
-                text: 'KONFIGURASI SISTEM',
+                text: "KONFIGURASI SISTEM",
                 disabled: false,
-                href: '/system-setting'
+                href: "/system-setting"
             },  
             {
-                text: 'PERGURUAN TINGGI',
+                text: "PERGURUAN TINGGI",
                 disabled: false,
-                href: '#'
+                href: "#"
             },
             {
-                text: 'VARIABLES',
+                text: "VARIABLES",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];
         this.daftar_ta=this.$store.getters['uiadmin/getDaftarTA'];  
@@ -142,7 +142,7 @@ export default {
     methods: {
         initialize: async function() 
         {
-            await this.$ajax.get('/system/setting/variables',
+            await this.$ajax.get("/system/setting/variables",
             {
                 headers: {
                     Authorization: this.TOKEN
@@ -159,10 +159,10 @@ export default {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading=true;                
-                this.$ajax.post('/system/setting/variables',
+                this.$ajax.post("/system/setting/variables",
                     {
-                        '_method': 'PUT', 
-                        'pid': 'Variable default sistem',
+                        _method: "PUT", 
+                        'pid': "Variable default sistem",
                         setting:JSON.stringify({
                             201: this.formdata.default_ta,
                             202: this.formdata.default_semester,                            
@@ -183,9 +183,9 @@ export default {
         }
     },
     computed: { 
-        ...mapGetters('auth',{            
-            ACCESS_TOKEN: 'AccessToken',          
-            TOKEN: 'Token',                                  
+        ...mapGetters("auth",{            
+            ACCESS_TOKEN: "AccessToken",          
+            TOKEN: "Token",                                  
         }),
     },
     components: {

@@ -18,7 +18,7 @@
 </template>
 <script>
 export default {
-    name:'FilterMode13',
+    name: "FilterMode13",
     created()
     {
         this.daftar_ta=this.$store.getters['uiadmin/getDaftarTA'];  
@@ -28,13 +28,13 @@ export default {
         this.idkelas=this.$store.getters['uiadmin/getIDKelas'];                                            
     },
     data:()=>({
-        firstloading:true,
+        firstloading: true,
         
-        daftar_kelas:[],
-        idkelas:null,
+        daftar_kelas: [],
+        idkelas: null,
 
-        daftar_ta:[],
-        tahun_pendaftaran:null
+        daftar_ta: [],
+        tahun_pendaftaran: null
     }),
     methods:{
         setFirstTimeLoading (bool)
@@ -47,16 +47,16 @@ export default {
         {
             if (!this.firstloading)
             {
-                this.$store.dispatch('uiadmin/updateTahunPendaftaran',val);  
-                this.$emit('changeTahunPendaftaran',val);          
+                this.$store.dispatch("uiadmin/updateTahunPendaftaran",val);  
+                this.$emit("changeTahunPendaftaran",val);          
             }            
         },
         idkelas(val)
         {
             if (!this.firstloading)
             {
-                this.$store.dispatch('uiadmin/updateIDKelas',val);  
-                this.$emit('changeIDKelas',val);          
+                this.$store.dispatch("uiadmin/updateIDKelas",val);  
+                this.$emit("changeIDKelas",val);          
             }
         },
     }

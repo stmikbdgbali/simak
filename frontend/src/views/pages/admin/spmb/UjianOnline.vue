@@ -7,7 +7,7 @@
                 inset
                 vertical>
             </v-divider>
-            <strong>Mulai Ujian :</strong> {{$date(this.peserta.mulai_ujian).format('DD/MM/YYYY HH:mm')}}
+            <strong>Mulai Ujian :</strong> {{$date(this.peserta.mulai_ujian).format("DD/MM/YYYY HH:mm")}}
             <v-divider
                 class="mx-4"
                 inset
@@ -53,17 +53,17 @@
 <script>
 import JawabanSoal from '@/components/JawabanSoal';
 export default {
-    name: 'UjianOnline',
+    name: "UjianOnline",
     created () 
     {           
-        var page = this.$store.getters['uiadmin/Page']('ujianonline');
+        var page = this.$store.getters['uiadmin/Page']("ujianonline");
         this.jadwal_ujian=page.data_ujian;
         this.peserta=page.data_peserta;        
         this.initialize();
     },  
     data: () => ({
-        jadwal_ujian:null,
-        peserta:null,
+        jadwal_ujian: null,
+        peserta: null,
         isprosesujian: false,
 
         nama_soal: "",
@@ -72,7 +72,7 @@ export default {
     methods: {
         initialize: async function() 
         {
-            await this.$ajax.get('/spmb/ujianonline/soal/'+this.peserta.user_id,           
+            await this.$ajax.get("/spmb/ujianonline/soal/" + this.peserta.user_id,           
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
@@ -97,12 +97,12 @@ export default {
         {
             this.initialize();
         },
-        selesaiUjian:async function()
+        selesaiUjian: async function()
         {
             this.btnLoading=true;
-            await this.$ajax.post('/spmb/ujianonline/selesaiujian',    
+            await this.$ajax.post("/spmb/ujianonline/selesaiujian",    
             {
-                _method: 'put',
+                _method: "put",
                 user_id: this.peserta.user_id
             },    
             {
@@ -111,7 +111,7 @@ export default {
                 }
             }).then(()=>{                       
                this.btnLoading = false;
-               this.$router.push('/dashboard/'+this.$store.getters['auth/AccessToken']);
+               this.$router.push("/dashboard/" + this.$store.getters['auth/AccessToken']);
             }).catch(()=>{
                 this.btnLoading = false;
             }); 

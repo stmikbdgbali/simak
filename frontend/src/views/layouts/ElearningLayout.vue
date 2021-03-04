@@ -28,7 +28,7 @@
                         </v-list-item-avatar>
                         <v-list-item-content>					
                             <v-list-item-title class="title">
-                                {{ATTRIBUTE_USER('username')}}
+                                {{ATTRIBUTE_USER("username")}}
                             </v-list-item-title>
                             <v-list-item-subtitle>                                
                                 {{ROLE}}
@@ -67,7 +67,7 @@
 				</v-list-item-avatar>
 				<v-list-item-content>					
 					<v-list-item-title class="title">
-						{{ATTRIBUTE_USER('username')}}
+						{{ATTRIBUTE_USER("username")}}
 					</v-list-item-title>
 					<v-list-item-subtitle>
 						{{ROLE}}
@@ -76,7 +76,7 @@
 			</v-list-item>
 			<v-divider></v-divider>
             <v-list expand>
-                <v-list-item :to="{path: '/elearning'}" link :class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_BOARD_CSS_CLASS')" :color="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_BOARD_COLOR')" v-if="CAN_ACCESS('ELEARNING-GROUP')">
+                <v-list-item :to="{path: "/elearning'}" link :class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_BOARD_CSS_CLASS')" :color="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_BOARD_COLOR')" v-if="CAN_ACCESS('ELEARNING-GROUP')">
                     <v-list-item-icon class="mr-2">
                         <v-icon>mdi-monitor-dashboard</v-icon>
                     </v-list-item-icon>
@@ -140,7 +140,7 @@
 <script>
 import {mapGetters} from 'vuex';
 export default {
-    name: 'AkademikLayout',     
+    name: "AkademikLayout",     
     created()
     {
         this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];          
@@ -157,16 +157,16 @@ export default {
     },
     data:()=>({
         loginTime:0,
-        drawer:null,
-        drawerRight:null, 
+        drawer: null,
+        drawerRight: null, 
         
-        dashboard:null,
+        dashboard: null,
     }),       
     methods: {        
         logout ()
         {
             this.loginTime=0;
-            this.$ajax.post('/auth/logout',
+            this.$ajax.post("/auth/logout",
                 {},
                 {
                     headers: {
@@ -174,16 +174,16 @@ export default {
                     }
                 }
             ).then(()=> {     
-                this.$store.dispatch('auth/logout');	
-                this.$store.dispatch('uifront/reinit');	
-                this.$store.dispatch('uiadmin/reinit');	
-                this.$router.push('/');
+                this.$store.dispatch("auth/logout");	
+                this.$store.dispatch("uifront/reinit");	
+                this.$store.dispatch("uiadmin/reinit");	
+                this.$router.push("/");
             })
             .catch(() => {
-                this.$store.dispatch('auth/logout');	
-                this.$store.dispatch('uifront/reinit');	
-                this.$store.dispatch('uiadmin/reinit');	
-                this.$router.push('/');
+                this.$store.dispatch("auth/logout");	
+                this.$store.dispatch("uifront/reinit");	
+                this.$store.dispatch("uiadmin/reinit");	
+                this.$router.push("/");
             });
         },
         isBentukPT (bentuk_pt)
@@ -192,13 +192,13 @@ export default {
         }
 	},
     computed: {
-        ...mapGetters('auth',{
-            AUTHENTICATED: 'Authenticated',  
-            ACCESS_TOKEN: 'AccessToken',          
-            TOKEN: 'Token',          
-            ROLE: 'Role',
-            CAN_ACCESS: 'can',         
-            ATTRIBUTE_USER: 'AttributeUser',               
+        ...mapGetters("auth",{
+            AUTHENTICATED: "Authenticated",  
+            ACCESS_TOKEN: "AccessToken",          
+            TOKEN: "Token",          
+            ROLE: "Role",
+            CAN_ACCESS: "can",         
+            ATTRIBUTE_USER: "AttributeUser",               
         }),
         APP_NAME ()
         {
@@ -206,9 +206,9 @@ export default {
         },
         photoUser()
 		{
-			let img=this.ATTRIBUTE_USER('foto');
+			let img=this.ATTRIBUTE_USER("foto");
 			var photo;
-			if (img == '')
+			if (img == "")
 			{
 				photo = this.$api.storageURL+'/storage/images/users/no_photo.png';	
 			}
@@ -252,8 +252,8 @@ export default {
                 }
                 else
                 {
-                    this.$store.dispatch('auth/logout');
-                    this.$router.replace('/login');
+                    this.$store.dispatch("auth/logout");
+                    this.$router.replace("/login");
                 }
             },
             immediate: true

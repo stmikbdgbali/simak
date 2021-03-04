@@ -13,11 +13,11 @@
 </template>
 <script>
 export default {
-    name:'DialogPrintoutKeuangan',
+    name: "DialogPrintoutKeuangan",
     props:{
         pid:{
             type:String,
-            required:true
+            required: true
         },        
         title:{
             type:String,
@@ -25,7 +25,7 @@ export default {
         },        
     },
     data: () => ({
-        dialog:false
+        dialog: false
     }),
     methods:{
         open()

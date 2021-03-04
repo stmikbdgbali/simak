@@ -181,25 +181,25 @@
 <script>
 import {mapGetters} from "vuex";
 import DataMasterLayout from '@/views/layouts/DataMasterLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 export default {
-    name: 'Fakultas',
-    created () {
+    name: "Fakultas",
+    created() {
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.ACCESS_TOKEN
+                href: "/dashboard/" + this.ACCESS_TOKEN
             },
             {
-                text: 'DATA MASTER',
+                text: "DATA MASTER",
                 disabled: false,
-                href: '#'
+                href: "#"
             },
             {
-                text: 'FAKULTAS',
+                text: "FAKULTAS",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];
         this.initialize()
@@ -210,9 +210,9 @@ export default {
         expanded: [],
         datatable: [],
         headers: [                        
-            { text: 'KODE FAKULTAS', value: 'kode_fakultas', width:150 },   
-            { text: 'NAMA FAKULTAS', value: 'nama_fakultas' },   
-            { text: 'AKSI', value: 'actions', sortable: false,width:100 },
+            { text: "KODE FAKULTAS", value: "kode_fakultas", width:150 },   
+            { text: "NAMA FAKULTAS", value: "nama_fakultas" },   
+            { text: "AKSI", value: "actions", sortable: false,width:100 },
         ],
         search: "",    
 
@@ -236,58 +236,58 @@ export default {
         //form rules  
         rule_kode_fakultas: [
             value => !!value || "Kode Fakultas mohon untuk diisi !!!",
-            value => /^[1-9]{1}[0-9]{1,14}$/.test(value) || 'Kode Fakultas hanya boleh angka',
+            value => /^[1-9]{1}[0-9]{1,14}$/.test(value) || "Kode Fakultas hanya boleh angka",
         ], 
         rule_nama_fakultas: [
             value => !!value || "Mohon Nama Fakultas untuk di isi !!!",  
-            value => /^[A-Za-z\s]*$/.test(value) || 'Nama Fakultas hanya boleh string dan spasi',                
+            value => /^[A-Za-z\s]*$/.test(value) || "Nama Fakultas hanya boleh string dan spasi",                
         ], 
     }),
     methods: {
         initialize: async function() 
         {
-            this.datatableLoading=true;
-            await this.$ajax.get('/datamaster/fakultas',{
+            this.datatableLoading = true;
+            await this.$ajax.get("/datamaster/fakultas",{
                 headers: {
                     Authorization: this.TOKEN
                 }
             }).then(({ data })=>{               
                 this.datatable = data.fakultas;
-                this.datatableLoading=false;
+                this.datatableLoading = false;
             }).catch(()=>{
-                this.datatableLoading=false;
+                this.datatableLoading = false;
             });  
         },
         dataTableRowClicked(item)
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded = [];                
             }
             else
             {
-                this.expanded=[item];
+                this.expanded = [item];
             }               
         },
-        viewItem (item) {
-            this.formdata=item;      
-            this.dialogdetailitem=true;                        
+        viewItem(item) {
+            this.formdata = item;    
+            this.dialogdetailitem = true;                      
         },    
-        editItem (item) {
+        editItem(item) {
             this.kode_fakultas=item.kode_fakultas;
             this.editedIndex = this.datatable.indexOf(item);
             this.formdata = Object.assign({}, item);
             this.dialogfrm = true
         },    
-        save:async function() {
+        save: async function() {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading=true;
                 if (this.editedIndex > -1) 
                 {
-                    await this.$ajax.post('/datamaster/fakultas/'+this.kode_fakultas,
+                    await this.$ajax.post("/datamaster/fakultas/" + this.kode_fakultas,
                         {
-                            '_method': 'PUT',
+                            _method: "PUT",
                             kode_fakultas: this.formdata.kode_fakultas,                            
                             nama_fakultas: this.formdata.nama_fakultas,                                                        
                         },
@@ -305,7 +305,7 @@ export default {
                     });                 
                     
                 } else {                    
-                    await this.$ajax.post('/datamaster/fakultas/store',
+                    await this.$ajax.post("/datamaster/fakultas/store",
                         {
                             kode_fakultas: this.formdata.kode_fakultas,                            
                             nama_fakultas: this.formdata.nama_fakultas,                                                        
@@ -326,13 +326,13 @@ export default {
             }
         },
         deleteItem (item) {           
-            this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus data fakultas dengan kode '+item.kode_fakultas+' ?', { color: 'red' }).then((confirm) => {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data fakultas dengan kode '+item.kode_fakultas+' ?", { color: "red" }).then((confirm) => {
                 if (confirm)
                 {
                     this.btnLoading=true;
-                    this.$ajax.post('/datamaster/fakultas/'+item.kode_fakultas,
+                    this.$ajax.post("/datamaster/fakultas/" + item.kode_fakultas,
                         {
-                            '_method': 'DELETE',
+                            _method: "DELETE",
                         },
                         {
                             headers: {
@@ -368,12 +368,12 @@ export default {
         },
     },
     computed: {
-        ...mapGetters('auth',{            
-            ACCESS_TOKEN: 'AccessToken',          
-            TOKEN: 'Token',                                  
+        ...mapGetters("auth",{            
+            ACCESS_TOKEN: "AccessToken",          
+            TOKEN: "Token",                                  
         }),
         formTitle () {
-            return this.editedIndex === -1 ? 'TAMBAH DATA' : 'UBAH DATA'
+            return this.editedIndex === -1 ? "TAMBAH DATA" : "UBAH DATA"
         },        
     },
     components: {

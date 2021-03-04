@@ -169,7 +169,7 @@
                                                     <v-card flat>
                                                         <v-card-title>CREATED:</v-card-title>
                                                         <v-card-subtitle>
-                                                            {{$date(formdata.created_at).format('DD/MM/YYYY HH:mm')}}
+                                                            {{$date(formdata.created_at).format("DD/MM/YYYY HH:mm")}}
                                                         </v-card-subtitle>
                                                     </v-card>
                                                 </v-col>
@@ -178,7 +178,7 @@
                                                     <v-card flat>
                                                         <v-card-title>UPDATED :</v-card-title>
                                                         <v-card-subtitle>
-                                                            {{$date(formdata.updated_at).format('DD/MM/YYYY HH:mm')}}
+                                                            {{$date(formdata.updated_at).format("DD/MM/YYYY HH:mm")}}
                                                         </v-card-subtitle>
                                                     </v-card>
                                                 </v-col>
@@ -218,8 +218,8 @@
                             <td :colspan="headers.length" class="text-center">
                                 <v-col cols="12">
                                     <strong>ID:</strong>{{ item.id }}     
-                                    <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
-                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}                               
+                                    <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
+                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}                               
                                 </v-col>                                
                             </td>
                         </template>
@@ -235,25 +235,25 @@
 <script>
 import {mapGetters} from "vuex";
 import KeuanganLayout from '@/views/layouts/KeuanganLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 export default {
-    name: 'Kelas',
-    created () {
+    name: "Kelas",
+    created() {
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.ACCESS_TOKEN
+                href: "/dashboard/" + this.ACCESS_TOKEN
             },
             {
-                text: 'KEUANGAN',
+                text: "KEUANGAN",
                 disabled: false,
-                href: '#'
+                href: "#"
             },
             {
-                text: 'TRANSFER BANK',
+                text: "TRANSFER BANK",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];
         this.initialize()
@@ -264,11 +264,11 @@ export default {
         expanded: [],
         datatable: [],
         headers: [                        
-            { text: 'NAMA BANK', value: 'nama_bank',width:350 },   
-            { text: 'CABANG', value: 'nama_cabang' },   
-            { text: 'NOMOR REKENING', value: 'nomor_rekening' },   
-            { text: 'PEMILIK REKENING', value: 'pemilik_rekening' },   
-            { text: 'AKSI', value: 'actions', sortable: false,width:100 },
+            { text: "NAMA BANK", value: "nama_bank",width:350 },   
+            { text: "CABANG", value: "nama_cabang" },   
+            { text: "NOMOR REKENING", value: "nomor_rekening" },   
+            { text: "PEMILIK REKENING", value: "pemilik_rekening" },   
+            { text: "AKSI", value: "actions", sortable: false,width:100 },
         ],
         search: "",    
 
@@ -301,65 +301,65 @@ export default {
         //form rules  
         rule_nama_bank: [
             value => !!value || "Mohon untuk di isi nama bank !!!",  
-            value => /^[A-Za-z\s]*$/.test(value) || 'Nama bank hanya boleh string dan spasi',                
+            value => /^[A-Za-z\s]*$/.test(value) || "Nama bank hanya boleh string dan spasi",                
         ],   
         rule_nama_cabang: [
             value => !!value || "Mohon untuk di isi nama cabang bank !!!",  
-            value => /^[A-Za-z\s]*$/.test(value) || 'Nama cabang bank hanya boleh string dan spasi',                
+            value => /^[A-Za-z\s]*$/.test(value) || "Nama cabang bank hanya boleh string dan spasi",                
         ],         
         rule_no_rekening: [
             value => !!value || "Mohon untuk di isi nomor rekening !!!",                     
-            value => /^[0-9]+$/.test(value) || 'Nomor rekening hanya boleh angka',
+            value => /^[0-9]+$/.test(value) || "Nomor rekening hanya boleh angka",
         ],
         rule_pemilik: [
             value => !!value || "Mohon untuk di isi nama pemilik rekening !!!",  
-            value => /^[A-Za-z\s]*$/.test(value) || 'Nama pemilik rekening hanya boleh string dan spasi',                
+            value => /^[A-Za-z\s]*$/.test(value) || "Nama pemilik rekening hanya boleh string dan spasi",                
         ],
     }),
     methods: {
         initialize: async function() 
         {
-            this.datatableLoading=true;
-            await this.$ajax.get('/keuangan/transferbank',{
+            this.datatableLoading = true;
+            await this.$ajax.get("/keuangan/transferbank",{
                 headers: {
                     Authorization: this.TOKEN
                 }
             }).then(({ data })=>{               
                 this.datatable = data.bank;
-                this.datatableLoading=false;
+                this.datatableLoading = false;
             }).catch(()=>{
-                this.datatableLoading=false;
+                this.datatableLoading = false;
             });  
         },
         dataTableRowClicked(item)
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded = [];                
             }
             else
             {
-                this.expanded=[item];
+                this.expanded = [item];
             }               
         },
-        viewItem (item) {
-            this.formdata=item;      
-            this.dialogdetailitem=true;                    
+        viewItem(item) {
+            this.formdata = item;    
+            this.dialogdetailitem = true;                  
         },    
-        editItem (item) {
+        editItem(item) {
             this.editedIndex = this.datatable.indexOf(item);
             this.formdata = Object.assign({}, item);            
             this.dialogfrm = true
         },    
-        save:async function() {
+        save: async function() {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading=true;
                 if (this.editedIndex > -1) 
                 {
-                    await this.$ajax.post('/keuangan/transferbank/'+this.formdata.id,
+                    await this.$ajax.post("/keuangan/transferbank/" + this.formdata.id,
                         {
-                            '_method': 'PUT',
+                            _method: "PUT",
                             nama_bank: this.formdata.nama_bank,                            
                             nama_cabang: this.formdata.nama_cabang,                            
                             nomor_rekening: this.formdata.nomor_rekening,                            
@@ -379,7 +379,7 @@ export default {
                     });                 
                     
                 } else {
-                    await this.$ajax.post('/keuangan/transferbank/store',
+                    await this.$ajax.post("/keuangan/transferbank/store",
                         {
                             nama_bank: this.formdata.nama_bank,                            
                             nama_cabang: this.formdata.nama_cabang,                            
@@ -402,13 +402,13 @@ export default {
             }
         },
         deleteItem (item) {           
-            this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus data dengan ID '+item.id+' ?', { color: 'red' }).then((confirm) => {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data dengan ID '+item.id+' ?", { color: "red" }).then((confirm) => {
                 if (confirm)
                 {
                     this.btnLoading=true;
-                    this.$ajax.post('/keuangan/transferbank/'+item.id,
+                    this.$ajax.post("/keuangan/transferbank/" + item.id,
                         {
-                            '_method': 'DELETE',
+                            _method: "DELETE",
                         },
                         {
                             headers: {
@@ -444,12 +444,12 @@ export default {
         },
     },
     computed: {
-        ...mapGetters('auth',{            
-            ACCESS_TOKEN: 'AccessToken',          
-            TOKEN: 'Token',                                  
+        ...mapGetters("auth",{            
+            ACCESS_TOKEN: "AccessToken",          
+            TOKEN: "Token",                                  
         }),
         formTitle () {
-            return this.editedIndex === -1 ? 'TAMBAH DATA' : 'UBAH DATA'
+            return this.editedIndex === -1 ? "TAMBAH DATA" : "UBAH DATA"
         },        
     },
     components: {

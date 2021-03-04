@@ -222,7 +222,7 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
-    name: 'SPMBLayout',     
+    name: "SPMBLayout",     
     created()
     {
         this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];        
@@ -240,7 +240,7 @@ export default {
     data: () => ({
         loginTime: 0,
         drawer: null,
-        drawerRight:null, 
+        drawerRight: null, 
         
         dashboard: null,
     }),       
@@ -274,14 +274,14 @@ export default {
         }
 	},
     computed: {
-        ...mapGetters('auth',{
-            AUTHENTICATED: 'Authenticated',  
-            ACCESS_TOKEN: 'AccessToken',          
-            TOKEN: 'Token',   
-            DEFAULT_ROLE: 'DefaultRole',       
-            ROLE: 'Role',
-            CAN_ACCESS: 'can',         
-            ATTRIBUTE_USER: 'AttributeUser',               
+        ...mapGetters("auth",{
+            AUTHENTICATED: "Authenticated",  
+            ACCESS_TOKEN: "AccessToken",          
+            TOKEN: "Token",   
+            DEFAULT_ROLE: "DefaultRole",       
+            ROLE: "Role",
+            CAN_ACCESS: "can",         
+            ATTRIBUTE_USER: "AttributeUser",               
         }),
         APP_NAME ()
         {
@@ -291,7 +291,7 @@ export default {
 		{
 			let img=this.ATTRIBUTE_USER("foto");
 			var photo;
-			if (img == '')
+			if (img == "")
 			{
 				photo = this.$api.url+'/storage/images/users/no_photo.png';	
 			}
@@ -319,7 +319,7 @@ export default {
                     this.$router.replace("/login");
                 }
             },
-            immediate: true
+            immediate: true,
         },        
     }
 }

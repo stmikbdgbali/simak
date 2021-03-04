@@ -60,26 +60,26 @@
 <script>
 import {mapGetters} from "vuex";
 import SystemConfigLayout from '@/views/layouts/SystemConfigLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 export default {
-    name: 'Email',
+    name: "Email",
     created()
     {
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.ACCESS_TOKEN
+                href: "/dashboard/" + this.ACCESS_TOKEN
             },
             {
-                text: 'KONFIGURASI SISTEM',
+                text: "KONFIGURASI SISTEM",
                 disabled: false,
-                href: '/system-setting'
+                href: "/system-setting"
             },  
             {
-                text: 'SERVER - EMAIL',
+                text: "SERVER - EMAIL",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];
         this.initialize();
@@ -90,7 +90,7 @@ export default {
         //form
         form_valid: true,   
         formdata: {
-            email_mhs_isvalid:null,            
+            email_mhs_isvalid: null,            
         },
         //form rules        
         
@@ -98,8 +98,8 @@ export default {
     methods: {
         initialize: async function() 
         {
-            this.datatableLoading=true;
-            await this.$ajax.get('/system/setting/variables',
+            this.datatableLoading = true;
+            await this.$ajax.get("/system/setting/variables",
             {
                 headers: {
                     Authorization: this.TOKEN
@@ -114,10 +114,10 @@ export default {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading=true;
-                this.$ajax.post('/system/setting/variables',
+                this.$ajax.post("/system/setting/variables",
                     {
-                        '_method': 'PUT', 
-                        'pid': 'email',
+                        _method: "PUT", 
+                        'pid': "email",
                         setting:JSON.stringify({
                             910: this.formdata.email_mhs_isvalid,                            
                         }),                                                                                                                            
@@ -136,9 +136,9 @@ export default {
         }
     },
     computed: { 
-        ...mapGetters('auth',{            
-            ACCESS_TOKEN: 'AccessToken',          
-            TOKEN: 'Token',                                  
+        ...mapGetters("auth",{            
+            ACCESS_TOKEN: "AccessToken",          
+            TOKEN: "Token",                                  
         }),
     },
     components: {

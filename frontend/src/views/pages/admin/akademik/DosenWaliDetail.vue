@@ -179,10 +179,10 @@
                             </v-toolbar>
                         </template>
                         <template v-slot:item.nidn="{ item }">
-                            {{(item.nidn && item.nidn.length > 0) > 0 ? item.nidn: 'N.A'}}
+                            {{(item.nidn && item.nidn.length > 0) > 0 ? item.nidn: "N.A'}}
                         </template>
                         <template v-slot:item.is_dw="{ item }">
-                            {{item.is_dw == false ? 'BUKAN': 'YA'}}
+                            {{item.is_dw == false ? 'BUKAN': "YA'}}
                         </template>
                         <template v-slot:item.actions="{ item }">                            
                             <v-tooltip bottom>             
@@ -211,8 +211,8 @@
                             <td :colspan="headers.length" class="text-center">
                                 <v-col cols="12">
                                     <strong>ID:</strong>{{ item.id }}                                    
-                                    <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
-                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
+                                    <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
+                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
                                 </v-col>                                
                             </td>
                         </template>
@@ -228,51 +228,51 @@
 <script>
 import {mapGetters} from "vuex";
 import AkademikLayout from '@/views/layouts/AkademikLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 import ProfilDosen from '@/components/ProfilDosen';
 export default {
-    name: 'DosenWaliDetail',  
-    created () {
+    name: "DosenWaliDetail",  
+    created() {
         this.dosen_id = this.$route.params.dosen_id;
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.ACCESS_TOKEN
+                href: "/dashboard/" + this.ACCESS_TOKEN
             },
             {
-                text: 'AKADEMIK',
+                text: "AKADEMIK",
                 disabled: false,
-                href: '/akademik'
+                href: "/akademik",
             },
             {
-                text: 'DOSEN WALI',
+                text: "DOSEN WALI",
                 disabled: false,
-                href: '/akademik/dosenwali'
+                href: "/akademik/dosenwali"
             },
             {
-                text: 'DETAIL',
+                text: "DETAIL",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];
         this.initialize()
     },  
    
     data: () => ({ 
-        dosen_id:null,
+        dosen_id: null,
         data_dosen: {},
         datatableLoading: false,
         btnLoading: false,      
         //tables
         headers: [                        
-            { text:  "", value: 'foto',width:70, },
-            { text: 'NIM', value: 'nim',width:100,sortable: true },
-            { text: 'NAMA MAHASISWA', value: 'nama_mhs',width:250,sortable: true },
-            { text: 'PROGRAM STUDI', value: 'nama_prodi',width:150,sortable: true },     
-            { text: 'KELAS', value: 'nkelas',width:150,sortable: true },     
-            { text: 'TAHUN MASUK', value: 'tahun',sortable: true },                 
-            { text: 'AKSI', value: 'actions', sortable: false,width:50 },
+            { text: "", value: "foto",width:70, },
+            { text: "NIM", value: "nim",width:100,sortable: true },
+            { text: "NAMA MAHASISWA", value: "nama_mhs",width:250,sortable: true },
+            { text: "PROGRAM STUDI", value: "nama_prodi",width:150,sortable: true },     
+            { text: "KELAS", value: "nkelas",width:150,sortable: true },     
+            { text: "TAHUN MASUK", value: "tahun",sortable: true },                 
+            { text: "AKSI", value: "actions", sortable: false,width:50 },
         ],
         expanded: [],
         search: "",
@@ -285,10 +285,10 @@ export default {
         daftar_dw: [],     
 
         formdata: {                                    
-            dosen_id: ''           
+            dosen_id: ""           
         },
         formdefault: {                                    
-            dosen_id: ''           
+            dosen_id: ""           
         },
 
         rule_dw: [
@@ -298,8 +298,8 @@ export default {
     methods: {
         initialize: async function() 
         {
-            this.datatableLoading=true;
-            await this.$ajax.get('/system/usersdosen/biodatadiri/'+this.dosen_id,             
+            this.datatableLoading = true;
+            await this.$ajax.get("/system/usersdosen/biodatadiri/" + this.dosen_id,             
                 {
                     headers: {
                         Authorization: this.$store.getters["auth/Token"]
@@ -310,13 +310,13 @@ export default {
                 this.data_dosen=data.biodatadiri;                                           
             });       
 
-            await this.$ajax.get('/akademik/dosenwali/'+this.dosen_id,{
+            await this.$ajax.get("/akademik/dosenwali/" + this.dosen_id,{
                 headers: {
                     Authorization: this.TOKEN
                 }
             }).then(({ data })=>{               
                 this.daftar_mahasiswa = data.daftar_mahasiswa;                
-                this.datatableLoading=false;
+                this.datatableLoading = false;
             });          
             
         },
@@ -324,18 +324,18 @@ export default {
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded = [];                
             }
             else
             {
-                this.expanded=[item];
+                this.expanded = [item];
             }               
         },   
         async showDialogChangeDW(item)
         {
             this.data_mhs = item;
             console.log(this.data_mhs);
-            await this.$ajax.get('/akademik/dosenwali',{
+            await this.$ajax.get("/akademik/dosenwali",{
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
@@ -348,9 +348,9 @@ export default {
         changeDosenWali ()
         {
             this.btnLoading=true;
-            this.$ajax.post('/akademik/kemahasiswaan/updatedw/'+this.data_mhs.user_id,
+            this.$ajax.post("/akademik/kemahasiswaan/updatedw/" + this.data_mhs.user_id,
                 {
-                    '_method': 'PUT',
+                    _method: "PUT",
                     'dosen_id': this.formdata.dosen_id,
                 },
                 {
@@ -375,9 +375,9 @@ export default {
         },
     },
     computed: {        
-        ...mapGetters('auth',{            
-            ACCESS_TOKEN: 'AccessToken',          
-            TOKEN: 'Token',                                  
+        ...mapGetters("auth",{            
+            ACCESS_TOKEN: "AccessToken",          
+            TOKEN: "Token",                                  
         }),
     },    
     components: {
