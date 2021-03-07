@@ -38,25 +38,25 @@
 </template>
 <script>
 import ElearningLayout from '@/views/layouts/ElearningLayout';
-import ModuleHeader from '@/components/ModuleHeader';
-import Filter1 from '@/components/sidebar/FilterMode1';
+import ModuleHeader from "@/components/ModuleHeader";
+import Filter1 from "@/components/sidebar/FilterMode1";
 export default {
-    name: 'Elearning',
-    created ()
+    name: "Elearning",
+    created()
 	{
 		this.breadcrumbs = [
 			{
-				text: 'HOME',
+				text: "HOME",
 				disabled: false,
-				href: '/dashboard/'+this.$store.getters['auth/AccessToken']
+				href: "/dashboard/" + this.$store.getters['auth/AccessToken']
 			},
 			{
-				text: 'E-LEARNING',
+				text: "E-LEARNING",
 				disabled: true,
-				href: '#'
+				href: "#"
 			}
-        ];				
-        this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];         
+        ];		
+        this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];       
     },
     mounted()
     {
@@ -65,20 +65,20 @@ export default {
     data: () => ({
         datatableLoading: false,
         firstloading: true,
-        breadcrumbs: [],        
+        breadcrumbs: [],
         tahun_akademik:0,
         
     }),
-    methods : {
+    methods: {
         changeTahunAkademik (tahun)
         {
             this.tahun_akademik=tahun;
         },
-		initialize:async function()
+		initialize: async function()
 		{	
-            this.datatableLoading=true;            
+            this.datatableLoading = true;          
             
-            this.firstloading=false;            
+            this.firstloading = false;          
             this.$refs.filter1.setFirstTimeLoading(this.firstloading); 
 
         }

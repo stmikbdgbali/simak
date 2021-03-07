@@ -34,7 +34,7 @@
                     <v-data-table
                         :headers="headers"
                         :items="datatable"                        
-                        item-key="id"
+                        item-key="kode_jenjang"
                         sort-by="id"
                         show-expand
                         :disable-pagination="true"
@@ -47,10 +47,10 @@
                         loading-text="Loading... Please wait">     
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
-                                <v-col cols="12">                                    
-                                    <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
-                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
-                                </v-col>                                
+                                <v-col cols="12">                 
+                                    <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
+                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
+                                </v-col>             
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -64,65 +64,65 @@
 </template>
 <script>
 import DataMasterLayout from '@/views/layouts/DataMasterLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 export default {
-    name: 'JenjangStudi',
+    name: "JenjangStudi",
     created()
     {
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
             },
             {
-                text: 'DATA MASTER',
+                text: "DATA MASTER",
                 disabled: false,
-                href: '/dmaster'
+                href: "/dmaster"
             },
             {
-                text: 'JENJANG STUDI',
+                text: "JENJANG STUDI",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];
         this.initialize();
     },
     data: () => ({
-        breadcrumbs: [],  
+        breadcrumbs: [],
 
         btnLoading: false,
         datatableLoading: false,
         expanded: [],
         datatable: [],
         headers: [                                            
-            { text: 'ID', value: 'kode_jenjang',width:10,sortable: false },
-            { text: 'NAMA JENJANG', value: 'nama_jenjang',sortable: false},                        
-        ],        
+            { text: "ID", value: "kode_jenjang", width: 10,sortable: false },
+            { text: "NAMA JENJANG", value: "nama_jenjang",sortable: false},         
+        ],  
     }),
-    methods : {
-        initialize:async function()
+    methods: {
+        initialize: async function()
 		{
-            this.datatableLoading=true;            
-            await this.$ajax.get('/datamaster/jenjangstudi',            
+            this.datatableLoading = true;          
+            await this.$ajax.get("/datamaster/jenjangstudi",            
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{               
-                this.datatable = data.jenjang_studi;                
-                this.datatableLoading=false;
-            });                     
+            }).then(({ data })=>{    
+                this.datatable = data.jenjang_studi;              
+                this.datatableLoading = false;
+            });                   
         },
         dataTableRowClicked(item)
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded = [];              
             }
             else
             {
-                this.expanded=[item];
+                this.expanded = [item];
             }               
         },
     },

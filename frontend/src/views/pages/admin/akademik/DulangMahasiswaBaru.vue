@@ -32,7 +32,7 @@
             <Filter7 v-on:changeTahunPendaftaran="changeTahunPendaftaran" v-on:changeProdi="changeProdi" ref="filter7" />	
         </template>
         <v-container fluid>             
-            <v-row class="mb-4" no-gutters>                        
+            <v-row class="mb-4" no-gutters>     
                 <v-col cols="12">
                     <v-card>
                         <v-card-text>
@@ -86,11 +86,11 @@
                         </template>           
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
-                                <v-col cols="12">                          
+                                <v-col cols="12">       
                                     <strong>id:</strong>{{ item.id }}          
-                                    <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
-                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
-                                </v-col>                                
+                                    <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
+                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
+                                </v-col>             
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -103,86 +103,86 @@
     </AkademikLayout>
 </template>
 <script>
-import AkademikLayout from '@/views/layouts/AkademikLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import AkademikLayout from "@/views/layouts/AkademikLayout";
+import ModuleHeader from "@/components/ModuleHeader";
 import Filter7 from '@/components/sidebar/FilterMode7';
 export default {
-    name: 'DulangMahasiswaBaru',
-    created () {
+    name: "DulangMahasiswaBaru",
+    created() {
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
             },
             {
-                text: 'AKADEMIK',
+                text: "AKADEMIK",
                 disabled: false,
-                href: '/akademik'
+                href: "/akademik",
             },
             {
-                text: 'DAFTAR ULANG',
+                text: "DAFTAR ULANG",
                 disabled: false,
-                href: '#'
+                href: "#"
             },
             {
-                text: 'DAFTAR ULANG MAHASISWA BARU',
+                text: "DAFTAR ULANG MAHASISWA BARU",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];
-        let prodi_id=this.$store.getters['uiadmin/getProdiID'];
-        this.prodi_id=prodi_id;
-        this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](prodi_id);
-        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];                
+        let prodi_id = this.$store.getters['uiadmin/getProdiID'];
+        this.prodi_id = prodi_id;
+        this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
+        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];              
         this.initialize()
     },  
     data: () => ({ 
         firstloading: true,
-        prodi_id:null,
-        nama_prodi:null,
-        tahun_pendaftaran:null,
+        prodi_id: null,
+        nama_prodi: null,
+        tahun_pendaftaran: null,
 
         btnLoading: false,
         btnLoadingTable: false,
         datatableLoading: false,
         expanded: [],
-        datatable: [],      
+        datatable: [],
         headers: [
-            { text: 'NO. FORMULIR', value: 'no_formulir', sortable: true,width:150  },   
-            { text: 'NIM', value: 'nim', sortable: true,width:150  },   
-            { text: 'NIRM', value: 'nirm', sortable: true,width:150  },   
-            { text: 'NAMA MAHASISWA', value: 'nama_mhs',sortable: true },                           
-            { text: 'KELAS', value: 'idkelas',sortable: true,width:120, },                           
-            { text: 'AKSI', value: 'actions', sortable: false,width:100 },
-        ],  
-        search: "", 
+            { text: "NO. FORMULIR", value: "no_formulir", sortable: true,width:150  },   
+            { text: "NIM", value: "nim", sortable: true,width:150  },   
+            { text: "NIRM", value: "nirm", sortable: true,width:150  },   
+            { text: "NAMA MAHASISWA", value: "nama_mhs",sortable: true },            
+            { text: "KELAS", value: "idkelas",sortable: true,width:120, },            
+            { text: "AKSI", value: "actions", sortable: false, width:100 },
+        ],
+        search: "",
 
         data_mhs: {},  
 
         //formdata
-        form_valid: true,   
+        form_valid: true,  
         dialogfrm: false, 
-        daftar_dw: [],     
+        daftar_dw: [],  
 
-        formdata: {                        
+        formdata: {             
             nim: "",
             nirm: "",
-            dosen_id: ''           
+            dosen_id: ""           
         },
-        formdefault: {                        
+        formdefault: {             
             nim: "",
             nirm: "",
-            dosen_id: ''           
+            dosen_id: ""           
         },
         rule_nim: [
             value => !!value || "Nomor Induk Mahasiswa (NIM) mohon untuk diisi !!!",
-            value => /^[0-9]+$/.test(value) || 'Nomor Induk Mahasiswa (NIM) hanya boleh angka',
-        ], 
+            value => /^[0-9]+$/.test(value) || "Nomor Induk Mahasiswa (NIM) hanya boleh angka",
+        ],
         rule_nirm: [
             value => !!value || "Nomor Induk Registrasi Masuk (NIRM) mohon untuk diisi !!!",
-            value => /^[0-9]+$/.test(value) || 'Nomor Induk Registrasi Masuk (NIRM) hanya boleh angka',
-        ], 
+            value => /^[0-9]+$/.test(value) || "Nomor Induk Registrasi Masuk (NIRM) hanya boleh angka",
+        ],
         rule_dw: [
             value => !!value || "Mohon dipilih Dosen Wali untuk Mahasiswa ini !!!"
         ],
@@ -191,16 +191,16 @@ export default {
     methods: {
         changeTahunPendaftaran (tahun)
         {
-            this.tahun_pendaftaran=tahun;
+            this.tahun_pendaftaran = tahun;
         },
         changeProdi (id)
         {
-            this.prodi_id=id;
+            this.prodi_id = id;
         },
         initialize: async function() 
         {
-            this.datatableLoading=true;
-            await this.$ajax.post('/akademik/dulang/mhsbaru',
+            this.datatableLoading = true;
+            await this.$ajax.post("/akademik/dulang/mhsbaru",
             {
                 prodi_id: this.prodi_id,
                 ta: this.tahun_pendaftaran
@@ -209,80 +209,80 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{               
+            }).then(({ data })=>{    
                 this.datatable = data.mahasiswa;
-                this.datatableLoading=false;
-            }).catch(()=>{
-                this.datatableLoading=false;
-            });  
-            this.firstloading=false;
+                this.datatableLoading = false;
+            }).catch(() => {
+                this.datatableLoading = false;
+            });
+            this.firstloading = false;
             this.$refs.filter7.setFirstTimeLoading(this.firstloading); 
         },
         dataTableRowClicked(item)
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded = [];              
             }
             else
             {
-                this.expanded=[item];
+                this.expanded = [item];
             }               
         },
         async tambahItem ()
-        {               
-            await this.$ajax.post('/keuangan/transaksi/'+this.formdata.nim+'/sppmhsbaru',
+        {    
+            await this.$ajax.post("/keuangan/transaksi/" + this.formdata.nim+"/sppmhsbaru",
             {
-                jenis_id: 'nim'
+                jenis_id: "nim"
             },
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(()=>{                                  
+            }).then(() => {                    
                 
-            });   
+            }); 
 
-            // await this.$ajax.get('/akademik/dosenwali',{
+            // await this.$ajax.get("/akademik/dosenwali",{
             //     headers: {
             //         Authorization: this.$store.getters["auth/Token"]
             //     }
-            // }).then(({ data })=>{                                  
+            // }).then(({ data })=>{                       
             //     this.dialogfrm=true;
             //     this.daftar_dw = data.users; 
-            // });   
+            // }); 
 
         },
         deleteItem (item)
         {
-            this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus daftar ulang '+item.nama_mhs+' ?', { color: 'red',width:600,'desc': 'proses ini juga menghapus seluruh data akademik namun KEUANGAN TETAP ADA.' }).then((confirm) => {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus daftar ulang '+item.nama_mhs+' ?", { color: "red", width: 600,'desc': "proses ini juga menghapus seluruh data akademik namun KEUANGAN TETAP ADA." }).then((confirm) => {
                 if (confirm)
                 {
                     this.btnLoadingTable=true;
-                    this.$ajax.post('/akademik/dulang/mhsbaru'+item.id,
+                    this.$ajax.post("/akademik/dulang/mhsbaru"+item.id,
                         {
-                            '_method': 'DELETE',
+                            _method: "DELETE",
                         },
                         {
                             headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
-                    ).then(()=>{   
+                    ).then(() => {
                         const index = this.datatable.indexOf(item);
                         this.datatable.splice(index, 1);
                         this.btnLoadingTable=false;
-                    }).catch(()=>{
+                    }).catch(() => {
                         this.btnLoadingTable=false;
                     });
                 }                
             });
         },
-        closedialogfrm () {            
-            this.dialogfrm = false;            
+        closedialogfrm () { 
+            this.dialogfrm = false;          
             setTimeout(() => {       
-                this.formdata = Object.assign({}, this.formdefault);                                
-                this.data_mhs = Object.assign({}, {});   
+                this.formdata = Object.assign({}, this.formdefault);                              
+                this.data_mhs = Object.assign({}, {}); 
                 }, 300
             );
         },

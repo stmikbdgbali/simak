@@ -42,7 +42,7 @@
                                     item-text="nama_dosen"
                                     item-value="user_id"
                                     :rules="rule_dosen"
-                                    outlined/>
+                                    outlined />
                             </v-card-text>
                         </v-card>
                         <v-card class="mb-2">
@@ -96,7 +96,7 @@
                                     item-text="text"
                                     item-value="id"
                                     :disabled="dosen_id==null"
-                                    outlined/>
+                                    outlined />
 
                                 <v-row>
                                     <v-col cols="4">
@@ -106,7 +106,7 @@
                                             label="HARI"
                                             :rules="rule_hari"
                                             :disabled="dosen_id==null"
-                                            outlined/>
+                                            outlined />
                                     </v-col>
                                     <v-col cols="4">
                                         <v-text-field
@@ -147,7 +147,7 @@
                                     label="AKUN ZOOM"
                                     item-text="email"
                                     item-value="id"
-                                    outlined/>
+                                    outlined />
                             </v-card-text>
                             <v-card-actions>
                                 <v-spacer></v-spacer>
@@ -169,37 +169,37 @@
     </AkademikLayout>
 </template>
 <script>
-import AkademikLayout from '@/views/layouts/AkademikLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import AkademikLayout from "@/views/layouts/AkademikLayout";
+import ModuleHeader from "@/components/ModuleHeader";
 
 export default {
-    name: 'PerkuliahanPembagianKelasTambah',
-    created () {
+    name: "PerkuliahanPembagianKelasTambah",
+    created() {
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
             },
             {
-                text: 'AKADEMIK',
+                text: "AKADEMIK",
                 disabled: false,
-                href: '/akademik'
+                href: "/akademik",
             },
             {
-                text: 'PERKULIAHAN',
+                text: "PERKULIAHAN",
                 disabled: false,
-                href: '#'
+                href: "#"
             },
             {
-                text: 'PEMBAGIAN KELAS',
+                text: "PEMBAGIAN KELAS",
                 disabled: false,
-                href: '/akademik/perkuliahan/pembagiankelas/daftar'
+                href: "/akademik/perkuliahan/pembagiankelas/daftar",
             },
             {
-                text: 'TAMBAH',
+                text: "TAMBAH",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];
         this.tahun_akademik=this.$store.getters['uiadmin/getTahunAkademik'];
@@ -207,14 +207,14 @@ export default {
         this.initialize()
     },
     data: () => ({
-        tahun_akademik:null,
-        semester_akademik:null,
+        tahun_akademik: null,
+        semester_akademik: null,
 
         btnLoading: false,
         //formdata
         form_valid: true,
         daftar_dosen: [],
-        dosen_id:null,
+        dosen_id: null,
         daftar_zoom: [],
 
         daftar_sks: [
@@ -229,27 +229,27 @@ export default {
 
         daftar_hari: [
             {
-                text: 'SENIN',
+                text: "SENIN",
                 value:1,
             },
             {
-                text: 'SELASA',
+                text: "SELASA",
                 value:2,
             },
             {
-                text: 'RABU',
+                text: "RABU",
                 value:3,
             },
             {
-                text: 'KAMIS',
+                text: "KAMIS",
                 value:4,
             },
             {
-                text: 'JUMAT',
+                text: "JUMAT",
                 value:5,
             },
             {
-                text: 'SABTU',
+                text: "SABTU",
                 value:6,
             },
         ],
@@ -290,11 +290,11 @@ export default {
         ],
         rule_jam_masuk: [
             value => !!value || "Mohon diisi jam masuk mengajar!!!",
-            value => /^([0-9]|0[0-9]|1[0-9]|2[0-3]): [0-5][0-9]$/.test(value) || 'Format jam masuk mengajar hh:mm, misalnya 15:30'
+            value => /^([0-9]|0[0-9]|1[0-9]|2[0-3]): [0-5][0-9]$/.test(value) || "Format jam masuk mengajar hh:mm, misalnya 15:30"
         ],
         rule_jam_keluar: [
             value => !!value || "Mohon diisi jam keluar mengajar!!!",
-            value => /^([0-9]|0[0-9]|1[0-9]|2[0-3]): [0-5][0-9]$/.test(value) || 'Format jam keluar mengajar hh:mm, misalnya 15:00'
+            value => /^([0-9]|0[0-9]|1[0-9]|2[0-3]): [0-5][0-9]$/.test(value) || "Format jam keluar mengajar hh:mm, misalnya 15:00"
         ],
         rule_ruang_kelas: [
             value => !!value || "Mohon dipilih ruang kelas mengajar!!!"
@@ -303,11 +303,11 @@ export default {
     methods: {
         initialize: async function()
         {
-            await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/pengampu',
+            await this.$ajax.post("/akademik/perkuliahan/penyelenggaraanmatakuliah/pengampu",
             {
                 ta: this.$store.getters['uiadmin/getTahunAkademik'],
                 semester_akademik: this.$store.getters['uiadmin/getSemesterAkademik'],
-                pid: 'daftarpengampu'
+                pid: "daftarpengampu",
             },
             {
                 headers: {
@@ -317,7 +317,7 @@ export default {
                 this.daftar_dosen = data.dosen;
             });
 
-            await this.$ajax.get('/datamaster/ruangankelas',{
+            await this.$ajax.get("/datamaster/ruangankelas",{
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
@@ -325,7 +325,7 @@ export default {
                 this.daftar_ruang_kelas = data.ruangan;
             });
 
-            await this.$ajax.get(process.env.VUE_APP_API_HOST+'/h2h/zoom',
+            await this.$ajax.get(process.env.VUE_APP_API_HOST + "/h2h/zoom",
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
@@ -335,11 +335,11 @@ export default {
             });
             
         },
-        save:async function() {
+        save: async function() {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading=true;
-                await this.$ajax.post('/akademik/perkuliahan/pembagiankelas/store',
+                await this.$ajax.post("/akademik/perkuliahan/pembagiankelas/store",
                     {
                         user_id: this.dosen_id,
                         zoom_id: this.formdata.zoom_id,
@@ -361,10 +361,10 @@ export default {
                             Authorization: this.$store.getters["auth/Token"]
                         }
                     }
-                ).then(()=>{
+                ).then(() => {
                     this.btnLoading = false;
-                    this.$router.push('/akademik/perkuliahan/pembagiankelas/daftar');
-                }).catch(()=>{
+                    this.$router.push("/akademik/perkuliahan/pembagiankelas/daftar");
+                }).catch(() => {
                     this.btnLoading = false;
                 });
             }
@@ -373,7 +373,7 @@ export default {
     watch: {
         async dosen_id(val)
         {
-            await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/matakuliah',
+            await this.$ajax.post("/akademik/perkuliahan/penyelenggaraanmatakuliah/matakuliah",
             {
                 user_id:val,
                 ta: this.$store.getters['uiadmin/getTahunAkademik'],

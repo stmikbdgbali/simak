@@ -54,7 +54,7 @@
                     <v-card flat>
                         <v-card-title>CREATED / UPDATED :</v-card-title>
                         <v-card-subtitle>
-                            {{$date(datamatkul.created_at).format('DD/MM/YYYY HH:mm')}} / {{$date(datamatkul.updated_at).format('DD/MM/YYYY HH:mm')}}
+                            {{$date(datamatkul.created_at).format("DD/MM/YYYY HH:mm")}} / {{$date(datamatkul.updated_at).format("DD/MM/YYYY HH:mm")}}
                         </v-card-subtitle>
                     </v-card>
                 </v-col>
@@ -65,12 +65,12 @@
 </template>
 <script>
 export default {
-    name:'DataMatakuliahPenyelenggaraan',
+    name: "DataMatakuliahPenyelenggaraan",
     props:{
         datamatkul:{
-            default:null,
+            default: null,
             type:Object,            
         }
-    },    
+    },
 }
 </script>

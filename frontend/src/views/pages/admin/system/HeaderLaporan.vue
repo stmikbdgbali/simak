@@ -36,7 +36,7 @@
                                     v-model="formdata.header_1" 
                                     label="HEADER 1"
                                     outlined>
-                                </v-text-field>                                                                                                                                                                                                                          
+                                </v-text-field>                                                                                                                                                                                     
                                 <v-text-field 
                                     v-model="formdata.header_2" 
                                     label="HEADER 2"
@@ -59,7 +59,7 @@
                                 </v-text-field>
                             </v-card-text>
                             <v-card-actions>
-                                <v-spacer></v-spacer>                                
+                                <v-spacer></v-spacer>             
                                 <v-btn 
                                     color="blue darken-1" 
                                     text 
@@ -75,33 +75,33 @@
     </SystemConfigLayout>
 </template>
 <script>
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 import SystemConfigLayout from '@/views/layouts/SystemConfigLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 export default {
-    name: 'HeaderLaporan',
+    name: "HeaderLaporan",
     created()
     {
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.ACCESS_TOKEN
+                href: "/dashboard/" + this.ACCESS_TOKEN
             },
             {
-                text: 'KONFIGURASI SISTEM',
+                text: "KONFIGURASI SISTEM",
                 disabled: false,
-                href: '/system-setting'
+                href: "/system-setting"
             },  
             {
-                text: 'PERGURUAN TINGGI',
+                text: "PERGURUAN TINGGI",
                 disabled: false,
-                href: '#'
+                href: "#"
             },
             {
-                text: 'HEADER LAPORAN',
+                text: "HEADER LAPORAN",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];
         this.initialize();
@@ -111,67 +111,67 @@ export default {
         datatableLoading: false,
         btnLoading: false,   
         //form
-        form_valid: true,   
+        form_valid: true,  
         formdata: {
-            header_1:null,
-            header_2:null,
-            header_3:null,
-            header_4:null,
-            header_address:null,
-        },        
+            header_1: null,
+            header_2: null,
+            header_3: null,
+            header_4: null,
+            header_address: null,
+        },    
     }),
     methods: {
         initialize: async function() 
         {
-            this.datatableLoading=true;
-            await this.$ajax.get('/system/setting/variables',
+            this.datatableLoading = true;
+            await this.$ajax.get("/system/setting/variables",
             {
                 headers: {
                     Authorization: this.TOKEN
                 }
             }).then(({ data })=>{  
-                let setting = data.setting;                           
+                let setting = data.setting;                         
                 this.formdata.header_1=setting.HEADER_1;
                 this.formdata.header_2=setting.HEADER_2;
                 this.formdata.header_3=setting.HEADER_3;
                 this.formdata.header_4=setting.HEADER_4;
                 this.formdata.header_address=setting.HEADER_ADDRESS;
-            });          
+            });        
             
         },
         save () {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;                
-                this.$ajax.post('/system/setting/variables',
+                this.btnLoading=true;              
+                this.$ajax.post("/system/setting/variables",
                     {
-                        '_method': 'PUT', 
-                        'pid': 'Header Laporan',
+                        _method: "PUT", 
+                        'pid': "Header Laporan",
                         setting:JSON.stringify({
                             701: this.formdata.header_1,
                             702: this.formdata.header_2,
                             703: this.formdata.header_3,
                             704: this.formdata.header_4,
                             705: this.formdata.header_address,
-                        }),                                                                                                                            
+                        }),                                                                                               
                     },
                     {
                         headers: {
                             Authorization: this.TOKEN
                         }
                     }
-                ).then(()=>{                       
+                ).then(() => {         
                     this.btnLoading = false;
-                }).catch(()=>{
+                }).catch(() => {
                     this.btnLoading = false;
-                });        
+                });      
             }
         }
     },
     computed: { 
-        ...mapGetters('auth',{            
-            ACCESS_TOKEN: 'AccessToken',          
-            TOKEN: 'Token',                                  
+        ...mapGetters("auth",{ 
+            ACCESS_TOKEN: "AccessToken",          
+            TOKEN: "Token",     
         }),
     },
     components: {

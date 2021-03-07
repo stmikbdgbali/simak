@@ -1,11 +1,11 @@
 //state
 const getDefaultState = () => 
 {
-    return {              
-        access_token:null,
-        token_type:null,
-        expires_in:null,
-        user:null
+    return {   
+        access_token: null,
+        token_type: null,
+        expires_in: null,
+        user: null
     }
 }
 const state = getDefaultState();
@@ -13,9 +13,9 @@ const state = getDefaultState();
 //mutations
 const mutations = {
     setToken: (state,token) => {   
-        state.access_token = token.access_token;  
-        state.token_type = token.token_type;  
-        state.expires_in = token.expires_in;          
+        state.access_token = token.access_token;
+        state.token_type = token.token_type;
+        state.expires_in = token.expires_in;        
     },
     setUser: (state,user) => {
         state.user = user;
@@ -38,13 +38,9 @@ const getters= {
         return state.user.role;
     },
     DefaultRole:state=>{
-        if (state.user===null || typeof state.user === 'undefined')
-        {
-            return 'N.A';
-            
-        }
-        else
-        {
+        if (state.user===null || typeof state.user === "undefined"){
+            return "N.A";          
+        } else {
             return state.user.default_role;
         }
     },
@@ -75,7 +71,7 @@ const getters= {
         return state.user;
     },
     AttributeUser : (state) => (key) =>
-    {           
+    {
         return state.user == null?'':state.user[key];
     },
     can : (state) => (name)=>
@@ -90,20 +86,20 @@ const getters= {
         }
         else
         {
-            let permissions = state.user.permissions;                
-            return name in permissions ? true : false;                
+            let permissions = state.user.permissions;              
+            return name in permissions ? true : false;              
         }
     }
 }
 const actions = {
     afterLoginSuccess ({commit},data)
     {
-        commit('setToken',data.token);
-        commit('setUser',data.user);
+        commit("setToken",data.token);
+        commit("setUser",data.user);
     },
     logout({commit})
     {
-        commit('resetState');
+        commit("resetState");
     }
 }
 export default {

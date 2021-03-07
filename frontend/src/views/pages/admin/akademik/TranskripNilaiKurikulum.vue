@@ -31,7 +31,7 @@
         <template v-slot:filtersidebar>
             <Filter7 v-on:changeTahunPendaftaran="changeTahunPendaftaran" v-on:changeProdi="changeProdi" ref="filter7" />	
         </template>
-        <v-container fluid>                         
+        <v-container fluid>      
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
                     <v-card>
@@ -84,7 +84,7 @@
                         </template>
                         <template v-slot:item.actions="{ item }">
                             <v-tooltip bottom>             
-                                <template v-slot:activator="{ on, attrs }">                                             
+                                <template v-slot:activator="{ on, attrs }">        
                                     <v-btn 
                                         v-bind="attrs"
                                         v-on="on"
@@ -99,10 +99,10 @@
                                         <v-icon>mdi-eye</v-icon>
                                     </v-btn>     
                                 </template>
-                                <span>Detail Transkrip</span>                                   
+                                <span>Detail Transkrip</span>                
                             </v-tooltip> 
                             <v-tooltip bottom>             
-                                <template v-slot:activator="{ on, attrs }">                                             
+                                <template v-slot:activator="{ on, attrs }">        
                                     <v-btn 
                                         v-bind="attrs"
                                         v-on="on"
@@ -117,14 +117,14 @@
                                         <v-icon>mdi-printer</v-icon>
                                     </v-btn>     
                                 </template>
-                                <span>Cetak Transkrip Dua Kolom</span>                                   
+                                <span>Cetak Transkrip Dua Kolom</span>                
                             </v-tooltip>                 
                         </template>           
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
-                                <v-col cols="12">                          
+                                <v-col cols="12">       
                                     <strong>user_id:</strong>{{ item.user_id }}                                              
-                                </v-col>                                
+                                </v-col>             
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -143,58 +143,58 @@
                     <v-btn
                         color="green"
                         text
-                        :href="$api.url+'/'+file_pdf">                            
+                        :href="$api.url+'/'+file_pdf">         
                         Download
-                    </v-btn>                           
+                    </v-btn>        
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="blue darken-1" text @click.stop="closedialogprintpdf">CLOSE</v-btn>                            
+                    <v-btn color="blue darken-1" text @click.stop="closedialogprintpdf">CLOSE</v-btn>         
                 </v-card-actions>
             </v-card>            
         </v-dialog>
     </AkademikLayout>
 </template>
 <script>
-import AkademikLayout from '@/views/layouts/AkademikLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import AkademikLayout from "@/views/layouts/AkademikLayout";
+import ModuleHeader from "@/components/ModuleHeader";
 import Filter7 from '@/components/sidebar/FilterMode7';
 export default {
-    name: 'TranskripNilaiKurikulum',
-    created () {
+    name: "TranskripNilaiKurikulum",
+    created() {
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
             },
             {
-                text: 'AKADEMIK',
+                text: "AKADEMIK",
                 disabled: false,
-                href: '/akademik'
+                href: "/akademik",
             },
             {
-                text: 'NILAI',
+                text: "NILAI",
                 disabled: false,
-                href: '#'
+                href: "#"
             },
             {
-                text: 'TRANSKRIP KURIKULUM',
+                text: "TRANSKRIP KURIKULUM",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];
-        let prodi_id=this.$store.getters['uiadmin/getProdiID'];
-        this.prodi_id=prodi_id;
-        this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](prodi_id);
-        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];                
+        let prodi_id = this.$store.getters['uiadmin/getProdiID'];
+        this.prodi_id = prodi_id;
+        this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
+        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];              
         this.initialize()
     },  
     data: () => ({ 
         firstloading: true,
-        prodi_id:null,
-        nama_prodi:null,
-        tahun_pendaftaran:null,
+        prodi_id: null,
+        nama_prodi: null,
+        tahun_pendaftaran: null,
         filter_ignore: false, 
         awaiting_search: false,
         
@@ -202,34 +202,34 @@ export default {
         btnLoadingTable: false,
         datatableLoading: false,
         expanded: [],
-        datatable: [],      
+        datatable: [],
         headers: [            
-            { text: 'NIM', value: 'nim', sortable: true,width:100  },               
-            { text: 'NAMA MAHASISWA', value: 'nama_mhs',sortable: true },                           
-            { text: 'KELAS', value: 'idkelas',sortable: true,width:120, },                           
-            { text: 'JUMLAH MATKUL', value: 'jumlah_matkul',sortable: false,width:100, },                           
-            { text: 'JUMLAH SKS', value: 'jumlah_sks',sortable: false,width:100, },                           
-            { text: 'IPK SEMENTARA', value: 'ipk',sortable: true,width:100, },                           
-            { text: 'AKSI', value: 'actions', sortable: false,width:120 },
-        ],  
-        search: "", 
+            { text: "NIM", value: "nim", sortable: true,width:100  },
+            { text: "NAMA MAHASISWA", value: "nama_mhs",sortable: true },            
+            { text: "KELAS", value: "idkelas",sortable: true,width:120, },            
+            { text: "JUMLAH MATKUL", value: "jumlah_matkul",sortable: false, width:100, },            
+            { text: "JUMLAH SKS", value: "jumlah_sks",sortable: false, width:100, },            
+            { text: "IPK SEMENTARA", value: "ipk",sortable: true,width:100, },            
+            { text: "AKSI", value: "actions", sortable: false,width:120 },
+        ],
+        search: "",
 
         dialogprintpdf: false,
-        file_pdf:null
+        file_pdf: null
     }),
     methods: {
         changeTahunPendaftaran (tahun)
         {
-            this.tahun_pendaftaran=tahun;
+            this.tahun_pendaftaran = tahun;
         },
         changeProdi (id)
         {
-            this.prodi_id=id;
+            this.prodi_id = id;
         },
         initialize: async function() 
         {
-            this.datatableLoading=true;
-            await this.$ajax.post('/akademik/nilai/transkripkurikulum',
+            this.datatableLoading = true;
+            await this.$ajax.post("/akademik/nilai/transkripkurikulum",
             {
                 prodi_id: this.prodi_id,
                 ta: this.tahun_pendaftaran
@@ -238,52 +238,52 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{               
+            }).then(({ data })=>{    
                 this.datatable = data.mahasiswa;
-                this.datatableLoading=false;
-            }).catch(()=>{
-                this.datatableLoading=false;
-            });  
-            this.firstloading=false;
+                this.datatableLoading = false;
+            }).catch(() => {
+                this.datatableLoading = false;
+            });
+            this.firstloading = false;
             this.$refs.filter7.setFirstTimeLoading(this.firstloading); 
         },
         dataTableRowClicked(item)
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded = [];              
             }
             else
             {
-                this.expanded=[item];
+                this.expanded = [item];
             }               
         },
         viewItem(item)
         {
-            this.$router.push('/akademik/nilai/transkripkurikulum/'+item.user_id);
+            this.$router.push("/akademik/nilai/transkripkurikulum/" + item.user_id);
         },
         async printpdf2(item)
         {
             this.btnLoading=true;
-            await this.$ajax.get('/akademik/nilai/transkripkurikulum/printpdf2/'+item.user_id,                
+            await this.$ajax.get("/akademik/nilai/transkripkurikulum/printpdf2/" + item.user_id,                
                 {
                     headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     },
                     
                 }
-            ).then(({ data })=>{                              
+            ).then(({ data })=>{                   
                 this.file_pdf=data.pdf_file;
                 this.dialogprintpdf=true;
                 this.btnLoading = false;
-            }).catch(()=>{
+            }).catch(() => {
                 this.btnLoading = false;
-            });                 
+            });               
         },
-        closedialogprintpdf () {                  
+        closedialogprintpdf () {       
             setTimeout(() => {
                 this.file_pdf=null;
-                this.dialogprintpdf = false;      
+                this.dialogprintpdf = false;    
                 }, 300
             );
         }, 
@@ -311,8 +311,8 @@ export default {
                 setTimeout(async () => {
                     if (this.search.length > 0 && this.filter_ignore)
                     {
-                        this.datatableLoading=true;            
-                        await this.$ajax.post('/akademik/nilai/transkripkurikulum',
+                        this.datatableLoading = true;          
+                        await this.$ajax.post("/akademik/nilai/transkripkurikulum",
                         {
                             prodi_id: this.prodi_id,
                             ta: this.tahun_pendaftaran,            
@@ -322,10 +322,10 @@ export default {
                             headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
-                        }).then(({ data })=>{               
+                        }).then(({ data })=>{    
                             this.datatable = data.mahasiswa;
-                            this.datatableLoading=false;
-                        });                     
+                            this.datatableLoading = false;
+                        });                   
                     }
                     this.awaiting_search = false;
                 }, 1000); // 1 sec delay

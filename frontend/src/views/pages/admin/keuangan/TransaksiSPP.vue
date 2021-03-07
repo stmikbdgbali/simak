@@ -75,11 +75,11 @@
                                     inset
                                     vertical
                                 ></v-divider>
-                                <v-spacer></v-spacer>                                    
+                                <v-spacer></v-spacer>                 
                                 <v-btn color="primary" icon outlined small class="ma-2" @click.stop="addItem">
                                     <v-icon>mdi-plus</v-icon>
-                                </v-btn>                                        
-                                <v-dialog v-model="dialogfrm" max-width="500px" persistent>                                    
+                                </v-btn>   
+                                <v-dialog v-model="dialogfrm" max-width="500px" persistent>                 
                                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>
                                         <v-card>
                                             <v-card-title>
@@ -98,7 +98,7 @@
                                                     September {{tahun_akademik}} s.d  Februari {{tahun_akademik+1}} = GANJIL<br>
                                                     Maret {{tahun_akademik+1}} s.d  JULI {{tahun_akademik+1}} = GENAP<br>
                                                     AGUSTUS {{tahun_akademik+1}} = PENDEK (bila ada)<br>
-                                                </v-alert>                                          
+                                                </v-alert>     
                                                 <v-select
                                                     v-model="formdata.semester_akademik"
                                                     :items="daftar_semester"                                    
@@ -106,7 +106,7 @@
                                                     :rules="rule_semester"
                                                     item-text="text"
                                                     item-value="id"
-                                                    outlined/>                                                                                 
+                                                    outlined />                                            
                                             </v-card-text>
                                             <v-card-actions>
                                                 <v-spacer></v-spacer>
@@ -126,12 +126,12 @@
                             </v-toolbar>
                         </template>
                         <template v-slot:item.tanggal="{ item }">    
-                            {{$date(item.tanggal).format('DD/MM/YYYY')}}
+                            {{$date(item.tanggal).format("DD/MM/YYYY")}}
                         </template>
                         <template v-slot:item.sub_total="{ item }">    
                             {{item.sub_total|formatUang}}
                         </template>
-                        <template v-slot:item.idsmt="{ item }">                                
+                        <template v-slot:item.idsmt="{ item }">             
                             {{item.ta}} {{$store.getters['uiadmin/getNamaSemester'](item.idsmt)}}
                         </template>
                         <template v-slot:item.nama_status="{ item }">    
@@ -143,33 +143,33 @@
                                 class="mr-2"
                                 @click.stop="viewItem(item)">
                                 mdi-eye
-                            </v-icon>                                                        
+                            </v-icon>                   
                         </template>
                         <template v-slot:body.append v-if="datatable.length > 0">
                             <tr class="grey lighten-4 font-weight-black">
                                 <td class="text-right" colspan="7">TOTAL TRANSAKSI PAID</td>
                                 <td class="text-right" >{{totaltransaksi_paid|formatUang}}</td> 
                                 <td></td>
-                                <td></td>                                
-                            </tr>                            
+                                <td></td>             
+                            </tr>         
                             <tr class="grey lighten-4 font-weight-black">
                                 <td class="text-right" colspan="7">TOTAL TRANSAKSI UNPAID</td>
                                 <td class="text-right" >{{totaltransaksi_unpaid|formatUang}}</td> 
                                 <td></td>
-                                <td></td>                                
-                            </tr>                            
+                                <td></td>             
+                            </tr>         
                             <tr class="grey lighten-4 font-weight-black">
                                 <td class="text-right" colspan="7">TOTAL TRANSAKSI CANCELED</td>
                                 <td class="text-right" >{{totaltransaksi_canceled|formatUang}}</td> 
                                 <td></td>
-                                <td></td>                                
-                            </tr>                            
+                                <td></td>             
+                            </tr>         
                             <tr class="grey lighten-4 font-weight-black">
                                 <td class="text-right" colspan="7">TOTAL TRANSAKSI</td>
                                 <td class="text-right" >{{(totaltransaksi_canceled+totaltransaksi_paid+totaltransaksi_unpaid)|formatUang}}</td> 
                                 <td></td>
-                                <td></td>                                
-                            </tr>                            
+                                <td></td>             
+                            </tr>         
                         </template>   
                         <template v-slot:no-data>
                             Data transaksi SPP belum tersedia
@@ -182,34 +182,34 @@
 </template>
 <script>
 import KeuanganLayout from '@/views/layouts/KeuanganLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 import Filter18 from '@/components/sidebar/FilterMode18';
 export default {
-    name: 'TransaksiSPP',
+    name: "TransaksiSPP",
     created()
     {
-        this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];   
+        this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard']; 
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
             },
             {
-                text: 'KEUANGAN',
+                text: "KEUANGAN",
                 disabled: false,
-                href: '/keuangan'
+                href: "/keuangan"
             },
             {
-                text: 'TRANSAKSI SPP',
+                text: "TRANSAKSI SPP",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
-        ];        
-        let prodi_id=this.$store.getters['uiadmin/getProdiID'];
-        this.prodi_id=prodi_id;
-        this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](prodi_id);
-        this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];                  
+        ];      
+        let prodi_id = this.$store.getters['uiadmin/getProdiID'];
+        this.prodi_id = prodi_id;
+        this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
+        this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];                
     },
     mounted()
     {
@@ -217,9 +217,9 @@ export default {
     },
     data: () => ({
         firstloading: true,
-        breadcrumbs: [],     
-        prodi_id:null,
-        nama_prodi:null,
+        breadcrumbs: [],  
+        prodi_id: null,
+        nama_prodi: null,
         tahun_akademik:0,
         filter_ignore: false, 
         awaiting_search: false,
@@ -228,47 +228,47 @@ export default {
 
         //tables
         datatableLoading: false,       
-        datatable: [], 
+        datatable: [],
         headers: [                                                
-            { text: 'KODE BILLING', value: 'no_transaksi',width:100,sortable: true },
-            { text: 'TANGGAL', value: 'tanggal',width:90,sortable: true },
-            { text: 'NIM', value: 'nim',sortable: true,width:100 },
-            { text: 'NAMA MAHASISWA', value: 'nama_mhs',sortable: true, width:250 },            
-            { text: 'BULAN', value: 'nama_bulan',width:100,sortable: true },
-            { text: 'TA/SMT', value: 'idsmt',width:50,sortable: false },
-            { text: 'JUMLAH', value: 'sub_total',width:100,sortable: false,align: 'right' },
-            { text: 'STATUS', value: 'nama_status',width:100,sortable: false },            
-            { text: 'AKSI', value: 'actions', sortable: false,width:50 },
-        ],        
+            { text: "KODE BILLING", value: "no_transaksi", width: 100,sortable: true },
+            { text: "TANGGAL", value: "tanggal", width: 90,sortable: true },
+            { text: "NIM", value: "nim",sortable: true,width:100 },
+            { text: "NAMA MAHASISWA", value: "nama_mhs",sortable: true,width:250 },        
+            { text: "BULAN", value: "nama_bulan", width: 100,sortable: true },
+            { text: "TA/SMT", value: "idsmt", width: 50,sortable: false },
+            { text: "JUMLAH", value: "sub_total", width: 100,sortable: false,align: "right" },
+            { text: "STATUS", value: "nama_status", width: 100,sortable: false },        
+            { text: "AKSI", value: "actions", sortable: false,width:50 },
+        ],  
         expanded: [],
-        search: "", 
+        search: "",
 
         dialogfrm: false,        
 
         //form data   
-        form_valid: true,           
-        daftar_semester: [],        
+        form_valid: true,          
+        daftar_semester: [],
         formdata: {
             nim: "",
-            semester_akademik: ''
+            semester_akademik: ""
         },
         formdefault: {
             nim: "",
-            semester_akademik: ''
+            semester_akademik: ""
         },
         rule_nim: [
             value => !!value || "Nomor Induk Mahasiswa (NIM) mohon untuk diisi !!!",
-            value => /^[0-9]+$/.test(value) || 'Nomor Induk Mahasiswa (NIM) hanya boleh angka',
-        ], 
+            value => /^[0-9]+$/.test(value) || "Nomor Induk Mahasiswa (NIM) hanya boleh angka",
+        ],
         rule_semester: [
             value => !!value || "Mohon dipilih Semester untuk transaksi ini !!!"
-        ],    
+        ], 
 
     }),
-    methods : {
+    methods: {
         changeProdi (id)
         {
-            this.prodi_id=id;
+            this.prodi_id = id;
         },
         changeTahunAkademik (tahun)
         {
@@ -276,8 +276,8 @@ export default {
         },
         initialize: async function() 
         {
-            this.datatableLoading=true;            
-            await this.$ajax.post('/keuangan/transaksi-spp',            
+            this.datatableLoading = true;          
+            await this.$ajax.post("/keuangan/transaksi-spp",            
             {
                 prodi_id: this.prodi_id,
                 TA: this.tahun_akademik,
@@ -286,64 +286,64 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{               
-                this.datatable = data.transaksi;                
-                this.datatableLoading=false;
-            });                     
-            this.firstloading=false;
-            this.$refs.filter18.setFirstTimeLoading(this.firstloading);       
+            }).then(({ data })=>{    
+                this.datatable = data.transaksi;              
+                this.datatableLoading = false;
+            });                   
+            this.firstloading = false;
+            this.$refs.filter18.setFirstTimeLoading(this.firstloading);     
         },
         dataTableRowClicked(item)
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded = [];              
             }
             else
             {
-                this.expanded=[item];
+                this.expanded = [item];
             }               
         },
         async addItem ()
         {
-            this.daftar_semester=this.$store.getters['uiadmin/getDaftarSemester'];  
+            this.daftar_semester=this.$store.getters['uiadmin/getDaftarSemester'];
             this.formdata.semester_akademik=this.semester_akademik;
-            if (this.dashboard =='mahasiswa')
+            if (this.dashboard == "mahasiswa")
             {
-                this.formdata.nim=this.$store.getters['auth/AttributeUser']('username');
+                this.formdata.nim=this.$store.getters['auth/AttributeUser']("username");
             }
-            this.dialogfrm=true;            
+            this.dialogfrm=true;          
         },
         viewItem(item)
         {
-            this.$router.push('/keuangan/transaksi-spp/'+item.transaksi_id);
+            this.$router.push("/keuangan/transaksi-spp/" + item.transaksi_id);
         },
-        buatTransaksi:async function() {
+        buatTransaksi: async function() {
             if (this.$refs.frmdata.validate())
             {
-                await this.$ajax.post('/keuangan/transaksi-spp/new',
+                await this.$ajax.post("/keuangan/transaksi-spp/new",
                     {
                         nim: this.formdata.nim, 
-                        semester_akademik: this.formdata.semester_akademik,                                                                            
-                        TA: this.tahun_akademik,                                                     
+                        semester_akademik: this.formdata.semester_akademik,                                               
+                        TA: this.tahun_akademik,                        
                     },
                     {
                         headers: {
                             Authorization: this.$store.getters["auth/Token"]
                         }
                     }
-                ).then(({ data })=>{                                        
-                    this.btnLoading = false;                                        
-                    this.$router.push('/keuangan/transaksi-spp/tambah/'+data.transaksi.id);
-                }).catch(()=>{
+                ).then(({ data })=>{                             
+                    this.btnLoading = false;                                      
+                    this.$router.push("/keuangan/transaksi-spp/tambah/" + data.transaksi.id);
+                }).catch(() => {
                     this.btnLoading = false;
-                });                
+                });              
             }            
         },
         closedialogfrm () {
-            this.dialogfrm = false;            
+            this.dialogfrm = false;          
             setTimeout(() => {
-                this.formdata = Object.assign({}, this.formdefault);                                
+                this.formdata = Object.assign({}, this.formdefault);                              
                 this.$refs.frmdata.reset(); 
                 }, 300
             );
@@ -354,7 +354,7 @@ export default {
         {
             var total=0;
             this.datatable.forEach(item => {
-                if (item.status==1)
+                if (item.status== 1)
                 {
                     total+=item.sub_total;
                 }
@@ -407,8 +407,8 @@ export default {
                 setTimeout(async () => {
                     if (this.search.length > 0 && this.filter_ignore)
                     {
-                        this.datatableLoading=true;            
-                        await this.$ajax.post('/keuangan/transaksi-spp',            
+                        this.datatableLoading = true;          
+                        await this.$ajax.post("/keuangan/transaksi-spp",            
                         {
                             prodi_id: this.prodi_id,
                             TA: this.tahun_akademik,
@@ -418,10 +418,10 @@ export default {
                             headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
-                        }).then(({ data })=>{               
-                            this.datatable = data.transaksi;                
-                            this.datatableLoading=false;
-                        });                     
+                        }).then(({ data })=>{    
+                            this.datatable = data.transaksi;              
+                            this.datatableLoading = false;
+                        });                   
                     }
                     this.awaiting_search = false;
                 }, 1000); // 1 sec delay

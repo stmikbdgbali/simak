@@ -19,7 +19,7 @@
                 <template v-slot:activator="{on}">
                     <v-avatar size="30">
                         <v-img :src="photoUser" v-on="on" />
-                    </v-avatar>                    
+                    </v-avatar> 
                 </template>
                 <v-list>
                     <v-list-item>
@@ -30,11 +30,11 @@
                             <v-list-item-title class="title">
                                 {{ ATTRIBUTE_USER("username") }}
                             </v-list-item-title>
-                            <v-list-item-subtitle>                                
+                            <v-list-item-subtitle>             
                                 [{{ DEFAULT_ROLE }}]
                             </v-list-item-subtitle>
                         </v-list-item-content>
-                    </v-list-item>                    
+                    </v-list-item> 
                     <v-divider/>
                     <v-list-item to="/system-users/profil">
                         <v-list-item-icon class="mr-2">
@@ -76,14 +76,14 @@
 			</v-list-item>
 			<v-divider></v-divider>
             <v-list expand>
-                <v-list-item :to="{path: '/kepegawaian'}" link :class="this.$store.getters['uiadmin/getTheme']('V-LIST-ITEM-BOARD-CSS-CLASS')" :color="this.$store.getters['uiadmin/getTheme']('V-LIST-ITEM-BOARD-COLOR')" v-if="CAN_ACCESS('KEPEGAWAIAN-GROUP')">
+                <v-list-item :to="{path: "/kepegawaian'}" link :class="this.$store.getters['uiadmin/getTheme']('V-LIST-ITEM-BOARD-CSS-CLASS')" :color="this.$store.getters['uiadmin/getTheme']('V-LIST-ITEM-BOARD-COLOR')" v-if="CAN_ACCESS('KEPEGAWAIAN-GROUP')">
                     <v-list-item-icon class="mr-2">
                         <v-icon>mdi-monitor-dashboard</v-icon>
                     </v-list-item-icon>
                     <v-list-item-content>
                         <v-list-item-title>BOARD KEPEGAWAIAN</v-list-item-title>
                     </v-list-item-content>
-                </v-list-item>                   
+                </v-list-item>
                 <v-list-item link to="/kepegawaian/dosen" :active-class="this.$store.getters['uiadmin/getTheme']('V-LIST-ITEM-ACTIVE-CSS-CLASS')" v-if="CAN_ACCESS('KEPEGAWAIAN-DOSEN_BROWSE')">
                     <v-list-item-icon class="mr-2">
                         <v-icon>mdi-teach</v-icon>
@@ -139,10 +139,10 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
-    name: 'KepegawaianLayout',     
+    name: "KepegawaianLayout",     
     created()
     {
-        this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];                      
+        this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];                    
     },
     props: {
         showrightsidebar: {
@@ -157,7 +157,7 @@ export default {
     data: () => ({
         loginTime: 0,
         drawer: null,
-        drawerRight:null, 
+        drawerRight: null,
         
         dashboard: null,
     }),       
@@ -191,14 +191,14 @@ export default {
         }
 	},
     computed: {
-        ...mapGetters('auth',{
-            AUTHENTICATED: 'Authenticated',  
-            ACCESS_TOKEN: 'AccessToken',          
-            TOKEN: 'Token',          
-            DEFAULT_ROLE: 'DefaultRole',
-            ROLE: 'Role',
-            CAN_ACCESS: 'can',         
-            ATTRIBUTE_USER: 'AttributeUser',               
+        ...mapGetters("auth",{
+            AUTHENTICATED: "Authenticated",  
+            ACCESS_TOKEN: "AccessToken",          
+            TOKEN: "Token",          
+            DEFAULT_ROLE: "DefaultRole",
+            ROLE: "Role",
+            CAN_ACCESS: "can",         
+            ATTRIBUTE_USER: "AttributeUser",               
         }),
         APP_NAME ()
         {
@@ -208,7 +208,7 @@ export default {
 		{
 			let img=this.ATTRIBUTE_USER("foto");
 			var photo;
-			if (img == '')
+			if (img == "")
 			{
 				photo = this.$api.url+'/storage/images/users/no_photo.png';	
 			}
@@ -217,10 +217,10 @@ export default {
 				photo = this.$api.url+'/'+img;	
 			}
 			return photo;
-        },        
+        },    
         paramid ()
         {
-            var id='empty';                        
+            var id='empty';                      
             switch (this.$route.name)
             {
                 case 'PerkuliahanPenyelenggaraanDosenPengampu':
@@ -247,7 +247,7 @@ export default {
                 if (value >= 0)
                 {
                     setTimeout(() => { 
-                        this.loginTime=this.AUTHENTICATED==true?this.loginTime+1:-1;                                                                     
+                        this.loginTime=this.AUTHENTICATED==true?this.loginTime+1:-1;                                                                   
 					}, 1000);
                 }
                 else
@@ -257,7 +257,7 @@ export default {
                 }
             },
             immediate: true
-        },        
+        },    
     }
 }
 </script>

@@ -95,31 +95,31 @@
 </template>
 <script>
 import ElearningLayout from '@/views/layouts/ElearningLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 import Filter2 from '@/components/sidebar/FilterMode2';
 export default {
-    name: 'ElearningKelas',
-    created ()
+    name: "ElearningKelas",
+    created()
 	{
 		this.breadcrumbs = [
 			{
-				text: 'HOME',
+				text: "HOME",
 				disabled: false,
-				href: '/dashboard/'+this.$store.getters['auth/AccessToken']
+				href: "/dashboard/" + this.$store.getters['auth/AccessToken']
 			},
 			{
-				text: 'E-LEARNING',
+				text: "E-LEARNING",
 				disabled: true,
-				href: '#'
+				href: "#"
             },
             {
-				text: 'KELAS',
+				text: "KELAS",
 				disabled: true,
-				href: '#'
+				href: "#"
 			}
-        ];				
-        this.tahun_akademik=this.$store.getters['uiadmin/getTahunAkademik'];                
-        this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];        
+        ];		
+        this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];              
+        this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];      
     },
     mounted()
     {
@@ -128,13 +128,13 @@ export default {
     data: () => ({
         datatableLoading: false,
         firstloading: true,
-        breadcrumbs: [],        
-        datatable: [],      
-        tahun_akademik:null,
-        semester_akademik:null,
+        breadcrumbs: [],
+        datatable: [],
+        tahun_akademik: null,
+        semester_akademik: null,
         
     }),
-    methods : {
+    methods: {
         changeTahunAkademik (tahun)
         {
             this.tahun_akademik=tahun;
@@ -143,10 +143,10 @@ export default {
         {
             this.semester_akademik=semester;
         },
-		initialize:async function() 
+		initialize: async function() 
         {
-            this.datatableLoading=true;
-            await this.$ajax.post('/akademik/perkuliahan/pembagiankelas',
+            this.datatableLoading = true;
+            await this.$ajax.post("/akademik/perkuliahan/pembagiankelas",
             {
                 ta: this.tahun_akademik,
                 semester_akademik: this.semester_akademik,
@@ -155,13 +155,13 @@ export default {
                 headers: {
                     Authorization: this.$store.getters['auth/Token']
                 }
-            }).then(({ data })=>{                               
+            }).then(({ data })=>{                    
                 this.datatable = data.pembagiankelas;
-                this.datatableLoading=false;
-            }).catch(()=>{
-                this.datatableLoading=false;
-            });  
-            this.firstloading=false;
+                this.datatableLoading = false;
+            }).catch(() => {
+                this.datatableLoading = false;
+            });
+            this.firstloading = false;
             this.$refs.filter2.setFirstTimeLoading(this.firstloading); 
         },
     },

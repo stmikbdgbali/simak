@@ -28,9 +28,9 @@
                 </v-alert>
             </template>
         </ModuleHeader>        
-        <v-container fluid>                         
+        <v-container fluid>      
             <v-row class="mb-4" no-gutters>
-                <v-col cols="12">                    
+                <v-col cols="12"> 
                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>
                         <v-card>
                             <v-card-title>
@@ -45,7 +45,7 @@
                                     :items="daftar_ta"                                    
                                     label="TAHUN MATAKULIAH"
                                     :rules="rule_tamatkul"
-                                    outlined/>   
+                                    outlined />   
                                 <v-text-field
                                     v-model="search"
                                     append-icon="mdi-database-search"
@@ -95,7 +95,7 @@
                                                             </v-card>
                                                         </v-col>
                                                         <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
-                                                    </v-row>                                            
+                                                    </v-row>       
                                                     <v-row no-gutters>
                                                         <v-col xs="12" sm="6" md="6">
                                                             <v-card flat>
@@ -105,7 +105,7 @@
                                                                 </v-card-subtitle>
                                                             </v-card>
                                                         </v-col>
-                                                        <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>                                                
+                                                        <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>           
                                                         <v-col xs="12" sm="6" md="6">
                                                             <v-card flat>
                                                                 <v-card-title>SKS TATAP MUKA :</v-card-title>
@@ -115,7 +115,7 @@
                                                             </v-card>
                                                         </v-col>
                                                         <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
-                                                    </v-row>                                            
+                                                    </v-row>       
                                                     <v-row no-gutters>
                                                         <v-col xs="12" sm="6" md="6">
                                                             <v-card flat>
@@ -125,7 +125,7 @@
                                                                 </v-card-subtitle>
                                                             </v-card>
                                                         </v-col>
-                                                        <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>                                                
+                                                        <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>           
                                                         <v-col xs="12" sm="6" md="6">
                                                             <v-card flat>
                                                                 <v-card-title>SKS PRAKTIKUM :</v-card-title>
@@ -135,7 +135,7 @@
                                                             </v-card>
                                                         </v-col>
                                                         <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
-                                                    </v-row>                                            
+                                                    </v-row>       
                                                     <v-row no-gutters>
                                                         <v-col xs="12" sm="6" md="6">
                                                             <v-card flat>
@@ -145,7 +145,7 @@
                                                                 </v-card-subtitle>
                                                             </v-card>
                                                         </v-col>
-                                                        <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>                                                
+                                                        <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>           
                                                         <v-col xs="12" sm="6" md="6">
                                                             <v-card flat>
                                                                 <v-card-title>SKS PRAKTIK LAPANGAN :</v-card-title>
@@ -155,7 +155,7 @@
                                                             </v-card>
                                                         </v-col>
                                                         <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
-                                                    </v-row>                                            
+                                                    </v-row>       
                                                     <v-row no-gutters>
                                                         <v-col xs="12" sm="6" md="6">
                                                             <v-card flat>
@@ -165,17 +165,17 @@
                                                                 </v-card-subtitle>
                                                             </v-card>
                                                         </v-col>
-                                                        <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>                                                
+                                                        <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>           
                                                         <v-col xs="12" sm="6" md="6">
                                                             <v-card flat>
                                                                 <v-card-title>SYARAT SKRIPSI :</v-card-title>
                                                                 <v-card-subtitle>
-                                                                    {{formdata.syarat_skripsi == 1 ? 'YA' : 'TIDAK'}}
+                                                                    {{formdata.syarat_skripsi == 1 ? "YA" : "TIDAK"}}
                                                                 </v-card-subtitle>
                                                             </v-card>
                                                         </v-col>
                                                         <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
-                                                    </v-row>                                            
+                                                    </v-row>       
                                                     <v-row no-gutters>
                                                         <v-col xs="12" sm="6" md="6">
                                                             <v-card flat>
@@ -185,24 +185,24 @@
                                                                 </v-card-subtitle>
                                                             </v-card>
                                                         </v-col>
-                                                        <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>                                                
+                                                        <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>           
                                                         <v-col xs="12" sm="6" md="6">
                                                             <v-card flat>
                                                                 <v-card-title>STATUS :</v-card-title>
                                                                 <v-card-subtitle>
-                                                                    {{formdata.status == 1 ? 'AKTIF' : 'NON-AKTIF'}}
+                                                                    {{formdata.status == 1 ? "AKTIF" : "NON-AKTIF" }}
                                                                 </v-card-subtitle>
                                                             </v-card>
                                                         </v-col>
                                                         <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
-                                                    </v-row>                                            
+                                                    </v-row>       
                                                 </v-card-text>
                                                 <v-card-actions>
                                                     <v-spacer></v-spacer>
                                                     <v-btn color="blue darken-1" text @click.stop="closedialogdetailitem">KELUAR</v-btn>
                                                 </v-card-actions>
-                                            </v-card>                                    
-                                        </v-dialog>                                            
+                                            </v-card>                 
+                                        </v-dialog>       
                                     </template>
                                     <template v-slot:item.actions="{ item }">
                                         <v-icon
@@ -210,17 +210,17 @@
                                             class="mr-2"
                                             @click.stop="viewItem(item)">
                                             mdi-eye
-                                        </v-icon>                                    
+                                        </v-icon>                 
                                     </template>
                                     <template v-slot:expanded-item="{ headers, item }">
                                         <td :colspan="headers.length" class="text-center">
-                                            <v-col cols="12">                          
+                                            <v-col cols="12">       
                                                 <strong>ID:</strong>{{ item.id }}          
-                                                <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
-                                                <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
-                                            </v-col>                                
+                                                <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
+                                                <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
+                                            </v-col>             
                                         </td>
-                                    </template>                                    
+                                    </template>                 
                                     <template v-slot:no-data>
                                         Data matakuliah belum tersedia
                                     </template>
@@ -246,53 +246,53 @@
     </AkademikLayout>
 </template>
 <script>
-import AkademikLayout from '@/views/layouts/AkademikLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import AkademikLayout from "@/views/layouts/AkademikLayout";
+import ModuleHeader from "@/components/ModuleHeader";
 export default {
-    name: 'PerkuliahanPenyelenggaraanTambah',
-    created () {
+    name: "PerkuliahanPenyelenggaraanTambah",
+    created() {
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
             },
             {
-                text: 'AKADEMIK',
+                text: "AKADEMIK",
                 disabled: false,
-                href: '/akademik'
+                href: "/akademik"
             },
             {
-                text: 'PERKULIAHAN',
+                text: "PERKULIAHAN",
                 disabled: false,
-                href: '#'
+                href: "#"
             },
             {
-                text: 'PENYELENGGARAAN MATAKULIAH',
+                text: "PENYELENGGARAAN MATAKULIAH",
                 disabled: false,
-                href: '/akademik/perkuliahan/penyelenggaraan/daftar'
+                href: "/akademik/perkuliahan/penyelenggaraan/daftar"
             },
             {
-                text: 'TAMBAH',
+                text: "TAMBAH",
                 disabled: true,
-                href: '#'
+                href: "#"
             },
         ];
-        let prodi_id=this.$store.getters['uiadmin/getProdiID'];
-        this.prodi_id=prodi_id;
-        this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](prodi_id);        
-        this.tahun_akademik=this.$store.getters['uiadmin/getTahunAkademik'];  
-        this.daftar_ta=this.$store.getters['uiadmin/getDaftarTABefore'](this.tahun_akademik);                                
-        this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];                
+        let prodi_id = this.$store.getters['uiadmin/getProdiID'];
+        this.prodi_id = prodi_id;
+        this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);      
+        this.tahun_akademik=this.$store.getters['uiadmin/getTahunAkademik'];
+        this.daftar_ta=this.$store.getters['uiadmin/getDaftarTABefore'](this.tahun_akademik);                              
+        this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];              
         
     },  
     data: () => ({ 
         firstloading: true,
-        prodi_id:null,
-        nama_prodi:null,
-        tahun_akademik:null,
-        ta_matkul:null,
-        semester_akademik:null,
+        prodi_id: null,
+        nama_prodi: null,
+        tahun_akademik: null,
+        ta_matkul: null,
+        semester_akademik: null,
 
         btnLoading: false,        
 
@@ -300,19 +300,19 @@ export default {
         dialogdetailitem: false,
         datatableLoading: false,
         expanded: [],
-        datatable: [],      
+        datatable: [],
         headers: [
-            { text: 'KODE', value: 'kmatkul', sortable: true,width:120  },   
-            { text: 'NAMA MATAKULIAH', value: 'nmatkul',sortable: true },               
-            { text: 'KELOMPOK', value: 'group_alias', sortable: true,width:120 },               
-            { text: 'SKS', value: 'sks',sortable: true,width:80, align: 'center' },               
-            { text: 'SMT', value: 'semester', sortable: true,width:80 },               
-            { text: 'AKSI', value: 'actions', sortable: false,width:100 },
-        ],  
-        search: "",    
+            { text: "KODE", value: "kmatkul", sortable: true,width:120  },   
+            { text: "NAMA MATAKULIAH", value: "nmatkul",sortable: true },
+            { text: "KELOMPOK", value: "group_alias", sortable: true,width:120 },
+            { text: "SKS", value: "sks",sortable: true,width:80, align: "center" },
+            { text: "SMT", value: "semester", sortable: true,width:80 },
+            { text: "AKSI", value: "actions", sortable: false, width:100 },
+        ],
+        search: "",
 
         //formdata
-        form_valid: true,   
+        form_valid: true,  
         formdata: [],
         daftar_matkul_selected: [],
         rule_tamatkul: [
@@ -325,17 +325,17 @@ export default {
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded = [];              
             }
             else
             {
-                this.expanded=[item];
+                this.expanded = [item];
             }               
         },
-        fetchMatkul:async function (val) 
+        fetchMatkul: async function(val) 
         {
-            this.datatableLoading=true;
-            await this.$ajax.post('/akademik/matakuliah/penyelenggaraan',
+            this.datatableLoading = true;
+            await this.$ajax.post("/akademik/matakuliah/penyelenggaraan",
             {
                 prodi_id: this.prodi_id,
                 ta_matkul:val,
@@ -346,16 +346,16 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{               
+            }).then(({ data })=>{    
                 this.datatable = data.matakuliah;
-                this.datatableLoading=false;
-            }).catch(()=>{
-                this.datatableLoading=false;
-            });  
+                this.datatableLoading = false;
+            }).catch(() => {
+                this.datatableLoading = false;
+            });
         },
-        async viewItem (item) {
-            this.formdata=item;      
-            await this.$ajax.get('/akademik/matakuliah/'+item.id,
+        async viewItem(item) {
+            this.formdata = item;  
+            await this.$ajax.get("/akademik/matakuliah/"+item.id,
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
@@ -363,44 +363,44 @@ export default {
             }).then(({ data })=>{
                 this.formdata=data.matakuliah;
             });
-            this.dialogdetailitem=true;                        
-        },    
-        save:async function() {
+            this.dialogdetailitem = true;                    
+        },
+        save: async function() {
             if (this.$refs.frmdata.validate())
-            {                
+            {     
                 this.btnLoading=true;
-                await this.$ajax.post('/akademik/perkuliahan/penyelenggaraanmatakuliah/store',
+                await this.$ajax.post("/akademik/perkuliahan/penyelenggaraanmatakuliah/store",
                     {
                         prodi_id: this.prodi_id,
                         ta: this.tahun_akademik,
                         semester_akademik: this.semester_akademik,                          
-                        matkul_selected:JSON.stringify(Object.assign({},this.daftar_matkul_selected)),                                                                    
+                        matkul_selected:JSON.stringify(Object.assign({},this.daftar_matkul_selected)),                                       
                     },
                     {
                         headers: {
                             Authorization: this.$store.getters["auth/Token"]
                         }
                     }
-                ).then(()=>{                       
+                ).then(() => {         
                     this.btnLoading = false;
                     this.closedialogfrm();
-                }).catch(()=>{
+                }).catch(() => {
                     this.btnLoading = false;
                 });
             }
         },
-        closedialogdetailitem () {
-            this.dialogdetailitem = false;            
+        closedialogdetailitem() {
+            this.dialogdetailitem = false;          
             setTimeout(() => {
                 this.formdata = Object.assign({}, this.formdefault)
                 this.editedIndex = -1
                 }, 300
             );
         },
-        closedialogfrm () {                             
+        closedialogfrm () {                  
             setTimeout(() => {       
-                this.formdata = Object.assign({}, this.formdefault);                                
-                this.$router.push('/akademik/perkuliahan/penyelenggaraan/daftar');
+                this.formdata = Object.assign({}, this.formdefault);                              
+                this.$router.push("/akademik/perkuliahan/penyelenggaraan/daftar");
                 }, 300
             );
         },
@@ -408,8 +408,8 @@ export default {
     watch: {
         ta_matkul(val)
         {
-            this.fetchMatkul(val);                        
-        },        
+            this.fetchMatkul(val);                      
+        },    
     },
     components: {
         AkademikLayout,

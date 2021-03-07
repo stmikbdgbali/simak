@@ -13,7 +13,7 @@
                 mdi-close-thick
             </v-icon>
         </v-toolbar>
-        <v-card-text v-if="datamhs.hasOwnProperty('user_id')">            
+        <v-card-text v-if="datamhs.hasOwnProperty("user_id")">            
             <v-row>
                 <v-col xs="12" sm="12" md="2">
                     <v-card flat class="mb-2">
@@ -30,7 +30,7 @@
                         <v-card-text>
                             <v-chip label outlined color="info">{{datamhs.n_status}}</v-chip>
                         </v-card-text>
-                    </v-card>                                    
+                    </v-card>                 
                 </v-col>
                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly || $vuetify.breakpoint.smOnly"/>
                 <v-col xs="12" sm="12" md="10">
@@ -108,7 +108,7 @@
                             <v-card flat class="mb-2">
                                 <v-card-title>CREATED/UPDATED:</v-card-title>  
                                 <v-card-subtitle>
-                                    {{$date(datamhs.created_at).format('DD/MM/YYYY HH:mm')}} ~ {{$date(datamhs.updated_at).format('DD/MM/YYYY HH:mm')}}
+                                    {{$date(datamhs.created_at).format("DD/MM/YYYY HH:mm")}} ~ {{$date(datamhs.updated_at).format("DD/MM/YYYY HH:mm")}}
                                 </v-card-subtitle>
                             </v-card>
                         </v-col>
@@ -122,24 +122,24 @@
 </template>
 <script>    
 export default {
-    name:'ProfilMahasiswaLama',
+    name: "ProfilMahasiswaLama",
     created()
     {
-        this.initialize();                     
+        this.initialize();                   
     },
     props:{
         datamhs:{
             type:Object,            
-            required:true
+            required: true
         },
         url:{
             type:String,
-            default:null            
+            default: null            
         }
     },
     
     methods: {
-        initialize:async function ()
+        initialize: async function ()
         {
             
         },
@@ -150,6 +150,6 @@ export default {
                 this.$router.push(this.url);
             }            
         }
-    },    
+    },
 }
 </script>

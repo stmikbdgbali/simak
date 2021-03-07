@@ -31,7 +31,7 @@
         <template v-slot:filtersidebar>
             <Filter2 v-on:changeTahunAkademik="changeTahunAkademik" v-on:changeSemesterAkademik="changeSemesterAkademik" ref="filter2" />	
         </template>
-        <v-container fluid>                         
+        <v-container fluid>      
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
                     <v-card>
@@ -71,7 +71,7 @@
                                     inset
                                     vertical
                                 ></v-divider>
-                                <v-spacer></v-spacer>                                
+                                <v-spacer></v-spacer>             
                             </v-toolbar>
                         </template>
                         <template v-slot:item.nmatkul="{item}">
@@ -93,14 +93,14 @@
                             <span v-else>
                                 N.A
                             </span>
-                        </template>                                   
+                        </template>                
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
-                                <v-col cols="12">                          
+                                <v-col cols="12">       
                                     <strong>ID:</strong>{{ item.id }}          
-                                    <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
-                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
-                                </v-col>                                
+                                    <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
+                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
+                                </v-col>             
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -113,62 +113,62 @@
     </AkademikLayout>
 </template>
 <script>
-import AkademikLayout from '@/views/layouts/AkademikLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import AkademikLayout from "@/views/layouts/AkademikLayout";
+import ModuleHeader from "@/components/ModuleHeader";
 import Filter2 from '@/components/sidebar/FilterMode2';
 
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
-    name: 'NilaiIsiPerKelasMHS',
-    created () {
+    name: "NilaiIsiPerKelasMHS",
+    created() {
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
             },
             {
-                text: 'AKADEMIK',
+                text: "AKADEMIK",
                 disabled: false,
-                href: '/akademik'
+                href: "/akademik",
             },
             {
-                text: 'ISI NILAI',
+                text: "ISI NILAI",
                 disabled: false,
-                href: '#'
+                href: "#"
             },
             {
-                text: 'PER KELAS MAHASISWA',
+                text: "PER KELAS MAHASISWA",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];
-        this.tahun_akademik=this.$store.getters['uiadmin/getTahunAkademik'];                
-        this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];                
+        this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];              
+        this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];              
         this.initialize()
     },  
     data: () => ({ 
-        firstloading: true,        
+        firstloading: true,       
         daftar_ta: [],
-        tahun_akademik:null,
-        semester_akademik:null,
+        tahun_akademik: null,
+        semester_akademik: null,
 
         btnLoadingTable: false,
         datatableLoading: false,
         expanded: [],
-        datatable: [],      
+        datatable: [],
         headers: [
-            { text: 'KODE', value: 'kmatkul', sortable: true,width:100  },   
-            { text: 'NAMA MATAKULIAH/KELAS', value: 'nmatkul', sortable: true  },   
-            { text: 'NAMA DOSEN', value: 'nama_dosen', sortable: true  },                           
-            { text: 'HARI', value: 'nama_hari', sortable: true, width:100 },               
-            { text: 'JAM', value: 'jam_masuk',sortable: true, width:100 },                           
-            { text: 'RUANG', value: 'namaruang',sortable: true, width:100},                           
-            { text: 'JUMLAH PESERTA', value: 'jumlah_mhs',sortable: true, width:100},                           
-            { text: 'AKSI', value: 'actions', sortable: false,width:120 },
-        ],  
-        search: "", 
+            { text: "KODE", value: "kmatkul", sortable: true,width:100  },   
+            { text: "NAMA MATAKULIAH/KELAS", value: "nmatkul", sortable: true  },   
+            { text: "NAMA DOSEN", value: "nama_dosen", sortable: true  },            
+            { text: "HARI", value: "nama_hari", sortable: true,width:100 },
+            { text: "JAM", value: "jam_masuk",sortable: true,width:100 },            
+            { text: "RUANG", value: "namaruang",sortable: true,width:100},            
+            { text: "JUMLAH PESERTA", value: "jumlah_mhs",sortable: true,width:100},            
+            { text: "AKSI", value: "actions", sortable: false,width:120 },
+        ],
+        search: "",
 
     }),
     methods: {
@@ -179,11 +179,11 @@ export default {
         changeSemesterAkademik (semester)
         {
             this.semester_akademik=semester;
-        },        
+        },    
         initialize: async function() 
         {
-            this.datatableLoading=true;
-            await this.$ajax.post('/akademik/perkuliahan/pembagiankelas',
+            this.datatableLoading = true;
+            await this.$ajax.post("/akademik/perkuliahan/pembagiankelas",
             {
                 ta: this.tahun_akademik,
                 semester_akademik: this.semester_akademik,
@@ -192,26 +192,26 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{                               
+            }).then(({ data })=>{                    
                 this.datatable = data.pembagiankelas;
-                this.datatableLoading=false;
-            }).catch(()=>{
-                this.datatableLoading=false;
-            });  
-            this.firstloading=false;
+                this.datatableLoading = false;
+            }).catch(() => {
+                this.datatableLoading = false;
+            });
+            this.firstloading = false;
             this.$refs.filter2.setFirstTimeLoading(this.firstloading); 
         },
         dataTableRowClicked(item)
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded = [];              
             }
             else
             {
-                this.expanded=[item];
+                this.expanded = [item];
             }               
-        },                
+        }, 
     },
     watch: {
         tahun_akademik()
@@ -227,11 +227,11 @@ export default {
             {
                 this.initialize();
             }            
-        },        
+        },    
     },
     computed: {
-        ...mapGetters('auth',{            
-            CAN_ACCESS: 'can',                     
+        ...mapGetters("auth",{ 
+            CAN_ACCESS: "can",                     
         }),
     },
     components: {

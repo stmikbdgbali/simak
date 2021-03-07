@@ -23,6 +23,7 @@ class BiayaKomponenPeriodeController extends Controller {
             $data_mhs=\App\Models\Akademik\RegisterMahasiswaModel::find($this->getUserid());
             
             $kombi=BiayaKomponenPeriodeModel::select(\DB::raw('
+                                                pe3_kombi_periode.id,
                                                 pe3_kombi_periode.kombi_id,
                                                 pe3_kombi_periode.nama_kombi,
                                                 pe3_kombi_periode.periode,
@@ -48,6 +49,7 @@ class BiayaKomponenPeriodeController extends Controller {
             $prodi_id=$request->input('prodi_id');
             
             $kombi=BiayaKomponenPeriodeModel::select(\DB::raw('
+                                                pe3_kombi_periode.id,
                                                 pe3_kombi_periode.kombi_id,
                                                 pe3_kombi_periode.nama_kombi,
                                                 pe3_kombi_periode.periode,

@@ -49,11 +49,11 @@
                         <v-card-title>SAH :</v-card-title>
                         <v-card-subtitle>
                             <v-chip                                
-                                :color="datakrs.sah==1?'green':'warning'"
+                                :color="datakrs.sah== 1?'green':'warning'"
                                 text-color="white"
                                 small
                                 >
-                                {{datakrs.sah==1?'YA':'TIDAK'}}                            
+                                {{datakrs.sah== 1?'YA':'TIDAK'}}                            
                             </v-chip>
                         </v-card-subtitle>
                     </v-card>
@@ -94,7 +94,7 @@
                     <v-card flat>
                         <v-card-title>CREATED/UPDATED:</v-card-title>  
                         <v-card-subtitle>
-                            {{$date(datakrs.created_at).format('DD/MM/YYYY HH:mm')}} ~ {{$date(datakrs.updated_at).format('DD/MM/YYYY HH:mm')}}
+                            {{$date(datakrs.created_at).format("DD/MM/YYYY HH:mm")}} ~ {{$date(datakrs.updated_at).format("DD/MM/YYYY HH:mm")}}
                         </v-card-subtitle>
                     </v-card>
                 </v-col>
@@ -105,32 +105,32 @@
 </template>
 <script>    
 export default {
-    name:'DataKRS',
+    name: "DataKRS",
     created()
     {
-        this.initialize();                     
+        this.initialize();                   
     },
     props:{
         datakrs:{
             type:Object,            
-            required:true
+            required: true
         },
         totalmatkul:{
             type:Number,
-            requreid:true
+            requreid: true
         },
         totalsks:{
             type:Number,
-            requreid:true
+            requreid: true
         },
         url:{
             type:String,
-            default:null            
+            default: null            
         }
     },
     
     methods: {
-        initialize:async function ()
+        initialize: async function ()
         {
             
         },
@@ -141,6 +141,6 @@ export default {
                 this.$router.push(this.url);
             }            
         }
-    },    
+    },
 }
 </script>

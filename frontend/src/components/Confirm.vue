@@ -40,9 +40,9 @@
  * <confirm ref="confirm"></confirm>
  *
  * Call it:
- * this.$refs.confirm.open('Delete', 'Are you sure?', { color: 'red' }).then((confirm) => {})
+ * this.$refs.confirm.open("Delete", "Are you sure?", { color: "red" }).then((confirm) => {})
  * Or use await:
- * if (await this.$refs.confirm.open('Delete', 'Are you sure?', { color: 'red' })) {
+ * if (await this.$refs.confirm.open("Delete", "Are you sure?", { color: "red" })) {
  *   // yes
  * }
  * else {
@@ -62,21 +62,21 @@
  * }
  */
 export default {
-    name:'Confirm',
+    name: "Confirm",
     data: () => ({
         dialog: false,
         resolve: null,
         reject: null,
-        message: null,        
+        message: null,       
         title: null,
 
         options: {
-            color: 'primary',
+            color: "primary",
             width: 290,
             zIndex: 200,
             desc: null,
-            type:'error',
-            action:'yescancel'
+            type: "error",
+            action: "yescancel",
         }
 
     }),

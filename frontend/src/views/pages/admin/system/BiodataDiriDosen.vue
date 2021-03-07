@@ -32,36 +32,36 @@
 </template>
 <script>
 import SystemUserLayout from '@/views/layouts/SystemUserLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 import FormBiodataDiriDosen from '@/components/FormBiodataDiriDosen';
 export default {
-    name: 'UsersProfile',
-    created () {
+    name: "UsersProfile",
+    created() {
         this.dashboard=this.$store.getters['uiadmin/getDefaultDashboard'];
         this.formdata=this.$store.getters['auth/User'];
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
             },
             {
-                text: 'SYSTEM',
+                text: "SYSTEM",
                 disabled: false,
-                href: '#'
+                href: "#"
             },
             {
-                text: 'BIODATA DIRI DOSEN',
+                text: "BIODATA DIRI DOSEN",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];
-        if (this.dashboard=='mahasiswa')
+        if (this.dashboard == "mahasiswa")
         {
             this.fetchMahasiswa();
         }
     }, 
-    data ()
+    data()
     {
         return {
         }

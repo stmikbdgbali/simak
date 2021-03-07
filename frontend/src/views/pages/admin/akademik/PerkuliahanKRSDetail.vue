@@ -40,7 +40,7 @@
                         <v-card-title>
                             DAFTAR MATAKULIAH
                             <v-spacer></v-spacer>
-                            <v-btn color="primary" icon outlined small class="ma-2" :to="{path: '/akademik/perkuliahan/krs/'+this.krs_id+'/tambahmatkul'}">
+                            <v-btn color="primary" icon outlined small class="ma-2" :to="{path: '/akademik/perkuliahan/krs/' + this.krs_id+'/tambahmatkul'}">
                                 <v-icon>mdi-plus</v-icon>
                             </v-btn>
                         </v-card-title>
@@ -203,54 +203,54 @@
     </AkademikLayout>
 </template>
 <script>
-import AkademikLayout from '@/views/layouts/AkademikLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import AkademikLayout from "@/views/layouts/AkademikLayout";
+import ModuleHeader from "@/components/ModuleHeader";
 import DataKRS from '@/components/DataKRS';
 export default {
-    name: 'PerkuliahanKRSDetail',
-    created () {
+    name: "PerkuliahanKRSDetail",
+    created() {
         this.krs_id=this.$route.params.krsid;
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
             },
             {
-                text: 'AKADEMIK',
+                text: "AKADEMIK",
                 disabled: false,
-                href: '/akademik'
+                href: "/akademik",
             },
             {
-                text: 'PERKULIAHAN',
+                text: "PERKULIAHAN",
                 disabled: false,
-                href: '#'
+                href: "#"
             },
             {
-                text: 'KRS',
+                text: "KRS",
                 disabled: false,
-                href: '/akademik/perkuliahan/krs/daftar'
+                href: "/akademik/perkuliahan/krs/daftar",
             },
             {
-                text: 'DETAIL',
+                text: "DETAIL",
                 disabled: true,
-                href: '#'
+                href: "#"
             },
         ];
         this.fetchKRS();
     },
     data: () => ({
         firstloading: true,
-        nama_prodi:null,
-        tahun_akademik:null,
-        semester_akademik:null,
+        nama_prodi: null,
+        tahun_akademik: null,
+        semester_akademik: null,
 
         btnLoading: false,
         btnLoadingTable: false,
 
         //formdata
-        form_valid: true,         
-        krs_id:null,
+        form_valid: true,        
+        krs_id: null,
         datakrs: {},
         datamatkul: {},
 
@@ -258,26 +258,26 @@ export default {
 
         daftar_kelas: [],
         formdata: {
-            kelas_mhs_id:null
+            kelas_mhs_id: null
         },
         //table
         datatableLoading: false,
         expanded: [],
         datatable: [],
         headers: [
-            { text: 'KODE', value: 'kmatkul', sortable: true,width:100  },
-            { text: 'NAMA MATAKULIAH', value: 'nmatkul',sortable: true, width:300 },
-            { text: 'SKS', value: 'sks', sortable: false,width:50 },
-            { text: 'SMT', value: 'semester', sortable: false,width:50 },
-            { text: 'KELAS', value: 'nama_kelas', sortable: false,width:200 },
-            { text: 'NAMA DOSEN', value: 'nama_dosen', sortable: false,width:200 },
-            { text: 'AKSI', value: 'actions', sortable: false,width:100 },
+            { text: "KODE", value: "kmatkul", sortable: true,width:100  },
+            { text: "NAMA MATAKULIAH", value: "nmatkul",sortable: true,width:300 },
+            { text: "SKS", value: "sks", sortable: false,width:50 },
+            { text: "SMT", value: "semester", sortable: false,width:50 },
+            { text: "KELAS", value: "nama_kelas", sortable: false,width:200 },
+            { text: "NAMA DOSEN", value: "nama_dosen", sortable: false,width:200 },
+            { text: "AKSI", value: "actions", sortable: false, width:100 },
         ],
     }),
     methods: {
         async fetchKRS()
         {
-            await this.$ajax.get('/akademik/perkuliahan/krs/'+this.krs_id,
+            await this.$ajax.get("/akademik/perkuliahan/krs/" + this.krs_id,
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
@@ -288,7 +288,7 @@ export default {
                 if (Object.keys(this.datakrs).length)
                 {
                     let prodi_id=this.datakrs.kjur;
-                    this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](prodi_id);
+                    this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
                     this.tahun_akademik=this.datakrs.tahun;
                     this.semester_akademik=this.datakrs.idsmt;
                 }
@@ -296,7 +296,7 @@ export default {
         },
         async showPilihKelas(item)
         {
-            await this.$ajax.get('/akademik/perkuliahan/pembagiankelas/'+item.penyelenggaraan_id+'/penyelenggaraan',
+            await this.$ajax.get("/akademik/perkuliahan/pembagiankelas/'+item.penyelenggaraan_id+'/penyelenggaraan",
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
@@ -308,11 +308,11 @@ export default {
                 this.formdata.kelas_mhs_id=item.kelas_mhs_id;
             })
         },
-        save:async function() {
+        save: async function() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;                
-                await this.$ajax.post('/akademik/perkuliahan/pembagiankelas/storepeserta',
+                this.btnLoading=true;              
+                await this.$ajax.post("/akademik/perkuliahan/pembagiankelas/storepeserta",
                     {
                         kelas_mhs_id: this.formdata.kelas_mhs_id,                        
                         krsmatkul_id: this.datamatkul.id                                                                                                    
@@ -322,35 +322,35 @@ export default {
                             Authorization: this.$store.getters["auth/Token"]
                         }
                     }
-                ).then(()=>{                           
+                ).then(() => {             
                     this.closedialogfrm();
                     this.fetchKRS();
                     this.btnLoading = false;
-                }).catch(()=>{
+                }).catch(() => {
                     this.btnLoading = false;
                 });
             }
         },
         deleteItem (item)
         {
-            this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus matakuliah ('+item.nmatkul+') ?', { color: 'red',width:600,'desc': 'proses ini juga menghapus seluruh data yang terkait dengan matkul ini.' }).then((confirm) => {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus matakuliah ("+item.nmatkul+") ?", { color: "red", width: 600,'desc': "proses ini juga menghapus seluruh data yang terkait dengan matkul ini." }).then((confirm) => {
                 if (confirm)
                 {
                     this.btnLoadingTable=true;
-                    this.$ajax.post('/akademik/perkuliahan/krs/deletematkul/'+item.id,
+                    this.$ajax.post("/akademik/perkuliahan/krs/deletematkul/" + item.id,
                         {
-                            '_method': 'DELETE',
+                            _method: "DELETE",
                         },
                         {
                             headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
-                    ).then(()=>{
+                    ).then(() => {
                         const index = this.datatable.indexOf(item);
                         this.datatable.splice(index, 1);
                         this.btnLoadingTable=false;
-                    }).catch(()=>{
+                    }).catch(() => {
                         this.btnLoadingTable=false;
                     });
                 }

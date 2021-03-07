@@ -65,14 +65,14 @@
                                     inset
                                     vertical
                                 ></v-divider>
-                                <v-spacer></v-spacer>                                                             
+                                <v-spacer></v-spacer>                        
                             </v-toolbar>
-                        </template>                       
+                        </template>    
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
                                 <strong>ID:</strong>{{ item.id }}
-                                <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
-                                <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
+                                <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
+                                <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -85,28 +85,28 @@
     </SystemUserLayout>
 </template>
 <script>
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 import SystemUserLayout from '@/views/layouts/SystemUserLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 export default {
-    name: 'Permissions',
+    name: "Permissions",
     created()
     {
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.ACCESS_TOKEN
+                href: "/dashboard/" + this.ACCESS_TOKEN
             },
             {
-                text: 'USER SISTEM',
+                text: "USER SISTEM",
                 disabled: false,
-                href: '/system-users'
+                href: "/system-users"
             },
             {
-                text: 'PERMISSIONS',
+                text: "PERMISSIONS",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];
         this.initialize();
@@ -115,51 +115,51 @@ export default {
         breadcrumbs: [],
         datatableLoading: false,
         btnLoading: false,  
-        expanded: [],        
+        expanded: [],
         daftar_permissions: [],
         //tables
         headers: [                        
-            { text: 'NAMA PERMISSION', value: 'name' },
-            { text: 'GUARD', value: 'guard_name' },                        
+            { text: "NAMA PERMISSION", value: "name" },
+            { text: "GUARD", value: "guard_name" },         
         ],
-        search: "", 
+        search: "",
    
     }),
     methods: {
         initialize () 
         {
 
-            this.datatableLoading=true;
-            this.$ajax.get('/system/users/'+this.ATTRIBUTE_USER('id')+'/mypermission',{
+            this.datatableLoading = true;
+            this.$ajax.get("/system/users/" + this.ATTRIBUTE_USER("id")+'/mypermission",{
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data })=>{                
+            }).then(({ data })=>{     
                 this.daftar_permissions = data.permissions;
-                this.datatableLoading=false;
-            });          
+                this.datatableLoading = false;
+            });        
             
         },
         dataTableRowClicked(item)
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded = [];              
             }
             else
             {
-                this.expanded=[item];
+                this.expanded = [item];
             }               
-        },        
+        },    
     },
     computed: {
-        ...mapGetters('auth',{            
-            ACCESS_TOKEN: 'AccessToken',          
-            TOKEN: 'Token',          
-            CAN_ACCESS: 'can',         
-            ATTRIBUTE_USER: 'AttributeUser',          
+        ...mapGetters("auth",{ 
+            ACCESS_TOKEN: "AccessToken",          
+            TOKEN: "Token",          
+            CAN_ACCESS: "can",         
+            ATTRIBUTE_USER: "AttributeUser",          
         }),
-    },    
+    },
     components: {
 		SystemUserLayout,
 		ModuleHeader,

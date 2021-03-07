@@ -81,7 +81,7 @@
                                     @click.stop="showDialogTambahUserPMB">
                                     TAMBAH
                                 </v-btn>
-                                <v-dialog v-model="dialog" max-width="500px" persistent>                                    
+                                <v-dialog v-model="dialog" max-width="500px" persistent>                 
                                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>
                                         <v-card>
                                             <v-card-title>
@@ -96,13 +96,13 @@
                                                     label="NAMA USER"
                                                     outlined
                                                     :rules="rule_user_name">
-                                                </v-text-field>                                                                                               
+                                                </v-text-field>                                                          
                                                 <v-text-field 
                                                     v-model="editedItem.email" 
                                                     label="EMAIL"
                                                     outlined
                                                     :rules="rule_user_email">
-                                                </v-text-field>                                                        
+                                                </v-text-field>                   
                                                 <v-text-field 
                                                     v-model="editedItem.nomor_hp" 
                                                     label="NOMOR HP"
@@ -118,7 +118,7 @@
                                                 <v-text-field 
                                                     v-model="editedItem.password" 
                                                     label="PASSWORD"
-                                                    :type="'password'"
+                                                    :type="password"
                                                     outlined
                                                     :rules="rule_user_password">
                                                 </v-text-field>
@@ -130,7 +130,7 @@
                                                     item-value="id"
                                                     multiple 
                                                     small-chips
-                                                    outlined>                                                                                
+                                                    outlined>                                           
                                                 </v-autocomplete> 
                                                 <v-autocomplete 
                                                     :items="daftar_roles" 
@@ -138,7 +138,7 @@
                                                     label="ROLES"                                                     
                                                     multiple 
                                                     small-chips
-                                                    outlined>                                                                                
+                                                    outlined>                                           
                                                 </v-autocomplete>
                                             </v-card-text>
                                             <v-card-actions>
@@ -165,7 +165,7 @@
                                             <v-card-subtitle>
                                                 Bila program studi, tidak dipilih artinya user ini dapat mengakses seluruh data pmb
                                             </v-card-subtitle>
-                                            <v-card-text>                                                                                                
+                                            <v-card-text>                                                           
                                                 <v-text-field 
                                                     v-model="editedItem.name" 
                                                     label="NAMA USER"
@@ -193,7 +193,7 @@
                                                 <v-text-field 
                                                     v-model="editedItem.password" 
                                                     label="PASSWORD"
-                                                    :type="'password'"
+                                                    :type="password"
                                                     outlined
                                                     :rules="rule_user_passwordEdit">
                                                 </v-text-field>   
@@ -205,7 +205,7 @@
                                                     item-value="id"
                                                     multiple 
                                                     small-chips
-                                                    outlined>                                                                                
+                                                    outlined>                                           
                                                 </v-autocomplete> 
                                                 <v-autocomplete 
                                                     :items="daftar_roles" 
@@ -213,8 +213,8 @@
                                                     label="ROLES"                                                     
                                                     multiple 
                                                     small-chips
-                                                    outlined>                                                                                
-                                                </v-autocomplete>                                                                                       
+                                                    outlined>                                           
+                                                </v-autocomplete>                                                  
                                             </v-card-text>
                                             <v-card-actions>
                                                 <v-spacer></v-spacer>
@@ -229,7 +229,7 @@
                                         </v-card>
                                     </v-form>
                                 </v-dialog>
-                                <v-dialog v-if="dialogUserPermission" v-model="dialogUserPermission" max-width="800px" persistent>                                                                                                        
+                                <v-dialog v-if="dialogUserPermission" v-model="dialogUserPermission" max-width="800px" persistent>                                                                   
                                     <UserPermissions :user="editedItem" v-on:closeUserPermissions="closeUserPermissions" role_default="pmb" />
                                 </v-dialog>
                             </v-toolbar>
@@ -262,18 +262,18 @@
                                 mdi-delete
                             </v-icon>
                         </template>
-                        <template v-slot:item.foto="{ item }">                            
+                        <template v-slot:item.foto="{ item }">         
                             <v-avatar size="30">
-                                <v-img :src="$api.url+'/'+item.foto" />                                
-                            </v-avatar>                                                                                                  
+                                <v-img :src="$api.url+'/'+item.foto" />             
+                            </v-avatar>                                                             
                         </template>
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
                                 <v-col cols="12">
                                     <strong>ID:</strong>{{ item.id }}
-                                    <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
-                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
-                                </v-col>                                
+                                    <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
+                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
+                                </v-col>             
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -286,45 +286,45 @@
     </SystemUserLayout>
 </template>
 <script>
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 import SystemUserLayout from '@/views/layouts/SystemUserLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 import UserPermissions from '@/views/pages/admin/system/UserPermissions';
 export default {
-    name: 'UsersPMB',  
-    created () {
+    name: "UsersPMB",  
+    created() {
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.ACCESS_TOKEN
+                href: "/dashboard/" + this.ACCESS_TOKEN
             },
             {
-                text: 'USER SISTEM',
+                text: "USER SISTEM",
                 disabled: false,
-                href: '/system-users'
+                href: "/system-users"
             },
             {
-                text: 'USERS PMB',
+                text: "USERS PMB",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];
         this.initialize()
     },  
    
     data: () => ({ 
-        role_id:0,
+        role_id: 0,
         datatableLoading: false,
         btnLoading: false,      
         //tables
         headers: [                        
-            { text:  "", value: 'foto' },
-            { text: 'USERNAME', value: 'username',sortable: true },
-            { text: 'NAME', value: 'name',sortable: true },
-            { text: 'EMAIL', value: 'email',sortable: true },     
-            { text: 'NOMOR HP', value: 'nomor_hp',sortable: true },     
-            { text: 'AKSI', value: 'actions', sortable: false,width:100 },
+            { text: "",value: "foto" },
+            { text: "USERNAME", value: "username",sortable: true },
+            { text: "NAME", value: "name",sortable: true },
+            { text: "EMAIL", value: "email",sortable: true }, 
+            { text: "NOMOR HP", value: "nomor_hp",sortable: true }, 
+            { text: "AKSI", value: "actions", sortable: false, width:100 },
         ],
         expanded: [],
         search: "",
@@ -339,62 +339,62 @@ export default {
         editedIndex: -1,
         daftar_prodi: [],
         editedItem: {
-            id:0,
-            username:  "",           
-            password:  "",           
-            name:  "",           
-            email:  "",           
-            nomor_hp: "",           
-            prodi_id: [],    
-            role_id: ['pmb'],                 
-            created_at:  "",           
-            updated_at:  "",   
+            id: 0,
+            username: "",      
+            password: "",      
+            name: "",      
+            email: "",      
+            nomor_hp: "",      
+            prodi_id: [], 
+            role_id: ['pmb'],    
+            created_at: "",      
+            updated_at: "",  
         },
         defaultItem: {
-            id:0,
-            username:  "",           
-            password:  "",           
-            name:  "",           
-            email:  "",           
-            nomor_hp:  "",  
-            prodi_id: [],   
-            role_id: ['pmb'],                       
-            created_at:  "",           
-            updated_at:  "",        
+            id: 0,
+            username: "",      
+            password: "",      
+            name: "",      
+            email: "",      
+            nomor_hp: "", 
+            prodi_id: [],
+            role_id: ['pmb'],          
+            created_at: "",      
+            updated_at: "",   
         },
-        //form rules        
+        //form rules    
         rule_user_name: [
             value => !!value || "Mohon untuk di isi nama User !!!",  
-            value => /^[A-Za-z\s]*$/.test(value) || 'Nama User hanya boleh string dan spasi',                
-        ], 
+            value => /^[A-Za-z\s]*$/.test(value) || "Nama User hanya boleh string dan spasi",                
+        ],
         rule_user_email: [
             value => !!value || "Mohon untuk di isi email User !!!",  
-            value => /.+@.+\..+/.test(value) || 'Format E-mail harus benar',       
-        ], 
+            value => /.+@.+\..+/.test(value) || "Format E-mail harus benar",       
+        ],
         rule_user_nomorhp: [
             value => !!value || "Nomor HP mohon untuk diisi !!!",
-            value => /^\+[1-9]{1}[0-9]{1,14}$/.test(value) || 'Nomor HP hanya boleh angka dan gunakan kode negara didepan seperti +6281214553388',
-        ], 
+            value => /^\+[1-9]{1}[0-9]{1,14}$/.test(value) || "Nomor HP hanya boleh angka dan gunakan kode negara didepan seperti +6281214553388",
+        ],
         rule_user_username: [
             value => !!value || "Mohon untuk di isi username User !!!",  
-            value => /^[A-Za-z_]*$/.test(value) || 'Username hanya boleh string dan underscore',                    
-        ], 
+            value => /^[A-Za-z_]*$/.test(value) || "Username hanya boleh string dan underscore",                    
+        ],
         rule_user_password: [
             value => !!value || "Mohon untuk di isi password User !!!",
             value => {
                 if (value && typeof value !== 'undefined' && value.length > 0){
-                    return value.length >= 8 || 'Minimial Password 8 karaketer';
+                    return value.length >= 8 || "Minimial Password 8 karaketer";
                 }
                 else
                 {
                     return true;
                 }
             }
-        ], 
+        ],
         rule_user_passwordEdit: [
             value => {
                 if (value && typeof value !== 'undefined' && value.length > 0){
-                    return value.length >= 8 || 'Minimial Password 8 karaketer';
+                    return value.length >= 8 || "Minimial Password 8 karaketer";
                 }
                 else
                 {
@@ -406,55 +406,55 @@ export default {
     methods: {
         initialize: async function() 
         {
-            this.datatableLoading=true;
-            await this.$ajax.get('/system/userspmb',{
+            this.datatableLoading = true;
+            await this.$ajax.get("/system/userspmb",{
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data })=>{               
+            }).then(({ data })=>{    
                 this.daftar_users = data.users;
                 this.role_id=data.role.id;
-                this.datatableLoading=false;
-            });          
+                this.datatableLoading = false;
+            });        
             
         },
         dataTableRowClicked(item)
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded = [];              
             }
             else
             {
-                this.expanded=[item];
+                this.expanded = [item];
             }               
         },
         syncPermission ()
         {
-            this.$root.$confirm.open('Konfirmasi Sinkronisasi', 'Sinkronisasi hanya untuk user dalam role pmb, bila user memiliki role lain akan terhapus permission-nya ?', { color: 'warning',width:500 }).then(async (confirm) => {
+            this.$root.$confirm.open("Konfirmasi Sinkronisasi", "Sinkronisasi hanya untuk user dalam role pmb, bila user memiliki role lain akan terhapus permission-nya ?", { color: "warning", width: 500 }).then(async (confirm) => {
                 if (confirm)
                 {
                     this.btnLoading=true;
-                    await this.$ajax.post('/system/users/syncallpermissions',
+                    await this.$ajax.post("/system/users/syncallpermissions",
                         {
-                            role_name: 'pmb',                    
+                            role_name: "pmb",                    
                         },
                         {
                             headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
-                    ).then(()=>{                   
+                    ).then(() => {     
                         this.btnLoading = false;
-                    }).catch(()=>{
+                    }).catch(() => {
                         this.btnLoading = false;
-                    });     
+                    });   
                 }
             });
         },
-        showDialogTambahUserPMB:async function()
+        showDialogTambahUserPMB: async function()
         {
-            await this.$ajax.get('/system/setting/roles',{
+            await this.$ajax.get("/system/setting/roles",{
                 headers: {
                     Authorization: this.TOKEN
                 }
@@ -462,47 +462,47 @@ export default {
                 let roles = data.roles;
                 var daftar_roles=[];
                 roles.forEach(element => {
-                    if (element.name=='pmb')
-                    {                        
+                    if (element.name=="pmb")
+                    {             
                         daftar_roles.push({
                             text:element.name,
                             disabled: true,
-                        });                        
+                        });                      
                     }
-                    else if (element.name=='dosen'||element.name=='dosenwali')
+                    else if (element.name == "dosen" || element.name == "dosenwali")
                     {
                         daftar_roles.push({
                             text:element.name,
                             disabled: false,                            
-                        });                        
+                        });                      
                     }                    
-                });        
-                this.daftar_roles=daftar_roles;                     
-                this.daftar_prodi=this.$store.getters['uiadmin/getDaftarProdi'];                          
-                this.dialog = true;            
-            });               
+                });      
+                this.daftar_roles=daftar_roles;                   
+                this.daftar_prodi=this.$store.getters['uiadmin/getDaftarProdi'];                        
+                this.dialog = true;          
+            });             
         },
-        editItem:async function (item) {
+        editItem: async function(item) {
             this.editedIndex = this.daftar_users.indexOf(item)
-            item.password='';            
-            this.editedItem = Object.assign({}, item);      
-            this.daftar_prodi=this.$store.getters['uiadmin/getDaftarProdi'];  
-            await this.$ajax.get('/system/users/'+item.id+'/prodi',               
+            item.password='';          
+            this.editedItem = Object.assign({}, item);    
+            this.daftar_prodi=this.$store.getters['uiadmin/getDaftarProdi'];
+            await this.$ajax.get("/system/users/"  + item.id + "/prodi",               
                 {
                     headers: {
                         Authorization: this.TOKEN
                     }
                 }
-            ).then(({ data })=>{                                   
+            ).then(({ data })=>{                        
                 let daftar_prodi = data.daftar_prodi;
                 var prodi=[];
                 daftar_prodi.forEach(element => {
-                    prodi.push(element.id);                        
-                });   
-                this.editedItem.prodi_id=prodi;                 
-            });                     
+                    prodi.push(element.id);                      
+                }); 
+                this.editedItem.prodi_id=prodi;               
+            });                   
 
-            await this.$ajax.get('/system/setting/roles',{
+            await this.$ajax.get("/system/setting/roles",{
                 headers: {
                     Authorization: this.TOKEN
                 }
@@ -510,45 +510,45 @@ export default {
                 let roles = data.roles;
                 var daftar_roles=[];
                 roles.forEach(element => {
-                    if (element.name=='pmb')
-                    {                        
+                    if (element.name=="pmb")
+                    {             
                         daftar_roles.push({
                             text:element.name,
                             disabled: true,
-                        });                        
+                        });                      
                     }
-                    else if (element.name=='dosen'||element.name=='dosenwali')
+                    else if (element.name == "dosen" || element.name == "dosenwali")
                     {
                         daftar_roles.push({
                             text:element.name,
                             disabled: false,                            
-                        });                        
+                        });                      
                     }                    
-                });        
-                this.daftar_roles=daftar_roles;                                                
-            });    
+                });      
+                this.daftar_roles=daftar_roles;                                              
+            });  
 
             this.btnLoading=true;
-            await this.$ajax.get('/system/users/'+item.id+'/roles',
+            await this.$ajax.get("/system/users/" +item.id+"/roles",
             {
                 headers: {
                     Authorization: this.TOKEN
                 }
             }).then(({ data })=>{  
-                this.editedItem.role_id=data.roles;                   
+                this.editedItem.role_id=data.roles;                 
                 this.btnLoading = false;
                 this.dialogEdit = true;
             });
         },
-        setPermission: async function (item) {                      
+        setPermission: async function(item) {           
             this.dialogUserPermission = true;
             this.editedItem=item;
         
         },
-        close () {            
+        close () { 
             this.btnLoading = false;
             this.dialog = false;
-            this.dialogEdit = false;            
+            this.dialogEdit = false;          
             setTimeout(() => {
                 this.$refs.frmdata.resetValidation(); 
                 this.editedItem = Object.assign({}, this.defaultItem)
@@ -557,8 +557,8 @@ export default {
             );
         },
         closeUserPermissions () {
-            this.btnLoading = false;            
-            this.dialogUserPermission = false;  
+            this.btnLoading = false;          
+            this.dialogUserPermission = false;
         },
         save () {
             if (this.$refs.frmdata.validate())
@@ -566,9 +566,9 @@ export default {
                 this.btnLoading=true;
                 if (this.editedIndex > -1) 
                 {
-                    this.$ajax.post('/system/userspmb/'+this.editedItem.id,
+                    this.$ajax.post("/system/userspmb/" + this.editedItem.id,
                         {
-                            '_method': 'PUT',
+                            _method: "PUT",
                             name: this.editedItem.name,
                             email: this.editedItem.email,
                             nomor_hp: this.editedItem.nomor_hp,     
@@ -583,14 +583,14 @@ export default {
                             }
                         }
                     ).then(({ data })=>{   
-                        Object.assign(this.daftar_users[this.editedIndex], data.user);
+                        Object.assign(this.daftar_users[this.editedIndex],data.user);
                         this.close();
-                    }).catch(()=>{
+                    }).catch(() => {
                         this.btnLoading = false;
-                    });                    
+                    });                  
                     
                 } else {
-                    this.$ajax.post('/system/userspmb/store',
+                    this.$ajax.post("/system/userspmb/store",
                         {
                             name: this.editedItem.name,
                             email: this.editedItem.email,
@@ -608,31 +608,31 @@ export default {
                     ).then(({ data })=>{   
                         this.daftar_users.push(data.user);
                         this.close();
-                    }).catch(()=>{
+                    }).catch(() => {
                         this.btnLoading = false;
                     });
                 }
             }
         },
-        deleteItem (item) {           
-            this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus username '+item.username+' ?', { color: 'red' }).then((confirm) => {
+        deleteItem(item) {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus username '+item.username+' ?", { color: "red" }).then((confirm) => {
                 if (confirm)
                 {
                     this.btnLoading=true;
-                    this.$ajax.post('/system/userspmb/'+item.id,
+                    this.$ajax.post("/system/userspmb/" + item.id,
                         {
-                            '_method': 'DELETE',
+                            _method: "DELETE",
                         },
                         {
                             headers: {
                                 Authorization: this.TOKEN
                             }
                         }
-                    ).then(()=>{   
+                    ).then(() => {
                         const index = this.daftar_users.indexOf(item);
                         this.daftar_users.splice(index, 1);
                         this.btnLoading = false;
-                    }).catch(()=>{
+                    }).catch(() => {
                         this.btnLoading = false;
                     });
                 }
@@ -640,12 +640,12 @@ export default {
         },
     },
     computed: {
-        formTitle () {
-            return this.editedIndex === -1 ? 'TAMBAH USER PMB' : 'EDIT USER PMB'
+        formTitle() {
+            return this.editedIndex === -1 ? "TAMBAH USER PMB" : "EDIT USER PMB"
         },
-        ...mapGetters('auth',{            
-            ACCESS_TOKEN: 'AccessToken',          
-            TOKEN: 'Token',                                  
+        ...mapGetters("auth",{ 
+            ACCESS_TOKEN: "AccessToken",          
+            TOKEN: "Token",     
         }),
     },
 
@@ -655,8 +655,8 @@ export default {
         },
         dialogEdit (val) {
             val || this.close()
-        },        
-    },    
+        },    
+    },
     components: {
         SystemUserLayout,
         ModuleHeader,

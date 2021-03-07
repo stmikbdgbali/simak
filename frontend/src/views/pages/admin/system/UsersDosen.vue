@@ -73,7 +73,7 @@
                                     @click.stop="syncPermission" 
                                     v-if="$store.getters['auth/can']('USER_STOREPERMISSIONS')">
                                     SYNC PERMISSION
-                                </v-btn>                               
+                                </v-btn>            
                                 <v-btn color="primary"                                    
                                     class="mb-2" 
                                     :loading="btnLoading"
@@ -81,36 +81,36 @@
                                     @click.stop="showDialogTambahUserDosen">
                                     TAMBAH
                                 </v-btn>
-                                <v-dialog v-model="dialog" max-width="500px" persistent>                                    
+                                <v-dialog v-model="dialog" max-width="500px" persistent>                 
                                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>
                                         <v-card>
                                             <v-card-title>
                                                 <span class="headline">{{ formTitle }}</span>
-                                            </v-card-title>                                            
+                                            </v-card-title>       
                                             <v-card-text>     
                                                 <v-text-field 
                                                     v-model="editedItem.onlyname" 
                                                     label="NAMA DOSEN"
                                                     outlined
                                                     :rules="rule_user_name">
-                                                </v-text-field>                                                                                               
+                                                </v-text-field>                                                          
                                                 <v-text-field 
                                                     v-model="editedItem.nidn" 
                                                     label="NIDN (NOMOR INDUK DOSEN NASIONAL)"
                                                     outlined>
-                                                </v-text-field>                                                                                               
+                                                </v-text-field>                                                          
                                                 <v-text-field 
                                                     v-model="editedItem.nipy" 
                                                     label="NIPY (NOMOR INDUK PEGAWAI YAYASAN)"
                                                     outlined
                                                     :rules="rule_nipy">
-                                                </v-text-field>                                                                                               
+                                                </v-text-field>                                                          
                                                 <v-text-field 
                                                     v-model="editedItem.email" 
                                                     label="EMAIL"
                                                     outlined
                                                     :rules="rule_user_email">
-                                                </v-text-field>                                                        
+                                                </v-text-field>                   
                                                 <v-text-field 
                                                     v-model="editedItem.nomor_hp" 
                                                     label="NOMOR HP"
@@ -126,14 +126,14 @@
                                                 <v-text-field 
                                                     v-model="editedItem.password" 
                                                     label="PASSWORD"
-                                                    :type="'password'"
+                                                    :type="password"
                                                     outlined
                                                     :rules="rule_user_password">
                                                 </v-text-field>   
                                                 <v-switch
                                                     v-model="editedItem.is_dw"
                                                     label="SEBAGAI DOSEN WALI">
-                                                </v-switch>                                                                 
+                                                </v-switch>                            
                                             </v-card-text>
                                             <v-card-actions>
                                                 <v-spacer></v-spacer>
@@ -155,8 +155,8 @@
                                         <v-card>
                                             <v-card-title>
                                                 <span class="headline">{{ formTitle }}</span>
-                                            </v-card-title>                                            
-                                            <v-card-text>                                                                                                
+                                            </v-card-title>       
+                                            <v-card-text>                                                           
                                                 <v-text-field 
                                                     v-model="editedItem.onlyname" 
                                                     label="NAMA DOSEN"
@@ -167,7 +167,7 @@
                                                     v-model="editedItem.nidn" 
                                                     label="NIDN (NOMOR INDUK DOSEN NASIONAL)"
                                                     outlined>
-                                                </v-text-field>                                                                                               
+                                                </v-text-field>                                                          
                                                 <v-text-field 
                                                     v-model="editedItem.nipy" 
                                                     label="NIPY (NOMOR INDUK PEGAWAI YAYASAN)"
@@ -195,14 +195,14 @@
                                                 <v-text-field 
                                                     v-model="editedItem.password" 
                                                     label="PASSWORD"
-                                                    :type="'password'"
+                                                    :type="password"
                                                     outlined
                                                     :rules="rule_user_passwordEdit">
                                                 </v-text-field> 
                                                 <v-switch
                                                     v-model="editedItem.is_dw"
                                                     label="SEBAGAI DOSEN WALI">
-                                                </v-switch>                                                  
+                                                </v-switch>             
                                             </v-card-text>
                                             <v-card-actions>
                                                 <v-spacer></v-spacer>
@@ -219,18 +219,18 @@
                                 </v-dialog>   
                                 <v-dialog v-if="dialogUserPermission" v-model="dialogUserPermission" max-width="800px" persistent>
                                     <UserPermissions :user="editedItem" v-on:closeUserPermissions="closeUserPermissions" role_default="dosen" />
-                                </v-dialog>                             
+                                </v-dialog>          
                             </v-toolbar>
                         </template>
                         <template v-slot:item.nidn="{ item }">
-                            {{(item.nidn && item.nidn.length > 0) > 0 ? item.nidn: 'N.A'}}
+                            {{(item.nidn && item.nidn.length > 0) > 0 ? item.nidn: "N.A"}}
                         </template>
                         <template v-slot:item.is_dw="{ item }">
-                            {{item.is_dw == false ? 'BUKAN': 'YA'}}
+                            {{item.is_dw == false ? "BUKAN" : "YA"}}
                         </template>
                         <template v-slot:item.actions="{ item }">               
                             <v-tooltip bottom v-if="item.default_role=='dosen'">             
-                                <template v-slot:activator="{ on, attrs }">                                             
+                                <template v-slot:activator="{ on, attrs }">        
                                     <v-btn 
                                         v-bind="attrs"
                                         v-on="on"
@@ -243,10 +243,10 @@
                                         <v-icon>mdi-axis-arrow-lock</v-icon>
                                     </v-btn>     
                                 </template>
-                                <span>Setting Hak Akses</span>                                   
+                                <span>Setting Hak Akses</span>                
                             </v-tooltip>   
                             <v-tooltip bottom v-if="item.default_role=='dosen'">             
-                                <template v-slot:activator="{ on, attrs }">                                             
+                                <template v-slot:activator="{ on, attrs }">        
                                     <v-btn 
                                         v-bind="attrs"
                                         v-on="on"
@@ -260,10 +260,10 @@
                                         <v-icon>mdi-pencil</v-icon>
                                     </v-btn>     
                                 </template>
-                                <span>Ubah data user dosen</span>                                   
+                                <span>Ubah data user dosen</span>                
                             </v-tooltip>   
                             <v-tooltip bottom v-if="item.default_role=='dosen'">             
-                                <template v-slot:activator="{ on, attrs }">                                             
+                                <template v-slot:activator="{ on, attrs }">        
                                     <v-btn 
                                         v-bind="attrs"
                                         v-on="on"
@@ -276,22 +276,22 @@
                                         <v-icon>mdi-delete</v-icon>
                                     </v-btn>     
                                 </template>
-                                <span>Hapus data user dosen</span>                                   
-                            </v-tooltip>                             
+                                <span>Hapus data user dosen</span>                
+                            </v-tooltip>          
                         </template>
-                        <template v-slot:item.foto="{ item }">                            
+                        <template v-slot:item.foto="{ item }">         
                             <v-avatar size="30">
-                                <v-img :src="$api.url+'/'+item.foto" />                                
-                            </v-avatar>                                                                                                  
+                                <v-img :src="$api.url+'/'+item.foto" />             
+                            </v-avatar>                                                             
                         </template>
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
                                 <v-col cols="12">
                                     <strong>ID:</strong>{{ item.id }}
                                     <strong>Email:</strong>{{ item.email }}
-                                    <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
-                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
-                                </v-col>                                
+                                    <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
+                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
+                                </v-col>             
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -305,28 +305,28 @@
     </SystemUserLayout>
 </template>
 <script>
-import {mapGetters} from "vuex";
-import SystemUserLayout from '@/views/layouts/SystemUserLayout';
-import ModuleHeader from '@/components/ModuleHeader';
-import UserPermissions from '@/views/pages/admin/system/UserPermissions';
+import { mapGetters } from "vuex";
+import SystemUserLayout from "@/views/layouts/SystemUserLayout";
+import ModuleHeader from "@/components/ModuleHeader";
+import UserPermissions from "@/views/pages/admin/system/UserPermissions";
 export default {
-    name: 'UsersDosen',  
-    created () {
+    name: "UsersDosen",  
+    created() {
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.ACCESS_TOKEN
+                href: "/dashboard/" + this.ACCESS_TOKEN
             },
             {
-                text: 'USER SISTEM',
+                text: "USER SISTEM",
                 disabled: false,
-                href: '/system-users'
+                href: "/system-users"
             },
             {
-                text: 'USERS DOSEN',
+                text: "USERS DOSEN",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];
         this.initialize()
@@ -337,19 +337,19 @@ export default {
         btnLoading: false,      
         //tables
         headers: [                        
-            { text:  "", value: 'foto' },
-            { text: 'USERNAME', value: 'username',sortable: true, width:150 },
-            { text: 'NAMA DOSEN', value: 'name',sortable: true, width:250 },
-            { text: 'NIDN', value: 'nidn',sortable: true },     
-            { text: 'NIPY', value: 'nipy',sortable: true },     
-            { text: 'NOMOR HP', value: 'nomor_hp',sortable: true },     
-            { text: 'DW', value: 'is_dw',sortable: true },     
-            { text: 'ROLE ASAL', value: 'default_role',sortable: true },     
-            { text: 'AKSI', value: 'actions', sortable: false,width:120 },
+            { text: "",value: "foto" },
+            { text: "USERNAME", value: "username",sortable: true,width:150 },
+            { text: "NAMA DOSEN", value: "name",sortable: true,width:250 },
+            { text: "NIDN", value: "nidn",sortable: true }, 
+            { text: "NIPY", value: "nipy",sortable: true }, 
+            { text: "NOMOR HP", value: "nomor_hp",sortable: true }, 
+            { text: "DW", value: "is_dw",sortable: true }, 
+            { text: "ROLE ASAL", value: "default_role",sortable: true }, 
+            { text: "AKSI", value: "actions", sortable: false,width:120 },
         ],
         expanded: [],
         search: "",
-        daftar_users: [],                       
+        daftar_users: [],    
         
         //form
         form_valid: true,
@@ -358,139 +358,133 @@ export default {
         dialogUserPermission: false,     
         editedIndex: -1,        
         editedItem: {
-            id:0,
-            username:  "",           
-            password:  "",           
-            onlyname:  "",      
-            name:  "",      
-            nidn: "",   
-            nipy: "",         
-            email:  "",           
-            nomor_hp: "",                 
+            id: 0,
+            username: "",      
+            password: "",      
+            onlyname: "", 
+            name: "", 
+            nidn: "",  
+            nipy: "",    
+            email: "",      
+            nomor_hp: "",            
             is_dw: false,      
-            created_at:  "",           
-            updated_at:  "",   
+            created_at: "",      
+            updated_at: "",  
         },
         defaultItem: {
-            id:0,
-            username:  "",           
-            password:  "",           
-            onlyname:  "",    
-            name:  "",    
+            id: 0,
+            username: "",      
+            password: "",      
+            onlyname: "",
+            name: "",
             nidn: "",
-            nipy: "",       
-            email:  "",           
-            nomor_hp:  "",          
+            nipy: "",  
+            email: "",      
+            nomor_hp: "",     
             is_dw: false,    
-            created_at:  "",           
-            updated_at:  "",        
+            created_at: "",      
+            updated_at: "",   
         },
-        //form rules        
+        //form rules    
         rule_user_name: [
             value => !!value || "Mohon untuk di isi nama Dosen !!!",  
-            value => /^[A-Za-z\s]*$/.test(value) || 'Nama Dosen hanya boleh string dan spasi',                
-        ],         
+            value => /^[A-Za-z\s]*$/.test(value) || "Nama Dosen hanya boleh string dan spasi",                
+        ],
         rule_nidn: [                         
-            value => /^[0-9]+$/.test(value) || 'NIDN hanya boleh angka',                
-        ],         
+            value => /^[0-9]+$/.test(value) || "NIDN hanya boleh angka",                
+        ],
         rule_nipy: [            
-            value => /^[0-9]+$/.test(value) || 'Nomor Induk Pegawai Yayasan (NIPY) hanya boleh angka',                
-        ], 
+            value => /^[0-9]+$/.test(value) || "Nomor Induk Pegawai Yayasan (NIPY) hanya boleh angka",                
+        ],
         rule_user_email: [
             value => !!value || "Mohon untuk di isi email User !!!",  
-            value => /.+@.+\..+/.test(value) || 'Format E-mail harus benar',       
-        ], 
+            value => /.+@.+\..+/.test(value) || "Format E-mail harus benar",       
+        ],
         rule_user_nomorhp: [
             value => !!value || "Nomor HP mohon untuk diisi !!!",
-            value => /^\+[1-9]{1}[0-9]{1,14}$/.test(value) || 'Nomor HP hanya boleh angka dan gunakan kode negara didepan seperti +6281214553388',
-        ], 
+            value => /^\+[1-9]{1}[0-9]{1,14}$/.test(value) || "Nomor HP hanya boleh angka dan gunakan kode negara didepan seperti +6281214553388",
+        ],
         rule_user_username: [
             value => !!value || "Mohon untuk di isi username User !!!",  
-            value => /^[A-Za-z_]*$/.test(value) || 'Username hanya boleh string dan underscore',                    
-        ], 
+            value => /^[A-Za-z_]*$/.test(value) || "Username hanya boleh string dan underscore",                    
+        ],
         rule_user_password: [
             value => !!value || "Mohon untuk di isi password User !!!",
             value => {
-                if (value && typeof value !== 'undefined' && value.length > 0){
-                    return value.length >= 8 || 'Minimial Password 8 karaketer';
-                }
-                else
-                {
+                if (value && typeof value !== 'undefined' && value.length > 0) {
+                    return value.length >= 8 || "Minimial Password 8 karaketer";
+                } else {
                     return true;
                 }
             }
-        ], 
+        ],
         rule_user_passwordEdit: [
             value => {
                 if (value && typeof value !== 'undefined' && value.length > 0){
-                    return value.length >= 8 || 'Minimial Password 8 karaketer';
-                }
-                else
-                {
+                    return value.length >= 8 || "Minimial Password 8 karaketer";
+                } else {
                     return true;
                 }
-            }
+            },
         ],
     }),
     methods: {
         initialize: async function() 
         {
-            this.datatableLoading=true;
-            await this.$ajax.get('/system/usersdosen',{
+            this.datatableLoading = true;
+            await this.$ajax.get("/system/usersdosen",{
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data })=>{               
-                this.daftar_users = data.users;                
-                this.datatableLoading=false;
-            });          
+            }).then(({ data })=>{    
+                this.daftar_users = data.users;              
+                this.datatableLoading = false;
+            });        
             
         },
         dataTableRowClicked(item)
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded = [];              
             }
             else
             {
-                this.expanded=[item];
+                this.expanded = [item];
             }               
-        },        
-        showDialogTambahUserDosen:async function()
+        },    
+        showDialogTambahUserDosen: async function()
         {
-            this.dialog = true;            
+            this.dialog = true;          
         },
-        editItem:async function (item) {
+        editItem: async function(item) {
             this.editedIndex = this.daftar_users.indexOf(item)
-            item.password='';            
-            this.editedItem = Object.assign({}, item);                              
+            item.password = "";          
+            this.editedItem = Object.assign({}, item);                            
             this.dialogEdit = true;
-        },        
-        close () {            
+        },    
+        close () { 
             this.btnLoading = false;
             this.dialog = false;
-            this.dialogEdit = false;            
+            this.dialogEdit = false;          
             setTimeout(() => {
                 this.$refs.frmdata.resetValidation(); 
                 this.editedItem = Object.assign({}, this.defaultItem)
                 this.editedIndex = -1                
                 }, 300
             );
-        },        
+        },    
         closeUserPermissions () {
-            this.btnLoading = false;            
+            this.btnLoading = false;          
             this.dialogUserPermission = false;
         },
         save () {
-            if (this.$refs.frmdata.validate())
-            {
+            if (this.$refs.frmdata.validate()) {
                 this.btnLoading=true;
-                if (this.editedIndex > -1) 
-                {
-                    this.$ajax.post('/system/usersdosen/'+this.editedItem.id,
+                if (this.editedIndex > -1) {
+                    this.$ajax.post("/system/usersdosen/" + this.editedItem.id,
                         {
-                            '_method': 'PUT',
+                            _method: "PUT",
                             name: this.editedItem.onlyname,
                             nidn: this.editedItem.nidn,
                             nipy: this.editedItem.nipy,
@@ -498,22 +492,22 @@ export default {
                             nomor_hp: this.editedItem.nomor_hp,     
                             username: this.editedItem.username,
                             password: this.editedItem.password,    
-                            is_dw: this.editedItem.is_dw,                                
+                            is_dw: this.editedItem.is_dw,   
                         },
                         {
                             headers: {
                                 Authorization: this.TOKEN
                             }
                         }
-                    ).then(()=>{   
+                    ).then(() => {
                         this.initialize();
                         this.close();
-                    }).catch(()=>{
+                    }).catch(() => {
                         this.btnLoading = false;
-                    });                    
+                    });                  
                     
                 } else {
-                    this.$ajax.post('/system/usersdosen/store',
+                    this.$ajax.post("/system/usersdosen/store",
                         {
                             name: this.editedItem.onlyname,
                             nidn: this.editedItem.nidn,
@@ -521,8 +515,8 @@ export default {
                             email: this.editedItem.email,
                             nomor_hp: this.editedItem.nomor_hp,     
                             username: this.editedItem.username,
-                            password: this.editedItem.password,                                        
-                            is_dw: this.editedItem.is_dw,                                        
+                            password: this.editedItem.password,           
+                            is_dw: this.editedItem.is_dw,           
                         },
                         {
                             headers: {
@@ -532,58 +526,58 @@ export default {
                     ).then(({ data })=>{   
                         this.daftar_users.push(data.user);
                         this.close();
-                    }).catch(()=>{
+                    }).catch(() => {
                         this.btnLoading = false;
                     });
                 }
             }
         },
-        setPermission: async function (item) {
-            this.editedItem=item;            
+        setPermission: async function(item) {
+            this.editedItem=item;          
             this.dialogUserPermission = true;
         },
         syncPermission ()
         {
-            this.$root.$confirm.open('Konfirmasi Sinkronisasi', 'Sinkronisasi hanya untuk user dalam role dosen, bila user memiliki role lain akan terhapus permission-nya ?', { color: 'warning',width:500 }).then(async (confirm) => {
+            this.$root.$confirm.open("Konfirmasi Sinkronisasi", "Sinkronisasi hanya untuk user dalam role dosen, bila user memiliki role lain akan terhapus permission-nya ?", { color: "warning", width: 500 }).then(async (confirm) => {
                 if (confirm)
                 {
                     this.btnLoading=true;
-                    await this.$ajax.post('/system/users/syncallpermissions',
+                    await this.$ajax.post("/system/users/syncallpermissions",
                         {
-                            role_name: 'dosen',                    
+                            role_name: "dosen",                    
                         },
                         {
                             headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
-                    ).then(()=>{                   
+                    ).then(() => {     
                         this.btnLoading = false;
-                    }).catch(()=>{
+                    }).catch(() => {
                         this.btnLoading = false;
-                    });     
+                    });   
                 }
             });
         },
-        deleteItem (item) {           
-            this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus username '+item.username+' ?', { color: 'red' }).then((confirm) => {
+        deleteItem(item) {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus username '+item.username+' ?", { color: "red" }).then((confirm) => {
                 if (confirm)
                 {
                     this.btnLoading=true;
-                    this.$ajax.post('/system/usersdosen/'+item.id,
+                    this.$ajax.post("/system/usersdosen/" + item.id,
                         {
-                            '_method': 'DELETE',
+                            _method: "DELETE",
                         },
                         {
                             headers: {
                                 Authorization: this.TOKEN
                             }
                         }
-                    ).then(()=>{   
+                    ).then(() => {
                         const index = this.daftar_users.indexOf(item);
                         this.daftar_users.splice(index, 1);
                         this.btnLoading = false;
-                    }).catch(()=>{
+                    }).catch(() => {
                         this.btnLoading = false;
                     });
                 }
@@ -591,12 +585,12 @@ export default {
         },
     },
     computed: {
-        formTitle () {
-            return this.editedIndex === -1 ? 'TAMBAH USER DOSEN' : 'EDIT USER DOSEN'
+        formTitle() {
+            return this.editedIndex === -1 ? "TAMBAH USER DOSEN" : "EDIT USER DOSEN"
         },
-        ...mapGetters('auth',{            
-            ACCESS_TOKEN: 'AccessToken',          
-            TOKEN: 'Token',                                  
+        ...mapGetters("auth",{ 
+            ACCESS_TOKEN: "AccessToken",          
+            TOKEN: "Token",     
         }),
     },
 
@@ -606,8 +600,8 @@ export default {
         },
         dialogEdit (val) {
             val || this.close()
-        },        
-    },    
+        },    
+    },
     components: {
         SystemUserLayout,
         ModuleHeader, 

@@ -5,29 +5,29 @@
                 <v-toolbar-title class="white--text">
                     Printout {{title}}                    
                 </v-toolbar-title>
-                <v-spacer></v-spacer>                    
-                <v-icon>mdi-printer</v-icon>                    
+                <v-spacer></v-spacer> 
+                <v-icon>mdi-printer</v-icon> 
             </v-toolbar>
         </v-card>
     </v-dialog>
 </template>
 <script>
 export default {
-    name:'DialogPrintoutKeuangan',
+    name: "DialogPrintoutKeuangan",
     props:{
         pid:{
             type:String,
-            required:true
-        },        
+            required: true
+        },    
         title:{
             type:String,
             default:''
-        },        
+        },    
     },
     data: () => ({
-        dialog:false
+        dialog: false
     }),
-    methods:{
+    methods: {
         open()
         {
             this.dialog=true;

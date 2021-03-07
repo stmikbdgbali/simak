@@ -39,7 +39,7 @@
                                     label="NAMA PERGURUAN TINGGI"
                                     outlined
                                     :rules="rule_nama_pt">
-                                </v-text-field>                                                                                               
+                                </v-text-field>                                                          
                                 <v-text-field 
                                     v-model="formdata.nama_alias_pt" 
                                     label="NAMA SINGKATAN PERGURUAN TINGGI"
@@ -56,10 +56,10 @@
                                     label="KODE PERGURUAN TINGGI (SESUAI FORLAP)"
                                     outlined
                                     :rules="rule_kode_pt">
-                                </v-text-field>                                                                                               
+                                </v-text-field>                                                          
                             </v-card-text>
                             <v-card-actions>
-                                <v-spacer></v-spacer>                                
+                                <v-spacer></v-spacer>             
                                 <v-btn 
                                     color="blue darken-1" 
                                     text 
@@ -75,109 +75,109 @@
     </SystemConfigLayout>
 </template>
 <script>
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 import SystemConfigLayout from '@/views/layouts/SystemConfigLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 export default {
-    name: 'IdentitasDiri',
+    name: "IdentitasDiri",
     created()
     {
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.ACCESS_TOKEN
+                href: "/dashboard/" + this.ACCESS_TOKEN
             },
             {
-                text: 'KONFIGURASI SISTEM',
+                text: "KONFIGURASI SISTEM",
                 disabled: false,
-                href: '/system-setting'
+                href: "/system-setting"
             },  
             {
-                text: 'PERGURUAN TINGGI',
+                text: "PERGURUAN TINGGI",
                 disabled: false,
-                href: '#'
+                href: "#"
             },
             {
-                text: 'IDENTITAS DIRI',
+                text: "IDENTITAS DIRI",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];
         this.initialize();
     },
     data: () => ({
-        breadcrumbs: [],        
+        breadcrumbs: [],
         btnLoading: false,   
         //form
-        form_valid: true,   
+        form_valid: true,  
         formdata: {
             nama_pt: "",
             nama_alias_pt: "",
             bentuk_pt: "",
             kode_pt:0,
         },
-        //form rules        
+        //form rules    
         rule_nama_pt: [
             value => !!value || "Mohon untuk di isi Nama Perguruan Tinggi !!!",             
-        ], 
+        ],
         rule_nama_singkatan_pt: [
             value => !!value || "Mohon untuk di isi Nama Alias Perguruan Tinggi !!!",             
         ],
         rule_kode_pt: [
             value => !!value || "Mohon untuk di isi Kode Perguruan Tinggi !!!",                     
-            value => /^[0-9]+$/.test(value) || 'Kode Perguruan Tinggi hanya boleh angka',
+            value => /^[0-9]+$/.test(value) || "Kode Perguruan Tinggi hanya boleh angka",
         ]
     }),
     methods: {
         initialize: async function() 
         {
-            await this.$ajax.get('/system/setting/variables',
+            await this.$ajax.get("/system/setting/variables",
             {
                 headers: {
                     Authorization: this.TOKEN
                 }
             }).then(({ data })=>{  
-                let setting = data.setting;                           
+                let setting = data.setting;                         
                 this.formdata.nama_pt=setting.NAMA_PT;
                 this.formdata.nama_alias_pt=setting.NAMA_PT_ALIAS;
                 this.formdata.bentuk_pt=setting.BENTUK_PT;
                 this.formdata.kode_pt=setting.KODE_PT;
-            });          
+            });        
             
         },
         save () {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;                
-                this.$ajax.post('/system/setting/variables',
+                this.btnLoading=true;              
+                this.$ajax.post("/system/setting/variables",
                     {
-                        '_method': 'PUT', 
-                        'pid': 'Identitas Perguruan Tinggi',
+                        _method: "PUT", 
+                        'pid': "Identitas Perguruan Tinggi",
                         setting:JSON.stringify({
                             101: this.formdata.nama_pt,
                             102: this.formdata.nama_alias_pt,
                             103: this.formdata.bentuk_pt,
                             104: this.formdata.kode_pt,
-                        }),                                                                                                                            
+                        }),                                                                                               
                     },
                     {
                         headers: {
                             Authorization: this.TOKEN
                         }
                     }
-                ).then(()=>{                       
+                ).then(() => {         
                     this.btnLoading = false;
-                }).catch(()=>{
+                }).catch(() => {
                     this.btnLoading = false;
-                });        
+                });      
             }
         }
     },
     computed: { 
-        ...mapGetters('auth',{            
-            ACCESS_TOKEN: 'AccessToken',          
-            TOKEN: 'Token',                                  
+        ...mapGetters("auth",{ 
+            ACCESS_TOKEN: "AccessToken",          
+            TOKEN: "Token",     
         }),
     },
     components: {

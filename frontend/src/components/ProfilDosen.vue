@@ -13,7 +13,7 @@
                 mdi-close-thick
             </v-icon>
         </v-toolbar>
-        <v-card-text v-if="datadosen.hasOwnProperty('user_id')">            
+        <v-card-text v-if="datadosen.hasOwnProperty("user_id")">            
             <v-row>
                 <v-col xs="12" sm="12" md="2">
                     <v-card flat class="mb-2">
@@ -30,7 +30,7 @@
                         <v-card-text>
                             <v-chip label outlined color="info">{{active}}</v-chip>
                         </v-card-text>
-                    </v-card>                                    
+                    </v-card>                 
                 </v-col>
                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly || $vuetify.breakpoint.smOnly"/>
                 <v-col xs="12" sm="12" md="10">
@@ -108,7 +108,7 @@
                             <v-card flat class="mb-2">
                                 <v-card-title>CREATED/UPDATED:</v-card-title>  
                                 <v-card-subtitle>
-                                    {{$date(datadosen.created_at).format('DD/MM/YYYY HH:mm')}} ~ {{$date(datadosen.updated_at).format('DD/MM/YYYY HH:mm')}}
+                                    {{$date(datadosen.created_at).format("DD/MM/YYYY HH:mm")}} ~ {{$date(datadosen.updated_at).format("DD/MM/YYYY HH:mm")}}
                                 </v-card-subtitle>
                             </v-card>
                         </v-col>
@@ -122,24 +122,24 @@
 </template>
 <script>    
 export default {
-    name:'ProfiDosen',
+    name: "ProfiDosen",
     created()
     {
-        this.initialize();                     
+        this.initialize();                   
     },
     props:{
         datadosen:{
             type:Object,            
-            required:true
+            required: true
         },
         url:{
             type:String,
-            default:null            
+            default: null            
         }
     },
     
     methods: {
-        initialize:async function ()
+        initialize: async function ()
         {
             
         },
@@ -150,17 +150,17 @@ export default {
                 this.$router.push(this.url);
             }            
         }
-    },    
+    },
     computed:{
         active()
         {
-            return this.datadosen.active==1?'AKTIF':'TIDAK AKTIF';
+            return this.datadosen.active== 1?'AKTIF':'TIDAK AKTIF';
         },
         tempat_tanggal_lahir()
         {
             if (this.datadosen.tempat_lahir&&this.datadosen.tanggal_lahir)
             {
-                return this.datadosen.tempat_lahir+' / '+this.$date(this.datadosen.tanggal_lahir).format('DD/MM/YYYY HH:mm');
+                return this.datadosen.tempat_lahir+' / '+this.$date(this.datadosen.tanggal_lahir).format("DD/MM/YYYY HH:mm");
             }
             else
             {

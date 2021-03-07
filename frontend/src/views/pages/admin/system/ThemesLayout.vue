@@ -39,34 +39,34 @@
                                     label="SYSTEM BAR"
                                     outlined
                                     :rules="rule_required">
-                                </v-text-field>                                                                                               
+                                </v-text-field>                                                          
                                 <v-text-field 
                                     v-model="formdata.V_APP_BAR_NAV_ICON_CSS_CLASS" 
                                     label="APPLICATION BAR"
                                     outlined
                                     :rules="rule_required">
-                                </v-text-field>                                
+                                </v-text-field>             
                                 <v-text-field 
                                     v-model="formdata.V_NAVIGATION_DRAWER_CSS_CLASS" 
                                     label="NAVIGATION DRAWER"
                                     outlined
                                     :rules="rule_required">
-                                </v-text-field>                                
+                                </v-text-field>             
                                 <v-text-field 
                                     v-model="formdata.V_LIST_ITEM_BOARD_CSS_CLASS" 
                                     label="LIST ITEM BOARD"
                                     outlined
                                     :rules="rule_required">
-                                </v-text-field>                                
+                                </v-text-field>             
                                 <v-text-field 
                                     v-model="formdata.V_LIST_ITEM_ACTIVE_CSS_CLASS" 
                                     label="LIST ITEM ACTIVE"
                                     outlined
                                     :rules="rule_required">
-                                </v-text-field>                                
+                                </v-text-field>             
                             </v-card-text>
                             <v-card-actions>
-                                <v-spacer></v-spacer>                                
+                                <v-spacer></v-spacer>             
                                 <v-btn 
                                     color="blue darken-1" 
                                     text 
@@ -84,31 +84,31 @@
 <script>
 import {mapGetters} from 'vuex';
 import SystemConfigLayout from '@/views/layouts/SystemConfigLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 export default {
-    name: 'ThemesLayout',
+    name: "ThemesLayout",
     created()
     {
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.ACCESS_TOKEN
+                href: "/dashboard/" + this.ACCESS_TOKEN
             },
             {
-                text: 'KONFIGURASI SISTEM',
+                text: "KONFIGURASI SISTEM",
                 disabled: false,
-                href: '/system-setting'
+                href: "/system-setting"
             },  
             {
-                text: 'THEMES',
+                text: "THEMES",
                 disabled: false,
-                href: '#'
+                href: "#"
             },
             {
-                text: 'LAYOUT',
+                text: "LAYOUT",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];
         this.initialize();
@@ -118,46 +118,46 @@ export default {
         datatableLoading: false,
         btnLoading: false,   
         //form
-        form_valid: true,   
+        form_valid: true,  
         formdata: {
-            V_SYSTEM_BAR_CSS_CLASS: '',
-            V_APP_BAR_NAV_ICON_CSS_CLASS: '',
-            V_NAVIGATION_DRAWER_CSS_CLASS: '',
-            V_LIST_ITEM_BOARD_CSS_CLASS: '',
-            V_LIST_ITEM_ACTIVE_CSS_CLASS: '',
+            V_SYSTEM_BAR_CSS_CLASS: "",
+            V_APP_BAR_NAV_ICON_CSS_CLASS: "",
+            V_NAVIGATION_DRAWER_CSS_CLASS: "",
+            V_LIST_ITEM_BOARD_CSS_CLASS: "",
+            V_LIST_ITEM_ACTIVE_CSS_CLASS: "",
         },
-        //form rules        
+        //form rules    
         rule_required: [
             value => !!value || "Mohon untuk diisi dengan nama class !!!",             
-        ], 
+        ],
     }),
     methods: {
-        initialize:async function() 
+        initialize: async function() 
         {
-            this.datatableLoading=true;
-            await this.$ajax.get('/system/setting/variables',
+            this.datatableLoading = true;
+            await this.$ajax.get("/system/setting/variables",
             {
                 headers: {
                     Authorization: this.TOKEN
                 }
             }).then(({ data })=>{  
-                let setting = data.setting;                           
+                let setting = data.setting;                         
                 this.formdata.V_SYSTEM_BAR_CSS_CLASS=setting.V_SYSTEM_BAR_CSS_CLASS;
                 this.formdata.V_APP_BAR_NAV_ICON_CSS_CLASS=setting.V_APP_BAR_NAV_ICON_CSS_CLASS;
                 this.formdata.V_NAVIGATION_DRAWER_CSS_CLASS=setting.V_NAVIGATION_DRAWER_CSS_CLASS;
                 this.formdata.V_LIST_ITEM_BOARD_CSS_CLASS=setting.V_LIST_ITEM_BOARD_CSS_CLASS;
                 this.formdata.V_LIST_ITEM_ACTIVE_CSS_CLASS=setting.V_LIST_ITEM_ACTIVE_CSS_CLASS;
-            });          
+            });        
             
         },
         save () {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;                
-                this.$ajax.post('/system/setting/variables',
+                this.btnLoading=true;              
+                this.$ajax.post("/system/setting/variables",
                     {
-                        '_method': 'PUT', 
-                        'pid': 'Class Css Layout',
+                        _method: "PUT", 
+                        'pid': "Class Css Layout",
                         setting:JSON.stringify({
                             801: this.formdata.V_SYSTEM_BAR_CSS_CLASS,
                             802: this.formdata.V_APP_BAR_NAV_ICON_CSS_CLASS,
@@ -165,26 +165,26 @@ export default {
                             804: this.formdata.V_LIST_ITEM_BOARD_CSS_CLASS,
                             805: this.formdata.V_LIST_ITEM_BOARD_COLOR,
                             806: this.formdata.V_LIST_ITEM_ACTIVE_CSS_CLASS,
-                        }),                                                                                                                            
+                        }),                                                                                               
                     },
                     {
                         headers: {
                             Authorization: this.TOKEN
                         }
                     }
-                ).then(()=>{                       
+                ).then(() => {         
                     this.btnLoading = false;
-                }).catch(()=>{
+                }).catch(() => {
                     this.btnLoading = false;
-                });        
-                this.$store.dispatch('uiadmin/init',this.$ajax); 
+                });      
+                this.$store.dispatch("uiadmin/init",this.$ajax); 
             }
         }
     },
     computed: { 
-        ...mapGetters('auth',{            
-            ACCESS_TOKEN: 'AccessToken',          
-            TOKEN: 'Token',                                  
+        ...mapGetters("auth",{ 
+            ACCESS_TOKEN: "AccessToken",          
+            TOKEN: "Token",     
         }),
     },
     components: {

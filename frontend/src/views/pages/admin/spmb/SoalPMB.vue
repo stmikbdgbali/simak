@@ -73,7 +73,7 @@
                                     <template v-slot:activator="{ on }">
                                         <v-btn color="primary" icon outlined small class="ma-2" v-on="on">
                                             <v-icon>mdi-plus</v-icon>
-                                        </v-btn>                                        
+                                        </v-btn>   
                                     </template>
                                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>
                                         <v-card>
@@ -90,7 +90,7 @@
                                                     label="SOAL" 
                                                     :rules="rule_soal"
                                                     type="text"
-                                                    outlined />                                                
+                                                    outlined />           
                                                 <v-divider class="mt-2"/>
                                                 <h3 class="headline mt-2">Jawaban Ke-1:</h3>  
                                                 <v-text-field
@@ -98,7 +98,7 @@
                                                     v-model="formdata.jawaban1"    
                                                     :rules="rule_jawaban"
                                                     outlined
-                                                />                                                
+                                                />           
                                                 <v-divider class="mt-2"/>
                                                 <h3 class="headline mt-2">Jawaban Ke-2:</h3>  
                                                 <v-text-field
@@ -106,7 +106,7 @@
                                                     v-model="formdata.jawaban2"    
                                                     :rules="rule_jawaban"
                                                     outlined
-                                                />                                                
+                                                />           
                                                 <v-divider class="mt-2"/>
                                                 <h3 class="headline mt-2">Jawaban Ke-3:</h3>  
                                                 <v-text-field
@@ -114,7 +114,7 @@
                                                     v-model="formdata.jawaban3"    
                                                     :rules="rule_jawaban"
                                                     outlined
-                                                />                                                
+                                                />           
                                                 <v-divider class="mt-2"/>
                                                 <h3 class="headline mt-2">Jawaban Ke-4:</h3>  
                                                 <v-text-field
@@ -122,7 +122,7 @@
                                                     v-model="formdata.jawaban4"    
                                                     :rules="rule_jawaban"
                                                     outlined
-                                                />                                                
+                                                />           
                                                 <v-divider class="mt-2"/>
                                                 <h3 class="headline mt-2 blue--text lighten-4">Jawaban Benar:</h3>  
                                                 <v-select
@@ -131,7 +131,7 @@
                                                     item-value="id"
                                                     item-text="text"                                                
                                                     label="JAWABAN BENAR"
-                                                    outlined/>    
+                                                    outlined />    
                                             </v-card-text>
                                             <v-card-actions>
                                                 <v-spacer></v-spacer>
@@ -164,7 +164,7 @@
                                                     label="SOAL" 
                                                     :rules="rule_soal"
                                                     type="text"
-                                                    outlined />                                                
+                                                    outlined />           
                                                 <v-divider class="mt-2"/>
                                                 <v-radio-group v-model="formdata.jawaban_benar">
                                                     <v-data-table                                                        
@@ -216,7 +216,7 @@
                                                     <v-card flat>
                                                         <v-card-title>CREATED :</v-card-title>
                                                         <v-card-subtitle>
-                                                            {{$date(formdata.created_at).format('DD/MM/YYYY HH:mm')}}
+                                                            {{$date(formdata.created_at).format("DD/MM/YYYY HH:mm")}}
                                                         </v-card-subtitle>
                                                     </v-card>
                                                 </v-col>
@@ -236,7 +236,7 @@
                                                     <v-card flat>
                                                         <v-card-title>UPDATED :</v-card-title>
                                                         <v-card-subtitle>
-                                                            {{$date(formdata.updated_at).format('DD/MM/YYYY HH:mm')}}
+                                                            {{$date(formdata.updated_at).format("DD/MM/YYYY HH:mm")}}
                                                         </v-card-subtitle>
                                                     </v-card>
                                                 </v-col>
@@ -255,7 +255,7 @@
                                                     >
                                                         <template v-slot:item.status="{ item }">
                                                             <v-icon>    
-                                                                {{item.status == 1 ?'mdi-check-bold': 'mdi-close-thick'}}
+                                                                {{item.status == 1 ?"mdi-check-bold": "mdi-close-thick"}}
                                                             </v-icon>
                                                         </template>
                                                     </v-data-table>
@@ -266,7 +266,7 @@
                                             <v-spacer></v-spacer>
                                             <v-btn color="blue darken-1" text @click.stop="closedialogdetailitem">KELUAR</v-btn>
                                         </v-card-actions>
-                                    </v-card>                                    
+                                    </v-card>                 
                                 </v-dialog>
                             </v-toolbar>
                         </template>
@@ -294,10 +294,10 @@
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
                                 <v-col cols="12">
-                                    <strong>ID:</strong>{{ item.id }}
-                                    <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
-                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
-                                </v-col>                                
+                                    <strong>id: </strong>{{ item.id }}
+                                    <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
+                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
+                                </v-col>             
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -314,54 +314,54 @@
 </template>
 <script>
 import SPMBLayout from '@/views/layouts/SPMBLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 import Filter19 from '@/components/sidebar/FilterMode19';
 export default {
-    name: 'SoalPMB',
-    created () {
+    name: "SoalPMB",
+    created() {
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
             },
             {
-                text: 'SPMB',
+                text: "SPMB",
                 disabled: false,
-                href: '/spmb'
+                href: "/spmb"
             },
             {
-                text: 'SOAL PMB',
+                text: "SOAL PMB",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];
-        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];        
-        this.semester_pendaftaran=this.$store.getters['uiadmin/getSemesterPendaftaran'];  
-        this.nama_semester_pendaftaran=this.$store.getters['uiadmin/getNamaSemester'](this.semester_pendaftaran);  
+        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];      
+        this.semester_pendaftaran=this.$store.getters['uiadmin/getSemesterPendaftaran'];
+        this.nama_semester_pendaftaran=this.$store.getters['uiadmin/getNamaSemester'](this.semester_pendaftaran);
         this.initialize()
     },  
     data: () => ({ 
         firstloading: true,
-        prodi_id:null,        
-        nama_prodi:null,
-        tahun_pendaftaran:null,
-        semester_pendaftaran:null,
-        nama_semester_pendaftaran:null,
+        prodi_id:  null,       
+        nama_prodi: null,
+        tahun_pendaftaran: null,
+        semester_pendaftaran: null,
+        nama_semester_pendaftaran: null,
 
         btnLoading: false,
         datatableLoading: false,
         expanded: [],
         datatable: [],
         headers: [                                    
-            { text: 'NAMA SOAL', value: 'soal'},   
-            { text: 'AKSI', value: 'actions', sortable: false,width:100 },
+            { text: "NAMA SOAL", value: "soal" },   
+            { text: "AKSI", value: "actions", sortable: false, width:100 },
         ],
         headers_detail: [
-            { text: 'JAWABAN', value: 'jawaban', sortable: false,}, 
-            { text: 'KET.', value: 'status', sortable: false,width:100 },
+            { text: "JAWABAN", value: "jawaban", sortable: false,}, 
+            { text: "KET.", value: "status", sortable: false, width:100 },
         ],
-        search: "",    
+        search: "",
 
         //dialog
         dialogfrm: false,
@@ -370,71 +370,71 @@ export default {
         daftar_soal_jawaban: [],
 
         //form data   
-        form_valid: true,    
-        image_prev:null,      
+        form_valid:  true,   
+        image_prev: null,     
         daftar_jawaban: [
             {
-                id:1,
-                text: 'JAWABAN KE 1'
+                id: 1,
+                text: "JAWABAN KE 1",
             },
             {
-                id:2,
-                text: 'JAWABAN KE 2'
+                id: 2,
+                text: "JAWABAN KE 2",
             },
             {
-                id:3,
-                text: 'JAWABAN KE 3'
+                id: 3,
+                text: "JAWABAN KE 3",
             },
             {
-                id:4,
-                text: 'JAWABAN KE 4'
+                id: 4,
+                text: "JAWABAN KE 4",
             },
-        ],     
+        ],  
         formdata: {
-            id:0,                        
-            soal: "",  
-            gambar: "",  
-            jawaban1: "",                    
-            jawaban2: "",                    
-            jawaban3: "",                    
-            jawaban4: "",                    
-            jawaban_benar: "",                    
-            created_at:  "",           
-            updated_at:  "",           
+            id:  0,                        
+            soal: "", 
+            gambar: "", 
+            jawaban1: "",               
+            jawaban2: "",               
+            jawaban3: "",               
+            jawaban4: "",               
+            jawaban_benar: "",               
+            created_at: "",      
+            updated_at: "",      
 
         },
         formdefault: {
-            id:0,           
-            soal: "",    
-            gambar: "",                      
-            jawaban1: "",                    
-            jawaban2: "",                    
-            jawaban3: "",                    
-            jawaban4: "",        
-            jawaban_benar: "",                                
-            created_at:  "",           
-            updated_at:  "",       
+            id:  0,           
+            soal: "",
+            gambar: "",                 
+            jawaban1: "",               
+            jawaban2: "",               
+            jawaban3: "",               
+            jawaban4: "",   
+            jawaban_benar: "",                           
+            created_at: "",      
+            updated_at: "",  
         },
         editedIndex: -1,
 
-        //form rules      
+        //form rules  
         rule_soal: [
             value => !!value || "Mohon untuk di isi soal !!!",              
-        ], 
+        ],
         rule_gambar: [            
-            value =>  !value || value.size < 2000000 || 'File gambar harus kurang dari 2MB.'                
+            value =>  !value || value.size < 2000000 || "File gambar harus kurang dari 2MB."                
         ],
         rule_jawaban: [
             value => !!value || "Mohon isi jawaban dari soal ini",              
-        ], 
+        ],
         rule_jawaban_benar: [
             value => !!value || "Mohon pilih jawaban benar dari soal ini",              
-        ], 
+        ],
     }),
     methods: {
         changeTahunPendaftaran (tahun)
         {
-            this.tahun_pendaftaran=tahun;
+            this.tahun_pendaftaran = tahun;
         },
         changeSemesterPendaftaran (semester)
         {
@@ -442,8 +442,8 @@ export default {
         },
         initialize: async function() 
         {
-            this.datatableLoading=true;
-            await this.$ajax.post('/spmb/soalpmb',
+            this.datatableLoading = true;
+            await this.$ajax.post("/spmb/soalpmb",
             {
                 tahun_pendaftaran: this.tahun_pendaftaran,
                 semester_pendaftaran: this.semester_pendaftaran
@@ -452,39 +452,39 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{                        
+            }).then(({ data })=>{             
                 this.datatable = data.soal;
-                this.datatableLoading=false;
-            }).catch(()=>{
-                this.datatableLoading=false;
+                this.datatableLoading = false;
+            }).catch(() => {
+                this.datatableLoading = false;
             }); 
-            this.firstloading=false;   
-            this.$refs.filter19.setFirstTimeLoading(this.firstloading);          
+            this.firstloading = false; 
+            this.$refs.filter19.setFirstTimeLoading(this.firstloading);        
         },
         dataTableRowClicked(item)
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded = [];              
             }
             else
             {
-                this.expanded=[item];
+                this.expanded = [item];
             }               
         },
-        viewItem:async function (item) {                          
-            await this.$ajax.get('/spmb/soalpmb/'+item.id,{
+        viewItem: async function(item) {               
+            await this.$ajax.get("/spmb/soalpmb/" + item.id, {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({ data })=>{         
-                this.formdata=item;      
-                this.dialogdetailitem=true;              
+                this.formdata = item;  
+                this.dialogdetailitem = true;          
                 this.daftar_soal_jawaban=data.soal.jawaban;
-            });                      
-        },    
-        editItem:async function (item) {                          
-            await this.$ajax.get('/spmb/soalpmb/'+item.id,{
+            });                    
+        },
+        editItem: async function(item) {               
+            await this.$ajax.get("/spmb/soalpmb/" + item.id, {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
@@ -494,39 +494,39 @@ export default {
                 this.dialogeditfrm = true;
                 let jawaban_benar ='';
                 data.soal.jawaban.forEach(element => {
-                    if (element.status==1)
+                    if (element.status== 1)
                     {
-                        jawaban_benar=element.id;                        
+                        jawaban_benar=element.id;                      
                     }                     
-                });    
-                this.formdata.jawaban_benar=jawaban_benar;         
+                });  
+                this.formdata.jawaban_benar=jawaban_benar;       
                 this.daftar_soal_jawaban=data.soal.jawaban;
-            });                      
+            });                    
         }, 
-        previewImage (e)
+        previewImage(e)
         {
-            if (typeof e === 'undefined')
+            if (typeof e === "undefined")
             {
-                this.image_prev=null;                
+                this.image_prev=null;              
             }
             else
             {
                 let reader = new FileReader();
                 reader.readAsDataURL(e);
-                reader.onload = img => {                    
+                reader.onload = img => {         
                     this.image_prev=img.target.result;
                 }                
             }          
         },   
-        save:async function() {
+        save: async function() {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading=true;
                 if (this.editedIndex > -1) 
                 {
-                    await this.$ajax.post('/spmb/soalpmb/'+this.formdata.id,
+                    await this.$ajax.post("/spmb/soalpmb/" + this.formdata.id,
                         {
-                            '_method': 'PUT',
+                            _method: "PUT",
                             soal: this.formdata.soal, 
                             jawaban_benar: this.formdata.jawaban_benar                      
                         },
@@ -536,18 +536,18 @@ export default {
                             }
                         }
                     ).then(({ data })=>{   
-                        Object.assign(this.datatable[this.editedIndex], data.soal);
+                        Object.assign(this.datatable[this.editedIndex],data.soal);
                         this.closedialogeditfrm();
                         this.btnLoading = false;
-                    }).catch(()=>{
+                    }).catch(() => {
                         this.btnLoading = false;
-                    });                 
+                    });               
                     
                 } else {
-                    await this.$ajax.post('/spmb/soalpmb/store',
+                    await this.$ajax.post("/spmb/soalpmb/store",
                         {  
                             soal: this.formdata.soal,                            
-                            gambar: 'gambar',                            
+                            gambar: "gambar",                            
                             jawaban1: this.formdata.jawaban1,                            
                             jawaban2: this.formdata.jawaban2,                            
                             jawaban3: this.formdata.jawaban3,                            
@@ -555,7 +555,7 @@ export default {
                             jawaban_benar: this.formdata.jawaban_benar,                            
                             tahun_pendaftaran: this.tahun_pendaftaran,
                             semester_pendaftaran: this.semester_pendaftaran
-                        },                        
+                        },         
                         {
                             headers: {
                                 Authorization: this.$store.getters["auth/Token"]
@@ -565,38 +565,38 @@ export default {
                         this.datatable.push(data.soal);
                         this.closedialogfrm();
                         this.btnLoading = false;
-                    }).catch(()=>{
+                    }).catch(() => {
                         this.btnLoading = false;
                     });
                 }
             }
         },
-        deleteItem (item) {           
-            this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus data dengan ID '+item.id+' ?', { color: 'red' }).then((confirm) => {
+        deleteItem(item) {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data dengan ID '+item.id+' ?", { color: "red" }).then((confirm) => {
                 if (confirm)
                 {
                     this.btnLoading=true;
-                    this.$ajax.post('/spmb/soalpmb/'+item.id,
+                    this.$ajax.post("/spmb/soalpmb/" + item.id,
                         {
-                            '_method': 'DELETE',
+                            _method: "DELETE",
                         },
                         {
                             headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
-                    ).then(()=>{   
+                    ).then(() => {
                         const index = this.datatable.indexOf(item);
                         this.datatable.splice(index, 1);
                         this.btnLoading = false;
-                    }).catch(()=>{
+                    }).catch(() => {
                         this.btnLoading = false;
                     });
                 }                
             });
         },
-        closedialogdetailitem () {
-            this.dialogdetailitem = false;          
+        closedialogdetailitem() {
+            this.dialogdetailitem = false;        
             this.daftar_soal_jawaban=[];
             setTimeout(() => {
                 this.formdata = Object.assign({}, this.formdefault)
@@ -605,7 +605,7 @@ export default {
             );
         },
         closedialogfrm () {
-            this.dialogfrm = false;            
+            this.dialogfrm = false;          
             setTimeout(() => {
                 this.formdata = Object.assign({}, this.formdefault);
                 this.$refs.frmdata.reset(); 
@@ -614,7 +614,7 @@ export default {
             );
         },
         closedialogeditfrm () {
-            this.dialogeditfrm = false;            
+            this.dialogeditfrm = false;          
             setTimeout(() => {
                 this.formdata = Object.assign({}, this.formdefault);
                 this.$refs.frmdata.reset(); 
@@ -625,25 +625,25 @@ export default {
     },
     computed: {
         gambarSoal: {
-            get ()
+            get()
             {   
                 if (this.image_prev==null)
                 {
-                    return require('@/assets/no-image.png');
+                    return require("@/assets/no-image.png");
                 }
                 else
                 {
                     return this.image_prev;
                 }
             },
-            set (val)
+            set(val)
             {
                 this.image_prev=val;
             }            
         },
-        formTitle () {
-            return this.editedIndex === -1 ? 'TAMBAH DATA' : 'UBAH DATA'
-        },        
+        formTitle() {
+            return this.editedIndex === -1 ? "TAMBAH DATA" : "UBAH DATA"
+        },    
     },
     watch: {
         tahun_pendaftaran()
@@ -657,7 +657,7 @@ export default {
         {
             if (!this.firstloading)
             {
-                this.nama_semester_pendaftaran=this.$store.getters['uiadmin/getNamaSemester'](val);                 
+                this.nama_semester_pendaftaran=this.$store.getters['uiadmin/getNamaSemester'](val);               
                 this.initialize();
             }            
         },

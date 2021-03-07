@@ -15,7 +15,7 @@
                 </h1>                
             </v-col>
             <v-col cols="12" xs="12" sm="12" md="12">
-                <span class="ml-10 subtitle-1 green--text font-weight-bold">                    
+                <span class="ml-10 subtitle-1 green--text font-weight-bold"> 
                     <slot name="subtitle" />
                 </span>                
             </v-col>
@@ -28,13 +28,12 @@
     </v-container>
 </template>
 <script>
-export default {
-    name:'ModuleHeader',
-    computed : {        
-        isReportPage ()
-		{
-			return true;
-		},
-    }
-}
+    export default {
+        name: "ModuleHeader",
+        computed: {        
+            isReportPage () {
+                return true;
+            },
+        },
+    };
 </script>

@@ -88,7 +88,7 @@
                     <v-card flat>
                         <v-card-title>CREATED / UPDATED :</v-card-title>
                         <v-card-subtitle>
-                            {{$date(datakelas.created_at).format('DD/MM/YYYY HH:mm')}} / {{$date(datakelas.updated_at).format('DD/MM/YYYY HH:mm')}}
+                            {{$date(datakelas.created_at).format("DD/MM/YYYY HH:mm")}} / {{$date(datakelas.updated_at).format("DD/MM/YYYY HH:mm")}}
                         </v-card-subtitle>
                     </v-card>
                 </v-col>
@@ -99,15 +99,15 @@
 </template>
 <script>
 export default {
-    name:'DataMatakuliahPenyelenggaraan',
+    name: "DataMatakuliahPenyelenggaraan",
     props:{
         datakelas:{
-            default:null,
+            default: null,
             type:Object,            
         },
         url:{
             type:String,
-            default:null            
+            default: null            
         }
     },  
     methods: {       
@@ -118,6 +118,6 @@ export default {
                 this.$router.push(this.url);
             }            
         }
-    },      
+    },  
 }
 </script>

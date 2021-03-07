@@ -50,7 +50,7 @@
                                     <v-card flat>
                                         <v-card-title>SAH :</v-card-title>
                                         <v-card-subtitle>
-                                            <v-chip label outlined color="info">{{datakrs.sah==1?'YA': 'TIDAK'}}</v-chip>
+                                            <v-chip label outlined color="info">{{datakrs.sah== 1?"YA": "TIDAK"}}</v-chip>
                                         </v-card-subtitle>
                                     </v-card>
                                 </v-col>
@@ -86,7 +86,7 @@
                                     <v-card flat>
                                         <v-card-title>CREATED / UPDATED :</v-card-title>
                                         <v-card-subtitle>
-                                            {{$date(datakrs.created_at).format('DD/MM/YYYY HH:mm')}} / {{$date(datakrs.updated_at).format('DD/MM/YYYY HH:mm')}}
+                                            {{$date(datakrs.created_at).format("DD/MM/YYYY HH:mm")}} / {{$date(datakrs.updated_at).format("DD/MM/YYYY HH:mm")}}
                                         </v-card-subtitle>
                                     </v-card>
                                 </v-col>
@@ -102,7 +102,7 @@
                         <v-card>
                             <v-card-title>
                                 DAFTAR MATAKULIAH
-                                <v-spacer></v-spacer>                            
+                                <v-spacer></v-spacer>         
                             </v-card-title>
                             <v-card-text>
                                 <v-data-table        
@@ -113,8 +113,8 @@
                                     :disable-pagination="true"
                                     :hide-default-footer="true"                                                                
                                     :loading="datatableLoading"
-                                    loading-text="Loading... Please wait">                                
-                                    <template v-slot:item.n_kuan="props">                                    
+                                    loading-text="Loading... Please wait">             
+                                    <template v-slot:item.n_kuan="props">                 
                                         <VAngkaNilai                                                            
                                             v-model="props.item.n_kuan"                                    
                                             dense                                    
@@ -122,7 +122,7 @@
                                             :disabled="props.item.bydosen">
                                         </VAngkaNilai> 
                                     </template> 
-                                    <template v-slot:item.n_kual="props">                                    
+                                    <template v-slot:item.n_kual="props">                 
                                         <v-select 
                                             :items="$store.getters['uiadmin/getSkalaNilai']" 
                                             v-model="props.item.n_kual"
@@ -138,7 +138,7 @@
                                             <td></td>
                                             <td></td>
                                             <td></td>
-                                            <td></td>                                            
+                                            <td></td>       
                                         </tr>
                                         <tr class="grey lighten-4 font-weight-black">
                                             <td class="text-right" colspan="2">TOTAL SKS</td>
@@ -146,7 +146,7 @@
                                             <td></td>
                                             <td></td>
                                             <td></td>
-                                            <td></td>                                            
+                                            <td></td>       
                                         </tr>
                                     </template>   
                                     <template v-slot:no-data>
@@ -174,90 +174,90 @@
     </AkademikLayout>
 </template>
 <script>
-import AkademikLayout from '@/views/layouts/AkademikLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import AkademikLayout from "@/views/layouts/AkademikLayout";
+import ModuleHeader from "@/components/ModuleHeader";
 import VAngkaNilai from '@/components/VAngkaNilai';
 export default {
-    name: 'NilaiIsiPerKRSDetail',
-    created () {
-        this.krs_id=this.$route.params.krsid;        
+    name: "NilaiIsiPerKRSDetail",
+    created() {
+        this.krs_id=this.$route.params.krsid;      
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
             },
             {
-                text: 'AKADEMIK',
+                text: "AKADEMIK",
                 disabled: false,
-                href: '/akademik'
+                href: "/akademik",
             },
             {
-                text: 'ISI NILAI',
+                text: "ISI NILAI",
                 disabled: false,
-                href: '#'
+                href: "#"
             },
             {
-                text: 'PER KRS',
+                text: "PER KRS",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
-        ];  
-        this.fetchKRS();               
+        ];
+        this.fetchKRS();             
     },  
     data: () => ({ 
         test:100,
-        firstloading: true,        
-        nama_prodi:null,
-        tahun_akademik:null,        
-        semester_akademik:null,
+        firstloading: true,       
+        nama_prodi: null,
+        tahun_akademik: null,       
+        semester_akademik: null,
     
         btnLoading: false, 
         btnLoadingTable: false,
 
         //formdata
-        krs_id:null,
+        krs_id: null,
         datakrs: {},
         
         //table        
         datatableLoading: false,
         expanded: [],
-        datatable: [],      
+        datatable: [],
         headers: [
-            { text: 'KODE', value: 'kmatkul', sortable: true,width:100  },   
-            { text: 'NAMA MATAKULIAH', value: 'nmatkul',sortable: true,width:260 },               
-            { text: 'SKS', value: 'sks', sortable: false,width:50 },                           
-            { text: 'SMT', value: 'semester', sortable: false,width:50 },                           
-            { text: 'KELAS', value: 'nama_kelas', sortable: false,width:200 },                           
-            { text: 'NILAI ANGKA (0 s.d 100)', value: 'n_kuan', sortable: false,width:70 },                           
-            { text: 'NILAI HURUF', value: 'n_kual', sortable: false,width:100 },                           
+            { text: "KODE", value: "kmatkul", sortable: true,width:100  },   
+            { text: "NAMA MATAKULIAH", value: "nmatkul",sortable: true,width:260 },
+            { text: "SKS", value: "sks", sortable: false,width:50 },            
+            { text: "SMT", value: "semester", sortable: false,width:50 },            
+            { text: "KELAS", value: "nama_kelas", sortable: false,width:200 },            
+            { text: "NILAI ANGKA (0 s.d 100)", value: "n_kuan", sortable: false,width:70 },            
+            { text: "NILAI HURUF", value: "n_kual", sortable: false, width:100 },            
                                    
-        ],  
+        ],
         //formdata
-        form_valid: true,                 
+        form_valid: true,                
     }),
     methods: {          
         async fetchKRS()
         {
-            await this.$ajax.get('/akademik/nilai/matakuliah/perkrs/'+this.krs_id,                        
+            await this.$ajax.get("/akademik/nilai/matakuliah/perkrs/" + this.krs_id,                        
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{                                               
-                this.datakrs=data.krs;                
-                this.datatable=data.krsmatkul;                
+            }).then(({ data })=>{                                    
+                this.datakrs=data.krs;              
+                this.datatable=data.krsmatkul;              
                 if (Object.keys(this.datakrs).length)
                 {
-                    let prodi_id=this.datakrs.kjur;                    
-                    this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](prodi_id);                
-                    this.tahun_akademik=this.datakrs.tahun;                                                      
-                    this.semester_akademik=this.datakrs.idsmt;                        
+                    let prodi_id=this.datakrs.kjur;                  
+                    this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);              
+                    this.tahun_akademik=this.datakrs.tahun;                                                    
+                    this.semester_akademik=this.datakrs.idsmt;                      
                 }
             })  
-        },     
+        }, 
         async save ()
-        {           
+        {
             this.btnLoadingTable=true;
             var daftar_nilai=[];
 
@@ -267,8 +267,8 @@ export default {
                     n_kuan:item.n_kuan,
                     n_kual:item.n_kual
                 });
-            });            
-            await this.$ajax.post('/akademik/nilai/matakuliah/perkrs/storeperkrs',
+            });          
+            await this.$ajax.post("/akademik/nilai/matakuliah/perkrs/storeperkrs",
                 {
                     krs_id: this.krs_id,
                     daftar_nilai:JSON.stringify(Object.assign({},daftar_nilai)),                    
@@ -278,17 +278,17 @@ export default {
                         Authorization: this.$store.getters["auth/Token"]
                     }
                 }
-            ).then(()=>{                   
+            ).then(() => {     
                 this.$router.go();
-            }).catch(()=>{
+            }).catch(() => {
                 this.btnLoadingTable=false;
             });
-        },           
+        },       
     },
     computed: {
         totalMatkul()
         {
-            return this.datatable.length;            
+            return this.datatable.length;          
         },
         totalSKS()
         {

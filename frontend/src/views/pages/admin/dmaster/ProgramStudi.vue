@@ -65,11 +65,11 @@
                                     inset
                                     vertical
                                 ></v-divider>
-                                <v-spacer></v-spacer>                                
+                                <v-spacer></v-spacer>             
                                 <v-btn color="primary" icon outlined small class="ma-2" @click.stop="tambahItem">
                                     <v-icon>mdi-plus</v-icon>
-                                </v-btn>                                        
-                                <v-dialog v-model="dialogfrm" max-width="500px" persistent>                                    
+                                </v-btn>   
+                                <v-dialog v-model="dialogfrm" max-width="500px" persistent>                 
                                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>
                                         <v-card>
                                             <v-card-title>
@@ -155,7 +155,7 @@
                                                     </v-card>
                                                 </v-col>
                                                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
-                                            </v-row>                                            
+                                            </v-row>       
                                             <v-row no-gutters>
                                                 <v-col xs="12" sm="6" md="6">
                                                     <v-card flat>
@@ -165,7 +165,7 @@
                                                         </v-card-subtitle>
                                                     </v-card>
                                                 </v-col>
-                                                <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>                                                
+                                                <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>           
                                                 <v-col xs="12" sm="6" md="6">
                                                     <v-card flat>
                                                         <v-card-title>KETUA PRODI :</v-card-title>
@@ -174,7 +174,7 @@
                                                         </v-card-subtitle>
                                                     </v-card>
                                                 </v-col>
-                                                <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>                                                
+                                                <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>           
                                             </v-row>     
                                             <v-row>
                                                 <v-col cols="12">
@@ -188,7 +188,7 @@
                                                                 item-value="id"
                                                                 return-object 
                                                                 :disabled="btnLoading"                                                               
-                                                                outlined/>
+                                                                outlined />
                                                         </v-card-text>
                                                     </v-card>
                                                 </v-col>
@@ -198,7 +198,7 @@
                                             <v-spacer></v-spacer>
                                             <v-btn color="blue darken-1" text @click.stop="closedialogdetailitem">KELUAR</v-btn>
                                         </v-card-actions>
-                                    </v-card>                                    
+                                    </v-card>                 
                                 </v-dialog>
                             </v-toolbar>
                         </template>
@@ -230,7 +230,7 @@
                             <td :colspan="headers.length" class="text-center">
                                 <v-col cols="12">
                                     <strong>ID:</strong>{{ item.id }}                                                                                                       
-                                </v-col>                                
+                                </v-col>             
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -243,27 +243,27 @@
     </DataMasterLayout>
 </template>
 <script>
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 import DataMasterLayout from '@/views/layouts/DataMasterLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 export default {
-    name: 'ProgramStudi',
-    created () {
+    name: "ProgramStudi",
+    created() {
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.ACCESS_TOKEN
+                href: "/dashboard/" + this.ACCESS_TOKEN
             },
             {
-                text: 'DATA MASTER',
+                text: "DATA MASTER",
                 disabled: false,
-                href: '#'
+                href: "#"
             },
             {
-                text: 'PROGRAM STUDI',
+                text: "PROGRAM STUDI",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];
         this.initialize()
@@ -272,8 +272,8 @@ export default {
         btnLoading: false,
         datatableLoading: false,
         expanded: [],
-        datatable: [],        
-        search: "",    
+        datatable: [],
+        search: "",
         firstloading: true,
 
         //dialog
@@ -281,70 +281,70 @@ export default {
         dialogdetailitem: false,
 
         //form data   
-        form_valid: true,   
-        daftar_fakultas: [],           
+        form_valid: true,  
+        daftar_fakultas: [],  
 
-        daftar_jenjang: [],      
-        jenjang_studi:null,          
-        kode_prodi: "",          
+        daftar_jenjang: [],
+        jenjang_studi: null,         
+        kode_prodi: "",     
         formdata: {
-            id:0,                        
-            kode_fakultas: "",                        
-            kode_prodi: "",                        
-            nama_prodi: "", 
-            nama_prodi_alias: "",         
-            kode_jenjang: "", 
-            nama_jenjang: "", 
+            id: 0,                        
+            kode_fakultas: "",                   
+            kode_prodi: "",                   
+            nama_prodi: "",
+            nama_prodi_alias: "",    
+            kode_jenjang: "",
+            nama_jenjang: "",
             config: {}
         },
         formdefault: {
-            id:0,                        
-            kode_fakultas: "",   
-            kode_prodi: "",                        
-            nama_prodi: "",         
-            nama_prodi_alias: "",         
-            kode_jenjang: "", 
-            nama_jenjang: "", 
+            id: 0,                        
+            kode_fakultas: "",  
+            kode_prodi: "",                   
+            nama_prodi: "",    
+            nama_prodi_alias: "",    
+            kode_jenjang: "",
+            nama_jenjang: "",
             config: {}
         },
-        dosen_id:null,
+        dosen_id: null,
         daftar_dosen: [],
         editedIndex: -1,
 
         //form rules 
         rule_kode_fakultas: [
             value => !!value || "Mohon fakultas untuk dipilih !!!",              
-        ],  
+        ],
         rule_kode_prodi: [
             value => !!value || "Kode Program Studi mohon untuk diisi !!!",
-            value => /^[1-9]{1}[0-9]{1,14}$/.test(value) || 'Kode Program Studi hanya boleh angka',
-        ], 
+            value => /^[1-9]{1}[0-9]{1,14}$/.test(value) || "Kode Program Studi hanya boleh angka",
+        ],
         rule_nama_prodi: [
             value => !!value || "Mohon Nama Program Studi untuk diisi !!!",  
-            value => /^[A-Za-z\s]*$/.test(value) || 'Nama Program Studi hanya boleh string dan spasi',                
-        ], 
+            value => /^[A-Za-z\s]*$/.test(value) || "Nama Program Studi hanya boleh string dan spasi",                
+        ],
         rule_nama_prodi_alias: [
             value => !!value || "Mohon Nama Singkat Program Studi untuk diisi !!!",  
-            value => /^[A-Za-z\s]*$/.test(value) || 'Nama Singkat Program Studi hanya boleh string dan spasi',                
-        ], 
+            value => /^[A-Za-z\s]*$/.test(value) || "Nama Singkat Program Studi hanya boleh string dan spasi",                
+        ],
         rule_kode_jenjang: [
             value => !!value || "Mohon Jenjang Studi untuk dipilih !!!",              
-        ], 
+        ],
     }),
     methods: {
         initialize: async function() 
         {
-            this.datatableLoading=true;
-            await this.$ajax.get('/datamaster/programstudi',{
+            this.datatableLoading = true;
+            await this.$ajax.get("/datamaster/programstudi",{
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data })=>{               
+            }).then(({ data })=>{    
                 this.datatable = data.prodi;
-                this.datatableLoading=false;
-            }).catch(()=>{
-                this.datatableLoading=false;
-            });  
+                this.datatableLoading = false;
+            }).catch(() => {
+                this.datatableLoading = false;
+            });
         },
         kaprodi(item)
         {
@@ -354,7 +354,7 @@ export default {
                 var config = JSON.parse(item.config);
                 if (config.kaprodi)
                 {
-                    message=config.kaprodi.name;                    
+                    message=config.kaprodi.name;                  
                 }
             }
             return message;
@@ -363,61 +363,61 @@ export default {
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded = [];              
             }
             else
             {
-                this.expanded=[item];
+                this.expanded = [item];
             }               
         },
-        tambahItem:async function()
+        tambahItem: async function()
         {   
-            if (this.$store.getters['uifront/getBentukPT']=='universitas')
-            {                
-                await this.$ajax.get('/datamaster/fakultas').then(({ data })=>{
+            if (this.$store.getters['uifront/getBentukPT']== "universitas")
+            {     
+                await this.$ajax.get("/datamaster/fakultas").then(({ data })=>{
                     this.daftar_fakultas=data.fakultas;
                 });
             }
-            await this.$ajax.get('/datamaster/programstudi/jenjangstudi').then(({ data })=>{
+            await this.$ajax.get("/datamaster/programstudi/jenjangstudi").then(({ data })=>{
                 this.daftar_jenjang=data.jenjangstudi;
             });
 
             this.dialogfrm=true;
         },
-        async viewItem (item) 
-        {           
-            this.datatableLoading=true;
-            await this.$ajax.get('/system/usersdosen',{
+        async viewItem(item) 
+        {
+            this.datatableLoading = true;
+            await this.$ajax.get("/system/usersdosen",{
                 headers: {
                     Authorization: this.TOKEN
                 }
             }).then(({ data })=>{    
-                this.daftar_dosen = data.users;   
+                this.daftar_dosen = data.users; 
                 this.dosen_id=item.config;
                 if (item.config)
                 {
                     var config = JSON.parse(item.config);
                     this.dosen_id=config.kaprodi
                 }             
-                this.datatableLoading=false;
-                this.formdata=item;      
-                this.dialogdetailitem=true;                 
+                this.datatableLoading = false;
+                this.formdata = item;  
+                this.dialogdetailitem = true;             
             }); 
-            this.firstloading=false;
-        },    
-        editItem:async function (item) {            
+            this.firstloading = false;
+        },
+        editItem: async function(item) { 
             this.editedIndex = this.datatable.indexOf(item);
             this.formdata = Object.assign({}, item);
 
-            if (this.$store.getters['uifront/getBentukPT']=='universitas')
-            {                
-                await this.$ajax.get('/datamaster/fakultas').then(({ data })=>{                    
-                    this.daftar_fakultas=data.fakultas;                    
+            if (this.$store.getters['uifront/getBentukPT']== "universitas")
+            {     
+                await this.$ajax.get("/datamaster/fakultas").then(({ data })=>{         
+                    this.daftar_fakultas=data.fakultas;                  
                     this.formdata.kode_fakultas=item.kode_fakultas;
                 });
             }
 
-            await this.$ajax.get('/datamaster/programstudi/jenjangstudi').then(({ data })=>{
+            await this.$ajax.get("/datamaster/programstudi/jenjangstudi").then(({ data })=>{
                 this.daftar_jenjang=data.jenjangstudi;
             });
 
@@ -426,87 +426,87 @@ export default {
                 nama_jenjang:item.nama_jenjang
             }
             this.dialogfrm = true
-        },    
-        save:async function() {
+        },
+        save: async function() {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading=true;
                 if (this.editedIndex > -1) 
                 {
-                    await this.$ajax.post('/datamaster/programstudi/'+this.formdata.id,
+                    await this.$ajax.post("/datamaster/programstudi/" + this.formdata.id,
                         {
-                            '_method': 'PUT',
+                            _method: "PUT",
                             kode_fakultas: this.formdata.kode_fakultas,                            
                             kode_prodi: this.formdata.kode_prodi,                            
-                            nama_prodi: this.formdata.nama_prodi,                                                        
-                            nama_prodi_alias: this.formdata.nama_prodi_alias,                                                        
-                            kode_jenjang: this.formdata.kode_jenjang,                                                        
-                            nama_jenjang: this.formdata.nama_jenjang,                                                                                                             
+                            nama_prodi: this.formdata.nama_prodi,                           
+                            nama_prodi_alias: this.formdata.nama_prodi_alias,                           
+                            kode_jenjang: this.formdata.kode_jenjang,                           
+                            nama_jenjang: this.formdata.nama_jenjang,                                                                                
                         },
                         {
                             headers: {
                                 Authorization: this.TOKEN
                             }
                         }
-                    ).then(()=>{   
+                    ).then(() => {
                         this.initialize();
                         this.btnLoading = false;
-                        this.closedialogfrm();                        
-                    }).catch(()=>{
+                        this.closedialogfrm();                      
+                    }).catch(() => {
                         this.btnLoading = false;
-                    });                 
+                    });               
                     
-                } else {                    
-                    await this.$ajax.post('/datamaster/programstudi/store',
+                } else {         
+                    await this.$ajax.post("/datamaster/programstudi/store",
                         {
                             kode_fakultas: this.formdata.kode_fakultas,                            
                             kode_prodi: this.formdata.kode_prodi,                            
                             nama_prodi: this.formdata.nama_prodi,   
-                            nama_prodi_alias: this.formdata.nama_prodi_alias,                                                        
-                            kode_jenjang: this.jenjang_studi.kode_jenjang,                                                        
-                            nama_jenjang: this.jenjang_studi.nama_jenjang,                                                                                                             
+                            nama_prodi_alias: this.formdata.nama_prodi_alias,                           
+                            kode_jenjang: this.jenjang_studi.kode_jenjang,                           
+                            nama_jenjang: this.jenjang_studi.nama_jenjang,                                                                                
                         },
                         {
                             headers: {
                                 Authorization: this.TOKEN
                             }
                         }
-                    ).then(()=>{   
-                        this.initialize();                  
+                    ).then(() => {
+                        this.initialize();                
                         this.btnLoading = false;
                         this.closedialogfrm();
-                    }).catch(()=>{
+                    }).catch(() => {
                         this.btnLoading = false;
                     });
                 }
             }
         },
-        deleteItem (item) {           
-            this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus data program studi dengan kode '+item.kode_prodi+' ?', { color: 'red' }).then((confirm) => {
+        deleteItem(item) {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data program studi dengan kode '+item.kode_prodi+' ?", { color: "red" }).then((confirm) => {
                 if (confirm)
                 {
                     this.btnLoading=true;
-                    this.$ajax.post('/datamaster/programstudi/'+item.id,
+                    this.$ajax.post("/datamaster/programstudi/" + item.id,
                         {
-                            '_method': 'DELETE',
+                            _method: "DELETE",
                         },
                         {
                             headers: {
                                 Authorization: this.TOKEN
                             }
                         }
-                    ).then(()=>{   
+                    ).then(() => {
                         const index = this.datatable.indexOf(item);
                         this.datatable.splice(index, 1);
                         this.btnLoading = false;
-                    }).catch(()=>{
+                    }).catch(() => {
                         this.btnLoading = false;
                     });
                 }                
             });
         },
-        closedialogdetailitem () {
-            this.dialogdetailitem = false;            
+        closedialogdetailitem() {
+            this.dialogdetailitem = false;          
             setTimeout(() => {
                 this.formdata = Object.assign({}, this.formdefault)
                 this.editedIndex = -1
@@ -515,44 +515,44 @@ export default {
             );
         },
         closedialogfrm () {
-            this.dialogfrm = false;            
+            this.dialogfrm = false;          
             setTimeout(() => {
-                this.formdata = Object.assign({}, this.formdefault);                
-                this.$refs.frmdata.reset();                                 
+                this.formdata = Object.assign({}, this.formdefault);              
+                this.$refs.frmdata.reset();                               
                 this.editedIndex = -1
                 }, 300
             );
         },
     },
     computed: {
-        ...mapGetters('auth',{            
-            ACCESS_TOKEN: 'AccessToken',          
-            TOKEN: 'Token',                                  
+        ...mapGetters("auth",{ 
+            ACCESS_TOKEN: "AccessToken",          
+            TOKEN: "Token",     
         }),
-        formTitle () {
-            return this.editedIndex === -1 ? 'TAMBAH DATA' : 'UBAH DATA'
-        },        
+        formTitle() {
+            return this.editedIndex === -1 ? "TAMBAH DATA" : "UBAH DATA"
+        },    
         headers()
         {
-            if (this.$store.getters['uifront/getBentukPT']=='universitas')
+            if (this.$store.getters['uifront/getBentukPT']== "universitas")
             {
                 return [                        
-                    { text: 'KODE PRODI', value: 'kode_prodi', width:120 },   
-                    { text: 'NAMA PRODI', value: 'nama_prodi',width:280 },   
-                    { text: 'FAKULTAS', value: 'nama_fakultas',width:200  },   
-                    { text: 'JENJANG', value: 'nama_jenjang',width:100 },   
-                    { text: 'KETUA PRODI', value: 'config',width:200 },   
-                    { text: 'AKSI', value: 'actions', sortable: false,width:100 },
+                    { text: "KODE PRODI", value: "kode_prodi", width:120 },   
+                    { text: "NAMA PRODI", value: "nama_prodi", width: 280 },   
+                    { text: "FAKULTAS", value: "nama_fakultas", width: 200  },   
+                    { text: "JENJANG", value: "nama_jenjang", width: 100 },   
+                    { text: "KETUA PRODI", value: "config", width: 200 },   
+                    { text: "AKSI", value: "actions", sortable: false, width:100 },
                 ];
             }
             else
             {
                 return [                        
-                    { text: 'KODE PRODI', value: 'kode_prodi', width:120 },   
-                    { text: 'NAMA PRODI', value: 'nama_prodi',width:280 },   
-                    { text: 'JENJANG', value: 'nama_jenjang',width:100 },   
-                    { text: 'KETUA PRODI', value: 'config',width:200 },   
-                    { text: 'AKSI', value: 'actions', sortable: false,width:100 },
+                    { text: "KODE PRODI", value: "kode_prodi", width:120 },   
+                    { text: "NAMA PRODI", value: "nama_prodi", width: 280 },   
+                    { text: "JENJANG", value: "nama_jenjang", width: 100 },   
+                    { text: "KETUA PRODI", value: "config", width: 200 },   
+                    { text: "AKSI", value: "actions", sortable: false, width:100 },
                 ];
             }
         },
@@ -563,24 +563,24 @@ export default {
             if (!this.firstloading)
             {
                 this.btnLoading=true;
-                await this.$ajax.post('/datamaster/programstudi/updateconfig/'+this.formdata.id,
+                await this.$ajax.post("/datamaster/programstudi/updateconfig/" + this.formdata.id,
                     {
-                        '_method': 'PUT',                    
+                        _method: "PUT",                    
                         config:JSON.stringify({
                             kaprodi:val                            
-                        }),                                                                 
+                        }),                                    
                     },
                     {
                         headers: {
                             Authorization: this.TOKEN
                         }
                     }
-                ).then(()=>{   
+                ).then(() => {
                     this.initialize();
-                    this.btnLoading = false;                    
-                }).catch(()=>{
+                    this.btnLoading = false;                  
+                }).catch(() => {
                     this.btnLoading = false;
-                });        
+                });      
             }            
         }  
     },

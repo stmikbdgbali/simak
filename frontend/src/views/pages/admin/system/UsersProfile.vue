@@ -30,7 +30,7 @@
                 <v-col cols="12">
                     <v-card color="grey lighten-4">
                         <v-toolbar elevation="2"> 
-                            <v-toolbar-title>DATA USER</v-toolbar-title>                                                        
+                            <v-toolbar-title>DATA USER</v-toolbar-title>                   
                         </v-toolbar>
                         <v-card-text>
                             <v-row>
@@ -40,25 +40,25 @@
                                             <v-img :src="$api.url+'/'+formdata.foto" />
                                         </v-card-text>
                                     </v-card>
-                                    <v-card flat v-if="dashboard=='mahasiswa'">
+                                    <v-card flat v-if="dashboard == 'mahasiswa'">
                                         <v-card-title>NIM / NIRM</v-card-title>  
                                         <v-card-subtitle>
                                             {{data_mhs.nim}} / {{data_mhs.nirm}}
                                         </v-card-subtitle>
                                     </v-card>
-                                    <v-card flat v-if="dashboard=='mahasiswa'">
+                                    <v-card flat v-if="dashboard == 'mahasiswa'">
                                         <v-card-title>PROGRAM STUDI</v-card-title>  
                                         <v-card-subtitle>
                                             {{data_mhs.nama_prodi}}
                                         </v-card-subtitle>
                                     </v-card>
-                                    <v-card flat v-if="dashboard=='mahasiswa'">
+                                    <v-card flat v-if="dashboard == 'mahasiswa'">
                                         <v-card-title>KELAS</v-card-title>  
                                         <v-card-subtitle>
                                             {{data_mhs.nama_kelas}}
                                         </v-card-subtitle>
                                     </v-card>
-                                    <v-card flat v-if="dashboard=='mahasiswa'">
+                                    <v-card flat v-if="dashboard == 'mahasiswa'">
                                         <v-card-title>DOSEN WALI</v-card-title>  
                                         <v-card-subtitle>
                                             {{data_mhs.dosen_wali}}
@@ -125,7 +125,7 @@
                                                         :color="userstatus"
                                                         label
                                                         outlined>
-                                                        {{formdata.active==1?'AKTIF': 'TIDAK AKTIF'}}
+                                                        {{formdata.active== 1?'AKTIF': "TIDAK AKTIF"}}
                                                     </v-chip>
                                                 </v-card-subtitle>
                                             </v-card>
@@ -137,7 +137,7 @@
                                             <v-card flat>
                                                 <v-card-title>CREATED_AT:</v-card-title>  
                                                 <v-card-subtitle>
-                                                    {{$date(formdata.created_at).format('DD/MM/YYYY HH:mm')}}
+                                                    {{$date(formdata.created_at).format("DD/MM/YYYY HH:mm")}}
                                                 </v-card-subtitle>
                                             </v-card>
                                         </v-col>
@@ -146,7 +146,7 @@
                                             <v-card flat>
                                                 <v-card-title>UPDATED_AT:</v-card-title>  
                                                 <v-card-subtitle>
-                                                    {{$date(formdata.updated_at).format('DD/MM/YYYY HH:mm')}}
+                                                    {{$date(formdata.updated_at).format("DD/MM/YYYY HH:mm")}}
                                                 </v-card-subtitle>
                                             </v-card>
                                         </v-col>
@@ -156,7 +156,7 @@
                                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
                             </v-row>
                         </v-card-text>
-                    </v-card>                    
+                    </v-card> 
                 </v-col>
             </v-row>
             <v-row> 
@@ -174,13 +174,13 @@
                                  <v-text-field 
                                     v-model="formdata.password" 
                                     label="PASSWORD BARU"
-                                    :type="'password'"
+                                    :type="password"
                                     outlined
                                     :rules="rule_user_password">
                                 </v-text-field> 
                             </v-card-text>
                             <v-card-actions>
-                                <v-spacer></v-spacer>                                
+                                <v-spacer></v-spacer>             
                                 <v-btn 
                                     color="blue darken-1" 
                                     text 
@@ -197,228 +197,218 @@
     </SystemUserLayout>
 </template>
 <script>
-import SystemUserLayout from '@/views/layouts/SystemUserLayout';
-import ModuleHeader from '@/components/ModuleHeader';
-export default {
-    name: 'UsersProfile',
-    created () {
-        this.dashboard=this.$store.getters['uiadmin/getDefaultDashboard'];
-        this.formdata=this.$store.getters['auth/User'];
-        this.breadcrumbs = [
-            {
-                text: 'HOME',
-                disabled: false,
-                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
-            },
-            {
-                text: 'SYSTEM',
-                disabled: false,
-                href: '#'
-            },
-            {
-                text: 'PROFILE USER',
-                disabled: true,
-                href: '#'
+    import SystemUserLayout from "@/views/layouts/SystemUserLayout";
+    import ModuleHeader from "@/components/ModuleHeader";
+    export default {
+        name: "UsersProfile",
+        created() {
+            this.dashboard=this.$store.getters['uiadmin/getDefaultDashboard'];
+            this.formdata=this.$store.getters['auth/User'];
+            this.breadcrumbs = [
+                {
+                    text: "HOME",
+                    disabled: false,
+                    href: "/dashboard/" + this.$store.getters['auth/AccessToken'],
+                },
+                {
+                    text: "SYSTEM",
+                    disabled: false,
+                    href: "#",
+                },
+                {
+                    text: "PROFILE USER",
+                    disabled: true,
+                    href: "#",
+                },
+            ];
+            if (this.dashboard=="mahasiswa") {
+                this.fetchMahasiswa();
             }
-        ];
-        if (this.dashboard=='mahasiswa')
-        {
-            this.fetchMahasiswa();
-        }
-    }, 
-    data ()
-    {
-        return {
-            dashboard:null,
+        }, 
+        data() {
+            return {
+                dashboard: null,
 
-            btnLoading: false,
-            datatable: [],
-            avatar : null,
+                btnLoading: false,
+                datatable: [],
+                avatar : null,
 
-            //form data        
-            data_mhs: {
-                nim: 'N.A',
-                nirm: 'N.A',
-                nama_prodi: 'N.A',
-                nama_kelas: 'N.A',
-                dosen_wali: 'N.A',
-            },       
-            form_valid: true,         
-            formdata: {
-                id:0,                        
-                username: "",         
-                password:  "",                
-                name: "",                        
-                email: "",                        
-                nomor_hp: "",                        
-                theme: "",                                        
-                foto: "",  
-                active: "",                                                                                               
-                default_role: "",                                        
-                locked: "",                                        
-                created_at:  "",           
-                updated_at:  "",           
+                //form data        
+                data_mhs: {
+                    nim: "N.A",
+                    nirm: "N.A",
+                    nama_prodi: "N.A",
+                    nama_kelas: "N.A",
+                    dosen_wali: "N.A",
+                },   
+                form_valid: true,        
+                formdata: {
+                    id: 0,                        
+                    username: "",    
+                    password: "",           
+                    name: "",                   
+                    email: "",                   
+                    nomor_hp: "",                   
+                    theme: "",      
+                    foto: "", 
+                    active: "",                                                             
+                    default_role: "",      
+                    locked: "",      
+                    created_at: "",      
+                    updated_at: "",      
+                },
+                formdefault: {
+                    id: 0,                        
+                    username: "",    
+                    password: "",           
+                    name: "",                   
+                    email: "",                   
+                    nomor_hp: "",                   
+                    theme: "",      
+                    foto: "", 
+                    active: "",                                                             
+                    default_role: "",      
+                    locked: "",      
+                    created_at: "",      
+                    updated_at: "",      
+                },
+                //form rules  
+                rule_foto: [
+                    value => !!value || "Mohon pilih gambar !!!",  
+                    value =>  !value || value.size < 2000000 || "File foto harus kurang dari 2MB."             
+                ],
+                rule_user_password: [
+                    value => !!value || "Mohon untuk di isi password User !!!",
+                    value => {
+                        if (value && typeof value !== 'undefined' && value.length > 0) {
+                            return value.length >= 8 || "Minimial Password 8 karaketer";
+                        }
+                        else
+                        {
+                            return true;
+                        }
+                    }
+                ],
+            };
+        },
+        methods: {
+            save()
+            {
+                if (this.$refs.frmdata.validate())
+                {
+                    this.btnLoading=true;
+                    this.$ajax.post("/system/users/updatepassword/" + this.$store.getters['auth/AttributeUser']("id"),
+                        {
+                            _method: "PUT",                        
+                            password: this.formdata.password,                           
+                        },
+                        {
+                            headers: {
+                                Authorization: this.$store.getters["auth/Token"]
+                            }
+                        }
+                    ).then(({ data })=>{                                                                 
+                        this.$refs.frmdata.reset(); 
+                        this.formdata.foto=data.foto;     
+                        this.formdata=this.formdefault; 
+                        this.btnLoading = false;
+                    }).catch(() => {
+                        this.btnLoading = false;
+                    });                   
+                }
             },
-            formdefault: {
-                id:0,                        
-                username: "",         
-                password:  "",                
-                name: "",                        
-                email: "",                        
-                nomor_hp: "",                        
-                theme: "",                                        
-                foto: "",  
-                active: "",                                                                                               
-                default_role: "",                                        
-                locked: "",                                        
-                created_at:  "",           
-                updated_at:  "",           
+            previewImage(e) {
+                if (typeof e === "undefined") {
+                    this.avatar = null;
+                } else {
+                    let reader = new FileReader();
+                    reader.readAsDataURL(e);
+                    reader.onload = img => {         
+                        this.photoUser = img.target.result;
+                    }
+                }
             },
-            //form rules  
-            rule_foto: [
-                value => !!value || "Mohon pilih gambar !!!",  
-                value =>  !value || value.size < 2000000 || 'File foto harus kurang dari 2MB.'                
-            ], 
-            rule_user_password: [
-                value => !!value || "Mohon untuk di isi password User !!!",
-                value => {
-                    if (value && typeof value !== 'undefined' && value.length > 0){
-                        return value.length >= 8 || 'Minimial Password 8 karaketer';
+            uploadFoto: async function() {
+                if (this.$refs.frmuploadfoto.validate()) {
+                    if (this.formdata.foto) {     
+                        this.btnLoading=true;
+                        var formdata = new FormData();
+                        formdata.append("foto",this.formdata.foto);
+                        await this.$ajax.post("/setting/users/uploadfoto/" + this.$store.getters.User.id,formdata,                    
+                            {
+                                headers: {
+                                    Authorization: this.$store.getters["auth/Token"],
+                                    'Content-Type': "multipart/form-data"                      
+                                }
+                            }
+                        ).then(({ data })=>{                
+                            this.btnLoading = false;
+                            this.$store.dispatch("updateFoto",data.user.foto);                      
+                        }).catch(() => {
+                            this.btnLoading = false;
+                        });  
+                        this.$refs.frmdata.reset(); 
+                    }   
+                }
+            },
+            resetFoto: async function() 
+            {
+                this.btnLoading=true;
+                await this.$ajax.post("/setting/users/resetfoto/" + this.$store.getters.User.id,{},     
+                    {
+                        headers: {
+                            Authorization: this.$store.getters["auth/Token"],                 
+                        }
+                    }
+                ).then(({ data })=>{                
+                    this.btnLoading = false;
+                    this.$store.dispatch("updateFoto",data.user.foto);
+                }).catch(() => {
+                    this.btnLoading = false;
+                });  
+            },
+            async fetchMahasiswa()
+            {
+                await this.$ajax.get("/akademik/kemahasiswaan/biodatamhs1/" + this.$store.getters['auth/AttributeUser']("id"),                    
+                    {
+                        headers: {
+                            Authorization: this.$store.getters["auth/Token"],                 
+                        }
+                    }
+                ).then(({ data })=>{                
+                    this.data_mhs=data.mahasiswa;          
+                })
+            }
+            
+        },
+        computed: {        
+            photoUser: {
+                get()
+                {
+                    if (this.avatar==null)
+                    {
+                        let photo = this.$api.url + "/" + this.$store.getters.User.foto;	
+                        return photo;
                     }
                     else
                     {
-                        return true;
+                    return this.avatar;
                     }
+                    
+                },
+                set(val)
+                {   
+                    this.avatar = val;
                 }
-            ],
-        };
-    },
-    methods: {
-        save()
-        {
-            if (this.$refs.frmdata.validate())
-            {
-                this.btnLoading=true;
-                this.$ajax.post('/system/users/updatepassword/'+this.$store.getters['auth/AttributeUser']('id'),
-                    {
-                        '_method': 'PUT',                        
-                        password: this.formdata.password,                           
-                    },
-                    {
-                        headers: {
-                            Authorization: this.$store.getters["auth/Token"]
-                        }
-                    }
-                ).then(({ data })=>{                                                                            
-                    this.$refs.frmdata.reset(); 
-                    this.formdata.foto=data.foto;       
-                    this.formdata=this.formdefault; 
-                    this.btnLoading = false;
-                }).catch(()=>{
-                    this.btnLoading = false;
-                });                     
-            }
-        },
-        previewImage (e)
-        {
-            if (typeof e === 'undefined')
-            {
-                this.avatar=null;
-            }
-            else
-            {
-                let reader = new FileReader();
-                reader.readAsDataURL(e);
-                reader.onload = img => {                    
-                    this.photoUser=img.target.result;
-                }
-            }            
-            
-        },
-        uploadFoto:async function() 
-        {
-            if (this.$refs.frmuploadfoto.validate())
-            {
-                if (this.formdata.foto)
-                {                
-                    this.btnLoading=true;
-                    var formdata = new FormData();
-                    formdata.append('foto',this.formdata.foto);
-                    await this.$ajax.post('/setting/users/uploadfoto/'+this.$store.getters.User.id,formdata,                    
-                        {
-                            headers: {
-                                Authorization: this.$store.getters["auth/Token"],  
-                                'Content-Type': 'multipart/form-data'                      
-                            }
-                        }
-                    ).then(({ data })=>{                           
-                        this.btnLoading = false;
-                        this.$store.dispatch('updateFoto',data.user.foto);                        
-                    }).catch(()=>{
-                        this.btnLoading = false;
-                    });    
-                    this.$refs.frmdata.reset(); 
-                }   
-            }
-        },
-        resetFoto:async function() 
-        {
-            this.btnLoading=true;
-            await this.$ajax.post('/setting/users/resetfoto/'+this.$store.getters.User.id,{},                    
-                {
-                    headers: {
-                        Authorization: this.$store.getters["auth/Token"],                              
-                    }
-                }
-            ).then(({ data })=>{                           
-                this.btnLoading = false;
-                this.$store.dispatch('updateFoto',data.user.foto);
-            }).catch(()=>{
-                this.btnLoading = false;
-            });    
-        },
-        async fetchMahasiswa()
-        {
-            await this.$ajax.get('/akademik/kemahasiswaan/biodatamhs1/'+this.$store.getters['auth/AttributeUser']('id'),                    
-                {
-                    headers: {
-                        Authorization: this.$store.getters["auth/Token"],                              
-                    }
-                }
-            ).then(({ data })=>{                           
-                this.data_mhs=data.mahasiswa;            
-            })
-        }
-        
-    },
-    computed: {        
-		photoUser: {
-            get()
-            {
-                if (this.avatar==null)
-                {
-                    let photo = this.$api.url+'/'+this.$store.getters.User.foto;			
-                    return photo;
-                }
-                else
-                {
-                   return this.avatar;
-                }
-                
             },
-            set(val)
-            {   
-                this.avatar = val;
+            userstatus()
+            {
+                return this.formdata.active == 1 ?'green': "red";
             }
         },
-        userstatus()
-        {
-            return this.formdata.active == 1 ?'green': 'red';
-        }
-    },
-    components: {
-        SystemUserLayout,
-        ModuleHeader,
-    },
-}
+        components: {
+            SystemUserLayout,
+            ModuleHeader,
+        },
+    }
 </script>

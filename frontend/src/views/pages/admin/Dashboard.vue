@@ -283,48 +283,48 @@
 import DashboardMB from '@/components/DashboardMahasiswaBaru';
 import AdminLayout from '@/views/layouts/AdminLayout';
 export default {
-	name: 'Dashboard',
-	created ()
+	name: "Dashboard",
+	created()
 	{
-		this.TOKEN = this.$route.params.token;                
+		this.TOKEN = this.$route.params.token;              
 		this.breadcrumbs = [
 			{
-				text: 'HOME',
+				text: "HOME",
 				disabled: false,
-				href: '/dashboard/'+this.TOKEN
+				href: "/dashboard/" + this.TOKEN
 			},
 			{
-				text: 'DASHBOARD',
+				text: "DASHBOARD",
 				disabled: true,
-				href: '#'
+				href: "#"
 			}
-		];		
+		];
 		this.tahun_pendaftaran = this.$store.getters['uifront/getTahunPendaftaran'];
-		this.color_dashboard=this.$store.getters['uifront/getTheme']('COLOR_DASHBOARD');                                             
+		this.color_dashboard=this.$store.getters['uifront/getTheme']("COLOR_DASHBOARD");                                           
 		this.initialize();
 	},
 	data: () => ({
 		breadcrumbs: [],
-		TOKEN:null,
-		dashboard:null,
+		TOKEN: null,
+		dashboard: null,
 
 		tahun_pendaftaran: "",
 		//theme
 		color_dashboard: {}
 	}),
-	methods : {
-		initialize:async function()
+	methods: {
+		initialize: async function()
 		{	            
-			await this.$ajax.get('/auth/me',                
+			await this.$ajax.get("/auth/me",                
 			{
 				headers: {
-					Authorization: 'Bearer '+this.TOKEN
+					Authorization: "Bearer " + this.TOKEN
 				}
 			}).then(({ data })=>{          
-				this.dashboard = data.role[0];    
-				this.$store.dispatch('uiadmin/changeDashboard',this.dashboard);                 
-			});                 
-			this.$store.dispatch('uiadmin/init',this.$ajax); 
+				this.dashboard = data.role[0];  
+				this.$store.dispatch("uiadmin/changeDashboard",this.dashboard);               
+			});               
+			this.$store.dispatch("uiadmin/init",this.$ajax); 
 		}
 	},
 	computed: {

@@ -35,14 +35,14 @@
                             </v-card-title>
                             <v-card-text>
                                <v-row>
-                                   <v-col xs="12" sm="4" md="3">                                       
+                                   <v-col xs="12" sm="4" md="3">  
                                        <v-switch v-model="formdata.email_mhs_isvalid" label="Check Email Mahasiswa Valid"></v-switch>
                                    </v-col>
                                    <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
                                </v-row>
                             </v-card-text>
                             <v-card-actions>
-                                <v-spacer></v-spacer>                                
+                                <v-spacer></v-spacer>             
                                 <v-btn 
                                     color="blue darken-1" 
                                     text 
@@ -58,87 +58,87 @@
     </SystemConfigLayout>
 </template>
 <script>
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 import SystemConfigLayout from '@/views/layouts/SystemConfigLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 export default {
-    name: 'Email',
+    name: "Email",
     created()
     {
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.ACCESS_TOKEN
+                href: "/dashboard/" + this.ACCESS_TOKEN
             },
             {
-                text: 'KONFIGURASI SISTEM',
+                text: "KONFIGURASI SISTEM",
                 disabled: false,
-                href: '/system-setting'
+                href: "/system-setting"
             },  
             {
-                text: 'SERVER - EMAIL',
+                text: "SERVER - EMAIL",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];
         this.initialize();
     },
     data: () => ({
-        breadcrumbs: [],        
+        breadcrumbs: [],
         btnLoading: false,   
         //form
-        form_valid: true,   
+        form_valid: true,  
         formdata: {
-            email_mhs_isvalid:null,            
+            email_mhs_isvalid: null,           
         },
-        //form rules        
+        //form rules    
         
     }),
     methods: {
         initialize: async function() 
         {
-            this.datatableLoading=true;
-            await this.$ajax.get('/system/setting/variables',
+            this.datatableLoading = true;
+            await this.$ajax.get("/system/setting/variables",
             {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data })=>{                  
-                let setting = data.setting;             
-                this.formdata.email_mhs_isvalid=parseInt(setting.EMAIL_MHS_ISVALID);                
-            });          
+            }).then(({ data })=>{       
+                let setting = data.setting;           
+                this.formdata.email_mhs_isvalid=parseInt(setting.EMAIL_MHS_ISVALID);              
+            });        
             
         },
         save () {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading=true;
-                this.$ajax.post('/system/setting/variables',
+                this.$ajax.post("/system/setting/variables",
                     {
-                        '_method': 'PUT', 
-                        'pid': 'email',
+                        _method: "PUT", 
+                        'pid': "email",
                         setting:JSON.stringify({
                             910: this.formdata.email_mhs_isvalid,                            
-                        }),                                                                                                                            
+                        }),                                                                                               
                     },
                     {
                         headers: {
                             Authorization: this.TOKEN
                         }
                     }
-                ).then(()=>{                       
+                ).then(() => {         
                     this.btnLoading = false;
-                }).catch(()=>{
+                }).catch(() => {
                     this.btnLoading = false;
-                });        
+                });      
             }
         }
     },
     computed: { 
-        ...mapGetters('auth',{            
-            ACCESS_TOKEN: 'AccessToken',          
-            TOKEN: 'Token',                                  
+        ...mapGetters("auth",{ 
+            ACCESS_TOKEN: "AccessToken",          
+            TOKEN: "Token",     
         }),
     },
     components: {

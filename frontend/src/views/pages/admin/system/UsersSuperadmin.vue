@@ -107,7 +107,7 @@
 												<v-text-field 
 													v-model="editedItem.password" 
 													label="PASSWORD"
-													:type="'password'"
+													:type="password"
 													outlined
 													:rules="rule_user_password">
 												</v-text-field> 
@@ -169,7 +169,7 @@
 												<v-text-field 
 													v-model="editedItem.password" 
 													label="PASSWORD"
-													:type="'password'"
+													:type="password"
 													outlined
 													:rules="rule_user_passwordEdit">
 												</v-text-field> 
@@ -240,12 +240,12 @@
 	</SystemUserLayout>
 </template>
 <script>
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 import SystemUserLayout from "@/views/layouts/SystemUserLayout";
 import ModuleHeader from "@/components/ModuleHeader";
 export default {
 	name: "UsersSuperAdmin",
-	created () {
+	created() {
 		this.breadcrumbs = [
 			{
 				text: "HOME",
@@ -267,17 +267,17 @@ export default {
 	},
  
 	data: () => ({ 
-		role_id:0,
+		role_id: 0,
 		datatableLoading: false,
 		btnLoading: false,
 		//tables
 		headers: [
-			{ text: "", value: "foto" },
+			{ text: "",value: "foto" },
 			{ text: "USERNAME", value: "username",sortable: true },
 			{ text: "NAME", value: "name",sortable: true },
 			{ text: "EMAIL", value: "email",sortable: true }, 
 			{ text: "NOMOR HP", value: "nomor_hp",sortable: true }, 
-			{ text: "AKSI", value: "actions", sortable: false,width:100 },
+			{ text: "AKSI", value: "actions", sortable: false, width:100 },
 		],
 		expanded: [],
 		search:"",
@@ -290,44 +290,44 @@ export default {
 		dialogEdit: false,
 		editedIndex: -1,
 		editedItem: {
-			id:0,
-			username: "", 
-			password: "", 
-			name: "", 
-			email: "", 
-			nomor_hp:"", 
+			id: 0,
+			username: "",
+			password: "",
+			name: "",
+			email: "",
+			nomor_hp:"",
 			role_id: ["superadmin"],
-			created_at: "", 
-			updated_at: "", 
+			created_at: "",
+			updated_at: "",
 		},
 		defaultItem: {
-			id:0,
-			username: "", 
-			password: "", 
-			name: "", 
-			email: "", 
-			nomor_hp: "", 
+			id: 0,
+			username: "",
+			password: "",
+			name: "",
+			email: "",
+			nomor_hp: "",
 			role_id: ["superadmin"],
-			created_at: "", 
+			created_at: "",
 			updated_at: "",
 		},
 		//form rules
 		rule_user_name: [
 			value => !!value || "Mohon untuk di isi nama User !!!",
 			value => /^[A-Za-z\s]*$/.test(value) || "Nama User hanya boleh string dan spasi",
-		], 
+		],
 		rule_user_email: [
 			value => !!value || "Mohon untuk di isi email User !!!",
 			value => /.+@.+\..+/.test(value) || "Format E-mail harus benar", 
-		], 
+		],
 		rule_user_nomorhp: [
 			value => !!value || "Nomor HP mohon untuk diisi !!!",
 			value => /^\+[1-9]{1}[0-9]{1,14}$/.test(value) || "Nomor HP hanya boleh angka dan gunakan kode negara didepan seperti +6281214553388",
-		], 
+		],
 		rule_user_username: [
 			value => !!value || "Mohon untuk di isi username User !!!",
 			value => /^[A-Za-z_]*$/.test(value) || "Username hanya boleh string dan underscore",
-		], 
+		],
 		rule_user_password: [
 			value => !!value || "Mohon untuk di isi password User !!!",
 			value => {
@@ -339,7 +339,7 @@ export default {
 					return true;
 				}
 			}
-		], 
+		],
 		rule_user_passwordEdit: [
 			value => {
 				if (value && typeof value !== "undefined" && value.length > 0){
@@ -355,7 +355,7 @@ export default {
 	methods: {
 		initialize: async function() 
 		{
-			this.datatableLoading=true;
+			this.datatableLoading = true;
 			await this.$ajax.get("/system/users",{
 				headers: {
 					Authorization: this.TOKEN
@@ -363,7 +363,7 @@ export default {
 			}).then(({ data })=>{ 
 				this.daftar_users = data.users;
 				this.role_id=data.role.id;
-				this.datatableLoading=false;
+				this.datatableLoading = false;
 			});
 			
 		},
@@ -371,14 +371,14 @@ export default {
 		{
 			if ( item === this.expanded[0])
 			{
-				this.expanded=[];
+				this.expanded = [];
 			}
 			else
 			{
-				this.expanded=[item];
+				this.expanded = [item];
 			} 
 		},
-		showDialogTambahUserSuperAdmin:async function()
+		showDialogTambahUserSuperAdmin: async function()
 		{
 			await this.$ajax.get("/system/setting/roles",{
 				headers: {
@@ -408,7 +408,7 @@ export default {
 			}); 
 			
 		},
-		editItem:async function (item) {
+		editItem: async function(item) {
 			this.editedIndex = this.daftar_users.indexOf(item)
 			item.password= "";
 			this.editedItem = Object.assign({}, item); 
@@ -484,9 +484,9 @@ export default {
 							}
 						}
 					).then(({ data })=>{ 
-						Object.assign(this.daftar_users[this.editedIndex], data.user);
+						Object.assign(this.daftar_users[this.editedIndex],data.user);
 						this.close();
-					}).catch(()=>{
+					}).catch(() => {
 						this.btnLoading = false;
 					});
 					
@@ -508,13 +508,13 @@ export default {
 					).then(({ data })=>{ 
 						this.daftar_users.push(data.user);
 						this.close();
-					}).catch(()=>{
+					}).catch(() => {
 						this.btnLoading = false;
 					});
 				}
 			}
 		},
-		deleteItem (item) { 
+		deleteItem(item) { 
 			this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus username "+item.username+" ?", { color: "red" }).then((confirm) => {
 				if (confirm)
 				{
@@ -528,11 +528,11 @@ export default {
 								Authorization: this.TOKEN
 							}
 						}
-					).then(()=>{ 
+					).then(() => { 
 						const index = this.daftar_users.indexOf(item);
 						this.daftar_users.splice(index, 1);
 						this.btnLoading = false;
-					}).catch(()=>{
+					}).catch(() => {
 						this.btnLoading = false;
 					});
 				}

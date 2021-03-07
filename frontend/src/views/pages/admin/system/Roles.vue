@@ -89,7 +89,7 @@
                                                                 label="NAMA ROLE"
                                                                 :rules="rule_role_name">
                                                             </v-text-field>
-                                                        </v-col>                                            
+                                                        </v-col>       
                                                     </v-row>
                                                 </v-container>
                                             </v-card-text>
@@ -107,8 +107,8 @@
                                             </v-card-actions>
                                         </v-card>
                                     </v-form>
-                                </v-dialog>                                
-                                <v-dialog v-model="dialogRolePermission" max-width="800px" persistent>                                                                    
+                                </v-dialog>             
+                                <v-dialog v-model="dialogRolePermission" max-width="800px" persistent>                               
                                     <RolePermissions :role="editedItem" :daftarpermissions="daftar_permissions" :permissionsselected="permissions_selected" v-on:closeRolePermissions="closeRolePermissions" />
                                 </v-dialog>
                             </v-toolbar>
@@ -143,16 +143,16 @@
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
                                 <strong>ID:</strong>{{ item.id }}
-                                <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
-                                <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
+                                <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
+                                <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
                             </td>
                         </template>
                         <template v-slot:no-data>
                             Data belum tersedia
                         </template>
-                    </v-data-table>                    
+                    </v-data-table> 
                 </v-col>
-                <v-dialog v-model="dialogdetail" width="800px">                                    
+                <v-dialog v-model="dialogdetail" width="800px">                 
                     <v-card>
                         <v-card-title>
                             <span class="headline">DETAIL ROLE</span>
@@ -175,7 +175,7 @@
                                                 TANGGAL BUAT :
                                             </v-card-title>
                                             <v-card-subtitle>
-                                                {{$date(editedItem.created_at).format('DD/MM/YYYY HH:mm')}}
+                                                {{$date(editedItem.created_at).format("DD/MM/YYYY HH:mm")}}
                                             </v-card-subtitle>
                                         </v-card>
                                     </v-col>
@@ -195,7 +195,7 @@
                                         <v-card flat>
                                             <v-card-title>TANGGAL UBAH :</v-card-title>
                                             <v-card-subtitle>
-                                                {{$date(editedItem.updated_at).format('DD/MM/YYYY HH:mm')}}
+                                                {{$date(editedItem.updated_at).format("DD/MM/YYYY HH:mm")}}
                                             </v-card-subtitle>
                                         </v-card>
                                     </v-col>
@@ -218,58 +218,58 @@
                         <v-card-actions>
                             
                         </v-card-actions>
-                    </v-card>                                    
+                    </v-card>                 
                 </v-dialog>
             </v-row>
         </v-container>
     </SystemUserLayout>
 </template>
 <script>
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 import SystemUserLayout from '@/views/layouts/SystemUserLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 import RolePermissions from '@/views/pages/admin/system/RolePermissions';
 export default {
-    name: 'Roles',
+    name: "Roles",
     created()
     {
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.ACCESS_TOKEN
+                href: "/dashboard/" + this.ACCESS_TOKEN
             },
             {
-                text: 'USER SISTEM',
+                text: "USER SISTEM",
                 disabled: false,
-                href: '/system-users'
+                href: "/system-users"
             },
             {
-                text: 'ROLES',
+                text: "ROLES",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];
         this.initialize()
-    },    
+    },
     data: () => ({
         breadcrumbs: [],
         datatableLoading: false,
         btnLoading: false,          
-        expanded: [],        
+        expanded: [],
         datatable: [],
         daftar_permissions: [],
         permissions_selected: [],
         //tables
         headers: [                        
-            { text: 'NAMA ROLE', value: 'name' },
-            { text: 'GUARD', value: 'guard_name' },            
-            { text: 'AKSI', value: 'actions', sortable: false,width:130 },
+            { text: "NAMA ROLE", value: "name" },
+            { text: "GUARD", value: "guard_name" },        
+            { text: "AKSI", value: "actions", sortable: false,width:130 },
         ],
         //tables
         headersdetail: [                        
-            { text: 'NAMA PERMISSION', value: 'name' },
-            { text: 'GUARD', value: 'guard_name' },                          
+            { text: "NAMA PERMISSION", value: "name" },
+            { text: "GUARD", value: "guard_name" },           
         ],
         search: "",
         //form
@@ -279,31 +279,31 @@ export default {
         dialogRolePermission: false,
         editedIndex: -1,
         editedItem: {
-            id:0,
-            name:  "",           
-            guard:  "",           
-            created_at:  "",           
-            updated_at:  "",           
+            id: 0,
+            name: "",      
+            guard: "",      
+            created_at: "",      
+            updated_at: "",      
         },
         defaultItem: {
-            id:0,
-            name:  "",           
-            guard: 'api',           
-            created_at:  "",           
-            updated_at:  "",           
+            id: 0,
+            name: "",      
+            guard: "api",           
+            created_at: "",      
+            updated_at: "",      
         },
-        //form rules        
+        //form rules    
         rule_role_name: [
             value => !!value || "Mohon untuk di isi nama Role !!!",  
-            value => /^[A-Za-z]*$/.test(value) || 'Nama Role hanya boleh string',                
-        ], 
-        form_error_message: ''
+            value => /^[A-Za-z]*$/.test(value) || "Nama Role hanya boleh string",                
+        ],
+        form_error_message: ""
     }),
     methods: {
         initialize () 
         {
-            this.datatableLoading=true;
-            this.$ajax.get('/system/setting/roles',{
+            this.datatableLoading = true;
+            this.$ajax.get("/system/setting/roles",{
                 headers: {
                     Authorization: this.TOKEN
                 }
@@ -311,28 +311,28 @@ export default {
                 if (status==200)
                 {
                     this.datatable = data.roles;
-                    this.datatableLoading=false;
+                    this.datatableLoading = false;
                 }     
             
-            });          
+            });        
             
         },
         dataTableRowClicked(item)
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded = [];              
             }
             else
             {
-                this.expanded=[item];
+                this.expanded = [item];
             }               
         },
-        viewItem (item) {
+        viewItem(item) {
             this.editedIndex = this.datatable.indexOf(item);
             this.editedItem = Object.assign({}, item);
 
-            this.$ajax.get('/system/setting/roles/'+item.id+'/permission',{
+            this.$ajax.get("/system/setting/roles/" + item.id + "/permission",{
                 headers: {
                     Authorization: this.TOKEN
                 }
@@ -341,17 +341,17 @@ export default {
                 {
                     this.permissions_selected = data.permissions;
                 }                 
-            });  
+            });
             
             this.dialogdetail = true;
         },
-        editItem (item) {
+        editItem(item) {
             this.editedIndex = this.datatable.indexOf(item)
             this.editedItem = Object.assign({}, item)
             this.dialog = true
         },
-        setPermission (item) {            
-            this.$ajax.get('/system/setting/permissions',{
+        setPermission (item) { 
+            this.$ajax.get("/system/setting/permissions",{
                 headers: {
                     Authorization: this.TOKEN
                 }
@@ -360,9 +360,9 @@ export default {
                 {
                     this.daftar_permissions = data.permissions;
                 }                 
-            });          
+            });        
 
-            this.$ajax.get('/system/setting/roles/'+item.id+'/permission',{
+            this.$ajax.get("/system/setting/roles/" + item.id + "/permission",{
                 headers: {
                     Authorization: this.TOKEN
                 }
@@ -371,7 +371,7 @@ export default {
                 {
                     this.permissions_selected = data.permissions;
                 }                 
-            });  
+            });
             this.dialogRolePermission = true;
             this.editedItem=item;
         
@@ -380,7 +380,7 @@ export default {
             this.btnLoading = false;
             this.dialog = false;
             this.$refs.frmdata.reset(); 
-            this.form_error_message='';           
+            this.form_error_message='';         
             setTimeout(() => {
                 this.editedItem = Object.assign({}, this.defaultItem)
                 this.editedIndex = -1
@@ -389,7 +389,7 @@ export default {
         },
         closeRolePermissions () {    
             this.permissions_selected=[];
-            this.dialogRolePermission = false;  
+            this.dialogRolePermission = false;
         },
         save () {
             this.form_error_message='';
@@ -398,9 +398,9 @@ export default {
                 this.btnLoading=true;
                 if (this.editedIndex > -1) 
                 {
-                    this.$ajax.post('/system/setting/roles/'+this.editedItem.id,
+                    this.$ajax.post("/system/setting/roles/" + this.editedItem.id,
                         {
-                            '_method': 'PUT',
+                            _method: "PUT",
                             name: this.editedItem.name.toLowerCase(),
                         },
                         {
@@ -409,14 +409,14 @@ export default {
                             }
                         }
                     ).then(({ data })=>{   
-                        Object.assign(this.datatable[this.editedIndex], data.roles);
+                        Object.assign(this.datatable[this.editedIndex],data.roles);
                         this.close();
-                    }).catch(()=>{
+                    }).catch(() => {
                         this.btnLoading = false;
-                    });                    
+                    });                  
                     
                 } else {
-                    this.$ajax.post('/system/setting/roles/store',
+                    this.$ajax.post("/system/setting/roles/store",
                         {
                             name: this.editedItem.name.toLowerCase()
                         },
@@ -428,20 +428,20 @@ export default {
                     ).then(({ data })=>{   
                         this.datatable.push(data.roles);
                         this.close();
-                    }).catch(()=>{
+                    }).catch(() => {
                         this.btnLoading = false;
                     });
                 }
             }
-        },        
+        },    
     },
     computed: {        
-        formTitle () {
-            return this.editedIndex === -1 ? 'TAMBAH ROLE' : 'EDIT ROLE'
+        formTitle() {
+            return this.editedIndex === -1 ? "TAMBAH ROLE" : "EDIT ROLE"
         },
-        ...mapGetters('auth',{            
-            ACCESS_TOKEN: 'AccessToken',          
-            TOKEN: 'Token',                                  
+        ...mapGetters("auth",{ 
+            ACCESS_TOKEN: "AccessToken",          
+            TOKEN: "Token",     
         }),
     },
     watch: {

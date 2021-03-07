@@ -67,10 +67,10 @@
                                 ></v-divider>
                                 <v-spacer></v-spacer>
                                 <v-dialog v-model="dialogfrm" max-width="500px" persistent>
-                                    <template v-slot:activator="{ on }">                                        
+                                    <template v-slot:activator="{ on }">   
                                         <v-btn color="primary" icon outlined small class="ma-2" v-on="on">
                                             <v-icon>mdi-plus</v-icon>
-                                        </v-btn>                                        
+                                        </v-btn>   
                                     </template>
                                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>
                                         <v-card>
@@ -131,13 +131,13 @@
                                                     </v-card>
                                                 </v-col>
                                                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
-                                            </v-row>                                            
+                                            </v-row>       
                                         </v-card-text>
                                         <v-card-actions>
                                             <v-spacer></v-spacer>
                                             <v-btn color="blue darken-1" text @click.stop="closedialogdetailitem">KELUAR</v-btn>
                                         </v-card-actions>
-                                    </v-card>                                    
+                                    </v-card>                 
                                 </v-dialog>
                             </v-toolbar>
                         </template>
@@ -166,7 +166,7 @@
                             <td :colspan="headers.length" class="text-center">
                                 <v-col cols="12">
                                     <strong>ID:</strong>{{ item.kode_fakultas }}                                   
-                                </v-col>                                
+                                </v-col>             
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -179,27 +179,27 @@
     </DataMasterLayout>
 </template>
 <script>
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 import DataMasterLayout from '@/views/layouts/DataMasterLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 export default {
-    name: 'Fakultas',
-    created () {
+    name: "Fakultas",
+    created() {
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.ACCESS_TOKEN
+                href: "/dashboard/" + this.ACCESS_TOKEN
             },
             {
-                text: 'DATA MASTER',
+                text: "DATA MASTER",
                 disabled: false,
-                href: '#'
+                href: "#"
             },
             {
-                text: 'FAKULTAS',
+                text: "FAKULTAS",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];
         this.initialize()
@@ -210,86 +210,86 @@ export default {
         expanded: [],
         datatable: [],
         headers: [                        
-            { text: 'KODE FAKULTAS', value: 'kode_fakultas', width:150 },   
-            { text: 'NAMA FAKULTAS', value: 'nama_fakultas' },   
-            { text: 'AKSI', value: 'actions', sortable: false,width:100 },
+            { text: "KODE FAKULTAS", value: "kode_fakultas", width:150 },   
+            { text: "NAMA FAKULTAS", value: "nama_fakultas" },   
+            { text: "AKSI", value: "actions", sortable: false, width:100 },
         ],
-        search: "",    
+        search: "",
 
         //dialog
         dialogfrm: false,
         dialogdetailitem: false,
 
         //form data   
-        form_valid: true,         
+        form_valid: true,        
         kode_fakultas: "",
         formdata: {
-            kode_fakultas: "",                        
-            nama_fakultas: "", 
+            kode_fakultas: "",                   
+            nama_fakultas: "",
         },
         formdefault: {
-            kode_fakultas: "",                        
-            nama_fakultas: "",         
+            kode_fakultas: "",                   
+            nama_fakultas: "",    
         },
         editedIndex: -1,
 
         //form rules  
         rule_kode_fakultas: [
             value => !!value || "Kode Fakultas mohon untuk diisi !!!",
-            value => /^[1-9]{1}[0-9]{1,14}$/.test(value) || 'Kode Fakultas hanya boleh angka',
-        ], 
+            value => /^[1-9]{1}[0-9]{1,14}$/.test(value) || "Kode Fakultas hanya boleh angka",
+        ],
         rule_nama_fakultas: [
             value => !!value || "Mohon Nama Fakultas untuk di isi !!!",  
-            value => /^[A-Za-z\s]*$/.test(value) || 'Nama Fakultas hanya boleh string dan spasi',                
-        ], 
+            value => /^[A-Za-z\s]*$/.test(value) || "Nama Fakultas hanya boleh string dan spasi",                
+        ],
     }),
     methods: {
         initialize: async function() 
         {
-            this.datatableLoading=true;
-            await this.$ajax.get('/datamaster/fakultas',{
+            this.datatableLoading = true;
+            await this.$ajax.get("/datamaster/fakultas",{
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data })=>{               
+            }).then(({ data })=>{    
                 this.datatable = data.fakultas;
-                this.datatableLoading=false;
-            }).catch(()=>{
-                this.datatableLoading=false;
-            });  
+                this.datatableLoading = false;
+            }).catch(() => {
+                this.datatableLoading = false;
+            });
         },
         dataTableRowClicked(item)
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded = [];              
             }
             else
             {
-                this.expanded=[item];
+                this.expanded = [item];
             }               
         },
-        viewItem (item) {
-            this.formdata=item;      
-            this.dialogdetailitem=true;                        
-        },    
-        editItem (item) {
+        viewItem(item) {
+            this.formdata = item;  
+            this.dialogdetailitem = true;                    
+        },
+        editItem(item) {
             this.kode_fakultas=item.kode_fakultas;
             this.editedIndex = this.datatable.indexOf(item);
             this.formdata = Object.assign({}, item);
             this.dialogfrm = true
-        },    
-        save:async function() {
+        },
+        save: async function() {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading=true;
                 if (this.editedIndex > -1) 
                 {
-                    await this.$ajax.post('/datamaster/fakultas/'+this.kode_fakultas,
+                    await this.$ajax.post("/datamaster/fakultas/" + this.kode_fakultas,
                         {
-                            '_method': 'PUT',
+                            _method: "PUT",
                             kode_fakultas: this.formdata.kode_fakultas,                            
-                            nama_fakultas: this.formdata.nama_fakultas,                                                        
+                            nama_fakultas: this.formdata.nama_fakultas,                           
                         },
                         {
                             headers: {
@@ -297,18 +297,18 @@ export default {
                             }
                         }
                     ).then(({ data })=>{   
-                        Object.assign(this.datatable[this.editedIndex], data.fakultas);
+                        Object.assign(this.datatable[this.editedIndex],data.fakultas);
                         this.closedialogfrm();
                         this.btnLoading = false;
-                    }).catch(()=>{
+                    }).catch(() => {
                         this.btnLoading = false;
-                    });                 
+                    });               
                     
-                } else {                    
-                    await this.$ajax.post('/datamaster/fakultas/store',
+                } else {         
+                    await this.$ajax.post("/datamaster/fakultas/store",
                         {
                             kode_fakultas: this.formdata.kode_fakultas,                            
-                            nama_fakultas: this.formdata.nama_fakultas,                                                        
+                            nama_fakultas: this.formdata.nama_fakultas,                           
                         },
                         {
                             headers: {
@@ -316,41 +316,41 @@ export default {
                             }
                         }
                     ).then(({ data })=>{   
-                        this.datatable.push(data.fakultas);                        
+                        this.datatable.push(data.fakultas);                      
                         this.btnLoading = false;
                         this.closedialogfrm();
-                    }).catch(()=>{
+                    }).catch(() => {
                         this.btnLoading = false;
                     });
                 }
             }
         },
-        deleteItem (item) {           
-            this.$root.$confirm.open('Delete', 'Apakah Anda ingin menghapus data fakultas dengan kode '+item.kode_fakultas+' ?', { color: 'red' }).then((confirm) => {
+        deleteItem(item) {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data fakultas dengan kode '+item.kode_fakultas+' ?", { color: "red" }).then((confirm) => {
                 if (confirm)
                 {
                     this.btnLoading=true;
-                    this.$ajax.post('/datamaster/fakultas/'+item.kode_fakultas,
+                    this.$ajax.post("/datamaster/fakultas/" + item.kode_fakultas,
                         {
-                            '_method': 'DELETE',
+                            _method: "DELETE",
                         },
                         {
                             headers: {
                                 Authorization: this.TOKEN
                             }
                         }
-                    ).then(()=>{   
+                    ).then(() => {
                         const index = this.datatable.indexOf(item);
                         this.datatable.splice(index, 1);
                         this.btnLoading = false;
-                    }).catch(()=>{
+                    }).catch(() => {
                         this.btnLoading = false;
                     });
                 }                
             });
         },
-        closedialogdetailitem () {
-            this.dialogdetailitem = false;            
+        closedialogdetailitem() {
+            this.dialogdetailitem = false;          
             setTimeout(() => {
                 this.formdata = Object.assign({}, this.formdefault)
                 this.editedIndex = -1
@@ -368,13 +368,13 @@ export default {
         },
     },
     computed: {
-        ...mapGetters('auth',{            
-            ACCESS_TOKEN: 'AccessToken',          
-            TOKEN: 'Token',                                  
+        ...mapGetters("auth",{ 
+            ACCESS_TOKEN: "AccessToken",          
+            TOKEN: "Token",     
         }),
-        formTitle () {
-            return this.editedIndex === -1 ? 'TAMBAH DATA' : 'UBAH DATA'
-        },        
+        formTitle() {
+            return this.editedIndex === -1 ? "TAMBAH DATA" : "UBAH DATA"
+        },    
     },
     components: {
         DataMasterLayout,

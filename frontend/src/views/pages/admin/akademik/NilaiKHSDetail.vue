@@ -50,7 +50,7 @@
                                     <v-card flat>
                                         <v-card-title>SAH :</v-card-title>
                                         <v-card-subtitle>
-                                            <v-chip label outlined color="info">{{datakrs.sah==1?'YA': 'TIDAK'}}</v-chip>
+                                            <v-chip label outlined color="info">{{datakrs.sah== 1?"YA": "TIDAK"}}</v-chip>
                                         </v-card-subtitle>
                                     </v-card>
                                 </v-col>
@@ -68,7 +68,7 @@
                                     <v-card flat>
                                         <v-card-title>CREATED :</v-card-title>
                                         <v-card-subtitle>
-                                            {{$date(datakrs.created_at).format('DD/MM/YYYY HH:mm')}}
+                                            {{$date(datakrs.created_at).format("DD/MM/YYYY HH:mm")}}
                                         </v-card-subtitle>
                                     </v-card>
                                 </v-col>
@@ -86,7 +86,7 @@
                                     <v-card flat>
                                         <v-card-title>UPDATED :</v-card-title>
                                         <v-card-subtitle>
-                                            {{$date(datakrs.updated_at).format('DD/MM/YYYY HH:mm')}}
+                                            {{$date(datakrs.updated_at).format("DD/MM/YYYY HH:mm")}}
                                         </v-card-subtitle>
                                     </v-card>
                                 </v-col>
@@ -110,7 +110,7 @@
                                 :loading="btnLoading"
                                 :disabled="btnLoading || !datakrs.hasOwnProperty('id')">
                                 <v-icon>mdi-printer</v-icon>
-                            </v-btn>                                                       
+                            </v-btn>                  
                         </v-card-title>
                         <v-card-text>
                             <v-data-table        
@@ -121,24 +121,24 @@
                                 :disable-pagination="true"
                                 :hide-default-footer="true"                                                                
                                 :loading="datatableLoading"
-                                loading-text="Loading... Please wait">                                                               
+                                loading-text="Loading... Please wait">                          
                                 <template v-slot:body.append v-if="datatable.length > 0">
                                     <tr class="grey lighten-4 font-weight-black">
                                         <td class="text-right" colspan="2">JUMLAH</td>
-                                        <td>{{jumlah_sks}}</td>                                         
-                                        <td></td>                                         
-                                        <td>{{jumlah_am}}</td>                           
-                                        <td>{{jumlah_m}}</td>                           
+                                        <td>{{jumlah_sks}}</td>    
+                                        <td></td>    
+                                        <td>{{jumlah_am}}</td>        
+                                        <td>{{jumlah_m}}</td>        
                                         <td></td>     
                                     </tr>
                                     <tr class="grey lighten-4 font-weight-black">
                                         <td class="text-right" colspan="2">IPS</td>
-                                        <td colspan="5">{{ips}}</td>                                         
-                                    </tr>                                    
+                                        <td colspan="5">{{ips}}</td>    
+                                    </tr>                 
                                     <tr class="grey lighten-4 font-weight-black">
                                         <td class="text-right" colspan="2">IPK</td>
-                                        <td colspan="5">{{ipk}}</td>                                         
-                                    </tr>                                    
+                                        <td colspan="5">{{ipk}}</td>    
+                                    </tr>                 
                                 </template>   
                                 <template v-slot:no-data>
                                     Data matakuliah belum tersedia silahkan tambah
@@ -158,80 +158,80 @@
                     <v-btn
                         color="green"
                         text
-                        :href="$api.url+'/'+file_pdf">                            
+                        :href="$api.url+'/'+file_pdf">         
                         Download
-                    </v-btn>                           
+                    </v-btn>        
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="blue darken-1" text @click.stop="closedialogprintpdf">CLOSE</v-btn>                            
+                    <v-btn color="blue darken-1" text @click.stop="closedialogprintpdf">CLOSE</v-btn>         
                 </v-card-actions>
             </v-card>            
         </v-dialog>
     </AkademikLayout>
 </template>
 <script>
-import AkademikLayout from '@/views/layouts/AkademikLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import AkademikLayout from "@/views/layouts/AkademikLayout";
+import ModuleHeader from "@/components/ModuleHeader";
 export default {
-    name: 'NilaiKHSDetail',
-    created () {
-        this.krs_id=this.$route.params.krs_id;          
+    name: "NilaiKHSDetail",
+    created() {
+        this.krs_id=this.$route.params.krs_id;        
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
             },
             {
-                text: 'AKADEMIK',
+                text: "AKADEMIK",
                 disabled: false,
-                href: '/akademik'
+                href: "/akademik",
             },
             {
-                text: 'NILAI',
+                text: "NILAI",
                 disabled: false,
-                href: '#'
+                href: "#"
             },
             {
-                text: 'KHS',
+                text: "KHS",
                 disabled: false,
-                href: '/akademik/nilai/khs'
+                href: "/akademik/nilai/khs",
             },
             {
-                text: 'DETAIL',
+                text: "DETAIL",
                 disabled: true,
-                href: '#'
+                href: "#"
             },
         ];
-        this.fetchKHS();               
+        this.fetchKHS();             
     },  
     data: () => ({ 
-        firstloading: true,        
-        nama_prodi:null,
-        tahun_akademik:null,        
-        semester_akademik:null,
+        firstloading: true,       
+        nama_prodi: null,
+        tahun_akademik: null,       
+        semester_akademik: null,
     
         btnLoading: false, 
         btnLoadingTable: false,
 
         //formdata
-        krs_id:null,
+        krs_id: null,
         datakrs: {},
         
         //table        
         datatableLoading: false,
         expanded: [],
-        datatable: [],      
+        datatable: [],
         headers: [
-            { text: 'KODE', value: 'kmatkul', sortable: true,width:100  },   
-            { text: 'NAMA MATAKULIAH', value: 'nmatkul',sortable: true },               
-            { text: 'SKS', value: 'sks', sortable: false,width:50 },                           
-            { text: 'HM', value: 'HM', sortable: false,width:50 },                           
-            { text: 'AM', value: 'AM', sortable: false,width:50 },                           
-            { text: 'M', value: 'M', sortable: false,width:50 },                           
-            { text: 'NAMA DOSEN', value: 'nama_dosen', sortable: false,width:200 },                                                                
-        ],  
+            { text: "KODE", value: "kmatkul", sortable: true,width:100  },   
+            { text: "NAMA MATAKULIAH", value: "nmatkul",sortable: true },
+            { text: "SKS", value: "sks", sortable: false,width:50 },            
+            { text: "HM", value: "HM", sortable: false,width:50 },            
+            { text: "AM", value: "AM", sortable: false,width:50 },            
+            { text: "M", value: "M", sortable: false,width:50 },            
+            { text: "NAMA DOSEN", value: "nama_dosen", sortable: false,width:200 },                    
+        ],
 
         jumlah_sks:0,
         jumlah_matkul:0,
@@ -241,24 +241,24 @@ export default {
         ipk:0,
 
         dialogprintpdf: false,
-        file_pdf:null
+        file_pdf: null
     }),
     methods: {          
         async fetchKHS()
         {
-            await this.$ajax.get('/akademik/nilai/khs/'+this.krs_id,                        
+            await this.$ajax.get("/akademik/nilai/khs/" + this.krs_id,                        
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{                                               
-                this.datakrs=data.krs;                
-                this.datatable=data.daftar_nilai;                
+            }).then(({ data })=>{                                    
+                this.datakrs=data.krs;              
+                this.datatable=data.daftar_nilai;              
                 if (Object.keys(this.datakrs).length)
                 {
-                    let prodi_id=this.datakrs.kjur;                    
-                    this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](prodi_id);                
-                    this.tahun_akademik=this.datakrs.tahun;                                                      
+                    let prodi_id=this.datakrs.kjur;                  
+                    this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);              
+                    this.tahun_akademik=this.datakrs.tahun;                                                    
                     this.semester_akademik=this.datakrs.idsmt;
                     
                     this.jumlah_sks=data.jumlah_sks;
@@ -269,33 +269,33 @@ export default {
                     this.ipk=data.ipk;
                 }
             })  
-        },      
+        },  
         async printpdf()
         {
             this.btnLoading=true;
-            await this.$ajax.get('/akademik/nilai/khs/printpdf/'+this.krs_id,                
+            await this.$ajax.get("/akademik/nilai/khs/printpdf/" + this.krs_id,                
                 {
                     headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     },
                     
                 }
-            ).then(({ data })=>{                              
+            ).then(({ data })=>{                   
                 this.file_pdf=data.pdf_file;
                 this.dialogprintpdf=true;
                 this.btnLoading = false;
-            }).catch(()=>{
+            }).catch(() => {
                 this.btnLoading = false;
-            });                 
+            });               
         },
-        closedialogprintpdf () {                  
+        closedialogprintpdf () {       
             setTimeout(() => {
                 this.file_pdf=null;
-                this.dialogprintpdf = false;      
+                this.dialogprintpdf = false;    
                 }, 300
             );
-        },        
-    },    
+        },    
+    },
     components: {
         AkademikLayout,
         ModuleHeader,            

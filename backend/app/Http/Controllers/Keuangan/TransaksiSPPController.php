@@ -22,7 +22,7 @@ class TransaksiSPPController extends Controller {
      */
     public function index(Request $request)
     {
-        $this->hasPermissionTo('KEUANGAN-TRANSAKSI-SPP_BROWSE');        
+        $this->hasPermissionTo('KEUANGAN-TRANSAKSI-SPP-KEMAHASISWAAN_BROWSE');        
 
         if ($this->hasRole(['mahasiswa','mahasiswabaru']))
         {
@@ -280,7 +280,7 @@ class TransaksiSPPController extends Controller {
     }
     public function newtransaction (Request $request)
     {
-        $this->hasPermissionTo('KEUANGAN-TRANSAKSI-SPP_STORE');
+        $this->hasPermissionTo('KEUANGAN-TRANSAKSI-SPP-KEMAHASISWAAN_STORE');
 
         $this->validate($request, [           
             'nim'=>'required|exists:pe3_register_mahasiswa,nim',                 
@@ -380,7 +380,7 @@ class TransaksiSPPController extends Controller {
     }
     public function store(Request $request)
     {
-        $this->hasPermissionTo('KEUANGAN-TRANSAKSI-SPP_STORE');
+        $this->hasPermissionTo('KEUANGAN-TRANSAKSI-SPP-KEMAHASISWAAN_STORE');
 
         $bulan_selected=json_decode($request->input('bulan_selected'),true);
         $request->merge(['bulan_selected'=>$bulan_selected]);
@@ -462,7 +462,7 @@ class TransaksiSPPController extends Controller {
     }
     public function destroy (Request $request,$id)
     {
-        $this->hasPermissionTo('KEUANGAN-TRANSAKSI-SPP_DESTROY');
+        $this->hasPermissionTo('KEUANGAN-TRANSAKSI-SPP-KEMAHASISWAAN_DESTROY');
 
         if ($this->hasRole(['mahasiswa','mahasiswabaru']))
         {

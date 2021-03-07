@@ -77,10 +77,10 @@
                                     <v-icon>
                                         mdi-printer
                                     </v-icon>
-                                </v-btn>                              
-                                <v-dialog v-model="dialogprofilmhsbaru" :fullscreen="true">                                    
-                                    <ProfilMahasiswaBaru :item="datamhsbaru" v-on:closeProfilMahasiswaBaru="closeProfilMahasiswaBaru" />                                    
-                                </v-dialog>                                
+                                </v-btn>           
+                                <v-dialog v-model="dialogprofilmhsbaru" :fullscreen="true">                 
+                                    <ProfilMahasiswaBaru :item="datamhsbaru" v-on:closeProfilMahasiswaBaru="closeProfilMahasiswaBaru" />                 
+                                </v-dialog>             
                             </v-toolbar>
                         </template>
                         <template v-slot:item.foto="{ item }">    
@@ -90,9 +90,9 @@
                                     :icon="badgeIcon(item)"
                                     overlap
                                 >                
-                                    <v-avatar size="30">                                        
-                                        <v-img :src="$api.url+'/'+item.foto" />                                                                     
-                                    </v-avatar>                                                                                                  
+                                    <v-avatar size="30">   
+                                        <v-img :src="$api.url+'/'+item.foto" />                                
+                                    </v-avatar>                                                             
                             </v-badge>
                         </template>
                         <template v-slot:item.actions="{ item }">
@@ -107,9 +107,9 @@
                             <td :colspan="headers.length" class="text-center">
                                 <v-col cols="12">
                                     <strong>ID:</strong>{{ item.id }}
-                                    <strong>created_at:</strong>{{ $date(item.created_at).format('DD/MM/YYYY HH:mm') }}
-                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format('DD/MM/YYYY HH:mm') }}
-                                </v-col>                                      
+                                    <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
+                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
+                                </v-col> 
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -126,86 +126,86 @@
 </template>
 <script>
 import SPMBLayout from '@/views/layouts/SPMBLayout';
-import ModuleHeader from '@/components/ModuleHeader';
+import ModuleHeader from "@/components/ModuleHeader";
 import ProfilMahasiswaBaru from '@/components/ProfilMahasiswaBaru';
 import Filter7 from '@/components/sidebar/FilterMode7';
 export default {
-    name: 'NilaiUjian', 
+    name: "NilaiUjian", 
     created()
     {
         this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];
         this.breadcrumbs = [
             {
-                text: 'HOME',
+                text: "HOME",
                 disabled: false,
-                href: '/dashboard/'+this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
             },
             {
-                text: 'SPMB',
+                text: "SPMB",
                 disabled: false,
-                href: '/spmb'
+                href: "/spmb"
             },
             {
-                text: 'NILAI UJIAN',
+                text: "NILAI UJIAN",
                 disabled: true,
-                href: '#'
+                href: "#"
             }
         ];
-        this.breadcrumbs[1].disabled=(this.dashboard=='mahasiswabaru'||this.dashboard=='mahasiswa');
+        this.breadcrumbs[1].disabled=(this.dashboard=='mahasiswabaru'||this.dashboard == "mahasiswa");
         
-        let prodi_id=this.$store.getters['uiadmin/getProdiID'];
-        this.prodi_id=prodi_id;
-        this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](prodi_id);
-        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];                
+        let prodi_id = this.$store.getters['uiadmin/getProdiID'];
+        this.prodi_id = prodi_id;
+        this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
+        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];              
         this.initialize()   
     },  
     data: () => ({
         firstloading: true,
-        prodi_id:null,
-        tahun_pendaftaran:null,
-        nama_prodi:null,
+        prodi_id: null,
+        tahun_pendaftaran: null,
+        nama_prodi: null,
 
         dialogprofilmhsbaru: false,
 
-        breadcrumbs: [],        
-        dashboard:null,
+        breadcrumbs: [],
+        dashboard: null,
 
         btnLoading: false,
         datatableLoading: false,
         expanded: [],
         datatable: [],
         headers: [                        
-            { text:  "", value: 'foto', width:70 },               
-            { text: 'NO.FORMULIR', value: 'no_formulir',width:120,sortable: true },
-            { text: 'NAMA MAHASISWA', value: 'name',width:350,sortable: true },
-            { text: 'NOMOR HP', value: 'nomor_hp',width:100},
-            { text: 'KELAS', value: 'nkelas',width:100,sortable: true },
-            { text: 'NILAI', value: 'nilai',width:100,sortable: true },
-            { text: 'STATUS', value: 'status',width:100,sortable: true },
-            { text: 'AKSI', value: 'actions', sortable: false,width:50 },
+            { text: "",value: "foto", width:70 },
+            { text: "NO.FORMULIR", value: "no_formulir", width: 120,sortable: true },
+            { text: "NAMA MAHASISWA", value: "name", width: 350,sortable: true },
+            { text: "NOMOR HP", value: "nomor_hp", width: 100},
+            { text: "KELAS", value: "nkelas", width: 100,sortable: true },
+            { text: "NILAI", value: "nilai", width: 100,sortable: true },
+            { text: "STATUS", value: "status", width: 100,sortable: true },
+            { text: "AKSI", value: "actions", sortable: false,width:50 },
         ],
-        search: "",  
+        search: "", 
         
         datamhsbaru: {},
 
         //form data 
         filter_status:1,  
-        form_valid: true,   
+        form_valid: true,  
 
-        data_mhs: {},        
-        daftar_prodi: [],        
+        data_mhs: {},    
+        daftar_prodi: [],
         
     }),
-    methods : {
+    methods: {
         changeTahunPendaftaran (tahun)
         {
-            this.tahun_pendaftaran=tahun;
+            this.tahun_pendaftaran = tahun;
         },
         changeProdi (id)
         {
-            this.prodi_id=id;
+            this.prodi_id = id;
         },
-		initialize:async function()
+		initialize: async function()
 		{	
             switch(this.dashboard)
             {
@@ -213,8 +213,8 @@ export default {
 
                 break;
                 default :
-                    this.datatableLoading=true;            
-                    await this.$ajax.post('/spmb/reportspmbkelulusan',
+                    this.datatableLoading = true;          
+                    await this.$ajax.post("/spmb/reportspmbkelulusan",
                     {
                         TA: this.tahun_pendaftaran,
                         prodi_id: this.prodi_id,
@@ -224,11 +224,11 @@ export default {
                         headers: {
                             Authorization: this.$store.getters["auth/Token"]
                         }
-                    }).then(({ data })=>{               
-                        this.datatable = data.pmb;                
-                        this.datatableLoading=false;
-                    });         
-                    this.firstloading=false;
+                    }).then(({ data })=>{    
+                        this.datatable = data.pmb;              
+                        this.datatableLoading = false;
+                    });       
+                    this.firstloading = false;
                     this.$refs.filter7.setFirstTimeLoading(this.firstloading); 
             }
             
@@ -237,32 +237,32 @@ export default {
         {
             if ( item === this.expanded[0])
             {
-                this.expanded=[];                
+                this.expanded = [];              
             }
             else
             {
-                this.expanded=[item];
+                this.expanded = [item];
             }               
         },
         badgeColor(item)
         {
-            return item.active == 1 ? 'success': 'error'
+            return item.active == 1 ? 'success': "error"
         },
         badgeIcon(item)
         {
-            return item.active == 1 ? 'mdi-check-bold': 'mdi-close-thick'
-        },     
+            return item.active == 1 ? "mdi-check-bold": "mdi-close-thick"
+        }, 
         viewItem(item)
         {
             this.datamhsbaru = item;
             this.dialogprofilmhsbaru = true;
-        },                
-        printtoexcel:async function()
+        }, 
+        printtoexcel: async function()
         {
             this.btnLoading=true;
-            await this.$ajax.post('/spmb/reportspmbkelulusan/printtoexcel',
+            await this.$ajax.post("/spmb/reportspmbkelulusan/printtoexcel",
                 {
-                    TA: this.tahun_pendaftaran,                                                                
+                    TA: this.tahun_pendaftaran,                                   
                     prodi_id: this.prodi_id,    
                     nama_prodi: this.nama_prodi,                 
                     filter_status: this.filter_status,                 
@@ -271,25 +271,25 @@ export default {
                     headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     },
-                    responseType: 'arraybuffer'
+                    responseType: "arraybuffer"
                 }
-            ).then(({ data })=>{              
+            ).then(({ data })=>{   
                 const url = window.URL.createObjectURL(new Blob([data]));
-                const link = document.createElement('a');
+                const link = document.createElement("a");
                 link.href = url;
-                link.setAttribute('download', 'laporan_prodi_'+Date.now()+'.xlsx');                
-                link.setAttribute('id', 'download_laporan');                
+                link.setAttribute("download", 'laporan_prodi_'+Date.now() + ".xlsx");              
+                link.setAttribute("id", "download_laporan");              
                 document.body.appendChild(link);
-                link.click();                     
+                link.click();                   
                 document.body.removeChild(link);
                 this.btnLoading = false;
-            }).catch(()=>{
+            }).catch(() => {
                 this.btnLoading = false;
-            });     
-        },             
+            });   
+        },         
         closeProfilMahasiswaBaru ()
         {
-            this.dialogprofilmhsbaru = false;                     
+            this.dialogprofilmhsbaru = false;                   
         }        
     },
     watch: {

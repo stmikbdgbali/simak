@@ -24,7 +24,7 @@
 				<template v-slot:activator="{on}">
 					<v-avatar size="30">
 						<v-img :src="photoUser" v-on="on" />
-					</v-avatar>                    
+					</v-avatar> 
 				</template>
 				<v-list>
 					<v-list-item>
@@ -35,11 +35,11 @@
 							<v-list-item-title class="title">
 								{{ ATTRIBUTE_USER("username") }}
 							</v-list-item-title>
-							<v-list-item-subtitle>                                
+							<v-list-item-subtitle>             
 								[{{ DEFAULT_ROLE }}]
 							</v-list-item-subtitle>
 						</v-list-item-content>
-					</v-list-item>                    
+					</v-list-item> 
 					<v-divider/>
 					<v-list-item to="/system-users/profil">
 						<v-list-item-icon class="mr-2">
@@ -92,7 +92,7 @@
 						</v-list-item-title>
 					</v-list-item-content>
 				</v-list-item>    
-				<v-list-item link v-if="CAN_ACCESS('SYSTEM-SETTING-VARIABLES')" to="/system-setting/variables">
+				<v-list-item link v-if="CAN_ACCESS('SYSTEM-SETTINGp-VARIABLES')" to="/system-setting/variables">
 					<v-list-item-icon class="mr-2">
 						<v-icon>mdi-variable</v-icon>
 					</v-list-item-icon>
@@ -114,7 +114,7 @@
 					</v-list-item-content>
 				</v-list-item>    
 				<v-subheader>SERVER</v-subheader>
-				<v-list-item link v-if="CAN_ACCESS('SYSTEM-SETTING-VARIABLES')" to="/system-setting/captcha">
+				<v-list-item link v-if="CAN_ACCESS('SYSTEM-SETTINGp-VARIABLES')" to="/system-setting/captcha">
 					<v-list-item-icon class="mr-2">
 						<v-icon>mdi-account</v-icon>
 					</v-list-item-icon>
@@ -124,7 +124,7 @@
 						</v-list-item-title>
 					</v-list-item-content>
 				</v-list-item>    
-				<v-list-item link v-if="CAN_ACCESS('SYSTEM-SETTING-VARIABLES')" to="/system-setting/email">
+				<v-list-item link v-if="CAN_ACCESS('SYSTEM-SETTINGp-VARIABLES')" to="/system-setting/email">
 					<v-list-item-icon class="mr-2">
 						<v-icon>mdi-account</v-icon>
 					</v-list-item-icon>
@@ -134,7 +134,7 @@
 						</v-list-item-title>
 					</v-list-item-content>
 				</v-list-item> 
-				<v-list-item link v-if="CAN_ACCESS('SYSTEM-SETTING-VARIABLES')" to="/system-setting/cache">
+				<v-list-item link v-if="CAN_ACCESS('SYSTEM-SETTINGp-VARIABLES')" to="/system-setting/cache">
 					<v-list-item-icon class="mr-2">
 						<v-icon>mdi-cached</v-icon>
 					</v-list-item-icon>
@@ -144,7 +144,7 @@
 						</v-list-item-title>
 					</v-list-item-content>
 				</v-list-item>           
-				<v-subheader>PLUGIN</v-subheader>                    
+				<v-subheader>PLUGIN</v-subheader> 
 				<v-list-item link v-if="CAN_ACCESS('PLUGINS-H2H-ZOOMAPI_BROWSE')" to="/system-setting/zoom">
 					<v-list-item-icon class="mr-2">
 						<v-icon>mdi-desktop-mac-dashboard</v-icon>
@@ -155,7 +155,7 @@
 						</v-list-item-title>
 					</v-list-item-content>
 				</v-list-item>    
-				<v-subheader v-if="CAN_ACCESS('SYSTEM-SETTING-THEMES_BROWSE')" >THEMES</v-subheader>                    
+				<v-subheader v-if="CAN_ACCESS('SYSTEM-SETTING-THEMES_BROWSE')" >THEMES</v-subheader> 
 				<v-list-item link v-if="CAN_ACCESS('SYSTEM-SETTING-THEMES_BROWSE')" to="/system-setting/themes/colordashboard">
 					<v-list-item-icon class="mr-2">
 						<v-icon>mdi-desktop-mac-dashboard</v-icon>
@@ -207,10 +207,10 @@ export default {
 			type: Boolean,
 			default: false,
 		},
-	},     
+	}, 
 	data: () => ({
 		loginTime: 0,
-		drawer: null,        
+		drawer: null,       
 	}),       
 	methods: {        
 		logout() {
@@ -264,7 +264,7 @@ export default {
 				photo = this.$api.url+"/"+img;	
 			}
 			return photo;
-		},    
+		},
 	},
 	watch: {
 		loginTime: {
@@ -272,7 +272,7 @@ export default {
 				if (value >= 0)
 				{
 					setTimeout(() => { 
-						this.loginTime=this.AUTHENTICATED==true?this.loginTime+1:-1;                                                                     
+						this.loginTime=this.AUTHENTICATED==true?this.loginTime+1:-1;                                                                   
 					}, 1000);
 				}
 				else
@@ -282,7 +282,7 @@ export default {
 				}
 			},
 			immediate: true,
-		},        
+		},    
 	},
 }
 </script>
