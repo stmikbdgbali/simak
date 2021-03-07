@@ -31,7 +31,7 @@
         <template v-slot:filtersidebar>
             <Filter7 v-on:changeTahunPendaftaran="changeTahunPendaftaran" v-on:changeProdi="changeProdi" ref="filter7" />	
         </template>
-        <v-container fluid>                         
+        <v-container fluid>      
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
                     <v-card>
@@ -89,7 +89,7 @@
                         </template>
                         <template v-slot:item.actions="{ item }">
                             <v-tooltip bottom>             
-                                <template v-slot:activator="{ on, attrs }">                                             
+                                <template v-slot:activator="{ on, attrs }">        
                                     <v-btn 
                                         v-bind="attrs"
                                         v-on="on"
@@ -103,10 +103,10 @@
                                         <v-icon>mdi-eye</v-icon>
                                     </v-btn>     
                                 </template>
-                                <span>Detail Konversi Nilai</span>                                   
+                                <span>Detail Konversi Nilai</span>                
                             </v-tooltip> 
                             <v-tooltip bottom>             
-                                <template v-slot:activator="{ on, attrs }">                                             
+                                <template v-slot:activator="{ on, attrs }">        
                                     <v-btn 
                                         v-bind="attrs"
                                         v-on="on"
@@ -120,10 +120,10 @@
                                         <v-icon>mdi-pencil</v-icon>
                                     </v-btn>     
                                 </template>
-                                <span>Ubah Konversi Nilai</span>                                   
-                            </v-tooltip>                             
+                                <span>Ubah Konversi Nilai</span>                
+                            </v-tooltip>          
                             <v-tooltip bottom>             
-                                <template v-slot:activator="{ on, attrs }">                                             
+                                <template v-slot:activator="{ on, attrs }">        
                                     <v-btn 
                                         v-bind="attrs"
                                         v-on="on"
@@ -137,10 +137,10 @@
                                         <v-icon>mdi-printer</v-icon>
                                     </v-btn>     
                                 </template>
-                                <span>Cetak Konversi Nilai</span>                                   
+                                <span>Cetak Konversi Nilai</span>                
                             </v-tooltip>
                             <v-tooltip bottom>             
-                                <template v-slot:activator="{ on, attrs }">                                             
+                                <template v-slot:activator="{ on, attrs }">        
                                     <v-btn 
                                         v-bind="attrs"
                                         v-on="on"
@@ -154,16 +154,16 @@
                                         <v-icon>mdi-delete</v-icon>
                                     </v-btn>     
                                 </template>
-                                <span>Hapus Konversi Nilai</span>                                   
-                            </v-tooltip>                  
+                                <span>Hapus Konversi Nilai</span>                
+                            </v-tooltip>
                         </template>           
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
-                                <v-col cols="12">                          
+                                <v-col cols="12">       
                                     <strong>ID:</strong>{{ item.id}}     
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}                                         
-                                </v-col>                                
+                                </v-col>             
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -182,20 +182,20 @@
                     <v-btn
                         color="green"
                         text
-                        :href="$api.url+'/'+file_pdf">                            
+                        :href="$api.url+'/'+file_pdf">         
                         Download
-                    </v-btn>                           
+                    </v-btn>        
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="blue darken-1" text @click.stop="closedialogprintpdf">CLOSE</v-btn>                            
+                    <v-btn color="blue darken-1" text @click.stop="closedialogprintpdf">CLOSE</v-btn>         
                 </v-card-actions>
             </v-card>            
         </v-dialog>
     </AkademikLayout>
 </template>
 <script>
-import AkademikLayout from '@/views/layouts/AkademikLayout';
+import AkademikLayout from "@/views/layouts/AkademikLayout";
 import ModuleHeader from "@/components/ModuleHeader";
 import Filter7 from '@/components/sidebar/FilterMode7';
 export default {
@@ -223,10 +223,10 @@ export default {
                 href: "#"
             }
         ];
-        let prodi_id=this.$store.getters['uiadmin/getProdiID'];
-        this.prodi_id=prodi_id;
-        this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](prodi_id);
-        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];                
+        let prodi_id = this.$store.getters['uiadmin/getProdiID'];
+        this.prodi_id = prodi_id;
+        this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
+        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];              
         this.initialize()
     },  
     data: () => ({ 
@@ -239,18 +239,18 @@ export default {
         btnLoadingTable: false,
         datatableLoading: false,
         expanded: [],
-        datatable: [],      
+        datatable: [],
         headers: [            
-            { text: "NIM", value: "nim_asal", sortable: true,width:100  },               
-            { text: "NAMA", value: "nama_mhs", sortable: true,width:250  },               
-            { text: "ALAMAT", value: "alamat",sortable: true,width:200 },                           
-            { text: "NO. TELP", value: "no_telp",sortable: true,width:120, },                           
-            { text: "JUMLAH MATKUL", value: "jumlah_matkul",sortable: false, width:100, },                           
-            { text: "JUMLAH SKS", value: "jumlah_sks",sortable: false, width:100, },                           
-            { text: "NIM SISTEM", value: "nim",sortable: true,width:100, },                           
+            { text: "NIM", value: "nim_asal", sortable: true,width:100  },
+            { text: "NAMA", value: "nama_mhs", sortable: true,width:250  },
+            { text: "ALAMAT", value: "alamat",sortable: true,width:200 },            
+            { text: "NO. TELP", value: "no_telp",sortable: true,width:120, },            
+            { text: "JUMLAH MATKUL", value: "jumlah_matkul",sortable: false, width:100, },            
+            { text: "JUMLAH SKS", value: "jumlah_sks",sortable: false, width:100, },            
+            { text: "NIM SISTEM", value: "nim",sortable: true,width:100, },            
             { text: "AKSI", value: "actions", sortable: false,width:150 },
-        ],  
-        search: "", 
+        ],
+        search: "",
 
         dialogprintpdf: false,
         file_pdf: null
@@ -276,12 +276,12 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{               
+            }).then(({ data })=>{    
                 this.datatable = data.mahasiswa;
                 this.datatableLoading = false;
-            }).catch(()=>{
+            }).catch(() => {
                 this.datatableLoading = false;
-            });  
+            });
             this.firstloading = false;
             this.$refs.filter7.setFirstTimeLoading(this.firstloading); 
         },
@@ -289,7 +289,7 @@ export default {
         {
             if ( item === this.expanded[0])
             {
-                this.expanded = [];                
+                this.expanded = [];              
             }
             else
             {
@@ -304,7 +304,7 @@ export default {
         {
             this.$router.push("/akademik/nilai/konversi/'+item.id+'/edit");
         },
-        deleteItem (item) {           
+        deleteItem(item) {
             this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data nilai konvesi dengan ID '+item.id+' ?", { color: "red" }).then((confirm) => {
                 if (confirm)
                 {
@@ -318,11 +318,11 @@ export default {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
-                    ).then(()=>{   
+                    ).then(() => {
                         const index = this.datatable.indexOf(item);
                         this.datatable.splice(index, 1);
                         this.btnLoading = false;
-                    }).catch(()=>{
+                    }).catch(() => {
                         this.btnLoading = false;
                     });
                 }                
@@ -338,18 +338,18 @@ export default {
                     },
                     
                 }
-            ).then(({ data })=>{                              
+            ).then(({ data })=>{                   
                 this.file_pdf=data.pdf_file;
                 this.dialogprintpdf=true;
                 this.btnLoading = false;
-            }).catch(()=>{
+            }).catch(() => {
                 this.btnLoading = false;
-            });                 
+            });               
         },
-        closedialogprintpdf () {                  
+        closedialogprintpdf () {       
             setTimeout(() => {
                 this.file_pdf=null;
-                this.dialogprintpdf = false;      
+                this.dialogprintpdf = false;    
                 }, 300
             );
         }, 

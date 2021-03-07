@@ -28,12 +28,12 @@ const getDefaultState = () =>
         k_status: null,
         
         skala_nilai: [
-            "A",                               
+            "A",  
             "B",            
             "C",            
             "D",
             "E",
-        ],       
+        ], 
         theme: null
     }
 }
@@ -43,17 +43,17 @@ const state = getDefaultState();
 const mutations = {   
     setNewPage(state, page)
     {
-        state.pages.push(page);                
+        state.pages.push(page);              
     },
     replacePage (state,page,index)
     {
-        state.pages[index]=page;            
+        state.pages[index]=page;          
     },
     removePage(state,name)
     {
         var i;
         for (i = 0;i < state.pages.length;i++)
-        {                
+        {     
             if(state.pages[i].name==name)
             {
                 state.pages.splice(i,1);
@@ -103,7 +103,7 @@ const mutations = {
     setFakultasID(state,id)
     {
         state.fakultas_id=id;
-    },    
+    },
     
     setDaftarProdi(state,daftar)
     {
@@ -112,7 +112,7 @@ const mutations = {
     setProdiID(state,id)
     {
         state.prodi_id=id;
-    },    
+    },
 
     setDaftarKelas(state,daftar)
     {
@@ -121,7 +121,7 @@ const mutations = {
     setIDKelas(state,id)
     {
         state.idkelas=id;
-    },    
+    },
 
     setDaftarStatusMahasiswa(state,daftar)
     {
@@ -130,7 +130,7 @@ const mutations = {
     setStatusMahasiswa(state,k_status)
     {
         state.k_status=k_status;
-    },    
+    },
 
     setTheme(state,theme)
     {
@@ -149,7 +149,7 @@ const getters= {
     },
     AtributeValueOfPage : (state) => (name,key) =>
     {
-        let page = state.pages.find(halaman => halaman.name==name);            
+        let page = state.pages.find(halaman => halaman.name==name);          
         return page[key];
     },   
     
@@ -171,7 +171,7 @@ const getters= {
             {
                 daftar.push(element);
             }            
-        });    
+        });  
         return daftar;
     },  
     getTahunPendaftaran: state =>
@@ -190,7 +190,7 @@ const getters= {
     getNamaSemester : (state) => (key) =>
     {   
         var nama_semester='';
-        let found = state.daftar_semester.find(semester => semester.id==key);                                 
+        let found = state.daftar_semester.find(semester => semester.id==key);                               
         if (typeof found !=="undefined")
         {
             nama_semester=found.text;
@@ -198,11 +198,11 @@ const getters= {
         return nama_semester;
     },
     getSemesterPendaftaran: state => 
-    {             
+    {  
         return parseInt(state.semester_pendaftaran);
     },
     getSemesterAkademik: state => 
-    {             
+    {  
         return parseInt(state.semester_akademik);
     },
 
@@ -230,7 +230,7 @@ const getters= {
     getFakultasName : (state) => (key) =>
     {   
         var nama_fakultas='';
-        let found = state.daftar_fakultas.find(fakultas => fakultas.id==key);                                 
+        let found = state.daftar_fakultas.find(fakultas => fakultas.id==key);                               
         if (typeof found !=="undefined")
         {
             nama_fakultas=found.text;
@@ -249,7 +249,7 @@ const getters= {
     getNamaKelas: (state) => (id) =>
     {
         var nama_kelas='N.A';
-        let found = state.daftar_kelas.find(kelas => kelas.id==id);                          
+        let found = state.daftar_kelas.find(kelas => kelas.id==id);                        
         if (typeof found !=="undefined")
         {
             nama_kelas=found.text;
@@ -268,7 +268,7 @@ const getters= {
     getStatusMahasiswa: (state) => (id) =>
     {
         var nama_status='N.A';
-        let found = state.daftar_status_mhs.find(status_mhs => status_mhs.id==id);                          
+        let found = state.daftar_status_mhs.find(status_mhs => status_mhs.id==id);                        
         if (typeof found !=="undefined")
         {
             nama_status=found.text;
@@ -282,7 +282,7 @@ const getters= {
     },
     
     getTheme : (state) => (key) =>
-    {           
+    {
         return state.theme == null?'':state.theme[key];
     },
 
@@ -291,22 +291,22 @@ const actions = {
     init: async function ({commit,state,rootGetters},ajax)
     {   
         //dipindahkan kesini karena ada beberapa kasus yang melaporkan ini membuat bermasalah.
-        commit("setLoaded",false);              
+        commit("setLoaded",false);            
         if (!state.loaded && rootGetters['auth/Authenticated'])
         {   
-            commit("setSemesterPendaftaran",rootGetters['uifront/getSemesterPendaftaran']);   
-            let token=rootGetters['auth/Token'];                                                     
+            commit("setSemesterPendaftaran",rootGetters['uifront/getSemesterPendaftaran']); 
+            let token=rootGetters['auth/Token'];                                                   
             await ajax.get("/system/setting/uiadmin",               
                 {
                     headers:{
                         Authorization:token
                     }
                 }
-            ).then(({data})=>{                   
+            ).then(({data})=>{        
                 commit("setDaftarTA",data.daftar_ta); 
-                commit("setTahunPendaftaran",data.tahun_pendaftaran);   
-                commit("setTahunAkademik",data.tahun_akademik);           
-                commit("setDaftarSemester",data.daftar_semester);         
+                commit("setTahunPendaftaran",data.tahun_pendaftaran); 
+                commit("setTahunAkademik",data.tahun_akademik);         
+                commit("setDaftarSemester",data.daftar_semester);       
                 commit("setSemesterAkademik",data.semester_akademik);
 
                 let daftar_fakultas = data.daftar_fakultas;
@@ -317,8 +317,8 @@ const actions = {
                         text:element.nama_fakultas,
                         nama_fakultas:element.nama_fakultas,                  
                     });
-                });                           
-                commit("setDaftarFakultas",fakultas);            
+                });                         
+                commit("setDaftarFakultas",fakultas);          
                 commit("setFakultasID",data.fakultas_id); 
 
                 let daftar_prodi = data.daftar_prodi;
@@ -329,20 +329,20 @@ const actions = {
                         text:element.nama_prodi_alias + " (" + element.nama_jenjang + ")",
                         nama_prodi:element.nama_prodi + " (" + element.nama_jenjang + ")",                  
                     };
-                });                           
-                commit("setDaftarProdi",prodi);            
-                commit("setProdiID",data.prodi_id);            
+                });                         
+                commit("setDaftarProdi",prodi);          
+                commit("setProdiID",data.prodi_id);          
                       
-                commit("setDaftarKelas",data.daftar_kelas);            
-                commit("setIDKelas",data.idkelas);            
+                commit("setDaftarKelas",data.daftar_kelas);          
+                commit("setIDKelas",data.idkelas);          
                 
-                commit("setDaftarStatusMahasiswa",data.daftar_status_mhs);            
-                commit("setStatusMahasiswa",data.k_status);  
+                commit("setDaftarStatusMahasiswa",data.daftar_status_mhs);          
+                commit("setStatusMahasiswa",data.k_status);
                 
-                commit("setTheme",data.theme);            
+                commit("setTheme",data.theme);          
 
-                commit("setLoaded",true);              
-            });      
+                commit("setLoaded",true);            
+            });    
         }
     }, 
     
@@ -353,12 +353,12 @@ const actions = {
         {
             commit("setNewPage",page);
         }
-    },    
+    },
     updatePage ({commit,state},page)
     {
         var i;
         for (i = 0;i < state.pages.length;i++)
-        {                
+        {     
             if(state.pages[i].name==page.name)
             {
                 break;

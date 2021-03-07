@@ -87,19 +87,19 @@ export default {
         datatableLoading : false,
 
         //daftar komponen biaya
-        kombi_ganjil_unpaid: [],       
-        kombi_genap_unpaid: [],       
+        kombi_ganjil_unpaid: [],
+        kombi_genap_unpaid: [],
 
-        kombi_ganjil_paid: [],       
-        kombi_genap_paid: [],       
+        kombi_ganjil_paid: [],
+        kombi_genap_paid: [],
 
-        kombi_ganjil_cancelled: [],       
-        kombi_genap_cancelled: [],       
+        kombi_ganjil_cancelled: [],
+        kombi_genap_cancelled: [],
 
         headers: [                        
-            { text: "NAMA KOMPONEN", value: "nama_kombi", sortable: false},               
-            { text: "JUMLAH", align: "end",value: "jumlah", width: 250, sortable: false},                
-        ], 
+            { text: "NAMA KOMPONEN", value: "nama_kombi", sortable: false},
+            { text: "JUMLAH", align: "end",value: "jumlah", width: 250, sortable: false}, 
+        ],
         //statistik
         total_transaction:0,
         total_transaction_paid: 0,
@@ -112,10 +112,10 @@ export default {
             required: true
         }
     },
-    methods:{
+    methods: {
         initialize: async function()
 		{	
-            this.datatableLoading=true;            
+            this.datatableLoading=true;          
             await this.$ajax.post("/dashboard/keuangan",
             {
                 TA: this.ta,                
@@ -124,11 +124,11 @@ export default {
                 headers: {
                     Authorization: this.$store.getters['auth/Token']
                 }
-            }).then(({data})=>{                 
+            }).then(({data})=>{      
                 this.total_transaction=data.total_transaction;
-                this.total_transaction_paid=data.total_transaction_paid;          
-                this.total_transaction_unpaid=data.total_transaction_unpaid;          
-                this.total_transaction_cancelled=data.total_transaction_cancelled;          
+                this.total_transaction_paid=data.total_transaction_paid;        
+                this.total_transaction_unpaid=data.total_transaction_unpaid;        
+                this.total_transaction_cancelled=data.total_transaction_cancelled;        
 
                 this.kombi_ganjil_unpaid=data.kombi_ganjil_unpaid;
                 this.kombi_genap_unpaid=data.kombi_genap_unpaid;
@@ -140,19 +140,19 @@ export default {
                 this.kombi_genap_cancelled=data.kombi_genap_cancelled;
                 
                 this.datatableLoading=false;
-            }).catch(()=>{
+            }).catch(() => {
                 this.datatableLoading=false;
-            });             
+            });           
 
         }
     },
     computed:{        
         totalKombiGanjilPaid()
         {
-            var total = 0;            
+            var total = 0;          
             for (var i =0; i < this.kombi_ganjil_paid.length; i++)
             {
-                var item = this.kombi_ganjil_paid[i];                                
+                var item = this.kombi_ganjil_paid[i];                              
                 total=total+parseFloat(item.jumlah);
             }           
             return total;
@@ -167,8 +167,8 @@ export default {
             }
             return total;
         }
-    },    
-    watch:{
+    },
+    watch: {
         ta ()
         {
             this.initialize();

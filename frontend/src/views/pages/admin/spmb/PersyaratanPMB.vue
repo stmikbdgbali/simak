@@ -81,8 +81,8 @@
                                     vertical
                                 ></v-divider>
                                 <v-spacer></v-spacer>
-                                <v-dialog v-model="dialogprofilmhsbaru" :fullscreen="true">                                    
-                                    <ProfilMahasiswaBaru :item="datamhsbaru" v-on:closeProfilMahasiswaBaru="closeProfilMahasiswaBaru" v-if="dialogprofilmhsbaru" />                                    
+                                <v-dialog v-model="dialogprofilmhsbaru" :fullscreen="true">                 
+                                    <ProfilMahasiswaBaru :item="datamhsbaru" v-on:closeProfilMahasiswaBaru="closeProfilMahasiswaBaru" v-if="dialogprofilmhsbaru" />                 
                                 </v-dialog>
                             </v-toolbar>
                         </template>
@@ -93,9 +93,9 @@
                                 :icon="badgeIcon(item)"
                                 :value="item.jumlah_persyaratan > 0"
                                 overlap>                
-                                <v-avatar size="30">                                        
-                                    <v-img :src="$api.url+'/'+item.foto" />                                                                     
-                                </v-avatar>                                                                                                  
+                                <v-avatar size="30">   
+                                    <v-img :src="$api.url+'/'+item.foto" />                                
+                                </v-avatar>                                                             
                             </v-badge>
                         </template>
                         <template v-slot:item.actions="{ item }">
@@ -112,7 +112,7 @@
                                     <strong>ID:</strong>{{ item.id }}
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
-                                </v-col>                                
+                                </v-col>             
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -136,7 +136,7 @@ import Filter7 from '@/components/sidebar/FilterMode7';
 export default {
     name: "PersyaratanPMB", 
     created() {
-        this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];   
+        this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard']; 
         this.breadcrumbs = [
             {
                 text: "HOME",
@@ -155,9 +155,9 @@ export default {
             }
         ];this.breadcrumbs[1].disabled=(this.dashboard=='mahasiswabaru'||this.dashboard == "mahasiswa");
         
-        let prodi_id=this.$store.getters['uiadmin/getProdiID'];
-        this.prodi_id=prodi_id;
-        this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](prodi_id);
+        let prodi_id = this.$store.getters['uiadmin/getProdiID'];
+        this.prodi_id = prodi_id;
+        this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
         this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];
         this.initialize()
     },   
@@ -168,7 +168,7 @@ export default {
         nama_prodi: null,
 
         dialogprofilmhsbaru: false,
-        breadcrumbs: [],        
+        breadcrumbs: [],
         dashboard: null,
 
         btnLoading: false,
@@ -176,7 +176,7 @@ export default {
         expanded: [],
         datatable: [],
         headers: [                        
-            { text: "", value: "foto", width:70 },               
+            { text: "",value: "foto", width:70 },
             { text: "NAMA MAHASISWA", value: "name", width: 350,sortable: true },
             { text: "NOMOR HP", value: "nomor_hp", width: 100},
             { text: "KELAS", value: "nkelas", width: 100,sortable: true },
@@ -210,9 +210,9 @@ export default {
                         }
                     },
                     
-                ).then(({ data })=>{                       
-                    this.showcomponentpersyaratan=data.formulir.idkelas==null||data.formulir.idkelas==''?false: true;                    
-                });  
+                ).then(({ data })=>{            
+                    this.showcomponentpersyaratan=data.formulir.idkelas==null||data.formulir.idkelas==''?false: true;                  
+                });
             }
             else
             {
@@ -226,19 +226,19 @@ export default {
                     headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     }
-                }).then(({ data })=>{                                   
-                    this.datatable = data.persyaratan;   
+                }).then(({ data })=>{                        
+                    this.datatable = data.persyaratan; 
                     this.datatableLoading = false;
-                });  
+                });
                 this.firstloading = false; 
-                this.$refs.filter7.setFirstTimeLoading(this.firstloading);               
+                this.$refs.filter7.setFirstTimeLoading(this.firstloading);             
             }               
         },
         dataTableRowClicked(item)
         {
             if ( item === this.expanded[0])
             {
-                this.expanded = [];                
+                this.expanded = [];              
             }
             else
             {
@@ -247,20 +247,20 @@ export default {
         },
         badgeColor(item)
         {
-            return item.persyaratan<item.jumlah_persyaratan ? 'error': "success" ;           
+            return item.persyaratan<item.jumlah_persyaratan ? 'error': "success" ;         
         },
         badgeIcon(item)
         {
-            return item.persyaratan<item.jumlah_persyaratan == 1 ? "mdi-close-thick" : "mdi-check-bold";            
-        },     
+            return item.persyaratan<item.jumlah_persyaratan == 1 ? "mdi-close-thick" : "mdi-check-bold";          
+        }, 
         viewItem(item)
         {
-            this.datamhsbaru = Object.assign({},item);            
+            this.datamhsbaru = Object.assign({},item);          
             this.dialogprofilmhsbaru = true;
         },
         closeProfilMahasiswaBaru ()
         {
-            this.dialogprofilmhsbaru = false;            
+            this.dialogprofilmhsbaru = false;          
         }   
     },
     watch: {

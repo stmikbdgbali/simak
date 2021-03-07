@@ -125,7 +125,7 @@
                                         <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
                                     </v-row>
                                 </v-col>
-                            </v-row>                            
+                            </v-row>         
                         </v-card-text>
                     </v-card>     
                 </v-col>
@@ -173,7 +173,7 @@ export default {
     name: "ProfilMahasiswaBaru",
     created()
     {
-        this.initialize();                     
+        this.initialize();                   
     },
     props:{
         item:Object,
@@ -182,15 +182,15 @@ export default {
     {
         let tanggal_lahir=this.$date().format("YYYY-MM-DD");
         let tanggal_sekarang=this.$date().format("YYYY-MM-DD HH:mm:ss");
-        return {           
+        return {
             slides: [],
             dialogpreviewpersyaratan: false,         
 
-            datamhs:{                    
+            datamhs:{         
                 tanggal_lahir:tanggal_lahir,
                 created_at:tanggal_sekarang,
                 updated_at:tanggal_sekarang
-            },        
+            },    
         }
     },
     methods: {
@@ -201,7 +201,7 @@ export default {
                     headers:{
                         Authorization: this.$store.getters['auth/Token']
                     }
-                },                
+                }, 
             ).then(({data})=>{   
                 this.datamhs=Object.assign(data.formulir,{
                                                             nama_prodi: this.$store.getters['uiadmin/getProdiName'](data.formulir.kjur1),
@@ -225,7 +225,7 @@ export default {
                             nama_persyaratan:element.nama_persyaratan
                         });
                     }
-                });                
+                });              
             })
         },
         downloadImage ()
@@ -239,9 +239,9 @@ export default {
         closeDialog() 
         {
             setTimeout(() => {
-                this.$emit("closeProfilMahasiswaBaru");                
+                this.$emit("closeProfilMahasiswaBaru");              
                 }, 300
-            );            
+            );          
         }
     },
     components:{        

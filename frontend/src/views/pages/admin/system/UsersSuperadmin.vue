@@ -272,7 +272,7 @@ export default {
 		btnLoading: false,
 		//tables
 		headers: [
-			{ text: "", value: "foto" },
+			{ text: "",value: "foto" },
 			{ text: "USERNAME", value: "username",sortable: true },
 			{ text: "NAME", value: "name",sortable: true },
 			{ text: "EMAIL", value: "email",sortable: true }, 
@@ -291,43 +291,43 @@ export default {
 		editedIndex: -1,
 		editedItem: {
 			id: 0,
-			username: "", 
-			password: "", 
-			name: "", 
-			email: "", 
-			nomor_hp:"", 
+			username: "",
+			password: "",
+			name: "",
+			email: "",
+			nomor_hp:"",
 			role_id: ["superadmin"],
-			created_at: "", 
-			updated_at: "", 
+			created_at: "",
+			updated_at: "",
 		},
 		defaultItem: {
 			id: 0,
-			username: "", 
-			password: "", 
-			name: "", 
-			email: "", 
-			nomor_hp: "", 
+			username: "",
+			password: "",
+			name: "",
+			email: "",
+			nomor_hp: "",
 			role_id: ["superadmin"],
-			created_at: "", 
+			created_at: "",
 			updated_at: "",
 		},
 		//form rules
 		rule_user_name: [
 			value => !!value || "Mohon untuk di isi nama User !!!",
 			value => /^[A-Za-z\s]*$/.test(value) || "Nama User hanya boleh string dan spasi",
-		], 
+		],
 		rule_user_email: [
 			value => !!value || "Mohon untuk di isi email User !!!",
 			value => /.+@.+\..+/.test(value) || "Format E-mail harus benar", 
-		], 
+		],
 		rule_user_nomorhp: [
 			value => !!value || "Nomor HP mohon untuk diisi !!!",
 			value => /^\+[1-9]{1}[0-9]{1,14}$/.test(value) || "Nomor HP hanya boleh angka dan gunakan kode negara didepan seperti +6281214553388",
-		], 
+		],
 		rule_user_username: [
 			value => !!value || "Mohon untuk di isi username User !!!",
 			value => /^[A-Za-z_]*$/.test(value) || "Username hanya boleh string dan underscore",
-		], 
+		],
 		rule_user_password: [
 			value => !!value || "Mohon untuk di isi password User !!!",
 			value => {
@@ -339,7 +339,7 @@ export default {
 					return true;
 				}
 			}
-		], 
+		],
 		rule_user_passwordEdit: [
 			value => {
 				if (value && typeof value !== "undefined" && value.length > 0){
@@ -484,9 +484,9 @@ export default {
 							}
 						}
 					).then(({ data })=>{ 
-						Object.assign(this.daftar_users[this.editedIndex], data.user);
+						Object.assign(this.daftar_users[this.editedIndex],data.user);
 						this.close();
-					}).catch(()=>{
+					}).catch(() => {
 						this.btnLoading = false;
 					});
 					
@@ -508,13 +508,13 @@ export default {
 					).then(({ data })=>{ 
 						this.daftar_users.push(data.user);
 						this.close();
-					}).catch(()=>{
+					}).catch(() => {
 						this.btnLoading = false;
 					});
 				}
 			}
 		},
-		deleteItem (item) { 
+		deleteItem(item) { 
 			this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus username "+item.username+" ?", { color: "red" }).then((confirm) => {
 				if (confirm)
 				{
@@ -528,11 +528,11 @@ export default {
 								Authorization: this.TOKEN
 							}
 						}
-					).then(()=>{ 
+					).then(() => { 
 						const index = this.daftar_users.indexOf(item);
 						this.daftar_users.splice(index, 1);
 						this.btnLoading = false;
-					}).catch(()=>{
+					}).catch(() => {
 						this.btnLoading = false;
 					});
 				}

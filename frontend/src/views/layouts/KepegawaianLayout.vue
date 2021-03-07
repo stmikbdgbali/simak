@@ -19,7 +19,7 @@
                 <template v-slot:activator="{on}">
                     <v-avatar size="30">
                         <v-img :src="photoUser" v-on="on" />
-                    </v-avatar>                    
+                    </v-avatar> 
                 </template>
                 <v-list>
                     <v-list-item>
@@ -30,11 +30,11 @@
                             <v-list-item-title class="title">
                                 {{ ATTRIBUTE_USER("username") }}
                             </v-list-item-title>
-                            <v-list-item-subtitle>                                
+                            <v-list-item-subtitle>             
                                 [{{ DEFAULT_ROLE }}]
                             </v-list-item-subtitle>
                         </v-list-item-content>
-                    </v-list-item>                    
+                    </v-list-item> 
                     <v-divider/>
                     <v-list-item to="/system-users/profil">
                         <v-list-item-icon class="mr-2">
@@ -83,7 +83,7 @@
                     <v-list-item-content>
                         <v-list-item-title>BOARD KEPEGAWAIAN</v-list-item-title>
                     </v-list-item-content>
-                </v-list-item>                   
+                </v-list-item>
                 <v-list-item link to="/kepegawaian/dosen" :active-class="this.$store.getters['uiadmin/getTheme']('V-LIST-ITEM-ACTIVE-CSS-CLASS')" v-if="CAN_ACCESS('KEPEGAWAIAN-DOSEN_BROWSE')">
                     <v-list-item-icon class="mr-2">
                         <v-icon>mdi-teach</v-icon>
@@ -142,7 +142,7 @@ export default {
     name: "KepegawaianLayout",     
     created()
     {
-        this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];                      
+        this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];                    
     },
     props: {
         showrightsidebar: {
@@ -157,7 +157,7 @@ export default {
     data: () => ({
         loginTime: 0,
         drawer: null,
-        drawerRight: null, 
+        drawerRight: null,
         
         dashboard: null,
     }),       
@@ -217,10 +217,10 @@ export default {
 				photo = this.$api.url+'/'+img;	
 			}
 			return photo;
-        },        
+        },    
         paramid ()
         {
-            var id='empty';                        
+            var id='empty';                      
             switch (this.$route.name)
             {
                 case 'PerkuliahanPenyelenggaraanDosenPengampu':
@@ -247,7 +247,7 @@ export default {
                 if (value >= 0)
                 {
                     setTimeout(() => { 
-                        this.loginTime=this.AUTHENTICATED==true?this.loginTime+1:-1;                                                                     
+                        this.loginTime=this.AUTHENTICATED==true?this.loginTime+1:-1;                                                                   
 					}, 1000);
                 }
                 else
@@ -257,7 +257,7 @@ export default {
                 }
             },
             immediate: true
-        },        
+        },    
     }
 }
 </script>

@@ -33,7 +33,7 @@ export default {
 		});
 
 		this.$ajax.interceptors.response.use(response => {
-			let data = response.data;			
+			let data = response.data;	
 			switch (data.pid) {
 				case "store" :
 				case "update" :

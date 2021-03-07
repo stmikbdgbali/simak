@@ -14,7 +14,7 @@
                             >
                                 Kirim Ulang
                             </v-btn>
-                        </v-card-text>                    
+                        </v-card-text> 
                     </v-card>
                 </v-timeline-item> -->
                 <v-timeline-item color="purple darken-1" icon="mdi-book-variant" fill-dot>
@@ -29,7 +29,7 @@
                                     <li>Scan KTP</li>
                                     <li>Scan Kartu Keluarga</li>
                                 </ul>
-                            </p>                            
+                            </p>         
                             <v-btn
                                 color="purple darken-1"
                                 class="mx-0 mr-2"
@@ -46,7 +46,7 @@
                             >
                                 Upload Persyaratan
                             </v-btn>
-                        </v-card-text>                    
+                        </v-card-text> 
                     </v-card>
                 </v-timeline-item>
                 <v-timeline-item color="red lighten-2" icon="mdi-account-cash" fill-dot>
@@ -61,7 +61,7 @@
                                 to="/keuangan/konfirmasipembayaran">
                                 Konfirmasi
                             </v-btn>
-                        </v-card-text>                    
+                        </v-card-text> 
                     </v-card>
                 </v-timeline-item>                
                 <v-timeline-item color="indigo" icon="mdi-head-question-outline" fill-dot v-if="status_ujian">
@@ -100,7 +100,7 @@
                                 outlined>
                                 Mulai
                             </v-btn>
-                        </v-card-text>                    
+                        </v-card-text> 
                     </v-card>
                 </v-timeline-item>
                 <v-timeline-item color="indigo" icon="mdi-head-question-outline" fill-dot v-else>
@@ -115,8 +115,8 @@
                                 outlined>
                                 Pilih Jadwal Ujian
                             </v-btn>
-                        </v-card-text>                    
-                    </v-card>                    
+                        </v-card-text> 
+                    </v-card> 
                 </v-timeline-item>
                 <!-- <v-timeline-item color="green lighten-1" icon="mdi-airballoon" fill-dot>
                     <v-card color="green lighten-1" dark>
@@ -130,12 +130,12 @@
                             >
                                 Button
                             </v-btn>
-                        </v-card-text>                    
+                        </v-card-text> 
                     </v-card>
                 </v-timeline-item> -->
             </v-timeline>
         </v-col>
-        <v-dialog v-model="dialogpilihjadwal" persistent>                       
+        <v-dialog v-model="dialogpilihjadwal" persistent>    
             <v-card>
                 <v-card-title>
                     <span class="headline">Pilih Jadwal Ujian PMB</span>
@@ -170,7 +170,7 @@
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="blue darken-1" text @click.stop="closedialogfrm">BATAL</v-btn>                    
+                    <v-btn color="blue darken-1" text @click.stop="closedialogfrm">BATAL</v-btn> 
                 </v-card-actions>
             </v-card>            
         </v-dialog>
@@ -180,7 +180,7 @@
     export default {
         name: "DashboardMahasiswaBaru",
         created() {
-            this.initialize();          
+            this.initialize();        
             this.$store.dispatch("uiadmin/deletePage", "ujianonline");
         },
         data:()=>({
@@ -215,8 +215,8 @@
                     if (data.status == 1)               
                     {
                         this.status_ujian=true;
-                        this.peserta = data.peserta;                       
-                        this.jadwal_ujian = data.jadwal_ujian;      
+                        this.peserta = data.peserta;                     
+                        this.jadwal_ujian = data.jadwal_ujian;    
                         this.ismulai=this.jadwal_ujian.status_ujian == 0 ?true: false;
                         if (this.peserta.isfinish== 1)
                         {
@@ -228,13 +228,13 @@
                             this.keterangan_ujian='BELUM UJIAN';
                         }
                     }
-                });  
+                });
             },
             showPilihJadwal: async function()
             {
-                this.dialogpilihjadwal = true;  
-                let tahun_pendaftaran=this.$store.getters['auth/AttributeUser']("ta");        
-                let semester_pendaftaran=this.$store.getters['auth/AttributeUser']("idsmt");                                
+                this.dialogpilihjadwal = true;
+                let tahun_pendaftaran=this.$store.getters['auth/AttributeUser']("ta");      
+                let semester_pendaftaran=this.$store.getters['auth/AttributeUser']("idsmt");                              
 
                 this.datatableLoading=true;
                 await this.$ajax.post("/spmb/ujianonline/jadwal",
@@ -246,12 +246,12 @@
                     headers: {
                         Authorization: this.$store.getters['auth/Token']
                     }
-                }).then(({data})=>{                        
+                }).then(({data})=>{             
                     this.datatable = data.jadwal_ujian;
                     this.datatableLoading=false;
-                }).catch(()=>{
+                }).catch(() => {
                     this.datatableLoading=false;
-                });  
+                });
             },
             pilihJadwal: async function(item)
             {
@@ -265,13 +265,13 @@
                     headers: {
                         Authorization: this.$store.getters['auth/Token']
                     }
-                }).then(()=>{               
-                    this.initialize();         
+                }).then(() => { 
+                    this.initialize();       
                     this.closedialogfrm();
                     this.btnLoading=false;
-                }).catch(()=>{
+                }).catch(() => {
                     this.btnLoading=false;
-                });  
+                });
             },
             durasiUjian (item) {
                 let waktu_mulai = this.$date(item.tanggal_ujian + " " +item.jam_mulai_ujian);
@@ -289,20 +289,20 @@
                     headers: {
                         Authorization: this.$store.getters['auth/Token']
                     }
-                }).then(({data})=>{               
+                }).then(({data})=>{    
                     this.btnLoading=false;
                     this.$store.dispatch("uiadmin/addToPages",{
                         name: "ujianonline",
                         data_ujian: this.jadwal_ujian,
                         data_peserta:data.peserta,                
                     });
-                    this.$router.push("/spmb/ujianonline");                
-                }).catch(()=>{
+                    this.$router.push("/spmb/ujianonline");              
+                }).catch(() => {
                     this.btnLoading=false;
-                });              
+                });            
             },
             closedialogfrm () {
-                this.dialogpilihjadwal = false;                        
+                this.dialogpilihjadwal = false;                      
             },
         }
     };

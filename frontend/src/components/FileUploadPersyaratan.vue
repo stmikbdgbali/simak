@@ -1,7 +1,7 @@
 <template>
     <v-form v-model="form_valid" ref="frmpersyaratan" lazy-validation>
         <v-card class="mx-auto" max-width="400">               
-            <v-img class="white--text align-end" height="200px" :src="photoPersyaratan"></v-img>                            
+            <v-img class="white--text align-end" height="200px" :src="photoPersyaratan"></v-img>         
             <v-card-text class="text--primary">
                 <div>
                     <v-file-input 
@@ -37,7 +37,7 @@
                     @click="upload(index,item)"
                     :loading="btnLoading"                                
                     :disabled="btnLoading||btnSimpan"
-                    v-if="verified == 0">                                   
+                    v-if="verified == 0">                
                     Simpan
                 </v-btn>
                 <v-btn
@@ -46,7 +46,7 @@
                     @click="hapusfilepersysaratan(item)"
                     :loading="btnLoading"                                
                     :disabled="btnLoading||btnHapus"
-                    v-if="verified == 0">                   
+                    v-if="verified == 0">
                     Hapus
                 </v-btn>
                 <v-btn
@@ -65,15 +65,15 @@
 <script>
 export default {
     name: "FileUploadPersyaratan",
-    created ()
+    created()
     {
-        this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];   
+        this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard']; 
         if (this.item.path == null || this.item.persyaratan_pmb_id==null)
-        {            
-            this.image_prev=this.item.path;            
+        { 
+            this.image_prev=this.item.path;          
         }
         else
-        {            
+        { 
             this.btnHapus=this.isVerified(this.item);
             this.image_prev=this.$api.url + "/" + this.item.path;
             this.badgeColor=this.item.verified;
@@ -97,9 +97,9 @@ export default {
     data:()=>({     
         dashboard: null,
 
-        btnSimpan: true,  
-        btnHapus: true,  
-        btnVerifikasi: true,       
+        btnSimpan: true, 
+        btnHapus: true, 
+        btnVerifikasi: true,      
         btnLoading: false,
         image_prev: null,
 
@@ -125,7 +125,7 @@ export default {
             {
                 let reader = new FileReader();
                 reader.readAsDataURL(e);
-                reader.onload = img => {                    
+                reader.onload = img => {         
                     this.image_prev=img.target.result;
                 }
                 this.btnSimpan=false;
@@ -133,13 +133,13 @@ export default {
         },
         upload: async function (index,item)
         {
-            let data = item;   
+            let data = item; 
             if (this.$refs.frmpersyaratan.validate())
             {
                 if (typeof this.filepersyaratan[index] !== "undefined")
                 {
                     this.btnLoading=true;
-                    var formdata = new FormData();                    
+                    var formdata = new FormData();                  
                     formdata.append("nama_persyaratan",data.nama_persyaratan);
                     formdata.append("persyaratan_id",data.persyaratan_id);
                     formdata.append("persyaratan_pmb_id",data.persyaratan_pmb_id);
@@ -151,13 +151,13 @@ export default {
                                 'Content-Type': "multipart/form-data"                    
                             }
                         }
-                    ).then(()=>{                                                   
+                    ).then(() => {                                     
                         this.btnHapus=false;
                         this.btnSimpan=true;
-                        this.btnLoading=false;                        
-                    }).catch(()=>{
+                        this.btnLoading=false;                      
+                    }).catch(() => {
                         this.btnLoading=false;
-                    });                    
+                    });                  
                 }               
             }            
         },
@@ -169,19 +169,19 @@ export default {
                     this.$ajax.post("/spmb/pmbpersyaratan/hapusfilepersyaratan/" + item.persyaratan_pmb_id,
                         {
                             _method:'DELETE'
-                        },                    
+                        },     
                         {
                             headers:{
                                 Authorization: this.$store.getters['auth/Token']                
                             }
                         }
-                    ).then(()=>{                   
+                    ).then(() => {     
                         this.btnHapus=true;
-                        this.photoPersyaratan=require("@/assets/no-image.png");        
-                        this.btnLoading=false;                        
-                    }).catch(()=>{
+                        this.photoPersyaratan=require("@/assets/no-image.png");      
+                        this.btnLoading=false;                      
+                    }).catch(() => {
                         this.btnLoading=false;
-                    });  
+                    });
                 }
             });
         },
@@ -203,9 +203,9 @@ export default {
         },
         verifikasipersyaratan: async function (item)
         {
-            this.btnLoading=true;                    
+            this.btnLoading=true;                  
             await this.$ajax.post("/spmb/pmbpersyaratan/verifikasipersyaratan/" + item.persyaratan_pmb_id,
-            {                    
+            {         
                 
             },
             {
@@ -214,14 +214,14 @@ export default {
                 }
             }
             ).then(({data})=>{   
-                this.badgeColor=data.persyaratan.verified;              
-                this.badgeIcon=data.persyaratan.verified;              
-                this.btnHapus=true;          
-                this.btnVerifikasi=true;     
-                this.btnLoading=false;                        
-            }).catch(() => {                                                   
+                this.badgeColor=data.persyaratan.verified;            
+                this.badgeIcon=data.persyaratan.verified;            
+                this.btnHapus=true;        
+                this.btnVerifikasi=true;   
+                this.btnLoading=false;                      
+            }).catch(() => {                                        
                 this.btnLoading=false;
-            });                             
+            });                           
         }
     },
     computed: {

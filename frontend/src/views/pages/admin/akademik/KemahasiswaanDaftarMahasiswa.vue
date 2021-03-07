@@ -92,17 +92,17 @@
                         </template>
                         <template v-slot:item.idkelas="{item}">
                             {{$store.getters['uiadmin/getNamaKelas'](item.idkelas)}}
-                        </template>                        
+                        </template>     
                         <template v-slot:item.k_status="{item}">
                             {{$store.getters['uiadmin/getStatusMahasiswa'](item.k_status)}}
-                        </template>                        
+                        </template>     
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
-                                <v-col cols="12">                          
+                                <v-col cols="12">       
                                     <strong>id:</strong>{{ item.user_id }}          
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
-                                </v-col>                                
+                                </v-col>             
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -115,7 +115,7 @@
     </AkademikLayout>
 </template>
 <script>
-import AkademikLayout from '@/views/layouts/AkademikLayout';
+import AkademikLayout from "@/views/layouts/AkademikLayout";
 import ModuleHeader from "@/components/ModuleHeader";
 import Filter7 from '@/components/sidebar/FilterMode7';
 
@@ -144,10 +144,10 @@ export default {
                 href: "#"
             }
         ];
-        let prodi_id=this.$store.getters['uiadmin/getProdiID'];
-        this.prodi_id=prodi_id;
-        this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](prodi_id);
-        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];                
+        let prodi_id = this.$store.getters['uiadmin/getProdiID'];
+        this.prodi_id = prodi_id;
+        this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
+        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];              
         this.initialize()
     },  
     data: () => ({ 
@@ -160,16 +160,16 @@ export default {
         btnLoadingTable: false,
         datatableLoading: false,
         expanded: [],
-        datatable: [],      
+        datatable: [],
         headers: [
             { text: "NO. FORMULIR", value: "no_formulir", sortable: true,width:150  },   
             { text: "NIM", value: "nim", sortable: true,width:150  },   
             { text: "NIRM", value: "nirm", sortable: true,width:150  },   
-            { text: "NAMA MAHASISWA", value: "nama_mhs",sortable: true },                           
-            { text: "KELAS", value: "idkelas",sortable: true,width:120, },                                       
-            { text: "STATUS", value: "k_status",sortable: true,width:120, },                                       
-        ],  
-        search: "", 
+            { text: "NAMA MAHASISWA", value: "nama_mhs",sortable: true },            
+            { text: "KELAS", value: "idkelas",sortable: true,width:120, },                        
+            { text: "STATUS", value: "k_status",sortable: true,width:120, },                        
+        ],
+        search: "",
     }),
     methods: {
         changeTahunPendaftaran (tahun)
@@ -192,12 +192,12 @@ export default {
                 headers: {
                     Authorization: this.$store.getters['auth/Token']
                 }
-            }).then(({ data })=>{               
+            }).then(({ data })=>{    
                 this.datatable = data.mahasiswa;
                 this.datatableLoading = false;
-            }).catch(()=>{
+            }).catch(() => {
                 this.datatableLoading = false;
-            });  
+            });
             this.firstloading = false;
             this.$refs.filter7.setFirstTimeLoading(this.firstloading); 
         },
@@ -205,7 +205,7 @@ export default {
         {
             if ( item === this.expanded[0])
             {
-                this.expanded = [];                
+                this.expanded = [];              
             }
             else
             {
@@ -217,7 +217,7 @@ export default {
             this.btnLoading=true;
             await this.$ajax.post("/akademik/kemahasiswaan/daftarmhs/printtoexcel",
                 {
-                    TA: this.tahun_pendaftaran,                                                                
+                    TA: this.tahun_pendaftaran,                                   
                     prodi_id: this.prodi_id,    
                     nama_prodi: this.nama_prodi,                 
                 },
@@ -227,20 +227,20 @@ export default {
                     },
                     responseType: "arraybuffer"
                 }
-            ).then(({ data })=>{              
+            ).then(({ data })=>{   
                 const url = window.URL.createObjectURL(new Blob([data]));
                 const link = document.createElement("a");
                 link.href = url;
-                link.setAttribute("download", 'daftar_mahasiswa_'+Date.now() + ".xlsx");                
-                link.setAttribute("id", "download_laporan");                
+                link.setAttribute("download", 'daftar_mahasiswa_'+Date.now() + ".xlsx");              
+                link.setAttribute("id", "download_laporan");              
                 document.body.appendChild(link);
-                link.click();                     
+                link.click();                   
                 document.body.removeChild(link);
                 this.btnLoading = false;
-            }).catch(()=>{
+            }).catch(() => {
                 this.btnLoading = false;
-            });     
-        },    
+            });   
+        },
         syncPermission: async function()
         {
             this.btnLoading=true;
@@ -255,11 +255,11 @@ export default {
                         Authorization: this.$store.getters['auth/Token']
                     }
                 }
-            ).then(()=>{                   
+            ).then(() => {     
                 this.btnLoading = false;
-            }).catch(()=>{
+            }).catch(() => {
                 this.btnLoading = false;
-            });     
+            });   
         },
     },
     watch: {

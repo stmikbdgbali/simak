@@ -118,12 +118,12 @@
                                                     <v-date-picker
                                                         v-model="formdata.tanggal_akhir_daftar"                                        
                                                         no-title                                
-                                                        scrollable>                                                        
+                                                        scrollable>                   
                                                         <v-spacer></v-spacer>
                                                         <v-btn text color="primary" @click="menuTanggalAkhirPendaftaran = false">Cancel</v-btn>
                                                         <v-btn text color="primary" @click="$refs.menuTanggalAkhirPendaftaran.save(formdata.tanggal_akhir_daftar)">OK</v-btn>
                                                     </v-date-picker>
-                                                </v-menu>                                                
+                                                </v-menu>           
                                                 <v-menu
                                                     ref="menuTanggalUjian"
                                                     v-model="menuTanggalUjian"
@@ -145,7 +145,7 @@
                                                     <v-date-picker
                                                         v-model="formdata.tanggal_ujian"                                        
                                                         no-title                                
-                                                        scrollable>                                                        
+                                                        scrollable>                   
                                                         <v-spacer></v-spacer>
                                                         <v-btn text color="primary" @click="menuTanggalUjian = false">Cancel</v-btn>
                                                         <v-btn text color="primary" @click="$refs.menuTanggalUjian.save(formdata.tanggal_ujian)">OK</v-btn>
@@ -246,7 +246,7 @@
                                                         </v-card-subtitle>
                                                     </v-card>
                                                 </v-col>
-                                                <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>                                                
+                                                <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>           
                                                 
                                                 <v-col xs="12" sm="6" md="6">
                                                     <v-card flat>
@@ -344,7 +344,7 @@
                                             <v-btn color="green darken-1" text @click.stop="mulaiUjian" :disabled="btnLoading" :loading="btnLoading">MULAI</v-btn>
                                             <v-btn color="blue darken-1" text @click.stop="closedialogdetailitem">KELUAR</v-btn>
                                         </v-card-actions>
-                                    </v-card>                                    
+                                    </v-card>                 
                                 </v-dialog>
                             </v-toolbar>
                         </template>
@@ -426,17 +426,17 @@ export default {
                 disabled: true,
                 href: "#"
             }
-        ];        
-        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];        
-        this.semester_pendaftaran=this.$store.getters['uiadmin/getSemesterPendaftaran'];  
-        this.nama_semester_pendaftaran=this.$store.getters['uiadmin/getNamaSemester'](this.semester_pendaftaran);  
+        ];      
+        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];      
+        this.semester_pendaftaran=this.$store.getters['uiadmin/getSemesterPendaftaran'];
+        this.nama_semester_pendaftaran=this.$store.getters['uiadmin/getNamaSemester'](this.semester_pendaftaran);
         this.initialize();
     },  
     data() 
     { 
         let tanggal_ujian=this.$date().format("YYYY-MM-DD");
         return {
-            breadcrumbs: [],        
+            breadcrumbs: [],
             dashboard: null,
             
             firstloading: true,
@@ -456,14 +456,14 @@ export default {
                 { text: "JUMLAH PESERTA", value: "jumlah_peserta", sortable: true,width:100 },
                 { text: "AKSI", value: "actions", sortable: false, width:100 },
             ],
-            search: "",    
+            search: "",
 
             //dialog
             dialogfrm: false,
             dialogdetailitem: false,
             
             //form data   
-            form_valid: true, 
+            form_valid: true,
             jumlah_bank_soal:0,
             daftar_ruangan: [],
             
@@ -474,43 +474,43 @@ export default {
             formdata: {
                 id: 0,                        
                 nama_kegiatan: "",
-                jumlah_soal: "",   
+                jumlah_soal: "",  
                 tanggal_ujian:tanggal_ujian,    
-                jam_mulai_ujian: "",                    
-                jam_selesai_ujian: "",                    
-                tanggal_akhir_daftar:tanggal_ujian,                                                                
-                ruangkelas_id: "",                        
-                ta: "",                        
-                idsmt: "",                        
-                status_pendaftaran: "",                        
-                status_ujian: "",                        
-                created_at: "",           
-                updated_at: "",           
+                jam_mulai_ujian: "",               
+                jam_selesai_ujian: "",               
+                tanggal_akhir_daftar:tanggal_ujian,                                   
+                ruangkelas_id: "",                   
+                ta: "",                   
+                idsmt: "",                   
+                status_pendaftaran: "",                   
+                status_ujian: "",                   
+                created_at: "",      
+                updated_at: "",      
 
             },
             formdefault: {
                 id: 0,                        
-                nama_kegiatan: "",             
-                jumlah_soal: "",                                   
+                nama_kegiatan: "",        
+                jumlah_soal: "", 
                 tanggal_ujian: this.$date().format("YYYY-MM-DD"),   
-                jam_mulai_ujian: "",                    
-                jam_selesai_ujian: "",                              
+                jam_mulai_ujian: "",               
+                jam_selesai_ujian: "",                         
                 tanggal_akhir_daftar:tanggal_ujian,                        
-                durasi_ujian: "",                        
-                ruangkelas_id: "",                        
-                ta: "",                        
-                idsmt: "",                        
-                status_pendaftaran: "",                        
-                status_ujian: "",                        
-                created_at: "",           
-                updated_at: "",       
+                durasi_ujian: "",                   
+                ruangkelas_id: "",                   
+                ta: "",                   
+                idsmt: "",                   
+                status_pendaftaran: "",                   
+                status_ujian: "",                   
+                created_at: "",      
+                updated_at: "",  
             },
             editedIndex: -1,
 
-            //form rules          
+            //form rules      
             rule_nama_kegiatan: [
                 value => !!value || "Mohon untuk di isi nama ujian online !!!",                  
-            ], 
+            ],
             rule_jumlah_soal: [
                 value => !!value || "Mohon untuk di isi jumlah soal ujian !!!",  
                 value => /^[0-9]+$/.test(value) || "Jumlah soal ujian hanya boleh angka",    
@@ -526,7 +526,7 @@ export default {
                         return true;
                     }
                 }            
-            ], 
+            ],
         }
     },
     methods: {
@@ -550,19 +550,19 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{                      
-                this.jumlah_bank_soal=data.jumlah_bank_soal;                
+            }).then(({ data })=>{           
+                this.jumlah_bank_soal=data.jumlah_bank_soal;              
                 this.datatable = data.jadwal_ujian;
                 this.datatableLoading = false;
-            }).catch(()=>{
+            }).catch(() => {
                 this.datatableLoading = false;
-            });  
+            });
         },
         dataTableRowClicked(item)
         {
             if ( item === this.expanded[0])
             {
-                this.expanded = [];                
+                this.expanded = [];              
             }
             else
             {
@@ -577,13 +577,13 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{               
+            }).then(({ data })=>{    
                 this.daftar_ruangan = data.ruangan;
                 this.btnLoading = false;
                 this.dialogfrm=true;
-            }).catch(()=>{
+            }).catch(() => {
                 this.btnLoading = false;
-            });              
+            });            
         },
         durasiUjian (item)
         {
@@ -592,16 +592,16 @@ export default {
             return waktu_selesai.diff(waktu_mulai, "minute");
         },
         viewItem(item) {
-            this.formdata = item;    
-            this.dialogdetailitem = true;            
+            this.formdata = item;  
+            this.dialogdetailitem = true;          
             
             // this.$ajax.get("/path/+item.id,{
             //     headers: {
             //         Authorization: this.$store.getters["auth/Token"]
             //     }
-            // }).then(({ data })=>{               
+            // }).then(({ data })=>{    
                                            
-            // });                      
+            // });                    
         },  
         mulaiUjian: async function()
         {
@@ -616,28 +616,28 @@ export default {
                     Authorization: this.$store.getters["auth/Token"]
                 }
             }
-        ).then(()=>{                                       
-            this.btnLoading = false;            
-        }).catch(()=>{
+        ).then(() => {                         
+            this.btnLoading = false;          
+        }).catch(() => {
             this.btnLoading = false;
         });
         },
-        editItem: async function(item) {            
+        editItem: async function(item) { 
             await this.$ajax.get("/datamaster/ruangankelas",       
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{               
+            }).then(({ data })=>{    
                 this.daftar_ruangan = data.ruangan;
                 this.btnLoading = false;
                 this.editedIndex = this.datatable.indexOf(item);
                 this.formdata = Object.assign({}, item);
                 this.dialogfrm=true;
-            }).catch(()=>{
+            }).catch(() => {
                 this.btnLoading = false;
-            });              
-        },    
+            });            
+        },
         save: async function() {
             if (this.$refs.frmdata.validate())
             {
@@ -653,52 +653,52 @@ export default {
                             jam_mulai_ujian: this.formdata.jam_mulai_ujian,                    
                             jam_selesai_ujian: this.formdata.jam_selesai_ujian,                    
                             tanggal_akhir_daftar: this.formdata.tanggal_akhir_daftar,   
-                            durasi_ujian: this.durasiUjian(this.formdata),                                                                         
-                            ruangkelas_id: this.formdata.ruangkelas_id,                                  
+                            durasi_ujian: this.durasiUjian(this.formdata),                                            
+                            ruangkelas_id: this.formdata.ruangkelas_id,     
                         },
                         {
                             headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
-                    ).then(()=>{                           
+                    ).then(() => {             
                         this.closedialogfrm();
                         this.btnLoading = false;
                         this.initialize();
-                    }).catch(()=>{
+                    }).catch(() => {
                         this.btnLoading = false;
-                    });                 
+                    });               
                     
                 } else {
                     await this.$ajax.post("/spmb/jadwalujianpmb/store",
-                        {               
+                        {    
                             nama_kegiatan: this.formdata.nama_kegiatan,
                             jumlah_soal: this.formdata.jumlah_soal,
                             tanggal_ujian: this.formdata.tanggal_ujian,    
                             jam_mulai_ujian: this.formdata.jam_mulai_ujian,                    
                             jam_selesai_ujian: this.formdata.jam_selesai_ujian,                    
-                            tanggal_akhir_daftar: this.formdata.tanggal_akhir_daftar,                                                                            
-                            durasi_ujian: this.durasiUjian(this.formdata),                                                                            
+                            tanggal_akhir_daftar: this.formdata.tanggal_akhir_daftar,                                               
+                            durasi_ujian: this.durasiUjian(this.formdata),                                               
                             ruangkelas_id: this.formdata.ruangkelas_id,
                             ta: this.tahun_pendaftaran,                        
-                            idsmt: this.semester_pendaftaran,                                       
+                            idsmt: this.semester_pendaftaran,          
                         },
                         {
                             headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
-                    ).then(()=>{                           
+                    ).then(() => {             
                         this.closedialogfrm();
                         this.btnLoading = false;
                         this.initialize();
-                    }).catch(()=>{
+                    }).catch(() => {
                         this.btnLoading = false;
                     });
                 }
             }
         },
-        deleteItem (item) {           
+        deleteItem(item) {
             this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data dengan ID '+item.id+' ?", { color: "red" }).then((confirm) => {
                 if (confirm)
                 {
@@ -712,18 +712,18 @@ export default {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
-                    ).then(()=>{   
+                    ).then(() => {
                         const index = this.datatable.indexOf(item);
                         this.datatable.splice(index, 1);
                         this.btnLoading = false;
-                    }).catch(()=>{
+                    }).catch(() => {
                         this.btnLoading = false;
                     });
                 }                
             });
         },
-        closedialogdetailitem () {
-            this.dialogdetailitem = false;            
+        closedialogdetailitem() {
+            this.dialogdetailitem = false;          
             setTimeout(() => {
                 this.formdata = Object.assign({}, this.formdefault)
                 this.editedIndex = -1
@@ -731,9 +731,9 @@ export default {
             );
         },
         closedialogfrm () {
-            this.dialogfrm = false;            
+            this.dialogfrm = false;          
             setTimeout(() => {
-                this.formdata = Object.assign({}, this.formdefault);                
+                this.formdata = Object.assign({}, this.formdefault);              
                 this.editedIndex = -1
                 this.$refs.frmdata.reset(); 
                 }, 300
@@ -741,9 +741,9 @@ export default {
         },
     },
     computed: {        
-        formTitle () {
+        formTitle() {
             return this.editedIndex === -1 ? "TAMBAH JADWAL" : "UBAH JADWAL"
-        },        
+        },    
     },
     components: {
         SPMBLayout,

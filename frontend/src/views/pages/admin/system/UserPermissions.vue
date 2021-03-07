@@ -106,7 +106,7 @@
                                     label="ROLES"
                                     :items="daftar_role"
                                     v-model="role_name"
-                                >                                    
+                                >                 
                                 </v-select>
                                 <v-text-field
                                     v-model="search"
@@ -132,7 +132,7 @@
                             show-select
                             class="elevation-1"
                         >
-                        <template v-slot:item.actions="{ item }">                            
+                        <template v-slot:item.actions="{ item }">         
                             <v-icon
                                 small
                                 :loading="btnLoading"
@@ -176,7 +176,7 @@ export default {
         headers: [                        
             { text: "NAMA PERMISSION", value: "name" },
             { text: "GUARD", value: "guard_name" },   
-            { text: "AKSI", value: "actions", sortable: false, width:100 },         
+            { text: "AKSI", value: "actions", sortable: false, width:100 },     
         ],
         search: "",
 
@@ -187,7 +187,7 @@ export default {
         permissions_selected: [],
 
     }),
-    props: {                        
+    props: {             
         user: {
             type:Object,
             required: true
@@ -207,7 +207,7 @@ export default {
                 }
             ).then(({ data })=>{   
                 this.daftar_role=data.roles;
-            });            
+            });          
         }, 
         save()
         {
@@ -222,15 +222,15 @@ export default {
                         Authorization: this.$store.getters["auth/Token"]
                     }
                 }
-            ).then(()=>{   
-                this.exit();                
-            }).catch(()=>{
+            ).then(() => {
+                this.exit();              
+            }).catch(() => {
                 this.btnLoading = false;
             });
         },
         revoke(item)
         {   
-            this.btnLoading=true;         
+            this.btnLoading=true;       
             this.$ajax.post("/system/users/revokeuserpermissions",
                 {
                     user_id: this.user.id,
@@ -241,15 +241,15 @@ export default {
                         Authorization: this.$store.getters["auth/Token"]
                     }
                 }
-            ).then(()=>{   
-                this.exit();                
-            }).catch(()=>{
+            ).then(() => {
+                this.exit();              
+            }).catch(() => {
                 this.btnLoading = false;
             });
         },
         exit()
         {
-            this.$emit("closeUserPermissions");           
+            this.$emit("closeUserPermissions");         
         }
     },
     computed: {
@@ -276,7 +276,7 @@ export default {
                         Authorization: this.$store.getters["auth/Token"]
                     }
                 }).then(({ data })=>{
-                    this.permissions_selected = data.permissions;                    
+                    this.permissions_selected = data.permissions;                  
                 });
                 this.datatableLoading = false;
             }

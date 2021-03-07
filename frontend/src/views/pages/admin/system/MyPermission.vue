@@ -65,9 +65,9 @@
                                     inset
                                     vertical
                                 ></v-divider>
-                                <v-spacer></v-spacer>                                                             
+                                <v-spacer></v-spacer>                        
                             </v-toolbar>
-                        </template>                       
+                        </template>    
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
                                 <strong>ID:</strong>{{ item.id }}
@@ -115,14 +115,14 @@ export default {
         breadcrumbs: [],
         datatableLoading: false,
         btnLoading: false,  
-        expanded: [],        
+        expanded: [],
         daftar_permissions: [],
         //tables
         headers: [                        
             { text: "NAMA PERMISSION", value: "name" },
-            { text: "GUARD", value: "guard_name" },                        
+            { text: "GUARD", value: "guard_name" },         
         ],
-        search: "", 
+        search: "",
    
     }),
     methods: {
@@ -134,32 +134,32 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data })=>{                
+            }).then(({ data })=>{     
                 this.daftar_permissions = data.permissions;
                 this.datatableLoading = false;
-            });          
+            });        
             
         },
         dataTableRowClicked(item)
         {
             if ( item === this.expanded[0])
             {
-                this.expanded = [];                
+                this.expanded = [];              
             }
             else
             {
                 this.expanded = [item];
             }               
-        },        
+        },    
     },
     computed: {
-        ...mapGetters("auth",{            
+        ...mapGetters("auth",{ 
             ACCESS_TOKEN: "AccessToken",          
             TOKEN: "Token",          
             CAN_ACCESS: "can",         
             ATTRIBUTE_USER: "AttributeUser",          
         }),
-    },    
+    },
     components: {
 		SystemUserLayout,
 		ModuleHeader,

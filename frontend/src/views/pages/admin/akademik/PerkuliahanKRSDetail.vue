@@ -203,7 +203,7 @@
     </AkademikLayout>
 </template>
 <script>
-import AkademikLayout from '@/views/layouts/AkademikLayout';
+import AkademikLayout from "@/views/layouts/AkademikLayout";
 import ModuleHeader from "@/components/ModuleHeader";
 import DataKRS from '@/components/DataKRS';
 export default {
@@ -249,7 +249,7 @@ export default {
         btnLoadingTable: false,
 
         //formdata
-        form_valid: true,         
+        form_valid: true,        
         krs_id: null,
         datakrs: {},
         datamatkul: {},
@@ -266,7 +266,7 @@ export default {
         datatable: [],
         headers: [
             { text: "KODE", value: "kmatkul", sortable: true,width:100  },
-            { text: "NAMA MATAKULIAH", value: "nmatkul",sortable: true, width:300 },
+            { text: "NAMA MATAKULIAH", value: "nmatkul",sortable: true,width:300 },
             { text: "SKS", value: "sks", sortable: false,width:50 },
             { text: "SMT", value: "semester", sortable: false,width:50 },
             { text: "KELAS", value: "nama_kelas", sortable: false,width:200 },
@@ -288,7 +288,7 @@ export default {
                 if (Object.keys(this.datakrs).length)
                 {
                     let prodi_id=this.datakrs.kjur;
-                    this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](prodi_id);
+                    this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
                     this.tahun_akademik=this.datakrs.tahun;
                     this.semester_akademik=this.datakrs.idsmt;
                 }
@@ -311,7 +311,7 @@ export default {
         save: async function() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;                
+                this.btnLoading=true;              
                 await this.$ajax.post("/akademik/perkuliahan/pembagiankelas/storepeserta",
                     {
                         kelas_mhs_id: this.formdata.kelas_mhs_id,                        
@@ -322,11 +322,11 @@ export default {
                             Authorization: this.$store.getters["auth/Token"]
                         }
                     }
-                ).then(()=>{                           
+                ).then(() => {             
                     this.closedialogfrm();
                     this.fetchKRS();
                     this.btnLoading = false;
-                }).catch(()=>{
+                }).catch(() => {
                     this.btnLoading = false;
                 });
             }
@@ -346,11 +346,11 @@ export default {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
-                    ).then(()=>{
+                    ).then(() => {
                         const index = this.datatable.indexOf(item);
                         this.datatable.splice(index, 1);
                         this.btnLoadingTable=false;
-                    }).catch(()=>{
+                    }).catch(() => {
                         this.btnLoadingTable=false;
                     });
                 }

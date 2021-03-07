@@ -99,7 +99,7 @@ import ModuleHeader from "@/components/ModuleHeader";
 import Filter2 from '@/components/sidebar/FilterMode2';
 export default {
     name: "ElearningKelas",
-    created ()
+    created()
 	{
 		this.breadcrumbs = [
 			{
@@ -117,9 +117,9 @@ export default {
 				disabled: true,
 				href: "#"
 			}
-        ];				
-        this.tahun_akademik=this.$store.getters['uiadmin/getTahunAkademik'];                
-        this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];        
+        ];		
+        this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];              
+        this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];      
     },
     mounted()
     {
@@ -128,8 +128,8 @@ export default {
     data: () => ({
         datatableLoading: false,
         firstloading: true,
-        breadcrumbs: [],        
-        datatable: [],      
+        breadcrumbs: [],
+        datatable: [],
         tahun_akademik: null,
         semester_akademik: null,
         
@@ -155,12 +155,12 @@ export default {
                 headers: {
                     Authorization: this.$store.getters['auth/Token']
                 }
-            }).then(({ data })=>{                               
+            }).then(({ data })=>{                    
                 this.datatable = data.pembagiankelas;
                 this.datatableLoading = false;
-            }).catch(()=>{
+            }).catch(() => {
                 this.datatableLoading = false;
-            });  
+            });
             this.firstloading = false;
             this.$refs.filter2.setFirstTimeLoading(this.firstloading); 
         },

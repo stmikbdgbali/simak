@@ -77,7 +77,7 @@
                                     <v-icon>
                                         mdi-printer
                                     </v-icon>
-                                </v-btn>                              
+                                </v-btn>           
                             </v-toolbar>
                         </template>
                         <template v-slot:item.foto="{ item }">    
@@ -87,9 +87,9 @@
                                     :icon="badgeIcon(item)"
                                     overlap
                                 >                
-                                    <v-avatar size="30">                                        
-                                        <v-img :src="$api.url+'/'+item.foto" />                                                                     
-                                    </v-avatar>                                                                                                  
+                                    <v-avatar size="30">   
+                                        <v-img :src="$api.url+'/'+item.foto" />                                
+                                    </v-avatar>                                                             
                             </v-badge>
                         </template>
                         <template v-slot:expanded-item="{ headers, item }">
@@ -98,7 +98,7 @@
                                     <strong>ID:</strong>{{ item.id }}
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
-                                </v-col>                                
+                                </v-col>             
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -142,7 +142,7 @@ export default {
         let fakultas_id=this.$store.getters['uiadmin/getFakultasID'];
         this.fakultas_id=fakultas_id;
         this.nama_fakultas=this.$store.getters['uiadmin/getFakultasName'](fakultas_id);
-        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];                
+        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];              
         this.initialize()   
     },  
     data: () => ({
@@ -152,7 +152,7 @@ export default {
         nama_fakultas: null,
 
         dialogprofilmhsbaru: false,
-        breadcrumbs: [],        
+        breadcrumbs: [],
         dashboard: null,
 
         btnLoading: false,
@@ -160,12 +160,12 @@ export default {
         expanded: [],
         datatable: [],
         headers: [                        
-            { text: "", value: "foto", width:70 },               
+            { text: "",value: "foto", width:70 },
             { text: "NAMA MAHASISWA", value: "name", width: 350,sortable: true },
             { text: "NOMOR HP", value: "nomor_hp", width: 100},
-            { text: "KELAS", value: "nkelas", width: 100,sortable: true },            
+            { text: "KELAS", value: "nkelas", width: 100,sortable: true },        
         ],
-        search: "",  
+        search: "", 
         
         datamhsbaru: {}
     }),
@@ -186,7 +186,7 @@ export default {
 
                 break;
                 default :
-                    this.datatableLoading = true;            
+                    this.datatableLoading = true;          
                     await this.$ajax.post("/spmb/reportspmbfakultas",
                     {
                         TA: this.tahun_pendaftaran,
@@ -196,10 +196,10 @@ export default {
                         headers: {
                             Authorization: this.$store.getters["auth/Token"]
                         }
-                    }).then(({ data })=>{               
-                        this.datatable = data.pmb;                
+                    }).then(({ data })=>{    
+                        this.datatable = data.pmb;              
                         this.datatableLoading = false;
-                    });         
+                    });       
             }
             this.firstloading = false;
             this.$refs.filter20.setFirstTimeLoading(this.firstloading); 
@@ -208,7 +208,7 @@ export default {
         {
             if ( item === this.expanded[0])
             {
-                this.expanded = [];                
+                this.expanded = [];              
             }
             else
             {
@@ -228,7 +228,7 @@ export default {
             this.btnLoading=true;
             await this.$ajax.post("/spmb/reportspmbfakultas/printtoexcel",
                 {
-                    TA: this.tahun_pendaftaran,                                                                
+                    TA: this.tahun_pendaftaran,                                   
                     fakultas_id: this.fakultas_id,    
                     nama_fakultas: this.nama_fakultas,                 
                 },
@@ -238,19 +238,19 @@ export default {
                     },
                     responseType: "arraybuffer"
                 }
-            ).then(({ data })=>{              
+            ).then(({ data })=>{   
                 const url = window.URL.createObjectURL(new Blob([data]));
                 const link = document.createElement("a");
                 link.href = url;
                 link.setAttribute("download", 'laporan_fakultas_'+Date.now() + ".xlsx");
-                link.setAttribute("id", "download_laporan");                
+                link.setAttribute("id", "download_laporan");              
                 document.body.appendChild(link);
-                link.click();                   
-                document.body.removeChild(link);  
+                link.click();                 
+                document.body.removeChild(link);
                 this.btnLoading = false;
-            }).catch(()=>{
+            }).catch(() => {
                 this.btnLoading = false;
-            });     
+            });   
         }     
     },
     watch: {
@@ -265,7 +265,7 @@ export default {
         {
             if (!this.firstloading)
             {
-                this.nama_fakultas=this.$store.getters['uiadmin/getFakultasName'](val);                
+                this.nama_fakultas=this.$store.getters['uiadmin/getFakultasName'](val);              
                 this.initialize();
             }            
         }

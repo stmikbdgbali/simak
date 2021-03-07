@@ -29,14 +29,14 @@
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>
-                        <v-card>                            
+                        <v-card>         
                             <v-card-text>
                                 <v-text-field
                                     v-model="formdata.token_ttl_expire"
                                     label="TTL EXPIRE TOKEN (MENIT)"
                                     outlined
                                     :rules="rule_ttl_token_expire">
-                                </v-text-field>                               
+                                </v-text-field>            
                             </v-card-text>
                             <v-card-actions>
                                 <v-spacer></v-spacer>
@@ -87,14 +87,14 @@ export default {
         btnLoading: false,
         //form
         form_valid: true,
-        formdata: {            
+        formdata: { 
             token_ttl_expire:60          
         },
         //form rules
         rule_ttl_token_expire: [
             value => !!value || "Mohon untuk di isi TTL (Time To Live) expire dari token !!!",
             value => /^[0-9]+$/.test(value) || "TTL Expire dari token hanya boleh angka",    
-        ],        
+        ],  
     }),
     methods: {
         initialize: async function()
@@ -107,7 +107,7 @@ export default {
                 }
             }).then(({ data })=>{
                 let setting = data.setting;
-                this.formdata.token_ttl_expire=setting.TOKEN_TTL_EXPIRE;                
+                this.formdata.token_ttl_expire=setting.TOKEN_TTL_EXPIRE;              
             });
 
         },
@@ -128,9 +128,9 @@ export default {
                             Authorization: this.TOKEN
                         }
                     }
-                ).then(()=>{
+                ).then(() => {
                     this.btnLoading = false;
-                }).catch(()=>{
+                }).catch(() => {
                     this.btnLoading = false;
                 });
             }

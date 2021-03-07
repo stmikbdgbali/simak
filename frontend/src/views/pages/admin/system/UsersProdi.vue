@@ -229,7 +229,7 @@
                                         </v-card>
                                     </v-form>
                                 </v-dialog>
-                                <v-dialog v-if="dialogUserPermission"  v-model="dialogUserPermission" max-width="800px" persistent>                                    
+                                <v-dialog v-if="dialogUserPermission"  v-model="dialogUserPermission" max-width="800px" persistent>                 
                                     <UserPermissions :user="editedItem" v-on:closeUserPermissions="closeUserPermissions" role_default="programstudi" />
                                 </v-dialog>
                             </v-toolbar>
@@ -319,7 +319,7 @@ export default {
         btnLoading: false,
         //tables
         headers: [
-            { text: "", value: "foto" },
+            { text: "",value: "foto" },
             { text: "USERNAME", value: "username",sortable: true },
             { text: "NAME", value: "name",sortable: true },
             { text: "EMAIL", value: "email",sortable: true },
@@ -444,9 +444,9 @@ export default {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
-                    ).then(()=>{
+                    ).then(() => {
                         this.btnLoading = false;
-                    }).catch(()=>{
+                    }).catch(() => {
                         this.btnLoading = false;
                     });
                 }
@@ -540,7 +540,7 @@ export default {
                 this.dialogEdit = true;
             });
         },
-        setPermission: async function(item) {            
+        setPermission: async function(item) { 
             this.dialogUserPermission = true;
             this.editedItem=item;
         },
@@ -556,7 +556,7 @@ export default {
             );
         },
         closeUserPermissions () {
-            this.btnLoading = false;            
+            this.btnLoading = false;          
             this.dialogUserPermission = false;
         },
         save () {
@@ -582,9 +582,9 @@ export default {
                             }
                         }
                     ).then(({ data })=>{
-                        Object.assign(this.daftar_users[this.editedIndex], data.user);
+                        Object.assign(this.daftar_users[this.editedIndex],data.user);
                         this.close();
-                    }).catch(()=>{
+                    }).catch(() => {
                         this.btnLoading = false;
                     });
 
@@ -607,13 +607,13 @@ export default {
                     ).then(({ data })=>{
                         this.daftar_users.push(data.user);
                         this.close();
-                    }).catch(()=>{
+                    }).catch(() => {
                         this.btnLoading = false;
                     });
                 }
             }
         },
-        deleteItem (item) {
+        deleteItem(item) {
             this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus username '+item.username+' ?", { color: "red" }).then((confirm) => {
                 if (confirm)
                 {
@@ -627,11 +627,11 @@ export default {
                                 Authorization: this.TOKEN
                             }
                         }
-                    ).then(()=>{
+                    ).then(() => {
                         const index = this.daftar_users.indexOf(item);
                         this.daftar_users.splice(index, 1);
                         this.btnLoading = false;
-                    }).catch(()=>{
+                    }).catch(() => {
                         this.btnLoading = false;
                     });
                 }
@@ -639,7 +639,7 @@ export default {
         },
     },
     computed: {
-        formTitle () {
+        formTitle() {
             return this.editedIndex === -1 ? "TAMBAH USER PROGRAM STUDI" : "EDIT USER PROGRAM STUDI"
         },
         ...mapGetters("auth",{

@@ -31,7 +31,7 @@
         <template v-slot:filtersidebar>
             <Filter6 v-on:changeTahunAkademik="changeTahunAkademik" v-on:changeSemesterAkademik="changeSemesterAkademik" v-on:changeProdi="changeProdi" ref="filter6" />	
         </template>
-        <v-container fluid>                         
+        <v-container fluid>      
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
                     <v-card>
@@ -74,7 +74,7 @@
                                     inset
                                     vertical
                                 ></v-divider>
-                                <v-spacer></v-spacer>                                                               
+                                <v-spacer></v-spacer>                          
                             </v-toolbar>
                             <v-dialog v-model="dialogprintpdf" max-width="500px" persistent>                
                                 <v-card>
@@ -85,18 +85,18 @@
                                         <v-btn
                                             color="green"
                                             text
-                                            :href="$api.url+'/'+file_pdf">                            
+                                            :href="$api.url+'/'+file_pdf">         
                                             Download
-                                        </v-btn>                           
+                                        </v-btn>        
                                     </v-card-text>
                                     <v-card-actions>
                                         <v-spacer></v-spacer>
-                                        <v-btn color="blue darken-1" text @click.stop="closedialogprintpdf">CLOSE</v-btn>                            
+                                        <v-btn color="blue darken-1" text @click.stop="closedialogprintpdf">CLOSE</v-btn>         
                                     </v-card-actions>
                                 </v-card>            
                             </v-dialog>
                         </template>
-                        <template v-slot:item.sah="{item}">                            
+                        <template v-slot:item.sah="{item}">         
                             <v-chip                                
                                 :color="item.sah== 1?'green': "warning'"
                                 text-color="white"
@@ -126,9 +126,9 @@
                                 <v-icon>
                                     mdi-eye
                                 </v-icon>
-                            </v-btn>                                                             
+                            </v-btn>                        
                             <v-tooltip bottom>             
-                                <template v-slot:activator="{ on, attrs }">                                             
+                                <template v-slot:activator="{ on, attrs }">        
                                     <v-btn 
                                         v-bind="attrs"
                                         v-on="on"
@@ -143,16 +143,16 @@
                                         <v-icon>mdi-check</v-icon>
                                     </v-btn>     
                                 </template>
-                                <span>Verifikasi KRS</span>                                   
-                            </v-tooltip>                      
+                                <span>Verifikasi KRS</span>                
+                            </v-tooltip>   
                         </template>           
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
-                                <v-col cols="12">                          
+                                <v-col cols="12">       
                                     <strong>krs_id:</strong>{{ item.id }}          
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
-                                </v-col>                                
+                                </v-col>             
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -165,7 +165,7 @@
     </AkademikLayout>
 </template>
 <script>
-import AkademikLayout from '@/views/layouts/AkademikLayout';
+import AkademikLayout from "@/views/layouts/AkademikLayout";
 import ModuleHeader from "@/components/ModuleHeader";
 import Filter6 from '@/components/sidebar/FilterMode6';
 export default {
@@ -192,25 +192,25 @@ export default {
                 disabled: true,
                 href: "#"
             }
-        ];  
+        ];
         if (this.$store.getters['uiadmin/getDefaultDashboard' ] == "mahasiswa")
         {
             this.initializeMhs();
         }   
         else
         {
-            let prodi_id=this.$store.getters['uiadmin/getProdiID'];
-            this.prodi_id=prodi_id;
-            this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](prodi_id);
-            this.tahun_akademik=this.$store.getters['uiadmin/getTahunAkademik'];                
-            this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];                            
+            let prodi_id = this.$store.getters['uiadmin/getProdiID'];
+            this.prodi_id = prodi_id;
+            this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
+            this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];              
+            this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];                          
         }     
     },  
     mounted()
     {
         if (this.$store.getters['uiadmin/getDefaultDashboard']!="mahasiswa")        
-        {            
-            this.initialize();                   
+        { 
+            this.initialize();                 
         }
     },
     data: () => ({ 
@@ -227,18 +227,18 @@ export default {
         btnLoadingTable: false,
         datatableLoading: false,
         expanded: [],
-        datatable: [],      
+        datatable: [],
         headers: [
             { text: "NIM", value: "nim", sortable: true,width:100  },   
             { text: "NAMA", value: "nama_mhs", sortable: true,width:250  },   
-            { text: "ANGK.", value: "tahun_masuk", sortable: true, width:100  },               
-            { text: "JUMLAH MATKUL", value: "jumlah_matkul", sortable: true, width:100  },               
-            { text: "JUMLAH SKS", value: "jumlah_sks", sortable: true, width:100 },               
-            { text: "TA.SMT", value: "tasmt",sortable: true, width:100 },                           
-            { text: "SAH", value: "sah",sortable: true, width:100},                           
+            { text: "ANGK.", value: "tahun_masuk", sortable: true,width:100  },
+            { text: "JUMLAH MATKUL", value: "jumlah_matkul", sortable: true,width:100  },
+            { text: "JUMLAH SKS", value: "jumlah_sks", sortable: true,width:100 },
+            { text: "TA.SMT", value: "tasmt",sortable: true,width:100 },            
+            { text: "SAH", value: "sah",sortable: true,width:100},            
             { text: "AKSI", value: "actions", sortable: false,width:140 },
-        ],  
-        search: "", 
+        ],
+        search: "",
 
         dialogprintpdf: false,
         file_pdf: null
@@ -267,12 +267,12 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{                                           
+            }).then(({ data })=>{                                
                 this.datatable = data.daftar_krs;
                 this.datatableLoading = false;
-            }).catch(()=>{
+            }).catch(() => {
                 this.datatableLoading = false;
-            });              
+            });            
         },
         initialize: async function() 
         {
@@ -287,26 +287,26 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{                                        
+            }).then(({ data })=>{                             
                 this.datatable = data.daftar_krs;
                 this.datatableLoading = false;
-                this.firstloading = false;     
+                this.firstloading = false;   
                 this.$refs.filter6.setFirstTimeLoading(this.firstloading); 
-            }).catch(()=>{
+            }).catch(() => {
                 this.datatableLoading = false;
-            });              
+            });            
         },
         dataTableRowClicked(item)
         {
             if ( item === this.expanded[0])
             {
-                this.expanded = [];                
+                this.expanded = [];              
             }
             else
             {
                 this.expanded = [item];
             }               
-        },          
+        },      
         async printpdf(item)
         {
             this.btnLoading=true;
@@ -317,13 +317,13 @@ export default {
                     },
                     
                 }
-            ).then(({ data })=>{                              
+            ).then(({ data })=>{                   
                 this.file_pdf=data.pdf_file;
                 this.dialogprintpdf=true;
                 this.btnLoading = false;
-            }).catch(()=>{
+            }).catch(() => {
                 this.btnLoading = false;
-            });                 
+            });               
         },
         async verifikasi(item)
         {
@@ -331,27 +331,27 @@ export default {
             await this.$ajax.post("/akademik/perkuliahan/krs/" + item.id+'/verifikasi",
                 {
                     _method: "put"
-                },             
+                },         
                 {
                     headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     },
                     
                 }
-            ).then(()=>{                              
+            ).then(() => {                
                 this.$router.go();
                 this.btnLoading = false;
-            }).catch(()=>{
+            }).catch(() => {
                 this.btnLoading = false;
-            });          
+            });        
         },
-        closedialogprintpdf () {                  
+        closedialogprintpdf () {       
             setTimeout(() => {
                 this.file_pdf=null;
-                this.dialogprintpdf = false;      
+                this.dialogprintpdf = false;    
                 }, 300
             );
-        },    
+        },
     },
     watch: {
         tahun_akademik()
@@ -375,7 +375,7 @@ export default {
                 this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](val);
                 this.initialize();
             }            
-        },        
+        },    
         search ()
         {
             if (!this.awaiting_search) 
@@ -383,7 +383,7 @@ export default {
                 setTimeout(async () => {
                     if (this.search.length > 0 && this.filter_ignore)
                     {
-                        this.datatableLoading = true;            
+                        this.datatableLoading = true;          
                         await this.$ajax.post("/akademik/perkuliahan/krs",            
                         {
                             prodi_id: this.prodi_id,
@@ -395,10 +395,10 @@ export default {
                             headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
-                        }).then(({ data })=>{               
+                        }).then(({ data })=>{    
                             this.datatable = data.daftar_krs;
                             this.datatableLoading = false;
-                        });                     
+                        });                   
                     }
                     this.awaiting_search = false;
                 }, 1000); // 1 sec delay

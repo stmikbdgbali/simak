@@ -28,7 +28,7 @@
                 </v-alert>
             </template>
         </ModuleHeader>                
-        <v-container fluid v-if="data_konversi.id">                         
+        <v-container fluid v-if="data_konversi.id">      
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
                     <v-card color="grey lighten-4">
@@ -145,7 +145,7 @@
                                     </v-card>
                                 </v-col>
                                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly || $vuetify.breakpoint.smOnly"/>
-                            </v-row>                            
+                            </v-row>         
                         </v-card-text>
                     </v-card>
                 </v-col>
@@ -192,7 +192,7 @@
                                     mdi-close-network-outline
                                 </v-icon>
                             </v-btn>
-                        </v-card-actions>                    
+                        </v-card-actions> 
                     </v-card>
                 </v-col>
             </v-row>
@@ -203,8 +203,8 @@
                             <v-list-item-content>
                                 <div class="overline mb-1">
                                     PASANGKAN NIM KE DATA KONVERSI INI
-                                </div>                                
-                                <v-list-item-subtitle>                                    
+                                </div>             
+                                <v-list-item-subtitle>                 
                                     <v-autocomplete
                                         v-model="data_mhs"
                                         :items="entries"
@@ -233,10 +233,10 @@
                         <v-divider></v-divider>
                         <v-expand-transition>
                             <v-list v-if="data_mhs">
-                                <template v-for="(field, i) in fields">                                    
+                                <template v-for="(field, i) in fields">                 
                                 <v-list-item :key="i" v-if="field.key!='foto' && field.key!='nama_mhs_alias'">
                                     <v-list-item-content>
-                                        <v-list-item-title>                                            
+                                        <v-list-item-title>       
                                             {{field.value}}
                                         </v-list-item-title>
                                         <v-list-item-subtitle>
@@ -268,7 +268,7 @@
                                 </v-icon>
                             </v-btn>
                         </v-card-actions>
-                    </v-card>                    
+                    </v-card> 
                 </v-col>
             </v-row>
             <v-row class="mb-4" no-gutters>
@@ -290,32 +290,32 @@
                                     inset
                                     vertical
                                 ></v-divider>
-                                <v-spacer></v-spacer>                                  
+                                <v-spacer></v-spacer>               
                             </v-toolbar>
                         </template>     
-                        <template v-slot:item.kmatkul_asal="{item}">                                
+                        <template v-slot:item.kmatkul_asal="{item}">             
                             {{item.kmatkul_asal==null ? 'N.A':item.kmatkul_asal}}
-                        </template>                                                                                
-                        <template v-slot:item.matkul_asal="{item}">                                
+                        </template>                                           
+                        <template v-slot:item.matkul_asal="{item}">             
                             {{item.matkul_asal==null ? 'N.A':item.matkul_asal}}
-                        </template>                                                                                
-                        <template v-slot:item.sks_asal="{item}">                                
+                        </template>                                           
+                        <template v-slot:item.sks_asal="{item}">             
                             {{item.sks_asal==null ? 'N.A':item.sks_asal}}
-                        </template>                                                                  
-                        <template v-slot:item.n_kual="{item}">                                
+                        </template>                             
+                        <template v-slot:item.n_kual="{item}">             
                             {{item.n_kual==null ? 'N.A':item.n_kual}}
-                        </template>                                                                                                                                                                      
+                        </template>                                                                                                                                 
                         <template v-slot:no-data>
                             Data belum tersedia
                         </template>   
                         <template v-slot:body.append v-if="datatable.length > 0">
                             <tr class="grey lighten-4 font-weight-black">
                                 <td class="text-right" colspan="2">TOTAL SKS</td>
-                                <td colspan="6">{{totalSKS}}</td>                                 
+                                <td colspan="6">{{totalSKS}}</td>              
                             </tr>
                             <tr class="grey lighten-4 font-weight-black">
                                 <td class="text-right" colspan="2">TOTAL MATAKULIAH</td>
-                                <td colspan="6">{{totalMatkul}}</td>                                 
+                                <td colspan="6">{{totalMatkul}}</td>              
                             </tr>
                         </template>
                     </v-data-table>
@@ -331,25 +331,25 @@
                     <v-btn
                         color="green"
                         text
-                        :href="$api.url+'/'+file_pdf">                            
+                        :href="$api.url+'/'+file_pdf">         
                         Download
-                    </v-btn>                           
+                    </v-btn>        
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="blue darken-1" text @click.stop="closedialogprintpdf">CLOSE</v-btn>                            
+                    <v-btn color="blue darken-1" text @click.stop="closedialogprintpdf">CLOSE</v-btn>         
                 </v-card-actions>
             </v-card>            
         </v-dialog>
     </AkademikLayout>
 </template>
 <script>
-import AkademikLayout from '@/views/layouts/AkademikLayout';
+import AkademikLayout from "@/views/layouts/AkademikLayout";
 import ModuleHeader from "@/components/ModuleHeader";
 export default {
     name: "NilaiKonversiDetail",
     created() {
-        this.nilai_konversi_id=this.$route.params.nilai_konversi_id;        
+        this.nilai_konversi_id=this.$route.params.nilai_konversi_id;      
         this.breadcrumbs = [
             {
                 text: "HOME",
@@ -365,7 +365,7 @@ export default {
                 text: "NILAI",
                 disabled: false,
                 href: "#"
-            },            
+            },        
             {
                 text: "KONVERSI MAHASISWA PINDAHAN/AMPULAN",
                 disabled: false,
@@ -377,14 +377,14 @@ export default {
                 href: "#"
             }
         ];
-        let prodi_id=this.$store.getters['uiadmin/getProdiID'];
-        this.prodi_id=prodi_id;
-        this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](prodi_id);
-        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];                
+        let prodi_id = this.$store.getters['uiadmin/getProdiID'];
+        this.prodi_id = prodi_id;
+        this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
+        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];              
         this.initialize()
     },  
     data: () => ({ 
-        nilai_konversi_id: null,        
+        nilai_konversi_id: null,       
         prodi_id: null,
         nama_prodi: null,
         tahun_pendaftaran: null,
@@ -392,32 +392,32 @@ export default {
         btnLoading: false,
         btnLoadingTable: false,
         datatableLoading: false,        
-        datatable: [],      
+        datatable: [],
         headers: [            
-            { text: "KODE", value: "kmatkul", sortable: false, width:100  },               
-            { text: "NAMA", value: "nmatkul", sortable: false, width:250  },               
-            { text: "SKS", value: "sks",sortable: false, width:70 },                           
-            { text: "SMT", value: "semester",sortable: true,width:70, },                           
-            { text: "KODE MATKUL ASAL", value: "kmatkul_asal",sortable: false,width:120 },                           
-            { text: "MATAKULIAH ASAL", value: "matkul_asal",sortable: false,width:170 },                           
-            { text: "SKS ASAL", value: "sks_asal",sortable: false,width:70},                           
-            { text: "NILAI", value: "n_kual",sortable: false,width:70},                                       
-        ],  
+            { text: "KODE", value: "kmatkul", sortable: false, width:100  },
+            { text: "NAMA", value: "nmatkul", sortable: false, width:250  },
+            { text: "SKS", value: "sks",sortable: false, width:70 },            
+            { text: "SMT", value: "semester",sortable: true,width:70, },            
+            { text: "KODE MATKUL ASAL", value: "kmatkul_asal",sortable: false,width:120 },            
+            { text: "MATAKULIAH ASAL", value: "matkul_asal",sortable: false,width:170 },            
+            { text: "SKS ASAL", value: "sks_asal",sortable: false,width:70},            
+            { text: "NILAI", value: "n_kual",sortable: false,width:70},                        
+        ],
 
         dialogprintpdf: false,
         file_pdf: null,
 
-        form_valid: true,   
-        daftar_jenjang: [],                        
+        form_valid: true,  
+        daftar_jenjang: [],     
         data_konversi: {
             'id': null,
             'user_id': "",
             'nim': "",
             'nama_mhs': "",
-            'alamat': "", 
-            'no_telp': "",         
-            'nim_asal': "", 
-            'kode_jenjang': "", 
+            'alamat': "",
+            'no_telp': "",    
+            'nim_asal': "",
+            'kode_jenjang': "",
             'kode_pt_asal': "",
             'nama_pt_asal': "",
             'kode_ps_asal': "",
@@ -425,8 +425,8 @@ export default {
             'tahun': "",
             
             'kjur': "",
-            'perpanjangan': "",   
-        },        
+            'perpanjangan': "",  
+        },    
         
         //profil mahasiswa        
         entries: [],
@@ -443,13 +443,13 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{               
+            }).then(({ data })=>{    
                 this.datatable = data.nilai_konversi;
                 this.data_konversi = data.data_konversi;
                 this.datatableLoading = false;
-            }).catch(()=>{
+            }).catch(() => {
                 this.datatableLoading = false;
-            });         
+            });       
             await this.$ajax.get("/datamaster/programstudi/jenjangstudi").then(({ data })=>{
                 this.daftar_jenjang=data.jenjangstudi;
             }); 
@@ -457,7 +457,7 @@ export default {
         save: async function() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;  
+                this.btnLoading=true;
 
                 var daftar_nilai=[];
                 this.datatable.forEach(item => {
@@ -479,14 +479,14 @@ export default {
                         nim_asal: this.data_konversi.nim_asal,                            
                         nama_mhs: this.data_konversi.nama_mhs,                            
                         alamat: this.data_konversi.alamat,   
-                        no_telp: this.data_konversi.no_telp,                                                        
-                        email: this.data_konversi.email,                                                        
-                        kode_jenjang: this.data_konversi.kode_jenjang,                                                        
-                        kode_pt_asal: this.data_konversi.kode_pt_asal,                                                                                                             
-                        nama_pt_asal: this.data_konversi.nama_pt_asal,                                                                                                             
-                        kode_ps_asal: this.data_konversi.kode_ps_asal,                                                                                                             
-                        nama_ps_asal: this.data_konversi.nama_ps_asal,                                                                                                             
-                        tahun: this.tahun_pendaftaran,                                                                                                             
+                        no_telp: this.data_konversi.no_telp,                           
+                        email: this.data_konversi.email,                           
+                        kode_jenjang: this.data_konversi.kode_jenjang,                           
+                        kode_pt_asal: this.data_konversi.kode_pt_asal,                                                                                
+                        nama_pt_asal: this.data_konversi.nama_pt_asal,                                                                                
+                        kode_ps_asal: this.data_konversi.kode_ps_asal,                                                                                
+                        nama_ps_asal: this.data_konversi.nama_ps_asal,                                                                                
+                        tahun: this.tahun_pendaftaran,                                                                                
                         kjur: this.prodi_id,  
                         daftar_nilai:JSON.stringify(Object.assign({},daftar_nilai)),                    
                     },
@@ -495,12 +495,12 @@ export default {
                             Authorization: this.$store.getters["auth/Token"]
                         }
                     }
-                ).then(()=>{   
-                    this.$router.go();        
+                ).then(() => {
+                    this.$router.go();      
                     this.btnLoading = false;
-                }).catch(()=>{
+                }).catch(() => {
                     this.btnLoading = false;
-                });                
+                });              
             }
         },  
         field_alias(atr)
@@ -510,16 +510,16 @@ export default {
             {
                 case 'user_id' :
                     alias = 'USER ID';
-                break;                
+                break;              
                 case 'nim' :
                     alias = 'NIM';
-                break;                
+                break;              
                 case 'nama_mhs' :
                     alias = 'NAMA MAHASIWA';
-                break;                
+                break;              
                 case 'nama_prodi' :
                     alias = 'PROGRAM STUDI';
-                break;                
+                break;              
             }
             return alias;
         },
@@ -533,18 +533,18 @@ export default {
                     },
                     
                 }
-            ).then(({ data })=>{                              
+            ).then(({ data })=>{                   
                 this.file_pdf=data.pdf_file;
                 this.dialogprintpdf=true;
                 this.btnLoading = false;
-            }).catch(()=>{
+            }).catch(() => {
                 this.btnLoading = false;
-            });                 
+            });               
         },
-        closedialogprintpdf () {                  
+        closedialogprintpdf () {       
             setTimeout(() => {
                 this.file_pdf=null;
-                this.dialogprintpdf = false;      
+                this.dialogprintpdf = false;    
                 }, 300
             );
         }, 
@@ -562,9 +562,9 @@ export default {
                     },
                     
                 }
-            ).then(()=>{                              
+            ).then(() => {                
                 this.$router.go();
-            }).catch(()=>{
+            }).catch(() => {
                 this.btnLoading = false;
             }); 
         },
@@ -583,9 +583,9 @@ export default {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
-                    ).then(()=>{   
+                    ).then(() => {
                         this.$router.go();
-                    }).catch(()=>{
+                    }).catch(() => {
                         this.btnLoading = false;
                     });
                 }                
@@ -594,7 +594,7 @@ export default {
         clearDataMhs()
         {
             this.data_mhs = null;
-            this.$refs.ref_data_mhs.cachedItems=[];            
+            this.$refs.ref_data_mhs.cachedItems=[];          
         }
     },
     computed: {
@@ -628,10 +628,10 @@ export default {
                     value: this.data_mhs[key] || "n/a",
                 }
             })
-        },           
+        },       
     },
     watch: {
-        search (val) 
+        search(val) 
         {
             if (this.isLoading) return;
             
@@ -647,14 +647,14 @@ export default {
                         headers: {
                             Authorization: this.$store.getters["auth/Token"]
                         }
-                    }).then(({ data })=>{                                                       
+                    }).then(({ data })=>{                                            
                         const { jumlah, daftar_mhs } = data;
                         this.count = jumlah;
                         this.entries = daftar_mhs;
                         this.isLoading=false;
-                    }).catch(()=>{
+                    }).catch(() => {
                         this.isLoading=false;
-                    });  
+                    });
                     }, 1000
                 );
             }

@@ -91,11 +91,11 @@
                         </template>           
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
-                                <v-col cols="12">                          
+                                <v-col cols="12">       
                                     <strong>id:</strong>{{ item.id }}          
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
-                                </v-col>                                
+                                </v-col>             
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -108,13 +108,13 @@
     </AkademikLayout>
 </template>
 <script>
-import AkademikLayout from '@/views/layouts/AkademikLayout';
+import AkademikLayout from "@/views/layouts/AkademikLayout";
 import ModuleHeader from "@/components/ModuleHeader";
 import Filter6 from '@/components/sidebar/FilterMode6';
 export default {
     name: "DulangMahasiswaBaru",
     created() {
-        this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];   
+        this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard']; 
         this.breadcrumbs = [
             {
                 text: "HOME",
@@ -137,11 +137,11 @@ export default {
                 href: "#"
             }
         ];
-        let prodi_id=this.$store.getters['uiadmin/getProdiID'];
-        this.prodi_id=prodi_id;
-        this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](prodi_id);
+        let prodi_id = this.$store.getters['uiadmin/getProdiID'];
+        this.prodi_id = prodi_id;
+        this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
         this.tahun_akademik=this.$store.getters['uiadmin/getTahunAkademik'];
-        this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];   
+        this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik']; 
         this.initialize()
     },  
     data: () => ({ 
@@ -156,17 +156,17 @@ export default {
         btnLoadingTable: false,
         datatableLoading: false,
         expanded: [],
-        datatable: [],      
+        datatable: [],
         headers: [
             { text: "NO. FORMULIR", value: "no_formulir", sortable: true,width:100  },   
             { text: "NIM", value: "nim", sortable: true,width:100  },   
             { text: "NIRM", value: "nirm", sortable: true,width:100  },   
-            { text: "NAMA MAHASISWA", value: "nama_mhs",sortable: true,width:250 },                           
-            { text: "KELAS", value: "idkelas",sortable: true,width:120, },                           
-            { text: "STATUS", value: "n_status",sortable: true,width:120, },                           
+            { text: "NAMA MAHASISWA", value: "nama_mhs",sortable: true,width:250 },            
+            { text: "KELAS", value: "idkelas",sortable: true,width:120, },            
+            { text: "STATUS", value: "n_status",sortable: true,width:120, },            
             { text: "AKSI", value: "actions", sortable: false, width:100 },
-        ],  
-        search: "", 
+        ],
+        search: "",
     }),
     methods: {
         changeTahunAkademik (tahun)
@@ -194,12 +194,12 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{               
+            }).then(({ data })=>{    
                 this.datatable = data.mahasiswa;
                 this.datatableLoading = false;
-            }).catch(()=>{
+            }).catch(() => {
                 this.datatableLoading = false;
-            });  
+            });
             this.firstloading = false;
             this.$refs.filter6.setFirstTimeLoading(this.firstloading); 
         },
@@ -207,13 +207,13 @@ export default {
         {
             if ( item === this.expanded[0])
             {
-                this.expanded = [];                
+                this.expanded = [];              
             }
             else
             {
                 this.expanded = [item];
             }               
-        },        
+        },    
         deleteItem (item)
         {
             this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus daftar ulang '+item.nama_mhs+' ?", { color: "red", width: 600,'desc': "proses ini juga menghapus seluruh data akademik namun KEUANGAN TETAP ADA." }).then((confirm) => {
@@ -229,21 +229,21 @@ export default {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
-                    ).then(()=>{   
+                    ).then(() => {
                         const index = this.datatable.indexOf(item);
                         this.datatable.splice(index, 1);
                         this.btnLoadingTable=false;
-                    }).catch(()=>{
+                    }).catch(() => {
                         this.btnLoadingTable=false;
                     });
                 }                
             });
         },
-        closedialogfrm () {            
-            this.dialogfrm = false;            
+        closedialogfrm () { 
+            this.dialogfrm = false;          
             setTimeout(() => {       
-                this.formdata = Object.assign({}, this.formdefault);                                
-                this.data_mhs = Object.assign({}, {});   
+                this.formdata = Object.assign({}, this.formdefault);                              
+                this.data_mhs = Object.assign({}, {}); 
                 }, 300
             );
         },

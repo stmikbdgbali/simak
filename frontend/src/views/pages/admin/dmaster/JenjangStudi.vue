@@ -47,10 +47,10 @@
                         loading-text="Loading... Please wait">     
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
-                                <v-col cols="12">                                    
+                                <v-col cols="12">                 
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
-                                </v-col>                                
+                                </v-col>             
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -89,7 +89,7 @@ export default {
         this.initialize();
     },
     data: () => ({
-        breadcrumbs: [],  
+        breadcrumbs: [],
 
         btnLoading: false,
         datatableLoading: false,
@@ -97,28 +97,28 @@ export default {
         datatable: [],
         headers: [                                            
             { text: "ID", value: "kode_jenjang", width: 10,sortable: false },
-            { text: "NAMA JENJANG", value: "nama_jenjang",sortable: false},                        
-        ],        
+            { text: "NAMA JENJANG", value: "nama_jenjang",sortable: false},         
+        ],  
     }),
     methods: {
         initialize: async function()
 		{
-            this.datatableLoading = true;            
+            this.datatableLoading = true;          
             await this.$ajax.get("/datamaster/jenjangstudi",            
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{               
-                this.datatable = data.jenjang_studi;                
+            }).then(({ data })=>{    
+                this.datatable = data.jenjang_studi;              
                 this.datatableLoading = false;
-            });                     
+            });                   
         },
         dataTableRowClicked(item)
         {
             if ( item === this.expanded[0])
             {
-                this.expanded = [];                
+                this.expanded = [];              
             }
             else
             {

@@ -81,8 +81,8 @@
                                     vertical
                                 ></v-divider>
                                 <v-spacer></v-spacer>
-                                <v-dialog v-model="dialogprofilmhsbaru" :fullscreen="true">                                    
-                                    <ProfilMahasiswaBaru :item="datamhsbaru" v-on:closeProfilMahasiswaBaru="closeProfilMahasiswaBaru" />                                    
+                                <v-dialog v-model="dialogprofilmhsbaru" :fullscreen="true">                 
+                                    <ProfilMahasiswaBaru :item="datamhsbaru" v-on:closeProfilMahasiswaBaru="closeProfilMahasiswaBaru" />                 
                                 </v-dialog>
                             </v-toolbar>
                         </template>
@@ -93,9 +93,9 @@
                                     :icon="badgeIcon(item)"
                                     overlap
                                 >                
-                                    <v-avatar size="30">                                        
-                                        <v-img :src="$api.url+'/'+item.foto" />                                                                     
-                                    </v-avatar>                                                                                                  
+                                    <v-avatar size="30">   
+                                        <v-img :src="$api.url+'/'+item.foto" />                                
+                                    </v-avatar>                                                             
                             </v-badge>
                         </template>
                         <template v-slot:item.actions="{ item }">
@@ -118,7 +118,7 @@
                                     <strong>ID:</strong>{{ item.id }}
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
-                                </v-col>                                
+                                </v-col>             
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -162,10 +162,10 @@ export default {
         ];
         this.breadcrumbs[1].disabled=(this.dashboard=='mahasiswabaru'||this.dashboard=="mahasiswa");
         
-        let prodi_id=this.$store.getters['uiadmin/getProdiID'];
-        this.prodi_id=prodi_id;
-        this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](prodi_id);
-        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];                
+        let prodi_id = this.$store.getters['uiadmin/getProdiID'];
+        this.prodi_id = prodi_id;
+        this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
+        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];              
         this.initialize()   
     },  
     data: () => ({
@@ -175,7 +175,7 @@ export default {
         nama_prodi: null,
 
         dialogprofilmhsbaru: false,
-        breadcrumbs: [],        
+        breadcrumbs: [],
         dashboard: null,
 
         btnLoading: false,
@@ -183,7 +183,7 @@ export default {
         expanded: [],
         datatable: [],
         headers: [                        
-            { text: "", value: "foto", width:70 },               
+            { text: "",value: "foto", width:70 },
             { text: "NO. FORMULIR", value: "no_formulir", width: 140,sortable: true },
             { text: "USERNAME", value: "username", width: 150,sortable: true },
             { text: "NAMA MAHASISWA", value: "name", width: 350,sortable: true },
@@ -192,7 +192,7 @@ export default {
             { text: "KELAS", value: "nkelas", width: 150,sortable: true },
             { text: "AKSI", value: "actions", sortable: false, width:100 },
         ],
-        search: "",  
+        search: "", 
         
         datamhsbaru: {}
     }),
@@ -213,7 +213,7 @@ export default {
 
                 break;
                 default :
-                    this.datatableLoading = true;            
+                    this.datatableLoading = true;          
                     await this.$ajax.post("/spmb/formulirpendaftaran",
                     {
                         TA: this.tahun_pendaftaran,
@@ -223,10 +223,10 @@ export default {
                         headers: {
                             Authorization: this.$store.getters["auth/Token"]
                         }
-                    }).then(({ data })=>{               
-                        this.datatable = data.pmb;                
+                    }).then(({ data })=>{    
+                        this.datatable = data.pmb;              
                         this.datatableLoading = false;
-                    });         
+                    });       
                     this.firstloading = false;
                     this.$refs.filter7.setFirstTimeLoading(this.firstloading); 
             }
@@ -236,7 +236,7 @@ export default {
         {
             if ( item === this.expanded[0])
             {
-                this.expanded = [];                
+                this.expanded = [];              
             }
             else
             {
@@ -250,7 +250,7 @@ export default {
         badgeIcon(item)
         {
             return item.active == 1 ? "mdi-check-bold": "mdi-close-thick"
-        },     
+        }, 
         viewItem(item)
         {
             this.datamhsbaru = item;
@@ -262,7 +262,7 @@ export default {
         },
         closeProfilMahasiswaBaru ()
         {
-            this.dialogprofilmhsbaru = false;                      
+            this.dialogprofilmhsbaru = false;                    
         }        
     },
     watch: {

@@ -37,12 +37,12 @@
     </AkademikLayout>
 </template>
 <script>
-import AkademikLayout from '@/views/layouts/AkademikLayout';
+import AkademikLayout from "@/views/layouts/AkademikLayout";
 import ModuleHeader from "@/components/ModuleHeader";
-import Filter1 from '@/components/sidebar/FilterMode1';
+import Filter1 from "@/components/sidebar/FilterMode1";
 export default {
     name: "Akademik",
-    created ()
+    created()
 	{
 		this.breadcrumbs = [
 			{
@@ -55,8 +55,8 @@ export default {
 				disabled: true,
 				href: "#"
 			}
-        ];				
-        this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];                 
+        ];		
+        this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];               
     },
     mounted()
     {
@@ -65,7 +65,7 @@ export default {
     data: () => ({        
         datatableLoading: false,
         firstloading: true,
-        breadcrumbs: [],        
+        breadcrumbs: [],
         tahun_akademik:0,
         
     }),
@@ -76,9 +76,9 @@ export default {
         },
 		initialize: async function()
 		{	
-            this.datatableLoading = true;            
+            this.datatableLoading = true;          
             
-            this.firstloading = false;            
+            this.firstloading = false;          
             this.$refs.filter1.setFirstTimeLoading(this.firstloading); 
 
         }

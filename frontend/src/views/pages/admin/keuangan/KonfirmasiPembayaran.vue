@@ -511,9 +511,9 @@ export default {
 			}
 		];
 		this.breadcrumbs[1].disabled=(this.dashboard=='mahasiswabaru'||this.dashboard == "mahasiswa");
-		let prodi_id=this.$store.getters['uiadmin/getProdiID'];
-		this.prodi_id=prodi_id;
-		this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](prodi_id);
+		let prodi_id = this.$store.getters['uiadmin/getProdiID'];
+		this.prodi_id = prodi_id;
+		this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
 		this.tahun_akademik=this.$store.getters['uiadmin/getTahunAkademik'];
 		this.initialize()
 	},
@@ -707,11 +707,11 @@ export default {
 							'Content-Type': "multipart/form-data"
 						}
 					}
-				).then(()=>{
+				).then(() => {
 					this.btnLoading = false;
 					this.closedialogfrm();
 					this.initialize();
-				}).catch(()=>{
+				}).catch(() => {
 					this.btnLoading = false;
 				});
 
@@ -732,10 +732,10 @@ export default {
 								Authorization: this.$store.getters["auth/Token"],
 							}
 						}
-					).then(()=>{
+					).then(() => {
 						this.initialize();
 						this.btnLoading = false;
-					}).catch(()=>{
+					}).catch(() => {
 						this.btnLoading = false;
 					});
 				}
@@ -756,10 +756,10 @@ export default {
 								Authorization: this.$store.getters["auth/Token"],
 							}
 						}
-					).then(()=>{
+					).then(() => {
 						this.initialize();
 						this.btnLoading = false;
-					}).catch(()=>{
+					}).catch(() => {
 						this.btnLoading = false;
 					});
 				}
@@ -775,7 +775,7 @@ export default {
 				}, 300
 			);
 		},
-		closedialogdetailitem () {
+		closedialogdetailitem() {
 			this.dialogdetailitem = false;
 			setTimeout(() => {
 				this.formdata = Object.assign({}, this.formdefault);

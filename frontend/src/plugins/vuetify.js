@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuetify from "vuetify/lib/framework";
 import VCurrencyField from "v-currency-field";
-import { VTextField } from "vuetify/lib";  //Globally import VTextField
+import { VTextField } from "vuetify/lib";//Globally import VTextField
 
 Vue.use(Vuetify);
 Vue.component("v-text-field", VTextField);

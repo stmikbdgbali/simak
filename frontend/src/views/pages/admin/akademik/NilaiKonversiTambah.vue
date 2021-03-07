@@ -29,7 +29,7 @@
             </template>
         </ModuleHeader>        
         <v-form ref="frmdata" v-model="form_valid" lazy-validation>
-            <v-container fluid>                         
+            <v-container fluid>      
                 <v-row class="mb-4" no-gutters>
                     <v-col cols="12">
                         <v-card>
@@ -136,38 +136,38 @@
                                         inset
                                         vertical
                                     ></v-divider>
-                                    <v-spacer></v-spacer>                                  
+                                    <v-spacer></v-spacer>               
                                 </v-toolbar>
                             </template>     
-                            <template v-slot:item.kmatkul_asal="props">                                
+                            <template v-slot:item.kmatkul_asal="props">             
                                 <v-text-field
                                     v-model="props.item.kmatkul_asal"                            
                                     dense                                                                 
                                 >
                                 </v-text-field>
-                            </template>                                                                                
-                            <template v-slot:item.matkul_asal="props">                                
+                            </template>                                           
+                            <template v-slot:item.matkul_asal="props">             
                                 <v-text-field
                                     v-model="props.item.matkul_asal"                            
                                     dense                                 
                                 >
                                 </v-text-field>
-                            </template>                                                                                
-                            <template v-slot:item.sks_asal="props">                                
+                            </template>                                           
+                            <template v-slot:item.sks_asal="props">             
                                 <v-text-field
                                     v-model="props.item.sks_asal"                            
                                     dense                                                             
                                 >
                                 </v-text-field>
-                            </template>                                                                                
-                            <template v-slot:item.n_kual="props">                                
+                            </template>                                           
+                            <template v-slot:item.n_kual="props">             
                                 <v-select 
                                     :items="$store.getters['uiadmin/getSkalaNilai']"  
                                     v-model="props.item.n_kual"
                                     style="width:65px"                                
                                     dense>
                                 </v-select>
-                            </template>                                                                                
+                            </template>                                           
                             <template v-slot:no-data>
                                 Data belum tersedia
                             </template>   
@@ -179,7 +179,7 @@
     </AkademikLayout>
 </template>
 <script>
-import AkademikLayout from '@/views/layouts/AkademikLayout';
+import AkademikLayout from "@/views/layouts/AkademikLayout";
 import ModuleHeader from "@/components/ModuleHeader";
 export default {
     name: "NilaiKonversiTambah",
@@ -199,7 +199,7 @@ export default {
                 text: "NILAI",
                 disabled: false,
                 href: "#"
-            },            
+            },        
             {
                 text: "KONVERSI MAHASISWA PINDAHAN/AMPULAN",
                 disabled: false,
@@ -211,10 +211,10 @@ export default {
                 href: "#"
             }
         ];
-        let prodi_id=this.$store.getters['uiadmin/getProdiID'];
-        this.prodi_id=prodi_id;
-        this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](prodi_id);
-        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];                
+        let prodi_id = this.$store.getters['uiadmin/getProdiID'];
+        this.prodi_id = prodi_id;
+        this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
+        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];              
         this.initialize()
     },  
     data: () => ({         
@@ -225,30 +225,30 @@ export default {
         btnLoading: false,
         btnLoadingTable: false,
         datatableLoading: false,        
-        datatable: [],      
+        datatable: [],
         headers: [            
-            { text: "KODE", value: "kmatkul", sortable: false, width:100  },               
-            { text: "NAMA", value: "nmatkul", sortable: false, width:250  },               
-            { text: "SKS", value: "sks",sortable: false, width:70 },                           
-            { text: "SMT", value: "semester",sortable: true,width:70, },                           
-            { text: "KODE MATKUL ASAL", value: "kmatkul_asal",sortable: false,width:120 },                           
-            { text: "MATAKULIAH ASAL", value: "matkul_asal",sortable: false,width:170 },                           
-            { text: "SKS ASAL", value: "sks_asal",sortable: false,width:70},                           
-            { text: "NILAI", value: "n_kual",sortable: false,width:70},                                       
-        ],  
-        search: "", 
+            { text: "KODE", value: "kmatkul", sortable: false, width:100  },
+            { text: "NAMA", value: "nmatkul", sortable: false, width:250  },
+            { text: "SKS", value: "sks",sortable: false, width:70 },            
+            { text: "SMT", value: "semester",sortable: true,width:70, },            
+            { text: "KODE MATKUL ASAL", value: "kmatkul_asal",sortable: false,width:120 },            
+            { text: "MATAKULIAH ASAL", value: "matkul_asal",sortable: false,width:170 },            
+            { text: "SKS ASAL", value: "sks_asal",sortable: false,width:70},            
+            { text: "NILAI", value: "n_kual",sortable: false,width:70},                        
+        ],
+        search: "",
                 
-        form_valid: true,   
-        daftar_jenjang: [],                        
+        form_valid: true,  
+        daftar_jenjang: [],     
         formdata: {
             'id': "",
             'user_id': "",
             'nim': "",
             'nama_mhs': "",
-            'alamat': "", 
-            'no_telp': "",         
-            'nim_asal': "", 
-            'kode_jenjang': "", 
+            'alamat': "",
+            'no_telp': "",    
+            'nim_asal': "",
+            'kode_jenjang': "",
             'kode_pt_asal': "",
             'nama_pt_asal': "",
             'kode_ps_asal': "",
@@ -256,17 +256,17 @@ export default {
             'tahun': "",
             
             'kjur': "",
-            'perpanjangan': "",   
+            'perpanjangan': "",  
         },
         formdefault: {
             'id': "",
             'user_id': "",
             'nim': "",
             'nama_mhs': "",
-            'alamat': "", 
-            'no_telp': "",         
-            'nim_asal': "", 
-            'kode_jenjang': "", 
+            'alamat': "",
+            'no_telp': "",    
+            'nim_asal': "",
+            'kode_jenjang': "",
             'kode_pt_asal': "",
             'nama_pt_asal': "",
             'kode_ps_asal': "",
@@ -274,7 +274,7 @@ export default {
             'tahun': "",
             
             'kjur': "",
-            'perpanjangan': "",   
+            'perpanjangan': "",  
         },
         rule_nim_asal: [
             value => !!value || "Mohon di isi nim mahasiswa pindahan/ampulan dengan  nim dari perguruan tinggi asal !!!",              
@@ -289,11 +289,11 @@ export default {
         rule_telepon: [
             value => !!value || "Mohon di isi nomor hp mahasiswa pindahan/ampulan !!!",          
             value => /^\+[1-9]{1}[0-9]{1,14}$/.test(value) || "Nomor HP/Telepon hanya boleh angka dan gunakan kode negara didepan seperti +6281214553388",    
-        ],       
+        ], 
         rule_email: [
             value => !!value || "Mohon di isi email mahasiswa pindahan/ampulan !!!",          
             value => /.+@.+\..+/.test(value) || "Format E-mail mohon di isi dengan benar",
-        ],       
+        ], 
         rule_kode_pt_asal: [
             value => !!value || "Mohon di isi kode perguruan tinggi asal !!!",      
             value => /^[0-9]+$/.test(value) || "Kode perguruan tinggi asal hanya boleh angka",        
@@ -325,12 +325,12 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{               
+            }).then(({ data })=>{    
                 this.datatable = data.matakuliah;
                 this.datatableLoading = false;
-            }).catch(()=>{
+            }).catch(() => {
                 this.datatableLoading = false;
-            });         
+            });       
             await this.$ajax.get("/datamaster/programstudi/jenjangstudi").then(({ data })=>{
                 this.daftar_jenjang=data.jenjangstudi;
             }); 
@@ -338,7 +338,7 @@ export default {
         save: async function() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;  
+                this.btnLoading=true;
 
                 var daftar_nilai=[];
                 this.datatable.forEach(item => {
@@ -359,14 +359,14 @@ export default {
                         nim_asal: this.formdata.nim_asal,                            
                         nama_mhs: this.formdata.nama_mhs,                            
                         alamat: this.formdata.alamat,   
-                        no_telp: this.formdata.no_telp,                                                        
-                        email: this.formdata.email,                                                        
-                        kode_jenjang: this.formdata.kode_jenjang,                                                        
-                        kode_pt_asal: this.formdata.kode_pt_asal,                                                                                                             
-                        nama_pt_asal: this.formdata.nama_pt_asal,                                                                                                             
-                        kode_ps_asal: this.formdata.kode_ps_asal,                                                                                                             
-                        nama_ps_asal: this.formdata.nama_ps_asal,                                                                                                             
-                        tahun: this.tahun_pendaftaran,                                                                                                             
+                        no_telp: this.formdata.no_telp,                           
+                        email: this.formdata.email,                           
+                        kode_jenjang: this.formdata.kode_jenjang,                           
+                        kode_pt_asal: this.formdata.kode_pt_asal,                                                                                
+                        nama_pt_asal: this.formdata.nama_pt_asal,                                                                                
+                        kode_ps_asal: this.formdata.kode_ps_asal,                                                                                
+                        nama_ps_asal: this.formdata.nama_ps_asal,                                                                                
+                        tahun: this.tahun_pendaftaran,                                                                                
                         kjur: this.prodi_id,  
                         daftar_nilai:JSON.stringify(Object.assign({},daftar_nilai)),                    
                     },
@@ -376,14 +376,14 @@ export default {
                         }
                     }
                 ).then(({ data })=>{   
-                    this.$router.push("/akademik/nilai/konversi/'+data.data_konversi.id+'/edit");                   
+                    this.$router.push("/akademik/nilai/konversi/'+data.data_konversi.id+'/edit");                 
                     this.btnLoading = false;
-                }).catch(()=>{
+                }).catch(() => {
                     this.btnLoading = false;
-                });                
+                });              
             }
-        },        
-    },    
+        },    
+    },
     components: {
         AkademikLayout,
         ModuleHeader,            

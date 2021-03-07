@@ -194,23 +194,7 @@ class UIController extends Controller {
                 }
                 $tahun_pendaftaran = $config['DEFAULT_TAHUN_PENDAFTARAN'];
                 $tahun_akademik = $config['DEFAULT_TA'];
-            }
-            elseif ($this->hasRole('mahasiswabaru'))
-            {
-                $formulir=\App\Models\SPMB\FormulirPendaftaranModel::find($this->getUserid());
-                $daftar_ta=TAModel::where('tahun','=',$formulir->ta)
-                                    ->select(\DB::raw('tahun AS value,tahun_akademik AS text'))
-                                    ->get();
-
-                $daftar_fakultas=[];
-                $fakultas_id=$config['DEFAULT_FAKULTAS'];
-
-                $daftar_prodi=ProgramStudiModel::where('id',$formulir->kjur1)->get();
-                $prodi_id=$formulir->kjur1;
-
-                $tahun_pendaftaran = $formulir->ta;
-                $tahun_akademik = $formulir->ta;
-            }
+            }            
             elseif ($this->hasRole('mahasiswa'))
             {
                 $formulir=\App\Models\SPMB\FormulirPendaftaranModel::find($this->getUserid());
@@ -228,6 +212,22 @@ class UIController extends Controller {
 
                 $tahun_pendaftaran = $formulir->ta;
                 $tahun_akademik = $config['DEFAULT_TA'];
+            }
+            elseif ($this->hasRole('mahasiswabaru'))
+            {
+                $formulir=\App\Models\SPMB\FormulirPendaftaranModel::find($this->getUserid());
+                $daftar_ta=TAModel::where('tahun','=',$formulir->ta)
+                                    ->select(\DB::raw('tahun AS value,tahun_akademik AS text'))
+                                    ->get();
+
+                $daftar_fakultas=[];
+                $fakultas_id=$config['DEFAULT_FAKULTAS'];
+
+                $daftar_prodi=ProgramStudiModel::where('id',$formulir->kjur1)->get();
+                $prodi_id=$formulir->kjur1;
+
+                $tahun_pendaftaran = $formulir->ta;
+                $tahun_akademik = $formulir->ta;
             }
             elseif ($this->hasRole(['akademik','programstudi']))
             {

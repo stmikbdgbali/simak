@@ -284,9 +284,9 @@ import DashboardMB from '@/components/DashboardMahasiswaBaru';
 import AdminLayout from '@/views/layouts/AdminLayout';
 export default {
 	name: "Dashboard",
-	created ()
+	created()
 	{
-		this.TOKEN = this.$route.params.token;                
+		this.TOKEN = this.$route.params.token;              
 		this.breadcrumbs = [
 			{
 				text: "HOME",
@@ -298,9 +298,9 @@ export default {
 				disabled: true,
 				href: "#"
 			}
-		];		
+		];
 		this.tahun_pendaftaran = this.$store.getters['uifront/getTahunPendaftaran'];
-		this.color_dashboard=this.$store.getters['uifront/getTheme']("COLOR_DASHBOARD");                                             
+		this.color_dashboard=this.$store.getters['uifront/getTheme']("COLOR_DASHBOARD");                                           
 		this.initialize();
 	},
 	data: () => ({
@@ -321,9 +321,9 @@ export default {
 					Authorization: "Bearer " + this.TOKEN
 				}
 			}).then(({ data })=>{          
-				this.dashboard = data.role[0];    
-				this.$store.dispatch("uiadmin/changeDashboard",this.dashboard);                 
-			});                 
+				this.dashboard = data.role[0];  
+				this.$store.dispatch("uiadmin/changeDashboard",this.dashboard);               
+			});               
 			this.$store.dispatch("uiadmin/init",this.$ajax); 
 		}
 	},

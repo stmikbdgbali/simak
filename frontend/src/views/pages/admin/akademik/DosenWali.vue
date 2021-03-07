@@ -65,7 +65,7 @@
                                     inset
                                     vertical
                                 ></v-divider>
-                                <v-spacer></v-spacer>                                 
+                                <v-spacer></v-spacer>              
                             </v-toolbar>
                         </template>
                         <template v-slot:item.nidn="{ item }">
@@ -74,7 +74,7 @@
                         <template v-slot:item.is_dw="{ item }">
                             {{ item.is_dw == false ? 'BUKAN': "YA" }}
                         </template>
-                        <template v-slot:item.actions="{ item }">                            
+                        <template v-slot:item.actions="{ item }">         
                             <v-icon
                                 small
                                 class="mr-2"
@@ -93,10 +93,10 @@
                                 mdi-delete
                             </v-icon>
                         </template>
-                        <template v-slot:item.foto="{ item }">                            
+                        <template v-slot:item.foto="{ item }">         
                             <v-avatar size="30">
-                                <v-img :src="$api.url+'/'+item.foto" />                                
-                            </v-avatar>                                                                                                  
+                                <v-img :src="$api.url+'/'+item.foto" />             
+                            </v-avatar>                                                             
                         </template>
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
@@ -105,7 +105,7 @@
                                     <strong>Email:</strong>{{ item.email }}
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
-                                </v-col>                                
+                                </v-col>             
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -120,7 +120,7 @@
 </template>
 <script>
 import { mapGetters } from "vuex";
-import AkademikLayout from '@/views/layouts/AkademikLayout';
+import AkademikLayout from "@/views/layouts/AkademikLayout";
 import ModuleHeader from "@/components/ModuleHeader";
 export default {
     name: "DosenWali",  
@@ -151,17 +151,17 @@ export default {
         btnLoading: false,      
         //tables
         headers: [                        
-            { text: "", value: "foto" },
+            { text: "",value: "foto" },
             { text: "USERNAME", value: "username",sortable: true },
             { text: "NAMA DOSEN", value: "name",sortable: true },
-            { text: "NIDN", value: "nidn",sortable: true },     
-            { text: "NIPY", value: "nipy",sortable: true },     
-            { text: "NOMOR HP", value: "nomor_hp",sortable: true },                 
+            { text: "NIDN", value: "nidn",sortable: true }, 
+            { text: "NIPY", value: "nipy",sortable: true }, 
+            { text: "NOMOR HP", value: "nomor_hp",sortable: true },  
             { text: "AKSI", value: "actions", sortable: false, width:100 },
         ],
         expanded: [],
         search: "",
-        daftar_users: [],               
+        daftar_users: [],
     }),
     methods: {
         initialize: async function() 
@@ -171,28 +171,28 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data })=>{               
+            }).then(({ data })=>{    
                 this.daftar_users = data.users;
                 this.role_id=data.role.id;
                 this.datatableLoading = false;
-            });          
+            });        
             
         },
         dataTableRowClicked(item)
         {
             if ( item === this.expanded[0])
             {
-                this.expanded = [];                
+                this.expanded = [];              
             }
             else
             {
                 this.expanded = [item];
             }               
-        },                
+        }, 
         viewItem: async function(item) {
             this.$router.push("/akademik/dosenwali" + item.id)
-        },                
-        deleteItem (item) {           
+        }, 
+        deleteItem(item) {
             this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus dosen wali '+item.username+' ?", { color: "red" }).then((confirm) => {
                 if (confirm)
                 {
@@ -206,11 +206,11 @@ export default {
                                 Authorization: this.TOKEN
                             }
                         }
-                    ).then(()=>{   
+                    ).then(() => {
                         const index = this.daftar_users.indexOf(item);
                         this.daftar_users.splice(index, 1);
                         this.btnLoading = false;
-                    }).catch(()=>{
+                    }).catch(() => {
                         this.btnLoading = false;
                     });
                 }
@@ -218,9 +218,9 @@ export default {
         },
     },
     computed: {        
-        ...mapGetters("auth",{            
+        ...mapGetters("auth",{ 
             ACCESS_TOKEN: "AccessToken",          
-            TOKEN: "Token",                                  
+            TOKEN: "Token",     
         }),
     },
     watch: {
@@ -229,8 +229,8 @@ export default {
         },
         dialogAlihkan (val) {
             val || this.close()
-        },        
-    },    
+        },    
+    },
     components: {
         AkademikLayout,
         ModuleHeader,        

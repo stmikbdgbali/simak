@@ -22,7 +22,7 @@ export default {
     },
     data:()=>({
         //form        
-        daftar_persyaratan: [],        
+        daftar_persyaratan: [],
     }),    
     methods: {
         initialize: async function ()
@@ -33,10 +33,10 @@ export default {
                         Authorization: this.$store.getters['auth/Token']
                     }
                 }
-            ).then(({data})=>{                   
+            ).then(({data})=>{        
                 this.daftar_persyaratan=data.persyaratan;
             })
-        },                
+        }, 
     },
     components:{
         FileUpload

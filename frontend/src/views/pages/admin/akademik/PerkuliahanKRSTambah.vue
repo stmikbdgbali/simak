@@ -28,9 +28,9 @@
                 </v-alert>
             </template>
         </ModuleHeader>        
-        <v-container fluid>                         
+        <v-container fluid>      
             <v-row class="mb-4" no-gutters>
-                <v-col cols="12">                    
+                <v-col cols="12"> 
                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>
                         <v-card>
                             <v-card-title>
@@ -55,7 +55,7 @@
                                     label="DAFTAR ULANG"                                            
                                     class="mr-2"
                                     :rules="rule_dulang"
-                                    outlined/>                                 
+                                    outlined />              
                             </v-card-text>
                             <v-card-actions>
                                 <v-spacer></v-spacer>
@@ -77,7 +77,7 @@
     </AkademikLayout>
 </template>
 <script>
-import AkademikLayout from '@/views/layouts/AkademikLayout';
+import AkademikLayout from "@/views/layouts/AkademikLayout";
 import ModuleHeader from "@/components/ModuleHeader";
 export default {
     name: "PerkuliahanKRSTambah",
@@ -109,14 +109,14 @@ export default {
                 href: "#"
             },
         ];
-        let prodi_id=this.$store.getters['uiadmin/getProdiID'];
-        this.prodi_id=prodi_id;
-        this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](prodi_id);
-        this.daftar_ta=this.$store.getters['uiadmin/getDaftarTA'];          
-        this.tahun_akademik=this.$store.getters['uiadmin/getTahunAkademik'];                
+        let prodi_id = this.$store.getters['uiadmin/getProdiID'];
+        this.prodi_id = prodi_id;
+        this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
+        this.daftar_ta=this.$store.getters['uiadmin/getDaftarTA'];        
+        this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];              
         this.ta_matkul=this.tahun_akademik;
-        this.daftar_semester=this.$store.getters['uiadmin/getDaftarSemester'];          
-        this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];                
+        this.daftar_semester=this.$store.getters['uiadmin/getDaftarSemester'];        
+        this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];              
         if (this.$store.getters['uiadmin/getDefaultDashboard' ] == "mahasiswa")
         {
             this.formdata.nim=this.$store.getters['auth/AttributeUser']("username");
@@ -137,31 +137,31 @@ export default {
         dialogdetailitem: false,
         datatableLoading: false,
         expanded: [],
-        datatable: [],      
+        datatable: [],
         headers: [
             { text: "KODE", value: "kmatkul", sortable: true,width:120  },   
-            { text: "NAMA MATAKULIAH", value: "nmatkul",sortable: true },               
-            { text: "KELOMPOK", value: "group_alias", sortable: true,width:120 },               
-            { text: "SKS", value: "sks",sortable: true,width:80, align: "center" },               
-            { text: "SMT", value: "semester", sortable: true,width:80 },               
+            { text: "NAMA MATAKULIAH", value: "nmatkul",sortable: true },
+            { text: "KELOMPOK", value: "group_alias", sortable: true,width:120 },
+            { text: "SKS", value: "sks",sortable: true,width:80, align: "center" },
+            { text: "SMT", value: "semester", sortable: true,width:80 },
             { text: "AKSI", value: "actions", sortable: false, width:100 },
-        ],  
-        search: "",    
+        ],
+        search: "",
 
         //formdata
-        form_valid: true,   
+        form_valid: true,  
         daftar_dulang: [],
         formdata: {
             nim: "",
             dulang_id: ""
-        },        
+        },    
         rule_nim: [
             value => !!value || "Nomor Induk Mahasiswa (NIM) mohon untuk diisi !!!",
             value => /^[0-9]+$/.test(value) || "Nomor Induk Mahasiswa (NIM) hanya boleh angka",
-        ], 
+        ],
         rule_dulang: [
             value => !!value || "Mohon dipilih Daftar Ulang yang telah dilakukan !!!"
-        ],         
+        ],
     }),
     methods: {          
         async fetchDulang()
@@ -174,8 +174,8 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{                               
-                this.daftar_dulang=data.daftar_dulang;                
+            }).then(({ data })=>{                    
+                this.daftar_dulang=data.daftar_dulang;              
             })
         }, 
         cekNIM ()
@@ -198,17 +198,17 @@ export default {
                     headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     }
-                }).then(({ data })=>{               
+                }).then(({ data })=>{    
                     this.$router.push("/akademik/perkuliahan/krs/" + data.krs.id + "/detail");
                     this.btnLoading = false;
-                }).catch(()=>{
+                }).catch(() => {
                     this.btnLoading = false;
-                });                  
+                });                
             }
         },
-        closedialogfrm () {                             
+        closedialogfrm () {                  
             setTimeout(() => {       
-                this.formdata = Object.assign({}, this.formdefault);                                
+                this.formdata = Object.assign({}, this.formdefault);                              
                 this.$router.push("/akademik/perkuliahan/krs/daftar");
                 }, 300
             );

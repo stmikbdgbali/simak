@@ -38,12 +38,12 @@
 <script>
 import KeuanganLayout from '@/views/layouts/KeuanganLayout';
 import ModuleHeader from "@/components/ModuleHeader";
-import Filter1 from '@/components/sidebar/FilterMode1';
+import Filter1 from "@/components/sidebar/FilterMode1";
 import DashboardKeuanganMHS from '@/components/DashboardKeuanganMHS';
 import DashboardKeuanganAdmin from '@/components/DashboardKeuanganAdmin';
 export default {
     name: "Keuangan",
-    created ()
+    created()
 	{
         this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard']; 
 		this.breadcrumbs = [
@@ -57,17 +57,17 @@ export default {
 				disabled: true,
 				href: "#"
 			}
-        ];				
-        this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];         
+        ];		
+        this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];       
     },
     mounted()
     {
-        this.firstloading = false;            
+        this.firstloading = false;          
         this.$refs.filter1.setFirstTimeLoading(this.firstloading);
     },
     data: () => ({
         firstloading: true,
-        breadcrumbs: [],        
+        breadcrumbs: [],
         tahun_akademik:0,
 
         dashboard: null
@@ -77,7 +77,7 @@ export default {
         {
             this.tahun_akademik=tahun;
         },		
-    },    
+    },
     components: {
         KeuanganLayout,
         ModuleHeader,           

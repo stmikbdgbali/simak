@@ -63,7 +63,7 @@
                                 </v-data-table>
                             </v-col>
                         </v-row>
-                    </v-col>                    
+                    </v-col> 
                 </v-row>                
             </v-container>
             <v-container class="fill-height" v-else>
@@ -82,7 +82,7 @@ export default {
     name: "TransaksiInvoice",
     created()
     {
-        this.transaksi_id=this.$route.params.transaksi_id;   
+        this.transaksi_id=this.$route.params.transaksi_id; 
         this.initialize();
     },
     data: () => ({
@@ -121,13 +121,13 @@ export default {
                     Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({ data })=>{  
-                let setting = data.setting;                           
+                let setting = data.setting;                         
                 this.headers.header_1=setting.HEADER_1;
                 this.headers.header_2=setting.HEADER_2;
                 this.headers.header_3=setting.HEADER_3;
                 this.headers.header_4=setting.HEADER_4;
                 this.headers.header_address=setting.HEADER_ADDRESS;
-            });          
+            });        
             
             await this.$ajax.get("/keuangan/transaksi/" + this.transaksi_id,                        
             {
@@ -135,16 +135,16 @@ export default {
                     Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({ data })=>{       
-                this.data_transaksi=data.transaksi;                                       
-                this.transaksi_detail = data.transaksi_detail;                
+                this.data_transaksi=data.transaksi;                                     
+                this.transaksi_detail = data.transaksi_detail;              
                 this.datatableLoading = false;
-            }).catch(()=>{
+            }).catch(() => {
                 this.datatableLoading = false;
                 this.errormessage='Gagal memperoleh data';
             });
 
         },
-    },    
+    },
     computed : {
         ...mapGetters("uifront",{
             namaPTAlias: "getNamaPTAlias"

@@ -70,7 +70,7 @@
                                     <template v-slot:activator="{ on }">
                                         <v-btn color="primary" icon outlined small class="ma-2" v-on="on">
                                             <v-icon>mdi-plus</v-icon>
-                                        </v-btn>                                        
+                                        </v-btn>   
                                     </template>
                                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>
                                         <v-card>
@@ -135,7 +135,7 @@
                                                             </v-date-picker>
                                                         </v-menu>
                                                     </v-col>
-                                                    <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>                                                    
+                                                    <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>               
                                                 </v-row>
                                                 <v-row no-gutters>
                                                     <v-col xs="12" sm="12" md="12">
@@ -173,7 +173,7 @@
                                                             </v-date-picker>
                                                         </v-menu>
                                                     </v-col>
-                                                    <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>                                                    
+                                                    <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>               
                                                 </v-row>
                                             </v-card-text>
                                             <v-card-actions>
@@ -364,8 +364,8 @@ export default {
     data()
     {
         let d = new Date();
-        let semester_ganjil = [d.getFullYear()+"-09-01",(d.getFullYear()+1)+"-02-28"];                
-        let semester_genap = [(d.getFullYear()+1)+"-03-01",(d.getFullYear()+1)+"-08-31"];                
+        let semester_ganjil = [d.getFullYear()+"-09-01",(d.getFullYear()+1)+"-02-28"];              
+        let semester_genap = [(d.getFullYear()+1)+"-03-01",(d.getFullYear()+1)+"-08-31"];              
         return {
             btnLoading: false,
             datatableLoading : false,
@@ -404,7 +404,7 @@ export default {
                 awal_genap: "",
                 akhir_genap: "",
                 awal_pendek: "",
-                akhir_pendek: "",  
+                akhir_pendek: "", 
             },
             formdefault: {
                 tahun: "",
@@ -414,7 +414,7 @@ export default {
                 awal_genap: "",
                 akhir_genap: "",
                 awal_pendek: "",
-                akhir_pendek: "",  
+                akhir_pendek: "", 
             },
             editedIndex: -1,
 
@@ -422,7 +422,7 @@ export default {
             rule_tahun: [
                 value => !!value||"Tahun Akademik mohon untuk diisi Misalnya 2020 !!!",
                 value => /^[0-9]+$/.test(value) || "Tahun Akademik hanya boleh angka",                
-                value => {                    
+                value => {         
                     if (value && typeof value !== 'undefined' && value.length > 0){
                         return value.length == 4 || "Tahun Akademik hanya boleh 4 karakter";
                     }
@@ -434,7 +434,7 @@ export default {
             ],
             rule_tahun_akademik: [                
                 value => !!value||"Mohon untuk di isi nama tahun akademik !!!",
-            ],            
+            ],  
         }
     },
     methods: {
@@ -448,7 +448,7 @@ export default {
             }).then(({data})=>{
                 this.datatable = data.ta;
                 this.datatableLoading = false;
-            }).catch(()=>{
+            }).catch(() => {
                 this.datatableLoading = false;
             });
         },
@@ -469,9 +469,9 @@ export default {
         },
         editItem(item) {
             this.editedIndex = this.datatable.indexOf(item);
-            this.formdata = Object.assign({}, item);            
+            this.formdata = Object.assign({}, item);          
             this.semester_ganjil[0]=this.formdata.awal_ganjil == null ? item.tahun+"-09-01":item.awal_ganjil;
-            this.semester_ganjil[1]=this.formdata.akhir_ganjil == null ? (item.tahun+1)+"-02-31":item.akhir_ganjil;            
+            this.semester_ganjil[1]=this.formdata.akhir_ganjil == null ? (item.tahun+1)+"-02-31":item.akhir_ganjil;          
             this.semester_genap[0]=this.formdata.awal_genap == null ? (item.tahun+1)+"-03-01":item.awal_genap;
             this.semester_genap[1]=this.formdata.akhir_genap == null ? (item.tahun+1)+"-08-31":item.akhir_genap;
             this.old_tahun=item.tahun;
@@ -498,10 +498,10 @@ export default {
                                 Authorization: this.TOKEN
                             }
                         }
-                    ).then(()=>{
+                    ).then(() => {
                         this.$router.go();
                         this.btnLoading=false;
-                    }).catch(()=>{
+                    }).catch(() => {
                         this.btnLoading=false;
                     });
 
@@ -524,13 +524,13 @@ export default {
                         this.datatable.push(data.ta);
                         this.closedialogfrm();
                         this.btnLoading=false;
-                    }).catch(()=>{
+                    }).catch(() => {
                         this.btnLoading=false;
                     });
                 }
             }
         },
-        deleteItem (item) {
+        deleteItem(item) {
             this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data dengan ID '+item.tahun+' ?", { color: "red" }).then((confirm) => {
                 if (confirm)
                 {
@@ -544,17 +544,17 @@ export default {
                                 Authorization: this.TOKEN
                             }
                         }
-                    ).then(()=>{
+                    ).then(() => {
                         const index = this.datatable.indexOf(item);
                         this.datatable.splice(index, 1);
                         this.btnLoading=false;
-                    }).catch(()=>{
+                    }).catch(() => {
                         this.btnLoading=false;
                     });
                 }
             });
         },
-        closedialogdetailitem () {
+        closedialogdetailitem() {
             this.$router.go();
         },
         closedialogfrm () {
@@ -566,7 +566,7 @@ export default {
             ACCESS_TOKEN: "AccessToken",
             TOKEN: "Token",
         }),
-        formTitle () {
+        formTitle() {
             return this.editedIndex === -1 ? "TAMBAH DATA" : "UBAH DATA"
         },
         semesterGanjilText : {
@@ -588,7 +588,7 @@ export default {
             {
                   return this.semester_genap.join(" ~ ");
             }
-        },           
+        },       
     },
     components:{
         DataMasterLayout,

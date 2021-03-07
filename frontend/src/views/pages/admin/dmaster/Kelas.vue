@@ -67,10 +67,10 @@
                                 ></v-divider>
                                 <v-spacer></v-spacer>
                                 <v-dialog v-model="dialogfrm" max-width="500px" persistent>
-                                    <template v-slot:activator="{ on }">                                        
+                                    <template v-slot:activator="{ on }">   
                                         <v-btn color="primary" icon outlined small class="ma-2" v-on="on">
                                             <v-icon>mdi-plus</v-icon>
-                                        </v-btn>                                        
+                                        </v-btn>   
                                     </template>
                                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>
                                         <v-card>
@@ -254,7 +254,7 @@ export default {
             }).then(({ data })=>{
                 this.datatable = data.kelas;
                 this.datatableLoading = false;
-            }).catch(()=>{
+            }).catch(() => {
                 this.datatableLoading = false;
             });
         },
@@ -297,10 +297,10 @@ export default {
                             }
                         }
                     ).then(({ data })=>{
-                        Object.assign(this.datatable[this.editedIndex], data.kelas);
+                        Object.assign(this.datatable[this.editedIndex],data.kelas);
                         this.closedialogfrm();
                         this.btnLoading = false;
-                    }).catch(()=>{
+                    }).catch(() => {
                         this.btnLoading = false;
                     });
 
@@ -319,13 +319,13 @@ export default {
                         this.datatable.push(data.kelas);
                         this.closedialogfrm();
                         this.btnLoading = false;
-                    }).catch(()=>{
+                    }).catch(() => {
                         this.btnLoading = false;
                     });
                 }
             }
         },
-        deleteItem (item) {
+        deleteItem(item) {
             this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data dengan ID '+item.idkelas+' ?", { color: "red" }).then((confirm) => {
                 if (confirm)
                 {
@@ -339,17 +339,17 @@ export default {
                                 Authorization: this.TOKEN
                             }
                         }
-                    ).then(()=>{
+                    ).then(() => {
                         const index = this.datatable.indexOf(item);
                         this.datatable.splice(index, 1);
                         this.btnLoading = false;
-                    }).catch(()=>{
+                    }).catch(() => {
                         this.btnLoading = false;
                     });
                 }
             });
         },
-        closedialogdetailitem () {
+        closedialogdetailitem() {
             this.dialogdetailitem = false;
             setTimeout(() => {
                 this.formdata = Object.assign({}, this.formdefault)
@@ -372,7 +372,7 @@ export default {
             ACCESS_TOKEN: "AccessToken",
             TOKEN: "Token",
         }),
-        formTitle () {
+        formTitle() {
             return this.editedIndex === -1 ? "TAMBAH DATA" : "UBAH DATA"
         },
     },

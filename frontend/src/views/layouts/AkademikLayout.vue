@@ -19,7 +19,7 @@
                 <template v-slot:activator="{on}">
                     <v-avatar size="30">
                         <v-img :src="photoUser" v-on="on" />
-                    </v-avatar>                    
+                    </v-avatar> 
                 </template>
                 <v-list>
                     <v-list-item>
@@ -30,11 +30,11 @@
                             <v-list-item-title class="title">
                                 {{ATTRIBUTE_USER("username")}}
                             </v-list-item-title>
-                            <v-list-item-subtitle>                                
+                            <v-list-item-subtitle>             
                                 [{{DEFAULT_ROLE}}]
                             </v-list-item-subtitle>
                         </v-list-item-content>
-                    </v-list-item>                    
+                    </v-list-item> 
                     <v-divider/>
                     <v-list-item to="/system-users/profil">
                         <v-list-item-icon class="mr-2">
@@ -83,7 +83,8 @@
                     <v-list-item-content>
                         <v-list-item-title>BOARD AKADEMIK</v-list-item-title>
                     </v-list-item-content>
-                </v-list-item>                   
+                </v-list-item>
+                <v-subheader>PERWALIAN</v-subheader>
                 <v-list-item link to="/akademik/dosenwali" :active-class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_ACTIVE_CSS_CLASS')" v-if="CAN_ACCESS('SYSTEM-USERS-DOSEN-WALI_BROWSE')">
                     <v-list-item-icon class="mr-2">
                         <v-icon>mdi-teach</v-icon>
@@ -124,18 +125,7 @@
                             MAHASISWA LAMA
                         </v-list-item-title>
                     </v-list-item-content>
-                </v-list-item>                
-                <v-subheader>KEMAHASISWAAN</v-subheader>
-                <v-list-item link to="/akademik/kemahasiswaan/daftarmahasiswa" :active-class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_ACTIVE_CSS_CLASS')" v-if="CAN_ACCESS('AKADEMIK-KEMAHASISWAAN-DAFTAR-MAHASISWA_BROWSE')">
-                    <v-list-item-icon class="mr-2">
-                        <v-icon>mdi-book</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-content>
-                        <v-list-item-title>
-                            DAFTAR MAHASISWA
-                        </v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>              
+                </v-list-item>             
                 <v-subheader>PERKULIAHAN</v-subheader>    
                 <v-list-item link to="/akademik/matakuliah" :active-class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_ACTIVE_CSS_CLASS')" v-if="CAN_ACCESS('AKADEMIK-MATAKULIAH_BROWSE')">
                     <v-list-item-icon class="mr-2">
@@ -146,7 +136,7 @@
                             MATAKULIAH
                         </v-list-item-title>
                     </v-list-item-content>
-                </v-list-item>                     
+                </v-list-item>  
                 <v-list-group group="/akademik/perkuliahan/penyelenggaraan" active-class="yellow" no-action v-if="CAN_ACCESS('AKADEMIK-PERKULIAHAN-PENYELENGGARAAN_BROWSE')" color="green">
                     <template v-slot:activator>
                         <v-list-item-icon class="mr-2">
@@ -314,8 +304,8 @@
                                 </v-list-item-title>
                             </v-list-item-content>
                         </v-list-item>   						 						
-					</div>                    
-                </v-list-group>                        
+					</div> 
+                </v-list-group>     
                 <v-list-item link v-if="CAN_ACCESS('AKADEMIK-NILAI-KHS_BROWSE')" :active-class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_ACTIVE_CSS_CLASS')" :to="{path: '/akademik/nilai/khs'}">
                     <v-list-item-icon class="mr-2">
                         <v-icon>mdi-arrow-right-bold-hexagon-outline</v-icon>
@@ -373,7 +363,7 @@ export default {
     name: "AkademikLayout",     
     created()
     {
-        this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];          
+        this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];        
     },
     props: {
         showrightsidebar: {
@@ -388,7 +378,7 @@ export default {
     data:()=>({
         loginTime:0,
         drawer: null,
-        drawerRight: null, 
+        drawerRight: null,
         
         dashboard: null,
     }),       
@@ -448,10 +438,10 @@ export default {
 				photo = this.$api.storageURL+'/'+img;	
 			}
 			return photo;
-        },        
+        },    
         paramid ()
         {
-            var id='empty';                        
+            var id='empty';                      
             switch (this.$route.name)
             {
                 case 'PerkuliahanPenyelenggaraanDosenPengampu':
@@ -478,7 +468,7 @@ export default {
                 if (value >= 0)
                 {
                     setTimeout(() => { 
-                        this.loginTime=this.AUTHENTICATED==true?this.loginTime+1:-1;                                                                     
+                        this.loginTime=this.AUTHENTICATED==true?this.loginTime+1:-1;                                                                   
 					}, 1000);
                 }
                 else
@@ -488,7 +478,7 @@ export default {
                 }
             },
             immediate: true
-        },        
+        },    
     }
 }
 </script>

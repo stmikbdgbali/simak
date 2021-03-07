@@ -33,7 +33,7 @@
                 <v-col cols="12">
                     <DataMatakuliahPenyelenggaraan :datamatkul="data_matkul"></DataMatakuliahPenyelenggaraan>
                 </v-col>
-                <v-col cols="12">                    
+                <v-col cols="12"> 
                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>
                         <v-card>
                             <v-card-title>
@@ -50,11 +50,11 @@
                                     item-text="nama_dosen"
                                     item-value="user_id"
                                     :rules="rule_dosen"
-                                    outlined/>    
+                                    outlined />    
                                 <v-switch
                                     v-model="formdata.is_ketua"
                                     label="SEBAGAI KETUA GROUP DOSEN PENGAMPU">
-                                </v-switch>                                                                              
+                                </v-switch>                                         
                             </v-card-text>
                             <v-card-actions>
                                 <v-spacer></v-spacer>
@@ -91,14 +91,14 @@
                                 class="elevation-1"
                                 :loading="datatableLoading"
                                 loading-text="Loading... Please wait">
-                                <template v-slot:item.is_ketua="{ item }">                                    
+                                <template v-slot:item.is_ketua="{ item }">                 
                                     <v-switch
                                         v-model="item.is_ketua"
                                         :label="item.is_ketua == 1 ? 'YA' : 'TIDAK'"
                                         @change="updateketua(item)">
                                     </v-switch>  
                                 </template>
-                                <template v-slot:item.actions="{ item }">                                    
+                                <template v-slot:item.actions="{ item }">                 
                                     <v-btn
                                         small
                                         icon
@@ -122,7 +122,7 @@
     </AkademikLayout>
 </template>
 <script>
-import AkademikLayout from '@/views/layouts/AkademikLayout';
+import AkademikLayout from "@/views/layouts/AkademikLayout";
 import ModuleHeader from "@/components/ModuleHeader";
 import DataMatakuliahPenyelenggaraan from '@/components/DataMatakuliahPenyelenggaraan';
 export default {
@@ -155,12 +155,12 @@ export default {
                 href: "#"
             },
         ];
-        let prodi_id=this.$store.getters['uiadmin/getProdiID'];
-        this.prodi_id=prodi_id;
-        this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](prodi_id);
-        this.daftar_ta=this.$store.getters['uiadmin/getDaftarTA'];          
-        this.tahun_akademik=this.$store.getters['uiadmin/getTahunAkademik'];                        
-        this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];                
+        let prodi_id = this.$store.getters['uiadmin/getProdiID'];
+        this.prodi_id = prodi_id;
+        this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
+        this.daftar_ta=this.$store.getters['uiadmin/getDaftarTA'];        
+        this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];                      
+        this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];              
         this.formdata.idpenyelenggaraan=this.$route.params.idpenyelenggaraan;
         this.initialize();
     }, 
@@ -173,7 +173,7 @@ export default {
         firstloading: true,
         prodi_id: null,
         nama_prodi: null,
-        tahun_akademik: null,        
+        tahun_akademik: null,       
         semester_akademik: null,
 
         btnLoading: false,        
@@ -182,17 +182,17 @@ export default {
         //table        
         datatableLoading: false,
         expanded: [],
-        datatable: [],      
+        datatable: [],
         headers: [
             { text: "NIDN", value: "nidn", sortable: false,width:120  },   
-            { text: "NAMA DOSEN", value: "nama_dosen",sortable: false },               
-            { text: "KETUA", value: "is_ketua", sortable: false,width:120 },                           
-            { text: "AKSI", value: "actions", sortable: false,width:120 },                           
-        ],  
+            { text: "NAMA DOSEN", value: "nama_dosen",sortable: false },
+            { text: "KETUA", value: "is_ketua", sortable: false,width:120 },            
+            { text: "AKSI", value: "actions", sortable: false,width:120 },            
+        ],
         
         //formdata
-        form_valid: true, 
-        data_matkul: null,  
+        form_valid: true,
+        data_matkul: null, 
         daftar_dosen: [],
 
        
@@ -200,12 +200,12 @@ export default {
             idpenyelenggaraan: null,
             dosen_id: null,
             is_ketua: false,
-        },        
+        },    
         formdefault: {
             idpenyelenggaraan: null,
             dosen_id: null,
             is_ketua: false,
-        },        
+        },    
         rule_dosen: [
             value => !!value || "Mohon dipilih Dosen untuk matakuliah ini !!!"
         ],
@@ -222,8 +222,8 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{                               
-                this.datatable = data.dosen;                
+            }).then(({ data })=>{                    
+                this.datatable = data.dosen;              
             })  
         },
         async fetchMatkul ()
@@ -233,8 +233,8 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{                               
-                this.data_matkul = data.penyelenggaraan;                
+            }).then(({ data })=>{                    
+                this.data_matkul = data.penyelenggaraan;              
             })  
         },
         async fetchDosenPengampu ()
@@ -248,8 +248,8 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{                               
-                this.daftar_dosen = data.dosen;                
+            }).then(({ data })=>{                    
+                this.daftar_dosen = data.dosen;              
             })  
         },
         save: async function() {
@@ -259,22 +259,22 @@ export default {
                 await this.$ajax.post("/akademik/perkuliahan/penyelenggaraanmatakuliah/storedosenpengampu",
                     {
                         penyelenggaraan_id: this.formdata.idpenyelenggaraan, 
-                        dosen_id: this.formdata.dosen_id,                                                    
-                        is_ketua: this.formdata.is_ketua,                                                                                                                               
+                        dosen_id: this.formdata.dosen_id,                       
+                        is_ketua: this.formdata.is_ketua,                                                                                                  
                     },
                     {
                         headers: {
                             Authorization: this.$store.getters["auth/Token"]
                         }
                     }
-                ).then(()=>{   
+                ).then(() => {
                     setTimeout(() => {
-                        this.btnLoading = false;                    
-                        this.$router.go();                                 
+                        this.btnLoading = false;                  
+                        this.$router.go();                               
                         }, 500
                     );
                     
-                }).catch(()=>{
+                }).catch(() => {
                     this.btnLoading = false;
                 });
             }
@@ -294,36 +294,36 @@ export default {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
-                    ).then(()=>{   
+                    ).then(() => {
                         const index = this.datatable.indexOf(item);
                         this.datatable.splice(index, 1);
                         this.btnLoadingTable=false;
-                    }).catch(()=>{
+                    }).catch(() => {
                         this.btnLoadingTable=false;
                     });
                 }                
             });
-        },        
+        },    
         async updateketua(item)
         {
             await this.$ajax.post("/akademik/perkuliahan/penyelenggaraanmatakuliah/updateketua/" + item.id,
                 {
                     _method: "put",
-                    penyelenggaraan_id:item.penyelenggaraan_id,                                                                                                                               
-                    is_ketua:item.is_ketua,                                                                                                                               
+                    penyelenggaraan_id:item.penyelenggaraan_id,                                                                                                  
+                    is_ketua:item.is_ketua,                                                                                                  
                 },
                 {
                     headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     }
                 }
-            ).then(()=>{   
-                setTimeout(() => {                                     
-                    this.initialize();                                 
+            ).then(() => {
+                setTimeout(() => {                          
+                    this.initialize();                               
                     }, 500
                 );
                 
-            }).catch(()=>{
+            }).catch(() => {
                 this.btnLoading = false;
             });
         }

@@ -19,7 +19,7 @@
                 <template v-slot:activator="{on}">
                     <v-avatar size="30">
                         <v-img :src="photoUser" v-on="on" />
-                    </v-avatar>                    
+                    </v-avatar> 
                 </template>
                 <v-list>
                     <v-list-item>
@@ -30,11 +30,11 @@
                             <v-list-item-title class="title">
                                 {{ATTRIBUTE_USER("username")}}
                             </v-list-item-title>
-                            <v-list-item-subtitle>                                
+                            <v-list-item-subtitle>             
                                 {{ROLE}}
                             </v-list-item-subtitle>
                         </v-list-item-content>
-                    </v-list-item>                    
+                    </v-list-item> 
                     <v-divider/>
                     <v-list-item to="/system-users/profil">
                         <v-list-item-icon class="mr-2">
@@ -143,7 +143,7 @@ export default {
     name: "AkademikLayout",     
     created()
     {
-        this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];          
+        this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];        
     },
     props: {
         showrightsidebar: {
@@ -158,7 +158,7 @@ export default {
     data:()=>({
         loginTime:0,
         drawer: null,
-        drawerRight: null, 
+        drawerRight: null,
         
         dashboard: null,
     }),       
@@ -217,10 +217,10 @@ export default {
 				photo = this.$api.storageURL+'/'+img;	
 			}
 			return photo;
-        },        
+        },    
         paramid ()
         {
-            var id='empty';                        
+            var id='empty';                      
             switch (this.$route.name)
             {
                 case 'PerkuliahanPenyelenggaraanDosenPengampu':
@@ -247,7 +247,7 @@ export default {
                 if (value >= 0)
                 {
                     setTimeout(() => { 
-                        this.loginTime=this.AUTHENTICATED==true?this.loginTime+1:-1;                                                                     
+                        this.loginTime=this.AUTHENTICATED==true?this.loginTime+1:-1;                                                                   
 					}, 1000);
                 }
                 else
@@ -257,7 +257,7 @@ export default {
                 }
             },
             immediate: true
-        },        
+        },    
     }
 }
 </script>

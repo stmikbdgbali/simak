@@ -42,7 +42,7 @@
                                     item-text="nama_dosen"
                                     item-value="user_id"
                                     :rules="rule_dosen"
-                                    outlined/>
+                                    outlined />
                             </v-card-text>
                         </v-card>
                         <v-card class="mb-2">
@@ -96,7 +96,7 @@
                                     item-text="text"
                                     item-value="id"
                                     :disabled="dosen_id==null"
-                                    outlined/>
+                                    outlined />
 
                                 <v-row>
                                     <v-col cols="4">
@@ -106,7 +106,7 @@
                                             label="HARI"
                                             :rules="rule_hari"
                                             :disabled="dosen_id==null"
-                                            outlined/>
+                                            outlined />
                                     </v-col>
                                     <v-col cols="4">
                                         <v-text-field
@@ -147,7 +147,7 @@
                                     label="AKUN ZOOM"
                                     item-text="email"
                                     item-value="id"
-                                    outlined/>
+                                    outlined />
                             </v-card-text>
                             <v-card-actions>
                                 <v-spacer></v-spacer>
@@ -169,7 +169,7 @@
     </AkademikLayout>
 </template>
 <script>
-import AkademikLayout from '@/views/layouts/AkademikLayout';
+import AkademikLayout from "@/views/layouts/AkademikLayout";
 import ModuleHeader from "@/components/ModuleHeader";
 
 export default {
@@ -361,10 +361,10 @@ export default {
                             Authorization: this.$store.getters["auth/Token"]
                         }
                     }
-                ).then(()=>{
+                ).then(() => {
                     this.btnLoading = false;
                     this.$router.push("/akademik/perkuliahan/pembagiankelas/daftar");
-                }).catch(()=>{
+                }).catch(() => {
                     this.btnLoading = false;
                 });
             }

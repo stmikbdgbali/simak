@@ -19,7 +19,7 @@
                 <template v-slot:activator="{on}">
                     <v-avatar size="30">
                         <v-img :src="photoUser" v-on="on" />
-                    </v-avatar>                    
+                    </v-avatar> 
                 </template>
                 <v-list>
                     <v-list-item>
@@ -30,11 +30,11 @@
                             <v-list-item-title class="title">
                                 {{ ATTRIBUTE_USER("username") }}
                             </v-list-item-title>
-                            <v-list-item-subtitle>                                
+                            <v-list-item-subtitle>             
                                 [{{ DEFAULT_ROLE }}]
                             </v-list-item-subtitle>
                         </v-list-item-content>
-                    </v-list-item>                    
+                    </v-list-item> 
                     <v-divider/>
                     <v-list-item to="/system-users/profil">
                         <v-list-item-icon class="mr-2">
@@ -104,7 +104,7 @@
                             PENDAFTAR
                         </v-list-item-title>
                     </v-list-item-content>
-                </v-list-item>                    
+                </v-list-item> 
                 <v-list-item link v-if="CAN_ACCESS('SPMB-PMB-FORMULIR-PENDAFTARAN_BROWSE')" to="/spmb/formulirpendaftaran">
                     <v-list-item-icon class="mr-2">
                         <v-icon>mdi-file-document-edit-outline</v-icon>
@@ -114,7 +114,7 @@
                             BIODATA
                         </v-list-item-title>
                     </v-list-item-content>
-                </v-list-item>                    
+                </v-list-item> 
                 <v-list-item link v-if="CAN_ACCESS('SPMB-PMB-PERSYARATAN_BROWSE')" to="/spmb/persyaratan">
                     <v-list-item-icon class="mr-2">
                         <v-icon>mdi-file-document-edit-outline</v-icon>
@@ -146,7 +146,7 @@
                         </v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>      
-                <v-subheader v-if="CAN_ACCESS('SPMB-GROUP') && dashboard!='mahasiswabaru' && dashboard!='mahasiswa'">LAPORAN</v-subheader>                      
+                <v-subheader v-if="CAN_ACCESS('SPMB-GROUP') && dashboard!='mahasiswabaru' && dashboard!='mahasiswa'">LAPORAN</v-subheader>   
                 <v-list-item link v-if="CAN_ACCESS('SPMB-PMB-LAPORAN-FAKULTAS_BROWSE') && isBentukPT('universitas')" to="/spmb/laporanfakultas">
                     <v-list-item-icon class="mr-2">
                         <v-icon>mdi-file-document-edit-outline</v-icon>
@@ -225,7 +225,7 @@ export default {
     name: "SPMBLayout",     
     created()
     {
-        this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];        
+        this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];      
     },
     props: {
         showrightsidebar: {
@@ -240,7 +240,7 @@ export default {
     data: () => ({
         loginTime: 0,
         drawer: null,
-        drawerRight: null, 
+        drawerRight: null,
         
         dashboard: null,
     }),       
@@ -300,7 +300,7 @@ export default {
 				photo = this.$api.url+'/'+img;	
 			}
 			return photo;
-        },     
+        }, 
     },
     watch: {
         loginTime: {
@@ -310,7 +310,7 @@ export default {
                 if (value >= 0)
                 {
                     setTimeout(() => { 
-                        this.loginTime=this.AUTHENTICATED==true?this.loginTime+1:-1;                                                                     
+                        this.loginTime=this.AUTHENTICATED==true?this.loginTime+1:-1;                                                                   
 					}, 1000);
                 }
                 else
@@ -320,7 +320,7 @@ export default {
                 }
             },
             immediate: true,
-        },        
+        },    
     }
 }
 </script>

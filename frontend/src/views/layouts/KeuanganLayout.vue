@@ -19,7 +19,7 @@
                 <template v-slot:activator="{on}">
                     <v-avatar size="30">
                         <v-img :src="photoUser" v-on="on" />
-                    </v-avatar>                    
+                    </v-avatar> 
                 </template>
                 <v-list>
                     <v-list-item>
@@ -30,11 +30,11 @@
                             <v-list-item-title class="title">
                                 {{ ATTRIBUTE_USER("username") }}
                             </v-list-item-title>
-                            <v-list-item-subtitle>                                
+                            <v-list-item-subtitle>             
                                 [{{ DEFAULT_ROLE }}]
                             </v-list-item-subtitle>
                         </v-list-item-content>
-                    </v-list-item>                    
+                    </v-list-item> 
                     <v-divider/>
                     <v-list-item to="/system-users/profil">
                         <v-list-item-icon class="mr-2">
@@ -94,7 +94,7 @@
                             CHANNEL PEMBAYARAN
                         </v-list-item-title>
                     </v-list-item-content>
-                </v-list-item>                        
+                </v-list-item>     
                 <v-list-item link v-if="CAN_ACCESS('KEUANGAN-STATUS-TRANSAKSI_BROWSE')" to="/keuangan/statustransaksi">
                     <v-list-item-icon class="mr-2">
                         <v-icon>mdi-triforce</v-icon>
@@ -104,7 +104,7 @@
                             STATUS TRANSAKSI
                         </v-list-item-title>
                     </v-list-item-content>
-                </v-list-item>                        
+                </v-list-item>     
                 <v-list-item link v-if="CAN_ACCESS('KEUANGAN-KOMPONEN-BIAYA_BROWSE')" to="/keuangan/biayakomponen">
                     <v-list-item-icon class="mr-2">
                         <v-icon>mdi-video-input-component</v-icon>
@@ -114,7 +114,7 @@
                             BIAYA KOMPONEN
                         </v-list-item-title>
                     </v-list-item-content>
-                </v-list-item>                        
+                </v-list-item>     
                 <v-list-item link v-if="CAN_ACCESS('KEUANGAN-BIAYA-KOMPONEN-PERIODE_BROWSE')" to="/keuangan/biayakomponenperiode">
                     <v-list-item-icon class="mr-2">
                         <v-icon>mdi-triforce</v-icon>
@@ -124,7 +124,7 @@
                             BIAYA KOMPONEN PERIODE
                         </v-list-item-title>
                     </v-list-item-content>
-                </v-list-item>                        
+                </v-list-item>     
                 <v-subheader v-if="dashboard!='mahasiswabaru' && dashboard!='mahasiswa'">METODE PEMBAYARAN</v-subheader>
                 <v-list-item link v-if="CAN_ACCESS('KEUANGAN-METODE-TRANSFER-BANK_BROWSE')" to="/keuangan/transferbank">
                     <v-list-item-icon class="mr-2">
@@ -167,7 +167,7 @@
                             DAFTAR ULANG MHS. BARU
                         </v-list-item-title>
                     </v-list-item-content>
-                </v-list-item>                                                                     
+                </v-list-item>                                
                 <v-list-item link v-if="CAN_ACCESS('KEUANGAN-TRANSAKSI-SPP-KEMAHASISWAAN_BROWSE')" to="/keuangan/transaksi-spp">
                     <v-list-item-icon class="mr-2">
                         <v-icon>mdi-account-cash</v-icon>
@@ -177,7 +177,7 @@
                             SPP
                         </v-list-item-title>
                     </v-list-item-content>
-                </v-list-item>                                                     
+                </v-list-item>                
             </v-list>
         </v-navigation-drawer>
         <v-navigation-drawer v-model="drawerRight" width="300" app fixed right temporary v-if="showrightsidebar">
@@ -226,7 +226,7 @@ export default {
     name: "KeuanganLayout",     
     created()
     {
-        this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];        
+        this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];      
     },
     props: {
         showrightsidebar: {
@@ -241,7 +241,7 @@ export default {
     data: () => ({
         loginTime: 0,
         drawer: null,
-        drawerRight: null, 
+        drawerRight: null,
         
         dashboard: null,
     }),       
@@ -311,7 +311,7 @@ export default {
                 if (value >= 0)
                 {
                     setTimeout(() => { 
-                        this.loginTime=this.AUTHENTICATED==true?this.loginTime+1:-1;                                                                     
+                        this.loginTime=this.AUTHENTICATED==true?this.loginTime+1:-1;                                                                   
 					}, 1000);
                 }
                 else
@@ -321,7 +321,7 @@ export default {
                 }
             },
             immediate: true
-        },        
+        },    
     }
 }
 </script>

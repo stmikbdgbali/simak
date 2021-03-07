@@ -10,7 +10,7 @@
 <script>
 export default {
     name: "JawabanSoal",
-    created ()
+    created()
     {
              
     },
@@ -38,12 +38,12 @@ export default {
             },
             {
                 headers:{
-                    Authorization: this.$store.getters['auth/Token'],                                          
+                    Authorization: this.$store.getters['auth/Token'],
                 }
             }
-            ).then(()=>{                                                   
+            ).then(() => {                                     
                 this.$emit("selesaiJawab");
-            }).catch(()=>{
+            }).catch(() => {
                 
             });
         }

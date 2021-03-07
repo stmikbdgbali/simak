@@ -342,7 +342,7 @@
 			dialogdetailitem: false,
 
 			//form data
-			form_valid: true, 
+			form_valid: true,
 			formdata: {
 				id: 0,
 				zoom_id: "",
@@ -368,7 +368,7 @@
 				status: "",
 				desc: "",
 				created_at: "",
-				updated_at: "", 
+				updated_at: "",
 			},
 			editedIndex: -1,
 
@@ -376,10 +376,10 @@
 			rule_email: [
 				value => !!value || "Mohon untuk mengisi Email !!!",
 				v => /.+@.+\..+/.test(v) || "Format E-mail mohon di isi dengan benar",
-			], 
+			],
 			rule_api_key: [
 				value => !!value || "Mohon untuk mengisi API Key !!!",  
-			], 
+			],
 			rule_api_secret: [
 				value => !!value || "Mohon untuk mengisi API Secret !!!",  
 			],
@@ -401,7 +401,7 @@
 					this.datatableLoading = false;
 				}).catch(() => {
 					this.datatableLoading = false;
-				});  
+				});
 			},
 			dataTableRowClicked(item) {
 				if ( item === this.expanded[0]) {
@@ -419,7 +419,7 @@
 				// }
 				// }).then(({ data })=>{
 											
-				// });  
+				// });
 			},
 			editItem(item) {
 				this.editedIndex = this.datatable.indexOf(item);
@@ -446,7 +446,7 @@
 								}
 							}
 						).then(({ data })=>{
-							Object.assign(this.datatable[this.editedIndex], data.zoom);
+							Object.assign(this.datatable[this.editedIndex],data.zoom);
 							this.closedialogfrm();
 							this.btnLoading = false;
 						}).catch(() => {

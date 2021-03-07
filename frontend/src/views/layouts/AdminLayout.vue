@@ -23,7 +23,7 @@
                 <template v-slot:activator="{on}">
                     <v-avatar size="30">
                         <v-img :src="photoUser" v-on="on" />
-                    </v-avatar>                    
+                    </v-avatar> 
                 </template>
                 <v-list>
                     <v-list-item>
@@ -34,11 +34,11 @@
                             <v-list-item-title class="title">
                                 {{ ATTRIBUTE_USER("username") }}
                             </v-list-item-title>
-                            <v-list-item-subtitle>                                
+                            <v-list-item-subtitle>             
                                 [{{ DEFAULT_ROLE }}]
                             </v-list-item-subtitle>
                         </v-list-item-content>
-                    </v-list-item>                    
+                    </v-list-item> 
                     <v-divider/>
                     <v-list-item to="/system-users/profil">
                         <v-list-item-icon class="mr-2">
@@ -55,7 +55,7 @@
                     </v-list-item>
                 </v-list>
             </v-menu>			
-        </v-app-bar>                    
+        </v-app-bar> 
         <v-main class="mx-4 mb-4 grey lighten-3">			
 			<slot />
 		</v-main>
@@ -74,11 +74,11 @@
                 type: Boolean,
                 default: false
             },
-        },      
+        },  
         data: () => ({
             loginTime: 0,
             drawer: null,
-            drawerRight: null,   
+            drawerRight: null,  
         }),       
         methods: {        
             logout()
@@ -140,7 +140,7 @@
                 handler(value) {
                     if (value >= 0) {
                         setTimeout(() => { 
-                            this.loginTime=this.AUTHENTICATED==true?this.loginTime+1:-1;                                                                     
+                            this.loginTime=this.AUTHENTICATED==true?this.loginTime+1:-1;                                                                   
                         }, 1000);
                     } else {
                         this.$store.dispatch("auth/logout");
@@ -148,7 +148,7 @@
                     }
                 },
                 immediate: true
-            },        
+            },    
         },
     };
 </script>

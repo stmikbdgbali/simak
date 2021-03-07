@@ -108,7 +108,7 @@ export default {
     name: "DataKRS",
     created()
     {
-        this.initialize();                     
+        this.initialize();                   
     },
     props:{
         datakrs:{
@@ -141,6 +141,6 @@ export default {
                 this.$router.push(this.url);
             }            
         }
-    },    
+    },
 }
 </script>
