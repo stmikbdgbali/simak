@@ -24,7 +24,10 @@
                     colored-border
                     type="info"
                     >
-                        Berisi daftar peryaratan pendaftaran yang harus di isi dengan benar dan lengkap; <span class="red--text" v-if="!showcomponentpersyaratan">Bila form isian tidak tampil mohon lengkapi terlebih dahulu Form Biodata</span>
+                        Berisi daftar peryaratan pendaftaran yang harus di isi dengan benar dan lengkap; 
+                        <span class="red--text" v-if="!showcomponentpersyaratan">
+                            Bila form isian tidak tampil mohon lengkapi terlebih dahulu <v-btn text to="/spmb/formulirpendaftaran" class="red--text">Form Biodata</v-btn>
+                        </span>
                     </v-alert>
             </template>
             <template v-slot:desc v-else>
@@ -39,7 +42,7 @@
             </template>
         </ModuleHeader> 
         <v-container fluid v-if="dashboard=='mahasiswabaru'">
-            <FormPersyaratan :user_id="$store.getters['auth/AttributeUser']("id")" v-if="showcomponentpersyaratan"/>
+            <FormPersyaratan :user_id="$store.getters['auth/AttributeUser']('id')" v-if="showcomponentpersyaratan"/>
         </v-container>
         <v-container fluid v-else>
             <v-row class="mb-4" no-gutters>
@@ -201,8 +204,7 @@ export default {
         },
 		initialize: async function()
 		{	
-            if (this.dashboard == "mahasiswabaru' || this.dashboard =='mahasiswa")
-            {
+            if (this.dashboard == "mahasiswabaru" || this.dashboard == "mahasiswa") {
                 await this.$ajax.get("/spmb/formulirpendaftaran/" + this.$store.getters['auth/AttributeUser']("id"),             
                     {
                         headers: {
@@ -224,7 +226,7 @@ export default {
                 },
                 {
                     headers: {
-                        Authorization: this.$store.getters["auth/Token"]
+                        Authorization: this.$store.getters["auth/Token"],
                     }
                 }).then(({ data })=>{                        
                     this.datatable = data.persyaratan; 

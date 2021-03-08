@@ -158,26 +158,16 @@
                     </v-list-item-content>
                 </v-list-item> 
                 <v-divider/>
-                <v-list-item link v-if="CAN_ACCESS('KEUANGAN-TRANSAKSI-DULANG-MHS-BARU_BROWSE')" to="/keuangan/transaksi-dulangmhsbaru">
+                <v-list-item link v-if="CAN_ACCESS('KEUANGAN-TRANSAKSI-BIAYA-PENDAFTARAN_BROWSE')" to="/keuangan/transaksi-pendaftaranmhsbaru">
                     <v-list-item-icon class="mr-2">
                         <v-icon>mdi-account-cash</v-icon>
                     </v-list-item-icon>
                     <v-list-item-content>
                         <v-list-item-title>
-                            DAFTAR ULANG MHS. BARU
+                            PENDAFTARAN MHS BARU
                         </v-list-item-title>
                     </v-list-item-content>
-                </v-list-item>                                
-                <v-list-item link v-if="CAN_ACCESS('KEUANGAN-TRANSAKSI-SPP-KEMAHASISWAAN_BROWSE')" to="/keuangan/transaksi-spp">
-                    <v-list-item-icon class="mr-2">
-                        <v-icon>mdi-account-cash</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-content>
-                        <v-list-item-title>
-                            SPP
-                        </v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>                
+                </v-list-item>                                                
             </v-list>
         </v-navigation-drawer>
         <v-navigation-drawer v-model="drawerRight" width="300" app fixed right temporary v-if="showrightsidebar">

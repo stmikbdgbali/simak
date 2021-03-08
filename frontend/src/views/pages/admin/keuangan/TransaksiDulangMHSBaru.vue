@@ -312,7 +312,7 @@ export default {
         },
         viewItem(item)
         {
-            this.$router.push("/keuangan/transaksi-dulangmhsbaru/'+item.transaksi_id);
+            this.$router.push("/keuangan/transaksi-dulangmhsbaru/" + item.transaksi_id);
         },
         save: async function() {
             if (this.$refs.frmdata.validate())
@@ -355,7 +355,7 @@ export default {
                 if (confirm)
                 {
                     this.btnLoading=true;
-                    this.$ajax.post("/keuangan/transaksi-dulangmhsbaru/'+item.transaksi_id,
+                    this.$ajax.post("/keuangan/transaksi-dulangmhsbaru/" + item.transaksi_id,
                         {
                             _method: "DELETE",
                         },

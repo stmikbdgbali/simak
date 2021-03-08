@@ -278,8 +278,7 @@ export default {
 		{
 			let bentukpt=this.$store.getters['uifront/getBentukPT'];
 			this.$ajax.get("/datamaster/provinsi").then(({data})=>{     
-				this.daftar_provinsi = data.provinsi;         
-				console.log(this.daftar_provinsi);
+				this.daftar_provinsi = data.provinsi;         				
 			});          
 			if (bentukpt== "universitas")
 			{     
@@ -384,42 +383,35 @@ export default {
 		},
 	},
 	watch: {
-		provinsi_id(val)
-		{
-			if (val.id != null && val.id != "")
-			{
+		provinsi_id(val) {			
+			if (val.id != null && val.id != "" && val.id != "null") {
 				this.btnLoadingProv=true;
-				this.$ajax.get("/datamaster/provinsi/'+val.id+'/kabupaten").then(({data})=>{     
+				this.$ajax.get("/datamaster/provinsi/" + val.id + "/kabupaten").then(({data})=>{     
 					this.daftar_kabupaten=data.kabupaten;
 					this.btnLoadingProv=false;
 				});
 				this.daftar_kecamatan=[];
 			}
 		},
-		kabupaten_id(val)
-		{
-			if (val.id != null && val.id != "")
-			{
+		kabupaten_id(val) {
+			if (val.id != null && val.id != "" && val.id != "null") {
 				this.btnLoadingKab=true;
-				this.$ajax.get("/datamaster/kabupaten/'+val.id+'/kecamatan").then(({data})=>{                     
+				this.$ajax.get("/datamaster/kabupaten/" + val.id + "/kecamatan").then(({data})=>{                     
 					this.daftar_kecamatan=data.kecamatan;
 					this.btnLoadingKab=false;
 				});
 			}
 		},
-		kecamatan_id(val)
-		{
-			if (val.id != null && val.id != "")
-			{
+		kecamatan_id(val) {
+			if (val.id != null && val.id != "" && val.id != "null") {
 				this.btnLoadingKec=true;
-				this.$ajax.get("/datamaster/kecamatan/'+val.id+'/desa").then(({data})=>{                     
+				this.$ajax.get("/datamaster/kecamatan/" + val.id + "/desa").then(({data})=>{                     
 					this.daftar_desa=data.desa;
 					this.btnLoadingKec=false;
 				});
 			}
 		},
-		kode_fakultas (val)
-		{
+		kode_fakultas (val) {
 			this.btnLoadingFakultas=true;
 			this.$ajax.get("/datamaster/fakultas/" + val + "/programstudi").then(({data})=>{                     
 				this.daftar_prodi=data.programstudi;

@@ -29,37 +29,37 @@ class RolesTableSeeder extends Seeder
                 'guard_name'=>'api',
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
-            ],    
+            ],
             [
                 'name'=>'programstudi',
                 'guard_name'=>'api',
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
-            ],    
+            ],
             [
                 'name'=>'pmb',
                 'guard_name'=>'api',
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
-            ],   
+            ], 
             [
                 'name'=>'keuangan',
                 'guard_name'=>'api',
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
-            ],    
+            ],
             [
                 'name'=>'perpustakaan',
                 'guard_name'=>'api',
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
-            ],    
+            ],
             [
                 'name'=>'lppm',
                 'guard_name'=>'api',
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
-            ],    
+            ],
             [
                 'name'=>'puslahta',
                 'guard_name'=>'api',
@@ -71,57 +71,58 @@ class RolesTableSeeder extends Seeder
                 'guard_name'=>'api',
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
-            ],             
+            ],  
             [
                 'name'=>'dosenwali',
                 'guard_name'=>'api',
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
-            ],             
+            ],  
             [
                 'name'=>'mahasiswa',
                 'guard_name'=>'api',
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
-            ],             
+            ],  
             [
                 'name'=>'mahasiswabaru',
                 'guard_name'=>'api',
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
-            ],             
+            ],  
             [
                 'name'=>'alumni',
                 'guard_name'=>'api',
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
-            ],             
+            ],  
             [
                 'name'=>'orangtuawali',
                 'guard_name'=>'api',
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
-            ],             
+            ],  
         ]);
 
         $role = Role::findByName('mahasiswabaru');
         $records=[
             'DASHBOARD_SHOW',
-            'SPMB-GROUP',            
+            'SPMB-GROUP', 
             'SPMB-PMB-FORMULIR-PENDAFTARAN_BROWSE',
             'SPMB-PMB-FORMULIR-PENDAFTARAN_SHOW',
             'SPMB-PMB-FORMULIR-PENDAFTARAN_STORE',
-            'SPMB-PMB-FORMULIR-PENDAFTARAN_UPDATE',  
-            'SPMB-PMB-PERSYARATAN_SHOW',  
-            'SPMB-PMB-PERSYARATAN_STORE',  
-            'KEUANGAN-KONFIRMASI-PEMBAYARAN_BROWSE',           
-            'KEUANGAN-KONFIRMASI-PEMBAYARAN_SHOW',           
-            'KEUANGAN-KONFIRMASI-PEMBAYARAN_STORE',  
+            'SPMB-PMB-FORMULIR-PENDAFTARAN_UPDATE',
+            'SPMB-PMB-PERSYARATAN_BROWSE',
+            'SPMB-PMB-PERSYARATAN_SHOW',
+            'SPMB-PMB-PERSYARATAN_STORE',
+            'KEUANGAN-KONFIRMASI-PEMBAYARAN_BROWSE',
+            'KEUANGAN-KONFIRMASI-PEMBAYARAN_SHOW',
+            'KEUANGAN-KONFIRMASI-PEMBAYARAN_STORE',   
             'SPMB-PMB-JADWAL-UJIAN_BROWSE',
-            'SPMB-PMB-UJIAN-ONLINE_BROWSE',              
-            'SPMB-PMB-UJIAN-ONLINE_SHOW',              
-            'SPMB-PMB-UJIAN-ONLINE_STORE',              
-            'SPMB-PMB-UJIAN-ONLINE_UPDATE',                      
+            'SPMB-PMB-UJIAN-ONLINE_BROWSE',   
+            'SPMB-PMB-UJIAN-ONLINE_SHOW',   
+            'SPMB-PMB-UJIAN-ONLINE_STORE',   
+            'SPMB-PMB-UJIAN-ONLINE_UPDATE',
         ];
         $role->syncPermissions($records);
         
@@ -131,21 +132,21 @@ class RolesTableSeeder extends Seeder
 
             'AKADEMIK-GROUP',
             'AKADEMIK-DULANG-MHS_BROWSE',
-            'AKADEMIK-DULANG-MHS_SHOW',       
+            'AKADEMIK-DULANG-MHS_SHOW',   
             
-            'AKADEMIK-PERKULIAHAN-PENYELENGGARAAN_BROWSE',            
+            'AKADEMIK-PERKULIAHAN-PENYELENGGARAAN_BROWSE', 
 
-            'AKADEMIK-PERKULIAHAN-KRS_BROWSE',            
-            'AKADEMIK-PERKULIAHAN-KRS_DESTROY',            
-            'AKADEMIK-PERKULIAHAN-KRS_STORE',            
-            'AKADEMIK-PERKULIAHAN-KRS_SHOW',            
-            'AKADEMIK-PERKULIAHAN-KRS_UPDATE',            
+            'AKADEMIK-PERKULIAHAN-KRS_BROWSE', 
+            'AKADEMIK-PERKULIAHAN-KRS_DESTROY', 
+            'AKADEMIK-PERKULIAHAN-KRS_STORE', 
+            'AKADEMIK-PERKULIAHAN-KRS_SHOW', 
+            'AKADEMIK-PERKULIAHAN-KRS_UPDATE', 
 
-            'KEUANGAN-GROUP',            
-            'KEUANGAN-RINGKASAN_BROWSE',                        
-            'KEUANGAN-BIAYA-KOMPONEN-PERIODE_BROWSE',                        
+            'KEUANGAN-GROUP', 
+            'KEUANGAN-RINGKASAN_BROWSE',  
+            'KEUANGAN-BIAYA-KOMPONEN-PERIODE_BROWSE',  
             
-            'KEUANGAN-TRANSAKSI_BROWSE',                        
+            'KEUANGAN-TRANSAKSI_BROWSE',  
             'KEUANGAN-TRANSAKSI-BIAYA-PENDAFTARAN_BROWSE',
             'KEUANGAN-TRANSAKSI-PENGEMBANGAN_BROWSE',
 
@@ -173,18 +174,18 @@ class RolesTableSeeder extends Seeder
             'KEUANGAN-TRANSAKSI-WISUDA_SHOW',
             'KEUANGAN-TRANSAKSI-WISUDA_UPDATE',
             
-            'KEUANGAN-KONFIRMASI-PEMBAYARAN_BROWSE',           
-            'KEUANGAN-KONFIRMASI-PEMBAYARAN_STORE',           
-            'KEUANGAN-KONFIRMASI-PEMBAYARAN_SHOW',           
-            'KEUANGAN-KONFIRMASI-PEMBAYARAN_STORE',              
-            'KEUANGAN-KONFIRMASI-PEMBAYARAN_UPDATE',              
+            'KEUANGAN-KONFIRMASI-PEMBAYARAN_BROWSE',
+            'KEUANGAN-KONFIRMASI-PEMBAYARAN_STORE',
+            'KEUANGAN-KONFIRMASI-PEMBAYARAN_SHOW',
+            'KEUANGAN-KONFIRMASI-PEMBAYARAN_STORE',   
+            'KEUANGAN-KONFIRMASI-PEMBAYARAN_UPDATE',   
             'KEUANGAN-KONFIRMASI-PEMBAYARAN_DESTROY',
 
-            'AKADEMIK-PERKULIAHAN-KRS_BROWSE',            
-            'AKADEMIK-PERKULIAHAN-KRS_DESTROY',            
-            'AKADEMIK-PERKULIAHAN-KRS_STORE',            
-            'AKADEMIK-PERKULIAHAN-KRS_SHOW',            
-            'AKADEMIK-PERKULIAHAN-KRS_UPDATE',            
+            'AKADEMIK-PERKULIAHAN-KRS_BROWSE', 
+            'AKADEMIK-PERKULIAHAN-KRS_DESTROY', 
+            'AKADEMIK-PERKULIAHAN-KRS_STORE', 
+            'AKADEMIK-PERKULIAHAN-KRS_SHOW', 
+            'AKADEMIK-PERKULIAHAN-KRS_UPDATE', 
             
         ];
         $role->syncPermissions($records);
@@ -192,24 +193,24 @@ class RolesTableSeeder extends Seeder
         $role = Role::findByName('keuangan');
         $records=[
             'DASHBOARD_SHOW',
-            'KEUANGAN-GROUP',  
+            'KEUANGAN-GROUP',
             'KEUANGAN-RINGKASAN_BROWSE', 
 
-            'KEUANGAN-KOMPONEN-BIAYA_BROWSE',                          
+            'KEUANGAN-KOMPONEN-BIAYA_BROWSE',    
             
-            'KEUANGAN-BIAYA-KOMPONEN-PERIODE_BROWSE',           
-            'KEUANGAN-BIAYA-KOMPONEN-PERIODE_STORE',           
-            'KEUANGAN-BIAYA-KOMPONEN-PERIODE_SHOW',           
-            'KEUANGAN-BIAYA-KOMPONEN-PERIODE_STORE',              
-            'KEUANGAN-BIAYA-KOMPONEN-PERIODE_UPDATE',              
-            'KEUANGAN-BIAYA-KOMPONEN-PERIODE_DESTROY',              
+            'KEUANGAN-BIAYA-KOMPONEN-PERIODE_BROWSE',
+            'KEUANGAN-BIAYA-KOMPONEN-PERIODE_STORE',
+            'KEUANGAN-BIAYA-KOMPONEN-PERIODE_SHOW',
+            'KEUANGAN-BIAYA-KOMPONEN-PERIODE_STORE',   
+            'KEUANGAN-BIAYA-KOMPONEN-PERIODE_UPDATE',   
+            'KEUANGAN-BIAYA-KOMPONEN-PERIODE_DESTROY',   
             
-            'KEUANGAN-TRANSAKSI_BROWSE',           
-            'KEUANGAN-TRANSAKSI_STORE',           
-            'KEUANGAN-TRANSAKSI_SHOW',           
-            'KEUANGAN-TRANSAKSI_STORE',              
-            'KEUANGAN-TRANSAKSI_UPDATE',              
-            'KEUANGAN-TRANSAKSI_DESTROY',              
+            'KEUANGAN-TRANSAKSI_BROWSE',
+            'KEUANGAN-TRANSAKSI_STORE',
+            'KEUANGAN-TRANSAKSI_SHOW',
+            'KEUANGAN-TRANSAKSI_STORE',   
+            'KEUANGAN-TRANSAKSI_UPDATE',   
+            'KEUANGAN-TRANSAKSI_DESTROY',   
 
             'KEUANGAN-TRANSAKSI-SPP-KEMAHASISWAAN_BROWSE',
             'KEUANGAN-TRANSAKSI-SPP-KEMAHASISWAAN_DESTROY',
@@ -235,22 +236,22 @@ class RolesTableSeeder extends Seeder
             'KEUANGAN-TRANSAKSI-WISUDA_SHOW',
             'KEUANGAN-TRANSAKSI-WISUDA_UPDATE',
             
-            'KEUANGAN-KONFIRMASI-PEMBAYARAN_BROWSE',           
-            'KEUANGAN-KONFIRMASI-PEMBAYARAN_STORE',           
-            'KEUANGAN-KONFIRMASI-PEMBAYARAN_SHOW',           
-            'KEUANGAN-KONFIRMASI-PEMBAYARAN_STORE',              
-            'KEUANGAN-KONFIRMASI-PEMBAYARAN_UPDATE',              
+            'KEUANGAN-KONFIRMASI-PEMBAYARAN_BROWSE',
+            'KEUANGAN-KONFIRMASI-PEMBAYARAN_STORE',
+            'KEUANGAN-KONFIRMASI-PEMBAYARAN_SHOW',
+            'KEUANGAN-KONFIRMASI-PEMBAYARAN_STORE',   
+            'KEUANGAN-KONFIRMASI-PEMBAYARAN_UPDATE',   
             'KEUANGAN-KONFIRMASI-PEMBAYARAN_DESTROY',
 
-            'KEUANGAN-KONFIRMASI-PEMBAYARAN_BROWSE',           
-            'KEUANGAN-KONFIRMASI-PEMBAYARAN_STORE',           
-            'KEUANGAN-KONFIRMASI-PEMBAYARAN_SHOW',           
-            'KEUANGAN-KONFIRMASI-PEMBAYARAN_STORE',              
-            'KEUANGAN-KONFIRMASI-PEMBAYARAN_UPDATE',              
+            'KEUANGAN-KONFIRMASI-PEMBAYARAN_BROWSE',
+            'KEUANGAN-KONFIRMASI-PEMBAYARAN_STORE',
+            'KEUANGAN-KONFIRMASI-PEMBAYARAN_SHOW',
+            'KEUANGAN-KONFIRMASI-PEMBAYARAN_STORE',   
+            'KEUANGAN-KONFIRMASI-PEMBAYARAN_UPDATE',   
             'KEUANGAN-KONFIRMASI-PEMBAYARAN_DESTROY',
 
-            'AKADEMIK-GROUP',              
-            'AKADEMIK-KEMAHASISWAAN-DAFTAR-MAHASISWA_BROWSE',              
+            'AKADEMIK-GROUP',   
+            'AKADEMIK-KEMAHASISWAAN-DAFTAR-MAHASISWA_BROWSE',   
         ];
         $role->syncPermissions($records);
     }

@@ -13,7 +13,7 @@
                 mdi-close-thick
             </v-icon>
         </v-toolbar>
-        <v-card-text v-if="datamhs.hasOwnProperty("user_id")">            
+        <v-card-text v-if="datamhs.hasOwnProperty('user_id')">            
             <v-row>
                 <v-col xs="12" sm="12" md="2">
                     <v-card flat class="mb-2">
