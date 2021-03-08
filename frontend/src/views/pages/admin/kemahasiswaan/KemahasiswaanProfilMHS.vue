@@ -7,7 +7,7 @@
             <template v-slot:name>
                 PROFIL MAHASISWA
             </template>
-            <template v-slot:subtitle v-if="datamhs.hasOwnProperty("user_id")">
+            <template v-slot:subtitle v-if="datamhs.hasOwnProperty('user_id')">
                 [{{datamhs.nim}}] {{datamhs.nama_mhs}}
             </template>
             <template v-slot:breadcrumbs>
@@ -18,7 +18,7 @@
                 </v-breadcrumbs>
             </template>            
         </ModuleHeader>      
-        <v-container fluid v-if="datamhs.hasOwnProperty("user_id")">            
+        <v-container fluid v-if="datamhs.hasOwnProperty('user_id')">            
             <v-row> 
                 <v-col cols="12">
                     <ProfilMahasiswa :datamhs="datamhs" url="/kemahasiswaan" />

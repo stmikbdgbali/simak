@@ -1,12 +1,17 @@
 <template>
-	<AdminLayout>
-		<v-container v-if="dashboard=='mahasiswabaru'">
+	<AdminLayout v-if="dashboard">
+		<v-container v-if="dashboard == 'mahasiswabaru'">
 			<DashboardMB />
 		</v-container>
 		<v-container fluid v-else color="#f1f2f6">
 			<v-row>
-				<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
-				<v-col xs="12" sm="4" md="3" v-if="$store.getters['auth/can']('DMASTER-GROUP')">
+				<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly" />
+				<v-col
+					xs="12"
+					sm="4"
+					md="3"
+					v-if="$store.getters['auth/can']('DMASTER-GROUP')"
+				>
 					<v-card
 					elevation="0"
 					class="mx-auto clickable"
@@ -280,59 +285,56 @@
 	</AdminLayout>
 </template>
 <script>
-import DashboardMB from '@/components/DashboardMahasiswaBaru';
-import AdminLayout from '@/views/layouts/AdminLayout';
-export default {
-	name: "Dashboard",
-	created()
-	{
-		this.TOKEN = this.$route.params.token;              
-		this.breadcrumbs = [
-			{
-				text: "HOME",
-				disabled: false,
-				href: "/dashboard/" + this.TOKEN
-			},
-			{
-				text: "DASHBOARD",
-				disabled: true,
-				href: "#"
-			}
-		];
-		this.tahun_pendaftaran = this.$store.getters['uifront/getTahunPendaftaran'];
-		this.color_dashboard=this.$store.getters['uifront/getTheme']("COLOR_DASHBOARD");                                           
-		this.initialize();
-	},
-	data: () => ({
-		breadcrumbs: [],
-		TOKEN: null,
-		dashboard: null,
-
-		tahun_pendaftaran: "",
-		//theme
-		color_dashboard: {}
-	}),
-	methods: {
-		initialize: async function()
-		{	            
-			await this.$ajax.get("/auth/me",                
-			{
-				headers: {
-					Authorization: "Bearer " + this.TOKEN
+	import DashboardMB from "@/components/DashboardMahasiswaBaru";
+	import AdminLayout from "@/views/layouts/AdminLayout";
+	export default {
+		name: "Dashboard",
+		created() {
+			this.TOKEN = this.$route.params.token;              
+			this.tahun_pendaftaran = this.$store.getters['uifront/getTahunPendaftaran'];
+			this.color_dashboard=this.$store.getters['uifront/getTheme']("COLOR_DASHBOARD");
+			this.breadcrumbs = [
+				{
+					text: "HOME",
+					disabled: false,
+					href: "/dashboard/" + this.TOKEN,
+				},
+				{
+					text: "DASHBOARD",
+					disabled: true,
+					href: "#",
 				}
-			}).then(({ data })=>{          
-				this.dashboard = data.role[0];  
-				this.$store.dispatch("uiadmin/changeDashboard",this.dashboard);               
-			});               
-			this.$store.dispatch("uiadmin/init",this.$ajax); 
-		}
-	},
-	computed: {
-		
-	},
-	components: {
-		AdminLayout,        
-		DashboardMB,        
-	}
-}
+			];				                                           
+			this.initialize();
+		},
+		data: () => ({
+			breadcrumbs: [],
+			TOKEN: null,
+			dashboard: null,
+
+			tahun_pendaftaran: "",
+			//theme
+			color_dashboard: {},
+		}),
+		methods: {
+			initialize: async function() {	            
+				await this.$ajax
+				.get("/auth/me",        
+				{
+					headers: {
+						Authorization: "Bearer " + this.TOKEN,
+					}
+				})
+				.then(({ data })=>{          
+					this.dashboard = data.role[0];  
+					this.$store.dispatch("uiadmin/changeDashboard", this.dashboard);               
+				});               
+				this.$store.dispatch("uiadmin/init", this.$ajax); 
+			},
+		},
+		components: {
+			AdminLayout,
+			DashboardMB,
+		},
+	};
 </script>
