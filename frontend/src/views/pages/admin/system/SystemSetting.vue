@@ -4,7 +4,7 @@
     </SystemConfigLayout>
 </template>
 <script>
-import SystemConfigLayout from '@/views/layouts/SystemConfigLayout';
+import SystemConfigLayout from "@/views/layouts/SystemConfigLayout";
 export default {
     name: "SystemUsers",
     components: {

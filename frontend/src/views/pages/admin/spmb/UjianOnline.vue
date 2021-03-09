@@ -99,7 +99,7 @@ export default {
         },
         selesaiUjian: async function()
         {
-            this.btnLoading=true;
+            this.btnLoading = true;
             await this.$ajax.post("/spmb/ujianonline/selesaiujian",    
             {
                 _method: "put",

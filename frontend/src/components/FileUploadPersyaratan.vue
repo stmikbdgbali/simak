@@ -138,7 +138,7 @@ export default {
             {
                 if (typeof this.filepersyaratan[index] !== "undefined")
                 {
-                    this.btnLoading=true;
+                    this.btnLoading = true;
                     var formdata = new FormData();                  
                     formdata.append("nama_persyaratan",data.nama_persyaratan);
                     formdata.append("persyaratan_id",data.persyaratan_id);
@@ -203,7 +203,7 @@ export default {
         },
         verifikasipersyaratan: async function (item)
         {
-            this.btnLoading=true;                  
+            this.btnLoading = true;                  
             await this.$ajax.post("/spmb/pmbpersyaratan/verifikasipersyaratan/" + item.persyaratan_pmb_id,
             {         
                 

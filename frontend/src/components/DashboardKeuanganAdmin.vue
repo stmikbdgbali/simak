@@ -166,7 +166,7 @@ export default {
         kombi_ganjil_cancelled: [],
         kombi_genap_cancelled: [],
 
-        headers: [                        
+        headers: [
             { text: "NAMA KOMPONEN", value: "nama_kombi", sortable: false},
             { text: "JUMLAH", align: "end",value: "jumlah", width: 250, sortable: false}, 
         ],

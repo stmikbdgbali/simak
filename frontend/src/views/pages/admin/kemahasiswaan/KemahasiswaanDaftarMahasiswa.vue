@@ -127,7 +127,7 @@
                         </template>   
                     </v-data-table>
                 </v-col>
-            </v-row>            
+            </v-row> 
         </v-container>
     </KemahasiswaanLayout>
 </template>
@@ -159,7 +159,7 @@ export default {
         let prodi_id = this.$store.getters['uiadmin/getProdiID'];
         this.prodi_id = prodi_id;
         this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
-        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];              
+        this.tahun_pendaftaran = this.$store.getters['uiadmin/getTahunPendaftaran'];              
         this.initialize()
     },  
     data: () => ({ 
@@ -228,7 +228,7 @@ export default {
         },
         printtoexcel: async function()
         {
-            this.btnLoading=true;
+            this.btnLoading = true;
             await this.$ajax.post("/kemahasiswaan/daftarmhs/printtoexcel",
                 {
                     TA: this.tahun_pendaftaran,                                   
@@ -257,7 +257,7 @@ export default {
         },
         syncPermission: async function()
         {
-            this.btnLoading=true;
+            this.btnLoading = true;
             await this.$ajax.post("/system/users/syncallpermissions",
                 {
                     role_name: "mahasiswa",
@@ -277,7 +277,7 @@ export default {
         },
         async resetPassword(item)
         {
-            this.btnLoading=true;
+            this.btnLoading = true;
             await this.$ajax.post("/kemahasiswaan/profil/resetpassword",
                 {
                     user_id:item.user_id,         

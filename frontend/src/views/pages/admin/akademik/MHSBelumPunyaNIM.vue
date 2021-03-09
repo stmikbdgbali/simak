@@ -27,7 +27,7 @@
                     Halaman untuk melihat daftar calon mahasiswa yang sudah melakukan pembayaran daftar ulang tetapi belum memiliki NIM.
                 </v-alert>
             </template>
-        </ModuleHeader>  
+        </ModuleHeader> 
         <v-container fluid>             
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
@@ -175,7 +175,7 @@
                                     <strong>userid:</strong>{{ item.user_id }}          
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
-                                </v-col>             
+                                </v-col>
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -183,7 +183,7 @@
                         </template>   
                     </v-data-table>
                 </v-col>
-            </v-row>            
+            </v-row> 
         </v-container>
         <template v-slot:filtersidebar>
             <Filter7 v-on:changeTahunPendaftaran="changeTahunPendaftaran" v-on:changeProdi="changeProdi" ref="filter7" />	
@@ -223,7 +223,7 @@ export default {
         let prodi_id = this.$store.getters['uiadmin/getProdiID'];
         this.prodi_id = prodi_id;
         this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
-        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];              
+        this.tahun_pendaftaran = this.$store.getters['uiadmin/getTahunPendaftaran'];              
         this.initialize()
     },  
     data: () => ({ 
@@ -327,10 +327,10 @@ export default {
                 this.daftar_dw = data.users; 
             });   
         },
-        save () {
+        save() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;
+                this.btnLoading = true;
                 this.$ajax.post("/akademik/dulang/mhsbelumpunyanim/store",
                 {
                     user_id: this.data_mhs.user_id,

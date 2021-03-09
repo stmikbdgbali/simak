@@ -24,7 +24,7 @@
                     Halaman untuk mengelola nama-nama fakultas pada perguruan tinggi
                 </v-alert>
             </template>
-        </ModuleHeader>   
+        </ModuleHeader>  
         <v-container fluid>             
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
@@ -166,7 +166,7 @@
                             <td :colspan="headers.length" class="text-center">
                                 <v-col cols="12">
                                     <strong>ID:</strong>{{ item.kode_fakultas }}                                   
-                                </v-col>             
+                                </v-col>
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -209,7 +209,7 @@ export default {
         datatableLoading: false,
         expanded: [],
         datatable: [],
-        headers: [                        
+        headers: [
             { text: "KODE FAKULTAS", value: "kode_fakultas", width:150 },   
             { text: "NAMA FAKULTAS", value: "nama_fakultas" },   
             { text: "AKSI", value: "actions", sortable: false, width:100 },
@@ -282,7 +282,7 @@ export default {
         save: async function() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;
+                this.btnLoading = true;
                 if (this.editedIndex > -1) 
                 {
                     await this.$ajax.post("/datamaster/fakultas/" + this.kode_fakultas,
@@ -329,7 +329,7 @@ export default {
             this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data fakultas dengan kode '+item.kode_fakultas+' ?", { color: "red" }).then((confirm) => {
                 if (confirm)
                 {
-                    this.btnLoading=true;
+                    this.btnLoading = true;
                     this.$ajax.post("/datamaster/fakultas/" + item.kode_fakultas,
                         {
                             _method: "DELETE",

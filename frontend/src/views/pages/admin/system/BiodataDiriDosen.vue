@@ -24,7 +24,7 @@
                         berisi informasi biodata diri dosen.
                 </v-alert>
             </template>
-        </ModuleHeader>   
+        </ModuleHeader>  
         <v-container fluid>   
             <form-biodata-diri-dosen />
         </v-container>

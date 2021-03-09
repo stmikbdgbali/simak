@@ -8,6 +8,9 @@
 			<v-btn to="/" class="mr-2" color="primary" text large>
 				Home
 			</v-btn>
+			<v-btn to="/blog/cara-pendaftaran" class="mr-2" color="primary" text large>
+				CARA PENDAFTARAN
+			</v-btn>
 			<v-btn to="/pmb" class="mr-2" color="primary" text large>
 				PENDAFTARAN
 			</v-btn>

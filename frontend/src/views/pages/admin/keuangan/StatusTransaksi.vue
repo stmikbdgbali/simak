@@ -24,7 +24,7 @@
                         Halaman ini berisi informasi status transaksi.
                     </v-alert>
             </template>
-        </ModuleHeader>        
+        </ModuleHeader>       
         <v-container fluid>
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
@@ -50,7 +50,7 @@
                                     inset
                                     vertical
                                 ></v-divider>
-                                <v-spacer></v-spacer>             
+                                <v-spacer></v-spacer>
                             </v-toolbar>
                         </template>  
                         <template v-slot:item.style="props">
@@ -79,7 +79,7 @@
                                     <strong>ID:</strong>{{ item.id_status }}          
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
-                                </v-col>             
+                                </v-col>
                             </td>
                         </template>
                         <template v-slot:no-data>

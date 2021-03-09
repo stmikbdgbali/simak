@@ -24,7 +24,7 @@
                         Halaman ini berisi daftar DOSEN WALI / PENDAMPING AKADEMIK yang bertanggungjawab untuk membantu pembelajaran mahasiswa.
                 </v-alert>
             </template>
-        </ModuleHeader>        
+        </ModuleHeader>       
         <v-container fluid>   
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
@@ -70,7 +70,7 @@
                                     inset
                                     vertical
                                 ></v-divider>
-                                <v-spacer></v-spacer>              
+                                <v-spacer></v-spacer> 
                                 <v-dialog v-model="dialogfrm" max-width="750px" persistent>                 
                                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>
                                         <v-card>
@@ -213,7 +213,7 @@
                                     <strong>ID:</strong>{{ item.id }}                                    
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
-                                </v-col>             
+                                </v-col>
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -265,7 +265,7 @@ export default {
         datatableLoading: false,
         btnLoading: false,      
         //tables
-        headers: [                        
+        headers: [
             { text: "",value: "foto", width: 70, },
             { text: "NIM", value: "nim", width: 100,sortable: true },
             { text: "NAMA MAHASISWA", value: "nama_mhs", width: 250,sortable: true },
@@ -347,7 +347,7 @@ export default {
         },      
         changeDosenWali ()
         {
-            this.btnLoading=true;
+            this.btnLoading = true;
             this.$ajax.post("/akademik/kemahasiswaan/updatedw/" + this.data_mhs.user_id,
                 {
                     _method: "PUT",

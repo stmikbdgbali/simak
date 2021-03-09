@@ -27,7 +27,7 @@
                     Halaman untuk melihat daftar nilai matakuliah per tahun akademik, dan semester yang telah dilakukan.
                 </v-alert>
             </template>
-        </ModuleHeader>   
+        </ModuleHeader>  
         <v-container fluid v-if="Object.keys(datakrs).length">   
             <v-row>   
                 <v-col cols="12">
@@ -91,10 +91,10 @@
                                     </v-card>
                                 </v-col>
                                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
-                            </v-row>            
+                            </v-row> 
                         </v-card-text>
                     </v-card>
-                </v-col>                
+                </v-col>   
             </v-row>
             <v-row>
                 <v-col cols="12">           
@@ -272,7 +272,7 @@ export default {
         },  
         async printpdf()
         {
-            this.btnLoading=true;
+            this.btnLoading = true;
             await this.$ajax.get("/akademik/nilai/khs/printpdf/" + this.krs_id,                
                 {
                     headers: {

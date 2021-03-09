@@ -24,7 +24,7 @@
                                     filled
                                 />
                             </v-col>         
-                        </v-row>           
+                        </v-row>
                         <v-row>
                             <v-col cols="3">
                                 <v-text-field
@@ -318,7 +318,7 @@ export default {
         {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;              
+                this.btnLoading = true;              
                 await this.$ajax.post("/system/usersdosen/biodatadiri/" + this.$store.getters['auth/AttributeUser']("id"),{         
                     _method: "put",
                     nidn: this.formdata.nidn,           

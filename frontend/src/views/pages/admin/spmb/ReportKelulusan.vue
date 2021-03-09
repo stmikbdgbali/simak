@@ -27,7 +27,7 @@
                         Berisi laporan kelulusan calon mahasiswa baru.
                 </v-alert>
             </template>
-        </ModuleHeader>         
+        </ModuleHeader>        
         <v-container fluid>
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
@@ -156,7 +156,7 @@ export default {
         let prodi_id = this.$store.getters['uiadmin/getProdiID'];
         this.prodi_id = prodi_id;
         this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
-        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];              
+        this.tahun_pendaftaran = this.$store.getters['uiadmin/getTahunPendaftaran'];              
         this.initialize()   
     },  
     data: () => ({
@@ -174,7 +174,7 @@ export default {
         datatableLoading: false,
         expanded: [],
         datatable: [],
-        headers: [                        
+        headers: [
             { text: "",value: "foto", width:70 },
             { text: "NO.FORMULIR", value: "no_formulir", width: 120,sortable: true },
             { text: "NAMA MAHASISWA", value: "name", width: 350,sortable: true },
@@ -259,7 +259,7 @@ export default {
         }, 
         printtoexcel: async function()
         {
-            this.btnLoading=true;
+            this.btnLoading = true;
             await this.$ajax.post("/spmb/reportspmbkelulusan/printtoexcel",
                 {
                     TA: this.tahun_pendaftaran,                                   

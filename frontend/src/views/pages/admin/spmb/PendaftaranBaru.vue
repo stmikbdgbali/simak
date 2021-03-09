@@ -27,7 +27,7 @@
                         Berisi pendaftar baru, silahkan melakukan filter tahun akademik dan program studi. CATATAN: Melakukan perubahan terhadap Prodi, Kelas, dan Tahun Pendaftaran Mahasiswa Baru tidak berpengaruh terhadap Transaksi keuangan yang telah dilakukannya.
                     </v-alert>
             </template>
-        </ModuleHeader>  
+        </ModuleHeader> 
         <v-container fluid>    
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
@@ -369,7 +369,7 @@ export default {
         let prodi_id = this.$store.getters['uiadmin/getProdiID'];
         this.prodi_id = prodi_id;
         this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
-        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];      
+        this.tahun_pendaftaran = this.$store.getters['uiadmin/getTahunPendaftaran'];      
         this.initialize();
     },
     data: () => ({ 
@@ -387,7 +387,7 @@ export default {
         btnLoadingFakultas: false,
                   
         //tables
-        headers: [                        
+        headers: [
             { text: "",value: "foto", width:70 },        
             { text: "NAMA MAHASISWA", value: "name", width: 350,sortable: true },
             { text: "USERNAME", value: "username",sortable: true },
@@ -509,7 +509,7 @@ export default {
         },
         aktifkan(id)
         {
-            this.btnLoading=true;
+            this.btnLoading = true;
             this.$ajax.post("/akademik/kemahasiswaan/updatestatus/" + id,
                 {
                     _method: "PUT",
@@ -529,7 +529,7 @@ export default {
         },
         syncPermission: async function()
         {
-            this.btnLoading=true;
+            this.btnLoading = true;
             await this.$ajax.post("/system/users/syncallpermissions",
                 {
                     role_name: "mahasiswabaru",
@@ -549,7 +549,7 @@ export default {
         },
         async addItem ()
         {
-            this.daftar_ta=this.$store.getters['uiadmin/getDaftarTA'];
+            this.daftar_ta = this.$store.getters['uiadmin/getDaftarTA'];
             this.formdata.ta=this.tahun_pendaftaran;
             this.formdata.prodi_id=this.prodi_id;
 
@@ -570,7 +570,7 @@ export default {
         save: async function() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;
+                this.btnLoading = true;
                 if (this.editedIndex > -1) 
                 {
                     await this.$ajax.post("/spmb/pmb/updatependaftar/" + this.formdata.id,
@@ -625,7 +625,7 @@ export default {
         },
         async resend(id)
         {
-            this.btnLoading=true;
+            this.btnLoading = true;
             await this.$ajax.post("/spmb/pmb/resend",
                 {
                     id:id,                    
@@ -650,7 +650,7 @@ export default {
             this.editedIndex = this.datatable.indexOf(item);
             this.formdata = Object.assign({}, item);
             this.formdata.nomor_hp='+'+this.formdata.nomor_hp;
-            this.daftar_ta=this.$store.getters['uiadmin/getDaftarTA'];
+            this.daftar_ta = this.$store.getters['uiadmin/getDaftarTA'];
             if (this.$store.getters['uifront/getBentukPT']== "universitas")
             {     
                 await this.$ajax.get("/datamaster/fakultas").then(({ data })=>{         
@@ -685,7 +685,7 @@ export default {
             this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus MAHASISWA BARU '+item.name+' ?", { color: "red" }).then((confirm) => {
                 if (confirm)
                 {
-                    this.btnLoading=true;
+                    this.btnLoading = true;
                     this.$ajax.post("/spmb/pmb/" + item.id,
                         {
                             _method: "DELETE",

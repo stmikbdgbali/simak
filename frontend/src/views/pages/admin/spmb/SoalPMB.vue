@@ -27,7 +27,7 @@
                     Berisi Soal PMB yang dikelompokan berdasarkan tahun akademik dan semester.
                 </v-alert>
             </template>
-        </ModuleHeader>   
+        </ModuleHeader>  
         <v-container fluid>            
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
@@ -297,7 +297,7 @@
                                     <strong>id: </strong>{{ item.id }}
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
-                                </v-col>             
+                                </v-col>
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -336,7 +336,7 @@ export default {
                 href: "#"
             }
         ];
-        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];      
+        this.tahun_pendaftaran = this.$store.getters['uiadmin/getTahunPendaftaran'];      
         this.semester_pendaftaran=this.$store.getters['uiadmin/getSemesterPendaftaran'];
         this.nama_semester_pendaftaran=this.$store.getters['uiadmin/getNamaSemester'](this.semester_pendaftaran);
         this.initialize()
@@ -353,7 +353,7 @@ export default {
         datatableLoading: false,
         expanded: [],
         datatable: [],
-        headers: [                                    
+        headers: [            
             { text: "NAMA SOAL", value: "soal" },   
             { text: "AKSI", value: "actions", sortable: false, width:100 },
         ],
@@ -521,7 +521,7 @@ export default {
         save: async function() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;
+                this.btnLoading = true;
                 if (this.editedIndex > -1) 
                 {
                     await this.$ajax.post("/spmb/soalpmb/" + this.formdata.id,
@@ -575,7 +575,7 @@ export default {
             this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data dengan ID '+item.id+' ?", { color: "red" }).then((confirm) => {
                 if (confirm)
                 {
-                    this.btnLoading=true;
+                    this.btnLoading = true;
                     this.$ajax.post("/spmb/soalpmb/" + item.id,
                         {
                             _method: "DELETE",

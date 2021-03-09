@@ -27,7 +27,7 @@
                     Berisi daftar dan pengelolaan jadwal ujian PMB.
                 </v-alert>
             </template>
-        </ModuleHeader>   
+        </ModuleHeader>  
         <v-container fluid>             
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
@@ -427,7 +427,7 @@ export default {
                 href: "#"
             }
         ];      
-        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];      
+        this.tahun_pendaftaran = this.$store.getters['uiadmin/getTahunPendaftaran'];      
         this.semester_pendaftaran=this.$store.getters['uiadmin/getSemesterPendaftaran'];
         this.nama_semester_pendaftaran=this.$store.getters['uiadmin/getNamaSemester'](this.semester_pendaftaran);
         this.initialize();
@@ -448,7 +448,7 @@ export default {
             datatableLoading: false,
             expanded: [],
             datatable: [],
-            headers: [                                        
+            headers: [                
                 { text: "NAMA UJIAN", value: "nama_kegiatan", sortable: true,width:300 },
                 { text: "TGL. UJIAN", value: "tanggal_ujian", sortable: true,width:100 },
                 { text: "TGL. AKHIR PENDAFTARAN", value: "tanggal_akhir_daftar", sortable: true,width:100 },
@@ -571,7 +571,7 @@ export default {
         },
         addItem: async function()
         {
-            this.btnLoading=true;
+            this.btnLoading = true;
             await this.$ajax.get("/datamaster/ruangankelas",       
             {
                 headers: {
@@ -605,7 +605,7 @@ export default {
         },  
         mulaiUjian: async function()
         {
-            this.btnLoading=true;
+            this.btnLoading = true;
             await this.$ajax.post("/spmb/jadwalujianpmb/updatestatusujian/" + this.formdata.id,
             {
                 _method: "PUT",
@@ -641,7 +641,7 @@ export default {
         save: async function() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;
+                this.btnLoading = true;
                 if (this.editedIndex > -1) 
                 {
                     await this.$ajax.post("/spmb/jadwalujianpmb/" + this.formdata.id,
@@ -702,7 +702,7 @@ export default {
             this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data dengan ID '+item.id+' ?", { color: "red" }).then((confirm) => {
                 if (confirm)
                 {
-                    this.btnLoading=true;
+                    this.btnLoading = true;
                     this.$ajax.post("/spmb/jadwalujianpmb" + item.id,
                         {
                             _method: "DELETE",

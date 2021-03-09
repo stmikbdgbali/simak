@@ -24,7 +24,7 @@
                         Halaman ini berisi daftar DOSEN WALI / PENDAMPING AKADEMIK yang bertanggungjawab untuk membantu pembelajaran mahasiswa.
                 </v-alert>
             </template>
-        </ModuleHeader>        
+        </ModuleHeader>       
         <v-container fluid>    
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
@@ -65,7 +65,7 @@
                                     inset
                                     vertical
                                 ></v-divider>
-                                <v-spacer></v-spacer>              
+                                <v-spacer></v-spacer> 
                             </v-toolbar>
                         </template>
                         <template v-slot:item.nidn="{ item }">
@@ -105,7 +105,7 @@
                                     <strong>Email:</strong>{{ item.email }}
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
-                                </v-col>             
+                                </v-col>
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -150,7 +150,7 @@ export default {
         datatableLoading: false,
         btnLoading: false,      
         //tables
-        headers: [                        
+        headers: [
             { text: "",value: "foto" },
             { text: "USERNAME", value: "username",sortable: true },
             { text: "NAMA DOSEN", value: "name",sortable: true },
@@ -196,7 +196,7 @@ export default {
             this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus dosen wali '+item.username+' ?", { color: "red" }).then((confirm) => {
                 if (confirm)
                 {
-                    this.btnLoading=true;
+                    this.btnLoading = true;
                     this.$ajax.post("/akademik/dosenwali" + item.id,
                         {
                             _method: "DELETE",

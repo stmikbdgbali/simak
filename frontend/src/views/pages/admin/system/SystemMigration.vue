@@ -203,7 +203,7 @@ export default {
         ],
         
         datatableLoading: false,
-        headers: [                                                
+        headers: [                        
             { text: "TAHUN AKADEMIK", value: "ta",sortable: false },
             { text: "SEMESTER", value: "semester",sortable: false },
             { text: "STATUS", value: "k_status",sortable: false, width:250 },  
@@ -251,10 +251,10 @@ export default {
             this.firstloading = false;          
             this.$refs.filter9.setFirstTimeLoading(this.firstloading); 
         },
-        save () {
+        save() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;
+                this.btnLoading = true;
                 
                 this.$ajax.post("/system/migration/store",
                     {

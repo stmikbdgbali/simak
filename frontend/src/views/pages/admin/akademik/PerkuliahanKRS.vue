@@ -154,7 +154,7 @@
                                     <strong>krs_id:</strong>{{ item.id }}          
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
-                                </v-col>             
+                                </v-col>
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -162,7 +162,7 @@
                         </template>   
                     </v-data-table>
                 </v-col>
-            </v-row>            
+            </v-row> 
         </v-container>
     </AkademikLayout>
 </template>
@@ -329,7 +329,7 @@ export default {
         },
         async printpdf(item)
         {
-            this.btnLoading=true;
+            this.btnLoading = true;
             await this.$ajax.get("/akademik/perkuliahan/krs/printpdf/" + item.id,                
                 {
                     headers: {

@@ -27,7 +27,7 @@
                     Halaman berisi daftar transkrip nilai berdasarkan kurikulum. 
                 </v-alert>
             </template>
-        </ModuleHeader>        
+        </ModuleHeader>       
         <v-container fluid>      
             <v-row> 
                 <v-col cols="12">
@@ -200,7 +200,7 @@
                                     <strong>ID:</strong>{{ item.krsmatkul_id }}
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
-                                </v-col>             
+                                </v-col>
                             </td>
                         </template>
                     </v-data-table>
@@ -252,7 +252,7 @@ export default {
         let prodi_id = this.$store.getters['uiadmin/getProdiID'];
         this.prodi_id = prodi_id;
         this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
-        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];              
+        this.tahun_pendaftaran = this.$store.getters['uiadmin/getTahunPendaftaran'];              
         this.initialize()
     },  
     data: () => ({ 
@@ -291,7 +291,7 @@ export default {
         data_matkul: {},
         data_history: [],
         expanded: [],
-        history_headers: [                                    
+        history_headers: [            
             { text: "NILAI HURUF", value: "n_kual",sortable: true,width:80, },                        
             { text: "NILAI AKHIR", value: "n_kuan",sortable: false, width:100, },            
             { text: "NILAI MUTU", value: "n_mutu",sortable: true,width:100, },            
@@ -338,7 +338,7 @@ export default {
         },    
         async viewItem(item)
         {
-            this.btnLoading=true;
+            this.btnLoading = true;
             await this.$ajax.post("/akademik/nilai/transkripkurikulum/" + item.id + "/history",                
                 {
                     user_id: this.data_mhs.user_id,
@@ -371,7 +371,7 @@ export default {
         },
         async printpdf1()
         {
-            this.btnLoading=true;
+            this.btnLoading = true;
             await this.$ajax.get("/akademik/nilai/transkripkurikulum/printpdf1/" + this.data_mhs.user_id,                
                 {
                     headers: {
@@ -389,7 +389,7 @@ export default {
         },
         async printpdf2()
         {
-            this.btnLoading=true;
+            this.btnLoading = true;
             await this.$ajax.get("/akademik/nilai/transkripkurikulum/printpdf2/" + this.data_mhs.user_id,                
                 {
                     headers: {

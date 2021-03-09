@@ -27,13 +27,13 @@
                     Halaman untuk melakukan pengisian nilai berdasarkan kelas mahasiswa yang telah dibentuk pada pembagian kelas.
                 </v-alert>
             </template>
-        </ModuleHeader>        
+        </ModuleHeader>       
         <v-container fluid v-if="data_kelas_mhs">        
             <v-row>
                 <v-col cols="12">         
                     <DataKelasMHS :datakelas="data_kelas_mhs" />
                 </v-col>
-            </v-row>            
+            </v-row> 
             <v-row>                 
                 <v-col cols="12">  
                     <v-alert type="warning">
@@ -85,7 +85,7 @@
                                         inset
                                         vertical
                                     ></v-divider>
-                                    <v-spacer></v-spacer>             
+                                    <v-spacer></v-spacer>
                                 </v-toolbar>
                             </template>
                             <template v-slot:item.idkelas="{item}">
@@ -179,7 +179,7 @@
                         </v-data-table>       
                     </v-form>
                 </v-col>     
-            </v-row>            
+            </v-row> 
         </v-container>        
     </AkademikLayout>
 </template>

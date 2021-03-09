@@ -27,7 +27,7 @@
                         Berisi laporan formulir pendaftaran, silahkan melakukan filter tahun akademik dan program studi.
                 </v-alert>
             </template>
-        </ModuleHeader> 
+        </ModuleHeader>
         <v-container fluid>
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
@@ -98,7 +98,7 @@
                                     <strong>ID:</strong>{{ item.id }}
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
-                                </v-col>             
+                                </v-col>
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -142,7 +142,7 @@ export default {
         let fakultas_id=this.$store.getters['uiadmin/getFakultasID'];
         this.fakultas_id=fakultas_id;
         this.nama_fakultas=this.$store.getters['uiadmin/getFakultasName'](fakultas_id);
-        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];              
+        this.tahun_pendaftaran = this.$store.getters['uiadmin/getTahunPendaftaran'];              
         this.initialize()   
     },  
     data: () => ({
@@ -159,7 +159,7 @@ export default {
         datatableLoading: false,
         expanded: [],
         datatable: [],
-        headers: [                        
+        headers: [
             { text: "",value: "foto", width:70 },
             { text: "NAMA MAHASISWA", value: "name", width: 350,sortable: true },
             { text: "NOMOR HP", value: "nomor_hp", width: 100},
@@ -225,7 +225,7 @@ export default {
         },
         printtoexcel: async function()
         {
-            this.btnLoading=true;
+            this.btnLoading = true;
             await this.$ajax.post("/spmb/reportspmbfakultas/printtoexcel",
                 {
                     TA: this.tahun_pendaftaran,                                   

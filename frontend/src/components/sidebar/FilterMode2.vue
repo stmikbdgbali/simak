@@ -21,10 +21,10 @@ export default {
     name: "FilterMode6",
     created()
     {
-        this.daftar_ta=this.$store.getters['uiadmin/getDaftarTA'];
+        this.daftar_ta = this.$store.getters['uiadmin/getDaftarTA'];
         this.tahun_akademik=this.$store.getters['uiadmin/getTahunAkademik'];
         
-        this.daftar_semester=this.$store.getters['uiadmin/getDaftarSemester'];
+        this.daftar_semester = this.$store.getters['uiadmin/getDaftarSemester'];
         this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];
     },
     data:()=>({

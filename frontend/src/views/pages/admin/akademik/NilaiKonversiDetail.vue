@@ -27,7 +27,7 @@
                     Halaman ini digunakan untuk mengelola konversi nilai mahasiswa pindahan/ampulan 
                 </v-alert>
             </template>
-        </ModuleHeader>                
+        </ModuleHeader>               
         <v-container fluid v-if="data_konversi.id">      
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
@@ -290,7 +290,7 @@
                                     inset
                                     vertical
                                 ></v-divider>
-                                <v-spacer></v-spacer>               
+                                <v-spacer></v-spacer>  
                             </v-toolbar>
                         </template>     
                         <template v-slot:item.kmatkul_asal="{item}">             
@@ -320,7 +320,7 @@
                         </template>
                     </v-data-table>
                 </v-col>
-            </v-row>            
+            </v-row> 
         </v-container>        
         <v-dialog v-model="dialogprintpdf" max-width="500px" persistent>                
             <v-card>
@@ -380,7 +380,7 @@ export default {
         let prodi_id = this.$store.getters['uiadmin/getProdiID'];
         this.prodi_id = prodi_id;
         this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
-        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];              
+        this.tahun_pendaftaran = this.$store.getters['uiadmin/getTahunPendaftaran'];              
         this.initialize()
     },  
     data: () => ({ 
@@ -457,7 +457,7 @@ export default {
         save: async function() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;
+                this.btnLoading = true;
 
                 var daftar_nilai=[];
                 this.datatable.forEach(item => {
@@ -525,7 +525,7 @@ export default {
         },
         async printpdf2(item)
         {
-            this.btnLoading=true;
+            this.btnLoading = true;
             await this.$ajax.get("/akademik/nilai/transkripkurikulum/printpdf2/" + item.user_id,                
                 {
                     headers: {
@@ -550,7 +550,7 @@ export default {
         }, 
         async pasangkan()
         {
-            this.btnLoading=true;
+            this.btnLoading = true;
             await this.$ajax.post("/akademik/nilai/konversi/plugtomhs",                
                 {
                     nilai_konversi_id: this.nilai_konversi_id,
@@ -573,7 +573,7 @@ export default {
             this.$root.$confirm.open("Delete", "Apakah Anda ingin memutuskan dengan data mahasiswa ?", { color: "red" }).then((confirm) => {
                 if (confirm)
                 {
-                    this.btnLoading=true;
+                    this.btnLoading = true;
                     this.$ajax.post("/akademik/nilai/konversi/unplugtomhs",
                         {
                             nilai_konversi_id: this.nilai_konversi_id,                            

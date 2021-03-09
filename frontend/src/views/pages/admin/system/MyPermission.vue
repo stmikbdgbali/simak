@@ -24,7 +24,7 @@
                     Daftar aksi-aksi terhadap sebuah modul. Format penulisan permission, NAMAMODULE atau NAMA MODULE. Nama Permission tighly coupling dengan kode sumber.
                 </v-alert>
             </template>
-        </ModuleHeader>        
+        </ModuleHeader>       
         <v-container fluid>    
             <v-row class="mb-4" no-gutters>
                 <v-col xs="12" sm="12" md="12">
@@ -65,7 +65,7 @@
                                     inset
                                     vertical
                                 ></v-divider>
-                                <v-spacer></v-spacer>                        
+                                <v-spacer></v-spacer>           
                             </v-toolbar>
                         </template>    
                         <template v-slot:expanded-item="{ headers, item }">
@@ -118,7 +118,7 @@ export default {
         expanded: [],
         daftar_permissions: [],
         //tables
-        headers: [                        
+        headers: [
             { text: "NAMA PERMISSION", value: "name" },
             { text: "GUARD", value: "guard_name" },         
         ],

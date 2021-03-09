@@ -27,7 +27,7 @@
                         Berisi nilai ujian PMB, dan juga bisa untuk penentuan nilai ujian dan kelulusan.
                 </v-alert>
             </template>
-        </ModuleHeader> 
+        </ModuleHeader>
         <v-container fluid v-if="dashboard=='mahasiswabaru'">
             <FormMhsBaru/>
         </v-container>
@@ -127,7 +127,7 @@
                                                     </v-card>
                                                 </v-col>
                                                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
-                                            </v-row>           
+                                            </v-row>
                                             <v-row>
                                                 <v-col cols="12">
                                                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>
@@ -275,7 +275,7 @@ export default {
         let prodi_id = this.$store.getters['uiadmin/getProdiID'];
         this.prodi_id = prodi_id;
         this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
-        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];              
+        this.tahun_pendaftaran = this.$store.getters['uiadmin/getTahunPendaftaran'];              
         this.initialize()   
     },  
     data: () => ({
@@ -294,7 +294,7 @@ export default {
         datatableLoading: false,
         expanded: [],
         datatable: [],
-        headers: [                        
+        headers: [
             { text: "",value: "foto", width:70 },
             { text: "NO. FORMULIR", value: "no_formulir", width: 135,sortable: true },
             { text: "NAMA MAHASISWA", value: "name", width: 350,sortable: true },
@@ -457,10 +457,10 @@ export default {
                 }         
             });            
         },
-        save () {
+        save() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;                    
+                this.btnLoading = true;                    
                 if (this.editedItem > 0)
                 {
                     this.$ajax.post("/spmb/nilaiujian/" + this.formdata.user_id,

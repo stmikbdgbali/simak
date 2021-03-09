@@ -338,7 +338,7 @@ export default {
         save: async function() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;
+                this.btnLoading = true;
                 await this.$ajax.post("/akademik/perkuliahan/pembagiankelas/store",
                     {
                         user_id: this.dosen_id,

@@ -27,7 +27,7 @@
                         Halaman ini digunakan untuk menampilkan hasil ujian PMB Calon Mahasiswa baru
                 </v-alert>
             </template>
-        </ModuleHeader> 
+        </ModuleHeader>
         <v-container fluid>            
             <v-row class="mb-4" no-gutters>                
                     
@@ -71,7 +71,7 @@ export default {
         let prodi_id = this.$store.getters['uiadmin/getProdiID'];
         this.prodi_id = prodi_id;
         this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
-        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];              
+        this.tahun_pendaftaran = this.$store.getters['uiadmin/getTahunPendaftaran'];              
         this.initialize()   
     },  
     data: () => ({        
@@ -87,7 +87,7 @@ export default {
         datatableLoading: false,
         expanded: [],
         datatable: [],
-        headers: [                        
+        headers: [
             { text: "",value: "foto", width:70 },
             { text: "NO.FORMULIR", value: "no_formulir", width: 120,sortable: true },
             { text: "NAMA MAHASISWA", value: "name", width: 350,sortable: true },
@@ -214,10 +214,10 @@ export default {
                 }         
             });            
         },
-        save () {
+        save() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;                    
+                this.btnLoading = true;                    
                 if (this.editedItem > 0)
                 {
                     this.$ajax.post("/spmb/nilaiujian/" + this.formdata.user_id,

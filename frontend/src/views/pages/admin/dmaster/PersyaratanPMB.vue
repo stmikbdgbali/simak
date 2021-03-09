@@ -27,7 +27,7 @@
                     Halaman untuk mengelola persyaratan PMB setiap tahun pendaftaran.
                 </v-alert>
             </template>
-        </ModuleHeader>   
+        </ModuleHeader>  
         <v-container fluid>             
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
@@ -173,7 +173,7 @@
                                                     </v-card>
                                                 </v-col>
                                                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
-                                            </v-row>                                                                                                            
+                                            </v-row>                     
                                         </v-card-text>
                                         <v-card-actions>
                                             <v-spacer></v-spacer>
@@ -244,7 +244,7 @@
                                     <strong>ID:</strong>{{ item.id }}          
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
-                                </v-col>             
+                                </v-col>
                             </td>
                         </template>     
                         <template v-slot:no-data>
@@ -284,7 +284,7 @@ export default {
                 href: "#"
             }
         ];      
-        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];              
+        this.tahun_pendaftaran = this.$store.getters['uiadmin/getTahunPendaftaran'];              
         this.initialize()
     },  
     data: () => ({ 
@@ -404,7 +404,7 @@ export default {
         save: async function() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;
+                this.btnLoading = true;
                 if (this.editedIndex > -1) 
                 {
                     await this.$ajax.post("/datamaster/persyaratan/" + this.formdata.id,
@@ -451,7 +451,7 @@ export default {
         {
             if (this.$refs.frmdialogcopypersyaratan.validate())
             {
-                this.btnLoading=true;
+                this.btnLoading = true;
                 this.$ajax.post("/datamaster/persyaratan/salin/" + this.tahun_pendaftaran,
                     {
                         dari_tahun_pendaftaran: this.dari_tahun_pendaftaran,
@@ -475,7 +475,7 @@ export default {
             this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus persyaratan " + item.nama_persyaratan + " ?", { color: "red" }).then((confirm) => {
                 if (confirm)
                 {
-                    this.btnLoading=true;
+                    this.btnLoading = true;
                     this.$ajax.post("/datamaster/persyaratan/" + item.id,
                         {
                             _method: "DELETE",

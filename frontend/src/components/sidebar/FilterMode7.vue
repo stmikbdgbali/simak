@@ -24,8 +24,8 @@ export default {
         this.daftar_prodi=this.$store.getters['uiadmin/getDaftarProdi'];
         this.prodi_id=this.$store.getters['uiadmin/getProdiID'];                                  
 
-        this.daftar_ta=this.$store.getters['uiadmin/getDaftarTA'];
-        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];
+        this.daftar_ta = this.$store.getters['uiadmin/getDaftarTA'];
+        this.tahun_pendaftaran = this.$store.getters['uiadmin/getTahunPendaftaran'];
     },
     data:()=>({
         firstloading: true,

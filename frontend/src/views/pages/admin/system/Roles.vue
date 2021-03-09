@@ -24,7 +24,7 @@
                     Masing-masing user bisa memiliki beberapa role, minimal 1 role untuk bisa menggunakan sistem. Setiap role memiliki permission.
                     </v-alert>
             </template>
-        </ModuleHeader>  
+        </ModuleHeader> 
          <v-container fluid>    
             <v-row class="mb-4" no-gutters>
                 <v-col xs="12" sm="12" md="12">
@@ -261,7 +261,7 @@ export default {
         daftar_permissions: [],
         permissions_selected: [],
         //tables
-        headers: [                        
+        headers: [
             { text: "NAMA ROLE", value: "name" },
             { text: "GUARD", value: "guard_name" },        
             { text: "AKSI", value: "actions", sortable: false,width:130 },
@@ -391,11 +391,11 @@ export default {
             this.permissions_selected=[];
             this.dialogRolePermission = false;
         },
-        save () {
+        save() {
             this.form_error_message='';
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;
+                this.btnLoading = true;
                 if (this.editedIndex > -1) 
                 {
                     this.$ajax.post("/system/setting/roles/" + this.editedItem.id,

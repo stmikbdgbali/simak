@@ -24,8 +24,8 @@ export default {
         this.daftar_fakultas=this.$store.getters['uiadmin/getDaftarFakultas'];
         this.fakultas_id=this.$store.getters['uiadmin/getFakultasID'];                                  
         
-        this.daftar_ta=this.$store.getters['uiadmin/getDaftarTA'];
-        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran']; 
+        this.daftar_ta = this.$store.getters['uiadmin/getDaftarTA'];
+        this.tahun_pendaftaran = this.$store.getters['uiadmin/getTahunPendaftaran']; 
     },
     data:()=>({
         firstloading: true,

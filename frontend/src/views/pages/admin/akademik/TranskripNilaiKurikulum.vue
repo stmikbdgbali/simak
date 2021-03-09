@@ -124,7 +124,7 @@
                             <td :colspan="headers.length" class="text-center">
                                 <v-col cols="12">       
                                     <strong>user_id:</strong>{{ item.user_id }}                                              
-                                </v-col>             
+                                </v-col>
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -132,7 +132,7 @@
                         </template>   
                     </v-data-table>
                 </v-col>
-            </v-row>            
+            </v-row> 
         </v-container>
         <v-dialog v-model="dialogprintpdf" max-width="500px" persistent>                
             <v-card>
@@ -187,7 +187,7 @@ export default {
         let prodi_id = this.$store.getters['uiadmin/getProdiID'];
         this.prodi_id = prodi_id;
         this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
-        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];              
+        this.tahun_pendaftaran = this.$store.getters['uiadmin/getTahunPendaftaran'];              
         this.initialize()
     },  
     data: () => ({ 
@@ -264,7 +264,7 @@ export default {
         },
         async printpdf2(item)
         {
-            this.btnLoading=true;
+            this.btnLoading = true;
             await this.$ajax.get("/akademik/nilai/transkripkurikulum/printpdf2/" + item.user_id,                
                 {
                     headers: {

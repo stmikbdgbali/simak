@@ -24,7 +24,7 @@
                     Halaman untuk mengelola nama bank sebagai penampung dana pembayaran mahasiswa.
                 </v-alert>
             </template>
-        </ModuleHeader>   
+        </ModuleHeader>  
         <v-container fluid> 
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
@@ -220,7 +220,7 @@
                                     <strong>ID:</strong>{{ item.id }}     
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}                               
-                                </v-col>             
+                                </v-col>
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -263,7 +263,7 @@ export default {
         datatableLoading: false,
         expanded: [],
         datatable: [],
-        headers: [                        
+        headers: [
             { text: "NAMA BANK", value: "nama_bank", width: 350 },   
             { text: "CABANG", value: "nama_cabang" },   
             { text: "NOMOR REKENING", value: "nomor_rekening" },   
@@ -354,7 +354,7 @@ export default {
         save: async function() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;
+                this.btnLoading = true;
                 if (this.editedIndex > -1) 
                 {
                     await this.$ajax.post("/keuangan/transferbank/" + this.formdata.id,
@@ -405,7 +405,7 @@ export default {
             this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data dengan ID '+item.id+' ?", { color: "red" }).then((confirm) => {
                 if (confirm)
                 {
-                    this.btnLoading=true;
+                    this.btnLoading = true;
                     this.$ajax.post("/keuangan/transferbank/" + item.id,
                         {
                             _method: "DELETE",

@@ -282,7 +282,7 @@ export default {
         
         total_tidak_lulus:0,
         daftar_tidak_lulus: [],
-        headers: [                        
+        headers: [
             { text: "NAMA PRODI", value: "nama_prodi", sortable: false},
             { text: "JENJANG", value: "nama_jenjang", sortable: false},
             { text: "JUMLAH", align: "end",value: "jumlah", sortable: false}, 

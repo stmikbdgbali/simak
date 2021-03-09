@@ -24,7 +24,7 @@
                     Mengatur css class untuk layout
                     </v-alert>
             </template>
-        </ModuleHeader> 
+        </ModuleHeader>
         <v-container fluid>  
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
@@ -66,7 +66,7 @@
                                 </v-text-field>             
                             </v-card-text>
                             <v-card-actions>
-                                <v-spacer></v-spacer>             
+                                <v-spacer></v-spacer>
                                 <v-btn 
                                     color="blue darken-1" 
                                     text 
@@ -83,7 +83,7 @@
 </template>
 <script>
 import {mapGetters} from 'vuex';
-import SystemConfigLayout from '@/views/layouts/SystemConfigLayout';
+import SystemConfigLayout from "@/views/layouts/SystemConfigLayout";
 import ModuleHeader from "@/components/ModuleHeader";
 export default {
     name: "ThemesLayout",
@@ -150,10 +150,10 @@ export default {
             });        
             
         },
-        save () {
+        save() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;              
+                this.btnLoading = true;              
                 this.$ajax.post("/system/setting/variables",
                     {
                         _method: "PUT", 

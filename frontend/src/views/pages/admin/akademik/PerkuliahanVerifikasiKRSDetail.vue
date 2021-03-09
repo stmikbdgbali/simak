@@ -27,19 +27,19 @@
                     Halaman untuk melihat detail dan verifikasi krs mahasiswa 
                 </v-alert>
             </template>
-        </ModuleHeader>   
+        </ModuleHeader>  
         <v-container fluid v-if="Object.keys(datakrs).length">   
             <v-row> 
                 <v-col cols="12">
                     <DataKRS :datakrs="datakrs" url="/akademik/perkuliahan/krs/verifikasi" :totalmatkul="totalMatkul" :totalsks="totalSKS" />
                 </v-col>
-            </v-row>            
+            </v-row> 
             <v-row>
                 <v-col cols="12">           
                     <v-card>
                         <v-card-title>
                             DAFTAR MATAKULIAH
-                            <v-spacer></v-spacer>                   
+                            <v-spacer></v-spacer>      
                         </v-card-title>
                         <v-card-text>
                             <v-data-table        

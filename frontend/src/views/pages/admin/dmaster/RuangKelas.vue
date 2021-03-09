@@ -283,7 +283,7 @@ export default {
         save: async function() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;
+                this.btnLoading = true;
                 if (this.editedIndex > -1)
                 {
                     await this.$ajax.post("/datamaster/ruangankelas/" + this.formdata.id,
@@ -330,7 +330,7 @@ export default {
             this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data dengan ID '+item.id+' ?", { color: "red" }).then((confirm) => {
                 if (confirm)
                 {
-                    this.btnLoading=true;
+                    this.btnLoading = true;
                     this.$ajax.post("/datamaster/ruangankelas/" + item.id,
                         {
                             _method: "DELETE",

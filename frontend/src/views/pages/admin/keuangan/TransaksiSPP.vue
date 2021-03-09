@@ -75,7 +75,7 @@
                                     inset
                                     vertical
                                 ></v-divider>
-                                <v-spacer></v-spacer>                 
+                                <v-spacer></v-spacer>    
                                 <v-btn color="primary" icon outlined small class="ma-2" @click.stop="addItem">
                                     <v-icon>mdi-plus</v-icon>
                                 </v-btn>   
@@ -229,7 +229,7 @@ export default {
         //tables
         datatableLoading: false,       
         datatable: [],
-        headers: [                                                
+        headers: [                        
             { text: "KODE BILLING", value: "no_transaksi", width: 100,sortable: true },
             { text: "TANGGAL", value: "tanggal", width: 90,sortable: true },
             { text: "NIM", value: "nim",sortable: true,width:100 },
@@ -306,7 +306,7 @@ export default {
         },
         async addItem ()
         {
-            this.daftar_semester=this.$store.getters['uiadmin/getDaftarSemester'];
+            this.daftar_semester = this.$store.getters['uiadmin/getDaftarSemester'];
             this.formdata.semester_akademik=this.semester_akademik;
             if (this.dashboard == "mahasiswa")
             {

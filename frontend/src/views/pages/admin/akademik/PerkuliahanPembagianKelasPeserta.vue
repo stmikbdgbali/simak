@@ -27,7 +27,7 @@
                     Halaman untuk melakukan menambah peserta pada kelas terpilih.
                 </v-alert>
             </template>
-        </ModuleHeader>        
+        </ModuleHeader>       
         <v-container fluid v-if="data_kelas_mhs">        
             <v-row>
                 <v-col cols="12">         
@@ -163,7 +163,7 @@
                                                     <strong>ID:</strong>{{ item.id }}
                                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
-                                                </v-col>             
+                                                </v-col>
                                             </td>
                                         </template>
                                         <template v-slot:no-data>
@@ -203,7 +203,7 @@
                                     inset
                                     vertical
                                 ></v-divider>
-                                <v-spacer></v-spacer>             
+                                <v-spacer></v-spacer>
                                 <v-tooltip bottom>             
                                     <template v-slot:activator="{ on, attrs }">        
                                         <v-btn 
@@ -418,7 +418,7 @@ export default {
         save: async function() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;
+                this.btnLoading = true;
                 await this.$ajax.post("/akademik/perkuliahan/pembagiankelas/storepeserta",
                     {
                         kelas_mhs_id: this.kelas_mhs_id,                        
@@ -440,7 +440,7 @@ export default {
         savematakuliah: async function() {
             if (this.$refs.frmdatamatkul.validate())
             {
-                this.btnLoading=true;
+                this.btnLoading = true;
                 await this.$ajax.post("/akademik/perkuliahan/pembagiankelas/storematakuliah",
                     {
                         kelas_mhs_id: this.kelas_mhs_id,                        
@@ -464,7 +464,7 @@ export default {
             this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data matakuliah di kelas ini dengan ID '+item.id+' ?", { color: "red", width:600,'desc': "proses ini juga menghapus seluruh mahasiswa yang mengontrak matakuliah di kelas ini." }).then((confirm) => {
                 if (confirm)
                 {
-                    this.btnLoading=true;
+                    this.btnLoading = true;
                     this.$ajax.post("/akademik/perkuliahan/pembagiankelas/deletematkul/" + item.id,
                         {
                             _method: "DELETE",
@@ -488,7 +488,7 @@ export default {
             this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data mahasiswa di kelas ini dengan ID '+item.id+' ?", { color: "red" }).then((confirm) => {
                 if (confirm)
                 {
-                    this.btnLoading=true;
+                    this.btnLoading = true;
                     this.$ajax.post("/akademik/perkuliahan/pembagiankelas/deletepeserta/" + item.id,
                         {
                             _method: "DELETE",
