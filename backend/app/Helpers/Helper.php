@@ -192,13 +192,12 @@ class Helper {
         }
         return $result;
     }
-
     public static function public_path($path = null)
     {
-        return rtrim(app()->basePath('storages/app/public/' . $path), '/');
+        return rtrim(app()->basePath('storage/app/public/' . $path), '/');
     }
     public static function exported_path()
     {
-        return app()->basePath('storages/app/exported/');
+        return app()->basePath('storage/app/exported/');
     }
 }
