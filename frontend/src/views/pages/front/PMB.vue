@@ -307,7 +307,7 @@
 					this.$refs.frmkonfirmasi.reset();
 					this.frmkonfirmasi = Object.assign(
 						{},
-						{ email: "",code: "" }
+						{ email: "", code: "" }
 					);
 					this.$router.replace("/login");
 				}
