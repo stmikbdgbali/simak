@@ -24,7 +24,7 @@
                      User dengan role DOSEN bertanggungjawab terhadap proses pembelajaran mahasiswa.
                 </v-alert>
             </template>
-        </ModuleHeader>        
+        </ModuleHeader>       
         <v-container fluid>    
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
@@ -291,7 +291,7 @@
                                     <strong>Email:</strong>{{ item.email }}
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
-                                </v-col>             
+                                </v-col>
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -336,7 +336,7 @@ export default {
         datatableLoading: false,
         btnLoading: false,      
         //tables
-        headers: [                        
+        headers: [
             { text: "",value: "foto" },
             { text: "USERNAME", value: "username",sortable: true,width:150 },
             { text: "NAMA DOSEN", value: "name",sortable: true,width:250 },
@@ -478,9 +478,9 @@ export default {
             this.btnLoading = false;          
             this.dialogUserPermission = false;
         },
-        save () {
+        save() {
             if (this.$refs.frmdata.validate()) {
-                this.btnLoading=true;
+                this.btnLoading = true;
                 if (this.editedIndex > -1) {
                     this.$ajax.post("/system/usersdosen/" + this.editedItem.id,
                         {
@@ -541,7 +541,7 @@ export default {
             this.$root.$confirm.open("Konfirmasi Sinkronisasi", "Sinkronisasi hanya untuk user dalam role dosen, bila user memiliki role lain akan terhapus permission-nya ?", { color: "warning", width: 500 }).then(async (confirm) => {
                 if (confirm)
                 {
-                    this.btnLoading=true;
+                    this.btnLoading = true;
                     await this.$ajax.post("/system/users/syncallpermissions",
                         {
                             role_name: "dosen",                    
@@ -563,7 +563,7 @@ export default {
             this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus username '+item.username+' ?", { color: "red" }).then((confirm) => {
                 if (confirm)
                 {
-                    this.btnLoading=true;
+                    this.btnLoading = true;
                     this.$ajax.post("/system/usersdosen/" + item.id,
                         {
                             _method: "DELETE",

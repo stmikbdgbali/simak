@@ -27,7 +27,7 @@
                     Halaman untuk melakukan penyelenggaraan matakuliah per prodi, tahun akademik, dan semester.
                 </v-alert>
             </template>
-        </ModuleHeader>        
+        </ModuleHeader>       
         <v-container fluid>      
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12"> 
@@ -218,7 +218,7 @@
                                                 <strong>ID:</strong>{{ item.id }}          
                                                 <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                                 <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
-                                            </v-col>             
+                                            </v-col>
                                         </td>
                                     </template>                 
                                     <template v-slot:no-data>
@@ -368,7 +368,7 @@ export default {
         save: async function() {
             if (this.$refs.frmdata.validate())
             {     
-                this.btnLoading=true;
+                this.btnLoading = true;
                 await this.$ajax.post("/akademik/perkuliahan/penyelenggaraanmatakuliah/store",
                     {
                         prodi_id: this.prodi_id,

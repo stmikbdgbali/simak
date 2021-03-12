@@ -94,7 +94,7 @@
                                     <strong>ID:</strong>{{ item.id }}          
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
-                                </v-col>             
+                                </v-col>
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -107,7 +107,7 @@
     </SPMBLayout>
 </template>
 <script>
-import SPMBLayout from '@/views/layouts/SPMBLayout';
+import SPMBLayout from "@/views/layouts/SPMBLayout";
 import ModuleHeader from "@/components/ModuleHeader";
 export default {
     name: "PassingGrade",
@@ -152,7 +152,7 @@ export default {
         datatableLoading: false,        
         expanded: [],
         datatable: [],
-        headers: [                                        
+        headers: [                
             { text: "PROGRAM STUDI", value: "kjur", sortable: true},
             { text: "NILAI", value: "nilai", sortable: false, width:100 },         
         ],
@@ -196,7 +196,7 @@ export default {
         },
         loadprodi: async function()
         {
-            this.btnLoading=true;
+            this.btnLoading = true;
             await this.$ajax.post("/spmb/passinggrade/loadprodi",
                 {
                     jadwal_ujian_id: this.jadwal_ujian_id,               
@@ -215,7 +215,7 @@ export default {
         },
         saveItem: async function({id,nilai})
         {
-            this.btnLoading=true;
+            this.btnLoading = true;
             await this.$ajax.post("/spmb/passinggrade/" + id,            
             {
                 _method: "put",

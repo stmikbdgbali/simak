@@ -158,7 +158,7 @@
                                     <strong>TRANS.DETAIL ID:</strong>{{ item.id }}
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
-                                </v-col>             
+                                </v-col>
                             </td>
                         </template>
                         <template v-slot:item.actions="{ item }">
@@ -217,7 +217,7 @@ export default {
         let prodi_id = this.$store.getters['uiadmin/getProdiID'];
         this.prodi_id = prodi_id;
         this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
-        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];                             
+        this.tahun_pendaftaran = this.$store.getters['uiadmin/getTahunPendaftaran'];                             
     },
     mounted()
     {
@@ -238,7 +238,7 @@ export default {
         //tables
         datatableLoading: false,       
         datatable: [],
-        headers: [                                                
+        headers: [                        
             { text: "KODE BILLING", value: "no_transaksi", width: 100,sortable: true },
             { text: "TANGGAL", value: "tanggal", width: 90,sortable: true },
             { text: "NO. FORMULIR", value: "no_formulir",sortable: true,width:100 },        
@@ -268,7 +268,7 @@ export default {
         ],  
     }),
     methods: {
-        changeTahunPendaftaran (tahun)
+        changeTahunPendaftaran(tahun)
         {
             this.tahun_pendaftaran = tahun;
         },
@@ -317,7 +317,7 @@ export default {
         save: async function() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;
+                this.btnLoading = true;
                 await this.$ajax.post("/keuangan/transaksi-dulangmhsbaru/store",
                     {
                         no_formulir: this.formdata.no_formulir,                         
@@ -354,7 +354,7 @@ export default {
             this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data transaksi daftar ulang mahasiswa baru dengan ID '+item.id+' ?", { color: "red", width:  "500px" }).then((confirm) => {
                 if (confirm)
                 {
-                    this.btnLoading=true;
+                    this.btnLoading = true;
                     this.$ajax.post("/keuangan/transaksi-dulangmhsbaru/"+item.transaksi_id,
                         {
                             _method: "DELETE",

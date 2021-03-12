@@ -24,7 +24,7 @@
                     Daftar aksi-aksi terhadap sebuah modul. Format penulisan permission, NAMAMODULE atau NAMA MODULE. Nama Permission tighly coupling dengan kode sumber.
                 </v-alert>
             </template>
-        </ModuleHeader>        
+        </ModuleHeader>       
         <v-container fluid>    
             <v-row class="mb-4" no-gutters>
                 <v-col xs="12" sm="12" md="12">
@@ -167,7 +167,7 @@ export default {
         expanded: [],
         daftar_permissions: [],
         //tables
-        headers: [                        
+        headers: [
             { text: "NAMA PERMISSION", value: "name" },
             { text: "GUARD", value: "guard_name" },        
             { text: "AKSI", value: "actions", sortable: false, width:100 },
@@ -237,12 +237,12 @@ export default {
                 }, 300
             );
         },
-        save () {
+        save() {
             if (this.$refs.frmdata.validate())
             {
                 if (!(this.editedIndex > -1)) 
                 {
-                    this.btnLoading=true;
+                    this.btnLoading = true;
                     this.$ajax.post("/system/setting/permissions/store",
                         {
                             name: this.editedItem.name.toLowerCase()
@@ -265,7 +265,7 @@ export default {
             this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus permission '+item.name+' ?", { color: "red" }).then((confirm) => {
                 if (confirm)
                 {
-                    this.btnLoading=true;
+                    this.btnLoading = true;
                     this.$ajax.post("/system/setting/permissions/" + item.id,
                     {
                         _method: "DELETE",

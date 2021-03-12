@@ -124,7 +124,7 @@
 		data: () => ({
 			btnLoading: false,
 			//tables
-			headers: [                        
+			headers: [
 				{ text: "NAMA PERMISSION", value: "name" },
 				{ text: "GUARD", value: "guard_name" },  
 				{ text: "AKSI", value: "actions", sortable: false, width:100 },      
@@ -134,7 +134,7 @@
 		}),
 		methods: {
 			save() {
-				this.btnLoading=true;
+				this.btnLoading = true;
 				this.$ajax.post("/system/setting/roles/storerolepermissions",
 					{
 						role_id: this.role.id,
@@ -153,7 +153,7 @@
 				});
 			},
 			revoke(item) {   
-				this.btnLoading=true;       
+				this.btnLoading = true;       
 				this.$ajax.post("/system/setting/roles/revokerolepermissions",
 					{
 						role_id: this.role.id,

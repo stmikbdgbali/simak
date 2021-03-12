@@ -439,7 +439,7 @@ export default {
 				this.daftar_roles=daftar_roles;
 			});
 
-			this.btnLoading=true;
+			this.btnLoading = true;
 			await this.$ajax.get("/system/users/"+item.id+"/roles",
 			{
 				headers: {
@@ -462,10 +462,10 @@ export default {
 				}, 300
 			);
 		},
-		save () {
+		save() {
 			if (this.$refs.frmdata.validate())
 			{
-				this.btnLoading=true;
+				this.btnLoading = true;
 				if (this.editedIndex > -1) 
 				{
 					this.$ajax.post("/system/users/"+this.editedItem.id,
@@ -518,7 +518,7 @@ export default {
 			this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus username "+item.username+" ?", { color: "red" }).then((confirm) => {
 				if (confirm)
 				{
-					this.btnLoading=true;
+					this.btnLoading = true;
 					this.$ajax.post("/system/users/"+item.id,
 						{
 							"_method":"DELETE",

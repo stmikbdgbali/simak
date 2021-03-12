@@ -71,7 +71,7 @@
                                     inset
                                     vertical
                                 ></v-divider>
-                                <v-spacer></v-spacer>             
+                                <v-spacer></v-spacer>
                                 <v-btn color="primary" icon outlined small class="ma-2" to="/akademik/perkuliahan/pembagiankelas/tambah" v-if="CAN_ACCESS('AKADEMIK-PERKULIAHAN-PEMGBAGIAN-KELAS_STORE')">
                                     <v-icon>mdi-plus</v-icon>
                                 </v-btn>
@@ -182,7 +182,7 @@
                                     <strong>ID:</strong>{{ item.id }}          
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
-                                </v-col>             
+                                </v-col>
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -190,7 +190,7 @@
                         </template>   
                     </v-data-table>
                 </v-col>
-            </v-row>            
+            </v-row> 
         </v-container>
     </AkademikLayout>
 </template>
@@ -374,7 +374,7 @@ export default {
         save: async function() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;
+                this.btnLoading = true;
                 
                 await this.$ajax.post("/akademik/perkuliahan/pembagiankelas/" + this.formdata.id,
                     {

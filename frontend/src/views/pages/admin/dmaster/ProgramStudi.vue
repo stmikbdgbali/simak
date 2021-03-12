@@ -24,7 +24,7 @@
                     Halaman untuk mengelola nama-nama program studi pada perguruan tinggi.
                 </v-alert>
             </template>
-        </ModuleHeader>   
+        </ModuleHeader>  
         <v-container fluid>             
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
@@ -65,7 +65,7 @@
                                     inset
                                     vertical
                                 ></v-divider>
-                                <v-spacer></v-spacer>             
+                                <v-spacer></v-spacer>
                                 <v-btn color="primary" icon outlined small class="ma-2" @click.stop="tambahItem">
                                     <v-icon>mdi-plus</v-icon>
                                 </v-btn>   
@@ -230,7 +230,7 @@
                             <td :colspan="headers.length" class="text-center">
                                 <v-col cols="12">
                                     <strong>ID:</strong>{{ item.id }}                                                                                                       
-                                </v-col>             
+                                </v-col>
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -430,7 +430,7 @@ export default {
         save: async function() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;
+                this.btnLoading = true;
                 if (this.editedIndex > -1) 
                 {
                     await this.$ajax.post("/datamaster/programstudi/" + this.formdata.id,
@@ -485,7 +485,7 @@ export default {
             this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data program studi dengan kode '+item.kode_prodi+' ?", { color: "red" }).then((confirm) => {
                 if (confirm)
                 {
-                    this.btnLoading=true;
+                    this.btnLoading = true;
                     this.$ajax.post("/datamaster/programstudi/" + item.id,
                         {
                             _method: "DELETE",
@@ -562,7 +562,7 @@ export default {
         {         
             if (!this.firstloading)
             {
-                this.btnLoading=true;
+                this.btnLoading = true;
                 await this.$ajax.post("/datamaster/programstudi/updateconfig/" + this.formdata.id,
                     {
                         _method: "PUT",                    

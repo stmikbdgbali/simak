@@ -27,7 +27,7 @@
                     Halaman untuk melakukan tambah krs 
                 </v-alert>
             </template>
-        </ModuleHeader>        
+        </ModuleHeader>       
         <v-container fluid>      
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12"> 
@@ -112,10 +112,10 @@ export default {
         let prodi_id = this.$store.getters['uiadmin/getProdiID'];
         this.prodi_id = prodi_id;
         this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
-        this.daftar_ta=this.$store.getters['uiadmin/getDaftarTA'];        
+        this.daftar_ta = this.$store.getters['uiadmin/getDaftarTA'];        
         this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];              
         this.ta_matkul=this.tahun_akademik;
-        this.daftar_semester=this.$store.getters['uiadmin/getDaftarSemester'];        
+        this.daftar_semester = this.$store.getters['uiadmin/getDaftarSemester'];        
         this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];              
         if (this.$store.getters['uiadmin/getDefaultDashboard' ] == "mahasiswa")
         {
@@ -188,7 +188,7 @@ export default {
         save: async function() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;
+                this.btnLoading = true;
                 await this.$ajax.post("/akademik/perkuliahan/krs/store",
                 {
                     nim: this.formdata.nim,

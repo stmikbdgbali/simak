@@ -59,7 +59,7 @@
                     </v-card>
                 </v-col>
                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
-            </v-row>            
+            </v-row> 
         </v-card-text>
     </v-card>
 </template>

@@ -50,7 +50,7 @@
                                 <v-col cols="12">                 
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
-                                </v-col>             
+                                </v-col>
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -95,7 +95,7 @@ export default {
         datatableLoading: false,
         expanded: [],
         datatable: [],
-        headers: [                                            
+        headers: [                    
             { text: "ID", value: "id", width: 10,sortable: false },
             { text: "NAMA KOMPONEN", value: "nama",sortable: false},
             { text: "PERIODE", value: "periode", width: 150,sortable: false },        

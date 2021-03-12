@@ -24,7 +24,7 @@
                     Halaman ini untuk melakukan pengelolaan data dosen. Namun untuk menghapus dan menambah di halaman user dosen.
                 </v-alert>
             </template>
-        </ModuleHeader>        
+        </ModuleHeader>       
         <v-container fluid>    
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
@@ -65,7 +65,7 @@
                                     inset
                                     vertical
                                 ></v-divider>
-                                <v-spacer></v-spacer>                           
+                                <v-spacer></v-spacer>              
                                 <v-dialog v-model="dialogEdit" max-width="700px" persistent>
                                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>
                                         <v-card>
@@ -179,7 +179,7 @@
                                     <strong>Email:</strong>{{ item.email }}
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
-                                </v-col>             
+                                </v-col>
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -223,7 +223,7 @@ export default {
         datatableLoading: false,
         btnLoading: false,      
         //tables
-        headers: [                        
+        headers: [
             { text: "",value: "foto" },        
             { text: "NAMA DOSEN", value: "nama_dosen",sortable: true,width:250 },
             { text: "NIDN", value: "nidn",sortable: true }, 
@@ -343,10 +343,10 @@ export default {
                 }, 300
             );
         }, 
-        save () {
+        save() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;
+                this.btnLoading = true;
                 if (this.editedIndex > -1) 
                 {
                     this.$ajax.post("/kepegawaian/dosen/" + this.editedItem.id,

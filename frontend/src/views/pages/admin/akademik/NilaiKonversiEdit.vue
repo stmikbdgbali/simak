@@ -27,7 +27,7 @@
                     Halaman ini digunakan untuk mengelola konversi nilai mahasiswa pindahan/ampulan 
                 </v-alert>
             </template>
-        </ModuleHeader>        
+        </ModuleHeader>       
         <v-form ref="frmdata" v-model="form_valid" lazy-validation>
             <v-container fluid v-if="formdata.id">      
                 <v-row class="mb-4" no-gutters>
@@ -136,7 +136,7 @@
                                         inset
                                         vertical
                                     ></v-divider>
-                                    <v-spacer></v-spacer>               
+                                    <v-spacer></v-spacer>  
                                 </v-toolbar>
                             </template>     
                             <template v-slot:item.kmatkul_asal="props">             
@@ -173,7 +173,7 @@
                             </template>   
                         </v-data-table>
                     </v-col>
-                </v-row>            
+                </v-row> 
             </v-container>
         </v-form>        
     </AkademikLayout>
@@ -215,7 +215,7 @@ export default {
         let prodi_id = this.$store.getters['uiadmin/getProdiID'];
         this.prodi_id = prodi_id;
         this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
-        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];              
+        this.tahun_pendaftaran = this.$store.getters['uiadmin/getTahunPendaftaran'];              
         this.initialize()
     },  
     data: () => ({ 
@@ -337,7 +337,7 @@ export default {
         save: async function() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;
+                this.btnLoading = true;
 
                 var daftar_nilai=[];
                 this.datatable.forEach(item => {

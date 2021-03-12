@@ -27,7 +27,7 @@
                     Halaman untuk melihat detail krs mahasiswa 
                 </v-alert>
             </template>
-        </ModuleHeader>   
+        </ModuleHeader>  
         <v-container fluid v-if="Object.keys(datakrs).length">   
             <v-row>
                 <v-col cols="12">
@@ -199,7 +199,7 @@ export default {
             if (this.$refs.frmdata.validate())
             {
                 
-                this.btnLoading=true;
+                this.btnLoading = true;
                 await this.$ajax.post("/akademik/perkuliahan/krs/storematkul",
                     {
                         krs_id: this.krs_id,                        

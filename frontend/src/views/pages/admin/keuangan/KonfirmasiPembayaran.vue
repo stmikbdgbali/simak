@@ -685,10 +685,10 @@ export default {
 				}
 			}
 		},
-		save () {
+		save() {
 			if (this.$refs.frmdata.validate())
 			{
-				this.btnLoading=true;
+				this.btnLoading = true;
 				var data = new FormData();
 				data.append("transaksi_id",this.data_transaksi.id);
 				data.append("id_channel",this.formdata.id_channel);
@@ -722,7 +722,7 @@ export default {
 			this.$root.$confirm.open("Konfirmasi Pembayaran", 'Apakah sudah benar data bukti bayar kode billing '+item.no_transaksi + " ?", { color: "primary" }).then((confirm) => {
 				if (confirm)
 				{
-					this.btnLoading=true;
+					this.btnLoading = true;
 					this.$ajax.post("/keuangan/transaksi/verifikasi/" + item.id,
 						{
 							_method: "put"
@@ -746,7 +746,7 @@ export default {
 			this.$root.$confirm.open("Batalkan Transaksi", 'Apakah Anda ingin membatalkan transaksi dengan kode billing '+item.no_transaksi + " ?", { color: "red" }).then((confirm) => {
 				if (confirm)
 				{
-					this.btnLoading=true;
+					this.btnLoading = true;
 					this.$ajax.post("/keuangan/transaksi/cancel",
 						{
 							transaksi_id:item.id

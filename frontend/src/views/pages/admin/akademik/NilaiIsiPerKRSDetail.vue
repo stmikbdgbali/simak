@@ -27,7 +27,7 @@
                     Halaman untuk melakukan pengisian nilai berdasarkan krs mahasiswa per tahun akademik, dan semester yang telah dilakukan.
                 </v-alert>
             </template>
-        </ModuleHeader>   
+        </ModuleHeader>  
         <v-container fluid v-if="Object.keys(datakrs).length">   
             <v-row>   
                 <v-col cols="12">
@@ -91,10 +91,10 @@
                                     </v-card>
                                 </v-col>
                                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
-                            </v-row>            
+                            </v-row> 
                         </v-card-text>
                     </v-card>
-                </v-col>                
+                </v-col>   
             </v-row>
             <v-row>
                 <v-col cols="12">     
@@ -256,7 +256,7 @@ export default {
                 }
             })  
         }, 
-        async save ()
+        async save()
         {
             this.btnLoadingTable=true;
             var daftar_nilai=[];

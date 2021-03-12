@@ -37,7 +37,7 @@
                         Berisi kelengkapan biodata, silahkan melakukan filter tahun akademik dan program studi.
                 </v-alert>
             </template>
-        </ModuleHeader> 
+        </ModuleHeader>
         <v-container fluid v-if="dashboard=='mahasiswabaru'">
             <FormMhsBaru/>
         </v-container>
@@ -118,7 +118,7 @@
                                     <strong>ID:</strong>{{ item.id }}
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
-                                </v-col>             
+                                </v-col>
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -134,7 +134,7 @@
     </SPMBLayout>
 </template>
 <script>
-import SPMBLayout from '@/views/layouts/SPMBLayout';
+import SPMBLayout from "@/views/layouts/SPMBLayout";
 import ModuleHeader from "@/components/ModuleHeader";
 import FormMhsBaru from '@/components/FormMahasiswaBaru';
 import ProfilMahasiswaBaru from '@/components/ProfilMahasiswaBaru';
@@ -165,7 +165,7 @@ export default {
         let prodi_id = this.$store.getters['uiadmin/getProdiID'];
         this.prodi_id = prodi_id;
         this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
-        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];              
+        this.tahun_pendaftaran = this.$store.getters['uiadmin/getTahunPendaftaran'];              
         this.initialize()   
     },  
     data: () => ({
@@ -182,7 +182,7 @@ export default {
         datatableLoading: false,
         expanded: [],
         datatable: [],
-        headers: [                        
+        headers: [
             { text: "",value: "foto", width:70 },
             { text: "NO. FORMULIR", value: "no_formulir", width: 140,sortable: true },
             { text: "USERNAME", value: "username", width: 150,sortable: true },
@@ -197,7 +197,7 @@ export default {
         datamhsbaru: {}
     }),
     methods: {
-        changeTahunPendaftaran (tahun)
+        changeTahunPendaftaran(tahun)
         {
             this.tahun_pendaftaran = tahun;
         },

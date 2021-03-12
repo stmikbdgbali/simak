@@ -17,7 +17,7 @@
                     </template>
                 </v-breadcrumbs>
             </template>            
-        </ModuleHeader>      
+        </ModuleHeader>     
         <v-container fluid v-if="datamhs.hasOwnProperty('user_id')">            
             <v-row> 
                 <v-col cols="12">
@@ -216,7 +216,7 @@
                                     <strong>ID:</strong>{{ item.id }}          
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
-                                </v-col>             
+                                </v-col>
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -276,7 +276,7 @@ export default {
         //tables
         datatableLoading: false,       
         datatable: [],
-        headers: [                                                
+        headers: [                        
             { text: "KODE BILLING", value: "no_transaksi", width: 100,sortable: true },
             { text: "TANGGAL", value: "tanggal", width: 100,sortable: true },
             { text: "NIM", value: "nim", width: 100,sortable: true },
@@ -337,7 +337,7 @@ export default {
             }               
         },   
         async viewItem(item) {
-            this.btnLoading=true;
+            this.btnLoading = true;
             await this.$ajax.get("/keuangan/transaksi/" + item.id,
             {
                 headers: {

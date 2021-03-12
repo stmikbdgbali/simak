@@ -116,10 +116,10 @@
                                     </v-card>
                                 </v-col>
                                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
-                            </v-row>            
+                            </v-row> 
                         </v-card-text>
                     </v-card>
-                </v-col>                
+                </v-col>   
             </v-row>
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
@@ -194,7 +194,7 @@
                                     inset
                                     vertical
                                 ></v-divider>
-                                <v-spacer></v-spacer>                 
+                                <v-spacer></v-spacer>    
                             </v-toolbar>
                         </template>     
                         <template v-slot:item="{ item }">    
@@ -278,7 +278,7 @@ export default {
         //tables
         datatableLoading: false,       
         datatable: [],
-        headers: [                                                
+        headers: [                        
             { text: "NO. BULAN", value: "no_bulan", width: 120,sortable: false },
             { text: "BULAN", value: "nama_bulan",sortable: false },        
             { text: "TAHUN", value: "tahun",sortable: false },        
@@ -312,7 +312,7 @@ export default {
             if (this.$refs.frmdata.validate())
             {
                 
-                this.btnLoading=true;
+                this.btnLoading = true;
                 await this.$ajax.post("/keuangan/transaksi-spp/store",
                     {
                         id: this.transaksi_id,                        
@@ -335,7 +335,7 @@ export default {
             this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data dengan ID '+item.id+' ?", { color: "red" }).then((confirm) => {
                 if (confirm)
                 {
-                    this.btnLoading=true;
+                    this.btnLoading = true;
                     var bulan=[1,2,3,4,5,6,7,8,9,10,11,12];
                     if (bulan.includes(item.id))
                     {

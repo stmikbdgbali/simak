@@ -27,7 +27,7 @@
                         Berisi kelengkapan biodata, silahkan melakukan filter tahun akademik dan program studi.
                 </v-alert>
             </template>
-        </ModuleHeader> 
+        </ModuleHeader>
         <v-container fluid>
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
@@ -211,7 +211,7 @@
     </SPMBLayout>
 </template>
 <script>
-import SPMBLayout from '@/views/layouts/SPMBLayout';
+import SPMBLayout from "@/views/layouts/SPMBLayout";
 import ModuleHeader from "@/components/ModuleHeader";
 export default {
     name: "FormulirPendaftaranEdit", 
@@ -407,7 +407,7 @@ export default {
         {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;              
+                this.btnLoading = true;              
                 await this.$ajax.post("/spmb/formulirpendaftaran/" + this.user_id,{         
                     _method: "put",
                     nama_mhs: this.formdata.nama_mhs,           

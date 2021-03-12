@@ -239,7 +239,7 @@
     </SPMBLayout>
 </template>
 <script>
-import SPMBLayout from '@/views/layouts/SPMBLayout';
+import SPMBLayout from "@/views/layouts/SPMBLayout";
 import ModuleHeader from "@/components/ModuleHeader";
 import Filter9 from '@/components/sidebar/FilterMode9';
 export default {
@@ -282,14 +282,14 @@ export default {
         
         total_tidak_lulus:0,
         daftar_tidak_lulus: [],
-        headers: [                        
+        headers: [
             { text: "NAMA PRODI", value: "nama_prodi", sortable: false},
             { text: "JENJANG", value: "nama_jenjang", sortable: false},
             { text: "JUMLAH", align: "end",value: "jumlah", sortable: false}, 
         ],
     }),
     methods: {
-        changeTahunPendaftaran (tahun)
+        changeTahunPendaftaran(tahun)
         {
             this.tahun_pendaftaran = tahun;
         },

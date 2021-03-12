@@ -39,7 +39,7 @@
 							Pengaturan berbagai parameter sebagai referensi dari modul-modul lain dalam sistem.
 						</v-card-subtitle>
 					</v-card>
-				</v-col>                
+				</v-col>   
 				<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>            
 				<v-col xs="12" sm="4" md="3" v-if="$store.getters['auth/can']('SPMB-GROUP')">
 					<v-card

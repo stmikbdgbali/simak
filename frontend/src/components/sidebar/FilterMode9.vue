@@ -14,8 +14,8 @@ export default {
     name: "FilterMode9",
     created()
     {
-        this.daftar_ta=this.$store.getters['uiadmin/getDaftarTA'];
-        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];
+        this.daftar_ta = this.$store.getters['uiadmin/getDaftarTA'];
+        this.tahun_pendaftaran = this.$store.getters['uiadmin/getTahunPendaftaran'];
     },
     data:()=>({
         firstloading: true,

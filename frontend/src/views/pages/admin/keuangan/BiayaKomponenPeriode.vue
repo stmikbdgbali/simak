@@ -204,7 +204,7 @@
 			search: "",
 		}),
 		methods: {
-			changeTahunPendaftaran (tahun) {
+			changeTahunPendaftaran(tahun) {
 				this.tahun_pendaftaran = tahun;
 			},
 			changeProdi (id) {
@@ -242,7 +242,7 @@
 				}
 			},
 			loadkombiperiode: async function() {
-				this.btnLoading=true;
+				this.btnLoading = true;
 				await this.$ajax.post("/keuangan/biayakomponenperiode/loadkombiperiode",
 				{
 					TA: this.tahun_pendaftaran,

@@ -432,7 +432,7 @@ export default {
 			this.$root.$confirm.open("Konfirmasi Sinkronisasi", "Sinkronisasi hanya untuk user dalam role puslahta, bila user memiliki role lain akan terhapus permission-nya ?", { color: "warning", width: 500 }).then(async (confirm) => {
 				if (confirm)
 				{
-					this.btnLoading=true;
+					this.btnLoading = true;
 					await this.$ajax.post("/system/users/syncallpermissions",
 						{
 							role_name: "puslahta",
@@ -523,7 +523,7 @@ export default {
 				this.daftar_roles=daftar_roles;
 			});
 
-			this.btnLoading=true;
+			this.btnLoading = true;
 			await this.$ajax.get("/system/users/" + item.id + "/roles",
 			{
 				headers: {
@@ -554,10 +554,10 @@ export default {
 			this.btnLoading = false;          
 			this.dialogUserPermission = false;
 		},
-		save () {
+		save() {
 			if (this.$refs.frmdata.validate())
 			{
-				this.btnLoading=true;
+				this.btnLoading = true;
 				if (this.editedIndex > -1)
 				{
 					this.$ajax.post("/system/userspuslahta/" + this.editedItem.id,
@@ -612,7 +612,7 @@ export default {
 			this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus username " + item.username + " ?", { color: "red" }).then((confirm) => {
 				if (confirm)
 				{
-					this.btnLoading=true;
+					this.btnLoading = true;
 					this.$ajax.post("/system/userspuslahta/" +item.id,
 						{
 							_method: "DELETE",

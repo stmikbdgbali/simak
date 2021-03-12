@@ -24,7 +24,7 @@
                         berisi informasi profile user.
                 </v-alert>
             </template>
-        </ModuleHeader>   
+        </ModuleHeader>  
         <v-container fluid>    
             <v-row class="mb-4">
                 <v-col cols="12">
@@ -180,7 +180,7 @@
                                 </v-text-field> 
                             </v-card-text>
                             <v-card-actions>
-                                <v-spacer></v-spacer>             
+                                <v-spacer></v-spacer>
                                 <v-btn 
                                     color="blue darken-1" 
                                     text 
@@ -296,7 +296,7 @@
             {
                 if (this.$refs.frmdata.validate())
                 {
-                    this.btnLoading=true;
+                    this.btnLoading = true;
                     this.$ajax.post("/system/users/updatepassword/" + this.$store.getters['auth/AttributeUser']("id"),
                         {
                             _method: "PUT",                        
@@ -331,7 +331,7 @@
             uploadFoto: async function() {
                 if (this.$refs.frmuploadfoto.validate()) {
                     if (this.formdata.foto) {     
-                        this.btnLoading=true;
+                        this.btnLoading = true;
                         var formdata = new FormData();
                         formdata.append("foto",this.formdata.foto);
                         await this.$ajax.post("/setting/users/uploadfoto/" + this.$store.getters.User.id,formdata,                    
@@ -353,7 +353,7 @@
             },
             resetFoto: async function() 
             {
-                this.btnLoading=true;
+                this.btnLoading = true;
                 await this.$ajax.post("/setting/users/resetfoto/" + this.$store.getters.User.id,{},     
                     {
                         headers: {

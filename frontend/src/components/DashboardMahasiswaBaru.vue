@@ -187,7 +187,7 @@
             btnLoading: false,
             datatableLoading : false,        
             datatable: [],
-            headers: [                                        
+            headers: [                
                 { text: "NAMA UJIAN", value: "nama_kegiatan", sortable: true,width:300 },
                 { text: "TGL. UJIAN", value: "tanggal_ujian", sortable: true,width:100 },
                 { text: "TGL. AKHIR PENDAFTARAN", value: "tanggal_akhir_daftar", sortable: true,width:100 },
@@ -255,7 +255,7 @@
             },
             pilihJadwal: async function(item)
             {
-                this.btnLoading=true;
+                this.btnLoading = true;
                 await this.$ajax.post("/spmb/ujianonline/daftar",
                 {
                     user_id: this.$store.getters['auth/AttributeUser']("id"),

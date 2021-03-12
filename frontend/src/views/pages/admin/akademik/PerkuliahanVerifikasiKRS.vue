@@ -74,7 +74,7 @@
                                     inset
                                     vertical
                                 ></v-divider>
-                                <v-spacer></v-spacer>                          
+                                <v-spacer></v-spacer>             
                             </v-toolbar>
                             <v-dialog v-model="dialogprintpdf" max-width="500px" persistent>                
                                 <v-card>
@@ -152,7 +152,7 @@
                                     <strong>krs_id:</strong>{{ item.id }}          
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
-                                </v-col>             
+                                </v-col>
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -160,7 +160,7 @@
                         </template>   
                     </v-data-table>
                 </v-col>
-            </v-row>            
+            </v-row> 
         </v-container>
     </AkademikLayout>
 </template>
@@ -309,7 +309,7 @@ export default {
         },      
         async printpdf(item)
         {
-            this.btnLoading=true;
+            this.btnLoading = true;
             await this.$ajax.get("/akademik/perkuliahan/krs/printpdf/" + item.id,                
                 {
                     headers: {
@@ -327,7 +327,7 @@ export default {
         },
         async verifikasi(item)
         {
-            this.btnLoading=true;
+            this.btnLoading = true;
             await this.$ajax.post("/akademik/perkuliahan/krs/" + item.id+'/verifikasi",
                 {
                     _method: "put"

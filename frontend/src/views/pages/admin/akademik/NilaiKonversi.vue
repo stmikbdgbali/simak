@@ -163,7 +163,7 @@
                                     <strong>ID:</strong>{{ item.id}}     
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}                                         
-                                </v-col>             
+                                </v-col>
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -171,7 +171,7 @@
                         </template>   
                     </v-data-table>
                 </v-col>
-            </v-row>            
+            </v-row> 
         </v-container>
         <v-dialog v-model="dialogprintpdf" max-width="500px" persistent>                
             <v-card>
@@ -226,7 +226,7 @@ export default {
         let prodi_id = this.$store.getters['uiadmin/getProdiID'];
         this.prodi_id = prodi_id;
         this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
-        this.tahun_pendaftaran=this.$store.getters['uiadmin/getTahunPendaftaran'];              
+        this.tahun_pendaftaran = this.$store.getters['uiadmin/getTahunPendaftaran'];              
         this.initialize()
     },  
     data: () => ({ 
@@ -256,7 +256,7 @@ export default {
         file_pdf: null
     }),
     methods: {
-        changeTahunPendaftaran (tahun)
+        changeTahunPendaftaran(tahun)
         {
             this.tahun_pendaftaran = tahun;
         },
@@ -308,7 +308,7 @@ export default {
             this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data nilai konvesi dengan ID '+item.id+' ?", { color: "red" }).then((confirm) => {
                 if (confirm)
                 {
-                    this.btnLoading=true;
+                    this.btnLoading = true;
                     this.$ajax.post("/akademik/nilai/konversi/" + item.id,
                         {
                             _method: "DELETE",
@@ -330,7 +330,7 @@ export default {
         },
         async printpdf1(item)
         {
-            this.btnLoading=true;
+            this.btnLoading = true;
             await this.$ajax.get("/akademik/nilai/konversi/printpdf1/" + item.id,                
                 {
                     headers: {

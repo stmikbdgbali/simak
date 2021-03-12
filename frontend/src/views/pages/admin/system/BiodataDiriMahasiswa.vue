@@ -24,7 +24,7 @@
                         Halaman ini digunakan untuk merubah informasi biodata diri.
                 </v-alert>
             </template>
-        </ModuleHeader> 
+        </ModuleHeader>
         <v-container fluid>
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
@@ -347,7 +347,7 @@ export default {
         {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;              
+                this.btnLoading = true;              
                 await this.$ajax.post("/kemahasiswaan/biodata/" + this.user_id+'/update",{         
                     _method: "put",
                     nama_mhs: this.formdata.nama_mhs,           

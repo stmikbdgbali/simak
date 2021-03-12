@@ -173,7 +173,7 @@ export default {
         btnLoading: false,
         datatableLoading: false,
         //tables
-        headers: [                        
+        headers: [
             { text: "NAMA PERMISSION", value: "name" },
             { text: "GUARD", value: "guard_name" },   
             { text: "AKSI", value: "actions", sortable: false, width:100 },     
@@ -211,7 +211,7 @@ export default {
         }, 
         save()
         {
-            this.btnLoading=true;
+            this.btnLoading = true;
             this.$ajax.post("/system/users/storeuserpermissions",
                 {
                     user_id: this.user.id,
@@ -230,7 +230,7 @@ export default {
         },
         revoke(item)
         {   
-            this.btnLoading=true;       
+            this.btnLoading = true;       
             this.$ajax.post("/system/users/revokeuserpermissions",
                 {
                     user_id: this.user.id,

@@ -27,7 +27,7 @@
                     Halaman untuk melakukan penyelenggaraan matakuliah per prodi, tahun akademik, dan semester.
                 </v-alert>
             </template>
-        </ModuleHeader>        
+        </ModuleHeader>       
         <v-container fluid>   
             <v-row class="mb-4">   
                 <v-col cols="12">
@@ -158,7 +158,7 @@ export default {
         let prodi_id = this.$store.getters['uiadmin/getProdiID'];
         this.prodi_id = prodi_id;
         this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
-        this.daftar_ta=this.$store.getters['uiadmin/getDaftarTA'];        
+        this.daftar_ta = this.$store.getters['uiadmin/getDaftarTA'];        
         this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];                      
         this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];              
         this.formdata.idpenyelenggaraan=this.$route.params.idpenyelenggaraan;
@@ -255,7 +255,7 @@ export default {
         save: async function() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;
+                this.btnLoading = true;
                 await this.$ajax.post("/akademik/perkuliahan/penyelenggaraanmatakuliah/storedosenpengampu",
                     {
                         penyelenggaraan_id: this.formdata.idpenyelenggaraan, 

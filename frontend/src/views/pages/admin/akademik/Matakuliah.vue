@@ -27,7 +27,7 @@
 					Halaman untuk mengelola nama-nama matakuliah program studi setiap angkatannya.
 				</v-alert>
 			</template>
-		</ModuleHeader>   
+		</ModuleHeader>  
 		<v-container fluid>             
 			<v-row class="mb-4" no-gutters>
 				<v-col cols="12">
@@ -358,7 +358,7 @@
 									<strong>ID:</strong>{{ item.id }}          
 									<strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
 									<strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
-								</v-col>             
+								</v-col>
 							</td>
 						</template>
 						<template v-slot:body.append v-if="datatable.length > 0">
@@ -635,7 +635,7 @@
 			},		
 			save: async function() {
 				if (this.$refs.frmdata.validate()) {
-					this.btnLoading=true;
+					this.btnLoading = true;
 					if (this.editedIndex > -1) {
 						await this.$ajax
 						.post("/akademik/matakuliah/" + this.formdata.id,
@@ -716,7 +716,7 @@
 			deleteItem(item) {
 				this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus matakuliah '+item.nmatkul+' ?", { color: "red" }).then((confirm) => {
 					if (confirm) {
-						this.btnLoading=true;
+						this.btnLoading = true;
 						this.$ajax
 						.post("/akademik/matakuliah/" + item.id,
 							{

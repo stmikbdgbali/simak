@@ -56,7 +56,7 @@
 </template>
 <script>
 import { mapGetters } from "vuex";
-import SystemConfigLayout from '@/views/layouts/SystemConfigLayout';
+import SystemConfigLayout from "@/views/layouts/SystemConfigLayout";
 import ModuleHeader from "@/components/ModuleHeader";
 export default {
     name: "Cache",
@@ -111,10 +111,10 @@ export default {
             });
 
         },
-        save () {
+        save() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;
+                this.btnLoading = true;
                 this.$ajax.post("/system/setting/variables",
                     {
                         _method: "PUT",

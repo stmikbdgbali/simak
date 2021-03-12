@@ -24,7 +24,7 @@
                     Mengatur warna box modul di dashboard
                     </v-alert>
             </template>
-        </ModuleHeader> 
+        </ModuleHeader>
         <v-container fluid>  
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
@@ -51,10 +51,10 @@
                                         <v-color-picker v-model="color" mode="hexa" :hide-mode-switch="true"></v-color-picker>
                                     </v-col>
                                     <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
-                                </v-row>             
+                                </v-row>  
                             </v-card-text>
                             <v-card-actions>
-                                <v-spacer></v-spacer>             
+                                <v-spacer></v-spacer>
                                 <v-btn 
                                     color="blue darken-1" 
                                     text 
@@ -71,7 +71,7 @@
 </template>
 <script>
 import {mapGetters} from 'vuex';
-import SystemConfigLayout from '@/views/layouts/SystemConfigLayout';
+import SystemConfigLayout from "@/views/layouts/SystemConfigLayout";
 import ModuleHeader from "@/components/ModuleHeader";
 export default {
     name: "ThemesColorDashboard",
@@ -148,10 +148,10 @@ export default {
             });        
             
         },
-        save () {
+        save() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading=true;  
+                this.btnLoading = true;  
                 switch (this.currentBox)
                 {
                     case 'dmaster':

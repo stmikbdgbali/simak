@@ -116,10 +116,10 @@
                                     </v-card>
                                 </v-col>
                                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
-                            </v-row>            
+                            </v-row> 
                         </v-card-text>
                     </v-card>
-                </v-col>                
+                </v-col>   
             </v-row>
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
@@ -174,7 +174,7 @@
                         </v-data-table>
                     </v-form>
                 </v-col>
-            </v-row>            
+            </v-row> 
         </v-container>
     </KeuanganLayout>
 </template>
@@ -223,7 +223,7 @@ export default {
         //tables
         datatableLoading: false,       
         datatable: [],
-        headers: [                                                
+        headers: [                        
             { text: "NO. BULAN", value: "no_bulan", width: 120,sortable: false },
             { text: "BULAN", value: "nama_bulan",sortable: false },        
             { text: "TAHUN", value: "tahun",sortable: false },        
@@ -256,7 +256,7 @@ export default {
             this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data dengan ID '+item.id+' ?", { color: "red" }).then((confirm) => {
                 if (confirm)
                 {
-                    this.btnLoading=true;
+                    this.btnLoading = true;
                     this.$ajax.post("/keuangan/transaksi-spp/" + item.id,
                         {
                             _method: "DELETE",

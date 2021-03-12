@@ -23,6 +23,14 @@ const routes = [
 		component: () => import("../views/pages/front/PMB.vue")
 	},
 	{
+		path: "/blog/cara-pendaftaran",
+		name: "BlogCaraPendaftaran",
+		meta: {
+			title: "CARA PENDAFTARAN"
+		},
+		component: () => import("../views/pages/front/blog/CaraPendaftaran.vue")
+	},
+	{
 		path: "/login",
 		name: "FrontLogin",
 		meta: {
@@ -240,6 +248,15 @@ const routes = [
 			requiresAuth: true,
 		},
 		component: () => import("../views/pages/admin/spmb/JadwalUjianPMB.vue"),
+	},
+	{
+		path: "/spmb/jadwalujianpmb/:jadwal_ujian_id/detail",
+		name: "SPMBJadwalUjianPMBDetail",
+		meta: {
+			title: "SPMB - JADWAL UJIAN PMB",
+			requiresAuth: true,
+		},
+		component: () => import("../views/pages/admin/spmb/JadwalUjianPMBDetail.vue"),
 	},
 	{
 		path: "/spmb/ujianonline",

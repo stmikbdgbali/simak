@@ -27,7 +27,7 @@
                         Transaksi pembayaran mahasiswa baru atau lama dalam satu tahun.
                     </v-alert>
             </template>
-        </ModuleHeader> 
+        </ModuleHeader>
         <template v-slot:filtersidebar>
             <Filter18 v-on:changeTahunAkademik="changeTahunAkademik" v-on:changeProdi="changeProdi" ref="filter18" />		
         </template>
@@ -193,7 +193,7 @@
                                     <strong>ID:</strong>{{ item.id }}          
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
-                                </v-col>             
+                                </v-col>
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -285,7 +285,7 @@ export default {
         //tables
         datatableLoading: false,       
         datatable: [],
-        headers: [                                                
+        headers: [                        
             { text: "KODE BILLING", value: "no_transaksi", width: 100,sortable: true },
             { text: "TANGGAL", value: "tanggal", width: 100,sortable: true },
             { text: "NIM", value: "nim", width: 100,sortable: true },
@@ -353,7 +353,7 @@ export default {
             }               
         },
         async viewItem(item) {
-            this.btnLoading=true;
+            this.btnLoading = true;
             await this.$ajax.get("/keuangan/transaksi/" + item.id,
             {
                 headers: {
