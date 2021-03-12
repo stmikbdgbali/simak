@@ -114,7 +114,7 @@
     </SPMBLayout>
 </template>
 <script>
-import SPMBLayout from '@/views/layouts/SPMBLayout';
+import SPMBLayout from "@/views/layouts/SPMBLayout";
 import ModuleHeader from "@/components/ModuleHeader";
 import Filter20 from '@/components/sidebar/FilterMode20';
 export default {
@@ -170,7 +170,7 @@ export default {
         datamhsbaru: {}
     }),
     methods: {
-        changeTahunPendaftaran (tahun)
+        changeTahunPendaftaran(tahun)
         {
             this.tahun_pendaftaran = tahun;
         },

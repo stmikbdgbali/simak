@@ -36,7 +36,7 @@
     </SPMBLayout>
 </template>
 <script>
-import SPMBLayout from '@/views/layouts/SPMBLayout';
+import SPMBLayout from "@/views/layouts/SPMBLayout";
 import ModuleHeader from "@/components/ModuleHeader";
 export default {
     name: "NilaiUjianHasil", 

@@ -218,7 +218,7 @@ export default {
         file_pdf: null
     }),
     methods: {
-        changeTahunPendaftaran (tahun)
+        changeTahunPendaftaran(tahun)
         {
             this.tahun_pendaftaran = tahun;
         },

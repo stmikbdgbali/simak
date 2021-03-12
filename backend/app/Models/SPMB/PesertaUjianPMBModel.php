@@ -29,7 +29,9 @@ class PesertaUjianPMBModel extends Model {
         'mulai_ujian', 
         'selesai_ujian',         
         'sisa_waktu',         
-        'isfinish',                 
+        'isfinish',      
+        'created_at',           
+        'updated_at',           
     ];
     /**
      * enable auto_increment.

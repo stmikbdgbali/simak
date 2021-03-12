@@ -186,7 +186,7 @@ export default {
         search: "",
     }),
     methods: {
-        changeTahunPendaftaran (tahun)
+        changeTahunPendaftaran(tahun)
         {
             this.tahun_pendaftaran = tahun;
         },

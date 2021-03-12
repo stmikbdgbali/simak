@@ -131,7 +131,7 @@
 	</SPMBLayout>
 </template>
 <script>
-import SPMBLayout from '@/views/layouts/SPMBLayout';
+import SPMBLayout from "@/views/layouts/SPMBLayout";
 import ModuleHeader from "@/components/ModuleHeader";
 import FormPersyaratan from '@/components/FormPersyaratanPMB';
 import ProfilMahasiswaBaru from '@/components/ProfilMahasiswaBaru';
@@ -195,7 +195,7 @@ export default {
 		}
 	}),
 	methods: {
-		changeTahunPendaftaran (tahun) {
+		changeTahunPendaftaran(tahun) {
 			this.tahun_pendaftaran = tahun;
 		},
 		changeProdi (id) {

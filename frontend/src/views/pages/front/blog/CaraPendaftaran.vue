@@ -6,8 +6,11 @@
 					<h2 class="title">ALUR PROSES PENDAFTARAN DAN SELEKSI</h2>
 					<v-divider />
 				</v-col>
-				<v-col cols="12">					
-					<v-timeline align-top :dense="$vuetify.breakpoint.smAndDown">
+				<v-col cols="12">
+					<v-timeline
+						align-top
+						:dense="$vuetify.breakpoint.smAndDown"
+					>
 						<v-timeline-item small color="orange">
 							<template v-slot:opposite>
 								<span :class="`headline font-weight-bold orange--text`">
@@ -16,7 +19,7 @@
 							</template>
 							<div class="py-4">
 								<h2 :class="`headline font-weight-light mb-4`">
-								MEMBUAT AKUN
+									MEMBUAT AKUN
 								</h2>
 								<div>
 									Klik menu PENDAFTARAN maka muncul halaman pendaftaran, yang terdiri dari beberapa bagian yang wajib untuk diisi, yaitu :
@@ -62,7 +65,7 @@
 								</div>
 							</div>
 						</v-timeline-item>
-					</v-timeline>					
+					</v-timeline>
 				</v-col>
 			</v-row>
 		</v-container>

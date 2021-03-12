@@ -313,7 +313,7 @@
     </SPMBLayout>
 </template>
 <script>
-import SPMBLayout from '@/views/layouts/SPMBLayout';
+import SPMBLayout from "@/views/layouts/SPMBLayout";
 import ModuleHeader from "@/components/ModuleHeader";
 import Filter19 from '@/components/sidebar/FilterMode19';
 export default {
@@ -337,7 +337,7 @@ export default {
             }
         ];
         this.tahun_pendaftaran = this.$store.getters['uiadmin/getTahunPendaftaran'];      
-        this.semester_pendaftaran=this.$store.getters['uiadmin/getSemesterPendaftaran'];
+        this.semester_pendaftaran = this.$store.getters['uiadmin/getSemesterPendaftaran'];
         this.nama_semester_pendaftaran=this.$store.getters['uiadmin/getNamaSemester'](this.semester_pendaftaran);
         this.initialize()
     },  
@@ -432,11 +432,11 @@ export default {
         ],
     }),
     methods: {
-        changeTahunPendaftaran (tahun)
+        changeTahunPendaftaran(tahun)
         {
             this.tahun_pendaftaran = tahun;
         },
-        changeSemesterPendaftaran (semester)
+        changeSemesterPendaftaran(semester)
         {
             this.semester_pendaftaran=semester;
         },
