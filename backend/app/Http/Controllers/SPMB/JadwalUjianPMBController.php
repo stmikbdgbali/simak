@@ -253,12 +253,23 @@ class JadwalUjianPMBController extends Controller {
         else
         {
             $this->validate($request, [           
-                'status_ujian'=>'required|integer|digits_between:1,3',                               
+                'status_ujian'=>'required|integer|digits_between:0,3',                               
             ]);            
-                
-            $jadwal_ujian->status_ujian=$request->input('status_ujian');            
+            $status_ujian=$request->input('status_ujian');
+            $jadwal_ujian->status_pendaftaran=1;            
+            $jadwal_ujian->status_ujian=$status_ujian;            
             $jadwal_ujian->save();
-                 
+            
+            if ($status_ujian == 2)
+            {
+                $now = \Carbon\Carbon::now()->toDateTimeString();        
+                \DB::table('pe3_peserta_ujian_pmb')
+                    ->where('jadwal_ujian_id', $jadwal_ujian->id)
+                    ->update([
+                        'isfinish'=>1,
+                        'selesai_ujian'=>$now
+                    ]);
+            }
             return Response()->json([
                                         'status'=>1,
                                         'pid'=>'update',  

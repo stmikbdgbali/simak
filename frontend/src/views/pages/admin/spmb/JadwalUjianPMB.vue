@@ -237,6 +237,9 @@
 						<template v-slot:item.durasi_ujian="{ item }">
 							{{item.jam_mulai_ujian}} - {{item.jam_selesai_ujian}} <br>({{durasiUjian(item)}} Menit)
 						</template>
+						<template v-slot:item.status_ujian="{ item }">
+							{{ getStatusJadwanUjian(item)}}
+						</template>
 						<template v-slot:item.actions="{ item }" v-if="dashboard !='mahasiswabaru' && dashboard !='mahasiswa'">
 							<v-icon
 								small
@@ -333,6 +336,7 @@
 					{ text: "TGL. AKHIR PENDAFTARAN", value: "tanggal_akhir_daftar", sortable: true,width:100 },
 					{ text: "DURASI UJIAN", value: "durasi_ujian", sortable: true,width:100 },
 					{ text: "JUMLAH PESERTA", value: "jumlah_peserta", sortable: true,width:100 },
+					{ text: "STATUS", value: "status_ujian", sortable: true,width:100 },
 					{ text: "AKSI", value: "actions", sortable: false, width:100 },
 				],				
 				search: "",
@@ -435,6 +439,18 @@
 						.catch(() => {
 							this.datatableLoading = false;
 						});
+			},
+			getStatusJadwanUjian(item) {
+				switch(item.status_ujian){
+						case 0:
+							return "BELUM MULAI";						
+						case 1:
+							return "BERJALAN";						
+						case 2:
+							return "SELESAI";						
+						default: 
+							return "N.A";
+					}
 			},
 			dataTableRowClicked(item) {
 				if ( item === this.expanded[0]) {

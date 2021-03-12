@@ -117,7 +117,7 @@
 									<v-card flat>
 										<v-card-title>STATUS UJIAN :</v-card-title>
 										<v-card-subtitle>
-											{{data_jadwal.status_ujian == 0 ? "BUKA" : "TUTUP"}}
+											{{ StatusJadwanUjian }}
 										</v-card-subtitle>
 									</v-card>
 								</v-col>
@@ -139,9 +139,13 @@
 			<v-row>
 				<v-col cols="12">
 					<v-bottom-navigation color="purple lighten-1">
-						<v-btn @click.stop="mulaiUjian" :disabled="btnLoading">
+						<v-btn @click.stop="mulaiUjian" :disabled="btnLoading" v-if="data_jadwal.status_ujian == 0">
 							<span>MULAI UJIAN</span>
 							<v-icon>mdi-play</v-icon>
+						</v-btn>			
+						<v-btn @click.stop="selesaiUjian" :disabled="btnLoading" v-else-if="data_jadwal.status_ujian == 1">
+							<span>SELESAI UJIAN</span>
+							<v-icon>mdi-exit-run</v-icon>
 						</v-btn>			
 						<v-btn @click.stop="closedetail"> 
 							<span>Keluar</span>
@@ -192,20 +196,13 @@
 								<v-spacer></v-spacer>																
 							</v-toolbar>
 						</template>
-						<template v-slot:item.tanggal_ujian="{ item }">
-							{{$date(item.tanggal_ujian).format("DD/MM/YYYY")}}
-						</template>
-						<template v-slot:item.tanggal_akhir_daftar="{ item }">
-							{{$date(item.tanggal_akhir_daftar).format("DD/MM/YYYY")}}
-						</template>
-						<template v-slot:item.durasi_ujian="{ item }">
-							{{item.jam_mulai_ujian}} - {{item.jam_selesai_ujian}} <br>({{durasiUjian(item)}} Menit)
-						</template>
+						<template v-slot:item.isfinish="{ item }">
+							{{ getStatusUjianPeserta(item)}}
+						</template>						
 						<template v-slot:item.actions="{ item }">														
 							<v-icon
-								small
-								:loading="btnLoading"
-								:disabled="btnLoading"
+								small								
+								:disabled="btnLoading || item.isfinish!=0 || item.mulai_ujian != null"
 								@click.stop="deleteItem(item)">
 								mdi-delete
 							</v-icon>
@@ -264,16 +261,16 @@
 			this.nama_semester_pendaftaran = this.$store.getters['uiadmin/getNamaSemester'](this.semester_pendaftaran);			
 		},
 		mounted() {
-			this.initialize();
+			this.initialize();			
 		},
 		data() { 			
 			return {
 				jadwal_ujian_id: null,
 				data_jadwal: null,
+				status_jadwan_ujian: null,
 				breadcrumbs: [],
 				dashboard: null,
 				
-				firstloading: true,
 				tahun_pendaftaran: null,
 				semester_pendaftaran: null,
 				nama_semester_pendaftaran: null,
@@ -305,12 +302,22 @@
 						})
 						.then(({ data }) => {
 							this.datatable = data.peserta;
-							this.data_jadwal = data.jadwal_ujian;							
+							this.data_jadwal = data.jadwal_ujian;										
+							this.StatusJadwanUjian = this.data_jadwal.status_ujian;				
 							this.datatableLoading = false;
 						})
 						.catch(() => {
 							this.datatableLoading = false;
 						});
+			},
+			getStatusUjianPeserta(item) {
+				if (item.isfinish ==1 ) {
+					return "SELESAI";
+				} else if (item.mulai_ujian) {
+					return "SEDANG UJIAN";
+				} else {
+					return "BELUM MULAI";
+				}				
 			},
 			dataTableRowClicked(item) {
 				if ( item === this.expanded[0]) {
@@ -337,11 +344,36 @@
 							Authorization: this.$store.getters["auth/Token"]
 						}
 					})
-					.then(() => {                 
+					.then(() => {
 						this.btnLoading = false;
+						this.$router.go();
 					}).catch(() => {
 						this.btnLoading = false;
 					});
+			},			
+			selesaiUjian: async function() {
+				this.$root.$confirm.open("Delete", "Apakah Anda ingin menyatakan ujian telah selesai ?", { color: "red" }).then((confirm) => {
+					if (confirm) {
+						this.btnLoading = true;
+						this.$ajax
+							.post("/spmb/jadwalujianpmb/updatestatusujian/" + this.jadwal_ujian_id,
+							{
+								_method: "PUT",
+								status_ujian: 2,
+							},
+							{
+								headers: {
+									Authorization: this.$store.getters["auth/Token"],
+								}
+							})
+							.then(() => {
+								this.btnLoading = false;
+								this.$router.go();
+							}).catch(() => {
+								this.btnLoading = false;
+							});
+					}                
+				});				
 			},			
 			closedetail() {
 				this.jadwal_ujian_id = null;
@@ -350,8 +382,7 @@
 			},
 			deleteItem(item) {
 				this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus peserta ujian denga user_id " + item.user_id + " ?", { color: "red" }).then((confirm) => {
-					if (confirm)
-					{
+					if (confirm) {
 						this.btnLoading = true;
 						this.$ajax.post("/spmb/ujianonline/hapus",
 							{
@@ -373,7 +404,26 @@
 					}                
 				});
 			},
-		},		
+		},
+		computed:{
+			StatusJadwanUjian: {
+				set(newStatus) {
+					this.status_jadwan_ujian = newStatus;
+				},
+				get() {
+					switch(this.status_jadwan_ujian){
+						case 0:
+							return "BELUM MULAI";						
+						case 1:
+							return "BERJALAN";						
+						case 2:
+							return "SELESAI";						
+						default: 
+							return "";
+					}
+				},
+			},
+		},
 		components: {
 			SPMBLayout,
 			ModuleHeader,
