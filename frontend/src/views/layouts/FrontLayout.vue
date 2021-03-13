@@ -5,18 +5,41 @@
 				<span class="hidden-sm-and-down">{{ namaPTAlias }}</span>
 			</v-toolbar-title>
 			<v-spacer />
-			<v-btn to="/" class="mr-2" color="primary" text large>
-				Home
-			</v-btn>
-			<v-btn to="/blog/cara-pendaftaran" class="mr-2" color="primary" text large>
-				CARA PENDAFTARAN
-			</v-btn>
-			<v-btn to="/pmb" class="mr-2" color="primary" text large>
-				PENDAFTARAN
-			</v-btn>
-			<v-btn to="/login" color="primary" text large>
-				LOGIN
-			</v-btn>
+			<v-toolbar-items class="hidden-sm-and-down">
+				<v-btn to="/" class="mr-2" color="primary" text large>
+					HOME
+				</v-btn>
+				<v-btn to="/blog/cara-pendaftaran" class="mr-2" color="primary" text large>
+					CARA PENDAFTARAN
+				</v-btn>
+				<v-btn to="/pmb" class="mr-2" color="primary" text large>
+					PENDAFTARAN
+				</v-btn>
+				<v-btn to="/login" color="primary" text large>
+					LOGIN
+				</v-btn>
+			</v-toolbar-items>
+			<v-menu class="hidden-md-and-up" v-if="$vuetify.breakpoint.xsOnly">
+                <template v-slot:activator="{ on }">
+                    <v-btn icon v-on="on">
+                        <v-icon>mdi-dots-vertical</v-icon>
+                    </v-btn>
+                </template>
+                <v-list>
+                    <v-list-item to="/">
+                        <v-list-item-title>HOME</v-list-item-title>
+                    </v-list-item>
+                    <v-list-item to="/blog/cara-pendaftaran">
+                        <v-list-item-title>CARA PENDAFTARAN</v-list-item-title>
+                    </v-list-item>
+                    <v-list-item to="/pmb">
+                        <v-list-item-title>PENDAFTARAN</v-list-item-title>
+                    </v-list-item>
+                    <v-list-item to="/login">
+                        <v-list-item-title>LOGIN</v-list-item-title>
+                    </v-list-item>
+                </v-list>
+            </v-menu>
 		</v-app-bar>
 		<v-main>
 			<slot />
@@ -25,7 +48,7 @@
 			<v-card class="flex" flat tile>
 				<v-divider></v-divider>
 				<v-card-text class="py-2 white--text text-center">
-					<strong>SIMAK (2021-2020)</strong>
+					<strong>SIMAK (2021-2022)</strong>
 					dikembangkan oleh TIM IT STMIK Bandung Bali
 					<v-btn
 						dark
