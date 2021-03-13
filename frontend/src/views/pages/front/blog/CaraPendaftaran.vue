@@ -68,6 +68,32 @@
 					</v-timeline>
 				</v-col>
 			</v-row>
+			<v-row align="center" justify="center" no-gutters>
+				<v-col xs="12" sm="6" md="4">
+					<v-card outlined>
+						<v-card-title class="justify-center">
+							<h3 class="title">INFORMASI PENDAFTARAN</h3>
+						</v-card-title>
+						<v-card-subtitle class="justify-center">
+							Silahkan hubungi kami, bila ada pertanyaan atau hal yang belum jelas di nomor kontak WA berikut.
+						</v-card-subtitle>
+						<v-card-text class="justify-center">
+							<div>
+								<h3 class="headline pink--text text--accent-2">SANG AYU</h3>
+								<div><v-icon>mdi-card-account-phone-outline</v-icon> 0822 3662 5018</div>
+							</div>
+							<div>
+								<h3 class="headline pink--text text--accent-2">KADEK AYU</h3>
+								<div><v-icon>mdi-card-account-phone-outline</v-icon> 0878 6111 0357</div>
+							</div>
+							<div>
+								<h3 class="headline pink--text text--accent-2">VIONA</h3>
+								<div><v-icon>mdi-card-account-phone-outline</v-icon> 0823 5935 5795</div>
+							</div>							
+						</v-card-text>
+					</v-card>
+				</v-col>
+			</v-row>
 		</v-container>
 	</FrontLayout>
 </template>
