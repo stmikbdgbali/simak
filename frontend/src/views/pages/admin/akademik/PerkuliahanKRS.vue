@@ -266,7 +266,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{                                
+            }).then(({ data }) => {               
                 this.datatable = data.daftar_krs;
                 this.datatableLoading = false;
             }).catch(() => {
@@ -286,7 +286,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{                             
+            }).then(({ data }) => {            
                 this.datatable = data.daftar_krs;
                 this.datatableLoading = false;
                 this.firstloading = false;   
@@ -337,7 +337,7 @@ export default {
                     },
                     
                 }
-            ).then(({ data })=>{                   
+            ).then(({ data }) => {  
                 this.file_pdf=data.pdf_file;
                 this.dialogprintpdf=true;
                 this.btnLoading = false;

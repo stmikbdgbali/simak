@@ -493,7 +493,7 @@ export default {
                         Authorization: this.TOKEN
                     }
                 }
-            ).then(({ data })=>{                        
+            ).then(({ data }) => {       
                 let daftar_prodi = data.daftar_prodi;
                 var prodi=[];
                 daftar_prodi.forEach(element => {

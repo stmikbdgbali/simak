@@ -247,7 +247,7 @@ export default {
             //     headers: {
             //         Authorization: this.$store.getters["auth/Token"]
             //     }
-            // }).then(({ data })=>{                       
+            // }).then(({ data }) => {      
             //     this.dialogfrm=true;
             //     this.daftar_dw = data.users; 
             // }); 

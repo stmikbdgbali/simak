@@ -301,7 +301,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{                   
+            }).then(({ data }) => {  
                 this.datamhs=data.mahasiswa;
                 
                 this.totalSKS=data.jumlah_sks;
@@ -343,7 +343,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{                                                  
+            }).then(({ data }) => {                                 
                 this.data_transaksi=item; 
                 this.data_transaksi_detail=data.transaksi_detail; 
                 this.dialogdetailitem = true;

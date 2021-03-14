@@ -222,7 +222,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{                    
+            }).then(({ data }) => {   
                 this.datatable = data.dosen;              
             })  
         },
@@ -233,7 +233,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{                    
+            }).then(({ data }) => {   
                 this.data_matkul = data.penyelenggaraan;              
             })  
         },
@@ -248,7 +248,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{                    
+            }).then(({ data }) => {   
                 this.daftar_dosen = data.dosen;              
             })  
         },

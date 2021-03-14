@@ -399,7 +399,7 @@ export default {
             if (val.id != null && val.id != "")
             {
                 this.btnLoadingKab=true;
-                this.$ajax.get("/datamaster/kabupaten/" + val.id + "/kecamatan").then(({ data })=>{                     
+                this.$ajax.get("/datamaster/kabupaten/" + val.id + "/kecamatan").then(({ data }) => {    
                     this.daftar_kecamatan=data.kecamatan;
                     this.btnLoadingKab=false;
                 });
@@ -410,7 +410,7 @@ export default {
             if (val.id != null && val.id != "")
             {
                 this.btnLoadingKec=true;
-                this.$ajax.get("/datamaster/kecamatan/" + val.id + "/desa").then(({ data })=>{                     
+                this.$ajax.get("/datamaster/kecamatan/" + val.id + "/desa").then(({ data }) => {    
                     this.daftar_desa=data.desa;
                     this.btnLoadingKec=false;
                 });
@@ -419,7 +419,7 @@ export default {
         kode_fakultas (val)
         {
             this.btnLoadingFakultas=true;
-            this.$ajax.get("/datamaster/fakultas/" + val + "/programstudi").then(({ data })=>{                     
+            this.$ajax.get("/datamaster/fakultas/" + val + "/programstudi").then(({ data }) => {    
                 this.daftar_prodi=data.programstudi;
                 this.btnLoadingFakultas=false;
             });

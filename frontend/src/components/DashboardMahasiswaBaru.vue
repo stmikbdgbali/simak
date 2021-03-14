@@ -1,140 +1,178 @@
 <template>
-    <v-row no-gutters>
-        <v-col cols="12">
-            <v-timeline align-top :dense="$vuetify.breakpoint.smAndDown">
-                <!-- <v-timeline-item color="deep-orange lighten-2" icon="mdi-email-alert" fill-dot>
-                    <v-card color="deep-orange lighten-2" dark>
-                        <v-card-title class="title">Verifikasi Email</v-card-title>
-                        <v-card-text class="white text--primary">
-                            <p>Email belum diverifikasi, silahkan diverifikasi !!!.</p>
-                            <v-btn
-                                color="deep-orange lighten-2"
-                                class="mx-0"
-                                outlined
-                            >
-                                Kirim Ulang
-                            </v-btn>
-                        </v-card-text> 
-                    </v-card>
-                </v-timeline-item> -->
-                <v-timeline-item color="purple darken-1" icon="mdi-book-variant" fill-dot>
-                    <v-card color="purple darken-1" dark>
-                        <v-card-title class="title">Formulir Pendaftaran</v-card-title>
-                        <v-card-text class="white text--primary">
-                            <p>
-                                Isi formulir pendaftaran dan lengkapi persyaratannya yaitu:
-                                <ul>
-                                    <li>Scan Pas Foto</li>
-                                    <li>Scan Ijazah Terakhir</li>
-                                    <li>Scan KTP</li>
-                                    <li>Scan Kartu Keluarga</li>
-                                </ul>
-                            </p>         
-                            <v-btn
-                                color="purple darken-1"
-                                class="mx-0 mr-2"
-                                outlined
-                                to="/spmb/formulirpendaftaran"
-                            >
-                                Isi Formulir
-                            </v-btn>
-                            <v-btn
-                                color="purple darken-1"
-                                class="mx-0"
-                                outlined
-                                to="/spmb/persyaratan"
-                            >
-                                Upload Persyaratan
-                            </v-btn>
-                        </v-card-text> 
-                    </v-card>
-                </v-timeline-item>
-                <v-timeline-item color="red lighten-2" icon="mdi-account-cash" fill-dot>
-                    <v-card color="red lighten-2" dark>
-                        <v-card-title class="title">Konfirmasi Pembayaran</v-card-title>
-                        <v-card-text class="white text--primary">
-                            <p>Konfirmasi Pembayaran Biaya Pendaftaran.</p>
-                            <v-btn
-                                color="red lighten-2"
-                                class="mx-0"
-                                outlined
-                                to="/keuangan/konfirmasipembayaran">
-                                Konfirmasi
-                            </v-btn>
-                        </v-card-text> 
-                    </v-card>
-                </v-timeline-item>                
-                <v-timeline-item color="indigo" icon="mdi-head-question-outline" fill-dot v-if="status_ujian">
-                    <v-card color="indigo">
-                        <v-card-title class="title white--text">Ujian Online</v-card-title>
-                        <v-card-text class="white text--primary">
-                            <table width="100%">
-                                <tbody>
-                                    <tr>
-                                        <td width="25%">No. Peserta</td>
-                                        <td>: {{peserta.no_peserta}}</td>
-                                    </tr>
-                                     <tr>
-                                        <td width="25%">Tanggal Daftar</td>
-                                        <td>: {{$date(peserta.created_at).format("DD/MM/YYYY HH:mm")}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td width="25%">Tanggal Ujian</td>
-                                        <td>: {{$date(jadwal_ujian.tanggal_ujian).format("DD/MM/YYYY")}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td width="25%">Waktu Ujian</td>
-                                        <td>: {{jadwal_ujian.jam_mulai_ujian}} - {{jadwal_ujian.jam_selesai_ujian}} ({{durasiUjian(jadwal_ujian)}})</td>
-                                    </tr>
-                                    <tr>
-                                        <td width="25%">Keterangan</td>
-                                        <td>: {{keterangan_ujian}}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <v-btn
-                                color="indigo"
-                                class="mx-0"
-                                @click.stop="mulaiUjian"
-                                :disabled="ismulai"
-                                outlined>
-                                Mulai
-                            </v-btn>
-                        </v-card-text> 
-                    </v-card>
-                </v-timeline-item>
-                <v-timeline-item color="indigo" icon="mdi-head-question-outline" fill-dot v-else>
-                    <v-card color="indigo">
-                        <v-card-title class="title white--text">Ujian Online</v-card-title>
-                        <v-card-text class="white text--primary">
-                            <p>Untuk mengikuti ujian online, silahkan pilih jadwal terlebih dahulu</p>
-                            <v-btn
-                                color="indigo"
-                                class="mx-0 mr-2"
-                                @click.stop="showPilihJadwal"
-                                outlined>
-                                Pilih Jadwal Ujian
-                            </v-btn>
-                        </v-card-text> 
-                    </v-card> 
-                </v-timeline-item>
-                <!-- <v-timeline-item color="green lighten-1" icon="mdi-airballoon" fill-dot>
-                    <v-card color="green lighten-1" dark>
-                        <v-card-title class="title">Hasil Ujian</v-card-title>
-                        <v-card-text class="white text--primary">
-                            <p>Hasil Ujian</p>
-                            <v-btn
-                                color="green lighten-1"
-                                class="mx-0"
-                                outlined
-                            >
-                                Button
-                            </v-btn>
-                        </v-card-text> 
-                    </v-card>
-                </v-timeline-item> -->
-            </v-timeline>
-        </v-col>
+    <v-container>
+        <v-row no-gutters>
+            <v-col cols="12">
+                <v-timeline align-top :dense="$vuetify.breakpoint.smAndDown">
+                    <!-- <v-timeline-item color="deep-orange lighten-2" icon="mdi-email-alert" fill-dot>
+                        <v-card color="deep-orange lighten-2" dark>
+                            <v-card-title class="title">Verifikasi Email</v-card-title>
+                            <v-card-text class="white text--primary">
+                                <p>Email belum diverifikasi, silahkan diverifikasi !!!.</p>
+                                <v-btn
+                                    color="deep-orange lighten-2"
+                                    class="mx-0"
+                                    outlined
+                                >
+                                    Kirim Ulang
+                                </v-btn>
+                            </v-card-text> 
+                        </v-card>
+                    </v-timeline-item> -->
+                    <v-timeline-item color="teal lighten-3" icon="mdi-book-variant" fill-dot>
+                        <v-card color="teal lighten-3" dark>
+                            <v-card-title class="title">Formulir Pendaftaran</v-card-title>
+                            <v-card-text class="white text--primary">
+                                <p>
+                                    Isi formulir pendaftaran dengan benar dan lengkap.                                
+                                </p>         
+                                <v-btn
+                                    color="teal lighten-3"
+                                    class="mx-0 mr-2"
+                                    outlined
+                                    to="/spmb/formulirpendaftaran"
+                                >
+                                    Isi Formulir
+                                </v-btn>
+                            </v-card-text> 
+                        </v-card>
+                    </v-timeline-item>
+                    <v-timeline-item color="red lighten-2" icon="mdi-account-cash" fill-dot>
+                        <v-card color="red lighten-2" dark>
+                            <v-card-title class="title">Konfirmasi Pembayaran</v-card-title>
+                            <v-card-text class="white text--primary">
+                                <p>Konfirmasi Pembayaran Biaya Pendaftaran.</p>
+                                <v-btn
+                                    color="red lighten-2"
+                                    class="mx-0"
+                                    outlined
+                                    to="/keuangan/konfirmasipembayaran">
+                                    Konfirmasi
+                                </v-btn>
+                            </v-card-text> 
+                        </v-card>
+                    </v-timeline-item>                
+                    <v-timeline-item color="indigo" icon="mdi-head-question-outline" fill-dot v-if="status_ujian">
+                        <v-card color="indigo">
+                            <v-card-title class="title white--text">Ujian Online</v-card-title>
+                            <v-card-text class="white text--primary">
+                                <table width="100%">
+                                    <tbody>
+                                        <tr>
+                                            <td width="25%">No. Peserta</td>
+                                            <td>: {{peserta.no_peserta}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="25%">Tanggal Daftar</td>
+                                            <td>: {{$date(peserta.created_at).format("DD/MM/YYYY HH:mm")}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="25%">Tanggal Ujian</td>
+                                            <td>: {{$date(jadwal_ujian.tanggal_ujian).format("DD/MM/YYYY")}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="25%">Waktu Ujian</td>
+                                            <td>: {{jadwal_ujian.jam_mulai_ujian}} - {{jadwal_ujian.jam_selesai_ujian}} ({{durasiUjian(jadwal_ujian)}})</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="25%">Keterangan</td>
+                                            <td>: {{keterangan_ujian}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <v-btn
+                                    color="indigo"
+                                    class="mx-0"
+                                    @click.stop="mulaiUjian"
+                                    :disabled="ismulai"
+                                    outlined>
+                                    Mulai
+                                </v-btn>
+                            </v-card-text> 
+                        </v-card>
+                    </v-timeline-item>
+                    <v-timeline-item color="indigo" icon="mdi-head-question-outline" fill-dot v-else>
+                        <v-card color="indigo">
+                            <v-card-title class="title white--text">Ujian Online</v-card-title>
+                            <v-card-text class="white text--primary">
+                                <p>Untuk mengikuti ujian online, silahkan pilih jadwal terlebih dahulu</p>
+                                <v-btn
+                                    color="indigo"
+                                    class="mx-0 mr-2"
+                                    @click.stop="showPilihJadwal"
+                                    outlined>
+                                    Pilih Jadwal Ujian
+                                </v-btn>
+                            </v-card-text> 
+                        </v-card> 
+                    </v-timeline-item>
+                    <v-timeline-item color="purple darken-1" icon="mdi-book-variant" fill-dot>
+                        <v-card color="purple darken-1" dark>
+                            <v-card-title class="title">Persyaratan</v-card-title>
+                            <v-card-text class="white text--primary">
+                                <p>
+                                    Setelah melakukan ujian mohon lengkapi persyaratan berikut ini dengan mengunggah ke sistem:
+                                    <ul>
+                                        <li>Scan Pas Foto</li>
+                                        <li>Scan Ijazah Terakhir</li>
+                                        <li>Scan KTP</li>
+                                        <li>Scan Kartu Keluarga</li>
+                                    </ul>
+                                </p>                                     
+                                <v-btn
+                                    color="purple darken-1"
+                                    class="mx-0"
+                                    outlined
+                                    to="/spmb/persyaratan"
+                                >
+                                    Upload
+                                </v-btn>
+                            </v-card-text> 
+                        </v-card>
+                    </v-timeline-item>
+                    <v-timeline-item color="green lighten-1" icon="mdi-airballoon" fill-dot>
+                        <v-card color="green lighten-1" dark>
+                            <v-card-title class="title">SK Kelulusan</v-card-title>
+                            <v-card-text class="white text--primary">
+                                <p>Silahkan download SK Kelulusan kemudian cetak dan dibawa ke kampus saat daftar ulang beserta persyaratan ASLI lainnya.</p>
+                                <v-btn
+                                    color="green lighten-1"
+                                    class="mx-0"
+                                    outlined
+                                >
+                                    Download
+                                </v-btn>
+                            </v-card-text> 
+                        </v-card>
+                    </v-timeline-item>
+                </v-timeline>
+            </v-col>
+        </v-row>
+        <v-row align="center" justify="center" no-gutters>
+            <v-col xs="12" sm="6" md="4">            
+                <v-card outlined>
+                    <v-card-title class="justify-center">
+                        <h3 class="title">INFORMASI PENDAFTARAN</h3>
+                    </v-card-title>
+                    <v-card-subtitle class="justify-center">
+                        Silahkan hubungi kami, bila ada pertanyaan atau hal yang belum jelas di nomor kontak WA berikut.
+                    </v-card-subtitle>
+                    <v-card-text class="justify-center">
+                        <div>
+                            <h3 class="headline pink--text text--accent-2">SANG AYU</h3>
+                            <div><v-icon>mdi-card-account-phone-outline</v-icon> 0822 3662 5018</div>
+                        </div>
+                        <div>
+                            <h3 class="headline pink--text text--accent-2">KADEK AYU</h3>
+                            <div><v-icon>mdi-card-account-phone-outline</v-icon> 0878 6111 0357</div>
+                        </div>
+                        <div>
+                            <h3 class="headline pink--text text--accent-2">VIONA</h3>
+                            <div><v-icon>mdi-card-account-phone-outline</v-icon> 0823 5935 5795</div>
+                        </div>							
+                    </v-card-text>
+                </v-card>	
+            </v-col>
+        </v-row>
         <v-dialog v-model="dialogpilihjadwal" persistent>    
             <v-card>
                 <v-card-title>
@@ -174,7 +212,7 @@
                 </v-card-actions>
             </v-card>            
         </v-dialog>
-    </v-row>
+    </v-container>
 </template>
 <script>
     export default {

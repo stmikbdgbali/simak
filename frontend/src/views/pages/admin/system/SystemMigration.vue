@@ -133,7 +133,7 @@
 <script>
 import SystemMigrationLayout from '@/views/layouts/SystemMigrationLayout';
 import ModuleHeader from "@/components/ModuleHeader";
-import Filter9 from '@/components/sidebar/FilterMode9';
+import Filter9 from "@/components/sidebar/FilterMode9";
 export default {
     name: "SystemMigration",
     created()
@@ -223,7 +223,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{                   
+            }).then(({ data }) => {  
                 this.daftar_dw = data.users; 
             });
 
@@ -236,7 +236,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{                   
+            }).then(({ data }) => {  
                 this.daftar_tasmt = data.daftar_tasmt; 
                 var dt = this.daftar_tasmt;
                 var i=0;

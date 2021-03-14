@@ -363,7 +363,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{                                           
+            }).then(({ data }) => {                          
                 this.datatable=data.penyelenggaraan;                              
                 this.datatableLoading = false;
             })   
@@ -376,7 +376,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{                                           
+            }).then(({ data }) => {                          
                 this.datatable_peserta=data.peserta;                              
                 this.datatableLoading = false;
             })   
@@ -393,7 +393,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{                                                    
+            }).then(({ data }) => {                                   
                 this.daftar_matakuliah = data.matakuliah; 
                 this.showdialogmatakuliah=true;                    
             })  
