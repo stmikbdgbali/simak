@@ -193,7 +193,7 @@ export default {
         {
             this.tahun_pendaftaran = tahun;
         },
-        changeProdi (id)
+        changeProdi(id)
         {
             this.prodi_id = id;
         },

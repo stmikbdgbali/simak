@@ -211,7 +211,7 @@
                     headers: {
                         Authorization: this.$store.getters['auth/Token']
                     }
-                }).then(({data})=>{          
+                }).then(({ data }) => {          
                     if (data.status == 1)               
                     {
                         this.status_ujian=true;
@@ -246,7 +246,7 @@
                     headers: {
                         Authorization: this.$store.getters['auth/Token']
                     }
-                }).then(({data})=>{             
+                }).then(({ data }) => {             
                     this.datatable = data.jadwal_ujian;
                     this.datatableLoading=false;
                 }).catch(() => {
@@ -268,9 +268,9 @@
                 }).then(() => { 
                     this.initialize();       
                     this.closedialogfrm();
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                 }).catch(() => {
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                 });
             },
             durasiUjian (item) {
@@ -279,7 +279,7 @@
                 return waktu_selesai.diff(waktu_mulai, "minute") + ' menit';
             },
             mulaiUjian: async function() {          
-                this.btnLoading=false;
+                this.btnLoading = false;
                 await this.$ajax.post("/spmb/ujianonline/mulaiujian",
                 {
                     _method: "put",
@@ -289,8 +289,8 @@
                     headers: {
                         Authorization: this.$store.getters['auth/Token']
                     }
-                }).then(({data})=>{    
-                    this.btnLoading=false;
+                }).then(({ data }) => {    
+                    this.btnLoading = false;
                     this.$store.dispatch("uiadmin/addToPages",{
                         name: "ujianonline",
                         data_ujian: this.jadwal_ujian,
@@ -298,7 +298,7 @@
                     });
                     this.$router.push("/spmb/ujianonline");              
                 }).catch(() => {
-                    this.btnLoading=false;
+                    this.btnLoading = false;
                 });            
             },
             closedialogfrm () {

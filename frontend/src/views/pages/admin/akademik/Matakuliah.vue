@@ -557,7 +557,7 @@
 			],
 		}),
 		methods: {		
-			changeProdi (id) {
+			changeProdi(id) {
 				this.prodi_id = id;
 			},
 			initialize: async function() {

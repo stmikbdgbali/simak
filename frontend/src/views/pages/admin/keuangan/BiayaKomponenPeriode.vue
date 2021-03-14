@@ -18,14 +18,9 @@
 				</v-breadcrumbs>
 			</template>
 			<template v-slot:desc>
-				<v-alert 
-					color="cyan"
-					border="left"
-					colored-border
-					type="info"
-					>
-						Halaman ini berisi informasi biaya komponen biaya per periode yang masing-masing.
-					</v-alert>
+				<v-alert color="cyan" border="left" colored-border type="info">
+					Halaman ini berisi informasi biaya komponen biaya per periode yang masing-masing.
+				</v-alert>
 			</template>
 		</ModuleHeader>
 		<template v-slot:filtersidebar>
@@ -128,7 +123,7 @@
 							</v-edit-dialog>
 						</template>
 						<template v-slot:item.idkelas="{item}">
-							{{$store.getters['uiadmin/getNamaKelas'](item.idkelas)}}
+							{{ $store.getters['uiadmin/getNamaKelas'](item.idkelas) }}
 						</template>
 						<template v-slot:expanded-item="{ headers, item }">
 							<td :colspan="headers.length" class="text-center">
@@ -161,23 +156,23 @@
 				{
 					text: "HOME",
 					disabled: false,
-					href: "/dashboard/"+this.$store.getters["auth/AccessToken"]
+					href: "/dashboard/"+this.$store.getters["auth/AccessToken"],
 				},
 				{
 					text: "KEUANGAN",
 					disabled: false,
-					href: "/keuangan"
+					href: "/keuangan",
 				},
 				{
 					text: "BIAYA KOMPONEN PER PERIODE",
 					disabled: true,
-					href: "#"
-				}
+					href: "#",
+				},
 			];
 			this.tahun_pendaftaran = this.$store.getters["uiadmin/getTahunPendaftaran"]; 
-			this.prodi_id=this.$store.getters["uiadmin/getProdiID"]
-			this.nama_prodi=this.$store.getters["uiadmin/getProdiName"](this.prodi_id);
-			this.daftar_kelas=this.$store.getters["uiadmin/getDaftarKelas"];
+			this.prodi_id = this.$store.getters["uiadmin/getProdiID"];
+			this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](this.prodi_id);
+			this.daftar_kelas = this.$store.getters["uiadmin/getDaftarKelas"];
 			this.initialize();
 		},
 		data: () => ({
@@ -187,7 +182,7 @@
 			tahun_pendaftaran: 0,
 			prodi_id: null,
 			nama_prodi: null,
-			filter_idkelas: "",
+			filter_idkelas: null,
 			daftar_kelas: [],
 			
 			btnLoading: false,
@@ -207,35 +202,63 @@
 			changeTahunPendaftaran(tahun) {
 				this.tahun_pendaftaran = tahun;
 			},
-			changeProdi (id) {
+			changeProdi(id) {
 				this.prodi_id = id;
 			},
 			initialize: async function() {
 				this.datatableLoading = true;
 				await this.$ajax
-				.post("/keuangan/biayakomponenperiode",
-				{
-					TA: this.tahun_pendaftaran,
-					prodi_id: this.prodi_id
-				},
-				{
-					headers: {
-						Authorization: this.$store.getters[
-							"auth/Token"
-						],
-					},
-				})
-				.then(({ data }) => {
-					this.datatable = data.kombi;
-					this.datatableLoading = false;
-				}); 
+					.post(
+						"/keuangan/biayakomponenperiode",
+						{
+							TA: this.tahun_pendaftaran,
+							prodi_id: this.prodi_id,
+						},
+						{
+							headers: {
+								Authorization: this.$store.getters[
+									"auth/Token"
+								],
+							},
+						}
+					)
+					.then(({ data }) => {
+						this.datatable = data.kombi;
+						this.datatableLoading = false;
+					});
 				this.firstloading = false;
-				if (this.dashboard != "mahasiswa" && this.dashboard != "mahasiswabaru") {
-					this.$refs.filter7.setFirstTimeLoading(this.firstloading); 
+				if (
+					this.dashboard != "mahasiswa" &&
+					this.dashboard != "mahasiswabaru"
+				) {
+					this.$refs.filter7.setFirstTimeLoading(this.firstloading);
 				}
 			},
+			fetchDataByKelas(val) {
+				this.datatableLoading = true;
+				this.$ajax
+					.post(
+						"/keuangan/biayakomponenperiode",
+						{
+							TA: this.tahun_pendaftaran,
+							prodi_id: this.prodi_id,
+							filter_idkelas: val,
+						},
+						{
+							headers: {
+								Authorization: this.$store.getters[
+									"auth/Token"
+								],
+							},
+						}
+					)
+					.then(({ data }) => {
+						this.datatable = data.kombi;
+						this.datatableLoading = false;
+					});
+			},
 			dataTableRowClicked(item) {
-				if ( item === this.expanded[0]) {
+				if (item === this.expanded[0]) {
 					this.expanded = [];
 				} else {
 					this.expanded = [item];
@@ -243,19 +266,25 @@
 			},
 			loadkombiperiode: async function() {
 				this.btnLoading = true;
-				await this.$ajax.post("/keuangan/biayakomponenperiode/loadkombiperiode",
-				{
-					TA: this.tahun_pendaftaran,
-					prodi_id: this.prodi_id
-				},
-				{
-					headers: {
-						Authorization: this.$store.getters["auth/Token"]
-					}
-				}).then(({data})=>{
-					this.datatable = data.kombi;
-					this.btnLoading=false;
-				});
+				await this.$ajax
+					.post(
+						"/keuangan/biayakomponenperiode/loadkombiperiode",
+						{
+							TA: this.tahun_pendaftaran,
+							prodi_id: this.prodi_id,
+						},
+						{
+							headers: {
+								Authorization: this.$store.getters[
+									"auth/Token"
+								],
+							},
+						}
+					)
+					.then(({ data }) => {
+						this.datatable = data.kombi;
+						this.btnLoading = false;
+					});
 			},
 			saveItem: async function({ id, biaya }) {
 				await this.$ajax
@@ -274,7 +303,11 @@
 						}
 					)
 					.then(() => {
-						this.initialize();
+						if (this.filter_idkelas) {
+							this.fetchDataByKelas(this.filter_idkelas);
+						} else {
+							this.initialize();
+						}
 					});
 			},
 			cancelItem() {},
@@ -298,27 +331,7 @@
 			filter_idkelas(val) {
 				if (!this.firstloading) {
 					if (val && typeof val !== "undefined" && val.length > 0) {
-						this.datatableLoading = true;
-						this.$ajax
-							.post(
-								"/keuangan/biayakomponenperiode",
-								{
-									TA: this.tahun_pendaftaran,
-									prodi_id: this.prodi_id,
-									filter_idkelas: val,
-								},
-								{
-									headers: {
-										Authorization: this.$store.getters[
-											"auth/Token"
-										],
-									},
-								}
-							)
-							.then(({ data }) => {
-								this.datatable = data.kombi;
-								this.datatableLoading = false;
-							});
+						this.fetchDataByKelas(val);
 					} else {
 						this.initialize();
 					}

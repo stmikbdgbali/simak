@@ -33,7 +33,7 @@ export default {
                         Authorization: this.$store.getters['auth/Token']
                     }
                 }
-            ).then(({data})=>{        
+            ).then(({ data }) => {        
                 this.daftar_persyaratan=data.persyaratan;
             })
         }, 

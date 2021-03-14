@@ -198,7 +198,7 @@ export default {
 		changeTahunPendaftaran(tahun) {
 			this.tahun_pendaftaran = tahun;
 		},
-		changeProdi (id) {
+		changeProdi(id) {
 			this.prodi_id = id;
 		},
 		initialize: async function() {	

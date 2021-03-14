@@ -154,9 +154,9 @@ export default {
                     ).then(() => {                                     
                         this.btnHapus=false;
                         this.btnSimpan=true;
-                        this.btnLoading=false;                      
+                        this.btnLoading = false;                      
                     }).catch(() => {
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });                  
                 }               
             }            
@@ -178,9 +178,9 @@ export default {
                     ).then(() => {     
                         this.btnHapus=true;
                         this.photoPersyaratan=require("@/assets/no-image.png");      
-                        this.btnLoading=false;                      
+                        this.btnLoading = false;                      
                     }).catch(() => {
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
                 }
             });
@@ -213,14 +213,14 @@ export default {
                     Authorization: this.$store.getters['auth/Token']
                 }
             }
-            ).then(({data})=>{   
+            ).then(({ data }) => {   
                 this.badgeColor=data.persyaratan.verified;            
                 this.badgeIcon=data.persyaratan.verified;            
                 this.btnHapus=true;        
                 this.btnVerifikasi=true;   
-                this.btnLoading=false;                      
+                this.btnLoading = false;                      
             }).catch(() => {                                        
-                this.btnLoading=false;
+                this.btnLoading = false;
             });                           
         }
     },
