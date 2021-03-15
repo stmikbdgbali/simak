@@ -151,7 +151,7 @@ export default {
             }            
         }
     },
-    computed:{
+    computed: {
         active()
         {
             return this.datadosen.active== 1?'AKTIF':'TIDAK AKTIF';

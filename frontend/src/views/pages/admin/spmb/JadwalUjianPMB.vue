@@ -250,13 +250,13 @@
 							<v-icon
 								small
 								class="mr-2"
-								@click.stop="editItem(item)">
+								@click.stop="editItem(item)"
+								:disabled="item.status_ujian == 2 || item.status_ujian == 1">
 								mdi-pencil
 							</v-icon>
 							<v-icon
-								small
-								:loading="btnLoading"
-								:disabled="btnLoading"
+								small								
+								:disabled="btnLoading || item.status_ujian == 2 || item.status_ujian == 1"
 								@click.stop="deleteItem(item)">
 								mdi-delete
 							</v-icon>

@@ -146,7 +146,7 @@ export default {
 
         }
     },
-    computed:{        
+    computed: {        
         totalKombiGanjilPaid()
         {
             var total = 0;          
