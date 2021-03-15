@@ -222,7 +222,7 @@ export default {
         {
             this.tahun_pendaftaran = tahun;
         },
-        changeProdi (id)
+        changeProdi(id)
         {
             this.prodi_id = id;
         },
@@ -272,7 +272,7 @@ export default {
                     },
                     
                 }
-            ).then(({ data })=>{                   
+            ).then(({ data }) => {  
                 this.file_pdf=data.pdf_file;
                 this.dialogprintpdf=true;
                 this.btnLoading = false;

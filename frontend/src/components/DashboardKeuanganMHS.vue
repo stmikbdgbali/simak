@@ -124,7 +124,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters['auth/Token']
                 }
-            }).then(({data})=>{      
+            }).then(({ data }) => {      
                 this.total_transaction=data.total_transaction;
                 this.total_transaction_paid=data.total_transaction_paid;        
                 this.total_transaction_unpaid=data.total_transaction_unpaid;        
@@ -146,7 +146,7 @@ export default {
 
         }
     },
-    computed:{        
+    computed: {        
         totalKombiGanjilPaid()
         {
             var total = 0;          

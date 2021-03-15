@@ -445,7 +445,7 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({data})=>{
+            }).then(({ data }) => {
                 this.datatable = data.ta;
                 this.datatableLoading = false;
             }).catch(() => {
@@ -500,9 +500,9 @@ export default {
                         }
                     ).then(() => {
                         this.$router.go();
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     }).catch(() => {
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
 
                 } else {
@@ -520,12 +520,12 @@ export default {
                                 Authorization: this.TOKEN
                             }
                         }
-                    ).then(({data})=>{
+                    ).then(({ data }) => {
                         this.datatable.push(data.ta);
                         this.closedialogfrm();
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     }).catch(() => {
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
                 }
             }
@@ -547,9 +547,9 @@ export default {
                     ).then(() => {
                         const index = this.datatable.indexOf(item);
                         this.datatable.splice(index, 1);
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     }).catch(() => {
-                        this.btnLoading=false;
+                        this.btnLoading = false;
                     });
                 }
             });

@@ -465,7 +465,7 @@ export default {
         {
             this.tahun_pendaftaran = tahun;
         },
-        changeProdi (id)
+        changeProdi(id)
         {
             this.prodi_id = id;
         },
@@ -734,7 +734,7 @@ export default {
         kode_fakultas(val) {
             if (val != null && val != "") {
                 this.btnLoadingFakultas=true;
-                this.$ajax.get("/datamaster/fakultas/" + val + "/programstudi").then(({ data })=>{                     
+                this.$ajax.get("/datamaster/fakultas/" + val + "/programstudi").then(({ data }) => {    
                     this.daftar_prodi=data.programstudi;
                     this.btnLoadingFakultas=false;
                 });

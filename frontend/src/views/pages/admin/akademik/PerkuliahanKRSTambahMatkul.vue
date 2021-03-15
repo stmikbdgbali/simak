@@ -161,7 +161,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{                                    
+            }).then(({ data }) => {                   
                 this.datakrs=data.krs;
                 if (Object.keys(this.datakrs).length)
                 {

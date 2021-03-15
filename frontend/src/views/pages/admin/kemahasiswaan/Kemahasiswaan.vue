@@ -217,7 +217,7 @@
 							headers: {
 								Authorization: this.$store.getters["auth/Token"]
 							}
-						}).then(({ data })=>{                                            
+						}).then(({ data }) => {                           
 							const { jumlah, daftar_mhs } = data;
 							this.count = jumlah;
 							this.entries = daftar_mhs;

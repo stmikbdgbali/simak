@@ -193,7 +193,7 @@ export default {
         {
             this.tahun_pendaftaran = tahun;
         },
-        changeProdi (id)
+        changeProdi(id)
         {
             this.prodi_id = id;
         },
@@ -247,7 +247,7 @@ export default {
             //     headers: {
             //         Authorization: this.$store.getters["auth/Token"]
             //     }
-            // }).then(({ data })=>{                       
+            // }).then(({ data }) => {      
             //     this.dialogfrm=true;
             //     this.daftar_dw = data.users; 
             // }); 

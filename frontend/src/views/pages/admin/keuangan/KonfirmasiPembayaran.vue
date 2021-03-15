@@ -608,7 +608,7 @@ export default {
 		{
 			this.tahun_akademik=tahun;
 		},
-		changeProdi (id)
+		changeProdi(id)
 		{
 			this.prodi_id = id;
 		},

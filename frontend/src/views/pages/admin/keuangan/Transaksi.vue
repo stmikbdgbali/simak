@@ -318,7 +318,7 @@ export default {
         {
             this.tahun_akademik=tahun;
         },
-        changeProdi (id)
+        changeProdi(id)
         {
             this.prodi_id = id;
         },
@@ -359,7 +359,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{                                                  
+            }).then(({ data }) => {                                 
                 this.data_transaksi=item; 
                 this.data_transaksi_detail=data.transaksi_detail; 
                 this.dialogdetailitem = true;

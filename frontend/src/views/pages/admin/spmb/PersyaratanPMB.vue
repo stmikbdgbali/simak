@@ -198,7 +198,7 @@ export default {
 		changeTahunPendaftaran(tahun) {
 			this.tahun_pendaftaran = tahun;
 		},
-		changeProdi (id) {
+		changeProdi(id) {
 			this.prodi_id = id;
 		},
 		initialize: async function() {	
@@ -224,7 +224,7 @@ export default {
 					headers: {
 						Authorization: this.$store.getters["auth/Token"],
 					}
-				}).then(({ data })=>{                        
+				}).then(({ data }) => {       
 					this.datatable = data.persyaratan; 
 					this.datatableLoading = false;
 				});

@@ -266,7 +266,7 @@ export default {
 
     }),
     methods: {
-        changeProdi (id)
+        changeProdi(id)
         {
             this.prodi_id = id;
         },
@@ -332,7 +332,7 @@ export default {
                             Authorization: this.$store.getters["auth/Token"]
                         }
                     }
-                ).then(({ data })=>{                             
+                ).then(({ data }) => {            
                     this.btnLoading = false;                                      
                     this.$router.push("/keuangan/transaksi-spp/tambah/" + data.transaksi.id);
                 }).catch(() => {
