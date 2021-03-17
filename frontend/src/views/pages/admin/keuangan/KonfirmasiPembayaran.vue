@@ -411,13 +411,22 @@
 							<v-chip :color="item.style" dark>{{item.nama_status}}</v-chip>
 						</template>
 						<template v-slot:item.actions="{ item }">
-							<v-icon
-								small
-								class="mr-2"
-								@click.stop="addItem(item)"
-								v-if="item.status_konfirmasi=='N.A'">
-								mdi-send
-							</v-icon>
+							<v-tooltip bottom v-if="item.status_konfirmasi=='N.A'">             
+                                <template v-slot:activator="{ on, attrs }">        
+                                    <v-btn 
+                                        v-bind="attrs"
+                                        v-on="on"
+                                        color="primary" 
+                                        icon                                         
+                                        x-small 
+                                        class="ma-1" 
+                                        :disabled="btnLoading"
+                                        @click.stop="addItem(item)">
+                                        <v-icon>mdi-send</v-icon>
+                                    </v-btn>     
+                                </template>
+                                <span>Upload Bukti Bayar</span>                
+                            </v-tooltip>							
 							<v-icon
 								small
 								class="mr-2"
@@ -542,7 +551,7 @@ export default {
 			{ text: "TOTAL", value: "total", width: 100,sortable: true },
 			{ text: "STATUS TRANSAKSI", value: "nama_status", width: 50,sortable: true },
 			{ text: "KONFIRM.", value: "status_konfirmasi", width: 50,sortable: true },
-			{ text: "AKSI", value: "actions", sortable: false,width:82 },
+			{ text: "AKSI", value: "actions", sortable: false,width:120 },
 		],
 		expanded: [],
 		search: "",
@@ -720,8 +729,7 @@ export default {
 		async verifikasi(item)
 		{
 			this.$root.$confirm.open("Konfirmasi Pembayaran", 'Apakah sudah benar data bukti bayar kode billing '+item.no_transaksi + " ?", { color: "primary" }).then((confirm) => {
-				if (confirm)
-				{
+				if (confirm) {
 					this.btnLoading = true;
 					this.$ajax.post("/keuangan/transaksi/verifikasi/" + item.id,
 						{
