@@ -299,7 +299,7 @@ export default {
         initialize: async function() 
         {
             this.datatableLoading = true;
-            await this.$ajax.get("/system/usersdosen/biodatadiri/" + this.dosen_id,             
+            await this.$ajax.get("/system/usersdosen/biodatadiri/" + this.dosen_id, 
                 {
                     headers: {
                         Authorization: this.$store.getters["auth/Token"]

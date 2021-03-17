@@ -125,7 +125,7 @@ export default {
             soal_tidak_terjawab: null,           
             passing_grade_1: null,           
             passing_grade_2: null,           
-            nilai:0,            
+            nilai:0,
             ket_lulus: "",       
             kjur: null,           
             desc: "",       
@@ -309,7 +309,7 @@ export default {
     },
     components: {
         SPMBLayout,
-        ModuleHeader,                        
+        ModuleHeader,            
     },
 }
 </script>

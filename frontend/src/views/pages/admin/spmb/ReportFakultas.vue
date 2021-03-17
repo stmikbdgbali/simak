@@ -228,9 +228,9 @@ export default {
             this.btnLoading = true;
             await this.$ajax.post("/spmb/reportspmbfakultas/printtoexcel",
                 {
-                    TA: this.tahun_pendaftaran,                                   
+                    TA: this.tahun_pendaftaran,                       
                     fakultas_id: this.fakultas_id,    
-                    nama_fakultas: this.nama_fakultas,                 
+                    nama_fakultas: this.nama_fakultas,     
                 },
                 {
                     headers: {
@@ -272,7 +272,7 @@ export default {
     },
     components: {
         SPMBLayout,
-        ModuleHeader,                
+        ModuleHeader,    
         Filter20    
     },
 }

@@ -288,9 +288,9 @@ export default {
         jenjang_studi: null,         
         kode_prodi: "",     
         formdata: {
-            id: 0,                        
-            kode_fakultas: "",                   
-            kode_prodi: "",                   
+            id: 0,            
+            kode_fakultas: "",       
+            kode_prodi: "",       
             nama_prodi: "",
             nama_prodi_alias: "",    
             kode_jenjang: "",
@@ -298,9 +298,9 @@ export default {
             config: {}
         },
         formdefault: {
-            id: 0,                        
+            id: 0,            
             kode_fakultas: "",  
-            kode_prodi: "",                   
+            kode_prodi: "",       
             nama_prodi: "",    
             nama_prodi_alias: "",    
             kode_jenjang: "",
@@ -313,7 +313,7 @@ export default {
 
         //form rules 
         rule_kode_fakultas: [
-            value => !!value || "Mohon fakultas untuk dipilih !!!",              
+            value => !!value || "Mohon fakultas untuk dipilih !!!",  
         ],
         rule_kode_prodi: [
             value => !!value || "Kode Program Studi mohon untuk diisi !!!",
@@ -321,14 +321,14 @@ export default {
         ],
         rule_nama_prodi: [
             value => !!value || "Mohon Nama Program Studi untuk diisi !!!",  
-            value => /^[A-Za-z\s]*$/.test(value) || "Nama Program Studi hanya boleh string dan spasi",                
+            value => /^[A-Za-z\s]*$/.test(value) || "Nama Program Studi hanya boleh string dan spasi",    
         ],
         rule_nama_prodi_alias: [
             value => !!value || "Mohon Nama Singkat Program Studi untuk diisi !!!",  
-            value => /^[A-Za-z\s]*$/.test(value) || "Nama Singkat Program Studi hanya boleh string dan spasi",                
+            value => /^[A-Za-z\s]*$/.test(value) || "Nama Singkat Program Studi hanya boleh string dan spasi",    
         ],
         rule_kode_jenjang: [
-            value => !!value || "Mohon Jenjang Studi untuk dipilih !!!",              
+            value => !!value || "Mohon Jenjang Studi untuk dipilih !!!",  
         ],
     }),
     methods: {
@@ -436,12 +436,12 @@ export default {
                     await this.$ajax.post("/datamaster/programstudi/" + this.formdata.id,
                         {
                             _method: "PUT",
-                            kode_fakultas: this.formdata.kode_fakultas,                            
-                            kode_prodi: this.formdata.kode_prodi,                            
-                            nama_prodi: this.formdata.nama_prodi,                           
-                            nama_prodi_alias: this.formdata.nama_prodi_alias,                           
-                            kode_jenjang: this.formdata.kode_jenjang,                           
-                            nama_jenjang: this.formdata.nama_jenjang,                                                                                
+                            kode_fakultas: this.formdata.kode_fakultas,                
+                            kode_prodi: this.formdata.kode_prodi,                
+                            nama_prodi: this.formdata.nama_prodi,               
+                            nama_prodi_alias: this.formdata.nama_prodi_alias,               
+                            kode_jenjang: this.formdata.kode_jenjang,               
+                            nama_jenjang: this.formdata.nama_jenjang,                                                                    
                         },
                         {
                             headers: {
@@ -459,12 +459,12 @@ export default {
                 } else {         
                     await this.$ajax.post("/datamaster/programstudi/store",
                         {
-                            kode_fakultas: this.formdata.kode_fakultas,                            
-                            kode_prodi: this.formdata.kode_prodi,                            
+                            kode_fakultas: this.formdata.kode_fakultas,                
+                            kode_prodi: this.formdata.kode_prodi,                
                             nama_prodi: this.formdata.nama_prodi,   
-                            nama_prodi_alias: this.formdata.nama_prodi_alias,                           
-                            kode_jenjang: this.jenjang_studi.kode_jenjang,                           
-                            nama_jenjang: this.jenjang_studi.nama_jenjang,                                                                                
+                            nama_prodi_alias: this.formdata.nama_prodi_alias,               
+                            kode_jenjang: this.jenjang_studi.kode_jenjang,               
+                            nama_jenjang: this.jenjang_studi.nama_jenjang,                                                                    
                         },
                         {
                             headers: {
@@ -565,10 +565,10 @@ export default {
                 this.btnLoading = true;
                 await this.$ajax.post("/datamaster/programstudi/updateconfig/" + this.formdata.id,
                     {
-                        _method: "PUT",                    
+                        _method: "PUT",        
                         config:JSON.stringify({
                             kaprodi:val                            
-                        }),                                    
+                        }),                        
                     },
                     {
                         headers: {

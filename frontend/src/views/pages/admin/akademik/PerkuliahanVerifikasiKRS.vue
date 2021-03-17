@@ -234,8 +234,8 @@ export default {
             { text: "ANGK.", value: "tahun_masuk", sortable: true,width:100  },
             { text: "JUMLAH MATKUL", value: "jumlah_matkul", sortable: true,width:100  },
             { text: "JUMLAH SKS", value: "jumlah_sks", sortable: true,width:100 },
-            { text: "TA.SMT", value: "tasmt",sortable: true,width:100 },            
-            { text: "SAH", value: "sah",sortable: true,width:100},            
+            { text: "TA.SMT", value: "tasmt",sortable: true,width:100 },
+            { text: "SAH", value: "sah",sortable: true,width:100},
             { text: "AKSI", value: "actions", sortable: false,width:140 },
         ],
         search: "",
@@ -310,7 +310,7 @@ export default {
         async printpdf(item)
         {
             this.btnLoading = true;
-            await this.$ajax.get("/akademik/perkuliahan/krs/printpdf/" + item.id,                
+            await this.$ajax.get("/akademik/perkuliahan/krs/printpdf/" + item.id,    
                 {
                     headers: {
                         Authorization: this.$store.getters["auth/Token"]
@@ -384,7 +384,7 @@ export default {
                     if (this.search.length > 0 && this.filter_ignore)
                     {
                         this.datatableLoading = true;          
-                        await this.$ajax.post("/akademik/perkuliahan/krs",            
+                        await this.$ajax.post("/akademik/perkuliahan/krs",
                         {
                             prodi_id: this.prodi_id,
                             ta: this.tahun_akademik,

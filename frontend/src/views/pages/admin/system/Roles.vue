@@ -295,7 +295,7 @@ export default {
         //form rules    
         rule_role_name: [
             value => !!value || "Mohon untuk di isi nama Role !!!",  
-            value => /^[A-Za-z]*$/.test(value) || "Nama Role hanya boleh string",                
+            value => /^[A-Za-z]*$/.test(value) || "Nama Role hanya boleh string",    
         ],
         form_error_message: ""
     }),

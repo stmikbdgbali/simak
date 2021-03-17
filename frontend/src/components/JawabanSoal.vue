@@ -24,11 +24,11 @@ export default {
             required: true
         }
     },
-    data:()=>({     
+    data: () => ({     
         
     }),
     methods: {        
-        jawabSoal: async function ()
+        jawabSoal: async function()
         {
             await this.$ajax.post("/spmb/ujianonline/store",
             {
@@ -38,7 +38,7 @@ export default {
             },
             {
                 headers:{
-                    Authorization: this.$store.getters['auth/Token'],
+                    Authorization: this.$store.getters["auth/Token"],
                 }
             }
             ).then(() => {                                     

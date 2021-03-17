@@ -112,7 +112,7 @@ export default {
     },
     props:{
         datakrs:{
-            type:Object,            
+            type:Object,
             required: true
         },
         totalmatkul:{
@@ -130,7 +130,7 @@ export default {
     },
     
     methods: {
-        initialize: async function ()
+        initialize: async function()
         {
             
         },

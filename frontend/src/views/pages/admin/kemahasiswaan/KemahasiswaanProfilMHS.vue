@@ -260,7 +260,7 @@ export default {
         this.initialize();
     },
     data: () => ({    
-        firstloading: true,                   
+        firstloading: true,       
         breadcrumbs: [],  
         
         //profil mahasiswa      
@@ -311,7 +311,7 @@ export default {
             });
 
             this.datatableLoading = true;   
-            await this.$ajax.post("/keuangan/transaksi",            
+            await this.$ajax.post("/keuangan/transaksi",
             {
                 TA: this.$store.getters['uiadmin/getTahunAkademik'],
                 user_id: this.user_id

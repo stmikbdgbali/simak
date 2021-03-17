@@ -197,8 +197,8 @@ export default {
             { text: "ANGK.", value: "tahun_masuk", sortable: true,width:80  },
             { text: "JUMLAH MATKUL", value: "jumlah_matkul", sortable: true,width:80  },
             { text: "JUMLAH SKS", value: "jumlah_sks", sortable: true,width:80 },
-            { text: "TA.SMT", value: "tasmt",sortable: true,width:80 },            
-            { text: "SAH", value: "sah",sortable: true,width:50},            
+            { text: "TA.SMT", value: "tasmt",sortable: true,width:80 },
+            { text: "SAH", value: "sah",sortable: true,width:50},
             { text: "AKSI", value: "actions", sortable: false, width:100 },
         ],
         search: "",
@@ -298,7 +298,7 @@ export default {
         async printpdf(item)
         {
             this.btnLoadingTable=true;
-            await this.$ajax.get("/akademik/perkuliahan/krs/printpdf/" + item.id,                
+            await this.$ajax.get("/akademik/perkuliahan/krs/printpdf/" + item.id,    
                 {
                     headers: {
                         Authorization: this.$store.getters["auth/Token"]

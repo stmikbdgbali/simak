@@ -262,10 +262,10 @@ export default {
             this.btnLoading = true;
             await this.$ajax.post("/spmb/reportspmbkelulusan/printtoexcel",
                 {
-                    TA: this.tahun_pendaftaran,                                   
+                    TA: this.tahun_pendaftaran,                       
                     prodi_id: this.prodi_id,    
-                    nama_prodi: this.nama_prodi,                 
-                    filter_status: this.filter_status,                 
+                    nama_prodi: this.nama_prodi,     
+                    filter_status: this.filter_status,     
                 },
                 {
                     headers: {
@@ -311,7 +311,7 @@ export default {
     },
     components: {
         SPMBLayout,
-        ModuleHeader,                
+        ModuleHeader,    
         ProfilMahasiswaBaru,
         Filter7    
     },

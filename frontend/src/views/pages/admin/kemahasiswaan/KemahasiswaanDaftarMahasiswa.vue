@@ -179,9 +179,9 @@ export default {
             { text: "NO. FORMULIR", value: "no_formulir", sortable: true,width:150  },   
             { text: "NIM", value: "nim", sortable: true,width:150  },   
             { text: "NIRM", value: "nirm", sortable: true,width:150  },   
-            { text: "NAMA MAHASISWA", value: "nama_mhs",sortable: true },            
-            { text: "KELAS", value: "idkelas",sortable: true,width:120, },                        
-            { text: "STATUS", value: "k_status",sortable: true,width:120, },                        
+            { text: "NAMA MAHASISWA", value: "nama_mhs",sortable: true },
+            { text: "KELAS", value: "idkelas",sortable: true,width:120, },            
+            { text: "STATUS", value: "k_status",sortable: true,width:120, },            
         ],
         search: "",
     }),
@@ -231,9 +231,9 @@ export default {
             this.btnLoading = true;
             await this.$ajax.post("/kemahasiswaan/daftarmhs/printtoexcel",
                 {
-                    TA: this.tahun_pendaftaran,                                   
+                    TA: this.tahun_pendaftaran,                       
                     prodi_id: this.prodi_id,    
-                    nama_prodi: this.nama_prodi,                 
+                    nama_prodi: this.nama_prodi,     
                 },
                 {
                     headers: {
@@ -261,7 +261,7 @@ export default {
             await this.$ajax.post("/system/users/syncallpermissions",
                 {
                     role_name: "mahasiswa",
-                    TA: this.tahun_pendaftaran,                    
+                    TA: this.tahun_pendaftaran,        
                     prodi_id: this.prodi_id                     
                 },
                 {
@@ -318,7 +318,7 @@ export default {
                     if (this.search.length > 0 && this.filter_ignore)
                     {
                         this.datatableLoading = true;          
-                        await this.$ajax.post("/kemahasiswaan/daftarmhs",            
+                        await this.$ajax.post("/kemahasiswaan/daftarmhs",
                         {
                             prodi_id: this.prodi_id,
                             ta: this.tahun_pendaftaran,

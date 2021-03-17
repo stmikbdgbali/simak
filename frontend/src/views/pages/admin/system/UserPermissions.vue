@@ -199,7 +199,7 @@ export default {
     methods: {
         initialize()
         {
-            this.$ajax.get("/system/users/" + this.user.id+"/roles",                
+            this.$ajax.get("/system/users/" + this.user.id+"/roles",    
                 {
                     headers: {
                         Authorization: this.$store.getters["auth/Token"]

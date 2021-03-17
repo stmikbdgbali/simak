@@ -279,41 +279,41 @@ export default {
         //form data           
         form_valid: true,        
         formdata: {
-            id: "",                   
-            nama_bank: "",                   
-            nama_cabang: "",                   
-            nomor_rekening: "",                   
-            pemilik_rekening: "",                   
-            created_at: "",                   
-            updated_at: "",                   
+            id: "",       
+            nama_bank: "",       
+            nama_cabang: "",       
+            nomor_rekening: "",       
+            pemilik_rekening: "",       
+            created_at: "",       
+            updated_at: "",       
         },
         formdefault: {
-            id: "",                   
-            nama_bank: "",                   
-            nama_cabang: "",                   
-            nomor_rekening: "",                   
-            pemilik_rekening: "",                   
-            created_at: "",                   
-            updated_at: "",                          
+            id: "",       
+            nama_bank: "",       
+            nama_cabang: "",       
+            nomor_rekening: "",       
+            pemilik_rekening: "",       
+            created_at: "",       
+            updated_at: "",  
         },
         editedIndex: -1,
 
         //form rules  
         rule_nama_bank: [
             value => !!value || "Mohon untuk di isi nama bank !!!",  
-            value => /^[A-Za-z\s]*$/.test(value) || "Nama bank hanya boleh string dan spasi",                
+            value => /^[A-Za-z\s]*$/.test(value) || "Nama bank hanya boleh string dan spasi",    
         ],
         rule_nama_cabang: [
             value => !!value || "Mohon untuk di isi nama cabang bank !!!",  
-            value => /^[A-Za-z\s]*$/.test(value) || "Nama cabang bank hanya boleh string dan spasi",                
+            value => /^[A-Za-z\s]*$/.test(value) || "Nama cabang bank hanya boleh string dan spasi",    
         ],
         rule_no_rekening: [
-            value => !!value || "Mohon untuk di isi nomor rekening !!!",                     
+            value => !!value || "Mohon untuk di isi nomor rekening !!!",         
             value => /^[0-9]+$/.test(value) || "Nomor rekening hanya boleh angka",
         ],
         rule_pemilik: [
             value => !!value || "Mohon untuk di isi nama pemilik rekening !!!",  
-            value => /^[A-Za-z\s]*$/.test(value) || "Nama pemilik rekening hanya boleh string dan spasi",                
+            value => /^[A-Za-z\s]*$/.test(value) || "Nama pemilik rekening hanya boleh string dan spasi",    
         ],
     }),
     methods: {
@@ -360,10 +360,10 @@ export default {
                     await this.$ajax.post("/keuangan/transferbank/" + this.formdata.id,
                         {
                             _method: "PUT",
-                            nama_bank: this.formdata.nama_bank,                            
-                            nama_cabang: this.formdata.nama_cabang,                            
-                            nomor_rekening: this.formdata.nomor_rekening,                            
-                            pemilik_rekening: this.formdata.pemilik_rekening,                            
+                            nama_bank: this.formdata.nama_bank,    
+                            nama_cabang: this.formdata.nama_cabang,    
+                            nomor_rekening: this.formdata.nomor_rekening,    
+                            pemilik_rekening: this.formdata.pemilik_rekening,    
                         },
                         {
                             headers: {
@@ -381,10 +381,10 @@ export default {
                 } else {
                     await this.$ajax.post("/keuangan/transferbank/store",
                         {
-                            nama_bank: this.formdata.nama_bank,                            
-                            nama_cabang: this.formdata.nama_cabang,                            
-                            nomor_rekening: this.formdata.nomor_rekening,                            
-                            pemilik_rekening: this.formdata.pemilik_rekening,                            
+                            nama_bank: this.formdata.nama_bank,    
+                            nama_cabang: this.formdata.nama_cabang,    
+                            nomor_rekening: this.formdata.nomor_rekening,    
+                            pemilik_rekening: this.formdata.pemilik_rekening,    
                         },
                         {
                             headers: {

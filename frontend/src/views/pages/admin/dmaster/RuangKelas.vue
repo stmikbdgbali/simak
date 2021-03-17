@@ -242,7 +242,7 @@ export default {
         ],
         rule_kapasitas: [
             value => !!value || "Kapasitas Ruangan mohon untuk diisi !!!",
-            value => /^[0-9]+$/.test(value) || "Kapasitas Ruangan Kelas hanya boleh angka",            
+            value => /^[0-9]+$/.test(value) || "Kapasitas Ruangan Kelas hanya boleh angka",
         ],  
     }),
     methods: {

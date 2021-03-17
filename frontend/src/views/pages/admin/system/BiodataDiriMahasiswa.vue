@@ -300,7 +300,7 @@ export default {
             this.$ajax.get("/datamaster/kelas").then(({ data })=>{     
                 this.daftar_kelas=data.kelas;
             });
-            await this.$ajax.get("/spmb/formulirpendaftaran/" + this.user_id,             
+            await this.$ajax.get("/spmb/formulirpendaftaran/" + this.user_id, 
                 {
                     headers: {
                         Authorization: this.$store.getters["auth/Token"]
@@ -365,7 +365,7 @@ export default {
                     address1_kecamatan: this.kecamatan_id.nama,
                     address1_desa_id: this.desa_id.id,
                     address1_kelurahan: this.desa_id.nama,
-                    alamat_rumah: this.formdata.alamat_rumah,                           
+                    alamat_rumah: this.formdata.alamat_rumah,               
                 },
                 {
                     headers: {
@@ -428,7 +428,7 @@ export default {
     },
     components: {
         SystemUserLayout,
-        ModuleHeader,              
+        ModuleHeader,  
     },
 }
 </script>

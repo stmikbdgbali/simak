@@ -69,7 +69,7 @@ export default {
     props:{
         datamatkul:{
             default: null,
-            type:Object,            
+            type:Object,
         }
     },
 }

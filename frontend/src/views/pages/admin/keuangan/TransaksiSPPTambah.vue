@@ -274,7 +274,7 @@ export default {
 
         breadcrumbs: [],  
         tahun_akademik:0,
-        btnLoading: false,              
+        btnLoading: false,  
         //tables
         datatableLoading: false,       
         datatable: [],
@@ -296,7 +296,7 @@ export default {
         initialize: async function() 
         {
             this.datatableLoading = true;          
-            await this.$ajax.get("/keuangan/transaksi-spp/" + this.transaksi_id,                        
+            await this.$ajax.get("/keuangan/transaksi-spp/" + this.transaksi_id,
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
@@ -315,8 +315,8 @@ export default {
                 this.btnLoading = true;
                 await this.$ajax.post("/keuangan/transaksi-spp/store",
                     {
-                        id: this.transaksi_id,                        
-                        bulan_selected:JSON.stringify(Object.assign({},this.item_selected)),                                       
+                        id: this.transaksi_id,
+                        bulan_selected:JSON.stringify(Object.assign({},this.item_selected)),   
                     },
                     {
                         headers: {
@@ -391,7 +391,7 @@ export default {
     },
     components: {
         KeuanganLayout,
-        ModuleHeader,             
+        ModuleHeader, 
     },
 }
 </script>

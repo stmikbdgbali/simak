@@ -168,7 +168,7 @@ export default {
         {
             await this.$ajax.post("/akademik/dulang/dulangnotinkrs",
             {
-                nim: this.formdata.nim,                
+                nim: this.formdata.nim,    
             },
             {
                 headers: {
@@ -192,7 +192,7 @@ export default {
                 await this.$ajax.post("/akademik/perkuliahan/krs/store",
                 {
                     nim: this.formdata.nim,
-                    dulang_id: this.formdata.dulang_id,                    
+                    dulang_id: this.formdata.dulang_id,        
                 },
                 {
                     headers: {
@@ -217,7 +217,7 @@ export default {
     
     components: {
         AkademikLayout,
-        ModuleHeader,            
+        ModuleHeader,
     },
 }
 </script>

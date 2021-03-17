@@ -133,7 +133,7 @@
                 DEFAULT_ROLE: "DefaultRole",         
                 ROLE: "Role",
                 CAN_ACCESS: "can",         
-                ATTRIBUTE_USER: "AttributeUser",               
+                ATTRIBUTE_USER: "AttributeUser",   
             }),
             APP_NAME ()
             {
