@@ -129,7 +129,7 @@ export default {
     },
     props:{
         datadosen:{
-            type:Object,            
+            type:Object,
             required: true
         },
         url:{
@@ -139,7 +139,7 @@ export default {
     },
     
     methods: {
-        initialize: async function ()
+        initialize: async function()
         {
             
         },

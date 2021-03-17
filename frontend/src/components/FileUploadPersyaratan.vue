@@ -94,7 +94,7 @@ export default {
             required: true
         }
     },
-    data:()=>({     
+    data: () => ({     
         dashboard: null,
 
         btnSimpan: true, 
@@ -144,10 +144,10 @@ export default {
                     formdata.append("persyaratan_id",data.persyaratan_id);
                     formdata.append("persyaratan_pmb_id",data.persyaratan_pmb_id);
                     formdata.append("foto",this.filepersyaratan[index]);
-                    await this.$ajax.post("/spmb/pmbpersyaratan/upload/" + this.user_id,formdata,                    
+                    await this.$ajax.post("/spmb/pmbpersyaratan/upload/" + this.user_id,formdata,        
                         {
                             headers:{
-                                Authorization: this.$store.getters['auth/Token'],
+                                Authorization: this.$store.getters["auth/Token"],
                                 'Content-Type': "multipart/form-data"                    
                             }
                         }
@@ -172,7 +172,7 @@ export default {
                         },     
                         {
                             headers:{
-                                Authorization: this.$store.getters['auth/Token']                
+                                Authorization: this.$store.getters["auth/Token"]                
                             }
                         }
                     ).then(() => {     
@@ -210,7 +210,7 @@ export default {
             },
             {
                 headers:{
-                    Authorization: this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }
             ).then(({ data }) => {   

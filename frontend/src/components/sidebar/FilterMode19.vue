@@ -27,7 +27,7 @@ export default {
         this.daftar_semester = this.$store.getters['uiadmin/getDaftarSemester'];
         this.semester_pendaftaran = this.$store.getters['uiadmin/getSemesterPendaftaran'];                                          
     },
-    data:()=>({
+    data: () => ({
         firstloading: true,
         
         daftar_semester: [],

@@ -240,7 +240,7 @@ export default {
             { text: "NO. FORMULIR", value: "no_formulir", sortable: true,width:150  },   
             { text: "NAMA MAHASISWA", value: "nama_mhs",sortable: true },
             { text: "TELP. HP", value: "telp_hp", sortable: true,width:150 },
-            { text: "KELAS", value: "idkelas",sortable: true,width:120, },            
+            { text: "KELAS", value: "idkelas",sortable: true,width:120, },
             { text: "AKSI", value: "actions", sortable: false, width:100 },
         ],
         search: "",
@@ -336,7 +336,7 @@ export default {
                     user_id: this.data_mhs.user_id,
                     nim: this.formdata.nim,
                     nirm: this.formdata.nirm,
-                    dosen_id: this.formdata.dosen_id,                       
+                    dosen_id: this.formdata.dosen_id,           
                 },     
                 {
                     headers: {

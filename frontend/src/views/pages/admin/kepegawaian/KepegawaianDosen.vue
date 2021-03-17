@@ -244,24 +244,24 @@ export default {
         editedItem: {
             id: 0,
             username: "",      
-            name: "",                  
+            name: "",      
             nama_dosen: "", 
             id_jabatan:1,           
             gelar_depan: "",      
-            gelar_belakang: "1",                       
+            gelar_belakang: "1",           
             nidn: "",  
             nipy: "",    
             email: "",      
-            nomor_hp: "",            
+            nomor_hp: "",
             is_dw: false,      
             created_at: "",      
             updated_at: "",  
         },
         defaultItem: {
             id: 0,
-            username: "",                  
-            name: "",                  
-            nama_dosen: "",                  
+            username: "",      
+            name: "",      
+            nama_dosen: "",      
             id_jabatan:1,      
             gelar_depan: "",      
             gelar_belakang: "1",
@@ -276,13 +276,13 @@ export default {
         //form rules    
         rule_user_name: [
             value => !!value || "Mohon untuk di isi nama Dosen !!!",  
-            value => /^[A-Za-z\s]*$/.test(value) || "Nama Dosen hanya boleh string dan spasi",                
+            value => /^[A-Za-z\s]*$/.test(value) || "Nama Dosen hanya boleh string dan spasi",    
         ],
         rule_nidn: [                         
-            value => /^[0-9]+$/.test(value) || "NIDN hanya boleh angka",                
+            value => /^[0-9]+$/.test(value) || "NIDN hanya boleh angka",    
         ],
         rule_nipy: [            
-            value => /^[0-9]+$/.test(value) || "Nomor Induk Pegawai Yayasan (NIPY) hanya boleh angka",                
+            value => /^[0-9]+$/.test(value) || "Nomor Induk Pegawai Yayasan (NIPY) hanya boleh angka",    
         ],
         rule_user_email: [
             value => !!value || "Mohon untuk di isi email User !!!",  
@@ -319,7 +319,7 @@ export default {
             }               
         },         
         editItem: async function(item) {
-            this.$ajax.get("/datamaster/jabatanakademik",                
+            this.$ajax.get("/datamaster/jabatanakademik",    
                 {
                     headers: {
                         Authorization: this.TOKEN
@@ -359,7 +359,7 @@ export default {
                             nidn: this.editedItem.nidn,
                             nipy: this.editedItem.nipy,
                             email: this.editedItem.email,
-                            nomor_hp: this.editedItem.nomor_hp,                                                            
+                            nomor_hp: this.editedItem.nomor_hp,                                                
                         },
                         {
                             headers: {

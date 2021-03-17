@@ -105,7 +105,7 @@ export default {
         initialize: async function()
 		{
             this.datatableLoading = true;          
-            await this.$ajax.get("/keuangan/komponenbiaya",            
+            await this.$ajax.get("/keuangan/komponenbiaya",
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]

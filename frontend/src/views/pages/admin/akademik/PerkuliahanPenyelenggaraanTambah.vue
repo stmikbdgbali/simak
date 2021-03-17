@@ -316,7 +316,7 @@ export default {
         formdata: [],
         daftar_matkul_selected: [],
         rule_tamatkul: [
-            value => !!value || "Mohon tahun matakuliah untuk dipilih !!!",              
+            value => !!value || "Mohon tahun matakuliah untuk dipilih !!!",  
         ]        
 
     }),
@@ -373,8 +373,8 @@ export default {
                     {
                         prodi_id: this.prodi_id,
                         ta: this.tahun_akademik,
-                        semester_akademik: this.semester_akademik,                          
-                        matkul_selected:JSON.stringify(Object.assign({},this.daftar_matkul_selected)),                                       
+                        semester_akademik: this.semester_akademik,              
+                        matkul_selected:JSON.stringify(Object.assign({},this.daftar_matkul_selected)),                           
                     },
                     {
                         headers: {
@@ -413,7 +413,7 @@ export default {
     },
     components: {
         AkademikLayout,
-        ModuleHeader,            
+        ModuleHeader,
     },
 }
 </script>

@@ -366,7 +366,7 @@ export default {
             nidn: "",  
             nipy: "",    
             email: "",      
-            nomor_hp: "",            
+            nomor_hp: "",
             is_dw: false,      
             created_at: "",      
             updated_at: "",  
@@ -388,13 +388,13 @@ export default {
         //form rules    
         rule_user_name: [
             value => !!value || "Mohon untuk di isi nama Dosen !!!",  
-            value => /^[A-Za-z\s]*$/.test(value) || "Nama Dosen hanya boleh string dan spasi",                
+            value => /^[A-Za-z\s]*$/.test(value) || "Nama Dosen hanya boleh string dan spasi",    
         ],
         rule_nidn: [                         
-            value => /^[0-9]+$/.test(value) || "NIDN hanya boleh angka",                
+            value => /^[0-9]+$/.test(value) || "NIDN hanya boleh angka",    
         ],
         rule_nipy: [            
-            value => /^[0-9]+$/.test(value) || "Nomor Induk Pegawai Yayasan (NIPY) hanya boleh angka",                
+            value => /^[0-9]+$/.test(value) || "Nomor Induk Pegawai Yayasan (NIPY) hanya boleh angka",    
         ],
         rule_user_email: [
             value => !!value || "Mohon untuk di isi email User !!!",  
@@ -406,7 +406,7 @@ export default {
         ],
         rule_user_username: [
             value => !!value || "Mohon untuk di isi username User !!!",  
-            value => /^[A-Za-z_]*$/.test(value) || "Username hanya boleh string dan underscore",                    
+            value => /^[A-Za-z_]*$/.test(value) || "Username hanya boleh string dan underscore",        
         ],
         rule_user_password: [
             value => !!value || "Mohon untuk di isi password User !!!",
@@ -544,7 +544,7 @@ export default {
                     this.btnLoading = true;
                     await this.$ajax.post("/system/users/syncallpermissions",
                         {
-                            role_name: "dosen",                    
+                            role_name: "dosen",        
                         },
                         {
                             headers: {

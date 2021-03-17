@@ -188,11 +188,11 @@ export default {
             this.datatableLoading=true;          
             await this.$ajax.post("/dashboard/keuangan",
             {
-                TA: this.ta,                
+                TA: this.ta,    
             },
             {
                 headers: {
-                    Authorization: this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({ data }) => {      
                 this.total_transaction=data.total_transaction;

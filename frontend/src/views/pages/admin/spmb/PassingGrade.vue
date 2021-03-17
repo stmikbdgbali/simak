@@ -137,12 +137,12 @@ export default {
         ]; 
         this.initialize();  
     },
-    data:()=>({
+    data: () => ({
         jadwal_ujian_id: null,
         jadwal_ujian: {
-            id: 0,                        
+            id: 0,            
             nama_kegiatan: "",       
-            ta: "",                   
+            ta: "",       
             idsmt: "",  
         },
         breadcrumbs: [],
@@ -169,7 +169,7 @@ export default {
             this.datatableLoading = true;
             await this.$ajax.post("/spmb/passinggrade",
             {
-                jadwal_ujian_id: this.jadwal_ujian_id,                
+                jadwal_ujian_id: this.jadwal_ujian_id,    
             },
             {
                 headers: {
@@ -199,7 +199,7 @@ export default {
             this.btnLoading = true;
             await this.$ajax.post("/spmb/passinggrade/loadprodi",
                 {
-                    jadwal_ujian_id: this.jadwal_ujian_id,               
+                    jadwal_ujian_id: this.jadwal_ujian_id,   
                 },
                 {
                     headers: {
@@ -216,7 +216,7 @@ export default {
         saveItem: async function({id,nilai})
         {
             this.btnLoading = true;
-            await this.$ajax.post("/spmb/passinggrade/" + id,            
+            await this.$ajax.post("/spmb/passinggrade/" + id,
             {
                 _method: "put",
                 id:id,

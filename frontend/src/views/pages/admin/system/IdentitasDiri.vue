@@ -119,13 +119,13 @@ export default {
         },
         //form rules    
         rule_nama_pt: [
-            value => !!value || "Mohon untuk di isi Nama Perguruan Tinggi !!!",             
+            value => !!value || "Mohon untuk di isi Nama Perguruan Tinggi !!!", 
         ],
         rule_nama_singkatan_pt: [
-            value => !!value || "Mohon untuk di isi Nama Alias Perguruan Tinggi !!!",             
+            value => !!value || "Mohon untuk di isi Nama Alias Perguruan Tinggi !!!", 
         ],
         rule_kode_pt: [
-            value => !!value || "Mohon untuk di isi Kode Perguruan Tinggi !!!",                     
+            value => !!value || "Mohon untuk di isi Kode Perguruan Tinggi !!!",         
             value => /^[0-9]+$/.test(value) || "Kode Perguruan Tinggi hanya boleh angka",
         ]
     }),
@@ -159,7 +159,7 @@ export default {
                             102: this.formdata.nama_alias_pt,
                             103: this.formdata.bentuk_pt,
                             104: this.formdata.kode_pt,
-                        }),                                                                                               
+                        }),                                                                                   
                     },
                     {
                         headers: {

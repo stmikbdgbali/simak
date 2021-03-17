@@ -297,8 +297,8 @@ export default {
         datatable: [],
         headers: [
             { text: "PROSES", value: "proses", sortable: true,width:120  },   
-            { text: "NAMA PERSYARATAN", value: "nama_persyaratan",sortable: true },            
-            { text: "TA", value: "ta",sortable: true,width:80, align: "center" },            
+            { text: "NAMA PERSYARATAN", value: "nama_persyaratan",sortable: true },
+            { text: "TA", value: "ta",sortable: true,width:80, align: "center" },
             { text: "AKSI", value: "actions", sortable: false, width:100 },
         ],
         search: "",
@@ -313,27 +313,27 @@ export default {
         daftar_ta: [],
         dari_tahun_pendaftaran: null,         
         formdata: {
-            id: "",                   
-            proses: "pmb",                        
-            nama_persyaratan: null,                       
+            id: "",       
+            proses: "pmb",            
+            nama_persyaratan: null,           
             prodi_id: null,
-            ta: "",              
+            ta: "",  
         },
         formdefault: {
-            id: "",                   
-            proses: "pmb",            
-            nama_persyaratan: null,                       
+            id: "",       
+            proses: "pmb",
+            nama_persyaratan: null,           
             prodi_id: null,
-            ta: "",              
+            ta: "",  
         },
         editedIndex: -1,
 
         //form rules  
         rule_nama_persyaratan: [
-            value => !!value || "Mohon Nama Program Studi untuk diisi !!!",              
+            value => !!value || "Mohon Nama Program Studi untuk diisi !!!",  
         ],
         rule_dari_tahun_pendaftaran: [
-            value => !!value || "Mohon Tahun Pendaftaran sumber persyaratan untuk dipilih !!!",              
+            value => !!value || "Mohon Tahun Pendaftaran sumber persyaratan untuk dipilih !!!",  
         ],
     }),
     methods: {
@@ -409,8 +409,8 @@ export default {
                 {
                     await this.$ajax.post("/datamaster/persyaratan/" + this.formdata.id,
                         {
-                            _method: "PUT",                            
-                            nama_persyaratan: this.formdata.nama_persyaratan,                                               
+                            _method: "PUT",                
+                            nama_persyaratan: this.formdata.nama_persyaratan,                                   
                         },
                         {
                             headers: {
@@ -428,8 +428,8 @@ export default {
                 } else {         
                     await this.$ajax.post("/datamaster/persyaratan/store",
                         {
-                            proses: this.formdata.proses,                       
-                            nama_persyaratan: this.formdata.nama_persyaratan,                                                                          
+                            proses: this.formdata.proses,           
+                            nama_persyaratan: this.formdata.nama_persyaratan,                                                              
                             ta: this.tahun_pendaftaran,        
                         },
                         {

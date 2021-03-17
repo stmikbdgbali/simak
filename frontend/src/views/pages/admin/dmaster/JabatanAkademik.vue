@@ -104,7 +104,7 @@ export default {
         initialize: async function()
 		{
             this.datatableLoading = true;          
-            await this.$ajax.get("/datamaster/jabatanakademik",            
+            await this.$ajax.get("/datamaster/jabatanakademik",
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]

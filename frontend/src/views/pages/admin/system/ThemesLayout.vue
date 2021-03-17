@@ -128,7 +128,7 @@ export default {
         },
         //form rules    
         rule_required: [
-            value => !!value || "Mohon untuk diisi dengan nama class !!!",             
+            value => !!value || "Mohon untuk diisi dengan nama class !!!", 
         ],
     }),
     methods: {
@@ -165,7 +165,7 @@ export default {
                             804: this.formdata.V_LIST_ITEM_BOARD_CSS_CLASS,
                             805: this.formdata.V_LIST_ITEM_BOARD_COLOR,
                             806: this.formdata.V_LIST_ITEM_ACTIVE_CSS_CLASS,
-                        }),                                                                                               
+                        }),                                                                                   
                     },
                     {
                         headers: {

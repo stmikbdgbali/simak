@@ -178,7 +178,7 @@ export default {
     {
         this.initialize();
     },
-    data:()=>({
+    data: () => ({
         btnLoading: false,
         btnLoadingProv: false,
         btnLoadingKab: false,
@@ -248,10 +248,10 @@ export default {
             active: "",
         },
         rule_nidn: [                         
-            value => /^[0-9]+$/.test(value) || "NIDN hanya boleh angka",                
+            value => /^[0-9]+$/.test(value) || "NIDN hanya boleh angka",    
         ],
         rule_nipy: [            
-            value => /^[0-9]+$/.test(value) || "Nomor Induk Pegawai Yayasan (NIPY) hanya boleh angka",                
+            value => /^[0-9]+$/.test(value) || "Nomor Induk Pegawai Yayasan (NIPY) hanya boleh angka",    
         ],
         rule_nama_dosen: [
             value => !!value||"Nama Mahasiswa mohon untuk diisi !!!",
@@ -279,15 +279,15 @@ export default {
         ],
     }),
     methods: {
-        initialize: async function ()
+        initialize: async function()
         {
             this.$ajax.get("/datamaster/provinsi").then(({ data }) => {     
                 this.daftar_provinsi = data.provinsi;         
             });                     
-            await this.$ajax.get("/system/usersdosen/biodatadiri/" + this.$store.getters['auth/AttributeUser']("id"),             
+            await this.$ajax.get("/system/usersdosen/biodatadiri/" + this.$store.getters['auth/AttributeUser']("id"), 
                 {
                     headers:{
-                        Authorization: this.$store.getters['auth/Token']
+                        Authorization: this.$store.getters["auth/Token"]
                     }
                 },
                 
@@ -314,7 +314,7 @@ export default {
                 this.$refs.frmdata.resetValidation();     
             });
         },    
-        save: async function ()
+        save: async function()
         {
             if (this.$refs.frmdata.validate())
             {
@@ -347,7 +347,7 @@ export default {
                 },
                 {
                     headers:{
-                        Authorization: this.$store.getters['auth/Token']
+                        Authorization: this.$store.getters["auth/Token"]
                     }
                 }
                 ).then(() => {                     

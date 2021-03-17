@@ -243,30 +243,30 @@
                 },   
                 form_valid: true,        
                 formdata: {
-                    id: 0,                        
+                    id: 0,            
                     username: "",    
                     password: "",           
-                    name: "",                   
-                    email: "",                   
-                    nomor_hp: "",                   
+                    name: "",       
+                    email: "",       
+                    nomor_hp: "",       
                     theme: "",      
                     foto: "", 
-                    active: "",                                                             
+                    active: "",                                                 
                     default_role: "",      
                     locked: "",      
                     created_at: "",      
                     updated_at: "",      
                 },
                 formdefault: {
-                    id: 0,                        
+                    id: 0,            
                     username: "",    
                     password: "",           
-                    name: "",                   
-                    email: "",                   
-                    nomor_hp: "",                   
+                    name: "",       
+                    email: "",       
+                    nomor_hp: "",       
                     theme: "",      
                     foto: "", 
-                    active: "",                                                             
+                    active: "",                                                 
                     default_role: "",      
                     locked: "",      
                     created_at: "",      
@@ -299,8 +299,8 @@
                     this.btnLoading = true;
                     this.$ajax.post("/system/users/updatepassword/" + this.$store.getters['auth/AttributeUser']("id"),
                         {
-                            _method: "PUT",                        
-                            password: this.formdata.password,                           
+                            _method: "PUT",            
+                            password: this.formdata.password,               
                         },
                         {
                             headers: {
@@ -334,7 +334,7 @@
                         this.btnLoading = true;
                         var formdata = new FormData();
                         formdata.append("foto",this.formdata.foto);
-                        await this.$ajax.post("/setting/users/uploadfoto/" + this.$store.getters.User.id,formdata,                    
+                        await this.$ajax.post("/setting/users/uploadfoto/" + this.$store.getters.User.id,formdata,        
                             {
                                 headers: {
                                     Authorization: this.$store.getters["auth/Token"],
@@ -357,7 +357,7 @@
                 await this.$ajax.post("/setting/users/resetfoto/" + this.$store.getters.User.id,{},     
                     {
                         headers: {
-                            Authorization: this.$store.getters["auth/Token"],                 
+                            Authorization: this.$store.getters["auth/Token"],     
                         }
                     }
                 ).then(({ data })=>{                
@@ -369,10 +369,10 @@
             },
             async fetchMahasiswa()
             {
-                await this.$ajax.get("/akademik/kemahasiswaan/biodatamhs1/" + this.$store.getters['auth/AttributeUser']("id"),                    
+                await this.$ajax.get("/akademik/kemahasiswaan/biodatamhs1/" + this.$store.getters['auth/AttributeUser']("id"),        
                     {
                         headers: {
-                            Authorization: this.$store.getters["auth/Token"],                 
+                            Authorization: this.$store.getters["auth/Token"],     
                         }
                     }
                 ).then(({ data })=>{                

@@ -224,11 +224,11 @@ export default {
         form_valid: true,        
         kode_fakultas: "",
         formdata: {
-            kode_fakultas: "",                   
+            kode_fakultas: "",       
             nama_fakultas: "",
         },
         formdefault: {
-            kode_fakultas: "",                   
+            kode_fakultas: "",       
             nama_fakultas: "",    
         },
         editedIndex: -1,
@@ -240,7 +240,7 @@ export default {
         ],
         rule_nama_fakultas: [
             value => !!value || "Mohon Nama Fakultas untuk di isi !!!",  
-            value => /^[A-Za-z\s]*$/.test(value) || "Nama Fakultas hanya boleh string dan spasi",                
+            value => /^[A-Za-z\s]*$/.test(value) || "Nama Fakultas hanya boleh string dan spasi",    
         ],
     }),
     methods: {
@@ -288,8 +288,8 @@ export default {
                     await this.$ajax.post("/datamaster/fakultas/" + this.kode_fakultas,
                         {
                             _method: "PUT",
-                            kode_fakultas: this.formdata.kode_fakultas,                            
-                            nama_fakultas: this.formdata.nama_fakultas,                           
+                            kode_fakultas: this.formdata.kode_fakultas,                
+                            nama_fakultas: this.formdata.nama_fakultas,               
                         },
                         {
                             headers: {
@@ -307,8 +307,8 @@ export default {
                 } else {         
                     await this.$ajax.post("/datamaster/fakultas/store",
                         {
-                            kode_fakultas: this.formdata.kode_fakultas,                            
-                            nama_fakultas: this.formdata.nama_fakultas,                           
+                            kode_fakultas: this.formdata.kode_fakultas,                
+                            nama_fakultas: this.formdata.nama_fakultas,               
                         },
                         {
                             headers: {

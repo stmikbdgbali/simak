@@ -155,7 +155,7 @@ export default {
             default: false
         },
     },
-    data:()=>({
+    data: () => ({
         loginTime:0,
         drawer: null,
         drawerRight: null,
@@ -198,7 +198,7 @@ export default {
             TOKEN: "Token",          
             ROLE: "Role",
             CAN_ACCESS: "can",         
-            ATTRIBUTE_USER: "AttributeUser",               
+            ATTRIBUTE_USER: "AttributeUser",   
         }),
         APP_NAME ()
         {

@@ -277,7 +277,7 @@ export default {
         initialize: async function() 
         {
             this.datatableLoading = true;          
-            await this.$ajax.post("/keuangan/transaksi-spp",            
+            await this.$ajax.post("/keuangan/transaksi-spp",
             {
                 prodi_id: this.prodi_id,
                 TA: this.tahun_akademik,
@@ -324,8 +324,8 @@ export default {
                 await this.$ajax.post("/keuangan/transaksi-spp/new",
                     {
                         nim: this.formdata.nim, 
-                        semester_akademik: this.formdata.semester_akademik,                                               
-                        TA: this.tahun_akademik,                        
+                        semester_akademik: this.formdata.semester_akademik,           
+                        TA: this.tahun_akademik,
                     },
                     {
                         headers: {
@@ -408,7 +408,7 @@ export default {
                     if (this.search.length > 0 && this.filter_ignore)
                     {
                         this.datatableLoading = true;          
-                        await this.$ajax.post("/keuangan/transaksi-spp",            
+                        await this.$ajax.post("/keuangan/transaksi-spp",
                         {
                             prodi_id: this.prodi_id,
                             TA: this.tahun_akademik,

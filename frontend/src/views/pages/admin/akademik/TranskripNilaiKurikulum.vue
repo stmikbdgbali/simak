@@ -205,11 +205,11 @@ export default {
         datatable: [],
         headers: [            
             { text: "NIM", value: "nim", sortable: true,width:100  },
-            { text: "NAMA MAHASISWA", value: "nama_mhs",sortable: true },            
-            { text: "KELAS", value: "idkelas",sortable: true,width:120, },            
-            { text: "JUMLAH MATKUL", value: "jumlah_matkul",sortable: false, width:100, },            
-            { text: "JUMLAH SKS", value: "jumlah_sks",sortable: false, width:100, },            
-            { text: "IPK SEMENTARA", value: "ipk",sortable: true,width:100, },            
+            { text: "NAMA MAHASISWA", value: "nama_mhs",sortable: true },
+            { text: "KELAS", value: "idkelas",sortable: true,width:120, },
+            { text: "JUMLAH MATKUL", value: "jumlah_matkul",sortable: false, width:100, },
+            { text: "JUMLAH SKS", value: "jumlah_sks",sortable: false, width:100, },
+            { text: "IPK SEMENTARA", value: "ipk",sortable: true,width:100, },
             { text: "AKSI", value: "actions", sortable: false,width:120 },
         ],
         search: "",
@@ -265,7 +265,7 @@ export default {
         async printpdf2(item)
         {
             this.btnLoading = true;
-            await this.$ajax.get("/akademik/nilai/transkripkurikulum/printpdf2/" + item.user_id,                
+            await this.$ajax.get("/akademik/nilai/transkripkurikulum/printpdf2/" + item.user_id,    
                 {
                     headers: {
                         Authorization: this.$store.getters["auth/Token"]
@@ -315,7 +315,7 @@ export default {
                         await this.$ajax.post("/akademik/nilai/transkripkurikulum",
                         {
                             prodi_id: this.prodi_id,
-                            ta: this.tahun_pendaftaran,            
+                            ta: this.tahun_pendaftaran,
                             search: this.search
                         },
                         {

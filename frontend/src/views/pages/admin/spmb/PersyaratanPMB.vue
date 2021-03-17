@@ -203,7 +203,7 @@ export default {
 		},
 		initialize: async function() {	
 			if (this.dashboard == "mahasiswabaru" || this.dashboard == "mahasiswa") {
-				await this.$ajax.get("/spmb/formulirpendaftaran/" + this.$store.getters['auth/AttributeUser']("id"),             
+				await this.$ajax.get("/spmb/formulirpendaftaran/" + this.$store.getters['auth/AttributeUser']("id"), 
 					{
 						headers: {
 							Authorization: this.$store.getters["auth/Token"]

@@ -27,7 +27,7 @@ export default {
         this.daftar_kelas=this.$store.getters['uiadmin/getDaftarKelas'];
         this.idkelas=this.$store.getters['uiadmin/getIDKelas'];                                          
     },
-    data:()=>({
+    data: () => ({
         firstloading: true,
         
         daftar_kelas: [],

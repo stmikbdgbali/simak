@@ -255,7 +255,7 @@ export default {
         dialogfrm: false,        
 
         //form data   
-        form_valid: true,             
+        form_valid: true, 
         formdata: {
             no_formulir: "",       
         },
@@ -279,7 +279,7 @@ export default {
         initialize: async function() 
         {
             this.datatableLoading = true;          
-            await this.$ajax.post("/keuangan/transaksi-dulangmhsbaru",            
+            await this.$ajax.post("/keuangan/transaksi-dulangmhsbaru",
             {
                 TA: this.tahun_pendaftaran, 
                 PRODI_ID: this.prodi_id               
@@ -320,8 +320,8 @@ export default {
                 this.btnLoading = true;
                 await this.$ajax.post("/keuangan/transaksi-dulangmhsbaru/store",
                     {
-                        no_formulir: this.formdata.no_formulir,                         
-                        TA: this.tahun_pendaftaran,                        
+                        no_formulir: this.formdata.no_formulir, 
+                        TA: this.tahun_pendaftaran,
                     },
                     {
                         headers: {
@@ -434,7 +434,7 @@ export default {
                     if (this.search.length > 0 && this.filter_ignore)
                     {
                         this.datatableLoading = true;          
-                        await this.$ajax.post("/keuangan/transaksi-dulangmhsbaru",                 
+                        await this.$ajax.post("/keuangan/transaksi-dulangmhsbaru",     
                         {
                             PRODI_ID: this.prodi_id,
                             TA: this.tahun_pendaftaran,

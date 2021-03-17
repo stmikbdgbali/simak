@@ -354,7 +354,7 @@ export default {
             this.$ajax.get("/datamaster/kelas").then(({ data })=>{     
                 this.daftar_kelas=data.kelas;
             });
-            await this.$ajax.get("/spmb/formulirpendaftaran/" + this.user_id,             
+            await this.$ajax.get("/spmb/formulirpendaftaran/" + this.user_id, 
                 {
                     headers: {
                         Authorization: this.$store.getters["auth/Token"]
@@ -492,7 +492,7 @@ export default {
     },
     components: {
         SPMBLayout,
-        ModuleHeader,              
+        ModuleHeader,  
     },
 }
 </script>

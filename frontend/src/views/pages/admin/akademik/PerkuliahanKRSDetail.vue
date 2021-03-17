@@ -314,7 +314,7 @@ export default {
                 this.btnLoading = true;              
                 await this.$ajax.post("/akademik/perkuliahan/pembagiankelas/storepeserta",
                     {
-                        kelas_mhs_id: this.formdata.kelas_mhs_id,                        
+                        kelas_mhs_id: this.formdata.kelas_mhs_id,            
                         krsmatkul_id: this.datamatkul.id                                                                                                    
                     },
                     {

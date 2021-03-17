@@ -307,23 +307,23 @@ export default {
         headers: [
             { text: "KODE", value: "kmatkul", sortable: false, width:100  },   
             { text: "NAMA", value: "nmatkul", sortable: false  },   
-            { text: "SKS", value: "sks", sortable: false  },            
-            { text: "PROGRAM STUDI", value: "kjur", sortable: false, width:200 },            
-            { text: "JUMLAH MHS DI KRS", value: "jumlah_mhs", sortable: false, width:100 },            
+            { text: "SKS", value: "sks", sortable: false  },
+            { text: "PROGRAM STUDI", value: "kjur", sortable: false, width:200 },
+            { text: "JUMLAH MHS DI KRS", value: "jumlah_mhs", sortable: false, width:100 },
             { text: "AKSI", value: "actions", sortable: false,width:60 },
         ],
         headers_peserta: [
             { text: "NIM", value: "nim", sortable: false, width:100  },   
             { text: "NAMA", value: "nama_mhs", sortable: false  },   
             { text: "PROGRAM STUDI", value: "kjur", sortable: false  },   
-            { text: "KELAS", value: "idkelas", sortable: false  },            
-            { text: "TAHUN MASUK", value: "tahun", sortable: false },                        
+            { text: "KELAS", value: "idkelas", sortable: false  },
+            { text: "TAHUN MASUK", value: "tahun", sortable: false },            
             { text: "AKSI", value: "actions", sortable: false,width:60 },
         ],
         headers_members: [
             { text: "NIM", value: "nim", sortable: false, width:100  },   
             { text: "NAMA", value: "nama_mhs", sortable: false  },   
-            { text: "KELAS", value: "idkelas", sortable: false  },            
+            { text: "KELAS", value: "idkelas", sortable: false  },
             { text: "TAHUN MASUK", value: "tahun", sortable: false },       
         ],
         search_members: "",
@@ -335,7 +335,7 @@ export default {
         form_valid: true, 
         members_selected: [],
         formdata: {             
-            penyelenggaraan_dosen_id: "",                   
+            penyelenggaraan_dosen_id: "",       
         },  
         
     }),
@@ -343,7 +343,7 @@ export default {
         initialize: async function() 
         {
             this.datatableLoading = true;
-            await this.$ajax.get("/akademik/perkuliahan/pembagiankelas/" + this.kelas_mhs_id,            
+            await this.$ajax.get("/akademik/perkuliahan/pembagiankelas/" + this.kelas_mhs_id,
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
@@ -358,7 +358,7 @@ export default {
         async fetchMatkul()
         {
             this.datatableLoading = true;
-            await this.$ajax.get("/akademik/perkuliahan/pembagiankelas/matakuliah/" + this.kelas_mhs_id,            
+            await this.$ajax.get("/akademik/perkuliahan/pembagiankelas/matakuliah/" + this.kelas_mhs_id,
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
@@ -371,7 +371,7 @@ export default {
         async fetchPeserta()
         {
             this.datatableLoading = true;
-            await this.$ajax.get("/akademik/perkuliahan/pembagiankelas/peserta/" + this.kelas_mhs_id,            
+            await this.$ajax.get("/akademik/perkuliahan/pembagiankelas/peserta/" + this.kelas_mhs_id,
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
@@ -383,11 +383,11 @@ export default {
         },
         async tambahMatakuliah()
         {
-            await this.$ajax.post("/akademik/perkuliahan/penyelenggaraanmatakuliah/matakuliah",            
+            await this.$ajax.post("/akademik/perkuliahan/penyelenggaraanmatakuliah/matakuliah",
             {
                 user_id: this.data_kelas_mhs.user_id,
-                ta: this.data_kelas_mhs.tahun,                
-                semester_akademik: this.data_kelas_mhs.idsmt,                
+                ta: this.data_kelas_mhs.tahun,    
+                semester_akademik: this.data_kelas_mhs.idsmt,    
             },
             {
                 headers: {
@@ -400,7 +400,7 @@ export default {
         },
         async tambahPeserta()
         {
-            await this.$ajax.post("/akademik/perkuliahan/penyelenggaraanmatakuliah/members",            
+            await this.$ajax.post("/akademik/perkuliahan/penyelenggaraanmatakuliah/members",
             {
                 pid: "belumterdaftar",
                 kelas_mhs_id: this.kelas_mhs_id,
@@ -421,8 +421,8 @@ export default {
                 this.btnLoading = true;
                 await this.$ajax.post("/akademik/perkuliahan/pembagiankelas/storepeserta",
                     {
-                        kelas_mhs_id: this.kelas_mhs_id,                        
-                        members_selected:JSON.stringify(Object.assign({},this.members_selected)),                                       
+                        kelas_mhs_id: this.kelas_mhs_id,            
+                        members_selected:JSON.stringify(Object.assign({},this.members_selected)),                           
                     },
                     {
                         headers: {
@@ -443,7 +443,7 @@ export default {
                 this.btnLoading = true;
                 await this.$ajax.post("/akademik/perkuliahan/pembagiankelas/storematakuliah",
                     {
-                        kelas_mhs_id: this.kelas_mhs_id,                        
+                        kelas_mhs_id: this.kelas_mhs_id,            
                         penyelenggaraan_dosen_id:JSON.stringify(Object.assign({},this.formdata.penyelenggaraan_dosen_id)),
                     },
                     {

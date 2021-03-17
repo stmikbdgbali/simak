@@ -243,11 +243,11 @@ export default {
         headers: [
             { text: "KODE", value: "kmatkul", sortable: true,width:100  },   
             { text: "NAMA MATAKULIAH/KELAS", value: "nmatkul", sortable: true  },   
-            { text: "NAMA DOSEN", value: "nama_dosen", sortable: true  },            
+            { text: "NAMA DOSEN", value: "nama_dosen", sortable: true  },
             { text: "HARI", value: "nama_hari", sortable: true,width:100 },
-            { text: "JAM", value: "jam_masuk",sortable: true,width:100 },            
-            { text: "RUANG", value: "namaruang",sortable: true,width:100},            
-            { text: "JUMLAH PESERTA", value: "jumlah_mhs",sortable: true,width:100},            
+            { text: "JAM", value: "jam_masuk",sortable: true,width:100 },
+            { text: "RUANG", value: "namaruang",sortable: true,width:100},
+            { text: "JUMLAH PESERTA", value: "jumlah_mhs",sortable: true,width:100},
             { text: "AKSI", value: "actions", sortable: false,width:120 },
         ],
         search: "",
@@ -378,11 +378,11 @@ export default {
                 
                 await this.$ajax.post("/akademik/perkuliahan/pembagiankelas/" + this.formdata.id,
                     {
-                        _method: "PUT",                        
-                        hari: this.formdata.hari,                            
+                        _method: "PUT",            
+                        hari: this.formdata.hari,                
                         jam_masuk: this.formdata.jam_masuk,
-                        jam_keluar: this.formdata.jam_keluar,                        
-                        ruang_kelas_id: this.formdata.ruang_kelas_id,                            
+                        jam_keluar: this.formdata.jam_keluar,            
+                        ruang_kelas_id: this.formdata.ruang_kelas_id,                
                     },
                     {
                         headers: {
@@ -450,7 +450,7 @@ export default {
     },
     computed: {
         ...mapGetters("auth",{ 
-            CAN_ACCESS: "can",                     
+            CAN_ACCESS: "can",         
         }),
     },
     components: {

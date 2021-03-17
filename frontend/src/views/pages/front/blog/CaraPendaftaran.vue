@@ -57,7 +57,7 @@
 									</ol>
 									Setelah tekan tombol "Simpan" maka lanjutkan langkah 3.
 									Selanjutnya lakukan pembayaran dengan cara ditransfer ke :
-									<v-alert type="tkinfo">
+									<v-alert type="info">
 										BNI (BANK NEGARA INDONESIA) <br />
 										NOMOR REKENING : 10-0062-8460 <br />
 										A.N : STMIK BANDUNG BALI <br />

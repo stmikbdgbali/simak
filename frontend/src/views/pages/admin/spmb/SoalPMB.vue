@@ -391,14 +391,14 @@ export default {
             },
         ],  
         formdata: {
-            id:  0,                        
+            id:  0,            
             soal: "", 
             gambar: "", 
-            jawaban1: "",               
-            jawaban2: "",               
-            jawaban3: "",               
-            jawaban4: "",               
-            jawaban_benar: "",               
+            jawaban1: "",   
+            jawaban2: "",   
+            jawaban3: "",   
+            jawaban4: "",   
+            jawaban_benar: "",   
             created_at: "",      
             updated_at: "",      
 
@@ -406,12 +406,12 @@ export default {
         formdefault: {
             id:  0,           
             soal: "",
-            gambar: "",                 
-            jawaban1: "",               
-            jawaban2: "",               
-            jawaban3: "",               
+            gambar: "",     
+            jawaban1: "",   
+            jawaban2: "",   
+            jawaban3: "",   
             jawaban4: "",   
-            jawaban_benar: "",                           
+            jawaban_benar: "",               
             created_at: "",      
             updated_at: "",  
         },
@@ -419,16 +419,16 @@ export default {
 
         //form rules  
         rule_soal: [
-            value => !!value || "Mohon untuk di isi soal !!!",              
+            value => !!value || "Mohon untuk di isi soal !!!",  
         ],
         rule_gambar: [            
             value =>  !value || value.size < 2000000 || "File gambar harus kurang dari 2MB."                
         ],
         rule_jawaban: [
-            value => !!value || "Mohon isi jawaban dari soal ini",              
+            value => !!value || "Mohon isi jawaban dari soal ini",  
         ],
         rule_jawaban_benar: [
-            value => !!value || "Mohon pilih jawaban benar dari soal ini",              
+            value => !!value || "Mohon pilih jawaban benar dari soal ini",  
         ],
     }),
     methods: {
@@ -546,13 +546,13 @@ export default {
                 } else {
                     await this.$ajax.post("/spmb/soalpmb/store",
                         {  
-                            soal: this.formdata.soal,                            
-                            gambar: "gambar",                            
-                            jawaban1: this.formdata.jawaban1,                            
-                            jawaban2: this.formdata.jawaban2,                            
-                            jawaban3: this.formdata.jawaban3,                            
-                            jawaban4: this.formdata.jawaban4,                            
-                            jawaban_benar: this.formdata.jawaban_benar,                            
+                            soal: this.formdata.soal,                
+                            gambar: "gambar",                
+                            jawaban1: this.formdata.jawaban1,                
+                            jawaban2: this.formdata.jawaban2,                
+                            jawaban3: this.formdata.jawaban3,                
+                            jawaban4: this.formdata.jawaban4,                
+                            jawaban_benar: this.formdata.jawaban_benar,                
                             tahun_pendaftaran: this.tahun_pendaftaran,
                             semester_pendaftaran: this.semester_pendaftaran
                         },         

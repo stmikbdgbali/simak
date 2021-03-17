@@ -191,8 +191,8 @@ export default {
                         _method: "PUT", 
                         'pid': "Color Dashboard",
                         setting:JSON.stringify({
-                            807: this.formdata,                            
-                        }),                                                                                               
+                            807: this.formdata,                
+                        }),                                                                                   
                     },
                     {
                         headers: {

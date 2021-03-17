@@ -175,8 +175,48 @@
 					</v-card-actions>
 				</v-card>
 			</v-form>
+			<v-dialog
+				v-model="dialogkodebilling"
+				max-width="500px"
+				persistent
+			>
+				<v-form
+					ref="frmkonfirmasi"
+					v-model="form_valid"
+					lazy-validation
+				>
+					<v-card>
+						<v-card-title>
+							<span class="headline">
+								Isi Formulir Berhasil
+							</span>
+						</v-card-title>
+						<v-card-text>
+							<v-alert type="success">
+								Proses isi formulir berhasil, lanjutkan dengan melakukan pembayaran biaya pendaftaran (Rp.{{ biaya_pendaftaran|formatUang }}) dengan cara transfer ke rekening berikut :
+								<v-alert type="info">
+										BNI (BANK NEGARA INDONESIA) <br />
+										NOMOR REKENING : 10-0062-8460 <br />
+										A.N : STMIK BANDUNG BALI <br />
+									</v-alert>
+								<strong>SETELAH MELAKUKAN TRANSFER, SILAHKAN UNGGAH BUKTI TRANSFER/BAYAR DI HALAMAN KONFIRMASI.</strong>                            
+							</v-alert>							
+						</v-card-text>
+						<v-card-actions>
+							<v-spacer></v-spacer>
+							<v-btn
+								color="blue darken-1"
+								text
+								@click.stop="closedialogfrm"
+							>
+								OK
+							</v-btn>							
+						</v-card-actions>
+					</v-card>
+				</v-form>
+			</v-dialog>
 		</v-col>
-	</v-row>
+	</v-row>	
 </template>
 <script>
 export default {
@@ -184,7 +224,7 @@ export default {
 	created() {
 		this.initialize();
 	},
-	data:()=>({
+	data: () => ({
 		btnLoading: false,
 		btnLoadingProv: false,
 		btnLoadingKab: false,
@@ -193,6 +233,7 @@ export default {
 
 		//form
 		kode_billing: "N.A",
+		biaya_pendaftaran: 0,
 		form_valid: true,
 
 		menuTanggalLahir: false,
@@ -232,12 +273,12 @@ export default {
 			value => /^[A-Za-z\s\\,\\.]*$/.test(value) || "Nama Mahasiswa hanya boleh string dan spasi",
 		],
 		rule_nidn: [
-			value => !!value||"Mohon untuk di isi NIDN !!!",                     
-			value => /^[0-9]+$/.test(value) || "NIDN hanya boleh angka",                
+			value => !!value||"Mohon untuk di isi NIDN !!!",         
+			value => /^[0-9]+$/.test(value) || "NIDN hanya boleh angka",    
 		],
 		rule_nipy: [
-			value => !!value||"Mohon untuk di isi NIP Yayasan !!!",                     
-			value => /^[0-9]+$/.test(value) || "NIP Yayasan hanya boleh angka",                
+			value => !!value||"Mohon untuk di isi NIP Yayasan !!!",         
+			value => /^[0-9]+$/.test(value) || "NIP Yayasan hanya boleh angka",    
 		],
 		rule_tempat_lahir: [
 			value => !!value||"Tempat Lahir mohon untuk diisi !!!"
@@ -272,9 +313,11 @@ export default {
 		rule_kelas: [
 			value => !!value||"Kelas mohon untuk dipilih !!!"
 		],
+
+		dialogkodebilling :false,
 	}),
 	methods: {
-		initialize: async function ()
+		initialize: async function()
 		{
 			let bentukpt=this.$store.getters['uifront/getBentukPT'];
 			this.$ajax.get("/datamaster/provinsi").then(({ data }) => {     
@@ -295,13 +338,12 @@ export default {
 			this.$ajax.get("/datamaster/kelas").then(({ data }) => {     
 				this.daftar_kelas=data.kelas;
 			});
-			await this.$ajax.get("/spmb/formulirpendaftaran/" + this.$store.getters['auth/AttributeUser']("id"),             
+			await this.$ajax.get("/spmb/formulirpendaftaran/" + this.$store.getters['auth/AttributeUser']("id"), 
 				{
 					headers:{
-						Authorization: this.$store.getters['auth/Token']
+						Authorization: this.$store.getters["auth/Token"]
 					}
-				},
-				
+				},				
 			).then(({ data }) => {   
 				this.formdata.nama_mhs=data.formulir.nama_mhs;         
 				this.formdata.tempat_lahir=data.formulir.tempat_lahir;         
@@ -340,8 +382,7 @@ export default {
 				this.$refs.frmdata.resetValidation();     
 			});
 		},    
-		save: async function ()
-		{
+		save: async function() {
 			if (this.$refs.frmdata.validate())
 			{
 				this.btnLoading = true;              
@@ -368,18 +409,27 @@ export default {
 				},
 				{
 					headers:{
-						Authorization: this.$store.getters['auth/Token']
+						Authorization: this.$store.getters["auth/Token"]
 					}
 				}
 				).then(({ data }) => {    
 					this.kode_billing=data.no_transaksi;
-					this.btnLoading = false;                      
+					this.biaya_pendaftaran=data.biaya_pendaftaran;
+					this.dialogkodebilling = true;
+					this.btnLoading = false;       
 				}).catch(() => {                        
 					this.btnLoading = false;
-				});                                  
-				this.form_valid=true;                                                                                      
-				this.$refs.frmdata.resetValidation();               
+				});    
+				this.form_valid=true;           
+				this.$refs.frmdata.resetValidation();
 			}                             
+		},
+		closedialogfrm() {
+			this.dialogkodebilling = false;
+			setTimeout(() => {
+				this.form_valid=true;           
+				this.$refs.frmdata.resetValidation();
+			}, 300);
 		},
 	},
 	watch: {
@@ -418,7 +468,6 @@ export default {
 				this.btnLoadingFakultas=false;
 			});
 		}
-
 	}
 }
 </script>

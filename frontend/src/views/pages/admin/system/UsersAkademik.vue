@@ -365,7 +365,7 @@ export default {
         //form rules    
         rule_user_name: [
             value => !!value || "Mohon untuk di isi nama User !!!",  
-            value => /^[A-Za-z\s]*$/.test(value) || "Nama User hanya boleh string dan spasi",                
+            value => /^[A-Za-z\s]*$/.test(value) || "Nama User hanya boleh string dan spasi",    
         ],
         rule_user_email: [
             value => !!value || "Mohon untuk di isi email User !!!",  
@@ -377,7 +377,7 @@ export default {
         ],
         rule_user_username: [
             value => !!value || "Mohon untuk di isi username User !!!",  
-            value => /^[A-Za-z_]*$/.test(value) || "Username hanya boleh string dan underscore",                    
+            value => /^[A-Za-z_]*$/.test(value) || "Username hanya boleh string dan underscore",        
         ],
         rule_user_password: [
             value => !!value || "Mohon untuk di isi password User !!!",
@@ -437,7 +437,7 @@ export default {
                     this.btnLoading = true;
                     await this.$ajax.post("/system/users/syncallpermissions",
                         {
-                            role_name: "akademik",                    
+                            role_name: "akademik",        
                         },
                         {
                             headers: {
@@ -473,7 +473,7 @@ export default {
                     {
                         daftar_roles.push({
                             text:element.name,
-                            disabled: false,                            
+                            disabled: false,                
                         });                      
                     }                    
                 });      
@@ -487,7 +487,7 @@ export default {
             item.password='';          
             this.editedItem = Object.assign({}, item);    
             this.daftar_prodi=this.$store.getters['uiadmin/getDaftarProdi'];
-            await this.$ajax.get("/system/users/"  + item.id + "/prodi",               
+            await this.$ajax.get("/system/users/"  + item.id + "/prodi",   
                 {
                     headers: {
                         Authorization: this.TOKEN
@@ -521,7 +521,7 @@ export default {
                     {
                         daftar_roles.push({
                             text:element.name,
-                            disabled: false,                            
+                            disabled: false,                
                         });                      
                     }                    
                 });      
@@ -573,7 +573,7 @@ export default {
                             nomor_hp: this.editedItem.nomor_hp,     
                             username: this.editedItem.username,
                             password: this.editedItem.password,   
-                            prodi_id:JSON.stringify(Object.assign({},this.editedItem.prodi_id)),                                                                             
+                            prodi_id:JSON.stringify(Object.assign({},this.editedItem.prodi_id)),                                                                 
                             role_id:JSON.stringify(Object.assign({},this.editedItem.role_id)),
                         },
                         {
@@ -595,7 +595,7 @@ export default {
                             email: this.editedItem.email,
                             nomor_hp: this.editedItem.nomor_hp,     
                             username: this.editedItem.username,
-                            password: this.editedItem.password,            
+                            password: this.editedItem.password,
                             prodi_id:JSON.stringify(Object.assign({},this.editedItem.prodi_id)),
                             role_id:JSON.stringify(Object.assign({},this.editedItem.role_id)),
                         },

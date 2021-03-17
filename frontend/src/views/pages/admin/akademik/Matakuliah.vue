@@ -488,9 +488,9 @@
 				"E",
 			],
 			formdata: {
-				id: "",                   
-				id_group: null,                       
-				nama_group: null,                       
+				id: "",       
+				id_group: null,           
+				nama_group: null,           
 				group_alias: null,
 				kmatkul: "",    
 				nmatkul: "",
@@ -510,9 +510,9 @@
 				update_penyelenggaraan: false,
 			},
 			formdefault: {
-				id: "",                   
-				id_group: null,                       
-				nama_group: null,                       
+				id: "",       
+				id_group: null,           
+				nama_group: null,           
 				group_alias: null,
 				kmatkul: "",    
 				nmatkul: "",
@@ -535,25 +535,25 @@
 
 			//form rules
 			rule_group_matakuliah: [
-				value => !!value || "Mohon Group Matakuliah untuk dipilih !!!",              
+				value => !!value || "Mohon Group Matakuliah untuk dipilih !!!",  
 			],
 			rule_kode_matkul: [
-				value => !!value || "Kode Program Studi mohon untuk diisi !!!",            
+				value => !!value || "Kode Program Studi mohon untuk diisi !!!",
 			],
 			rule_nama_matakuliah: [
-				value => !!value || "Mohon Nama Program Studi untuk diisi !!!",              
+				value => !!value || "Mohon Nama Program Studi untuk diisi !!!",  
 			],
 			rule_sks: [
-				value => !!value || "Mohon SKS Matakuliah untuk dipilih !!!",              
+				value => !!value || "Mohon SKS Matakuliah untuk dipilih !!!",  
 			],
 			rule_sks_tatap_muka: [
-				value => !!value || "Mohon SKS Matakuliah Tatap Muka untuk dipilih !!!",              
+				value => !!value || "Mohon SKS Matakuliah Tatap Muka untuk dipilih !!!",  
 			],
 			rule_semester: [
-				value => !!value || "Mohon Semester Matakuliah ini diselenggarakan untuk dipilih !!!",              
+				value => !!value || "Mohon Semester Matakuliah ini diselenggarakan untuk dipilih !!!",  
 			],
 			rule_minimal_nilai: [
-				value => !!value || "Mohon Minimal nilai kelulusan matakuliah untuk dipilih !!!",              
+				value => !!value || "Mohon Minimal nilai kelulusan matakuliah untuk dipilih !!!",  
 			],
 		}),
 		methods: {		
@@ -641,9 +641,9 @@
 						.post("/akademik/matakuliah/" + this.formdata.id,
 							{
 								_method: "PUT",
-								id_group: this.formdata.id_group,                       
-								nama_group: this.formdata.nama_group,                       
-								group_alias: this.formdata.group_alias,                       
+								id_group: this.formdata.id_group,           
+								nama_group: this.formdata.nama_group,           
+								group_alias: this.formdata.group_alias,           
 								kmatkul: this.formdata.kmatkul,         
 								nmatkul: this.formdata.nmatkul, 
 								sks: this.formdata.sks, 
@@ -658,7 +658,7 @@
 								syarat_skripsi: this.formdata.syarat_skripsi,   
 								status: this.formdata.status,								
 								kjur: this.formdata.kjur,  
-								update_penyelenggaraan: this.formdata.update_penyelenggaraan,                          
+								update_penyelenggaraan: this.formdata.update_penyelenggaraan,              
 							},
 							{
 								headers: {
@@ -680,8 +680,8 @@
 						.post("/akademik/matakuliah/store",
 							{
 								id_group: this.formdata.id_group, 
-								nama_group: this.formdata.nama_group,                       
-								group_alias: this.formdata.group_alias,                                                                          
+								nama_group: this.formdata.nama_group,           
+								group_alias: this.formdata.group_alias,                                                              
 								kmatkul: this.formdata.kmatkul,         
 								nmatkul: this.formdata.nmatkul, 
 								sks: this.formdata.sks, 
@@ -695,7 +695,7 @@
 								minimal_nilai: this.formdata.minimal_nilai,  
 								syarat_skripsi: this.formdata.syarat_skripsi,   
 								status: this.formdata.status,   							
-								kjur: this.prodi_id,                                                      
+								kjur: this.prodi_id,                                          
 							},
 							{
 								headers: {

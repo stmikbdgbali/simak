@@ -165,9 +165,9 @@ export default {
             { text: "NO. FORMULIR", value: "no_formulir", sortable: true,width:150  },   
             { text: "NIM", value: "nim", sortable: true,width:150  },   
             { text: "NIRM", value: "nirm", sortable: true,width:150  },   
-            { text: "NAMA MAHASISWA", value: "nama_mhs",sortable: true },            
-            { text: "KELAS", value: "idkelas",sortable: true,width:120, },                        
-            { text: "STATUS", value: "k_status",sortable: true,width:120, },                        
+            { text: "NAMA MAHASISWA", value: "nama_mhs",sortable: true },
+            { text: "KELAS", value: "idkelas",sortable: true,width:120, },            
+            { text: "STATUS", value: "k_status",sortable: true,width:120, },            
         ],
         search: "",
     }),
@@ -190,7 +190,7 @@ export default {
             },
             {
                 headers: {
-                    Authorization: this.$store.getters['auth/Token']
+                    Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({ data })=>{    
                 this.datatable = data.mahasiswa;
@@ -217,13 +217,13 @@ export default {
             this.btnLoading = true;
             await this.$ajax.post("/akademik/kemahasiswaan/daftarmhs/printtoexcel",
                 {
-                    TA: this.tahun_pendaftaran,                                   
+                    TA: this.tahun_pendaftaran,                       
                     prodi_id: this.prodi_id,    
-                    nama_prodi: this.nama_prodi,                 
+                    nama_prodi: this.nama_prodi,     
                 },
                 {
                     headers: {
-                        Authorization: this.$store.getters['auth/Token']
+                        Authorization: this.$store.getters["auth/Token"]
                     },
                     responseType: "arraybuffer"
                 }
@@ -247,12 +247,12 @@ export default {
             await this.$ajax.post("/system/users/syncallpermissions",
                 {
                     role_name: "mahasiswa",
-                    TA: this.tahun_pendaftaran,                    
+                    TA: this.tahun_pendaftaran,        
                     prodi_id: this.prodi_id                     
                 },
                 {
                     headers: {
-                        Authorization: this.$store.getters['auth/Token']
+                        Authorization: this.$store.getters["auth/Token"]
                     }
                 }
             ).then(() => {     

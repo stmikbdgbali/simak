@@ -169,7 +169,7 @@ export default {
             { text: "NIM", value: "nim", sortable: false, width:100  },   
             { text: "NAMA", value: "nama_mhs", sortable: false  },   
             { text: "PROGRAM STUDI", value: "kjur", sortable: false  },   
-            { text: "KELAS", value: "idkelas", sortable: false  },            
+            { text: "KELAS", value: "idkelas", sortable: false  },
             { text: "TAHUN MASUK", value: "tahun", sortable: false },       
             { text: "NILAI ANGKA (0 s.d 100)", value: "n_kuan", sortable: false },       
             { text: "NILAI HURUP", value: "n_kual", sortable: false },       
@@ -182,14 +182,14 @@ export default {
             "A",
             "B",
             "C",
-            "D",            
+            "D",
             "E",
         ],  
     }),
     methods: {        
         initialize: async function() 
         {
-            await this.$ajax.get("/akademik/perkuliahan/pembagiankelas/" + this.kelas_mhs_id,            
+            await this.$ajax.get("/akademik/perkuliahan/pembagiankelas/" + this.kelas_mhs_id,
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
@@ -198,7 +198,7 @@ export default {
                 this.data_kelas_mhs=data.pembagiankelas;                                       
             });
             this.datatableLoading = true;
-            await this.$ajax.get("/akademik/nilai/matakuliah/pesertakelas/" + this.kelas_mhs_id,            
+            await this.$ajax.get("/akademik/nilai/matakuliah/pesertakelas/" + this.kelas_mhs_id,
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
@@ -211,7 +211,7 @@ export default {
         async fetchPeserta()
         {
             this.datatableLoading = true;
-            await this.$ajax.get("/akademik/perkuliahan/pembagiankelas/peserta/" + this.kelas_mhs_id,            
+            await this.$ajax.get("/akademik/perkuliahan/pembagiankelas/peserta/" + this.kelas_mhs_id,
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]

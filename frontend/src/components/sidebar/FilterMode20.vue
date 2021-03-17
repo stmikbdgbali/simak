@@ -27,7 +27,7 @@ export default {
         this.daftar_ta = this.$store.getters['uiadmin/getDaftarTA'];
         this.tahun_pendaftaran = this.$store.getters['uiadmin/getTahunPendaftaran']; 
     },
-    data:()=>({
+    data: () => ({
         firstloading: true,
         daftar_fakultas: [],
         fakultas_id: null,

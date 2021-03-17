@@ -129,7 +129,7 @@ export default {
                 this.headers.header_address=setting.HEADER_ADDRESS;
             });        
             
-            await this.$ajax.get("/keuangan/transaksi/" + this.transaksi_id,                        
+            await this.$ajax.get("/keuangan/transaksi/" + this.transaksi_id,
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]

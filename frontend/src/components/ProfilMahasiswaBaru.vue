@@ -194,12 +194,12 @@ export default {
         }
     },
     methods: {
-        initialize: async function ()
+        initialize: async function()
         {
-            await this.$ajax.get("/spmb/formulirpendaftaran/" + this.item.id,             
+            await this.$ajax.get("/spmb/formulirpendaftaran/" + this.item.id, 
                 {
                     headers:{
-                        Authorization: this.$store.getters['auth/Token']
+                        Authorization: this.$store.getters["auth/Token"]
                     }
                 }, 
             ).then(({ data }) => {   
@@ -209,10 +209,10 @@ export default {
                                                         }); 
             });
 
-            await this.$ajax.get("/spmb/pmbpersyaratan/" + this.item.id,             
+            await this.$ajax.get("/spmb/pmbpersyaratan/" + this.item.id, 
                 {
                     headers:{
-                        Authorization: this.$store.getters['auth/Token']
+                        Authorization: this.$store.getters["auth/Token"]
                     }
                 }
             ).then(({ data }) => {    

@@ -325,7 +325,7 @@ export default {
         initialize: async function() 
         {
             this.datatableLoading = true;          
-            await this.$ajax.post("/keuangan/transaksi",            
+            await this.$ajax.post("/keuangan/transaksi",
             {
                 TA: this.tahun_akademik,
                 PRODI_ID: this.prodi_id,
@@ -401,7 +401,7 @@ export default {
                     if (this.search.length > 0 && this.filter_ignore)
                     {
                         this.datatableLoading = true;          
-                        await this.$ajax.post("/keuangan/transaksi",                 
+                        await this.$ajax.post("/keuangan/transaksi",     
                         {
                             PRODI_ID: this.prodi_id,
                             TA: this.tahun_akademik,

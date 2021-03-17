@@ -396,12 +396,12 @@ export default {
         headers: [            
             { text: "KODE", value: "kmatkul", sortable: false, width:100  },
             { text: "NAMA", value: "nmatkul", sortable: false, width:250  },
-            { text: "SKS", value: "sks",sortable: false, width:70 },            
-            { text: "SMT", value: "semester",sortable: true,width:70, },            
-            { text: "KODE MATKUL ASAL", value: "kmatkul_asal",sortable: false,width:120 },            
-            { text: "MATAKULIAH ASAL", value: "matkul_asal",sortable: false,width:170 },            
-            { text: "SKS ASAL", value: "sks_asal",sortable: false,width:70},            
-            { text: "NILAI", value: "n_kual",sortable: false,width:70},                        
+            { text: "SKS", value: "sks",sortable: false, width:70 },
+            { text: "SMT", value: "semester",sortable: true,width:70, },
+            { text: "KODE MATKUL ASAL", value: "kmatkul_asal",sortable: false,width:120 },
+            { text: "MATAKULIAH ASAL", value: "matkul_asal",sortable: false,width:170 },
+            { text: "SKS ASAL", value: "sks_asal",sortable: false,width:70},
+            { text: "NILAI", value: "n_kual",sortable: false,width:70},            
         ],
 
         dialogprintpdf: false,
@@ -438,7 +438,7 @@ export default {
         initialize: async function() 
         {      
             this.datatableLoading = true;
-            await this.$ajax.get("/akademik/nilai/konversi/" + this.nilai_konversi_id,            
+            await this.$ajax.get("/akademik/nilai/konversi/" + this.nilai_konversi_id,
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
@@ -476,19 +476,19 @@ export default {
                 await this.$ajax.post("/akademik/nilai/konversi/" + this.nilai_konversi_id,
                     {
                         _method: "put",
-                        nim_asal: this.data_konversi.nim_asal,                            
-                        nama_mhs: this.data_konversi.nama_mhs,                            
+                        nim_asal: this.data_konversi.nim_asal,                
+                        nama_mhs: this.data_konversi.nama_mhs,                
                         alamat: this.data_konversi.alamat,   
-                        no_telp: this.data_konversi.no_telp,                           
-                        email: this.data_konversi.email,                           
-                        kode_jenjang: this.data_konversi.kode_jenjang,                           
-                        kode_pt_asal: this.data_konversi.kode_pt_asal,                                                                                
-                        nama_pt_asal: this.data_konversi.nama_pt_asal,                                                                                
-                        kode_ps_asal: this.data_konversi.kode_ps_asal,                                                                                
-                        nama_ps_asal: this.data_konversi.nama_ps_asal,                                                                                
-                        tahun: this.tahun_pendaftaran,                                                                                
+                        no_telp: this.data_konversi.no_telp,               
+                        email: this.data_konversi.email,               
+                        kode_jenjang: this.data_konversi.kode_jenjang,               
+                        kode_pt_asal: this.data_konversi.kode_pt_asal,                                                                    
+                        nama_pt_asal: this.data_konversi.nama_pt_asal,                                                                    
+                        kode_ps_asal: this.data_konversi.kode_ps_asal,                                                                    
+                        nama_ps_asal: this.data_konversi.nama_ps_asal,                                                                    
+                        tahun: this.tahun_pendaftaran,                                                                    
                         kjur: this.prodi_id,  
-                        daftar_nilai:JSON.stringify(Object.assign({},daftar_nilai)),                    
+                        daftar_nilai:JSON.stringify(Object.assign({},daftar_nilai)),        
                     },
                     {
                         headers: {
@@ -526,7 +526,7 @@ export default {
         async printpdf2(item)
         {
             this.btnLoading = true;
-            await this.$ajax.get("/akademik/nilai/transkripkurikulum/printpdf2/" + item.user_id,                
+            await this.$ajax.get("/akademik/nilai/transkripkurikulum/printpdf2/" + item.user_id,    
                 {
                     headers: {
                         Authorization: this.$store.getters["auth/Token"]
@@ -551,7 +551,7 @@ export default {
         async pasangkan()
         {
             this.btnLoading = true;
-            await this.$ajax.post("/akademik/nilai/konversi/plugtomhs",                
+            await this.$ajax.post("/akademik/nilai/konversi/plugtomhs",    
                 {
                     nilai_konversi_id: this.nilai_konversi_id,
                     user_id: this.data_mhs.user_id
@@ -576,7 +576,7 @@ export default {
                     this.btnLoading = true;
                     this.$ajax.post("/akademik/nilai/konversi/unplugtomhs",
                         {
-                            nilai_konversi_id: this.nilai_konversi_id,                            
+                            nilai_konversi_id: this.nilai_konversi_id,                
                         },
                         {
                             headers: {
@@ -641,7 +641,7 @@ export default {
                     this.isLoading = true 
                     await this.$ajax.post("/kemahasiswaan/profil/searchnonampulan",
                     {
-                        search:val,                    
+                        search:val,        
                     },
                     {
                         headers: {
@@ -662,7 +662,7 @@ export default {
     },
     components: {
         AkademikLayout,
-        ModuleHeader,            
+        ModuleHeader,
     },
 }
 </script>
