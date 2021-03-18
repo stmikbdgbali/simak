@@ -1,60 +1,64 @@
 <template>
 	<FrontLayout>
-		<v-container class="fill-height" fluid>
-			<v-row align="center" justify="center" no-gutters>
-				<v-col xs="12" sm="6" md="4">
-					<h1
-						class="text-center display-1 font-weight-black primary--text"
-					>
-						LOGIN
-					</h1>
-					<v-alert
-						outlined
-						dense
-						type="error"
-						:value="form_error"
-						icon="mdi-close-octagon-outline"
-					>
-						Username atau Password tidak dikenal !.
-					</v-alert>
-					<v-form
-						ref="frmlogin"
-						@keyup.native.enter="doLogin"
-						lazy-validation
-					>
-						<v-card outlined>
-							<v-card-text>
-								<v-text-field
-									v-model="formlogin.username"
-									label="Username"
-									:rules="rule_username"
-									outlined
-									dense
-								/>
-								<v-text-field
-									v-model="formlogin.password"
-									label="Password"
-									type="password"
-									:rules="rule_password"
-									outlined
-									dense
-								/>
-							</v-card-text>
-							<v-card-actions class="justify-center">
-								<v-btn
-									color="primary"
-									@click="doLogin"
-									:disabled="btnLoading"
-									block
-								>
-									Login
-								</v-btn>
-							</v-card-actions>
-						</v-card>
-					</v-form>
-				</v-col>
-			</v-row>
-		</v-container>
+		<v-parallax dark src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg">
+			<v-container class="fill-height" fluid>
+				<v-row align="center" justify="center" no-gutters>
+					<v-col xs="12" sm="6" md="4">
+						<v-form
+							ref="frmlogin"
+							@keyup.native.enter="doLogin"
+							lazy-validation
+						>
+							<v-card outlined>
+								<v-card-title>
+									<h1
+										class="text-center display-1 font-weight-black primary--text"
+									>
+										LOGIN
+									</h1>
+								</v-card-title>
+								<v-card-text>		
+									<v-alert
+										outlined
+										dense
+										type="error"
+										:value="form_error"
+										icon="mdi-close-octagon-outline"
+									>
+										Username atau Password tidak dikenal !.
+									</v-alert>							
+									<v-text-field
+										v-model="formlogin.username"
+										label="Username"
+										:rules="rule_username"
+										outlined
+										dense
+									/>
+									<v-text-field
+										v-model="formlogin.password"
+										label="Password"
+										type="password"
+										:rules="rule_password"
+										outlined
+										dense
+									/>
+								</v-card-text>
+								<v-card-actions class="justify-center">
+									<v-btn
+										color="primary"
+										@click="doLogin"
+										:disabled="btnLoading"
+										block
+									>
+										Login
+									</v-btn>
+								</v-card-actions>
+							</v-card>
+						</v-form>
+					</v-col>
+				</v-row>
+			</v-container>    
+		</v-parallax>		
 	</FrontLayout>
 </template>
 <script>

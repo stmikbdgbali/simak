@@ -52,6 +52,7 @@ class KonfirmasiPembayaranController extends Controller {
                                                         WHEN pe3_konfirmasi_pembayaran.verified=1 THEN "VERIFIED"
                                                     END AS status_konfirmasi,
                                                     pe3_transaksi.total,
+                                                    pe3_transaksi.desc,
                                                     pe3_transaksi.tanggal,                                                
                                                     pe3_transaksi.created_at,
                                                     pe3_transaksi.updated_at,
@@ -89,7 +90,8 @@ class KonfirmasiPembayaranController extends Controller {
                                                         WHEN pe3_konfirmasi_pembayaran.verified=1 THEN "VERIFIED"
                                                     END AS status_konfirmasi,
                                                     pe3_transaksi.total,
-                                                    pe3_transaksi.tanggal,                                                
+                                                    pe3_transaksi.tanggal,   
+                                                    pe3_transaksi.desc,                                             
                                                     pe3_transaksi.created_at,
                                                     pe3_transaksi.updated_at,
                                                     COALESCE(pe3_konfirmasi_pembayaran.created_at,"N.A") AS created_at_konfirm,

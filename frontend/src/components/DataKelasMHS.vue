@@ -106,7 +106,7 @@ export default {
             type:Object,
         },
         url:{
-            type:String,
+            type: String,
             default: null            
         }
     },  
