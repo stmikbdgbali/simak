@@ -31,6 +31,14 @@ const routes = [
 		component: () => import("../views/pages/front/blog/CaraPendaftaran.vue")
 	},
 	{
+		path: "/profil-dosen/:user_id",
+		name: "ProfilDosen",
+		meta: {
+			title: "PROFIL DOSEN"
+		},
+		component: () => import("../views/pages/front/ProfilDosen.vue")
+	},
+	{
 		path: "/login",
 		name: "FrontLogin",
 		meta: {
@@ -276,6 +284,15 @@ const routes = [
 		},
 		component: () => import("../views/pages/admin/spmb/NilaiUjian.vue"),
 	},	
+	{
+		path: "/spmb/nilaiujian/:user_id/detail",
+		name: "SPMBNilaiUjianHasil",
+		meta: {
+			title: "SPMB - NILAI UJIAN",
+			requiresAuth: true,
+		},
+		component: () => import("../views/pages/admin/spmb/NilaiUjianHasil.vue"),
+	},
 	{
 		path: "/spmb/jadwalujianpmb/passinggrade/:idjadwalujian",
 		name: "SPMBPassingGrade",

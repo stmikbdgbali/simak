@@ -29,21 +29,18 @@ class SKKelulusanController extends Controller {
 		else
 		{
 			$config = ConfigurationModel::getCache();
-			$headers=[
-					'HEADER_1'=>$config['HEADER_1'],
-					'HEADER_2'=>$config['HEADER_2'],
-					'HEADER_3'=>$config['HEADER_3'],
-					'HEADER_4'=>$config['HEADER_4'],
-					'HEADER_ADDRESS'=>$config['HEADER_ADDRESS'],
-					'HEADER_LOGO'=>\App\Helpers\Helper::public_path("images/logo.png")
+			$headers=[					
+				'HEADER_KOP_SURAT'=>\App\Helpers\Helper::public_path("images/headers/headerreport.png")
 			];
 			$pdf = \Meneses\LaravelMpdf\Facades\LaravelMpdf::loadView('spmb.ReportSKKelulusan',
 																															[
-																																	'headers'=>$headers,																																	
+																																'headers'=>$headers,
+																																'sign_qrcode'=>\App\Helpers\Helper::public_path('images/signature/166168ec-228c-4aae-9ac3-878f785e14bd.png')
 																															],
 																															[],
 																															[
-																																	'title' => 'SK Kelulusan',
+																																'format'=>'A4',
+																																'title'=>'SK Kelulusan',
 																															]);
 
 			$file_pdf=\App\Helpers\Helper::public_path("exported/pdf/sklulus_".$formulir->user_id.'.pdf');

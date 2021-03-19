@@ -206,7 +206,7 @@
 								small
 								class="mr-2"
 								@click.stop="addItem(item)" 
-								:disabled="item.ket_lulus=='1'">
+								:disabled="item.ket_lulus == '1' && item.kjur > 0">
 								mdi-pencil
 							</v-icon>
 						</template>

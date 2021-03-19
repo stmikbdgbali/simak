@@ -51,8 +51,9 @@ $router->group(['prefix'=>'v1'], function () use ($router)
     //akademik - matakuliah
     $router->post('/akademik/matakuliah/',['uses'=>'Akademik\MatakuliahController@index','as'=>'matakuliah.index']);
 
-    //system - daftar dosen
+    //system - dosen
     $router->get('/system/usersdosen/pengampu',['uses'=>'System\UsersDosenController@pengampu','as'=>'usersdosen.pengampu']);
+    $router->get('/system/usersdosen/{id}',['uses'=>'System\UsersDosenController@show','as'=>'usersdosen.show']);
 
     //untuk uifront
     $router->get('/system/setting/uifront',['uses'=>'System\UIController@frontend','as'=>'uifront.frontend']);

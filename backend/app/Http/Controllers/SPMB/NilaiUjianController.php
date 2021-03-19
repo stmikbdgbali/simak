@@ -43,6 +43,7 @@ class NilaiUjianController extends Controller {
                             WHEN pe3_nilai_ujian_pmb.ket_lulus=0 THEN \'TIDAK LULUS\'
                             WHEN pe3_nilai_ujian_pmb.ket_lulus=1 THEN \'LULUS\'
                         END AS status,
+                        pe3_nilai_ujian_pmb.kjur,
                         pe3_kelas.nkelas,
                         users.active,
                         users.foto,
