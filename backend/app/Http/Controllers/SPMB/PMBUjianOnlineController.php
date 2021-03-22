@@ -368,6 +368,10 @@ class PMBUjianOnlineController extends Controller {
             $nilai = \App\Helpers\Helper::formatPersen($benar,$jumlah_soal);            
             $nilai_passing_grade = is_null($passing_grade)?0:$passing_grade->nilai;
             $kjur = $nilai>$nilai_passing_grade ? FormulirPendaftaranModel::find($user_id)->kjur1 : null;
+            
+            NilaiUjianPMBModel::where('user_id',$user_id)
+                                ->delete();
+
             NilaiUjianPMBModel::create([
                 'user_id'=>$user_id,
                 'jadwal_ujian_id'=>$jadwal_ujian_id,
@@ -381,7 +385,7 @@ class PMBUjianOnlineController extends Controller {
                 'ket_lulus'=>(($nilai>$nilai_passing_grade)?1:0),
                 'kjur'=>$kjur,
                 'desc'=>'Dihitung otomatis oleh sistem'
-            ]);           
+            ]);
 
             $peserta->selesai_ujian=\Carbon\Carbon::now()->toDateTimeString();
             $peserta->isfinish=1;
