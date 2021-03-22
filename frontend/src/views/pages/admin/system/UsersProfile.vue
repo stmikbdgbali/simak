@@ -174,7 +174,7 @@
                                  <v-text-field 
                                     v-model="formdata.password" 
                                     label="PASSWORD BARU"
-                                    :type="password"
+                                    type="password"
                                     outlined
                                     :rules="rule_user_password">
                                 </v-text-field> 

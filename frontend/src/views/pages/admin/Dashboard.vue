@@ -328,7 +328,12 @@
 				.then(({ data })=>{          
 					this.dashboard = data.role[0];  
 					this.$store.dispatch("uiadmin/changeDashboard", this.dashboard);               
-				});               
+				})
+				.catch(error => {					
+					if (error.response.status == 401){						
+						this.$router.push('/login');
+					}
+				});         
 				this.$store.dispatch("uiadmin/init", this.$ajax); 
 			},
 		},
