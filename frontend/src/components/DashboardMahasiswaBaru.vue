@@ -146,8 +146,8 @@
 								</v-btn>
 							</v-card-text> 
 						</v-card>
-					</v-timeline-item>
-					<v-timeline-item color="green lighten-1" icon="mdi-airballoon" fill-dot>
+					</v-timeline-item>					
+					<v-timeline-item color="green lighten-1" icon="mdi-airballoon" fill-dot v-if="status_ujian">
 						<v-card color="green lighten-1" dark>
 							<v-card-title class="title">Surat Keterangan Lulus</v-card-title>
 							<v-card-text class="white text--primary">
@@ -164,7 +164,22 @@
 							</v-card-text> 
 						</v-card>
 					</v-timeline-item>
-				</v-timeline>
+					<v-timeline-item color="green lighten-1" icon="mdi-airballoon" fill-dot v-else>
+						<v-card color="green lighten-1" dark>
+							<v-card-title class="title">Surat Keterangan Lulus</v-card-title>
+							<v-card-text class="white text--primary">
+								<p>Silahkan download Surat Keterangan Kelulusan kemudian cetak dan dibawa ke kampus saat daftar ulang beserta persyaratan ASLI lainnya.</p>
+								<v-btn
+									color="green lighten-1"
+									class="mx-0"
+									outlined
+								>
+									Download
+								</v-btn>
+							</v-card-text> 
+						</v-card>
+					</v-timeline-item>
+				</v-timeline>				
 			</v-col>
 		</v-row>
 		<v-row align="center" justify="center" no-gutters>
