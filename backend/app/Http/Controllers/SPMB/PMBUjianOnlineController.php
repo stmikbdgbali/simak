@@ -160,6 +160,7 @@ class PMBUjianOnlineController extends Controller {
                                     'pid'=>'fetchdata',  
                                     'peserta'=>$peserta,
                                     'jadwal_ujian'=>$jadwal_ujian,
+                                    'nilai'=>$nilai,
                                     'message'=>'Fetch data peserta ujian pmb berhasil.'
                                 ],200);     
         }
