@@ -118,7 +118,7 @@
 												<v-text-field
 													v-model="editedItem.password"
 													label="PASSWORD"
-													:type="password"
+													type="password"
 													outlined
 													:rules="rule_user_password">
 												</v-text-field>
@@ -193,7 +193,7 @@
 												<v-text-field
 													v-model="editedItem.password"
 													label="PASSWORD"
-													:type="password"
+													type="password"
 													outlined
 													:rules="rule_user_passwordEdit">
 												</v-text-field>

@@ -3,9 +3,9 @@ module.exports = {
     proseWrap:"never",
     printWidth: 80,
     trailingComma: "es5",
-    tabWidth: 4,
+    tabWidth: 2,
 	useTabs: true,
     semi: true,
     jsxBracketSameLine: true,   
-    indent: [4,"tab"],
+    indent: [2,"tab"],
 };

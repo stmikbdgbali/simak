@@ -179,10 +179,10 @@
                             </v-toolbar>
                         </template>
                         <template v-slot:item.nidn="{ item }">
-                            {{(item.nidn && item.nidn.length > 0) > 0 ? item.nidn: "N.A'}}
+                            {{(item.nidn && item.nidn.length > 0) > 0 ? item.nidn: "N.A"}}
                         </template>
                         <template v-slot:item.is_dw="{ item }">
-                            {{item.is_dw == false ? 'BUKAN': "YA'}}
+                            {{item.is_dw == false ? "BUKAN": "YA"}}
                         </template>
                         <template v-slot:item.actions="{ item }">         
                             <v-tooltip bottom>             

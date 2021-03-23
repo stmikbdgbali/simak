@@ -133,7 +133,7 @@ export default {
             required: true
         },
         url:{
-            type:String,
+            type: String,
             default: null            
         }
     },

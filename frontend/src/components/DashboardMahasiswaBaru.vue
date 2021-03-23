@@ -45,7 +45,7 @@
 									color="red lighten-2"
 									class="mx-0"
 									outlined
-									disabled="true"
+									:disabled="true"
 									to="/keuangan/konfirmasipembayaran">
 									Konfirmasi
 								</v-btn>
@@ -146,12 +146,29 @@
 								</v-btn>
 							</v-card-text> 
 						</v-card>
-					</v-timeline-item>
-					<v-timeline-item color="green lighten-1" icon="mdi-airballoon" fill-dot>
+					</v-timeline-item>					
+					<v-timeline-item color="green lighten-1" icon="mdi-airballoon" fill-dot v-if="status_ujian">
 						<v-card color="green lighten-1" dark>
-							<v-card-title class="title">SK Kelulusan</v-card-title>
+							<v-card-title class="title">Surat Keterangan Lulus</v-card-title>
 							<v-card-text class="white text--primary">
-								<p>Silahkan download SK Kelulusan kemudian cetak dan dibawa ke kampus saat daftar ulang beserta persyaratan ASLI lainnya.</p>
+								<p>Silahkan download Surat Keterangan Kelulusan kemudian cetak dan dibawa ke kampus saat daftar ulang beserta persyaratan ASLI lainnya.</p>
+								<v-btn
+									color="green lighten-1"
+									class="mx-0"
+									outlined
+									:disabled="btnLoading"
+									@click.stop="printpdf"
+								>
+									Download
+								</v-btn>
+							</v-card-text> 
+						</v-card>
+					</v-timeline-item>
+					<v-timeline-item color="green lighten-1" icon="mdi-airballoon" fill-dot v-else>
+						<v-card color="green lighten-1" dark>
+							<v-card-title class="title">Surat Keterangan Lulus</v-card-title>
+							<v-card-text class="white text--primary">
+								<p>Silahkan download Surat Keterangan Kelulusan kemudian cetak dan dibawa ke kampus saat daftar ulang beserta persyaratan ASLI lainnya.</p>
 								<v-btn
 									color="green lighten-1"
 									class="mx-0"
@@ -162,7 +179,7 @@
 							</v-card-text> 
 						</v-card>
 					</v-timeline-item>
-				</v-timeline>
+				</v-timeline>				
 			</v-col>
 		</v-row>
 		<v-row align="center" justify="center" no-gutters>
@@ -230,9 +247,11 @@
 				</v-card-actions>
 			</v-card>            
 		</v-dialog>
+		<dialog-printout pid="sklulus" title="SK kelulusan" ref="dialogprint"></dialog-printout>
 	</v-container>
 </template>
 <script>
+	import DialogPrintoutSPMB from "@/components/DialogPrintoutSPMB";
 	export default {
 		name: "DashboardMahasiswaBaru",
 		created() {
@@ -371,9 +390,37 @@
 					this.btnLoading = false;
 				});            
 			},
+			async printpdf() {
+				this.btnLoading = true;
+				var user_id = this.$store.getters['auth/AttributeUser']("id");
+				await this.$ajax
+					.post(
+						"/spmb/skkelulusan/printtopdf1/" + user_id,    
+						{},
+						{
+							headers: {
+								Authorization: this.$store.getters["auth/Token"],
+							},								
+						}
+					)
+					.then(({ data }) => {  
+						this.$refs.dialogprint.open({
+							message: "Silahkah download Formulir Pendaftaran dan SK Kelulusan",
+							file: data.pdf_file,
+							nama_file: "SK KELULUSAN"			
+						});												
+						this.btnLoading = false;
+					})
+					.catch(() => {
+						this.btnLoading = false;
+					});               
+			},
 			closedialogfrm () {
 				this.dialogpilihjadwal = false;                      
 			},
+		},
+		components: {
+			"dialog-printout": DialogPrintoutSPMB,
 		},
 	};
 </script>

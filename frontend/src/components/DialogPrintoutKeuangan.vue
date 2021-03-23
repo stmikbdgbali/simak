@@ -16,12 +16,12 @@ export default {
     name: "DialogPrintoutKeuangan",
     props:{
         pid:{
-            type:String,
+            type: String,
             required: true
         },    
-        title:{
-            type:String,
-            default:''
+        title: {
+            type: String,
+            default: ""
         },    
     },
     data: () => ({
