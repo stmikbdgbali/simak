@@ -28,40 +28,31 @@
 		<v-container fluid>  
 			<v-row class="mb-4" no-gutters>
 				<v-col cols="12">
-					<v-form ref="frmdata" v-model="form_valid" lazy-validation>
-						<v-card>
+					<v-form ref="frmdata_pmb" v-model="form_valid" lazy-validation>
+						<v-card class="mb-4">
 							<v-card-title>
-								PERKULIAHAN DAN PMB
+								PENERIMAAN MAHASISWA BARU
 							</v-card-title>
 							<v-card-text>
-								<v-row>
+								<v-row>									
 									<v-col xs="12" sm="12" md="4">
 										<v-select
-											v-model="formdata.default_ta" 
-											:items="daftar_ta"
-											label="TAHUN AKADEMIK"
-											outlined
-											:rules="rule_default_ta"/>
-									</v-col>
-									<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly || $vuetify.breakpoint.smOnly"/>
-									<v-col xs="12" sm="12" md="4">
-										<v-select
-											v-model="formdata.default_semester" 
-											:items="daftar_semester"
-											item-text="text"
-											item-value="id"
-											label="SEMESTER AKADEMIK"
-											outlined
-											:rules="rule_default_semester"/>
-									</v-col>
-									<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly || $vuetify.breakpoint.smOnly"/>
-									<v-col xs="12" sm="12" md="4">
-										<v-select
-											v-model="formdata.tahun_pendaftaran" 
+											v-model="formdata_pmb.tahun_pendaftaran" 
 											:items="daftar_ta"
 											label="TAHUN PENDAFTARAN"
 											outlined
 											:rules="rule_tahun_pendaftaran"/>
+									</v-col>
+									<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly || $vuetify.breakpoint.smOnly"/>
+									<v-col xs="12" sm="12" md="4">
+										<v-select
+											v-model="formdata_pmb.user_id_ttd_sk_kelulusan" 
+											:items="daftar_user_ttd_sk_kelulusan"
+											label="TTD SK KELULUSAN"
+											outlined
+											item-value="id"
+											item-text="name"
+											:rules="rule_ttd_sk_kelulusan"/>
 									</v-col>
 									<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly || $vuetify.breakpoint.smOnly"/>
 								</v-row>
@@ -71,8 +62,48 @@
 								<v-btn
 									color="blue darken-1"
 									text
-									@click.stop="save"
-									:loading="btnLoading"
+									@click.stop="save_pmb"									
+									:disabled="!form_valid||btnLoading">SIMPAN</v-btn>
+							</v-card-actions>
+						</v-card>
+					</v-form>
+				</v-col>
+				<v-col cols="12">
+					<v-form ref="frmdata_perkuliahan" v-model="form_valid" lazy-validation>
+						<v-card>
+							<v-card-title>
+								PERKULIAHAN
+							</v-card-title>
+							<v-card-text>
+								<v-row>
+									<v-col xs="12" sm="12" md="4">
+										<v-select
+											v-model="formdata_perkuliahan.default_ta" 
+											:items="daftar_ta"
+											label="TAHUN AKADEMIK"
+											outlined
+											:rules="rule_default_ta"/>
+									</v-col>
+									<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly || $vuetify.breakpoint.smOnly"/>
+									<v-col xs="12" sm="12" md="4">
+										<v-select
+											v-model="formdata_perkuliahan.default_semester" 
+											:items="daftar_semester"
+											item-text="text"
+											item-value="id"
+											label="SEMESTER AKADEMIK"
+											outlined
+											:rules="rule_default_semester"/>
+									</v-col>
+									<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly || $vuetify.breakpoint.smOnly"/>									
+								</v-row>
+							</v-card-text>
+							<v-card-actions>
+								<v-spacer></v-spacer>
+								<v-btn
+									color="blue darken-1"
+									text
+									@click.stop="save_perkuliahan"									
 									:disabled="!form_valid||btnLoading">SIMPAN</v-btn>
 							</v-card-actions>
 						</v-card>
@@ -117,26 +148,41 @@
 		},
 		data: () => ({
 			breadcrumbs: [],
-			btnLoading: false, 
+			btnLoading: false, 			
+
 			//form
 			form_valid: true,
+			
+			//form pmb
+			daftar_user_ttd_sk_kelulusan: [],
+			formdata_pmb: {    
+				tahun_pendaftaran: 0,
+				user_id_ttd_sk_kelulusan: "",
+			},
+
+			//form perkuliahan
 			daftar_ta: [],
 			daftar_semester: [],
-			formdata: {
+			formdata_perkuliahan: {
 				default_ta: "",
 				default_semester: "",     
 				tahun_pendaftaran: 0,
 			},
-			//form rules    
+
+			//form rules  pmb
+			rule_tahun_pendaftaran: [
+				value => !!value || "Mohon untuk dipilih Tahun Pendaftaran !!!",  
+			],
+			rule_ttd_sk_kelulusan: [
+				value => !!value || "Mohon untuk dipilih User yang akan ttd sk kelulusan !!!",  
+			],
+			//form rules  perkuliahan  
 			rule_default_ta: [
 				value => !!value || "Mohon untuk dipilih Tahun Akademik !!!",   
 			],
 			rule_default_semester: [
 				value => !!value || "Mohon untuk diisi Semester !!!",   
-			],
-			rule_tahun_pendaftaran: [
-				value => !!value || "Mohon untuk dipilih Tahun Pendaftaran !!!",  
-			],
+			],			
 		}),
 		methods: {
 			initialize: async function() {
@@ -151,24 +197,37 @@
 					)
 					.then(({ data }) => {  
 						let setting = data.setting;
-						this.formdata.default_ta = setting.DEFAULT_TA;
-						this.formdata.default_semester = setting.DEFAULT_SEMESTER;
-						this.formdata.tahun_pendaftaran = setting.DEFAULT_TAHUN_PENDAFTARAN;
+						this.formdata_perkuliahan.default_ta = setting.DEFAULT_TA;
+						this.formdata_perkuliahan.default_semester = setting.DEFAULT_SEMESTER;
+						this.formdata_pmb.tahun_pendaftaran = setting.DEFAULT_TAHUN_PENDAFTARAN;
+						this.formdata_pmb.user_id_ttd_sk_kelulusan = setting.DEFAULT_USER_ID_TTD_SK_KELULUSAN;
+					});
+					
+					await this.$ajax
+					.get(
+						"/system/users/allexceptmhs",
+						{
+							headers: {
+								Authorization: this.TOKEN,
+							},
+						}
+					)
+					.then(({ data }) => {  
+						this.daftar_user_ttd_sk_kelulusan = data.users;
 					});
 			},
-			save() {
-				if (this.$refs.frmdata.validate()) {
+			save_pmb() {
+				if (this.$refs.frmdata_pmb.validate()) {
 					this.btnLoading = true;
 					this.$ajax
 						.post(
-							"/system/setting/variables",
+							"/system/setting/variables", 
 							{
 								_method: "PUT",
 								pid: "Variable default sistem",
-								setting: JSON.stringify({
-									201: this.formdata.default_ta,
-									202: this.formdata.default_semester,
-									203: this.formdata.tahun_pendaftaran,
+								setting: JSON.stringify({	
+									203: this.formdata_pmb.tahun_pendaftaran,
+									207: this.formdata_pmb.user_id_ttd_sk_kelulusan,									
 								}),
 							},
 							{
@@ -179,6 +238,36 @@
 						)
 						.then(() => {
 							this.btnLoading = false;
+							this.$router.go();
+						})
+						.catch(() => {
+							this.btnLoading = false;
+						});
+				}
+			},
+			save_perkuliahan() {
+				if (this.$refs.frmdata_perkuliahan.validate()) {
+					this.btnLoading = true;
+					this.$ajax
+						.post(
+							"/system/setting/variables",
+							{
+								_method: "PUT",
+								pid: "Variable default sistem",
+								setting: JSON.stringify({
+									201: this.formdata_perkuliahan.default_ta,
+									202: this.formdata_perkuliahan.default_semester,
+								}),
+							},
+							{
+								headers: {
+									Authorization: this.TOKEN,
+								},
+							}
+						)
+						.then(() => {
+							this.btnLoading = false;
+							this.$router.go();
 						})
 						.catch(() => {
 							this.btnLoading = false;

@@ -430,6 +430,7 @@ $router->group(['prefix'=>'v1','middleware'=>'auth:api'], function () use ($rout
     $router->get('/system/users/{id}/mypermission',['uses'=>'System\UsersController@mypermission','as'=>'users.mypermission']);
     $router->get('/system/users/{id}/prodi',['middleware'=>['role:superadmin'],'uses'=>'System\UsersController@usersprodi','as'=>'users.prodi']);
     $router->get('/system/users/{id}/roles',['uses'=>'System\UsersController@roles','as'=>'users.roles']);
+    $router->get('/system/users/allexceptmhs',['uses'=>'System\UsersController@allexceptmhs','as'=>'users.allexceptmhs']);
 
     //setting - users keuangan
     $router->get('/system/userskeuangan',['middleware'=>['role:superadmin|keuangan'],'uses'=>'System\UsersKeuanganController@index','as'=>'userskeuangan.index']);

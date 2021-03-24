@@ -387,8 +387,7 @@ export default {
         },
         //form rules    
         rule_user_name: [
-            value => !!value || "Mohon untuk di isi nama Dosen !!!",  
-            value => /^[A-Za-z\s]*$/.test(value) || "Nama Dosen hanya boleh string dan spasi",    
+					value => !!value || "Mohon untuk di isi nama Dosen !!!",              
         ],
         rule_nidn: [                         
             value => /^[0-9]+$/.test(value) || "NIDN hanya boleh angka",    
