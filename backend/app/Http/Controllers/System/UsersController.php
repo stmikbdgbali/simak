@@ -39,12 +39,19 @@ class UsersController extends Controller {
     /**
      * mendapatkan seluruh user kecuali mahasiswa
     */ 
-    public function allexceptmhs (Request $request)
+    public function allexcept (Request $request,$id)
     {
-        $data = User::where('default_role', '!=','mahasiswa')
-                    ->where('default_role', '!=','mahasiswabaru')
-                    ->orderBy('name','asc')
-                    ->get();
+        switch ($id)
+        {
+            case 'mhsbaru' : 
+                $data = User::where('default_role', '!=','mahasiswa')
+                            ->where('default_role', '!=','mahasiswabaru')
+                            ->orderBy('name','asc')
+                            ->get();
+            break;
+            default :
+                $data = [];
+        }
 
         return Response()->json([
                                 'status'=>1,

@@ -205,7 +205,7 @@
 					
 					await this.$ajax
 					.get(
-						"/system/users/allexceptmhs",
+						"/system/users/mhsbaru/allexcept",
 						{
 							headers: {
 								Authorization: this.TOKEN,

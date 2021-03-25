@@ -22,7 +22,7 @@ class CreateSuratKeluarTable extends Migration
             $table->uuid('nama_user_created')->nullable();
             $table->uuid('user_id_ttd')->nullable();
             $table->uuid('nama_user_ttd')->nullable();
-            $table->integer('nomor_surat');
+            $table->string('nomor_surat');
             $table->integer('no_urut');
             $table->tinyInteger('bulan_surat');
             $table->year('tahun_surat');
@@ -35,6 +35,7 @@ class CreateSuratKeluarTable extends Migration
             $table->string('qr_code')->nullable();            
             $table->string('path_scanan')->nullable(); 
             $table->string('klasifikasi_surat',20);           
+            $table->year('ta');           
             $table->timestamps();              
             
             $table->index('user_id_created');             
@@ -43,6 +44,7 @@ class CreateSuratKeluarTable extends Migration
             $table->index('tahun_surat');           
             $table->index('no_urut');           
             $table->index('bulan_surat');           
+            $table->index('ta');           
         });
     }
 

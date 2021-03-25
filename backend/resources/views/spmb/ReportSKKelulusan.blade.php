@@ -18,7 +18,7 @@ body {
   <tr>
     <td width="100">Nomor</td>
     <td>:</td>
-    <td>001/USM/PMB-STMIK.BB/III/2021</td>
+    <td>{{$nomor_surat}}</td>
   </tr>
   <tr>
     <td>Lampiran</td>
@@ -33,7 +33,7 @@ body {
 </table>
 <p>
   Kepada Yth.<br>
-  <strong>Sdr./i DISE WANENA</strong><br>
+  <strong>Sdr./i {{strtoupper($formulir->nama_mhs)}}</strong><br>
   DI – <br>
   &nbsp;&nbsp;&nbsp;<u>Tempat</u>
 </p>
@@ -41,26 +41,25 @@ body {
 Puji syukur kita panjatkan kehadirat Tuhan Yang Maha Esa atas berkah dan rahmat-Nya sehingga kita dapat melaksanakan aktivitas keseharian.
 </p>
 <p style="text-align: justify;text-justify: inter-word;">
-Menindak lanjuti hasil TES Kompetensi Calon Mahasiswa yang telah diselenggarakan oleh STMIK Bandung Bali, pada tanggal [tanggal selesai ujian] maka dengan ini kami sampaikan bahwa saudara/i telah LULUS tes sebagai mahasiswa STMIK Bandung Bali tahun akademik 2021/2022.
+Menindak lanjuti hasil TES Kompetensi Calon Mahasiswa yang telah diselenggarakan oleh STMIK Bandung Bali, pada tanggal {{$tanggal_lulus}} maka dengan ini kami sampaikan bahwa saudara/i telah LULUS tes sebagai mahasiswa STMIK Bandung Bali tahun akademik {{$formulir->ta}}/{{$formulir->ta+1}}.
 </p>
 <p style="text-align: justify;text-justify: inter-word;">
-Sebagai kelengkapan proses penerimaan mahasiswa baru, kami harapkan kehadiran Saudara/i untuk melakukan pendaftaran ulang pada kampus STMIK BANDUNG BALI segera setelah pelaksanaan TES Kompetensi Calon Mahasiswa selesai dilaksanakan paling lambat tanggal [tgl lulus +7] dengan melengkapi beberapa persyaratan sebagai berikut :
+Sebagai kelengkapan proses penerimaan mahasiswa baru, kami harapkan kehadiran Saudara/i untuk melakukan pendaftaran ulang pada kampus STMIK BANDUNG BALI segera setelah pelaksanaan TES Kompetensi Calon Mahasiswa selesai dilaksanakan paling lambat tanggal {{$next_day}} dengan melengkapi beberapa persyaratan sebagai berikut :
 </p>
 <ol>
   <li>
     Membayar Biaya dengan Rincian Biaya sebagai berikut :
     <ul>
-      <li>SPP Bulan September 2021 (Rp. 2000.000)</li>
-      <li>PSPT + Jas Almamater (Rp. 2000.000)</li>
-      <li>Pengembangan (Rp. 3.000.000)</li>
+      <li>SPP Bulan September 2021 (Rp. {{$spp}})</li>
+      <li>PSPT + Jas Almamater (Rp. {{$jas_almamater}})</li>
+      <li>Pengembangan (Rp. {{$biaya_pengembangan}})</li>
     </ul>  
   </li>
   <li>
-    Metode Pembayaran
+    Metode Pembayaran :
     <ul>
-      <li>SPP Bulan September 2021 (Rp. 2000.000)</li>
-      <li>PSPT + Jas Almamater (Rp. 2000.000)</li>
-      <li>Pengembangan (Rp. 3.000.000)</li>
+      <li>Setor tunai Bank BPD Bali (Menyebutkan kode billing dan nama kampus STMIK Bandung Bali) Atau</li>
+      <li>Setor tunai / transfer BNI <strong>(No. Rek 1000628460 a.n : STMIK Bandung Bali</strong></li>      
     </ul>  
   </li>
   <li>Mengunggah/Upload bukti pembayaran di https://simak.stmikbandungbali.ac.id
@@ -68,7 +67,7 @@ Sebagai kelengkapan proses penerimaan mahasiswa baru, kami harapkan kehadiran Sa
 </ol>
 <p>Demikian surat pemberitahuan ini, atas perhatian Saudara/i, kami sampaikan terima kasih.</p>
 <p>
-  Denpasar, [tanggal_lulus]<br>
+  Denpasar, {{$tanggal_lulus}}<br>
   Ketua PPMB,<br>
   <img src="{{$sign_qrcode}}" height="150"><br>
   <u>Ricak Agus Setiawan, S.T., M.SI</u><br>
