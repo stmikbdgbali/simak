@@ -71,7 +71,7 @@ Sebagai kelengkapan proses penerimaan mahasiswa baru, kami harapkan kehadiran Sa
   Ketua PPMB,<br>
   <img src="{{$sign_qrcode}}" height="150"><br>
   <u>{{$signature->nama}}</u><br>  
-  {{$signature->nik}}
+  NIK. {$signature->nik}}
 </p>
 <htmlpagefooter name="page-footer">
   <hr>
