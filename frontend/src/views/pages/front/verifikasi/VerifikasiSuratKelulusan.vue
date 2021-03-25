@@ -4,7 +4,7 @@
 			<v-container class="fill-height" v-if="sk_id">
 				<v-row align="center" justify="center" no-gutters>
 					<v-col xs="12" sm="6" md="4">
-
+						<pre>{{data_surat}}</pre>
 					</v-col>
 				</v-row>
 			</v-container>
@@ -20,6 +20,7 @@
 		},
 		data: () => ({
 			sk_id: null,
+			data_surat: {},
 		}),
 		methods: {
 			async initialize() {
@@ -32,7 +33,7 @@
 							},
 						})
 						.then(({ data }) => {
-							console.log(data);
+							this.data_surat = data.surat_keluar;
 						});
 			},
 		},
