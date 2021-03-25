@@ -29,7 +29,7 @@
 			<v-row class="mb-4" no-gutters>
 				<v-col cols="12">
 					<v-form ref="frmdata_pmb" v-model="form_valid" lazy-validation>
-						<v-card class="mb-4">
+						<v-card class="mb-4" color="grey lighten-4" flat>
 							<v-card-title>
 								PENERIMAAN MAHASISWA BARU
 							</v-card-title>
@@ -44,15 +44,34 @@
 											:rules="rule_tahun_pendaftaran"/>
 									</v-col>
 									<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly || $vuetify.breakpoint.smOnly"/>
-									<v-col xs="12" sm="12" md="4">
-										<v-select
-											v-model="formdata_pmb.user_id_ttd_sk_kelulusan" 
-											:items="daftar_user_ttd_sk_kelulusan"
-											label="TTD SK KELULUSAN"
+								</v-row>
+								<h3 class="mb-4">
+									PEJABAT PENANDATANGAN SK KELULUSAN
+									<v-divider />
+								</h3>								
+								<v-row>
+									<v-col xs="12" sm="12" md="12">
+										<v-text-field
+											v-model="formdata_pmb.nama_sk_kelulusan"
+											label="NAMA PEJABAT"
 											outlined
-											item-value="id"
-											item-text="name"
-											:rules="rule_ttd_sk_kelulusan"/>
+											:rules="rule_nama_sk_kelulusan"
+										>
+										</v-text-field>
+										<v-text-field
+											v-model="formdata_pmb.nidn_sk_kelulusan"
+											label="NIDN"
+											outlined
+											:rules="rule_nidn_sk_kelulusan"
+										>
+										</v-text-field>
+										<v-text-field
+											v-model="formdata_pmb.nik_sk_kelulusan"
+											label="NOMOR INDUK KEPEGAWAIAN"
+											outlined
+											:rules="rule_nik_sk_kelulusan"
+										>
+										</v-text-field>
 									</v-col>
 									<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly || $vuetify.breakpoint.smOnly"/>
 								</v-row>
@@ -157,7 +176,9 @@
 			daftar_user_ttd_sk_kelulusan: [],
 			formdata_pmb: {    
 				tahun_pendaftaran: 0,
-				user_id_ttd_sk_kelulusan: "",
+				nama_sk_kelulusan: "",
+				nidn_sk_kelulusan: "",
+				nik_sk_kelulusan: "",
 			},
 
 			//form perkuliahan
@@ -165,69 +186,73 @@
 			daftar_semester: [],
 			formdata_perkuliahan: {
 				default_ta: "",
-				default_semester: "",     
+				default_semester: "",
 				tahun_pendaftaran: 0,
 			},
 
 			//form rules  pmb
 			rule_tahun_pendaftaran: [
-				value => !!value || "Mohon untuk dipilih Tahun Pendaftaran !!!",  
+				value => !!value || "Mohon untuk dipilih Tahun Pendaftaran !!!",
 			],
-			rule_ttd_sk_kelulusan: [
-				value => !!value || "Mohon untuk dipilih User yang akan ttd sk kelulusan !!!",  
+			rule_nama_sk_kelulusan: [
+				value => !!value || "Mohon untuk diisi nama penjabat yang akan ttd sk kelulusan !!!",
 			],
-			//form rules  perkuliahan  
+			rule_nidn_sk_kelulusan: [
+				value => !!value || "Mohon untuk diisi nidn penjabat yang akan ttd sk kelulusan !!!",
+				value => /^[0-9]+$/.test(value) || "NIDN hanya boleh angka",
+			],
+			rule_nik_sk_kelulusan: [
+				value => !!value || "Mohon untuk diisi nik penjabat yang akan ttd sk kelulusan !!!",
+				value => /^[0-9]+$/.test(value) || "NIK hanya boleh angka",
+			],
+
+			//form rules  perkuliahan
 			rule_default_ta: [
-				value => !!value || "Mohon untuk dipilih Tahun Akademik !!!",   
+				value => !!value || "Mohon untuk dipilih Tahun Akademik !!!",
 			],
 			rule_default_semester: [
-				value => !!value || "Mohon untuk diisi Semester !!!",   
-			],			
+				value => !!value || "Mohon untuk diisi Semester !!!",
+			],
 		}),
 		methods: {
 			initialize: async function() {
 				await this.$ajax
-					.get(
-						"/system/setting/variables",
+					.get("/system/setting/variables",
 						{
-							headers: {
-								Authorization: this.TOKEN,
-							},
-						}
-					)
-					.then(({ data }) => {  
+						headers: {
+							Authorization: this.TOKEN,
+						},
+					})
+					.then(({ data }) => {
 						let setting = data.setting;
+						
+						this.formdata_pmb.tahun_pendaftaran = setting.DEFAULT_TAHUN_PENDAFTARAN;
+						var ttd_sk_kelulusan = JSON.parse(setting.DEFAULT_TTD_SK_KELULUSAN);
+						this.formdata_pmb.nama_sk_kelulusan = ttd_sk_kelulusan.nama;
+						this.formdata_pmb.nidn_sk_kelulusan = ttd_sk_kelulusan.nidn;
+						this.formdata_pmb.nik_sk_kelulusan = ttd_sk_kelulusan.nik;
+
 						this.formdata_perkuliahan.default_ta = setting.DEFAULT_TA;
 						this.formdata_perkuliahan.default_semester = setting.DEFAULT_SEMESTER;
-						this.formdata_pmb.tahun_pendaftaran = setting.DEFAULT_TAHUN_PENDAFTARAN;
-						this.formdata_pmb.user_id_ttd_sk_kelulusan = setting.DEFAULT_USER_ID_TTD_SK_KELULUSAN;
-					});
-					
-					await this.$ajax
-					.get(
-						"/system/users/mhsbaru/allexcept",
-						{
-							headers: {
-								Authorization: this.TOKEN,
-							},
-						}
-					)
-					.then(({ data }) => {  
-						this.daftar_user_ttd_sk_kelulusan = data.users;
 					});
 			},
 			save_pmb() {
 				if (this.$refs.frmdata_pmb.validate()) {
 					this.btnLoading = true;
+					var default_ttd_sk_kelulusan = {
+						nama: this.formdata_pmb.nama_sk_kelulusan,
+						nidn: this.formdata_pmb.nidn_sk_kelulusan,
+						nik: this.formdata_pmb.nik_sk_kelulusan,
+					};
 					this.$ajax
 						.post(
-							"/system/setting/variables", 
+							"/system/setting/variables",
 							{
 								_method: "PUT",
 								pid: "Variable default sistem",
-								setting: JSON.stringify({	
+								setting: JSON.stringify({
 									203: this.formdata_pmb.tahun_pendaftaran,
-									207: this.formdata_pmb.user_id_ttd_sk_kelulusan,									
+									207: JSON.stringify(default_ttd_sk_kelulusan),
 								}),
 							},
 							{
@@ -238,7 +263,6 @@
 						)
 						.then(() => {
 							this.btnLoading = false;
-							this.$router.go();
 						})
 						.catch(() => {
 							this.btnLoading = false;

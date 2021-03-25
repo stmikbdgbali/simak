@@ -70,7 +70,8 @@ Sebagai kelengkapan proses penerimaan mahasiswa baru, kami harapkan kehadiran Sa
   Denpasar, {{$tanggal_lulus}}<br>
   Ketua PPMB,<br>
   <img src="{{$sign_qrcode}}" height="150"><br>
-  <u>{{$sign_name}}</u><br>  
+  <u>{{$signature->nama}}</u><br>  
+  {{$signature->nik}}
 </p>
 <htmlpagefooter name="page-footer">
   <hr>

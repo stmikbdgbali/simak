@@ -162,7 +162,7 @@ class SKKelulusanController extends Controller {
 																																	'jas_almamater'=>Helper::formatUang($jas_almamater),
 																																	'spp'=>Helper::formatUang($spp),
 																																	'sign_qrcode'=>$sign_qrcode,
-																																	'sign_name'=>$config['DEFAULT_USER_NAME_TTD_SK_KELULUSAN'],
+																																	'signature'=>json_decode($config['DEFAULT_TTD_SK_KELULUSAN'],false),
 																																],
 																																[],
 																																[

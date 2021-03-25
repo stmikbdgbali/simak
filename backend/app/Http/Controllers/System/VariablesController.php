@@ -50,11 +50,6 @@ class VariablesController extends Controller {
         {
             switch($k)
             {
-                case 207 :
-                    $user = User::find($v);
-                    $name = is_null($user)?'':$user->name;
-                    \DB::table('pe3_configuration')->where('config_id',208)->update(['config_value'=>$name]);
-                break;
                 default:
                     \DB::table('pe3_configuration')->where('config_id',$k)->update(['config_value'=>$v]);
             }           
