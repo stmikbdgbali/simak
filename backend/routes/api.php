@@ -5,7 +5,9 @@ $router->get('/', function () use ($router) {
 
 $router->group(['prefix'=>'v1'], function () use ($router)
 {
-
+    //surat keluar - id dokumen
+    $router->get('/verifikasi/{id}/suratkelulusan',['uses'=>'SPMB\SKKelulusanController@show','as'=>'suratkelulusan.show']);
+    
     //dmaster - provinsi
     $router->get('/datamaster/provinsi',['uses'=>'DMaster\ProvinsiController@index','as'=>'provinsi.index']);
     $router->get('/datamaster/provinsi/{id}/kabupaten',['uses'=>'DMaster\ProvinsiController@kabupaten','as'=>'provinsi.kabupaten']);
@@ -430,6 +432,8 @@ $router->group(['prefix'=>'v1','middleware'=>'auth:api'], function () use ($rout
     $router->get('/system/users/{id}/mypermission',['uses'=>'System\UsersController@mypermission','as'=>'users.mypermission']);
     $router->get('/system/users/{id}/prodi',['middleware'=>['role:superadmin'],'uses'=>'System\UsersController@usersprodi','as'=>'users.prodi']);
     $router->get('/system/users/{id}/roles',['uses'=>'System\UsersController@roles','as'=>'users.roles']);
+    //id di isi dengan role yang dikecualikan
+    $router->get('/system/users/{id}/allexcept',['uses'=>'System\UsersController@allexcept','as'=>'users.allexcept']);
 
     //setting - users keuangan
     $router->get('/system/userskeuangan',['middleware'=>['role:superadmin|keuangan'],'uses'=>'System\UsersKeuanganController@index','as'=>'userskeuangan.index']);

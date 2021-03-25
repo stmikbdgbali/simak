@@ -21,6 +21,23 @@ class Helper {
         11=>'November',
         12=>'Desember'
     ];
+    /**
+     * daftar bulan romawi
+     */
+    private static $daftar_bulan_romawi=[
+        1=>'I',
+        2=>'II',
+        3=>'III',
+        4=>'IV',
+        5=>'V',
+        6=>'VI',
+        7=>'VII',
+        8=>'VIII',
+        9=>'IX',
+        10=>'X',
+        11=>'XI',
+        12=>'XII'
+    ];
     /*
      * nama hari dalam bahasa indonesia
      */
@@ -49,6 +66,26 @@ class Helper {
         }
 
     }
+    public static function getNamaBulanRomawi($no_bulan=null)
+    {
+        if ($no_bulan===null)
+        {
+            return Helper::$daftar_bulan_romawi;
+        }
+        else if ($no_bulan >=1 && $no_bulan <=12)
+        {
+            return Helper::$daftar_bulan_romawi[$no_bulan];
+        }
+        else
+        {
+            return null;
+        }
+    }
+    public static function formatNomorUrut($number,$length=3)
+    {   
+        $string = substr(str_repeat(0, $length).$number, - $length);
+        return $string;
+    }    
     /**
 	* digunakan untuk mendapatkan nama hari
 	*/
@@ -143,7 +180,62 @@ class Helper {
                             'November',
                             'Desember'
                         ], $result);
-    }   
+    }  
+    public static function nextDay($format,$date,$next=1)
+    {
+        Carbon::setLocale(app()->getLocale());
+        $start = new Carbon($date,$next);
+        $tanggal = $start->addDays($next)->format($format);        
+        
+        $result = str_replace([
+                                'Sunday',
+                                'Monday',
+                                'Tuesday',
+                                'Wednesday',
+                                'Thursday',
+                                'Friday',
+                                'Saturday'
+                            ],
+                            [
+                                'Minggu',
+                                'Senin',
+                                'Selasa',
+                                'Rabu',
+                                'Kamis',
+                                'Jumat',
+                                'Sabtu'
+                            ],
+                            $tanggal);
+
+        return str_replace([
+                            'January',
+                            'February',
+                            'March',
+                            'April',
+                            'May',
+                            'June',
+                            'July',
+                            'August',
+                            'September',
+                            'October',
+                            'November' ,
+                            'December'
+                        ],
+                        [
+                            'Januari',
+                            'Februari',
+                            'Maret',
+                            'April',
+                            'Mei',
+                            'Juni',
+                            'Juli',
+                            'Agustus',
+                            'September',
+                            'Oktober',
+                            'November',
+                            'Desember'
+                        ], $result);
+    } 
     /**
      * digunakan untuk mengecek format tanggal valid
      */

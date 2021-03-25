@@ -1,7 +1,7 @@
 {
-    "name": "laravel/lumen",
-    "description": "The Laravel Lumen Framework.",
-    "keywords": ["framework", "laravel", "lumen"],
+    "name": "stmikbdgbali/simak",
+    "description": "Sistem Informasi Akademik dan Keuangan.",
+    "keywords": ["sistem informasi", "stmikbdgbali", "simak"],
     "license": "MIT",
     "type": "project",
     "require": {
@@ -16,6 +16,7 @@
         "laravel/lumen-framework": "^8.0",
         "phpoffice/phpspreadsheet": "^1.15",
         "ramsey/uuid": "^4.1",
+        "simplesoftwareio/simple-qrcode": "~4",
         "spatie/laravel-permission": "^3.17",
         "tymon/jwt-auth": "^1.0"
     },

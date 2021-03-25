@@ -364,8 +364,7 @@ export default {
         },
         //form rules    
         rule_user_name: [
-            value => !!value || "Mohon untuk di isi nama User !!!",  
-            value => /^[A-Za-z\s]*$/.test(value) || "Nama User hanya boleh string dan spasi",    
+					value => !!value || "Mohon untuk di isi nama User !!!",            
         ],
         rule_user_email: [
             value => !!value || "Mohon untuk di isi email User !!!",  

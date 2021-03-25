@@ -34,8 +34,32 @@ class UsersController extends Controller {
                                 'role'=>$role,
                                 'users'=>$data,
                                 'message'=>'Fetch data users berhasil diperoleh'
-                            ],200);  
-    }    
+                            ], 200);  
+    }   
+    /**
+     * mendapatkan seluruh user kecuali mahasiswa
+    */ 
+    public function allexcept (Request $request,$id)
+    {
+        switch ($id)
+        {
+            case 'mhsbaru' : 
+                $data = User::where('default_role', '!=','mahasiswa')
+                            ->where('default_role', '!=','mahasiswabaru')
+                            ->orderBy('name','asc')
+                            ->get();
+            break;
+            default :
+                $data = [];
+        }
+
+        return Response()->json([
+                                'status'=>1,
+                                'pid'=>'fetchdata',
+                                'users'=>$data,
+                                'message'=>'Fetch data all users except mhs berhasil diperoleh'
+                            ], 200);
+    }
     /**
      * Store a newly created resource in storage.
      *

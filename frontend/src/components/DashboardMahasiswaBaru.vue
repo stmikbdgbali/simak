@@ -126,16 +126,14 @@
 					<v-timeline-item color="purple darken-1" icon="mdi-book-variant" fill-dot>
 						<v-card color="purple darken-1" dark>
 							<v-card-title class="title">Persyaratan</v-card-title>
-							<v-card-text class="white text--primary">
-								<p>
-									Setelah melakukan ujian mohon lengkapi persyaratan berikut ini dengan mengunggah ke sistem:
-									<ul>
-										<li>Scan Pas Foto</li>
-										<li>Scan Ijazah Terakhir</li>
-										<li>Scan KTP</li>
-										<li>Scan Kartu Keluarga</li>
-									</ul>
-								</p>                                     
+							<v-card-text class="white text--primary">								
+								Setelah melakukan ujian mohon lengkapi persyaratan berikut ini dengan mengunggah ke sistem:
+								<ul>
+									<li>Scan Pas Foto</li>
+									<li>Scan Ijazah Terakhir</li>
+									<li>Scan KTP</li>
+									<li>Scan Kartu Keluarga</li>
+								</ul>								
 								<v-btn
 									color="purple darken-1"
 									class="mx-0"
@@ -148,15 +146,15 @@
 						</v-card>
 					</v-timeline-item>					
 					<v-timeline-item color="green lighten-1" icon="mdi-airballoon" fill-dot v-if="status_ujian">
-						<v-card color="green lighten-1" dark>
-							<v-card-title class="title">Surat Keterangan Lulus</v-card-title>
+						<v-card color="green lighten-1">
+							<v-card-title class="title white--text">Surat Keterangan Lulus</v-card-title>
 							<v-card-text class="white text--primary">
 								<p>Silahkan download Surat Keterangan Kelulusan kemudian cetak dan dibawa ke kampus saat daftar ulang beserta persyaratan ASLI lainnya.</p>
 								<v-btn
 									color="green lighten-1"
 									class="mx-0"
 									outlined
-									:disabled="btnLoading"
+									:disabled="btnLoading || (nilai.ket_lulus == 0 && (nilai.kjur == null || nilai.kjur == 0))"
 									@click.stop="printpdf"
 								>
 									Download
@@ -255,15 +253,15 @@
 	export default {
 		name: "DashboardMahasiswaBaru",
 		created() {
-			this.initialize();        
+			this.initialize();
 			this.$store.dispatch("uiadmin/deletePage", "ujianonline");
 		},
-		data: () => ({
+		data:() => ({
 			kode_billing: "N.A",
 			biaya_pendaftaran: 0,
 
 			btnLoading: false,
-			datatableLoading : false,        
+			datatableLoading : false,
 			datatable: [],
 			headers: [                
 				{ text: "NAMA UJIAN", value: "nama_kegiatan", sortable: true,width:300 },
@@ -279,11 +277,12 @@
 			status_ujian: false,
 			jadwal_ujian: null,
 			peserta: null,
+			nilai: {},
 			keterangan_ujian: "",
 		}),
 		methods: {
 			initialize: async function() {
-				var user_id = this.$store.getters['auth/AttributeUser']("id");
+				var user_id = this.$store.getters["auth/AttributeUser"]("id");
 				await this.$ajax
 					.get(
 						"/spmb/ujianonline/peserta/" + user_id,
@@ -293,15 +292,16 @@
 							}
 						}
 					)
-					.then(({ data }) => {          
+					.then(({ data }) => {  
 						if (data.status == 1) {
 							this.status_ujian=true;
-							this.peserta = data.peserta;                     
-							this.jadwal_ujian = data.jadwal_ujian;    
+							this.peserta = data.peserta;							
+							this.jadwal_ujian = data.jadwal_ujian;
 							this.ismulai=this.jadwal_ujian.status_ujian == 0 ?true: false;
 							if (this.peserta.isfinish== 1) {
 								this.ismulai = true;
 								this.keterangan_ujian = "SELESAI UJIAN";
+								this.nilai = data.nilai;
 							} else {
 								this.keterangan_ujian = "BELUM UJIAN";
 							}
@@ -316,15 +316,15 @@
 							}
 						}
 					)
-					.then(({ data }) => {          
+					.then(({ data }) => {  
 						this.kode_billing = data.no_transaksi;
 						this.biaya_pendaftaran = data.biaya_pendaftaran;
 					});
 			},
 			showPilihJadwal: async function() {
 				this.dialogpilihjadwal = true;
-				let tahun_pendaftaran=this.$store.getters['auth/AttributeUser']("ta");      
-				let semester_pendaftaran=this.$store.getters['auth/AttributeUser']("idsmt");                              
+				let tahun_pendaftaran=this.$store.getters["auth/AttributeUser"]("ta");
+				let semester_pendaftaran=this.$store.getters["auth/AttributeUser"]("idsmt");
 
 				this.datatableLoading=true;
 				await this.$ajax.post("/spmb/ujianonline/jadwal",
@@ -336,7 +336,7 @@
 					headers: {
 						Authorization: this.$store.getters["auth/Token"]
 					}
-				}).then(({ data }) => {             
+				}).then(({ data }) => { 
 					this.datatable = data.jadwal_ujian;
 					this.datatableLoading=false;
 				}).catch(() => {
@@ -347,15 +347,15 @@
 				this.btnLoading = true;
 				await this.$ajax.post("/spmb/ujianonline/daftar",
 				{
-					user_id: this.$store.getters['auth/AttributeUser']("id"),
-					jadwal_ujian_id:item.id,    
+					user_id: this.$store.getters["auth/AttributeUser"]("id"),
+					jadwal_ujian_id:item.id,
 				},
 				{
 					headers: {
 						Authorization: this.$store.getters["auth/Token"]
 					}
 				}).then(() => { 
-					this.initialize();       
+					this.initialize();
 					this.closedialogfrm();
 					this.btnLoading = false;
 				}).catch(() => {
@@ -365,58 +365,64 @@
 			durasiUjian(item) {
 				let waktu_mulai = this.$date(item.tanggal_ujian + " " +item.jam_mulai_ujian);
 				let waktu_selesai = this.$date(item.tanggal_ujian + " " +item.jam_selesai_ujian);
-				return waktu_selesai.diff(waktu_mulai, "minute") + ' menit';
+				return waktu_selesai.diff(waktu_mulai, "minute") + " menit";
 			},
-			mulaiUjian: async function() {          
+			mulaiUjian: async function() {
 				this.btnLoading = false;
-				await this.$ajax.post("/spmb/ujianonline/mulaiujian",
-				{
-					_method: "put",
-					user_id: this.$store.getters['auth/AttributeUser']("id"),    
-				},
-				{
-					headers: {
-						Authorization: this.$store.getters["auth/Token"]
-					}
-				}).then(({ data }) => {    
-					this.btnLoading = false;
-					this.$store.dispatch("uiadmin/addToPages",{
-						name: "ujianonline",
-						data_ujian: this.jadwal_ujian,
-						data_peserta:data.peserta,    
+				await this.$ajax
+					.post(
+						"/spmb/ujianonline/mulaiujian",
+						{
+							_method: "put",
+							user_id: this.$store.getters["auth/AttributeUser"]("id"),
+						},
+						{
+							headers: {
+								Authorization: this.$store.getters["auth/Token"],
+							},
+						}
+					)
+					.then(({ data }) => {
+						this.btnLoading = false;
+						this.$store.dispatch("uiadmin/addToPages", {
+							name: "ujianonline",
+							data_ujian: this.jadwal_ujian,
+							data_peserta: data.peserta,
+						});
+						this.$router.push("/spmb/ujianonline");
+					})
+					.catch(() => {
+						this.btnLoading = false;
 					});
-					this.$router.push("/spmb/ujianonline");              
-				}).catch(() => {
-					this.btnLoading = false;
-				});            
 			},
 			async printpdf() {
 				this.btnLoading = true;
-				var user_id = this.$store.getters['auth/AttributeUser']("id");
+				var user_id = this.$store.getters["auth/AttributeUser"]("id");
 				await this.$ajax
 					.post(
-						"/spmb/skkelulusan/printtopdf1/" + user_id,    
+						"/spmb/skkelulusan/printtopdf1/" + user_id,
 						{},
 						{
 							headers: {
 								Authorization: this.$store.getters["auth/Token"],
-							},								
+							},
 						}
 					)
-					.then(({ data }) => {  
+					.then(({ data }) => {
 						this.$refs.dialogprint.open({
-							message: "Silahkah download Formulir Pendaftaran dan SK Kelulusan",
+							message:
+								"Silahkah download Formulir Pendaftaran dan SK Kelulusan",
 							file: data.pdf_file,
-							nama_file: "SK KELULUSAN"			
-						});												
+							nama_file: "SK KELULUSAN",
+						});
 						this.btnLoading = false;
 					})
 					.catch(() => {
 						this.btnLoading = false;
-					});               
+					});
 			},
-			closedialogfrm () {
-				this.dialogpilihjadwal = false;                      
+			closedialogfrm() {
+				this.dialogpilihjadwal = false;
 			},
 		},
 		components: {

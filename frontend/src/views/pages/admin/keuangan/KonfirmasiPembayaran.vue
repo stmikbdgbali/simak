@@ -402,7 +402,7 @@
 							{{$date(item.tanggal).format("DD/MM/YYYY")}}
 						</template>
 						<template v-slot:item.idsmt="{ item }">
-							{{$store.getters['uiadmin/getNamaSemester'](item.idsmt)}}
+							{{$store.getters["uiadmin/getNamaSemester"](item.idsmt)}}
 						</template>
 						<template v-slot:item.total="{ item }">
 							{{item.total|formatUang}}
@@ -411,22 +411,22 @@
 							<v-chip :color="item.style" dark>{{item.nama_status}}</v-chip>
 						</template>
 						<template v-slot:item.actions="{ item }">
-							<v-tooltip bottom v-if="item.status_konfirmasi=='N.A'">             
-                                <template v-slot:activator="{ on, attrs }">        
-                                    <v-btn 
-                                        v-bind="attrs"
-                                        v-on="on"
-                                        color="primary" 
-                                        icon                                         
-                                        x-small 
-                                        class="ma-1" 
-                                        :disabled="btnLoading"
-                                        @click.stop="addItem(item)">
-                                        <v-icon>mdi-send</v-icon>
-                                    </v-btn>     
-                                </template>
-                                <span>Upload Bukti Bayar</span>                
-                            </v-tooltip>							
+							<v-tooltip bottom v-if="item.status_konfirmasi=='N.A'">   
+								<template v-slot:activator="{ on, attrs }">   
+									<v-btn 
+										v-bind="attrs"
+										v-on="on"
+										color="primary" 
+										icon                                         
+										x-small 
+										class="ma-1" 
+										:disabled="btnLoading"
+										@click.stop="addItem(item)">
+										<v-icon>mdi-send</v-icon>
+									</v-btn>
+								</template>
+								<span>Upload Bukti Bayar</span> 
+							</v-tooltip>							
 							<v-icon
 								small
 								class="mr-2"
@@ -453,8 +453,8 @@
 							<td :colspan="headers.length" class="text-center">
 								<v-col cols="12">
 									<strong>ID TRANSAKSI:</strong>{{ item.id }}
-									<strong>created_at:</strong>{{ item.created_at_konfirm=='N.A'?'N.A':$date(item.created_at_konfirm).format("DD/MM/YYYY HH:mm") }}
-									<strong>updated_at:</strong>{{ item.updated_at_konfirm=='N.A'?'N.A':$date(item.updated_at_konfirm).format("DD/MM/YYYY HH:mm") }}
+									<strong>created_at:</strong>{{ item.created_at_konfirm=="N.A"?"N.A":$date(item.created_at_konfirm).format("DD/MM/YYYY HH:mm") }}
+									<strong>updated_at:</strong>{{ item.updated_at_konfirm=="N.A"?"N.A":$date(item.updated_at_konfirm).format("DD/MM/YYYY HH:mm") }}
 								</v-col>
 								<v-col cols="12" v-if="$store.getters['auth/can']('KEUANGAN-KONFIRMASI-PEMBAYARAN_UPDATE')&&(dashboard!='mahasiswabaru'&&dashboard!='mahasiswa')">
 									<v-btn
@@ -494,37 +494,37 @@
 	</KeuanganLayout>
 </template>
 <script>
-	import KeuanganLayout from '@/views/layouts/KeuanganLayout';
+	import KeuanganLayout from "@/views/layouts/KeuanganLayout";
 	import ModuleHeader from "@/components/ModuleHeader";
-	import Filter18 from '@/components/sidebar/FilterMode18';
-	import DialogPrintoutKeuangan from '@/components/DialogPrintoutKeuangan';
+	import Filter18 from "@/components/sidebar/FilterMode18";
+	import DialogPrintoutKeuangan from "@/components/DialogPrintoutKeuangan";
 	export default {
 		name: "KonfirmasiPembayFilter18aran",
 		created() {
-			this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];
+			this.dashboard = this.$store.getters["uiadmin/getDefaultDashboard"];
 			this.breadcrumbs = [
-				{
-					text: "HOME",
-					disabled: false,
-					href: "/dashboard/" + this.ACCESS_TOKEN
-				},
-				{
-					text: "KEUANGAN",
-					disabled: false,
-					href: "/keuangan"
-				},
-				{
-					text: "KONFIRMASI PEMBAYARAN",
-					disabled: true,
-					href: "#"
-				}
-			];
-			this.breadcrumbs[1].disabled=(this.dashboard=='mahasiswabaru'||this.dashboard == "mahasiswa");
-			let prodi_id = this.$store.getters['uiadmin/getProdiID'];
-			this.prodi_id = prodi_id;
-			this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
-			this.tahun_akademik=this.$store.getters['uiadmin/getTahunAkademik'];
-			this.initialize()
+			{
+				text: "HOME",
+				disabled: false,
+				href: "/dashboard/" + this.ACCESS_TOKEN,
+			},
+			{
+				text: "KEUANGAN",
+				disabled: false,
+				href: "/keuangan",
+			},
+			{
+				text: "KONFIRMASI PEMBAYARAN",
+				disabled: true,
+				href: "#",
+			},
+		];
+		this.breadcrumbs[1].disabled=(this.dashboard=="mahasiswabaru"||this.dashboard == "mahasiswa");
+		let prodi_id = this.$store.getters["uiadmin/getProdiID"];
+		this.prodi_id = prodi_id;
+		this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](prodi_id);
+		this.tahun_akademik=this.$store.getters["uiadmin/getTahunAkademik"];
+		this.initialize();
 		},
 		data: () => ({
 			firstloading: true,
@@ -675,19 +675,15 @@
 					}
 				}).then(({ data })=>{
 					this.data_konfirmasi=data.konfirmasi;
-					this.image_prev=this.$api.url+'/'+data.konfirmasi.bukti_bayar;
+					this.image_prev=this.$api.url+"/"+data.konfirmasi.bukti_bayar;
 					this.dialogdetailitem = true;
 				});
 
 			},
-			previewImage(e)
-			{
-				if (typeof e === "undefined")
-				{
+			previewImage(e) {
+				if (typeof e === "undefined") {
 					this.image_prev=null;
-				}
-				else
-				{
+				} else {
 					let reader = new FileReader();
 					reader.readAsDataURL(e);
 					reader.onload = img => {
@@ -714,7 +710,7 @@
 						{
 							headers: {
 								Authorization: this.$store.getters["auth/Token"],
-								'Content-Type': "multipart/form-data"
+								"Content-Type": "multipart/form-data"
 							}
 						}
 					).then(() => {
@@ -729,7 +725,7 @@
 			},
 			async verifikasi(item)
 			{
-				this.$root.$confirm.open("Konfirmasi Pembayaran", 'Apakah sudah benar data bukti bayar kode billing '+item.no_transaksi + " ?", { color: "primary" }).then((confirm) => {
+				this.$root.$confirm.open("Konfirmasi Pembayaran", "Apakah sudah benar data bukti bayar kode billing "+item.no_transaksi + " ?", { color: "primary" }).then((confirm) => {
 					if (confirm) {
 						this.btnLoading = true;
 						this.$ajax.post("/keuangan/transaksi/verifikasi/" + item.id,
@@ -752,7 +748,7 @@
 			},
 			async cancel(item)
 			{
-				this.$root.$confirm.open("Batalkan Transaksi", 'Apakah Anda ingin membatalkan transaksi dengan kode billing '+item.no_transaksi + " ?", { color: "red" }).then((confirm) => {
+				this.$root.$confirm.open("Batalkan Transaksi", "Apakah Anda ingin membatalkan transaksi dengan kode billing "+item.no_transaksi + " ?", { color: "red" }).then((confirm) => {
 					if (confirm)
 					{
 						this.btnLoading = true;
@@ -796,7 +792,7 @@
 		},
 		computed: {
 			TahunPendaftaran() {
-				return this.$store.getters['uiadmin/getTahunPendaftaran'];
+				return this.$store.getters["uiadmin/getTahunPendaftaran"];
 			},
 			buktiBayar: {
 				get() {
@@ -821,7 +817,7 @@
 			prodi_id(val) {
 				if (!this.firstloading)
 				{
-					this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](val);
+					this.nama_prodi=this.$store.getters["uiadmin/getProdiName"](val);
 					this.initialize();
 				}
 			},
@@ -860,5 +856,5 @@
 			Filter18,
 			"dialog-printout":  DialogPrintoutKeuangan,
 		},
-	}
+	};
 </script>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\System;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\System\ConfigurationModel;
+use App\Models\User;
 
 class VariablesController extends Controller {    
     /**
@@ -47,7 +48,11 @@ class VariablesController extends Controller {
         
         foreach($config as $k=>$v)
         {
-            \DB::table('pe3_configuration')->where('config_id',$k)->update(['config_value'=>$v]);
+            switch($k)
+            {
+                default:
+                    \DB::table('pe3_configuration')->where('config_id',$k)->update(['config_value'=>$v]);
+            }           
         }
 
         ConfigurationModel::clear();

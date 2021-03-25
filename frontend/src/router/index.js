@@ -39,6 +39,14 @@ const routes = [
 		component: () => import("../views/pages/front/ProfilDosen.vue")
 	},
 	{
+		path: "/verifikasi/:sk_id/suratkelulusan",
+		name: "VerifikasiSuratKelulusan",
+		meta: {
+			title: "VERIFIKASI SURAT KELULUSAN"
+		},
+		component: () => import("../views/pages/front/verifikasi/VerifikasiSuratKelulusan.vue"),
+	},
+	{
 		path: "/login",
 		name: "FrontLogin",
 		meta: {
