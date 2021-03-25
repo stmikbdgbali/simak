@@ -82,7 +82,7 @@ class SKKelulusanController extends Controller {
 																											->value('biaya');
 				
 
-				$surat_keluar = SuratKeluarModel::where('user_id_kepada',$formulir->id)
+				$surat_keluar = SuratKeluarModel::where('user_id_kepada',$formulir->user_id)
 															->first();
 
 				if (is_null($surat_keluar))
@@ -101,9 +101,9 @@ class SKKelulusanController extends Controller {
 
 					$isi_surat = '';
 
-					$sign_qrcode = 'images/signature/'.$surat_keluar->id.'.svg';
+					$sign_qrcode = Helper::public_path('images/signature/'.$id.'.png');
 					QrCode::format('png');
-					QrCode::generate('https://simak.stmikbandungbali.ac.id/verifikasi/'.$surat_keluar->id.'/suratkelulusan',Helper::public_path($sign_qrcode));		
+					QrCode::generate('Make me into a QrCode!',$sign_qrcode);	
 
 					$surat_keluar=SuratKeluarModel::create([
 						'id'=>$id,
@@ -117,11 +117,11 @@ class SKKelulusanController extends Controller {
 						'tahun_surat'=>$tahun_surat,
 						'perihal'=>'Surat Keterangan Lulus Tes Calon Mahasiswa',
 						'kepada'=>$formulir->nama_mhs,
-						'user_id_kepada'=>$formulir->id,
+						'user_id_kepada'=>$formulir->user_id,
 						'isi_surat'=>'Check ',
 						'keterangan'=>'-',					
 						'tanggal_surat'=>date('Y-m-d'),
-						'qr_code'=>"storages/$sign_qrcode",
+						'qr_code'=>'storages/images/signature/'.$id.'.svg',
 						'path_scanan'=>null,
 						'klasifikasi_surat'=>'sklulus',
 						'ta'=>$formulir->ta
@@ -129,6 +129,8 @@ class SKKelulusanController extends Controller {
 				}
 				else
 				{
+					$surat_keluar->user_id_kepada=$formulir->user_id;
+
 					$no_urut=$surat_keluar->no_urut;	
 																			
 					$nomor_urut=Helper::formatNomorUrut($no_urut,4);
@@ -139,11 +141,11 @@ class SKKelulusanController extends Controller {
 					$nomor_surat = "$nomor_urut/USM/PMB-STMIK.BB/$bulan_romawi/$tahun_surat";
 
 					$surat_keluar->nomor_surat=$nomor_surat;
-					$sign_qrcode = 'images/signature/'.$surat_keluar->id.'.svg';
+					$sign_qrcode = Helper::public_path('images/signature/'.$surat_keluar->id.'.svg');
 					QrCode::format('svg');
 					QrCode::size(100);
-					QrCode::generate('https://simak.stmikbandungbali.ac.id/verifikasi/'.$surat_keluar->id.'/suratkelulusan',Helper::public_path($sign_qrcode));	
-					$surat_keluar->qr_code="storages/$sign_qrcode";
+					QrCode::generate('https://simak.stmikbandungbali.ac.id/verifikasi/'.$surat_keluar->id.'/suratkelulusan',$sign_qrcode);	
+					$surat_keluar->qr_code='storages/images/signature/'.$surat_keluar->id.'.svg';
 					$surat_keluar->save();
 				}
 				$headers=[					
@@ -160,6 +162,7 @@ class SKKelulusanController extends Controller {
 																																	'jas_almamater'=>Helper::formatUang($jas_almamater),
 																																	'spp'=>Helper::formatUang($spp),
 																																	'sign_qrcode'=>$sign_qrcode,
+																																	'sign_name'=>$config['DEFAULT_USER_NAME_TTD_SK_KELULUSAN'],
 																																],
 																																[],
 																																[

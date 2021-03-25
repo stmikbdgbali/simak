@@ -34,7 +34,7 @@ class SuratKeluarModel extends Model {
         'tahun_surat',
         'perihal',
         'kepada',
-        'user_id_kepada',             
+        'user_id_kepada',   
         'isi_surat', 
         'keterangan',
         'tanggal_surat', 

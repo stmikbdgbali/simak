@@ -70,8 +70,7 @@ Sebagai kelengkapan proses penerimaan mahasiswa baru, kami harapkan kehadiran Sa
   Denpasar, {{$tanggal_lulus}}<br>
   Ketua PPMB,<br>
   <img src="{{$sign_qrcode}}" height="150"><br>
-  <u>Ricak Agus Setiawan, S.T., M.SI</u><br>
-  NIK. 102.16.019
+  <u>{{$sign_name}}</u><br>  
 </p>
 <htmlpagefooter name="page-footer">
   <hr>
