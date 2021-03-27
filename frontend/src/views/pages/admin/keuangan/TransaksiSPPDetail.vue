@@ -179,7 +179,7 @@
     </KeuanganLayout>
 </template>
 <script>
-import KeuanganLayout from '@/views/layouts/KeuanganLayout';
+import KeuanganLayout from "@/views/layouts/KeuanganLayout";
 import ModuleHeader from "@/components/ModuleHeader";
 export default {
     name: "TransaksiSPPDetail",
@@ -246,7 +246,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{       
+            }).then(({ data }) => {       
                 this.data_transaksi=data.transaksi;                                     
                 this.item_selected = data.item_selected;              
                 this.datatableLoading = false;

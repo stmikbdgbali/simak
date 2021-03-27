@@ -253,7 +253,7 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data })=>{
+            }).then(({ data }) => {
                 this.datatable = data.ruangan;
                 this.datatableLoading = false;
             }).catch(() => {
@@ -297,7 +297,7 @@ export default {
                                 Authorization: this.TOKEN
                             }
                         }
-                    ).then(({ data })=>{
+                    ).then(({ data }) => {
                         Object.assign(this.datatable[this.editedIndex],data.ruangan);
                         this.closedialogfrm();
                         this.btnLoading = false;
@@ -316,7 +316,7 @@ export default {
                                 Authorization: this.TOKEN
                             }
                         }
-                    ).then(({ data })=>{
+                    ).then(({ data }) => {
                         this.datatable.push(data.ruangan);
                         this.closedialogfrm();
                         this.btnLoading = false;

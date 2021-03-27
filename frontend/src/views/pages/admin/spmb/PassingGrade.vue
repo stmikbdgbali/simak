@@ -175,7 +175,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{      
+            }).then(({ data }) => {      
                 this.datatableLoading = false;
                 this.jadwal_ujian=data.jadwal_ujian;    
                 this.datatable=data.passing_grade;                             

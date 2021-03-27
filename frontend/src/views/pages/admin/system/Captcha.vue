@@ -117,7 +117,7 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data })=>{
+            }).then(({ data }) => {
                 let setting = data.setting;
                 this.formdata.siteKey=setting.CAPTCHA_SITE_KEY;
                 this.formdata.privateKey=setting.CAPTCHA_PRIVATE_KEY;

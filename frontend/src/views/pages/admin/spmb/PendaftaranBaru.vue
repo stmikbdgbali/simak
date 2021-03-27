@@ -341,7 +341,7 @@
 <script>
 	import SPMBLayout from "@/views/layouts/SPMBLayout";
 	import ModuleHeader from "@/components/ModuleHeader";
-	import Filter7 from '@/components/sidebar/FilterMode7';
+	import Filter7 from "@/components/sidebar/FilterMode7";
 	export default {
 			name: "PendaftaranBaru",  
 			created() {
@@ -480,7 +480,7 @@
 									headers: {
 											Authorization: this.$store.getters["auth/Token"]
 									}
-							}).then(({ data })=>{    
+							}).then(({ data }) => {    
 									this.datatable = data.pmb;              
 									this.datatableLoading = false;
 							});        
@@ -554,13 +554,13 @@
 
 							if (this.$store.getters['uifront/getBentukPT']== "universitas")
 							{     
-									await this.$ajax.get("/datamaster/fakultas").then(({ data })=>{         
+									await this.$ajax.get("/datamaster/fakultas").then(({ data }) => {         
 											this.daftar_fakultas=data.fakultas;
 									});
 							}
 							else
 							{
-									await this.$ajax.get("/datamaster/programstudi").then(({ data })=>{
+									await this.$ajax.get("/datamaster/programstudi").then(({ data }) => {
 											this.daftar_prodi=data.prodi;
 									});
 							}   
@@ -612,7 +612,7 @@
 																	Authorization: this.$store.getters["auth/Token"]
 															}
 													}
-											).then(({ data })=>{                
+											).then(({ data }) => {                
 													this.datatable.push(data.pendaftar);
 													this.closedialogfrm();
 													this.btnLoading = false;                      
@@ -652,16 +652,16 @@
 							this.daftar_ta = this.$store.getters['uiadmin/getDaftarTA'];
 							if (this.$store.getters['uifront/getBentukPT']== "universitas")
 							{     
-									await this.$ajax.get("/datamaster/fakultas").then(({ data })=>{         
+									await this.$ajax.get("/datamaster/fakultas").then(({ data }) => {         
 											this.daftar_fakultas=data.fakultas;
 									});
-									await this.$ajax.get("/datamaster/programstudi").then(({ data })=>{
+									await this.$ajax.get("/datamaster/programstudi").then(({ data }) => {
 											this.daftar_prodi=data.prodi;
 									});
 							}
 							else
 							{
-									await this.$ajax.get("/datamaster/programstudi").then(({ data })=>{
+									await this.$ajax.get("/datamaster/programstudi").then(({ data }) => {
 											this.daftar_prodi=data.prodi;
 									});
 							}   
@@ -671,7 +671,7 @@
 													Authorization: this.$store.getters["auth/Token"]
 											}
 									}
-							).then(({ data })=>{
+							).then(({ data }) => {
 									this.registered = data.status== 1;                                      
 									this.dialogfrm = true; 
 							this.dialogfrm = true;
@@ -764,7 +764,7 @@
 															headers: {
 																	Authorization: this.$store.getters["auth/Token"]
 															}
-													}).then(({ data })=>{    
+													}).then(({ data }) => {    
 															this.datatable = data.pmb;              
 															this.datatableLoading = false;
 													});                   

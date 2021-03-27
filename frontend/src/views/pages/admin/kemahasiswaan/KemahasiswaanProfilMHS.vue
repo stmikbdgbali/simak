@@ -320,7 +320,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{    
+            }).then(({ data }) => {    
                 this.datatable = data.transaksi;              
                 this.datatableLoading = false;
             });                   

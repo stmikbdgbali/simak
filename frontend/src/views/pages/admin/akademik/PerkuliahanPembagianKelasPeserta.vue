@@ -348,7 +348,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{
+            }).then(({ data }) => {
                 this.data_kelas_mhs=data.pembagiankelas;  
                 this.datatable=data.penyelenggaraan;                              
                 this.datatable_peserta=data.peserta;                              
@@ -410,7 +410,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{
+            }).then(({ data }) => {
                 this.datatable_members=data.members;              
                 this.showdialogpeserta=true;
             })             

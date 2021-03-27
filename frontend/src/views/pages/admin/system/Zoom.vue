@@ -403,7 +403,7 @@
 							"auth/Token"
 						],
 					}
-				}).then(({ data })=>{
+				}).then(({ data }) => {
 					this.datatable = data.zoom;
 					this.datatableLoading = false;
 				}).catch(() => {
@@ -424,7 +424,7 @@
 				// headers: {
 				// Authorization: this.$store.getters["auth/Token"]
 				// }
-				// }).then(({ data })=>{
+				// }).then(({ data }) => {
 											
 				// });
 			},
@@ -453,7 +453,7 @@
 									}
 								}
 							)
-							.then(({ data })=>{
+							.then(({ data }) => {
 								Object.assign(this.datatable[this.editedIndex],data.zoom);
 								this.closedialogfrm();
 								this.btnLoading = false;

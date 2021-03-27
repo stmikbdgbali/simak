@@ -323,14 +323,14 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{    
+            }).then(({ data }) => {    
                 this.datatable = data.nilai_konversi;
                 this.formdata = data.data_konversi;
                 this.datatableLoading = false;
             }).catch(() => {
                 this.datatableLoading = false;
             });       
-            await this.$ajax.get("/datamaster/programstudi/jenjangstudi").then(({ data })=>{
+            await this.$ajax.get("/datamaster/programstudi/jenjangstudi").then(({ data }) => {
                 this.daftar_jenjang=data.jenjangstudi;
             }); 
         },   

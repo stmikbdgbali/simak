@@ -105,7 +105,7 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data })=>{
+            }).then(({ data }) => {
                 let setting = data.setting;
                 this.formdata.token_ttl_expire=setting.TOKEN_TTL_EXPIRE;              
             });

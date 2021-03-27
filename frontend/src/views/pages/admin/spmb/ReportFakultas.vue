@@ -196,7 +196,7 @@ export default {
                         headers: {
                             Authorization: this.$store.getters["auth/Token"]
                         }
-                    }).then(({ data })=>{    
+                    }).then(({ data }) => {    
                         this.datatable = data.pmb;              
                         this.datatableLoading = false;
                     });       
@@ -238,7 +238,7 @@ export default {
                     },
                     responseType: "arraybuffer"
                 }
-            ).then(({ data })=>{   
+            ).then(({ data }) => {   
                 const url = window.URL.createObjectURL(new Blob([data]));
                 const link = document.createElement("a");
                 link.href = url;

@@ -198,7 +198,7 @@ export default {
                     headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     }
-                }).then(({ data })=>{    
+                }).then(({ data }) => {    
                     this.$router.push("/akademik/perkuliahan/krs/" + data.krs.id + "/detail");
                     this.btnLoading = false;
                 }).catch(() => {

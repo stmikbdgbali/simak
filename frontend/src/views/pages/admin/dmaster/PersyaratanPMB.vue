@@ -352,7 +352,7 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data })=>{    
+            }).then(({ data }) => {    
                 this.datatable = data.persyaratan;
                 this.datatableLoading = false;
             }).catch(() => {
@@ -462,7 +462,7 @@ export default {
                             Authorization: this.TOKEN
                         }
                     }
-                ).then(({ data })=>{   
+                ).then(({ data }) => {   
                     this.datatable=data.persyaratan;
                     this.btnLoading = false;
                     this.closedialogsalinpersyaratan();

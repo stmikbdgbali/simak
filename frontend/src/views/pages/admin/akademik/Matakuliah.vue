@@ -570,7 +570,7 @@
 					headers: {
 						Authorization: this.TOKEN
 					}
-				}).then(({ data })=>{    
+				}).then(({ data }) => {    
 					this.datatable = data.matakuliah;
 					this.datatableLoading = false;
 				}).catch(() => {
@@ -595,7 +595,7 @@
 					headers: {
 						Authorization: this.TOKEN
 					}
-				}).then(({ data })=>{
+				}).then(({ data }) => {
 					this.group_matakuliah=data.group_matakuliah;
 				});          
 				this.dialogfrm=true;
@@ -607,7 +607,7 @@
 					headers: {
 						Authorization: this.TOKEN
 					}
-				}).then(({ data })=>{
+				}).then(({ data }) => {
 					this.formdata=data.matakuliah;
 				});
 				this.dialogdetailitem = true;                    
@@ -619,7 +619,7 @@
 					headers: {
 						Authorization: this.TOKEN
 					}
-				}).then(({ data })=>{
+				}).then(({ data }) => {
 					this.group_matakuliah=data.group_matakuliah;
 				});
 
@@ -628,7 +628,7 @@
 					headers: {
 						Authorization: this.TOKEN
 					}
-				}).then(({ data })=>{
+				}).then(({ data }) => {
 					this.formdata=data.matakuliah;
 				});
 				this.dialogfrm = true

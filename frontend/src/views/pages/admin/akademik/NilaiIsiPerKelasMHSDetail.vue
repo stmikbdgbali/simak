@@ -194,7 +194,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{
+            }).then(({ data }) => {
                 this.data_kelas_mhs=data.pembagiankelas;                                       
             });
             this.datatableLoading = true;

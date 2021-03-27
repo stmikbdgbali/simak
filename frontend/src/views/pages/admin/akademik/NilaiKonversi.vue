@@ -197,7 +197,7 @@
 <script>
 import AkademikLayout from "@/views/layouts/AkademikLayout";
 import ModuleHeader from "@/components/ModuleHeader";
-import Filter7 from '@/components/sidebar/FilterMode7';
+import Filter7 from "@/components/sidebar/FilterMode7";
 export default {
     name: "NilaiKonversi",
     created() {
@@ -276,7 +276,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{    
+            }).then(({ data }) => {    
                 this.datatable = data.mahasiswa;
                 this.datatableLoading = false;
             }).catch(() => {

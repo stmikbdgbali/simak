@@ -307,7 +307,7 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({data,status})=>{
+            }).then(({data,status}) => {
                 if (status==200)
                 {
                     this.datatable = data.roles;
@@ -336,7 +336,7 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({data,status})=>{
+            }).then(({data,status}) => {
                 if (status==200)
                 {
                     this.permissions_selected = data.permissions;
@@ -355,7 +355,7 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({data,status})=>{
+            }).then(({data,status}) => {
                 if (status==200)
                 {
                     this.daftar_permissions = data.permissions;
@@ -366,7 +366,7 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({data,status})=>{
+            }).then(({data,status}) => {
                 if (status==200)
                 {
                     this.permissions_selected = data.permissions;
@@ -408,7 +408,7 @@ export default {
                                 Authorization: this.TOKEN
                             }
                         }
-                    ).then(({ data })=>{   
+                    ).then(({ data }) => {   
                         Object.assign(this.datatable[this.editedIndex],data.roles);
                         this.close();
                     }).catch(() => {
@@ -425,7 +425,7 @@ export default {
                                 Authorization: this.TOKEN
                             }
                         }
-                    ).then(({ data })=>{   
+                    ).then(({ data }) => {   
                         this.datatable.push(data.roles);
                         this.close();
                     }).catch(() => {

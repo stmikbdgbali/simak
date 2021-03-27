@@ -228,6 +228,11 @@ $router->group(['prefix'=>'v1','middleware'=>'auth:api'], function () use ($rout
     //digunakan untuk mendapatkan spp milik user_id mhs baru dengan status sudah bayar
     $router->post('/keuangan/transaksi/{id}/sppmhsbaru',['uses'=>'Keuangan\TransaksiController@sppmhsbaru','as'=>'transaksi.sppmhsbaru']);
 
+    //keuangan - transaksi pendaftaran mahasiswa baru
+    $router->post('/keuangan/transaksi-pendaftaranmhsbaru',['middleware'=>['role:superadmin|keuangan'],'uses'=>'Keuangan\TransaksiPendaftaranMHSBaruController@index','as'=>'transaksi-pendaftaranmhsbaru.index']);
+    $router->post('/keuangan/transaksi-pendaftaranmhsbaru/store',['middleware'=>['role:superadmin|keuangan'],'uses'=>'Keuangan\TransaksiDulaTransaksiPendaftaranMHSBaruControllerngMHSBaruController@store','as'=>'transaksi-pendaftaranmhsbaru.store']);
+    $router->delete('/keuangan/transaksi-pendaftaranmhsbaru/{id}',['middleware'=>['role:superadmin|keuangan'],'uses'=>'Keuangan\TransaksiDuTransaksiPendaftaranMHSBaruControllerlangMHSBaruController@destroy','as'=>'transaksi-pendaftaranmhsbaru.destroy']);
+
     //keuangan - transaksi spp
     $router->post('/keuangan/transaksi-spp',['middleware'=>['role:superadmin|keuangan|mahasiswabaru|mahasiswa'],'uses'=>'Keuangan\TransaksiSPPController@index','as'=>'transaksi-spp.index']);
     $router->get('/keuangan/transaksi-spp/{id}',['middleware'=>['role:superadmin|keuangan|mahasiswa'],'uses'=>'Keuangan\TransaksiSPPController@show','as'=>'transaksi-spp.show']);
@@ -235,11 +240,6 @@ $router->group(['prefix'=>'v1','middleware'=>'auth:api'], function () use ($rout
     $router->post('/keuangan/transaksi-spp/store',['middleware'=>['role:superadmin|keuangan|mahasiswa'],'uses'=>'Keuangan\TransaksiSPPController@store','as'=>'transaksi-spp.store']);
     // id delete detail id
     $router->delete('/keuangan/transaksi-spp/{id}',['middleware'=>['role:superadmin|keuangan|mahasiswa'],'uses'=>'Keuangan\TransaksiSPPController@destroy','as'=>'transaksi-spp.destroy']);
-
-    //keuangan - transaksi daftar ulang mahasiswa baru
-    $router->post('/keuangan/transaksi-dulangmhsbaru',['middleware'=>['role:superadmin|keuangan|mahasiswa'],'uses'=>'Keuangan\TransaksiDulangMHSBaruController@index','as'=>'transaksi-dulangmhsbaru.index']);
-    $router->post('/keuangan/transaksi-dulangmhsbaru/store',['middleware'=>['role:superadmin|keuangan'],'uses'=>'Keuangan\TransaksiDulangMHSBaruController@store','as'=>'transaksi-dulangmhsbaru.store']);
-    $router->delete('/keuangan/transaksi-dulangmhsbaru/{id}',['middleware'=>['role:superadmin|keuangan'],'uses'=>'Keuangan\TransaksiDulangMHSBaruController@destroy','as'=>'transaksi-dulangmhsbaru.destroy']);
 
     //keuangan - transaksi regisrasikrs
     $router->post('/keuangan/transaksi-registrasikrs',['middleware'=>['role:superadmin|keuangan|mahasiswa'],'uses'=>'Keuangan\TransaksiRegistrasiKRSController@index','as'=>'transaksi-registrasikrs.index']);

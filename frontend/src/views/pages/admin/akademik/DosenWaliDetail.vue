@@ -306,7 +306,7 @@ export default {
                     }
                 },
                 
-            ).then(({ data })=>{   
+            ).then(({ data }) => {   
                 this.data_dosen=data.biodatadiri;                                         
             });     
 
@@ -314,7 +314,7 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data })=>{    
+            }).then(({ data }) => {    
                 this.daftar_mahasiswa = data.daftar_mahasiswa;              
                 this.datatableLoading = false;
             });        

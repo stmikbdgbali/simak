@@ -163,13 +163,14 @@
 						</v-card>
 					</v-timeline-item>
 					<v-timeline-item color="green lighten-1" icon="mdi-airballoon" fill-dot v-else>
-						<v-card color="green lighten-1" dark>
-							<v-card-title class="title">Surat Keterangan Lulus</v-card-title>
+						<v-card color="green lighten-1">
+							<v-card-title class="title white--text">Surat Keterangan Lulus</v-card-title>
 							<v-card-text class="white text--primary">
 								<p>Silahkan download Surat Keterangan Kelulusan kemudian cetak dan dibawa ke kampus saat daftar ulang beserta persyaratan ASLI lainnya.</p>
 								<v-btn
 									color="green lighten-1"
 									class="mx-0"
+									:disabled="true"
 									outlined
 								>
 									Download

@@ -346,7 +346,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{    
+            }).then(({ data }) => {    
                 this.datatable = data.matakuliah;
                 this.datatableLoading = false;
             }).catch(() => {
@@ -360,7 +360,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{
+            }).then(({ data }) => {
                 this.formdata=data.matakuliah;
             });
             this.dialogdetailitem = true;                    

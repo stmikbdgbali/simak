@@ -301,7 +301,7 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data })=>{    
+            }).then(({ data }) => {    
                 this.daftar_dosen = data.dosen;              
                 this.datatableLoading = false;
             });        
@@ -325,7 +325,7 @@ export default {
                         Authorization: this.TOKEN
                     }
                 }
-            ).then(({ data })=>{   
+            ).then(({ data }) => {   
                 this.daftar_jabatan=data.jabatan_akademik;
             });           
             

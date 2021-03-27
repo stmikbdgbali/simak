@@ -131,7 +131,7 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data })=>{  
+            }).then(({ data }) => {  
                 let setting = JSON.parse(data.setting.COLOR_DASHBOARD);            
                 this.showColor=setting.dmaster;                           
                 this.formdata.dmaster=setting.dmaster;          

@@ -282,7 +282,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{
+            }).then(({ data }) => {
                 this.datakrs=data.krs;
                 this.datatable=data.krsmatkul;
                 if (Object.keys(this.datakrs).length)
@@ -301,7 +301,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{
+            }).then(({ data }) => {
                 this.dialogfrm=true;
                 this.datamatkul=item;
                 this.daftar_kelas=data.daftarkelas;

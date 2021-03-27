@@ -325,13 +325,13 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{    
+            }).then(({ data }) => {    
                 this.datatable = data.matakuliah;
                 this.datatableLoading = false;
             }).catch(() => {
                 this.datatableLoading = false;
             });       
-            await this.$ajax.get("/datamaster/programstudi/jenjangstudi").then(({ data })=>{
+            await this.$ajax.get("/datamaster/programstudi/jenjangstudi").then(({ data }) => {
                 this.daftar_jenjang=data.jenjangstudi;
             }); 
         },   
@@ -375,7 +375,7 @@ export default {
                             Authorization: this.$store.getters["auth/Token"]
                         }
                     }
-                ).then(({ data })=>{   
+                ).then(({ data }) => {   
                     this.$router.push("/akademik/nilai/konversi/'+data.data_konversi.id+'/edit");                 
                     this.btnLoading = false;
                 }).catch(() => {

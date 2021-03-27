@@ -264,7 +264,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{
+            }).then(({ data }) => {
                 this.data_kelas_mhs=data.pembagiankelas;                                       
             });
             await this.$ajax.get("/akademik/nilai/matakuliah/pesertakelas/" + this.kelas_mhs_id,

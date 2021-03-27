@@ -135,7 +135,7 @@ import SPMBLayout from "@/views/layouts/SPMBLayout";
 import ModuleHeader from "@/components/ModuleHeader";
 import FormPersyaratan from '@/components/FormPersyaratanPMB';
 import ProfilMahasiswaBaru from '@/components/ProfilMahasiswaBaru';
-import Filter7 from '@/components/sidebar/FilterMode7';
+import Filter7 from "@/components/sidebar/FilterMode7";
 export default {
 	name: "PersyaratanPMB", 
 	created() {
@@ -210,7 +210,7 @@ export default {
 						}
 					},
 					
-				).then(({ data })=>{            
+				).then(({ data }) => {            
 					this.showcomponentpersyaratan=data.formulir.idkelas==null||data.formulir.idkelas==''?false: true;                  
 				});
 			} else {

@@ -234,7 +234,7 @@
 </template>
 <script>
 import { mapGetters } from "vuex";
-import KeuanganLayout from '@/views/layouts/KeuanganLayout';
+import KeuanganLayout from "@/views/layouts/KeuanganLayout";
 import ModuleHeader from "@/components/ModuleHeader";
 export default {
     name: "Kelas",
@@ -324,7 +324,7 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data })=>{    
+            }).then(({ data }) => {    
                 this.datatable = data.bank;
                 this.datatableLoading = false;
             }).catch(() => {
@@ -370,7 +370,7 @@ export default {
                                 Authorization: this.TOKEN
                             }
                         }
-                    ).then(({ data })=>{   
+                    ).then(({ data }) => {   
                         Object.assign(this.datatable[this.editedIndex],data.bank);
                         this.closedialogfrm();
                         this.btnLoading = false;
@@ -391,7 +391,7 @@ export default {
                                 Authorization: this.TOKEN
                             }
                         }
-                    ).then(({ data })=>{   
+                    ).then(({ data }) => {   
                         this.datatable.push(data.bank);
                         this.closedialogfrm();
                         this.btnLoading = false;

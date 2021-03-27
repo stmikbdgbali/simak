@@ -181,7 +181,7 @@
     </KeuanganLayout>
 </template>
 <script>
-import KeuanganLayout from '@/views/layouts/KeuanganLayout';
+import KeuanganLayout from "@/views/layouts/KeuanganLayout";
 import ModuleHeader from "@/components/ModuleHeader";
 import Filter18 from '@/components/sidebar/FilterMode18';
 export default {
@@ -286,7 +286,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{    
+            }).then(({ data }) => {    
                 this.datatable = data.transaksi;              
                 this.datatableLoading = false;
             });                   
@@ -418,7 +418,7 @@ export default {
                             headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
-                        }).then(({ data })=>{    
+                        }).then(({ data }) => {    
                             this.datatable = data.transaksi;              
                             this.datatableLoading = false;
                         });                   

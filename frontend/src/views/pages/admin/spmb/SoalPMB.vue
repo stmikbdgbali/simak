@@ -452,7 +452,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{             
+            }).then(({ data }) => {             
                 this.datatable = data.soal;
                 this.datatableLoading = false;
             }).catch(() => {
@@ -477,7 +477,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{         
+            }).then(({ data }) => {         
                 this.formdata = item;  
                 this.dialogdetailitem = true;          
                 this.daftar_soal_jawaban=data.soal.jawaban;
@@ -488,7 +488,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{          
+            }).then(({ data }) => {          
                 this.editedIndex = this.datatable.indexOf(item);
                 this.formdata = Object.assign({}, item);
                 this.dialogeditfrm = true;
@@ -535,7 +535,7 @@ export default {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
-                    ).then(({ data })=>{   
+                    ).then(({ data }) => {   
                         Object.assign(this.datatable[this.editedIndex],data.soal);
                         this.closedialogeditfrm();
                         this.btnLoading = false;
@@ -561,7 +561,7 @@ export default {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
-                    ).then(({ data })=>{   
+                    ).then(({ data }) => {   
                         this.datatable.push(data.soal);
                         this.closedialogfrm();
                         this.btnLoading = false;

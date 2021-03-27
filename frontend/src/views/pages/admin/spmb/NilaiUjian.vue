@@ -397,7 +397,7 @@
 							headers: {
 								Authorization: this.$store.getters["auth/Token"]
 							}
-						}).then(({ data })=>{    
+						}).then(({ data }) => {    
 							this.datatable = data.pmb;
 							this.datatableLoading = false;
 						});
@@ -430,7 +430,7 @@
 							Authorization: this.$store.getters["auth/Token"]
 						}
 					})
-					.then(({ data })=>{   
+					.then(({ data }) => {   
 						if (data.transaksi_status== 1)
 						{
 							this.dialogfrm=true;

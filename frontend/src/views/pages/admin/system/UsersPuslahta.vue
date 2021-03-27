@@ -408,7 +408,7 @@ export default {
 				headers: {
 					Authorization: this.TOKEN
 				}
-			}).then(({ data })=>{
+			}).then(({ data }) => {
 				this.daftar_users = data.users;
 				this.role_id=data.role.id;
 				this.datatableLoading = false;
@@ -455,7 +455,7 @@ export default {
 				headers: {
 					Authorization: this.TOKEN
 				}
-			}).then(({ data })=>{
+			}).then(({ data }) => {
 				let roles = data.roles;
 				var daftar_roles=[];
 				roles.forEach(element => {
@@ -488,7 +488,7 @@ export default {
 						Authorization: this.TOKEN
 					}
 				}
-			).then(({ data })=>{
+			).then(({ data }) => {
 				let daftar_prodi = data.daftar_prodi;
 				var prodi=[];
 				daftar_prodi.forEach(element => {
@@ -500,7 +500,7 @@ export default {
 				headers: {
 					Authorization: this.TOKEN
 				}
-			}).then(({ data })=>{
+			}).then(({ data }) => {
 				let roles = data.roles;
 				var daftar_roles=[];
 				roles.forEach(element => {
@@ -528,7 +528,7 @@ export default {
 				headers: {
 					Authorization: this.TOKEN
 				}
-			}).then(({ data })=>{
+			}).then(({ data }) => {
 				this.editedItem.role_id=data.roles;
 				this.btnLoading = false;
 				this.dialogEdit = true;
@@ -575,7 +575,7 @@ export default {
 								Authorization: this.TOKEN
 							}
 						}
-					).then(({ data })=>{
+					).then(({ data }) => {
 						Object.assign(this.daftar_users[this.editedIndex],data.user);
 						this.close();
 					}).catch(() => {
@@ -598,7 +598,7 @@ export default {
 								Authorization: this.TOKEN
 							}
 						}
-					).then(({ data })=>{
+					).then(({ data }) => {
 						this.daftar_users.push(data.user);
 						this.close();
 					}).catch(() => {

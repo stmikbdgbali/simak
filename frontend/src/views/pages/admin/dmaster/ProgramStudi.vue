@@ -339,7 +339,7 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data })=>{    
+            }).then(({ data }) => {    
                 this.datatable = data.prodi;
                 this.datatableLoading = false;
             }).catch(() => {
@@ -374,11 +374,11 @@ export default {
         {   
             if (this.$store.getters['uifront/getBentukPT']== "universitas")
             {     
-                await this.$ajax.get("/datamaster/fakultas").then(({ data })=>{
+                await this.$ajax.get("/datamaster/fakultas").then(({ data }) => {
                     this.daftar_fakultas=data.fakultas;
                 });
             }
-            await this.$ajax.get("/datamaster/programstudi/jenjangstudi").then(({ data })=>{
+            await this.$ajax.get("/datamaster/programstudi/jenjangstudi").then(({ data }) => {
                 this.daftar_jenjang=data.jenjangstudi;
             });
 
@@ -391,7 +391,7 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data })=>{    
+            }).then(({ data }) => {    
                 this.daftar_dosen = data.users; 
                 this.dosen_id=item.config;
                 if (item.config)
@@ -411,13 +411,13 @@ export default {
 
             if (this.$store.getters['uifront/getBentukPT']== "universitas")
             {     
-                await this.$ajax.get("/datamaster/fakultas").then(({ data })=>{         
+                await this.$ajax.get("/datamaster/fakultas").then(({ data }) => {         
                     this.daftar_fakultas=data.fakultas;                  
                     this.formdata.kode_fakultas=item.kode_fakultas;
                 });
             }
 
-            await this.$ajax.get("/datamaster/programstudi/jenjangstudi").then(({ data })=>{
+            await this.$ajax.get("/datamaster/programstudi/jenjangstudi").then(({ data }) => {
                 this.daftar_jenjang=data.jenjangstudi;
             });
 

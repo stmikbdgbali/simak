@@ -117,7 +117,7 @@
 <script>
 import AkademikLayout from "@/views/layouts/AkademikLayout";
 import ModuleHeader from "@/components/ModuleHeader";
-import Filter7 from '@/components/sidebar/FilterMode7';
+import Filter7 from "@/components/sidebar/FilterMode7";
 
 export default {
     name: "KemahasiswaanDaftarMahasiswa",
@@ -192,7 +192,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{    
+            }).then(({ data }) => {    
                 this.datatable = data.mahasiswa;
                 this.datatableLoading = false;
             }).catch(() => {
@@ -227,7 +227,7 @@ export default {
                     },
                     responseType: "arraybuffer"
                 }
-            ).then(({ data })=>{   
+            ).then(({ data }) => {   
                 const url = window.URL.createObjectURL(new Blob([data]));
                 const link = document.createElement("a");
                 link.href = url;

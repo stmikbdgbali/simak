@@ -435,7 +435,7 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data })=>{    
+            }).then(({ data }) => {    
                 this.daftar_users = data.users;              
                 this.datatableLoading = false;
             });        
@@ -522,7 +522,7 @@ export default {
                                 Authorization: this.TOKEN
                             }
                         }
-                    ).then(({ data })=>{   
+                    ).then(({ data }) => {   
                         this.daftar_users.push(data.user);
                         this.close();
                     }).catch(() => {

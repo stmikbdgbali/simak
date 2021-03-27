@@ -634,7 +634,7 @@
 					headers: {
 						Authorization: this.$store.getters["auth/Token"]
 					}
-				}).then(({ data })=>{
+				}).then(({ data }) => {
 					this.datatable = data.transaksi;
 					this.datatableLoading = false;
 				});
@@ -659,7 +659,7 @@
 					headers: {
 						Authorization: this.$store.getters["auth/Token"]
 					}
-				}).then(({ data })=>{
+				}).then(({ data }) => {
 					this.daftar_channel=data.channel;
 					this.data_transaksi=item;
 					this.dialogfrm=true;
@@ -673,7 +673,7 @@
 					headers: {
 						Authorization: this.$store.getters["auth/Token"]
 					}
-				}).then(({ data })=>{
+				}).then(({ data }) => {
 					this.data_konfirmasi=data.konfirmasi;
 					this.image_prev=this.$api.url+"/"+data.konfirmasi.bukti_bayar;
 					this.dialogdetailitem = true;
@@ -839,7 +839,7 @@
 								headers: {
 									Authorization: this.$store.getters["auth/Token"]
 								}
-							}).then(({ data })=>{
+							}).then(({ data }) => {
 								this.datatable = data.transaksi;
 								this.datatableLoading = false;
 							});

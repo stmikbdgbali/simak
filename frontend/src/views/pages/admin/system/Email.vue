@@ -104,7 +104,7 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data })=>{       
+            }).then(({ data }) => {       
                 let setting = data.setting;           
                 this.formdata.email_mhs_isvalid=parseInt(setting.EMAIL_MHS_ISVALID);              
             });        
