@@ -183,7 +183,7 @@
                                                     color="blue darken-1"
                                                     text
                                                     @click.stop="save"
-                                                    :loading="btnLoading"
+                                                    
                                                     :disabled="!form_valid||btnLoading">
                                                         SIMPAN
                                                 </v-btn>
@@ -313,7 +313,7 @@
                             </v-icon>
                             <v-icon
                                 small
-                                :loading="btnLoading"
+                                
                                 :disabled="btnLoading"
                                 @click.stop="deleteItem(item)">
                                 mdi-delete

@@ -92,7 +92,7 @@
 								<v-btn 
 									color="primary" 
 									class="mb-2" 
-									:loading="btnLoading"
+									
 									:disabled="btnLoading"
 									@click.stop="loadkombiperiode"
 									v-if="dashboard!='mahasiswa' && dashboard!='mahasiswabaru'">

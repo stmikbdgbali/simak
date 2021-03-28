@@ -100,7 +100,7 @@
                                                     color="blue darken-1" 
                                                     text 
                                                     @click.stop="save" 
-                                                    :loading="btnLoading"
+                                                    
                                                     :disabled="!form_valid||btnLoading">
                                                         SIMPAN
                                                 </v-btn>
@@ -117,7 +117,7 @@
                             <v-icon
                                 small
                                 class="mr-2"
-                                :loading="btnLoading"
+                                
                                 :disabled="btnLoading"
                                 @click.stop="setPermission(item)"
                             >
@@ -126,7 +126,7 @@
                             <v-icon
                                 small
                                 class="mr-2"
-                                :loading="btnLoading"
+                                
                                 :disabled="btnLoading"
                                 @click.stop="viewItem(item)"
                             >

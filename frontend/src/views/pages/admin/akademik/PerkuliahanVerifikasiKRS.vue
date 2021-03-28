@@ -112,7 +112,7 @@
                             <v-btn
                                 small
                                 icon
-                                :loading="btnLoading"
+                                
                                 :disabled="btnLoading"
                                 @click.stop="printpdf(item)">
                                 <v-icon>
@@ -137,7 +137,7 @@
                                         outlined 
                                         small 
                                         class="ma-2"
-                                        :loading="btnLoading"
+                                        
                                         :disabled="btnLoading||item.sah== 1" 
                                         @click.stop="verifikasi(item)">
                                         <v-icon>mdi-check</v-icon>

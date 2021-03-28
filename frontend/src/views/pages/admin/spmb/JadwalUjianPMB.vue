@@ -67,7 +67,7 @@
 								<v-btn 
 									color="primary" 
 									class="mb-2"
-									:loading="btnLoading"
+									
 									:disabled="btnLoading"
 									@click.stop="addItem"
 									v-if="dashboard !='mahasiswabaru' && dashboard !='mahasiswa'">
@@ -218,7 +218,7 @@
 													color="blue darken-1" 
 													text 
 													@click.stop="save" 
-													:loading="btnLoading"
+													
 													:disabled="!form_valid||btnLoading">
 														SIMPAN
 												</v-btn>

@@ -101,7 +101,7 @@
                                         <v-btn 
                                             class="primary mt-2 mb-2"                                 
                                             @click.stop="save" 
-                                            :loading="btnLoading"
+                                            
                                             :disabled="btnLoading">
                                                 SIMPAN
                                         </v-btn>

@@ -103,7 +103,7 @@
 														<v-btn
 																small
 																icon
-																:loading="btnLoading"
+																
 																:disabled="btnLoading"
 																@click.stop="printpdf(item)">
 																<v-icon>

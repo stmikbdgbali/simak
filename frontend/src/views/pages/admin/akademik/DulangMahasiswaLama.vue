@@ -83,7 +83,7 @@
                         <template v-slot:item.actions="{ item }" v-else>
                            <v-icon
                                 small
-                                :loading="btnLoading"
+                                
                                 :disabled="btnLoading"
                                 @click.stop="deleteItem(item)">
                                 mdi-delete

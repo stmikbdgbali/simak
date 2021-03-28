@@ -76,7 +76,7 @@
                                     color="blue darken-1" 
                                     text 
                                     @click.stop="save" 
-                                    :loading="btnLoading"
+                                    
                                     :disabled="!form_valid||btnLoading||!daftar_matkul_selected.length > 0">
                                         SIMPAN
                                 </v-btn>

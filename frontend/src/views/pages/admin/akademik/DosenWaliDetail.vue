@@ -168,7 +168,7 @@
                                                     color="blue darken-1" 
                                                     text 
                                                     @click.stop="changeDosenWali" 
-                                                    :loading="btnLoading"
+                                                    
                                                     :disabled="!form_valid||btnLoading">
                                                         GANTI
                                                 </v-btn>

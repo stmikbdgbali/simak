@@ -23,7 +23,15 @@ class ProgramStudiModel extends Model {
      * @var array
      */
     protected $fillable = [
-        'id','kode_prodi', 'nama_prodi', 'nama_prodi_alias', 'kode_fakultas','kode_jenjang','nama_jenjang','config'
+        'id', 
+        'kode_forlap', 
+        'nama_prodi', 
+        'nama_prodi_alias', 
+        'konsentrasi',
+        'kode_fakultas',
+        'kode_jenjang',
+        'nama_jenjang',
+        'config'
     ];
     /**
      * enable auto_increment.
@@ -36,7 +44,7 @@ class ProgramStudiModel extends Model {
      *
      * @var string
      */
-    public $timestamps = false;
+    public $timestamps = true;
 
     public function getKAProdi($prodi_id)
     {

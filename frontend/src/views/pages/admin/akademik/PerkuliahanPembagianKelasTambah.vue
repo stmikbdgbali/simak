@@ -156,7 +156,7 @@
                                     color="blue darken-1"
                                     text
                                     @click.stop="save"
-                                    :loading="btnLoading"
+                                    
                                     :disabled="!form_valid||btnLoading||dosen_id==null">
                                         BUAT
                                 </v-btn>

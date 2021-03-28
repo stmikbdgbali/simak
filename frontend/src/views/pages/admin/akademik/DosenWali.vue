@@ -78,7 +78,7 @@
                             <v-icon
                                 small
                                 class="mr-2"
-                                :loading="btnLoading"
+                                
                                 :disabled="btnLoading"
                                 @click.stop="viewItem(item)"
                             >
@@ -86,7 +86,7 @@
                             </v-icon>
                             <v-icon
                                 small
-                                :loading="btnLoading"
+                                
                                 :disabled="btnLoading"
                                 @click.stop="deleteItem(item)"
                             >

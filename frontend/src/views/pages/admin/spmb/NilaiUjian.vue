@@ -166,7 +166,7 @@
 																	color="blue darken-1" 
 																	text 
 																	@click.stop="save" 
-																	:loading="btnLoading"
+																	
 																	:disabled="!form_valid||btnLoading">
 																		SIMPAN
 																</v-btn>
@@ -226,7 +226,7 @@
 										@click.stop="ulangujian(item)" 
 										class="mb-2" 
 										:disabled="btnLoading" 
-										:loading="btnLoading">ULANG UJIAN </v-btn>
+										>ULANG UJIAN </v-btn>
 									<v-btn 
 										text 
 										small 

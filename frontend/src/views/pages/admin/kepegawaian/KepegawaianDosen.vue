@@ -136,7 +136,7 @@
                                                     color="blue darken-1" 
                                                     text 
                                                     @click.stop="save" 
-                                                    :loading="btnLoading"
+                                                    
                                                     :disabled="!form_valid||btnLoading">SIMPAN</v-btn>
                                             </v-card-actions>
                                         </v-card>
@@ -158,7 +158,7 @@
                                         x-small
                                         class="ma-2" 
                                         @click.stop="editItem(item)"
-                                        :loading="btnLoading"
+                                        
                                         :disabled="btnLoading">
                                         <v-icon>mdi-pencil</v-icon>
                                     </v-btn>     

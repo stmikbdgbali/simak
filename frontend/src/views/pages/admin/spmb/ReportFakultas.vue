@@ -72,7 +72,7 @@
                                     color="primary" 
                                     icon
                                     @click.stop="printtoexcel"
-                                    :loading="btnLoading"
+                                    
                                     :disabled="btnLoading">
                                     <v-icon>
                                         mdi-printer

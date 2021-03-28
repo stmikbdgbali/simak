@@ -256,7 +256,7 @@
 																	color="blue darken-1"
 																	text
 																	@click.stop="save"
-																	:loading="btnLoading"
+																	
 																	:disabled="!form_valid||btnLoading">
 																		SIMPAN
 																</v-btn>
@@ -464,7 +464,7 @@
 										@click.stop="verifikasi(item)"
 										class="mb-2"
 										:disabled="(item.status_konfirmasi=='UNVERIFIED'?false: true)||btnLoading"
-										:loading="btnLoading">
+										>
 										VERIFIKASI
 									</v-btn>
 									<v-btn
@@ -474,7 +474,7 @@
 										@click.stop="cancel(item)"
 										class="mb-2"
 										:disabled="(item.nama_status=='PAID'?true: false)||btnLoading"
-										:loading="btnLoading">
+										>
 										BATALKAN
 									</v-btn>
 								</v-col>

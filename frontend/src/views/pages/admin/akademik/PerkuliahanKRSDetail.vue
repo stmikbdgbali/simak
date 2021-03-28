@@ -142,7 +142,7 @@
                                                         color="blue darken-1"
                                                         text
                                                         @click.stop="save"
-                                                        :loading="btnLoading"
+                                                        
                                                         :disabled="!form_valid||btnLoading">
                                                             SIMPAN
                                                     </v-btn>
@@ -155,7 +155,7 @@
                                     <v-btn
                                         small
                                         icon
-                                        :loading="btnLoading"
+                                        
                                         :disabled="btnLoading"
                                         @click.stop="showPilihKelas(item)">
                                         <v-icon>
@@ -165,7 +165,7 @@
                                     <v-btn
                                         small
                                         icon
-                                        :loading="btnLoading"
+                                        
                                         :disabled="btnLoading"
                                         @click.stop="deleteItem(item)">
                                         <v-icon>

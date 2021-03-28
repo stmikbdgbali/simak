@@ -57,7 +57,7 @@
                                 <v-btn 
                                     color="primary" 
                                     class="mb-2" 
-                                    :loading="btnLoading"
+                                    
                                     :disabled="btnLoading"
                                     @click.stop="loadprodi">
                                         GENERATE

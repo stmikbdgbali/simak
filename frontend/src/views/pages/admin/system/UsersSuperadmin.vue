@@ -68,7 +68,7 @@
 								<v-spacer></v-spacer>
 								<v-btn color="primary"
 									class="mb-2" 
-									:loading="btnLoading"
+									
 									:disabled="btnLoading"
 									@click.stop="showDialogTambahUserSuperAdmin">
 									TAMBAH
@@ -127,7 +127,7 @@
 													color="blue darken-1" 
 													text 
 													@click.stop="save" 
-													:loading="btnLoading"
+													
 													:disabled="!form_valid||btnLoading">
 														SIMPAN
 												</v-btn>
@@ -189,7 +189,7 @@
 													color="blue darken-1" 
 													text 
 													@click.stop="save" 
-													:loading="btnLoading"
+													
 													:disabled="!form_valid||btnLoading">SIMPAN</v-btn>
 											</v-card-actions>
 										</v-card>
@@ -201,7 +201,7 @@
 							<v-icon
 								small
 								class="mr-2"
-								:loading="btnLoading"
+								
 								:disabled="btnLoading"
 								@click.stop="editItem(item)"
 							>
@@ -209,7 +209,7 @@
 							</v-icon>
 							<v-icon
 								small
-								:loading="btnLoading"
+								
 								:disabled="btnLoading"
 								@click.stop="deleteItem(item)"
 							>

@@ -76,7 +76,7 @@
                                 ></v-divider>
                                 <v-spacer></v-spacer>
                                 <v-btn 
-                                    :loading="btnLoading"
+                                    
                                     :disabled="btnLoading"
                                     color="warning" 
                                     class="mb-2 mr-2" 
@@ -86,7 +86,7 @@
                                 </v-btn>
                                 <v-btn
                                     color="primary"
-                                    :loading="btnLoading"
+                                    
                                     :disabled="btnLoading"
                                     @click.stop="printtoexcel"
                                     v-if="$store.getters['auth/can']('AKADEMIK-KEMAHASISWAAN-DAFTAR-MAHASISWA_BROWSE')">
@@ -116,7 +116,7 @@
                                         @click.stop="resetPassword(item)" 
                                         class="mb-2" 
                                         :disabled="btnLoading"  
-                                        :loading="btnLoading">
+                                        >
                                         RESET PASSWORD
                                     </v-btn>
                                 </v-col>

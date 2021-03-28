@@ -142,7 +142,7 @@
                                         vertical
                                     ></v-divider>
                                     <v-spacer></v-spacer>    
-                                    <v-btn color="primary" class="mb-2" @click.stop="save" :disabled="!(item_selected.length >0) || (data_transaksi.status== 1 || data_transaksi.status==2)" :loading="btnLoading">SIMPAN</v-btn>                       
+                                    <v-btn color="primary" class="mb-2" @click.stop="save" :disabled="!(item_selected.length >0) || (data_transaksi.status== 1 || data_transaksi.status==2)" >SIMPAN</v-btn>                       
                                 </v-toolbar>
                             </template>   
                             <template v-slot:item.biaya_kombi="{ item }">  
@@ -151,7 +151,7 @@
                             <template v-slot:item.actions="{ item }">          
                                 <v-icon
                                     small
-                                    :loading="btnLoading"
+                                    
                                     :disabled="btnLoading"
                                     @click.stop="deleteItem(item)">
                                     mdi-delete

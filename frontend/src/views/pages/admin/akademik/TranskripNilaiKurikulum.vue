@@ -94,7 +94,7 @@
                                         x-small 
                                         class="ma-2" 
                                         @click.stop="viewItem(item)"
-                                        :loading="btnLoading"
+                                        
                                         :disabled="btnLoading">
                                         <v-icon>mdi-eye</v-icon>
                                     </v-btn>     
@@ -112,7 +112,7 @@
                                         x-small 
                                         class="ma-2" 
                                         @click.stop="printpdf2(item)"
-                                        :loading="btnLoading"
+                                        
                                         :disabled="btnLoading">
                                         <v-icon>mdi-printer</v-icon>
                                     </v-btn>     

@@ -135,7 +135,7 @@
 						<template v-slot:item.actions="{ item }">         
 							<v-icon
 								small
-								:loading="btnLoading"
+								
 								:disabled="btnLoading"
 								@click.stop="revoke(item)"
 							>
@@ -153,7 +153,7 @@
 			<v-btn 
 				color="blue darken-1" 
 				text 
-				:loading="btnLoading"
+				
 				:disabled="btnLoading||!permissions_selected.length > 0"
 				@click.stop="save">
 					SIMPAN

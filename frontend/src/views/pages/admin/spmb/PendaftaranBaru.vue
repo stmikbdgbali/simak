@@ -68,7 +68,7 @@
 														<v-toolbar flat color="white">             
 																<v-spacer></v-spacer>
 																<v-btn 
-																		:loading="btnLoading"
+																		
 																		:disabled="btnLoading"
 																		color="warning" 
 																		class="mb-2 mr-2" 
@@ -164,7 +164,7 @@
 																										color="blue darken-1" 
 																										text 
 																										@click.stop="save" 
-																										:loading="btnLoading"
+																										
 																										:disabled="!form_valid||btnLoading">
 																												SIMPAN
 																								</v-btn>
@@ -247,7 +247,7 @@
 																														Klik tombol berikut ini untuk mengirim ulang email konfirmasi pendaftaran
 																												</v-card-subtitle>
 																												<v-card-text>
-																														<v-btn small color="primary" @click.stop="resend(formdata.id)" class="mb-2" :loading="btnLoading">KIRIM ULANG</v-btn>
+																														<v-btn small color="primary" @click.stop="resend(formdata.id)" class="mb-2" >KIRIM ULANG</v-btn>
 																												</v-card-text>
 																										</v-card>
 																								</v-col>           
@@ -265,7 +265,7 @@
 														<v-icon
 																small
 																class="mr-2"
-																:loading="btnLoading"
+																
 																:disabled="btnLoading"
 																@click.stop="viewItem(item)"
 														>
@@ -274,7 +274,7 @@
 														<v-icon
 																small
 																class="mr-2"
-																:loading="btnLoading"
+																
 																:disabled="btnLoading"
 																@click.stop="editItem(item)"
 														>
@@ -282,7 +282,7 @@
 														</v-icon>
 														<v-icon
 																small
-																:loading="btnLoading"
+																
 																:disabled="btnLoading"
 																@click.stop="deleteItem(item)"
 														>
@@ -319,7 +319,7 @@
 																				class="primary" 
 																				@click.stop="aktifkan(item.id)"                                         
 																				:disabled="btnLoading"
-																				:loading="btnLoading">
+																				>
 																						<v-icon>mdi-email-check</v-icon>
 																						VERIFIFIKASI EMAIL
 																		</v-btn>

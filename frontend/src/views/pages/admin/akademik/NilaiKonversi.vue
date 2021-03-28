@@ -98,7 +98,7 @@
                                         x-small 
                                         class="ma-1" 
                                         @click.stop="viewItem(item)"
-                                        :loading="btnLoading"
+                                        
                                         :disabled="btnLoading">
                                         <v-icon>mdi-eye</v-icon>
                                     </v-btn>     
@@ -115,7 +115,7 @@
                                         x-small 
                                         class="ma-1" 
                                         @click.stop="editItem(item)"
-                                        :loading="btnLoading"
+                                        
                                         :disabled="btnLoading">
                                         <v-icon>mdi-pencil</v-icon>
                                     </v-btn>     
@@ -132,7 +132,7 @@
                                         x-small 
                                         class="ma-1" 
                                         @click.stop="printpdf1(item)"
-                                        :loading="btnLoading"
+                                        
                                         :disabled="btnLoading">
                                         <v-icon>mdi-printer</v-icon>
                                     </v-btn>     
@@ -149,7 +149,7 @@
                                         x-small 
                                         class="ma-1" 
                                         @click.stop="deleteItem(item)"
-                                        :loading="btnLoading"
+                                        
                                         :disabled="btnLoading">
                                         <v-icon>mdi-delete</v-icon>
                                     </v-btn>     
