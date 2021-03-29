@@ -378,7 +378,7 @@
 			</v-row>
 		</v-container>
 		<template v-slot:filtersidebar>
-			<Filter4 v-on:changeTahunAkademik="changeTahunAkademik" v-on:changeProdi="changeProdi" ref="Filter4" />	
+			<Filter4 v-on:changeProdi="changeProdi" ref="Filter4" />	
 		</template>
 	</AkademikLayout>
 </template>
@@ -413,8 +413,8 @@
 				},
 			];
 			let prodi_id = this.$store.getters['uiadmin/getProdiID'];
-			this.prodi_id = prodi_id;
-			this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
+			this.prodi_id = prodi_id;			
+			this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);			
 			this.initialize();
 		},  
 		data: () => ({ 

@@ -2,12 +2,12 @@
     <div>
         <v-system-bar app dark :class="this.$store.getters['uiadmin/getTheme']('V_SYSTEM_BAR_CSS_CLASS')">
             <strong>Hak Akses Sebagai :</strong> {{ROLE}}
-		</v-system-bar>	
+        </v-system-bar>	
         <v-app-bar app>
             <v-app-bar-nav-icon @click.stop="drawer = !drawer" :class="this.$store.getters['uiadmin/getTheme']('V_APP_BAR_NAV_ICON_CSS_CLASS')"></v-app-bar-nav-icon>
             <v-toolbar-title class="headline clickable" @click.stop="$router.push('/dashboard/'+$store.getters['auth/AccessToken']).catch(err => {})">
-				<span class="hidden-sm-and-down">{{APP_NAME}}</span>
-			</v-toolbar-title>
+                <span class="hidden-sm-and-down">{{APP_NAME}}</span>
+            </v-toolbar-title>
             <v-spacer></v-spacer>
             <v-menu 
                 :close-on-content-click="true"
@@ -38,15 +38,15 @@
                     <v-divider/>
                     <v-list-item to="/system-users/profil">
                         <v-list-item-icon class="mr-2">
-							<v-icon>mdi-account</v-icon>
-						</v-list-item-icon>
+                            <v-icon>mdi-account</v-icon>
+                        </v-list-item-icon>
                         <v-list-item-title>Profil</v-list-item-title>
                     </v-list-item>
                     <v-divider/>
                     <v-list-item @click.prevent="logout">
                         <v-list-item-icon class="mr-2">
-							<v-icon>mdi-power</v-icon>
-						</v-list-item-icon>
+                            <v-icon>mdi-power</v-icon>
+                        </v-list-item-icon>
                         <v-list-item-title>Logout</v-list-item-title>
                     </v-list-item>
                 </v-list>
@@ -56,25 +56,25 @@
                 inset
                 vertical
             ></v-divider>
-			<v-app-bar-nav-icon @click.stop="drawerRight = !drawerRight">
+            <v-app-bar-nav-icon @click.stop="drawerRight = !drawerRight">
                 <v-icon>mdi-menu-open</v-icon>
-			</v-app-bar-nav-icon>            
+            </v-app-bar-nav-icon>            
         </v-app-bar>    
         <v-navigation-drawer v-model="drawer" width="300" dark :class="this.$store.getters['uiadmin/getTheme']('V_NAVIGATION_DRAWER_CSS_CLASS')" :temporary="temporaryleftsidebar" app>
-			<v-list-item>
-				<v-list-item-avatar>
-					<v-img :src="photoUser" @click.stop="toProfile"></v-img>
-				</v-list-item-avatar>
-				<v-list-item-content>					
-					<v-list-item-title class="title">
-						{{ATTRIBUTE_USER("username")}}
-					</v-list-item-title>
-					<v-list-item-subtitle>
-						[{{DEFAULT_ROLE}}]
-					</v-list-item-subtitle>
-				</v-list-item-content>
-			</v-list-item>
-			<v-divider></v-divider>
+            <v-list-item>
+                <v-list-item-avatar>
+                    <v-img :src="photoUser" @click.stop="toProfile"></v-img>
+                </v-list-item-avatar>
+                <v-list-item-content>					
+                    <v-list-item-title class="title">
+                        {{ATTRIBUTE_USER("username")}}
+                    </v-list-item-title>
+                    <v-list-item-subtitle>
+                        [{{DEFAULT_ROLE}}]
+                    </v-list-item-subtitle>
+                </v-list-item-content>
+            </v-list-item>
+            <v-divider></v-divider>
             <v-list expand>
                 <v-list-item :to="{path: '/akademik'}" link :class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_BOARD_CSS_CLASS')" :color="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_BOARD_COLOR')" v-if="CAN_ACCESS('AKADEMIK-GROUP')">
                     <v-list-item-icon class="mr-2">
@@ -146,8 +146,8 @@
                             <v-list-item-title>PENYELENGGARAAN</v-list-item-title>
                         </v-list-item-content>							
                     </template>
-					<div>
-						<v-list-item link v-if="CAN_ACCESS('AKADEMIK-PERKULIAHAN-PENYELENGGARAAN_BROWSE')" :active-class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_ACTIVE_CSS_CLASS')" to="/akademik/perkuliahan/penyelenggaraan/daftar" color="white">
+                    <div>
+                        <v-list-item link v-if="CAN_ACCESS('AKADEMIK-PERKULIAHAN-PENYELENGGARAAN_BROWSE')" :active-class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_ACTIVE_CSS_CLASS')" to="/akademik/perkuliahan/penyelenggaraan/daftar" color="white">
                             <v-list-item-icon class="mr-2">
                                 <v-icon>mdi-arrow-right-bold-hexagon-outline</v-icon>
                             </v-list-item-icon>
@@ -157,7 +157,7 @@
                                 </v-list-item-title>
                             </v-list-item-content>
                         </v-list-item>   						 
-						<v-list-item link v-if="CAN_ACCESS('AKADEMIK-PERKULIAHAN-PENYELENGGARAAN_STORE')" :active-class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_ACTIVE_CSS_CLASS')" disabled to="/akademik/perkuliahan/penyelenggaraan/tambah">
+                        <v-list-item link v-if="CAN_ACCESS('AKADEMIK-PERKULIAHAN-PENYELENGGARAAN_STORE')" :active-class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_ACTIVE_CSS_CLASS')" disabled to="/akademik/perkuliahan/penyelenggaraan/tambah">
                             <v-list-item-icon class="mr-2">
                                 <v-icon>mdi-arrow-right-bold-hexagon-outline</v-icon>
                             </v-list-item-icon>
@@ -167,7 +167,7 @@
                                 </v-list-item-title>
                             </v-list-item-content>
                         </v-list-item>   						 
-						<v-list-item link v-if="CAN_ACCESS('AKADEMIK-PERKULIAHAN-PENYELENGGARAAN_STORE')" :active-class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_ACTIVE_CSS_CLASS')" disabled :to="{path: '/akademik/perkuliahan/penyelenggaraan/'+paramid+'/dosenpengampu'}">
+                        <v-list-item link v-if="CAN_ACCESS('AKADEMIK-PERKULIAHAN-PENYELENGGARAAN_STORE')" :active-class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_ACTIVE_CSS_CLASS')" disabled :to="{path: '/akademik/perkuliahan/penyelenggaraan/'+paramid+'/dosenpengampu'}">
                             <v-list-item-icon class="mr-2">
                                 <v-icon>mdi-arrow-right-bold-hexagon-outline</v-icon>
                             </v-list-item-icon>
@@ -177,7 +177,7 @@
                                 </v-list-item-title>
                             </v-list-item-content>
                         </v-list-item>   						 
-					</div>
+                    </div>
                 </v-list-group>                
                 <v-list-group group="/akademik/perkuliahan/krs" active-class="yellow" no-action v-if="CAN_ACCESS('AKADEMIK-PERKULIAHAN-KRS_BROWSE')" color="green">
                     <template v-slot:activator>
@@ -188,8 +188,8 @@
                             <v-list-item-title>KRS</v-list-item-title>
                         </v-list-item-content>							
                     </template>
-					<div>
-						<v-list-item link v-if="CAN_ACCESS('AKADEMIK-PERKULIAHAN-KRS_BROWSE')" :active-class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_ACTIVE_CSS_CLASS')" to="/akademik/perkuliahan/krs/daftar" color="white">
+                    <div>
+                        <v-list-item link v-if="CAN_ACCESS('AKADEMIK-PERKULIAHAN-KRS_BROWSE')" :active-class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_ACTIVE_CSS_CLASS')" to="/akademik/perkuliahan/krs/daftar" color="white">
                             <v-list-item-icon class="mr-2">
                                 <v-icon>mdi-arrow-right-bold-hexagon-outline</v-icon>
                             </v-list-item-icon>
@@ -209,7 +209,7 @@
                                 </v-list-item-title>
                             </v-list-item-content>
                         </v-list-item>   						 					 
-						<v-list-item link v-if="CAN_ACCESS('AKADEMIK-PERKULIAHAN-KRS_SHOW')" :active-class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_ACTIVE_CSS_CLASS')" disabled :to="{path: '/akademik/perkuliahan/krs/' + paramid+'/detail'}">
+                        <v-list-item link v-if="CAN_ACCESS('AKADEMIK-PERKULIAHAN-KRS_SHOW')" :active-class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_ACTIVE_CSS_CLASS')" disabled :to="{path: '/akademik/perkuliahan/krs/' + paramid+'/detail'}">
                             <v-list-item-icon class="mr-2">
                                 <v-icon>mdi-arrow-right-bold-hexagon-outline</v-icon>
                             </v-list-item-icon>
@@ -229,7 +229,7 @@
                                 </v-list-item-title>
                             </v-list-item-content>
                         </v-list-item>   						 									
-					</div>
+                    </div>
                 </v-list-group>
                 <v-list-group group="/akademik/perkuliahan/pembagiankelas" active-class="yellow" no-action v-if="CAN_ACCESS('AKADEMIK-PERKULIAHAN-PEMBAGIAN-KELAS_BROWSE')" color="green">
                     <template v-slot:activator>
@@ -240,7 +240,7 @@
                             <v-list-item-title>PEMBAGIAN KELAS</v-list-item-title>
                         </v-list-item-content>							
                     </template>
-					<div>
+                    <div>
                         <v-list-item link v-if="CAN_ACCESS('AKADEMIK-PERKULIAHAN-PEMBAGIAN-KELAS_BROWSE')" :active-class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_ACTIVE_CSS_CLASS')" to="/akademik/perkuliahan/pembagiankelas/daftar" color="white">
                             <v-list-item-icon class="mr-2">
                                 <v-icon>mdi-arrow-right-bold-hexagon-outline</v-icon>
@@ -271,7 +271,7 @@
                                 </v-list-item-title>
                             </v-list-item-content>
                         </v-list-item>   						 
-					</div>
+                    </div>
                 </v-list-group>
                 <v-subheader>NILAI</v-subheader> 
                 <v-list-group group="/akademik/nilai/matakuliah" active-class="yellow" no-action v-if="CAN_ACCESS('AKADEMIK-NILAI-MATAKULIAH_BROWSE') && dashboard=='puslahta'" color="green">
@@ -283,8 +283,8 @@
                             <v-list-item-title>ISI NILAI</v-list-item-title>
                         </v-list-item-content>							
                     </template>
-					<div>
-						<v-list-item link v-if="CAN_ACCESS('AKADEMIK-NILAI-MATAKULIAH_STORE') && dashboard=='puslahta'" :active-class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_ACTIVE_CSS_CLASS')" to="/akademik/nilai/matakuliah/isiperkelasmhs" color="white">
+                    <div>
+                        <v-list-item link v-if="CAN_ACCESS('AKADEMIK-NILAI-MATAKULIAH_STORE') && dashboard=='puslahta'" :active-class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_ACTIVE_CSS_CLASS')" to="/akademik/nilai/matakuliah/isiperkelasmhs" color="white">
                             <v-list-item-icon class="mr-2">
                                 <v-icon>mdi-arrow-right-bold-hexagon-outline</v-icon>
                             </v-list-item-icon>
@@ -294,7 +294,7 @@
                                 </v-list-item-title>
                             </v-list-item-content>
                         </v-list-item>   						 						
-						<v-list-item link v-if="CAN_ACCESS('AKADEMIK-NILAI-MATAKULIAH_STORE') && dashboard=='puslahta'" :active-class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_ACTIVE_CSS_CLASS')" to="/akademik/nilai/matakuliah/isiperkrs" color="white">
+                        <v-list-item link v-if="CAN_ACCESS('AKADEMIK-NILAI-MATAKULIAH_STORE') && dashboard=='puslahta'" :active-class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_ACTIVE_CSS_CLASS')" to="/akademik/nilai/matakuliah/isiperkrs" color="white">
                             <v-list-item-icon class="mr-2">
                                 <v-icon>mdi-arrow-right-bold-hexagon-outline</v-icon>
                             </v-list-item-icon>
@@ -304,7 +304,7 @@
                                 </v-list-item-title>
                             </v-list-item-content>
                         </v-list-item>   						 						
-					</div> 
+                    </div> 
                 </v-list-group>     
                 <v-list-item link v-if="CAN_ACCESS('AKADEMIK-NILAI-KHS_BROWSE')" :active-class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_ACTIVE_CSS_CLASS')" :to="{path: '/akademik/nilai/khs'}">
                     <v-list-item-icon class="mr-2">
@@ -351,10 +351,10 @@
                 </v-list-item>
                 <slot name="filtersidebar"/>		                	
             </v-list>
-		</v-navigation-drawer>
+        </v-navigation-drawer>
         <v-main class="mx-4 mb-4">			
-			<slot />
-		</v-main>
+            <slot />
+        </v-main>
     </div>    
 </template>
 <script>
@@ -410,7 +410,7 @@ export default {
         {
             return this.$store.getters['uifront/getBentukPT']==bentuk_pt?true: false;
         }
-	},
+    },
     computed: {
         ...mapGetters("auth",{
             AUTHENTICATED: "Authenticated",  
@@ -426,18 +426,18 @@ export default {
             return process.env.VUE_APP_NAME;
         },
         photoUser()
-		{
-			let img=this.ATTRIBUTE_USER("foto");
-			var photo;
-			if (img == "")
-			{
-				photo = this.$api.storageURL+'/storage/images/users/no_photo.png';	
-			}
-			else
-			{
-				photo = this.$api.storageURL+'/'+img;	
-			}
-			return photo;
+        {
+            let img=this.ATTRIBUTE_USER("foto");
+            var photo;
+            if (img == "")
+            {
+                photo = this.$api.storageURL+'/storage/images/users/no_photo.png';	
+            }
+            else
+            {
+                photo = this.$api.storageURL+'/'+img;	
+            }
+            return photo;
         },    
         paramid ()
         {
@@ -469,7 +469,7 @@ export default {
                 {
                     setTimeout(() => { 
                         this.loginTime=this.AUTHENTICATED==true?this.loginTime+1:-1;                                                                   
-					}, 1000);
+                    }, 1000);
                 }
                 else
                 {

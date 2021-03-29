@@ -18,8 +18,7 @@ class MatakuliahController extends Controller {
      */
     public function index(Request $request)
     {
-        $this->validate($request, [           
-            'ta'=>'required',
+        $this->validate($request, [                       
             'prodi_id'=>'required'
         ]);
         

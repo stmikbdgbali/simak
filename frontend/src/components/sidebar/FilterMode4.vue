@@ -22,12 +22,6 @@
 			firstloading: true,
 			daftar_prodi: [],
 			prodi_id: null,
-
-			daftar_ta: [],
-			tahun_akademik: null,
-
-			daftar_semester: [],
-			semester_akademik: null
 		}),
 		methods: {
 			setFirstTimeLoading(bool) {
@@ -40,14 +34,7 @@
 					this.$store.dispatch("uiadmin/updateProdi",val);
 					this.$emit("changeProdi",val);        
 				}
-			},
-			semester_akademik(val) {
-				if (!this.firstloading)
-				{
-					this.$store.dispatch("uiadmin/updateSemesterAkademik",val);
-					this.$emit("changeSemesterAkademik",val);        
-				}
-			},
+			},			
 		}
 	}
 </script>
