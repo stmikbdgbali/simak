@@ -356,7 +356,7 @@ export default {
                 }
             });
         },
-        closedialogfrm () {
+        closedialogfrm() {
             this.dialogfrm = false;
             setTimeout(() => {
                 this.datamatkul = Object.assign({}, {});

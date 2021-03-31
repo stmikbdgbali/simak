@@ -397,7 +397,7 @@ export default {
                 }, 300
             );
         },
-        closedialogfrm () {                  
+        closedialogfrm() {                  
             setTimeout(() => {       
                 this.formdata = Object.assign({}, this.formdefault);                              
                 this.$router.push("/akademik/perkuliahan/penyelenggaraan/daftar");

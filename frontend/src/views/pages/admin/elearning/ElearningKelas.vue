@@ -96,7 +96,7 @@
 <script>
 import ElearningLayout from '@/views/layouts/ElearningLayout';
 import ModuleHeader from "@/components/ModuleHeader";
-import Filter2 from '@/components/sidebar/FilterMode2';
+import Filter2 from "@/components/sidebar/FilterMode2";
 export default {
     name: "ElearningKelas",
     created()

@@ -131,7 +131,7 @@
 <script>
 import AkademikLayout from "@/views/layouts/AkademikLayout";
 import ModuleHeader from "@/components/ModuleHeader";
-import Filter6 from '@/components/sidebar/FilterMode6';
+import Filter6 from "@/components/sidebar/FilterMode6";
 
 import { mapGetters } from "vuex";
 

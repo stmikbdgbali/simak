@@ -357,7 +357,7 @@ export default {
                 }, 300
             );
         },
-        closedialogfrm () {
+        closedialogfrm() {
             this.dialogfrm = false;
             this.$refs.frmdata.reset(); 
             setTimeout(() => {

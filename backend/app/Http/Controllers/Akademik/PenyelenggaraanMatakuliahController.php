@@ -39,17 +39,14 @@ class PenyelenggaraanMatakuliahController extends Controller
                                                                 kmatkul,
                                                                 nmatkul,                                                            
                                                                 sks,       
-                                                                semester,
-                                                                ta_matkul,                                                                                                                 
+                                                                semester,                                                                                                              
                                                                 0 AS jumlah_dosen,
                                                                 0 AS jumlah_mhs
                                                             '))
                                                             ->leftJoin('pe3_dosen','pe3_dosen.user_id','pe3_penyelenggaraan.user_id')
                                                             ->where('tahun',$ta)
                                                             ->where('idsmt',$semester_akademik)
-                                                            ->where('kjur',$prodi_id)
-                                                            ->where('ta_matkul',$user['ta'])
-                                                            ->orderBy('ta_matkul','ASC')    
+                                                            ->where('kjur',$prodi_id)                                                                                                                         
                                                             ->orderBy('semester','ASC')                      
                                                             ->orderBy('kmatkul','ASC')                                                            
                                                             ->get();
@@ -63,16 +60,14 @@ class PenyelenggaraanMatakuliahController extends Controller
                                                                 kmatkul,
                                                                 nmatkul,                                                            
                                                                 sks,       
-                                                                semester,
-                                                                ta_matkul,                                                                                                                 
+                                                                semester,                                                                                                                 
                                                                 0 AS jumlah_dosen,
                                                                 0 AS jumlah_mhs
                                                             '))
                                                             ->leftJoin('pe3_dosen','pe3_dosen.user_id','pe3_penyelenggaraan.user_id')
                                                             ->where('tahun',$ta)
                                                             ->where('idsmt',$semester_akademik)
-                                                            ->where('kjur',$prodi_id)
-                                                            ->orderBy('ta_matkul','ASC')    
+                                                            ->where('kjur',$prodi_id)                                                            
                                                             ->orderBy('semester','ASC')                      
                                                             ->orderBy('kmatkul','ASC')                                                            
                                                             ->get();
@@ -120,8 +115,7 @@ class PenyelenggaraanMatakuliahController extends Controller
                 'kmatkul'=>$v['kmatkul'],
                 'nmatkul'=>$v['nmatkul'],
                 'sks'=>$v['sks'],
-                'semester'=>$v['semester'],
-                'ta_matkul'=>$v['ta'],
+                'semester'=>$v['semester'],                
                 'idsmt'=>$semester_akademik,
                 'tahun'=>$ta,
                 'kjur'=>$prodi_id,

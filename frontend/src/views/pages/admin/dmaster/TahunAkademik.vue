@@ -557,7 +557,7 @@ export default {
         closedialogdetailitem() {
             this.$router.go();
         },
-        closedialogfrm () {
+        closedialogfrm() {
             this.$router.go();
         },
     },

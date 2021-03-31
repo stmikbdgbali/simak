@@ -218,7 +218,7 @@ export default {
                 });
             }
         }, 
-        closedialogfrm () {                  
+        closedialogfrm() {                  
             setTimeout(() => {            
                 this.$router.push("/akademik/perkuliahan/krs/" + this.krs_id + "/detail");
                 }, 300

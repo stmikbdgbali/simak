@@ -69,8 +69,7 @@
 									inset
 									vertical
 								></v-divider>
-								<v-spacer></v-spacer>
-								<v-btn color="primary" dark class="mb-2 mr-2" @click.stop="showDialogCopyMatkul" v-if="$store.getters['auth/can']('AKADEMIK-MATAKULIAH_STORE')">SALIN MATAKULIAH</v-btn>
+								<v-spacer></v-spacer>	
 								<v-btn 
 									color="primary" 
 									dark 
@@ -328,7 +327,7 @@
 											<v-btn color="blue darken-1" text @click.stop="closedialogdetailitem">KELUAR</v-btn>
 										</v-card-actions>
 									</v-card>                 
-								</v-dialog>								
+								</v-dialog>	
 							</v-toolbar>
 						</template>
 						<template v-slot:item.actions="{ item }">
@@ -355,7 +354,7 @@
 						<template v-slot:expanded-item="{ headers, item }">
 							<td :colspan="headers.length" class="text-center">
 								<v-col cols="12">       
-									<strong>ID:</strong>{{ item.id }}          
+									<strong>ID:</strong>{{ item.id }}    
 									<strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
 									<strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
 								</v-col>
@@ -373,7 +372,18 @@
 						<template v-slot:no-data>
 							Data belum tersedia
 						</template>
-					</v-data-table>
+					</v-data-table>	
+				</v-col>
+			</v-row>
+			<v-row>
+				<v-col cols="12">
+					<v-alert>
+						<ul>
+							<li v-for="item in group_matakuliah" v-bind:key="item.id_group">
+								{{ item.group_alias }} - {{ item.nama_group }}
+							</li>
+						</ul>
+					</v-alert>
 				</v-col>
 			</v-row>
 		</v-container>
@@ -412,11 +422,11 @@
 					href: "#",
 				},
 			];
-			let prodi_id = this.$store.getters['uiadmin/getProdiID'];
+			let prodi_id = this.$store.getters["uiadmin/getProdiID"];
 			this.prodi_id = prodi_id;			
-			this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);			
+			this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](prodi_id);			
 			this.initialize();
-		},  
+		},
 		data: () => ({ 
 			firstloading: true,
 			prodi_id: null,
@@ -427,7 +437,7 @@
 			expanded: [],
 			datatable: [],
 			headers: [
-				{ text: "KODE", value: "kmatkul", sortable: true,width:120  },   
+				{ text: "KODE", value: "kmatkul", sortable: true,width:120  }, 
 				{ text: "NAMA MATAKULIAH", value: "nmatkul",sortable: true },
 				{ text: "KELOMPOK", value: "group_alias", sortable: true,width:120 },
 				{ text: "SKS", value: "sks",sortable: true,width:80, align: "center" },
@@ -440,7 +450,6 @@
 			//dialog
 			dialogfrm: false,
 			dialogdetailitem: false,
-			dialogcopymatkul: false,
 
 			//form data   
 			form_valid: true,
@@ -488,11 +497,11 @@
 				"E",
 			],
 			formdata: {
-				id: "",       
-				id_group: null,           
-				nama_group: null,           
+				id: "",
+				id_group: null, 
+				nama_group: null, 
 				group_alias: null,
-				kmatkul: "",    
+				kmatkul: "",
 				nmatkul: "",
 				sks: "",
 				idkonsentrasi: null,
@@ -504,17 +513,16 @@
 				sks_praktik_lapangan: null,
 				minimal_nilai: "C", 
 				syarat_skripsi: true,
-				status: true,
-				ta: "",
+				status: true,				
 				kjur: "",
 				update_penyelenggaraan: false,
 			},
 			formdefault: {
-				id: "",       
-				id_group: null,           
-				nama_group: null,           
+				id: "",
+				id_group: null, 
+				nama_group: null, 
 				group_alias: null,
-				kmatkul: "",    
+				kmatkul: "",
 				nmatkul: "",
 				sks: "",
 				idkonsentrasi: null,
@@ -526,8 +534,7 @@
 				sks_praktik_lapangan: null,
 				minimal_nilai: "C", 
 				syarat_skripsi: true,
-				status: true,
-				ta: "",
+				status: true,				
 				kjur: "", 
 				update_penyelenggaraan: false,
 			},
@@ -535,265 +542,251 @@
 
 			//form rules
 			rule_group_matakuliah: [
-				value => !!value || "Mohon Group Matakuliah untuk dipilih !!!",  
+				value => !!value || "Mohon Group Matakuliah untuk dipilih !!!",
 			],
 			rule_kode_matkul: [
 				value => !!value || "Kode Program Studi mohon untuk diisi !!!",
 			],
 			rule_nama_matakuliah: [
-				value => !!value || "Mohon Nama Program Studi untuk diisi !!!",  
+				value => !!value || "Mohon Nama Program Studi untuk diisi !!!",
 			],
 			rule_sks: [
-				value => !!value || "Mohon SKS Matakuliah untuk dipilih !!!",  
+				value => !!value || "Mohon SKS Matakuliah untuk dipilih !!!",
 			],
 			rule_sks_tatap_muka: [
-				value => !!value || "Mohon SKS Matakuliah Tatap Muka untuk dipilih !!!",  
+				value => !!value || "Mohon SKS Matakuliah Tatap Muka untuk dipilih !!!",
 			],
 			rule_semester: [
-				value => !!value || "Mohon Semester Matakuliah ini diselenggarakan untuk dipilih !!!",  
+				value => !!value || "Mohon Semester Matakuliah ini diselenggarakan untuk dipilih !!!",
 			],
 			rule_minimal_nilai: [
-				value => !!value || "Mohon Minimal nilai kelulusan matakuliah untuk dipilih !!!",  
+				value => !!value || "Mohon Minimal nilai kelulusan matakuliah untuk dipilih !!!",
 			],
 		}),
-		methods: {		
-			changeProdi(id) {
-				this.prodi_id = id;
+	methods: {		
+		changeProdi(id) {
+			this.prodi_id = id;
+		},
+		initialize: async function() {
+			this.datatableLoading = true;
+			await this.$ajax.post("/akademik/matakuliah",
+			{
+				prodi_id: this.prodi_id,
 			},
-			initialize: async function() {
-				this.datatableLoading = true;
-				await this.$ajax.post("/akademik/matakuliah",
-				{
-					prodi_id: this.prodi_id,				
-				},
-				{
-					headers: {
-						Authorization: this.TOKEN
-					}
-				}).then(({ data }) => {    
-					this.datatable = data.matakuliah;
-					this.datatableLoading = false;
-				}).catch(() => {
-					this.datatableLoading = false;
-				});
-				this.firstloading = false;
-				this.$refs.Filter4.setFirstTimeLoading(this.firstloading); 
-			},
-			dataTableRowClicked(item) {
-				if ( item === this.expanded[0])
-				{
-					this.expanded = [];              
+			{
+				headers: {
+					Authorization: this.TOKEN
 				}
-				else
-				{
-					this.expanded = [item];
-				}               
-			},
-			tambahItem: async function() {   
-				await this.$ajax.get("/akademik/groupmatakuliah",
-				{
-					headers: {
-						Authorization: this.TOKEN
-					}
-				}).then(({ data }) => {
-					this.group_matakuliah=data.group_matakuliah;
-				});          
-				this.dialogfrm=true;
-			},
-			async viewItem(item) {
-				this.formdata = item;  
-				await this.$ajax.get("/akademik/matakuliah/" + item.id,
-				{
-					headers: {
-						Authorization: this.TOKEN
-					}
-				}).then(({ data }) => {
-					this.formdata=data.matakuliah;
-				});
-				this.dialogdetailitem = true;                    
-			},
-			editItem: async function(item) { 
-				this.editedIndex = this.datatable.indexOf(item);          
-				await this.$ajax.get("/akademik/groupmatakuliah",
-				{
-					headers: {
-						Authorization: this.TOKEN
-					}
-				}).then(({ data }) => {
-					this.group_matakuliah=data.group_matakuliah;
-				});
+			}).then(({ data }) => {    
+				this.datatable = data.matakuliah;
+				this.datatableLoading = false;
+			}).catch(() => {
+				this.datatableLoading = false;
+			});
+			await this.$ajax.get("/akademik/groupmatakuliah",
+			{
+				headers: {
+					Authorization: this.TOKEN,
+				}
+			}).then(({ data }) => {
+				this.group_matakuliah=data.group_matakuliah;
+			});
+			this.firstloading = false;
+			this.$refs.Filter4.setFirstTimeLoading(this.firstloading); 
+		},
+		dataTableRowClicked(item) {
+			if ( item === this.expanded[0]) {
+				this.expanded = [];
+			} else{
+				this.expanded = [item];
+			}
+		},
+		tambahItem: async function() {	
+			this.dialogfrm=true;
+		},
+		async viewItem(item) {
+			this.formdata = item;  
+			await this.$ajax.get("/akademik/matakuliah/" + item.id,
+			{
+				headers: {
+					Authorization: this.TOKEN,
+				}
+			}).then(({ data }) => {
+				this.formdata=data.matakuliah;
+			});
+			this.dialogdetailitem = true;
+		},
+		editItem: async function(item) { 
+			this.editedIndex = this.datatable.indexOf(item); 
+			await this.$ajax.get("/akademik/groupmatakuliah",
+			{
+				headers: {
+					Authorization: this.TOKEN
+				}
+			}).then(({ data }) => {
+				this.group_matakuliah=data.group_matakuliah;
+			});
 
-				await this.$ajax.get("/akademik/matakuliah/" + item.id,
-				{
-					headers: {
-						Authorization: this.TOKEN
-					}
-				}).then(({ data }) => {
-					this.formdata=data.matakuliah;
-				});
-				this.dialogfrm = true
-			},		
-			save: async function() {
-				if (this.$refs.frmdata.validate()) {
-					this.btnLoading = true;
-					if (this.editedIndex > -1) {
-						await this.$ajax
-						.post("/akademik/matakuliah/" + this.formdata.id,
-							{
-								_method: "PUT",
-								id_group: this.formdata.id_group,           
-								nama_group: this.formdata.nama_group,           
-								group_alias: this.formdata.group_alias,           
-								kmatkul: this.formdata.kmatkul,         
-								nmatkul: this.formdata.nmatkul, 
-								sks: this.formdata.sks, 
-								idkonsentrasi: this.formdata.idkonsentrasi, 
-								ispilihan: this.formdata.ispilihan, 
-								islintas_prodi: this.formdata.islintas_prodi, 
-								semester: this.formdata.semester, 
-								sks_tatap_muka: this.formdata.sks_tatap_muka, 
-								sks_praktikum: this.formdata.sks_praktikum, 
-								sks_praktik_lapangan: this.formdata.sks_praktik_lapangan, 
-								minimal_nilai: this.formdata.minimal_nilai,  
-								syarat_skripsi: this.formdata.syarat_skripsi,   
-								status: this.formdata.status,								
-								kjur: this.formdata.kjur,  
-								update_penyelenggaraan: this.formdata.update_penyelenggaraan,              
-							},
-							{
-								headers: {
-									Authorization: this.TOKEN
-								}
-							}
-						)
-						.then(() => {
-							this.initialize();
-							this.btnLoading = false;
-							this.closedialogfrm();                      
-						})
-						.catch(() => {
-							this.btnLoading = false;
-						});               
-						
-					} else {         
-						await this.$ajax
-						.post("/akademik/matakuliah/store",
-							{
-								id_group: this.formdata.id_group, 
-								nama_group: this.formdata.nama_group,           
-								group_alias: this.formdata.group_alias,                                                              
-								kmatkul: this.formdata.kmatkul,         
-								nmatkul: this.formdata.nmatkul, 
-								sks: this.formdata.sks, 
-								idkonsentrasi: this.formdata.idkonsentrasi, 
-								ispilihan: this.formdata.ispilihan, 
-								islintas_prodi: this.formdata.islintas_prodi, 
-								semester: this.formdata.semester, 
-								sks_tatap_muka: this.formdata.sks_tatap_muka, 
-								sks_praktikum: this.formdata.sks_praktikum, 
-								sks_praktik_lapangan: this.formdata.sks_praktik_lapangan, 
-								minimal_nilai: this.formdata.minimal_nilai,  
-								syarat_skripsi: this.formdata.syarat_skripsi,   
-								status: this.formdata.status,   							
-								kjur: this.prodi_id,                                          
-							},
-							{
-								headers: {
-									Authorization: this.TOKEN,
-								},
-							}
-						)
-						.then(() => {
-							this.initialize();                
-							this.btnLoading = false;
-							this.closedialogfrm();
-						}).catch(() => {
-							this.btnLoading = false;
-						});
-					}
+			await this.$ajax.get("/akademik/matakuliah/" + item.id,
+			{
+				headers: {
+					Authorization: this.TOKEN
 				}
-			},		
-			deleteItem(item) {
-				this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus matakuliah '+item.nmatkul+' ?", { color: "red" }).then((confirm) => {
-					if (confirm) {
-						this.btnLoading = true;
-						this.$ajax
-						.post("/akademik/matakuliah/" + item.id,
-							{
-								_method: "DELETE",
-							},
-							{
-								headers: {
-									Authorization: this.TOKEN,
-								},
+			}).then(({ data }) => {
+				this.formdata=data.matakuliah;
+			});
+			this.dialogfrm = true
+		},
+		save: async function() {
+			if (this.$refs.frmdata.validate()) {
+				this.btnLoading = true;
+				if (this.editedIndex > -1) {
+					await this.$ajax
+					.post("/akademik/matakuliah/" + this.formdata.id,
+						{
+							_method: "PUT",
+							id_group: this.formdata.id_group, 
+							nama_group: this.formdata.nama_group, 
+							group_alias: this.formdata.group_alias, 
+							kmatkul: this.formdata.kmatkul, 
+							nmatkul: this.formdata.nmatkul, 
+							sks: this.formdata.sks, 
+							idkonsentrasi: this.formdata.idkonsentrasi, 
+							ispilihan: this.formdata.ispilihan, 
+							islintas_prodi: this.formdata.islintas_prodi, 
+							semester: this.formdata.semester, 
+							sks_tatap_muka: this.formdata.sks_tatap_muka, 
+							sks_praktikum: this.formdata.sks_praktikum, 
+							sks_praktik_lapangan: this.formdata.sks_praktik_lapangan, 
+							minimal_nilai: this.formdata.minimal_nilai,
+							syarat_skripsi: this.formdata.syarat_skripsi, 
+							status: this.formdata.status,
+							kjur: this.formdata.kjur,
+							update_penyelenggaraan: this.formdata.update_penyelenggaraan, 
+						},
+						{
+							headers: {
+								Authorization: this.TOKEN
 							}
-						)
-						.then(() => {
-							const index = this.datatable.indexOf(item);
-							this.datatable.splice(index, 1);
-							this.btnLoading = false;
-						}).catch(() => {
-							this.btnLoading = false;
-						});
-					}                
-				});
-			},
+						}
+					)
+					.then(() => {
+						this.initialize();
+						this.btnLoading = false;
+						this.closedialogfrm();  
+					})
+					.catch(() => {
+						this.btnLoading = false;
+					}); 
+					
+				} else {         
+					await this.$ajax
+					.post("/akademik/matakuliah/store",
+						{
+							id_group: this.formdata.id_group, 
+							nama_group: this.formdata.nama_group, 
+							group_alias: this.formdata.group_alias, 
+							kmatkul: this.formdata.kmatkul, 
+							nmatkul: this.formdata.nmatkul, 
+							sks: this.formdata.sks, 
+							idkonsentrasi: this.formdata.idkonsentrasi, 
+							ispilihan: this.formdata.ispilihan, 
+							islintas_prodi: this.formdata.islintas_prodi, 
+							semester: this.formdata.semester, 
+							sks_tatap_muka: this.formdata.sks_tatap_muka, 
+							sks_praktikum: this.formdata.sks_praktikum, 
+							sks_praktik_lapangan: this.formdata.sks_praktik_lapangan, 
+							minimal_nilai: this.formdata.minimal_nilai,
+							syarat_skripsi: this.formdata.syarat_skripsi, 
+							status: this.formdata.status, 							
+							kjur: this.prodi_id, 
+						},
+						{
+							headers: {
+								Authorization: this.TOKEN,
+							},
+						}
+					)
+					.then(() => {
+						this.initialize();  
+						this.btnLoading = false;
+						this.closedialogfrm();
+					}).catch(() => {
+						this.btnLoading = false;
+					});
+				}
+			}
+		},
+		deleteItem(item) {
+			this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus matakuliah "+item.nmatkul+" ?", { color: "red" }).then((confirm) => {
+				if (confirm) {
+					this.btnLoading = true;
+					this.$ajax
+					.post("/akademik/matakuliah/" + item.id,
+						{
+							_method: "DELETE",
+						},
+						{
+							headers: {
+								Authorization: this.TOKEN,
+							},
+						}
+					)
+					.then(() => {
+						const index = this.datatable.indexOf(item);
+						this.datatable.splice(index, 1);
+						this.btnLoading = false;
+					}).catch(() => {
+						this.btnLoading = false;
+					});
+				} 
+			});
+		},
 			closedialogdetailitem() {
-				this.dialogdetailitem = false;          
+				this.dialogdetailitem = false; 
 				setTimeout(() => {
 					this.formdata = Object.assign({}, this.formdefault);
 					this.editedIndex = -1;
 				}, 300);
 			},
-			closedialogfrm () {
-				this.dialogfrm = false;          
-				setTimeout(() => {                   
-					this.$refs.frmdata.resetValidation();                               
+			closedialogfrm() {
+				this.dialogfrm = false;
+				setTimeout(() => {
+					this.$refs.frmdata.resetValidation();
 					this.formdata = Object.assign({}, this.formdefault);
 					this.editedIndex = -1;
 				}, 300);
 			},
-			closedialogsalinmatkul () {            
-				this.dialogcopymatkul = false; 
-				setTimeout(() => {     
-					this.$refs.frmdialogcopymatkul.reset();                               
-					this.editedIndex = -1;
-				}, 300);         
-			},
 		},
 		computed: {
-			...mapGetters("auth",{ 
-				ACCESS_TOKEN: "AccessToken",          
-				TOKEN: "Token",     
+			...mapGetters("auth", {
+				ACCESS_TOKEN: "AccessToken",
+				TOKEN: "Token",
 			}),
 			formTitle() {
-				return this.editedIndex === -1 ? "TAMBAH DATA" : "UBAH DATA"
+				return this.editedIndex === -1 ? "TAMBAH DATA" : "UBAH DATA";
 			},
-			totalSKS()
-			{
+			totalSKS() {
 				var total = 0;
-				for (var i =0; i < this.datatable.length; i++)
-				{
+				for (var i = 0; i < this.datatable.length; i++) {
 					var item = this.datatable[i];
-					total=total+parseInt(item.sks);
+					total = total + parseInt(item.sks);
 				}
 				return total;
-			},        
+			},
 		},
-		watch: {			
-			prodi_id(val)
-			{
-				if (!this.firstloading)
-				{
-					this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](val);
+		watch: {
+			prodi_id(val) {
+				if (!this.firstloading) {
+					this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](val);
 					this.initialize();
-				}            
-			}
+				}
+			},
 		},
 		components: {
 			AkademikLayout,
 			ModuleHeader,
 			Filter4,
 		},
-	}
+	};
 </script>

@@ -206,7 +206,7 @@ export default {
                 });                
             }
         },
-        closedialogfrm () {                  
+        closedialogfrm() {                  
             setTimeout(() => {       
                 this.formdata = Object.assign({}, this.formdefault);                              
                 this.$router.push("/akademik/perkuliahan/krs/daftar");

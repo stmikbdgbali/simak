@@ -770,7 +770,7 @@
 					}
 				});
 			},
-			closedialogfrm () {
+			closedialogfrm() {
 				this.dialogfrm = false;
 				setTimeout(() => {
 					this.buktiBayar=null;

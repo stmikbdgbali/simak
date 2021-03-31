@@ -270,8 +270,7 @@ class TranskripKurikulumController  extends Controller
                                         A.n_kual, 
                                         A.n_mutu,
                                         A.n_kuan,
-                                        C.tasmt,
-                                        D.ta_matkul,
+                                        C.tasmt,                                        
                                         E.username,
                                         A.created_at,
                                         A.updated_at

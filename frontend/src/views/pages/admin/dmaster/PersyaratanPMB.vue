@@ -503,7 +503,7 @@ export default {
                 }, 300
             );
         },
-        closedialogfrm () {
+        closedialogfrm() {
             this.dialogfrm = false;          
             setTimeout(() => {                   
                 this.$refs.frmdata.resetValidation();                               
