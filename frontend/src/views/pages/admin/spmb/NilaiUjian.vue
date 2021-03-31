@@ -8,7 +8,7 @@
 				NILAI UJIAN
 			</template>
 			<template v-slot:subtitle v-if="dashboard!='mahasiswabaru'">
-				TAHUN PENDAFTARAN {{tahun_pendaftaran}} - {{nama_prodi}}
+				TAHUN PENDAFTARAN {{ tahun_pendaftaran }} - {{ nama_prodi }}
 			</template>
 			<template v-slot:breadcrumbs>
 				<v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -265,7 +265,7 @@
 				{
 					text: "HOME",
 					disabled: false,
-					href: "/dashboard/" + this.$store.getters['auth/AccessToken']
+					href: "/dashboard/" + this.$store.getters["auth/AccessToken"]
 				},
 				{
 					text: "SPMB",
@@ -280,10 +280,10 @@
 			];
 			this.breadcrumbs[1].disabled = (this.dashboard == 'mahasiswabaru' || this.dashboard == "mahasiswa");
 			
-			let prodi_id = this.$store.getters['uiadmin/getProdiID'];
+			let prodi_id = this.$store.getters["uiadmin/getProdiID"];
 			this.prodi_id = prodi_id;
-			this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
-			this.tahun_pendaftaran = this.$store.getters['uiadmin/getTahunPendaftaran'];
+			this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](prodi_id);
+			this.tahun_pendaftaran = this.$store.getters["uiadmin/getTahunPendaftaran"];
 			this.initialize()   
 		}, 
 		data: () => ({
@@ -433,7 +433,7 @@
 					.then(({ data }) => {   
 						if (data.transaksi_status== 1)
 						{
-							this.dialogfrm=true;
+							this.dialogfrm = true;
 							this.data_mhs=item;
 							this.data_mhs['no_transaksi']=data.no_transaksi;
 							this.daftar_prodi=data.daftar_prodi;

@@ -8,7 +8,7 @@
                 TRANSAKSI
             </template>
             <template v-slot:subtitle>                
-                TAHUN AKADEMIK {{tahun_akademik}} - {{nama_prodi}}
+                TAHUN AKADEMIK {{tahun_akademik}} - {{ nama_prodi }}
             </template>
             <template v-slot:breadcrumbs>
                 <v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -263,9 +263,9 @@ export default {
             }
         ];
         this.breadcrumbs[1].disabled=(this.dashboard=='mahasiswabaru'||this.dashboard == "mahasiswa");
-        let prodi_id = this.$store.getters['uiadmin/getProdiID'];
+        let prodi_id = this.$store.getters["uiadmin/getProdiID"];
         this.prodi_id = prodi_id;
-        this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
+        this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](prodi_id);
         this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];                
     },   
     mounted()
@@ -389,7 +389,7 @@ export default {
         {
             if (!this.firstloading)
             {
-                this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](val);
+                this.nama_prodi=this.$store.getters["uiadmin/getProdiName"](val);
                 this.initialize();
             }            
         },
@@ -425,33 +425,33 @@ export default {
     computed: {
         totaltransaksi_paid()
         {
-            var total=0;
+            var total = 0;
             this.datatable.forEach(item => {
                 if (item.status== 1)
                 {
-                    total+=item.total;
+                    total += item.total;
                 }
             }); 
             return total;
         },
         totaltransaksi_unpaid()
         {
-            var total=0;
+            var total = 0;
             this.datatable.forEach(item => {
-                if (item.status==0)
+                if (item.status == 0)
                 {
-                    total+=item.total;
+                    total += item.total;
                 }
             }); 
             return total;
         },
         totaltransaksi_canceled()
         {
-            var total=0;
+            var total = 0;
             this.datatable.forEach(item => {
-                if (item.status==2)
+                if (item.status == 2)
                 {
-                    total+=item.total;
+                    total += item.total;
                 }
             }); 
             return total;

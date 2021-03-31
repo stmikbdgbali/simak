@@ -8,7 +8,7 @@
 				JADWAL UJIAN PMB
 			</template>
 			<template v-slot:subtitle>
-				TAHUN PENDAFTARAN {{tahun_pendaftaran}} - SEMESTER {{nama_semester_pendaftaran}}
+				TAHUN PENDAFTARAN {{ tahun_pendaftaran }} - SEMESTER {{nama_semester_pendaftaran}}
 			</template>
 			<template v-slot:breadcrumbs>
 				<v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -297,7 +297,7 @@
 				{
 					text: "HOME",
 					disabled: false,
-					href: "/dashboard/" + this.$store.getters['auth/AccessToken'],
+					href: "/dashboard/" + this.$store.getters["auth/AccessToken"],
 				},
 				{
 					text: "SPMB",
@@ -310,7 +310,7 @@
 					href: "#",
 				},
 			];      
-			this.tahun_pendaftaran = this.$store.getters['uiadmin/getTahunPendaftaran'];      
+			this.tahun_pendaftaran = this.$store.getters["uiadmin/getTahunPendaftaran"];      
 			this.semester_pendaftaran = this.$store.getters['uiadmin/getSemesterPendaftaran'];
 			this.nama_semester_pendaftaran = this.$store.getters['uiadmin/getNamaSemester'](this.semester_pendaftaran);
 			this.initialize();
@@ -469,7 +469,7 @@
 				}).then(({ data }) => {    
 					this.daftar_ruangan = data.ruangan;
 					this.btnLoading = false;
-					this.dialogfrm=true;
+					this.dialogfrm = true;
 				}).catch(() => {
 					this.btnLoading = false;
 				});  
@@ -495,7 +495,7 @@
 							this.btnLoading = false;
 							this.editedIndex = this.datatable.indexOf(item);
 							this.formdata = Object.assign({}, item);
-							this.dialogfrm=true;
+							this.dialogfrm = true;
 						}).catch(() => {
 							this.btnLoading = false;
 						});  
@@ -561,7 +561,7 @@
 				}
 			},
 			deleteItem(item) {
-				this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data dengan ID " + item.id + " ?", { color: "red" }).then((confirm) => {
+				this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data dengan ID " + item.id + " ?", { color: "red" }).then(confirm => {
 					if (confirm)
 					{
 						this.btnLoading = true;

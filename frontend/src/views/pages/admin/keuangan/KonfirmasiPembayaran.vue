@@ -8,7 +8,7 @@
 				KONFIRMASI PEMBAYARAN
 			</template>
 			<template v-slot:subtitle>
-				TAHUN AKADEMIK {{tahun_akademik}} - {{nama_prodi}}
+				TAHUN AKADEMIK {{tahun_akademik}} - {{ nama_prodi }}
 			</template>
 			<template v-slot:breadcrumbs>
 				<v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -662,7 +662,7 @@
 				}).then(({ data }) => {
 					this.daftar_channel=data.channel;
 					this.data_transaksi=item;
-					this.dialogfrm=true;
+					this.dialogfrm = true;
 				});
 
 			},
@@ -725,7 +725,7 @@
 			},
 			async verifikasi(item)
 			{
-				this.$root.$confirm.open("Konfirmasi Pembayaran", "Apakah sudah benar data bukti bayar kode billing "+item.no_transaksi + " ?", { color: "primary" }).then((confirm) => {
+				this.$root.$confirm.open("Konfirmasi Pembayaran", "Apakah sudah benar data bukti bayar kode billing "+item.no_transaksi + " ?", { color: "primary" }).then(confirm => {
 					if (confirm) {
 						this.btnLoading = true;
 						this.$ajax.post("/keuangan/transaksi/verifikasi/" + item.id,
@@ -748,7 +748,7 @@
 			},
 			async cancel(item)
 			{
-				this.$root.$confirm.open("Batalkan Transaksi", "Apakah Anda ingin membatalkan transaksi dengan kode billing "+item.no_transaksi + " ?", { color: "red" }).then((confirm) => {
+				this.$root.$confirm.open("Batalkan Transaksi", "Apakah Anda ingin membatalkan transaksi dengan kode billing "+item.no_transaksi + " ?", { color: "red" }).then(confirm => {
 					if (confirm)
 					{
 						this.btnLoading = true;

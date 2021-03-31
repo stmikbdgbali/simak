@@ -66,7 +66,7 @@
 							SPMB
 						</v-card-title>
 						<v-card-subtitle class="white--text font-weight-medium text-center">
-							Modul ini digunakan untuk mengelola Seleksi Penerimaan Mahasiswa Baru (SPMB) tahun {{tahun_pendaftaran}}.
+							Modul ini digunakan untuk mengelola Seleksi Penerimaan Mahasiswa Baru (SPMB) tahun {{ tahun_pendaftaran }}.
 						</v-card-subtitle>
 					</v-card>
 				</v-col>

@@ -8,7 +8,7 @@
                 SOAL PMB
             </template>
             <template v-slot:subtitle>
-                TAHUN PENDAFTARAN {{tahun_pendaftaran}} - {{nama_semester_pendaftaran}}
+                TAHUN PENDAFTARAN {{ tahun_pendaftaran }} - {{nama_semester_pendaftaran}}
             </template>
             <template v-slot:breadcrumbs>
                 <v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -323,7 +323,7 @@ export default {
             {
                 text: "HOME",
                 disabled: false,
-                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters["auth/AccessToken"]
             },
             {
                 text: "SPMB",
@@ -336,7 +336,7 @@ export default {
                 href: "#"
             }
         ];
-        this.tahun_pendaftaran = this.$store.getters['uiadmin/getTahunPendaftaran'];      
+        this.tahun_pendaftaran = this.$store.getters["uiadmin/getTahunPendaftaran"];      
         this.semester_pendaftaran = this.$store.getters['uiadmin/getSemesterPendaftaran'];
         this.nama_semester_pendaftaran=this.$store.getters['uiadmin/getNamaSemester'](this.semester_pendaftaran);
         this.initialize()
@@ -572,7 +572,7 @@ export default {
             }
         },
         deleteItem(item) {
-            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data dengan ID '+item.id+' ?", { color: "red" }).then((confirm) => {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data dengan ID '+item.id+' ?", { color: "red" }).then(confirm => {
                 if (confirm)
                 {
                     this.btnLoading = true;
@@ -665,7 +665,7 @@ export default {
         {
             if (!this.firstloading)
             {
-                this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](val);
+                this.nama_prodi=this.$store.getters["uiadmin/getProdiName"](val);
                 this.initialize();
             }            
         }

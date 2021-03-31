@@ -126,6 +126,7 @@ $router->group(['prefix'=>'v1','middleware'=>'auth:api'], function () use ($rout
 
     //spmb - pendaftaran mahasiswa baru
     $router->post('/spmb/pmb',['middleware'=>['role:superadmin|pmb|keuangan'],'uses'=>'SPMB\PMBController@index','as'=>'pmb.index']);
+    $router->post('/spmb/pmb/search',['middleware'=>['role:superadmin|pmb|keuangan'],'uses'=>'SPMB\PMBController@search','as'=>'pmb.search']);
     $router->post('/spmb/pmb/storependaftar',['middleware'=>['role:superadmin|pmb'],'uses'=>'SPMB\PMBController@storependaftar','as'=>'pmb.storependaftar']);
     $router->post('/spmb/pmb/resend',['middleware'=>['role:superadmin|pmb|mahasiswabaru'],'uses'=>'SPMB\PMBController@resend','as'=>'pmb.resend']);
     $router->put('/spmb/pmb/updatependaftar/{id}',['middleware'=>['role:superadmin|pmb'],'uses'=>'SPMB\PMBController@updatependaftar','as'=>'pmb.updatependaftar']);

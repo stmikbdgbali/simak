@@ -340,7 +340,7 @@ export default {
                     Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({ data }) => {      
-                this.dialogfrm=true;
+                this.dialogfrm = true;
                 this.daftar_dw = data.users; 
                 this.formdata.dosen_id = this.dosen_id;
             }); 

@@ -121,7 +121,7 @@
 				{
 					text: "HOME",
 					disabled: false,
-					href: "/dashboard/" + this.$store.getters['auth/AccessToken']
+					href: "/dashboard/" + this.$store.getters["auth/AccessToken"]
 				},
 				{
 					text: "KEMAHASISWAAN",
@@ -193,7 +193,7 @@
 						value: this.data_mhs[key] || "n/a",
 					}
 				})
-			},    
+			},
 		},
 		watch: {
 			tahun_akademik()
@@ -211,7 +211,7 @@
 						this.isLoading = true 
 						await this.$ajax.post("/kemahasiswaan/profil/search",
 						{
-							search:val,        
+							search:val,
 						},
 						{
 							headers: {
@@ -232,8 +232,8 @@
 		},
 		components: {
 			KemahasiswaanLayout,
-			ModuleHeader,           
-			Filter1,      
+			ModuleHeader, 
+			Filter1,
 		},
 	}
 </script>

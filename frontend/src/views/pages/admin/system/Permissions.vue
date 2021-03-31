@@ -262,7 +262,7 @@ export default {
             }
         },
         deleteItem(item) {   
-            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus permission '+item.name+' ?", { color: "red" }).then((confirm) => {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus permission '+item.name+' ?", { color: "red" }).then(confirm => {
                 if (confirm)
                 {
                     this.btnLoading = true;

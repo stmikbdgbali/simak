@@ -105,7 +105,7 @@ export default {
 			{
 				text: "HOME",
 				disabled: false,
-				href: "/dashboard/" + this.$store.getters['auth/AccessToken']
+				href: "/dashboard/" + this.$store.getters["auth/AccessToken"]
 			},
 			{
 				text: "E-LEARNING",

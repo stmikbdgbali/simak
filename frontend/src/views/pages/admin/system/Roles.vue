@@ -308,7 +308,7 @@ export default {
                     Authorization: this.TOKEN
                 }
             }).then(({data,status}) => {
-                if (status==200)
+                if (status == 200)
                 {
                     this.datatable = data.roles;
                     this.datatableLoading = false;
@@ -337,7 +337,7 @@ export default {
                     Authorization: this.TOKEN
                 }
             }).then(({data,status}) => {
-                if (status==200)
+                if (status == 200)
                 {
                     this.permissions_selected = data.permissions;
                 }                 
@@ -356,7 +356,7 @@ export default {
                     Authorization: this.TOKEN
                 }
             }).then(({data,status}) => {
-                if (status==200)
+                if (status == 200)
                 {
                     this.daftar_permissions = data.permissions;
                 }                 
@@ -367,7 +367,7 @@ export default {
                     Authorization: this.TOKEN
                 }
             }).then(({data,status}) => {
-                if (status==200)
+                if (status == 200)
                 {
                     this.permissions_selected = data.permissions;
                 }                 

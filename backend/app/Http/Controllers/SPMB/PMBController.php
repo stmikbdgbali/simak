@@ -71,7 +71,40 @@ class PMBController extends Controller {
                                 'pmb'=>$data,
                                 'message'=>'Fetch data calon mahasiswa baru berhasil diperoleh'
                             ],200)->setEncodingOptions(JSON_NUMERIC_CHECK);
-    }    
+    }
+    public function search(Request $request)
+    {
+        $this->hasPermissionTo('SPMB-PMB_BROWSE');
+
+        $this->validate($request,[
+            'search'=>'required',
+            'prodi_id'=>'required',
+            'ta'=>'required',
+        ]);
+
+        $data = User::where('default_role','mahasiswabaru')
+                    ->select(\DB::raw('
+                                    users.id,
+                                    users.username,
+                                    users.name,
+                                    users.email,
+                                    users.nomor_hp                                  
+                                '))
+                    ->join('pe3_formulir_pendaftaran','pe3_formulir_pendaftaran.user_id','users.id')
+                    ->where('pe3_formulir_pendaftaran.nama_mhs', 'LIKE', '%'.$request->input('search').'%')
+                    ->where('pe3_formulir_pendaftaran.ta',$request->input('ta'))
+                    ->where('pe3_formulir_pendaftaran.kjur1',$request->input('prodi_id'))
+                    ->where('users.active',1)
+                    ->get();
+
+        return Response()->json([
+                                'status'=>1,
+                                'pid'=>'fetchdata',
+                                'daftar_mhs'=>$data,  
+                                'jumlah'=>$data->count(),                                                                                                                                   
+                                'message'=>'Daftar Calon Mahasiswa baru berhasil diperoleh.'
+                            ], 200); 
+    }
     /**
      * digunakan untuk mendapatkan calon mahasiswa baru yang telah mengisi formulir pendaftaran
      *

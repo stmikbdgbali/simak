@@ -193,7 +193,7 @@ export default {
             this.$router.push("/akademik/dosenwali" + item.id)
         }, 
         deleteItem(item) {
-            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus dosen wali '+item.username+' ?", { color: "red" }).then((confirm) => {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus dosen wali '+item.username+' ?", { color: "red" }).then(confirm => {
                 if (confirm)
                 {
                     this.btnLoading = true;

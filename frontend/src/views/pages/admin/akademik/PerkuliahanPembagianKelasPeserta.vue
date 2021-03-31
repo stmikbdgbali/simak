@@ -79,7 +79,7 @@
                             {{item.jam_masuk}}-{{item.jam_keluar}}
                         </template>
                         <template v-slot:item.kjur="{item}">
-                            {{$store.getters['uiadmin/getProdiName'](item.kjur)}}
+                            {{$store.getters["uiadmin/getProdiName"](item.kjur)}}
                         </template>
                         <template v-slot:item.actions="{ item }">           
                             <v-btn
@@ -227,7 +227,7 @@
                             {{$store.getters['uiadmin/getNamaKelas'](item.idkelas)}}
                         </template>
                         <template v-slot:item.kjur="{item}">
-                            {{$store.getters['uiadmin/getProdiName'](item.kjur)}}
+                            {{$store.getters["uiadmin/getProdiName"](item.kjur)}}
                         </template>
                         <template v-slot:item.actions="{ item }">           
                             <v-btn
@@ -262,7 +262,7 @@ export default {
             {
                 text: "HOME",
                 disabled: false,
-                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters["auth/AccessToken"]
             },
             {
                 text: "AKADEMIK",
@@ -461,7 +461,7 @@ export default {
         },
         deleteMatkul(item)
         {
-            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data matakuliah di kelas ini dengan ID '+item.id+' ?", { color: "red", width:600,'desc': "proses ini juga menghapus seluruh mahasiswa yang mengontrak matakuliah di kelas ini." }).then((confirm) => {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data matakuliah di kelas ini dengan ID '+item.id+' ?", { color: "red", width:600,'desc': "proses ini juga menghapus seluruh mahasiswa yang mengontrak matakuliah di kelas ini." }).then(confirm => {
                 if (confirm)
                 {
                     this.btnLoading = true;
@@ -485,7 +485,7 @@ export default {
         },   
         deletePeserta(item)
         {
-            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data mahasiswa di kelas ini dengan ID '+item.id+' ?", { color: "red" }).then((confirm) => {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data mahasiswa di kelas ini dengan ID '+item.id+' ?", { color: "red" }).then(confirm => {
                 if (confirm)
                 {
                     this.btnLoading = true;

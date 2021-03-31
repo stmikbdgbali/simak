@@ -36,12 +36,12 @@ class KemahasiswaanProfilController extends Controller {
                             ->get();
 
         return Response()->json([
-                                    'status'=>1,
-                                    'pid'=>'fetchdata',
-                                    'daftar_mhs'=>$daftar_mhs,  
-                                    'jumlah'=>$daftar_mhs->count(),                                                                                                                                   
-                                    'message'=>'Daftar Mahasiswa berhasil diperoleh.'
-                                ],200); 
+                                'status'=>1,
+                                'pid'=>'fetchdata',
+                                'daftar_mhs'=>$daftar_mhs,  
+                                'jumlah'=>$daftar_mhs->count(),                                                                                                                                   
+                                'message'=>'Daftar Mahasiswa berhasil diperoleh.'
+                            ], 200); 
     
     }
     /**

@@ -78,7 +78,7 @@ export default {
                     Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({ data }) => {            
-                if (data.status==0)
+                if (data.status == 0)
                 {
                     this.isprosesujian=true;
                     this.nama_soal='UJIAN SELESAI ?';
@@ -111,7 +111,7 @@ export default {
                 }
             }).then(() => {         
                this.btnLoading = false;
-               this.$router.push("/dashboard/" + this.$store.getters['auth/AccessToken']);
+               this.$router.push("/dashboard/" + this.$store.getters["auth/AccessToken"]);
             }).catch(() => {
                 this.btnLoading = false;
             }); 

@@ -8,7 +8,7 @@
                 KARTU RENCANA STUDI
             </template>
             <template v-slot:subtitle v-if="Object.keys(datakrs).length">
-                TAHUN AKADEMIK {{tahun_akademik}} SEMESTER {{$store.getters['uiadmin/getNamaSemester'](semester_akademik)}} - {{nama_prodi}}
+                TAHUN AKADEMIK {{tahun_akademik}} SEMESTER {{$store.getters['uiadmin/getNamaSemester'](semester_akademik)}} - {{ nama_prodi }}
             </template>
             <template v-slot:breadcrumbs>
                 <v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -214,7 +214,7 @@ export default {
             {
                 text: "HOME",
                 disabled: false,
-                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters["auth/AccessToken"]
             },
             {
                 text: "AKADEMIK",
@@ -288,7 +288,7 @@ export default {
                 if (Object.keys(this.datakrs).length)
                 {
                     let prodi_id=this.datakrs.kjur;
-                    this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
+                    this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](prodi_id);
                     this.tahun_akademik=this.datakrs.tahun;
                     this.semester_akademik=this.datakrs.idsmt;
                 }
@@ -302,7 +302,7 @@ export default {
                     Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({ data }) => {
-                this.dialogfrm=true;
+                this.dialogfrm = true;
                 this.datamatkul=item;
                 this.daftar_kelas=data.daftarkelas;
                 this.formdata.kelas_mhs_id=item.kelas_mhs_id;
@@ -333,7 +333,7 @@ export default {
         },
         deleteItem (item)
         {
-            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus matakuliah ("+item.nmatkul+") ?", { color: "red", width: 600,'desc': "proses ini juga menghapus seluruh data yang terkait dengan matkul ini." }).then((confirm) => {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus matakuliah ("+item.nmatkul+") ?", { color: "red", width: 600,'desc': "proses ini juga menghapus seluruh data yang terkait dengan matkul ini." }).then(confirm => {
                 if (confirm)
                 {
                     this.btnLoadingTable=true;

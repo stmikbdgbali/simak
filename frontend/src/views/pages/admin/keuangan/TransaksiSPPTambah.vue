@@ -83,7 +83,7 @@
                                     <v-card flat>
                                         <v-card-title>PROGRAM STUDI:</v-card-title>
                                         <v-card-subtitle>
-                                            {{this.$store.getters['uiadmin/getProdiName'](data_transaksi.kjur)}}
+                                            {{this.$store.getters["uiadmin/getProdiName"](data_transaksi.kjur)}}
                                         </v-card-subtitle>
                                     </v-card>
                                 </v-col>
@@ -142,7 +142,7 @@
                                         vertical
                                     ></v-divider>
                                     <v-spacer></v-spacer>    
-                                    <v-btn color="primary" class="mb-2" @click.stop="save" :disabled="!(item_selected.length >0) || (data_transaksi.status== 1 || data_transaksi.status==2)" >SIMPAN</v-btn>                       
+                                    <v-btn color="primary" class="mb-2" @click.stop="save" :disabled="!(item_selected.length >0) || (data_transaksi.status== 1 || data_transaksi.status == 2)" >SIMPAN</v-btn>                       
                                 </v-toolbar>
                             </template>   
                             <template v-slot:item.biaya_kombi="{ item }">  
@@ -173,7 +173,7 @@
                     </v-form>
                 </v-col>
             </v-row>
-            <v-row class="mb-4" no-gutters v-if="data_transaksi.status==0">
+            <v-row class="mb-4" no-gutters v-if="data_transaksi.status == 0">
                 <v-col cols="12">
                     <v-data-table
                         :headers="headers"
@@ -246,7 +246,7 @@ export default {
             {
                 text: "HOME",
                 disabled: false,
-                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters["auth/AccessToken"]
             },
             {
                 text: "KEUANGAN",
@@ -332,7 +332,7 @@ export default {
             }
         },    
         deleteItem(item) {
-            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data dengan ID '+item.id+' ?", { color: "red" }).then((confirm) => {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data dengan ID '+item.id+' ?", { color: "red" }).then(confirm => {
                 if (confirm)
                 {
                     this.btnLoading = true;

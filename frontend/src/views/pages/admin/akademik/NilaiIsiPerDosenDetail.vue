@@ -92,7 +92,7 @@
                                 {{$store.getters['uiadmin/getNamaKelas'](item.idkelas)}}
                             </template>
                             <template v-slot:item.kjur="{item}">
-                                {{$store.getters['uiadmin/getProdiName'](item.kjur)}}
+                                {{$store.getters["uiadmin/getProdiName"](item.kjur)}}
                             </template>             
                             <template v-slot:item.nilai_absen="props"> 
                                 <VAngkaNilai 
@@ -195,7 +195,7 @@ export default {
             {
                 text: "HOME",
                 disabled: false,
-                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters["auth/AccessToken"]
             },
             {
                 text: "AKADEMIK",

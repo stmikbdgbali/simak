@@ -8,7 +8,7 @@
 				MATAKULIAH
 			</template>
 			<template v-slot:subtitle>
-				PROGRAM STUDI {{nama_prodi}}
+				PROGRAM STUDI {{ nama_prodi }}
 			</template>
 			<template v-slot:breadcrumbs>
 				<v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -602,7 +602,7 @@
 			}
 		},
 		tambahItem: async function() {	
-			this.dialogfrm=true;
+			this.dialogfrm = true;
 		},
 		async viewItem(item) {
 			this.formdata = item;  
@@ -718,7 +718,7 @@
 			}
 		},
 		deleteItem(item) {
-			this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus matakuliah "+item.nmatkul+" ?", { color: "red" }).then((confirm) => {
+			this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus matakuliah "+item.nmatkul+" ?", { color: "red" }).then(confirm => {
 				if (confirm) {
 					this.btnLoading = true;
 					this.$ajax

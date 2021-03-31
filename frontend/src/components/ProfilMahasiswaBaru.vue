@@ -204,7 +204,7 @@ export default {
                 }, 
             ).then(({ data }) => {   
                 this.datamhs=Object.assign(data.formulir,{
-                                                            nama_prodi: this.$store.getters['uiadmin/getProdiName'](data.formulir.kjur1),
+                                                            nama_prodi: this.$store.getters["uiadmin/getProdiName"](data.formulir.kjur1),
                                                             nama_kelas: this.$store.getters['uiadmin/getNamaKelas'](data.formulir.idkelas)
                                                         }); 
             });

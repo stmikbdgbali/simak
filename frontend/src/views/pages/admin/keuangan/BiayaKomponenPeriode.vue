@@ -8,7 +8,7 @@
 				BIAYA KOMPONEN PER PERIODE
 			</template>
 			<template v-slot:subtitle>
-				TAHUN PENDAFTARAN {{tahun_pendaftaran}} - PROGRAM STUDI {{nama_prodi}}
+				TAHUN PENDAFTARAN {{ tahun_pendaftaran }} - PROGRAM STUDI {{ nama_prodi }}
 			</template>
 			<template v-slot:breadcrumbs>
 				<v-breadcrumbs :items="breadcrumbs" class="pa-0">

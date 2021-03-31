@@ -208,7 +208,7 @@ export default {
             {
                 text: "HOME",
                 disabled: false,
-                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters["auth/AccessToken"]
             },
             {
                 text: "AKADEMIK",
@@ -400,7 +400,7 @@ export default {
         },        
         deleteItem (item)
         {
-            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus pembagian kelas matakuliah ("+item.nmatkul+") ?", { color: "red", width: 600,'desc': "proses ini membuat mahasiswa tidak memiliki kelas." }).then((confirm) => {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus pembagian kelas matakuliah ("+item.nmatkul+") ?", { color: "red", width: 600,'desc': "proses ini membuat mahasiswa tidak memiliki kelas." }).then(confirm => {
                 if (confirm)
                 {
                     this.btnLoadingTable=true;

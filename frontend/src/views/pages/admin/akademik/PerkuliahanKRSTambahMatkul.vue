@@ -8,7 +8,7 @@
                 KARTU RENCANA STUDI
             </template>
             <template v-slot:subtitle v-if="Object.keys(datakrs).length">
-                TAHUN AKADEMIK {{tahun_akademik}} SEMESTER {{$store.getters['uiadmin/getNamaSemester'](semester_akademik)}} - {{nama_prodi}}
+                TAHUN AKADEMIK {{tahun_akademik}} SEMESTER {{$store.getters['uiadmin/getNamaSemester'](semester_akademik)}} - {{ nama_prodi }}
             </template>
             <template v-slot:breadcrumbs>
                 <v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -100,7 +100,7 @@ export default {
             {
                 text: "HOME",
                 disabled: false,
-                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters["auth/AccessToken"]
             },
             {
                 text: "AKADEMIK",
@@ -166,7 +166,7 @@ export default {
                 if (Object.keys(this.datakrs).length)
                 {
                     let prodi_id=this.datakrs.kjur;                  
-                    this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);              
+                    this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](prodi_id);              
                     this.tahun_akademik=this.datakrs.tahun;                                                    
                     this.semester_akademik=this.datakrs.idsmt;                      
                 }

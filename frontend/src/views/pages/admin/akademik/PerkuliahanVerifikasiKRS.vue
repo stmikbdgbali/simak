@@ -8,7 +8,7 @@
                 VERIFIKASI KRS (KARTU RENCANA STUDI)
             </template>
             <template v-slot:subtitle>
-                TAHUN AKADEMIK {{tahun_akademik}} SEMESTER {{$store.getters['uiadmin/getNamaSemester'](semester_akademik)}} - {{nama_prodi}}
+                TAHUN AKADEMIK {{tahun_akademik}} SEMESTER {{$store.getters['uiadmin/getNamaSemester'](semester_akademik)}} - {{ nama_prodi }}
             </template>
             <template v-slot:breadcrumbs>
                 <v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -175,7 +175,7 @@ export default {
             {
                 text: "HOME",
                 disabled: false,
-                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters["auth/AccessToken"]
             },
             {
                 text: "AKADEMIK",
@@ -199,9 +199,9 @@ export default {
         }   
         else
         {
-            let prodi_id = this.$store.getters['uiadmin/getProdiID'];
+            let prodi_id = this.$store.getters["uiadmin/getProdiID"];
             this.prodi_id = prodi_id;
-            this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
+            this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](prodi_id);
             this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];              
             this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];                          
         }     
@@ -372,7 +372,7 @@ export default {
         {
             if (!this.firstloading)
             {
-                this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](val);
+                this.nama_prodi=this.$store.getters["uiadmin/getProdiName"](val);
                 this.initialize();
             }            
         },    
