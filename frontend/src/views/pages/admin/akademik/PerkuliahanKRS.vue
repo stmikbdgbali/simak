@@ -122,7 +122,7 @@
                             <v-btn
                                 small
                                 icon
-                                :loading="btnLoading"
+                                
                                 :disabled="btnLoading"
                                 @click.stop="printpdf(item)">
                                 <v-icon>
@@ -169,7 +169,7 @@
 <script>
 import AkademikLayout from "@/views/layouts/AkademikLayout";
 import ModuleHeader from "@/components/ModuleHeader";
-import Filter6 from '@/components/sidebar/FilterMode6';
+import Filter6 from "@/components/sidebar/FilterMode6";
 export default {
     name: "PerkuliahanKRS",
     created() {
@@ -395,7 +395,7 @@ export default {
                             headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
-                        }).then(({ data })=>{    
+                        }).then(({ data }) => {    
                             this.datatable = data.daftar_krs;
                             this.datatableLoading = false;
                         });                   

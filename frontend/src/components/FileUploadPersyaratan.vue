@@ -35,7 +35,7 @@
                     color="orange"
                     text
                     @click="upload(index,item)"
-                    :loading="btnLoading"                                
+                                                    
                     :disabled="btnLoading||btnSimpan"
                     v-if="verified == 0">                
                     Simpan
@@ -44,7 +44,7 @@
                     color="orange"
                     text
                     @click="hapusfilepersysaratan(item)"
-                    :loading="btnLoading"                                
+                                                    
                     :disabled="btnLoading||btnHapus"
                     v-if="verified == 0">
                     Hapus
@@ -53,7 +53,7 @@
                     color="orange"
                     text
                     @click="verifikasipersyaratan(item)"
-                    :loading="btnLoading"                                
+                                                    
                     :disabled="btnLoading||btnVerifikasi" 
                     v-if="dashboard != 'mahasiswabaru' && dashboard != 'mahasiswa' && verified == 0">                
                     Verifikasi

@@ -64,7 +64,7 @@
                                     color="blue darken-1" 
                                     text 
                                     @click.stop="save" 
-                                    :loading="btnLoading"
+                                    
                                     :disabled="!form_valid||btnLoading">
                                         BUAT
                                 </v-btn>
@@ -198,7 +198,7 @@ export default {
                     headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     }
-                }).then(({ data })=>{    
+                }).then(({ data }) => {    
                     this.$router.push("/akademik/perkuliahan/krs/" + data.krs.id + "/detail");
                     this.btnLoading = false;
                 }).catch(() => {
@@ -206,7 +206,7 @@ export default {
                 });                
             }
         },
-        closedialogfrm () {                  
+        closedialogfrm() {                  
             setTimeout(() => {       
                 this.formdata = Object.assign({}, this.formdefault);                              
                 this.$router.push("/akademik/perkuliahan/krs/daftar");

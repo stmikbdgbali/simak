@@ -98,7 +98,7 @@
                                         x-small 
                                         class="ma-1" 
                                         @click.stop="viewItem(item)"
-                                        :loading="btnLoading"
+                                        
                                         :disabled="btnLoading">
                                         <v-icon>mdi-eye</v-icon>
                                     </v-btn>     
@@ -115,7 +115,7 @@
                                         x-small 
                                         class="ma-1" 
                                         @click.stop="editItem(item)"
-                                        :loading="btnLoading"
+                                        
                                         :disabled="btnLoading">
                                         <v-icon>mdi-pencil</v-icon>
                                     </v-btn>     
@@ -132,7 +132,7 @@
                                         x-small 
                                         class="ma-1" 
                                         @click.stop="printpdf1(item)"
-                                        :loading="btnLoading"
+                                        
                                         :disabled="btnLoading">
                                         <v-icon>mdi-printer</v-icon>
                                     </v-btn>     
@@ -149,7 +149,7 @@
                                         x-small 
                                         class="ma-1" 
                                         @click.stop="deleteItem(item)"
-                                        :loading="btnLoading"
+                                        
                                         :disabled="btnLoading">
                                         <v-icon>mdi-delete</v-icon>
                                     </v-btn>     
@@ -197,7 +197,7 @@
 <script>
 import AkademikLayout from "@/views/layouts/AkademikLayout";
 import ModuleHeader from "@/components/ModuleHeader";
-import Filter7 from '@/components/sidebar/FilterMode7';
+import Filter7 from "@/components/sidebar/FilterMode7";
 export default {
     name: "NilaiKonversi",
     created() {
@@ -276,7 +276,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{    
+            }).then(({ data }) => {    
                 this.datatable = data.mahasiswa;
                 this.datatableLoading = false;
             }).catch(() => {

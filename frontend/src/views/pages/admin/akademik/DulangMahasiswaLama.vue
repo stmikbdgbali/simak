@@ -83,7 +83,7 @@
                         <template v-slot:item.actions="{ item }" v-else>
                            <v-icon
                                 small
-                                :loading="btnLoading"
+                                
                                 :disabled="btnLoading"
                                 @click.stop="deleteItem(item)">
                                 mdi-delete
@@ -110,7 +110,7 @@
 <script>
 import AkademikLayout from "@/views/layouts/AkademikLayout";
 import ModuleHeader from "@/components/ModuleHeader";
-import Filter6 from '@/components/sidebar/FilterMode6';
+import Filter6 from "@/components/sidebar/FilterMode6";
 export default {
     name: "DulangMahasiswaBaru",
     created() {
@@ -194,7 +194,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{    
+            }).then(({ data }) => {    
                 this.datatable = data.mahasiswa;
                 this.datatableLoading = false;
             }).catch(() => {
@@ -239,7 +239,7 @@ export default {
                 }                
             });
         },
-        closedialogfrm () { 
+        closedialogfrm() { 
             this.dialogfrm = false;          
             setTimeout(() => {       
                 this.formdata = Object.assign({}, this.formdefault);                              

@@ -107,7 +107,7 @@
                                 fab 
                                 small
                                 @click.stop="printpdf"
-                                :loading="btnLoading"
+                                
                                 :disabled="btnLoading || !datakrs.hasOwnProperty('id')">
                                 <v-icon>mdi-printer</v-icon>
                             </v-btn>                  

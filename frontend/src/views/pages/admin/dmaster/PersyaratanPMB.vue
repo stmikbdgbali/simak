@@ -100,7 +100,7 @@
                                                     color="blue darken-1" 
                                                     text 
                                                     @click.stop="save" 
-                                                    :loading="btnLoading"
+                                                    
                                                     :disabled="!form_valid||btnLoading">
                                                         SIMPAN
                                                 </v-btn>
@@ -207,7 +207,7 @@
                                                         color="blue darken-1" 
                                                         text 
                                                         @click.stop="salinpersyaratan" 
-                                                        :loading="btnLoading"
+                                                        
                                                         :disabled="!form_valid||btnLoading">
                                                             SALIN
                                                     </v-btn>
@@ -232,7 +232,7 @@
                             </v-icon>
                             <v-icon
                                 small
-                                :loading="btnLoading"
+                                
                                 :disabled="btnLoading"
                                 @click.stop="deleteItem(item)">
                                 mdi-delete
@@ -352,7 +352,7 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data })=>{    
+            }).then(({ data }) => {    
                 this.datatable = data.persyaratan;
                 this.datatableLoading = false;
             }).catch(() => {
@@ -462,7 +462,7 @@ export default {
                             Authorization: this.TOKEN
                         }
                     }
-                ).then(({ data })=>{   
+                ).then(({ data }) => {   
                     this.datatable=data.persyaratan;
                     this.btnLoading = false;
                     this.closedialogsalinpersyaratan();
@@ -503,7 +503,7 @@ export default {
                 }, 300
             );
         },
-        closedialogfrm () {
+        closedialogfrm() {
             this.dialogfrm = false;          
             setTimeout(() => {                   
                 this.$refs.frmdata.resetValidation();                               

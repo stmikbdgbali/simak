@@ -161,7 +161,7 @@
                                     color="blue darken-1" 
                                     text 
                                     @click.stop="save" 
-                                    :loading="btnLoading"
+                                    
                                     :disabled="btnLoading">
                                         SIMPAN
                                 </v-btn>

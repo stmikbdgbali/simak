@@ -168,7 +168,7 @@
                                                     color="blue darken-1" 
                                                     text 
                                                     @click.stop="changeDosenWali" 
-                                                    :loading="btnLoading"
+                                                    
                                                     :disabled="!form_valid||btnLoading">
                                                         GANTI
                                                 </v-btn>
@@ -306,7 +306,7 @@ export default {
                     }
                 },
                 
-            ).then(({ data })=>{   
+            ).then(({ data }) => {   
                 this.data_dosen=data.biodatadiri;                                         
             });     
 
@@ -314,7 +314,7 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data })=>{    
+            }).then(({ data }) => {    
                 this.daftar_mahasiswa = data.daftar_mahasiswa;              
                 this.datatableLoading = false;
             });        
@@ -365,7 +365,7 @@ export default {
                 this.btnLoading = false;
             });
         },    
-        closedialogfrm () { 
+        closedialogfrm() { 
             this.dialogfrm = false;          
             setTimeout(() => {       
                 this.formdata = Object.assign({}, this.formdefault);                              

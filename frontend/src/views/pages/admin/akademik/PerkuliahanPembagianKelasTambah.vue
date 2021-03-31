@@ -156,7 +156,7 @@
                                     color="blue darken-1"
                                     text
                                     @click.stop="save"
-                                    :loading="btnLoading"
+                                    
                                     :disabled="!form_valid||btnLoading||dosen_id==null">
                                         BUAT
                                 </v-btn>
@@ -313,7 +313,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{
+            }).then(({ data }) => {
                 this.daftar_dosen = data.dosen;
             });
 
@@ -321,7 +321,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{
+            }).then(({ data }) => {
                 this.daftar_ruang_kelas = data.ruangan;
             });
 
@@ -330,7 +330,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{
+            }).then(({ data }) => {
                 this.daftar_zoom = data.zoom;
             });
             
@@ -383,7 +383,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{
+            }).then(({ data }) => {
                 this.daftar_matakuliah = data.matakuliah;
 
                 this.daftar_kelas=this.$store.getters['uiadmin/getDaftarKelas'];

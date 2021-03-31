@@ -98,7 +98,7 @@
                                                     color="blue darken-1" 
                                                     text 
                                                     @click.stop="save" 
-                                                    :loading="btnLoading"
+                                                    
                                                     :disabled="!form_valid||btnLoading">
                                                         SIMPAN
                                                 </v-btn>
@@ -156,7 +156,7 @@
                             </v-icon>
                             <v-icon
                                 small
-                                :loading="btnLoading"
+                                
                                 :disabled="btnLoading"
                                 @click.stop="deleteItem(item)">
                                 mdi-delete
@@ -251,7 +251,7 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data })=>{    
+            }).then(({ data }) => {    
                 this.datatable = data.fakultas;
                 this.datatableLoading = false;
             }).catch(() => {
@@ -296,7 +296,7 @@ export default {
                                 Authorization: this.TOKEN
                             }
                         }
-                    ).then(({ data })=>{   
+                    ).then(({ data }) => {   
                         Object.assign(this.datatable[this.editedIndex],data.fakultas);
                         this.closedialogfrm();
                         this.btnLoading = false;
@@ -315,7 +315,7 @@ export default {
                                 Authorization: this.TOKEN
                             }
                         }
-                    ).then(({ data })=>{   
+                    ).then(({ data }) => {   
                         this.datatable.push(data.fakultas);                      
                         this.btnLoading = false;
                         this.closedialogfrm();
@@ -357,7 +357,7 @@ export default {
                 }, 300
             );
         },
-        closedialogfrm () {
+        closedialogfrm() {
             this.dialogfrm = false;
             this.$refs.frmdata.reset(); 
             setTimeout(() => {

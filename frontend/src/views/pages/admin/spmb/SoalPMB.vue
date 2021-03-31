@@ -140,7 +140,7 @@
                                                     color="blue darken-1" 
                                                     text 
                                                     @click.stop="save" 
-                                                    :loading="btnLoading"
+                                                    
                                                     :disabled="!form_valid||btnLoading">
                                                         SIMPAN
                                                 </v-btn>
@@ -188,7 +188,7 @@
                                                     color="blue darken-1" 
                                                     text 
                                                     @click.stop="save" 
-                                                    :loading="btnLoading"
+                                                    
                                                     :disabled="!form_valid||btnLoading">
                                                         SIMPAN
                                                 </v-btn>
@@ -285,7 +285,7 @@
                             </v-icon>
                             <v-icon
                                 small
-                                :loading="btnLoading"
+                                
                                 :disabled="btnLoading"
                                 @click.stop="deleteItem(item)">
                                 mdi-delete
@@ -452,7 +452,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{             
+            }).then(({ data }) => {             
                 this.datatable = data.soal;
                 this.datatableLoading = false;
             }).catch(() => {
@@ -477,7 +477,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{         
+            }).then(({ data }) => {         
                 this.formdata = item;  
                 this.dialogdetailitem = true;          
                 this.daftar_soal_jawaban=data.soal.jawaban;
@@ -488,7 +488,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{          
+            }).then(({ data }) => {          
                 this.editedIndex = this.datatable.indexOf(item);
                 this.formdata = Object.assign({}, item);
                 this.dialogeditfrm = true;
@@ -535,7 +535,7 @@ export default {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
-                    ).then(({ data })=>{   
+                    ).then(({ data }) => {   
                         Object.assign(this.datatable[this.editedIndex],data.soal);
                         this.closedialogeditfrm();
                         this.btnLoading = false;
@@ -561,7 +561,7 @@ export default {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
-                    ).then(({ data })=>{   
+                    ).then(({ data }) => {   
                         this.datatable.push(data.soal);
                         this.closedialogfrm();
                         this.btnLoading = false;
@@ -604,7 +604,7 @@ export default {
                 }, 300
             );
         },
-        closedialogfrm () {
+        closedialogfrm() {
             this.dialogfrm = false;          
             setTimeout(() => {
                 this.formdata = Object.assign({}, this.formdefault);

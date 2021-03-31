@@ -78,7 +78,7 @@
                             <v-icon
                                 small
                                 class="mr-2"
-                                :loading="btnLoading"
+                                
                                 :disabled="btnLoading"
                                 @click.stop="viewItem(item)"
                             >
@@ -86,7 +86,7 @@
                             </v-icon>
                             <v-icon
                                 small
-                                :loading="btnLoading"
+                                
                                 :disabled="btnLoading"
                                 @click.stop="deleteItem(item)"
                             >
@@ -171,7 +171,7 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data })=>{    
+            }).then(({ data }) => {    
                 this.daftar_users = data.users;
                 this.role_id=data.role.id;
                 this.datatableLoading = false;

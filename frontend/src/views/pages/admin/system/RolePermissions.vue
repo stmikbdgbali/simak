@@ -85,7 +85,7 @@
 									<template v-slot:activator="{on,attrs}">
 										<v-btn 
 											icon                                        
-											:loading="btnLoading"
+											
 											:disabled="btnLoading"
 											v-bind="attrs"
 											v-on="on"
@@ -109,7 +109,7 @@
 			<v-btn 
 				color="blue darken-1" 
 				text 
-				:loading="btnLoading"
+				
 				:disabled="btnLoading||!perm_selected.length > 0"
 				@click.stop="save">
 					SIMPAN

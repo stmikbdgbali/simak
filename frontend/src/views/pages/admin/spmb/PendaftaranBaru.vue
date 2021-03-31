@@ -68,7 +68,7 @@
 														<v-toolbar flat color="white">             
 																<v-spacer></v-spacer>
 																<v-btn 
-																		:loading="btnLoading"
+																		
 																		:disabled="btnLoading"
 																		color="warning" 
 																		class="mb-2 mr-2" 
@@ -164,7 +164,7 @@
 																										color="blue darken-1" 
 																										text 
 																										@click.stop="save" 
-																										:loading="btnLoading"
+																										
 																										:disabled="!form_valid||btnLoading">
 																												SIMPAN
 																								</v-btn>
@@ -247,7 +247,7 @@
 																														Klik tombol berikut ini untuk mengirim ulang email konfirmasi pendaftaran
 																												</v-card-subtitle>
 																												<v-card-text>
-																														<v-btn small color="primary" @click.stop="resend(formdata.id)" class="mb-2" :loading="btnLoading">KIRIM ULANG</v-btn>
+																														<v-btn small color="primary" @click.stop="resend(formdata.id)" class="mb-2" >KIRIM ULANG</v-btn>
 																												</v-card-text>
 																										</v-card>
 																								</v-col>           
@@ -265,7 +265,7 @@
 														<v-icon
 																small
 																class="mr-2"
-																:loading="btnLoading"
+																
 																:disabled="btnLoading"
 																@click.stop="viewItem(item)"
 														>
@@ -274,7 +274,7 @@
 														<v-icon
 																small
 																class="mr-2"
-																:loading="btnLoading"
+																
 																:disabled="btnLoading"
 																@click.stop="editItem(item)"
 														>
@@ -282,7 +282,7 @@
 														</v-icon>
 														<v-icon
 																small
-																:loading="btnLoading"
+																
 																:disabled="btnLoading"
 																@click.stop="deleteItem(item)"
 														>
@@ -319,7 +319,7 @@
 																				class="primary" 
 																				@click.stop="aktifkan(item.id)"                                         
 																				:disabled="btnLoading"
-																				:loading="btnLoading">
+																				>
 																						<v-icon>mdi-email-check</v-icon>
 																						VERIFIFIKASI EMAIL
 																		</v-btn>
@@ -341,7 +341,7 @@
 <script>
 	import SPMBLayout from "@/views/layouts/SPMBLayout";
 	import ModuleHeader from "@/components/ModuleHeader";
-	import Filter7 from '@/components/sidebar/FilterMode7';
+	import Filter7 from "@/components/sidebar/FilterMode7";
 	export default {
 			name: "PendaftaranBaru",  
 			created() {
@@ -480,7 +480,7 @@
 									headers: {
 											Authorization: this.$store.getters["auth/Token"]
 									}
-							}).then(({ data })=>{    
+							}).then(({ data }) => {    
 									this.datatable = data.pmb;              
 									this.datatableLoading = false;
 							});        
@@ -554,13 +554,13 @@
 
 							if (this.$store.getters['uifront/getBentukPT']== "universitas")
 							{     
-									await this.$ajax.get("/datamaster/fakultas").then(({ data })=>{         
+									await this.$ajax.get("/datamaster/fakultas").then(({ data }) => {         
 											this.daftar_fakultas=data.fakultas;
 									});
 							}
 							else
 							{
-									await this.$ajax.get("/datamaster/programstudi").then(({ data })=>{
+									await this.$ajax.get("/datamaster/programstudi").then(({ data }) => {
 											this.daftar_prodi=data.prodi;
 									});
 							}   
@@ -612,7 +612,7 @@
 																	Authorization: this.$store.getters["auth/Token"]
 															}
 													}
-											).then(({ data })=>{                
+											).then(({ data }) => {                
 													this.datatable.push(data.pendaftar);
 													this.closedialogfrm();
 													this.btnLoading = false;                      
@@ -652,16 +652,16 @@
 							this.daftar_ta = this.$store.getters['uiadmin/getDaftarTA'];
 							if (this.$store.getters['uifront/getBentukPT']== "universitas")
 							{     
-									await this.$ajax.get("/datamaster/fakultas").then(({ data })=>{         
+									await this.$ajax.get("/datamaster/fakultas").then(({ data }) => {         
 											this.daftar_fakultas=data.fakultas;
 									});
-									await this.$ajax.get("/datamaster/programstudi").then(({ data })=>{
+									await this.$ajax.get("/datamaster/programstudi").then(({ data }) => {
 											this.daftar_prodi=data.prodi;
 									});
 							}
 							else
 							{
-									await this.$ajax.get("/datamaster/programstudi").then(({ data })=>{
+									await this.$ajax.get("/datamaster/programstudi").then(({ data }) => {
 											this.daftar_prodi=data.prodi;
 									});
 							}   
@@ -671,7 +671,7 @@
 													Authorization: this.$store.getters["auth/Token"]
 											}
 									}
-							).then(({ data })=>{
+							).then(({ data }) => {
 									this.registered = data.status== 1;                                      
 									this.dialogfrm = true; 
 							this.dialogfrm = true;
@@ -711,7 +711,7 @@
 									}, 300
 							);
 					},
-					closedialogfrm () {
+					closedialogfrm() {
 							this.dialogfrm = false;          
 							setTimeout(() => {
 									this.formdata = Object.assign({}, this.formdefault);              
@@ -764,7 +764,7 @@
 															headers: {
 																	Authorization: this.$store.getters["auth/Token"]
 															}
-													}).then(({ data })=>{    
+													}).then(({ data }) => {    
 															this.datatable = data.pmb;              
 															this.datatableLoading = false;
 													});                   

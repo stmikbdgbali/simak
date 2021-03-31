@@ -15,7 +15,24 @@ class ProgramStudiController extends Controller {
      */
     public function index(Request $request)
     {
-        $prodi=ProgramStudiModel::select(\DB::raw('id,kode_prodi,nama_prodi,CONCAT(nama_prodi,\' (\',nama_jenjang,\')\') AS nama_prodi2,nama_prodi_alias,kode_jenjang,nama_jenjang,pe3_fakultas.kode_fakultas,nama_fakultas,pe3_prodi.config'))
+        $prodi=ProgramStudiModel::select(\DB::raw('
+                                    id,
+                                    kode_forlap,
+                                    nama_prodi,
+                                    CASE 
+                                        WHEN konsentrasi IS NULL THEN CONCAT(nama_prodi,\' (\',nama_jenjang,\')\')
+                                        WHEN konsentrasi IS NOT NULL THEN CONCAT(nama_prodi_alias,\' Kons. \',konsentrasi,\' (\',nama_jenjang,\')\')                                        
+                                    END AS nama_prodi2,                                    
+                                    nama_prodi_alias,
+                                    COALESCE(konsentrasi,"N.A") AS konsentrasi,
+                                    kode_jenjang,
+                                    nama_jenjang,
+                                    pe3_fakultas.kode_fakultas,
+                                    nama_fakultas,
+                                    pe3_prodi.config,
+                                    created_at,
+                                    updated_at
+                                '))
                                 ->leftJoin('pe3_fakultas','pe3_fakultas.kode_fakultas','pe3_prodi.kode_fakultas')
                                 ->get();
 
@@ -36,11 +53,14 @@ class ProgramStudiController extends Controller {
     {
         $this->hasPermissionTo('DMASTER-PRODI_STORE');
 
+        $custom_atribute = [];
+
         $bentuk_pt=ConfigurationModel::getCache('BENTUK_PT');
         if ($bentuk_pt=='sekolahtinggi')
         {
             $rule=[            
-                'kode_prodi'=>'required|numeric|unique:pe3_prodi',
+                'id'=>'required|numeric|unique:pe3_prodi',
+                'kode_forlap'=>'required|numeric',
                 'nama_prodi'=>'required|string|unique:pe3_prodi',            
                 'nama_prodi_alias'=>'required|string|unique:pe3_prodi',            
                 'kode_jenjang'=>'required|exists:pe3_jenjang_studi,kode_jenjang',            
@@ -51,7 +71,8 @@ class ProgramStudiController extends Controller {
         else
         {
             $rule=[            
-                'kode_prodi'=>'required|numeric',
+                'id'=>'required|numeric|unique:pe3_prodi',
+                'kode_forlap'=>'required|numeric',
                 'kode_fakultas'=>'required|exists:pe3_fakultas,kode_fakultas',
                 'nama_prodi'=>'required|string|unique:pe3_prodi',         
                 'nama_prodi_alias'=>'required|string|unique:pe3_prodi',         
@@ -60,13 +81,15 @@ class ProgramStudiController extends Controller {
             ];
             $kode_fakultas=$request->input('kode_fakultas');
         }
-        $this->validate($request, $rule);
+        $this->validate($request, $rule, [], $custom_atribute);
              
         $prodi=ProgramStudiModel::create([
-            'kode_prodi'=>$request->input('kode_prodi'),
+            'id'=>$request->input('id'),
+            'kode_forlap'=>$request->input('kode_forlap'),
             'kode_fakultas'=>$kode_fakultas,
             'nama_prodi'=>$request->input('nama_prodi'),            
             'nama_prodi_alias'=>$request->input('nama_prodi_alias'),            
+            'konsentrasi'=>$request->input('konsentrasi'),            
             'kode_jenjang'=>$request->input('kode_jenjang'),            
             'nama_jenjang'=>$request->input('nama_jenjang'),            
         ]);                      
@@ -146,6 +169,9 @@ class ProgramStudiController extends Controller {
         $this->hasPermissionTo('DMASTER-PRODI_UPDATE');
 
         $prodi = ProgramStudiModel::find($id);
+        
+        $custom_atribute = [];
+
         if (is_null($prodi))
         {
             return Response()->json([
@@ -157,61 +183,83 @@ class ProgramStudiController extends Controller {
         else
         {
             $bentuk_pt=ConfigurationModel::getCache('BENTUK_PT');
+            $custom_atribute = [
+                'nama_prodi'=>'Nama Program Studi',
+                'nama_prodi_alias'=>'Nama Singkatan Program Studi',
+            ];
             if ($bentuk_pt=='sekolahtinggi')
             {
-                $this->validate($request, [
-                                            'kode_prodi'=>[
-                                                            'required',                                                        
-                                                            'numeric'                                                       
-                                                        ],           
-                                            
-                                            'nama_prodi'=>[
-                                                            'required',
-                                                            'string',
-                                                            Rule::unique('pe3_prodi')->ignore($prodi->nama_prodi,'nama_prodi')
-                                                        ],           
-                                            'nama_prodi_alias'=>[
-                                                            'required',
-                                                            'string',
-                                                            Rule::unique('pe3_prodi')->ignore($prodi->nama_prodi_alias,'nama_prodi_alias')
-                                                        ],  
-                                                        
-                                            'kode_jenjang'=>'required|exists:pe3_jenjang_studi,kode_jenjang',            
-                                            'nama_jenjang'=>'required',            
-                                            
-                                        ]); 
+                $this->validate($request, 
+                                [
+                                    'id'=>[
+                                        'required',                                                        
+                                        'numeric',
+                                        Rule::unique('pe3_prodi')->ignore($prodi->id,'id')
+                                    ],  
+
+                                    'kode_forlap'=>[
+                                        'required',                                                        
+                                        'numeric'                                                       
+                                    ],           
+                                    
+                                    'nama_prodi'=>[
+                                        'required',
+                                        'string',
+                                        Rule::unique('pe3_prodi')->ignore($prodi->nama_prodi,'nama_prodi')
+                                    ],           
+                                    'nama_prodi_alias'=>[
+                                        'required',
+                                        'string',
+                                        Rule::unique('pe3_prodi')->ignore($prodi->nama_prodi_alias,'nama_prodi_alias')
+                                    ],                                                          
+                                    'kode_jenjang'=>'required|exists:pe3_jenjang_studi,kode_jenjang',            
+                                    'nama_jenjang'=>'required',                                                        
+                                ],
+                                [],
+                                $custom_atribute
+                            ); 
             }
             else
             {
-                $this->validate($request, [
-                                            'kode_fakultas'=>[
-                                                'required',
-                                                'exists:pe3_fakultas,kode_fakultas',                                                     
-                                            ],
-                                            'kode_prodi'=>[
-                                                            'required',                                                        
-                                                            'numeric'                                                       
-                                                        ],           
-                                            
-                                            'nama_prodi'=>[
-                                                            'required',
-                                                            'string',
-                                                            Rule::unique('pe3_prodi')->ignore($prodi->nama_prodi,'nama_prodi')
-                                                        ],           
-                                            'nama_prodi'=>[
-                                                            'required',
-                                                            'string',
-                                                            Rule::unique('pe3_prodi')->ignore($prodi->nama_prodi_alias,'nama_prodi_alias')
-                                                        ],   
-                                            'kode_jenjang'=>'required|exists:pe3_jenjang_studi,kode_jenjang',            
-                                            'nama_jenjang'=>'required',            
-                                            
-                                        ]); 
+                $this->validate($request, 
+                                [
+                                    'id'=>[
+                                        'required',                                                        
+                                        'numeric',
+                                        Rule::unique('pe3_prodi')->ignore($prodi->id,'id')
+                                    ],
+                                    'kode_fakultas'=>[
+                                        'required',
+                                        'exists:pe3_fakultas,kode_fakultas',                                                     
+                                    ],
+                                    'kode_forlap'=>[
+                                        'required',                                                        
+                                        'numeric'                                                       
+                                    ],    
+                                    
+                                    'nama_prodi'=>[
+                                        'required',
+                                        'string',
+                                        Rule::unique('pe3_prodi')->ignore($prodi->nama_prodi,'nama_prodi')
+                                    ],           
+                                    'nama_prodi'=>[
+                                        'required',
+                                        'string',
+                                        Rule::unique('pe3_prodi')->ignore($prodi->nama_prodi_alias,'nama_prodi_alias')
+                                    ],   
+                                    'kode_jenjang'=>'required|exists:pe3_jenjang_studi,kode_jenjang',            
+                                    'nama_jenjang'=>'required',  
+                                ],
+                                [],
+                                $custom_atribute
+                        ); 
             }                       
+            $prodi->id = $request->input('id');
             $prodi->kode_fakultas = $request->input('kode_fakultas');
-            $prodi->kode_prodi = $request->input('kode_prodi');
+            $prodi->kode_forlap = $request->input('kode_forlap');
             $prodi->nama_prodi = $request->input('nama_prodi');            
             $prodi->nama_prodi_alias = $request->input('nama_prodi_alias');            
+            $prodi->konsentrasi = $request->input('konsentrasi');            
             $prodi->kode_jenjang = $request->input('kode_jenjang');            
             $prodi->nama_jenjang = $request->input('nama_jenjang');            
             $prodi->save();
@@ -219,9 +267,10 @@ class ProgramStudiController extends Controller {
             \DB::table('usersprodi')
                 ->where('id',$id)
                 ->update([
-                    'kode_prodi' => $request->input('kode_prodi'),
+                    'kode_forlap' => $request->input('kode_forlap'),
                     'nama_prodi' => $request->input('nama_prodi'),            
                     'nama_prodi_alias' => $request->input('nama_prodi_alias'),
+                    'konsentrasi' => $request->input('konsentrasi'),
                     'kode_jenjang' => $request->input('kode_jenjang'),
                     'nama_jenjang' => $request->input('nama_jenjang'),
                 ]);
@@ -291,7 +340,7 @@ class ProgramStudiController extends Controller {
         {
             \App\Models\System\ActivityLog::log($request,[
                                                                 'object' => $prodi, 
-                                                                'object_id' => $prodi->kode_prodi, 
+                                                                'object_id' => $prodi->kode_forlap, 
                                                                 'user_id' => $this->getUserid(), 
                                                                 'message' => 'Menghapus Kode Program Studi ('.$id.') berhasil'
                                                             ]);

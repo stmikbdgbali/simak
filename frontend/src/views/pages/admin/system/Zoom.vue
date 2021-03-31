@@ -130,7 +130,7 @@
 													color="blue darken-1" 
 													text 
 													@click.stop="save" 
-													:loading="btnLoading"
+													
 													:disabled="!form_valid||btnLoading">
 														SIMPAN
 												</v-btn>
@@ -271,7 +271,7 @@
 							</v-icon>
 							<v-icon
 								small
-								:loading="btnLoading"
+								
 								:disabled="btnLoading"
 								@click.stop="deleteItem(item)">
 								mdi-delete
@@ -403,7 +403,7 @@
 							"auth/Token"
 						],
 					}
-				}).then(({ data })=>{
+				}).then(({ data }) => {
 					this.datatable = data.zoom;
 					this.datatableLoading = false;
 				}).catch(() => {
@@ -424,7 +424,7 @@
 				// headers: {
 				// Authorization: this.$store.getters["auth/Token"]
 				// }
-				// }).then(({ data })=>{
+				// }).then(({ data }) => {
 											
 				// });
 			},
@@ -453,7 +453,7 @@
 									}
 								}
 							)
-							.then(({ data })=>{
+							.then(({ data }) => {
 								Object.assign(this.datatable[this.editedIndex],data.zoom);
 								this.closedialogfrm();
 								this.btnLoading = false;

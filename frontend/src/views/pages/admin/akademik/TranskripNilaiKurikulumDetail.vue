@@ -51,7 +51,7 @@
                                         small 
                                         class="ma-2" 
                                         @click.stop="printpdf1"
-                                        :loading="btnLoading"
+                                        
                                         :disabled="btnLoading || !data_mhs.hasOwnProperty('user_id')">
                                         <v-icon>mdi-printer</v-icon>
                                     </v-btn>     
@@ -69,7 +69,7 @@
                                         small 
                                         class="ma-2" 
                                         @click.stop="printpdf2"
-                                        :loading="btnLoading"
+                                        
                                         :disabled="btnLoading || !data_mhs.hasOwnProperty('user_id')">
                                         <v-icon>mdi-printer</v-icon>
                                     </v-btn>     
@@ -98,7 +98,7 @@
                                             x-small 
                                             class="ma-2" 
                                             @click.stop="viewItem(item)"
-                                            :loading="btnLoading"
+                                            
                                             :disabled="btnLoading">
                                             <v-icon>mdi-history</v-icon>
                                         </v-btn>     

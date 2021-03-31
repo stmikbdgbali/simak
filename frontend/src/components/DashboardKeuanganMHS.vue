@@ -153,7 +153,7 @@ export default {
             for (var i =0; i < this.kombi_ganjil_paid.length; i++)
             {
                 var item = this.kombi_ganjil_paid[i];                              
-                total=total+parseFloat(item.jumlah);
+                total = total + parseFloat(item.jumlah);
             }           
             return total;
         },
@@ -163,7 +163,7 @@ export default {
             for (var i =0; i < this.kombi_genap_paid.length; i++)
             {
                 var item = this.kombi_genap_paid[i];
-                total=total+parseFloat(item.jumlah);
+                total = total + parseFloat(item.jumlah);
             }
             return total;
         }

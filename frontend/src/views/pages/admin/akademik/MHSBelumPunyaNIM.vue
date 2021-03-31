@@ -143,7 +143,7 @@
                                                                     color="blue darken-1" 
                                                                     text 
                                                                     @click.stop="save" 
-                                                                    :loading="btnLoading"
+                                                                    
                                                                     :disabled="!form_valid||btnLoading">
                                                                         SIMPAN
                                                                 </v-btn>
@@ -194,7 +194,7 @@
 
 import AkademikLayout from "@/views/layouts/AkademikLayout";
 import ModuleHeader from "@/components/ModuleHeader";
-import Filter7 from '@/components/sidebar/FilterMode7';
+import Filter7 from "@/components/sidebar/FilterMode7";
 export default {
     name: "MHSBelumPunyaNIM",
     created() {
@@ -295,7 +295,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{    
+            }).then(({ data }) => {    
                 this.datatable = data.mahasiswa;
                 this.datatableLoading = false;
             }).catch(() => {
@@ -321,7 +321,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{       
+            }).then(({ data }) => {       
                 this.data_mhs = item;
                 this.dialogfrm=true;
                 this.daftar_dw = data.users; 
@@ -352,7 +352,7 @@ export default {
                 }); 
             }
         },
-        closedialogfrm () { 
+        closedialogfrm() { 
             this.dialogfrm = false;          
             setTimeout(() => {       
                 this.formdata = Object.assign({}, this.formdefault);                              

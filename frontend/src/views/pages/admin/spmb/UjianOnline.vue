@@ -77,7 +77,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{            
+            }).then(({ data }) => {            
                 if (data.status==0)
                 {
                     this.isprosesujian=true;

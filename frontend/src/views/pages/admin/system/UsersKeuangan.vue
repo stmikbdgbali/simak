@@ -67,7 +67,7 @@
                                 ></v-divider>
                                 <v-spacer></v-spacer>
                                 <v-btn color="warning"
-                                    :loading="btnLoading"
+                                    
                                     :disabled="btnLoading"
                                     class="mb-2 mr-2" 
                                     @click.stop="syncPermission" 
@@ -76,7 +76,7 @@
                                 </v-btn>
                                 <v-btn color="primary"                                    
                                     class="mb-2" 
-                                    :loading="btnLoading"
+                                    
                                     :disabled="btnLoading"
                                     @click.stop="showDialogTambahUserKeuangan">
                                     TAMBAH
@@ -148,7 +148,7 @@
                                                     color="blue darken-1" 
                                                     text 
                                                     @click.stop="save" 
-                                                    :loading="btnLoading"
+                                                    
                                                     :disabled="!form_valid||btnLoading">
                                                         SIMPAN
                                                 </v-btn>
@@ -223,7 +223,7 @@
                                                     color="blue darken-1" 
                                                     text 
                                                     @click.stop="save" 
-                                                    :loading="btnLoading"
+                                                    
                                                     :disabled="!form_valid||btnLoading">SIMPAN</v-btn>
                                             </v-card-actions>
                                         </v-card>
@@ -238,7 +238,7 @@
                             <v-icon
                                 small
                                 class="mr-2"
-                                :loading="btnLoading"
+                                
                                 :disabled="btnLoading"
                                 @click.stop="setPermission(item)"
                             >
@@ -247,7 +247,7 @@
                             <v-icon
                                 small
                                 class="mr-2"
-                                :loading="btnLoading"
+                                
                                 :disabled="btnLoading"
                                 @click.stop="editItem(item)"
                             >
@@ -255,7 +255,7 @@
                             </v-icon>
                             <v-icon
                                 small
-                                :loading="btnLoading"
+                                
                                 :disabled="btnLoading"
                                 @click.stop="deleteItem(item)"
                             >
@@ -410,7 +410,7 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data })=>{    
+            }).then(({ data }) => {    
                 this.daftar_users = data.users;
                 this.role_id=data.role.id;
                 this.datatableLoading = false;
@@ -457,7 +457,7 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data })=>{      
+            }).then(({ data }) => {      
                 let roles = data.roles;
                 var daftar_roles=[];
                 roles.forEach(element => {
@@ -505,7 +505,7 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data })=>{      
+            }).then(({ data }) => {      
                 let roles = data.roles;
                 var daftar_roles=[];
                 roles.forEach(element => {
@@ -533,7 +533,7 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data })=>{  
+            }).then(({ data }) => {  
                 this.editedItem.role_id=data.roles;                 
                 this.btnLoading = false;
                 this.dialogEdit = true;
@@ -580,7 +580,7 @@ export default {
                                 Authorization: this.TOKEN
                             }
                         }
-                    ).then(({ data })=>{   
+                    ).then(({ data }) => {   
                         Object.assign(this.daftar_users[this.editedIndex],data.user);
                         this.close();
                     }).catch(() => {
@@ -603,7 +603,7 @@ export default {
                                 Authorization: this.TOKEN
                             }
                         }
-                    ).then(({ data })=>{   
+                    ).then(({ data }) => {   
                         this.daftar_users.push(data.user);
                         this.close();
                     }).catch(() => {

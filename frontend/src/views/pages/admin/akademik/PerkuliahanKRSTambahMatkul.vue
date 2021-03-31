@@ -76,7 +76,7 @@
                                     color="blue darken-1" 
                                     text 
                                     @click.stop="save" 
-                                    :loading="btnLoading"
+                                    
                                     :disabled="!form_valid||btnLoading||!daftar_matkul_selected.length > 0">
                                         SIMPAN
                                 </v-btn>
@@ -187,7 +187,7 @@ export default {
                     headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     }
-                }).then(({ data })=>{    
+                }).then(({ data }) => {    
                     this.datatable = data.penyelenggaraan;
                     this.datatableLoading = false;
                 }).catch(() => {
@@ -218,7 +218,7 @@ export default {
                 });
             }
         }, 
-        closedialogfrm () {                  
+        closedialogfrm() {                  
             setTimeout(() => {            
                 this.$router.push("/akademik/perkuliahan/krs/" + this.krs_id + "/detail");
                 }, 300

@@ -115,7 +115,7 @@
                                                     color="blue darken-1" 
                                                     text 
                                                     @click.stop="buatTransaksi" 
-                                                    :loading="btnLoading"
+                                                    
                                                     :disabled="!form_valid||btnLoading">
                                                         BUAT
                                                 </v-btn>
@@ -181,7 +181,7 @@
     </KeuanganLayout>
 </template>
 <script>
-import KeuanganLayout from '@/views/layouts/KeuanganLayout';
+import KeuanganLayout from "@/views/layouts/KeuanganLayout";
 import ModuleHeader from "@/components/ModuleHeader";
 import Filter18 from '@/components/sidebar/FilterMode18';
 export default {
@@ -286,7 +286,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{    
+            }).then(({ data }) => {    
                 this.datatable = data.transaksi;              
                 this.datatableLoading = false;
             });                   
@@ -340,7 +340,7 @@ export default {
                 });              
             }            
         },
-        closedialogfrm () {
+        closedialogfrm() {
             this.dialogfrm = false;          
             setTimeout(() => {
                 this.formdata = Object.assign({}, this.formdefault);                              
@@ -418,7 +418,7 @@ export default {
                             headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
-                        }).then(({ data })=>{    
+                        }).then(({ data }) => {    
                             this.datatable = data.transaksi;              
                             this.datatableLoading = false;
                         });                   

@@ -233,7 +233,7 @@
                                     color="blue darken-1" 
                                     text 
                                     @click.stop="save" 
-                                    :loading="btnLoading"
+                                    
                                     :disabled="!form_valid||btnLoading||!daftar_matkul_selected.length > 0">
                                         SIMPAN
                                 </v-btn>
@@ -346,7 +346,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{    
+            }).then(({ data }) => {    
                 this.datatable = data.matakuliah;
                 this.datatableLoading = false;
             }).catch(() => {
@@ -360,7 +360,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{
+            }).then(({ data }) => {
                 this.formdata=data.matakuliah;
             });
             this.dialogdetailitem = true;                    
@@ -397,7 +397,7 @@ export default {
                 }, 300
             );
         },
-        closedialogfrm () {                  
+        closedialogfrm() {                  
             setTimeout(() => {       
                 this.formdata = Object.assign({}, this.formdefault);                              
                 this.$router.push("/akademik/perkuliahan/penyelenggaraan/daftar");

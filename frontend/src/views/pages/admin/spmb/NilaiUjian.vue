@@ -166,7 +166,7 @@
 																	color="blue darken-1" 
 																	text 
 																	@click.stop="save" 
-																	:loading="btnLoading"
+																	
 																	:disabled="!form_valid||btnLoading">
 																		SIMPAN
 																</v-btn>
@@ -226,7 +226,7 @@
 										@click.stop="ulangujian(item)" 
 										class="mb-2" 
 										:disabled="btnLoading" 
-										:loading="btnLoading">ULANG UJIAN </v-btn>
+										>ULANG UJIAN </v-btn>
 									<v-btn 
 										text 
 										small 
@@ -397,7 +397,7 @@
 							headers: {
 								Authorization: this.$store.getters["auth/Token"]
 							}
-						}).then(({ data })=>{    
+						}).then(({ data }) => {    
 							this.datatable = data.pmb;
 							this.datatableLoading = false;
 						});
@@ -430,7 +430,7 @@
 							Authorization: this.$store.getters["auth/Token"]
 						}
 					})
-					.then(({ data })=>{   
+					.then(({ data }) => {   
 						if (data.transaksi_status== 1)
 						{
 							this.dialogfrm=true;

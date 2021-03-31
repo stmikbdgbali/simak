@@ -104,7 +104,7 @@
                                                     color="blue darken-1" 
                                                     text 
                                                     @click.stop="save" 
-                                                    :loading="btnLoading"
+                                                    
                                                     :disabled="!form_valid||btnLoading">
                                                         BUAT
                                                 </v-btn>
@@ -170,7 +170,7 @@
                             </v-icon>             
                             <v-icon
                                 small
-                                :loading="btnLoading"
+                                
                                 :disabled="btnLoading"
                                 @click.stop="deleteItem(item)"
                                 v-if="item.status==0">
@@ -188,10 +188,10 @@
     </KeuanganLayout>
 </template>
 <script>
-import KeuanganLayout from '@/views/layouts/KeuanganLayout';
+import KeuanganLayout from "@/views/layouts/KeuanganLayout";
 import ModuleHeader from "@/components/ModuleHeader";
-import Filter7 from '@/components/sidebar/FilterMode7';
-import DialogPrintoutKeuangan from '@/components/DialogPrintoutKeuangan';
+import Filter7 from "@/components/sidebar/FilterMode7";
+import DialogPrintoutKeuangan from "@/components/DialogPrintoutKeuangan";
 export default {
     name: "TransaksiDulangMHSBaru",
     created()
@@ -288,7 +288,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{    
+            }).then(({ data }) => {    
                 this.datatable = data.transaksi;              
                 this.datatableLoading = false;
             });                   
@@ -342,7 +342,7 @@ export default {
         {
             this.$refs.dialogprint.open();
         },
-        closedialogfrm () {
+        closedialogfrm() {
             this.dialogfrm = false;          
             setTimeout(() => {
                 this.formdata = Object.assign({}, this.formdefault);                              
@@ -444,7 +444,7 @@ export default {
                             headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
-                        }).then(({ data })=>{    
+                        }).then(({ data }) => {    
                             this.datatable = data.transaksi;              
                             this.datatableLoading = false;
                         });                   

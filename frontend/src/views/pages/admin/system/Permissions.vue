@@ -97,7 +97,7 @@
                                                     color="blue darken-1" 
                                                     text 
                                                     @click.stop="save" 
-                                                    :loading="btnLoading"
+                                                    
                                                     :disabled="!form_valid||btnLoading">
                                                         SIMPAN
                                                 </v-btn>
@@ -111,7 +111,7 @@
                             <v-icon
                                 small
                                 @click.stop="deleteItem(item)"
-                                :loading="btnLoading"
+                                
                                 :disabled="!CAN_ACCESS('PERMISSIONS_DESTROY')||btnLoading"
                             >
                                 mdi-delete
@@ -205,7 +205,7 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data })=>{     
+            }).then(({ data }) => {     
                 this.daftar_permissions = data.permissions;
                 this.datatableLoading = false;
             });        

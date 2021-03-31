@@ -256,7 +256,7 @@
 																	color="blue darken-1"
 																	text
 																	@click.stop="save"
-																	:loading="btnLoading"
+																	
 																	:disabled="!form_valid||btnLoading">
 																		SIMPAN
 																</v-btn>
@@ -464,7 +464,7 @@
 										@click.stop="verifikasi(item)"
 										class="mb-2"
 										:disabled="(item.status_konfirmasi=='UNVERIFIED'?false: true)||btnLoading"
-										:loading="btnLoading">
+										>
 										VERIFIKASI
 									</v-btn>
 									<v-btn
@@ -474,7 +474,7 @@
 										@click.stop="cancel(item)"
 										class="mb-2"
 										:disabled="(item.nama_status=='PAID'?true: false)||btnLoading"
-										:loading="btnLoading">
+										>
 										BATALKAN
 									</v-btn>
 								</v-col>
@@ -634,7 +634,7 @@
 					headers: {
 						Authorization: this.$store.getters["auth/Token"]
 					}
-				}).then(({ data })=>{
+				}).then(({ data }) => {
 					this.datatable = data.transaksi;
 					this.datatableLoading = false;
 				});
@@ -659,7 +659,7 @@
 					headers: {
 						Authorization: this.$store.getters["auth/Token"]
 					}
-				}).then(({ data })=>{
+				}).then(({ data }) => {
 					this.daftar_channel=data.channel;
 					this.data_transaksi=item;
 					this.dialogfrm=true;
@@ -673,7 +673,7 @@
 					headers: {
 						Authorization: this.$store.getters["auth/Token"]
 					}
-				}).then(({ data })=>{
+				}).then(({ data }) => {
 					this.data_konfirmasi=data.konfirmasi;
 					this.image_prev=this.$api.url+"/"+data.konfirmasi.bukti_bayar;
 					this.dialogdetailitem = true;
@@ -770,7 +770,7 @@
 					}
 				});
 			},
-			closedialogfrm () {
+			closedialogfrm() {
 				this.dialogfrm = false;
 				setTimeout(() => {
 					this.buktiBayar=null;
@@ -839,7 +839,7 @@
 								headers: {
 									Authorization: this.$store.getters["auth/Token"]
 								}
-							}).then(({ data })=>{
+							}).then(({ data }) => {
 								this.datatable = data.transaksi;
 								this.datatableLoading = false;
 							});

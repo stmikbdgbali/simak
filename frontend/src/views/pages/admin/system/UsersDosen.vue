@@ -67,7 +67,7 @@
                                 ></v-divider>
                                 <v-spacer></v-spacer> 
                                 <v-btn color="warning"
-                                    :loading="btnLoading"
+                                    
                                     :disabled="btnLoading"
                                     class="mb-2 mr-2" 
                                     @click.stop="syncPermission" 
@@ -76,7 +76,7 @@
                                 </v-btn>            
                                 <v-btn color="primary"                                    
                                     class="mb-2" 
-                                    :loading="btnLoading"
+                                    
                                     :disabled="btnLoading"
                                     @click.stop="showDialogTambahUserDosen">
                                     TAMBAH
@@ -142,7 +142,7 @@
                                                     color="blue darken-1" 
                                                     text 
                                                     @click.stop="save" 
-                                                    :loading="btnLoading"
+                                                    
                                                     :disabled="!form_valid||btnLoading">
                                                         SIMPAN
                                                 </v-btn>
@@ -211,7 +211,7 @@
                                                     color="blue darken-1" 
                                                     text 
                                                     @click.stop="save" 
-                                                    :loading="btnLoading"
+                                                    
                                                     :disabled="!form_valid||btnLoading">SIMPAN</v-btn>
                                             </v-card-actions>
                                         </v-card>
@@ -238,7 +238,7 @@
                                         icon                                         
                                         x-small                                        
                                         @click.stop="setPermission(item)"
-                                        :loading="btnLoading"
+                                        
                                         :disabled="btnLoading">
                                         <v-icon>mdi-axis-arrow-lock</v-icon>
                                     </v-btn>     
@@ -255,7 +255,7 @@
                                         x-small
                                         class="ma-2" 
                                         @click.stop="editItem(item)"
-                                        :loading="btnLoading"
+                                        
                                         :disabled="btnLoading">
                                         <v-icon>mdi-pencil</v-icon>
                                     </v-btn>     
@@ -271,7 +271,7 @@
                                         icon                                         
                                         x-small                                        
                                         @click.stop="deleteItem(item)"
-                                        :loading="btnLoading"
+                                        
                                         :disabled="btnLoading">
                                         <v-icon>mdi-delete</v-icon>
                                     </v-btn>     
@@ -435,7 +435,7 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data })=>{    
+            }).then(({ data }) => {    
                 this.daftar_users = data.users;              
                 this.datatableLoading = false;
             });        
@@ -522,7 +522,7 @@ export default {
                                 Authorization: this.TOKEN
                             }
                         }
-                    ).then(({ data })=>{   
+                    ).then(({ data }) => {   
                         this.daftar_users.push(data.user);
                         this.close();
                     }).catch(() => {

@@ -87,7 +87,23 @@ class UIController extends Controller {
                 $daftar_fakultas=FakultasModel::all();
                 $fakultas_id=$config['DEFAULT_FAKULTAS'];
 
-                $daftar_prodi=ProgramStudiModel::all();
+                $daftar_prodi=ProgramStudiModel::select(\DB::raw('
+                                    id,
+                                    kode_forlap,
+                                    nama_prodi,                                    
+                                    nama_prodi_alias,
+                                    konsentrasi,
+                                    kode_jenjang,
+                                    nama_jenjang,
+                                    pe3_fakultas.kode_fakultas,
+                                    nama_fakultas,
+                                    pe3_prodi.config,
+                                    created_at,
+                                    updated_at
+                                '))
+                                ->leftJoin('pe3_fakultas','pe3_fakultas.kode_fakultas','pe3_prodi.kode_fakultas')
+                                ->get();
+
                 $prodi_id=$config['DEFAULT_PRODI'];
 
                 $tahun_pendaftaran = $config['DEFAULT_TAHUN_PENDAFTARAN'];
@@ -121,7 +137,23 @@ class UIController extends Controller {
                     $daftar_fakultas=FakultasModel::all();
                     $fakultas_id=$config['DEFAULT_FAKULTAS'];
 
-                    $daftar_prodi=ProgramStudiModel::all();
+                    $daftar_prodi=ProgramStudiModel::select(\DB::raw('
+                                    id,
+                                    kode_forlap,
+                                    nama_prodi,                                    
+                                    nama_prodi_alias,                                    
+                                    konsentrasi,
+                                    kode_jenjang,
+                                    nama_jenjang,
+                                    pe3_fakultas.kode_fakultas,
+                                    nama_fakultas,
+                                    pe3_prodi.config,
+                                    created_at,
+                                    updated_at
+                                '))
+                                ->leftJoin('pe3_fakultas','pe3_fakultas.kode_fakultas','pe3_prodi.kode_fakultas')
+                                ->get();
+                                                    
                     $prodi_id=$config['DEFAULT_PRODI'];
                 }
                 $tahun_pendaftaran = $config['DEFAULT_TAHUN_PENDAFTARAN'];
@@ -155,7 +187,23 @@ class UIController extends Controller {
                     $daftar_fakultas=FakultasModel::all();
                     $fakultas_id=$config['DEFAULT_FAKULTAS'];
 
-                    $daftar_prodi=ProgramStudiModel::all();
+                    $daftar_prodi=ProgramStudiModel::select(\DB::raw('
+                                    id,
+                                    kode_forlap,
+                                    nama_prodi,                                    
+                                    nama_prodi_alias,                                    
+                                    konsentrasi,
+                                    kode_jenjang,
+                                    nama_jenjang,
+                                    pe3_fakultas.kode_fakultas,
+                                    nama_fakultas,
+                                    pe3_prodi.config,
+                                    created_at,
+                                    updated_at
+                                '))
+                                ->leftJoin('pe3_fakultas','pe3_fakultas.kode_fakultas','pe3_prodi.kode_fakultas')
+                                ->get();
+
                     $prodi_id=$config['DEFAULT_PRODI'];
                 }
                 $tahun_pendaftaran = $config['DEFAULT_TAHUN_PENDAFTARAN'];
@@ -189,7 +237,23 @@ class UIController extends Controller {
                     $daftar_fakultas=FakultasModel::all();
                     $fakultas_id=$config['DEFAULT_FAKULTAS'];
 
-                    $daftar_prodi=ProgramStudiModel::all();
+                    $daftar_prodi=ProgramStudiModel::select(\DB::raw('
+                                    id,
+                                    kode_forlap,
+                                    nama_prodi,                                    
+                                    nama_prodi_alias,                                    
+                                    konsentrasi,
+                                    kode_jenjang,
+                                    nama_jenjang,
+                                    pe3_fakultas.kode_fakultas,
+                                    nama_fakultas,
+                                    pe3_prodi.config,
+                                    created_at,
+                                    updated_at
+                                '))
+                                ->leftJoin('pe3_fakultas','pe3_fakultas.kode_fakultas','pe3_prodi.kode_fakultas')
+                                ->get();
+
                     $prodi_id=$config['DEFAULT_PRODI'];
                 }
                 $tahun_pendaftaran = $config['DEFAULT_TAHUN_PENDAFTARAN'];
@@ -207,7 +271,24 @@ class UIController extends Controller {
                 $daftar_fakultas=[];
                 $fakultas_id=$config['DEFAULT_FAKULTAS'];
 
-                $daftar_prodi=ProgramStudiModel::where('id',$formulir->kjur1)->get();
+                $daftar_prodi=ProgramStudiModel::select(\DB::raw('
+                                    id,
+                                    kode_forlap,
+                                    nama_prodi,                                    
+                                    nama_prodi_alias,                                    
+                                    konsentrasi,
+                                    kode_jenjang,
+                                    nama_jenjang,
+                                    pe3_fakultas.kode_fakultas,
+                                    nama_fakultas,
+                                    pe3_prodi.config,
+                                    created_at,
+                                    updated_at
+                                '))
+                                ->leftJoin('pe3_fakultas','pe3_fakultas.kode_fakultas','pe3_prodi.kode_fakultas')
+                                ->where('id',$formulir->kjur1)
+                                ->get();
+
                 $prodi_id=$formulir->kjur1;
 
                 $tahun_pendaftaran = $formulir->ta;
@@ -223,7 +304,24 @@ class UIController extends Controller {
                 $daftar_fakultas=[];
                 $fakultas_id=$config['DEFAULT_FAKULTAS'];
 
-                $daftar_prodi=ProgramStudiModel::where('id',$formulir->kjur1)->get();
+                $daftar_prodi=ProgramStudiModel::select(\DB::raw('
+                                    id,
+                                    kode_forlap,
+                                    nama_prodi,                                    
+                                    nama_prodi_alias,                                    
+                                    konsentrasi,
+                                    kode_jenjang,
+                                    nama_jenjang,
+                                    pe3_fakultas.kode_fakultas,
+                                    nama_fakultas,
+                                    pe3_prodi.config,
+                                    created_at,
+                                    updated_at
+                                '))
+                                ->leftJoin('pe3_fakultas','pe3_fakultas.kode_fakultas','pe3_prodi.kode_fakultas')
+                                ->where('id',$formulir->kjur1)
+                                ->get();
+                
                 $prodi_id=$formulir->kjur1;
 
                 $tahun_pendaftaran = $formulir->ta;
@@ -262,7 +360,23 @@ class UIController extends Controller {
                 $daftar_fakultas=FakultasModel::all();
                 $fakultas_id=$config['DEFAULT_FAKULTAS'];
 
-                $daftar_prodi=ProgramStudiModel::all();
+                $daftar_prodi=ProgramStudiModel::select(\DB::raw('
+                                    id,
+                                    kode_forlap,
+                                    nama_prodi,                                    
+                                    nama_prodi_alias,                                    
+                                    konsentrasi,
+                                    kode_jenjang,
+                                    nama_jenjang,
+                                    pe3_fakultas.kode_fakultas,
+                                    nama_fakultas,
+                                    pe3_prodi.config,
+                                    created_at,
+                                    updated_at
+                                '))
+                                ->leftJoin('pe3_fakultas','pe3_fakultas.kode_fakultas','pe3_prodi.kode_fakultas')
+                                ->get();
+
                 $prodi_id=$config['DEFAULT_PRODI'];
 
                 $tahun_pendaftaran = $config['DEFAULT_TAHUN_PENDAFTARAN'];

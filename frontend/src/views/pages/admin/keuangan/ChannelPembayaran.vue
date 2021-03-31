@@ -72,7 +72,7 @@
     </KeuanganLayout>
 </template>
 <script>
-import KeuanganLayout from '@/views/layouts/KeuanganLayout';
+import KeuanganLayout from "@/views/layouts/KeuanganLayout";
 import ModuleHeader from "@/components/ModuleHeader";
 
 export default {
@@ -121,7 +121,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{    
+            }).then(({ data }) => {    
                 this.datatable = data.channel;              
                 this.datatableLoading = false;
             });                   

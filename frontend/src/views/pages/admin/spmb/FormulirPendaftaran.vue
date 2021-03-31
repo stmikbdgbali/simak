@@ -138,7 +138,7 @@ import SPMBLayout from "@/views/layouts/SPMBLayout";
 import ModuleHeader from "@/components/ModuleHeader";
 import FormMhsBaru from '@/components/FormMahasiswaBaru';
 import ProfilMahasiswaBaru from '@/components/ProfilMahasiswaBaru';
-import Filter7 from '@/components/sidebar/FilterMode7';
+import Filter7 from "@/components/sidebar/FilterMode7";
 export default {
     name: "FormulirPendaftaran", 
     created() {
@@ -223,7 +223,7 @@ export default {
                         headers: {
                             Authorization: this.$store.getters["auth/Token"]
                         }
-                    }).then(({ data })=>{    
+                    }).then(({ data }) => {    
                         this.datatable = data.pmb;              
                         this.datatableLoading = false;
                     });       

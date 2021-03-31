@@ -47,7 +47,7 @@
                                     color="blue darken-1" 
                                     text 
                                     @click.stop="save" 
-                                    :loading="btnLoading"
+                                    
                                     :disabled="!form_valid||btnLoading">SIMPAN</v-btn>
                             </v-card-actions>
                         </v-card>
@@ -104,7 +104,7 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data })=>{       
+            }).then(({ data }) => {       
                 let setting = data.setting;           
                 this.formdata.email_mhs_isvalid=parseInt(setting.EMAIL_MHS_ISVALID);              
             });        

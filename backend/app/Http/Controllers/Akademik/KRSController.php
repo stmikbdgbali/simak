@@ -289,13 +289,11 @@ class KRSController extends Controller
                                         kmatkul,                                    
                                         nmatkul,
                                         sks,
-                                        semester,
-                                        ta_matkul
+                                        semester
                                     '))       
                                     ->where('tahun',$ta)                                  
                                     ->where('idsmt',$semester_akademik)                                  
-                                    ->where('kjur',$prodi_id)                                  
-                                    ->where('ta_matkul',$datamhs->tahun)
+                                    ->where('kjur',$prodi_id)                                                                      
                                     ->whereNotIn('id',function($query) use ($nim,$ta,$semester_akademik){
                                         $query->select('penyelenggaraan_id')
                                             ->from('pe3_krsmatkul')

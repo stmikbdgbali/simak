@@ -171,9 +171,12 @@ const getters = {
 		return parseInt(state.prodi_id);
 	},
 	getProdiName: state => key => {
-		return state.daftar_prodi == null || state.daftar_prodi[key] == null
-			? "N.A"
-			: state.daftar_prodi[key].nama_prodi;
+		if (key == "" || key == null || key == "undefined") {
+			return "N.A";
+		} else {
+			var prodi = state.daftar_prodi.find(el => el.id == key);
+			return prodi.nama_prodi;
+		}
 	},
 
 	getDaftarFakultas: state => {
@@ -214,9 +217,7 @@ const getters = {
 	},
 	getStatusMahasiswa: state => id => {
 		var nama_status = "N.A";
-		let found = state.daftar_status_mhs.find(
-			status_mhs => status_mhs.id == id
-		);
+		let found = state.daftar_status_mhs.find(status_mhs => status_mhs.id == id);
 		if (typeof found !== "undefined") {
 			nama_status = found.text;
 		}
@@ -269,20 +270,23 @@ const actions = {
 					let daftar_prodi = data.daftar_prodi;
 					var prodi = [];
 					daftar_prodi.forEach(element => {
-						prodi[element.id] = {
+						var nama_prodi =
+							element.konsentrasi == "N.A" || element.konsentrasi == null
+								? element.nama_prodi + " (" + element.nama_jenjang + ")"
+								: element.nama_prodi +
+									" Kons. " +
+									element.konsentrasi + " (" + element.nama_jenjang + ")";
+						prodi.push({
 							id: element.id,
 							text:
 								element.nama_prodi_alias +
 								" (" +
 								element.nama_jenjang +
 								")",
-							nama_prodi:
-								element.nama_prodi +
-								" (" +
-								element.nama_jenjang +
-								")",
-						};
+							nama_prodi: nama_prodi,
+						});
 					});
+					console.log(prodi);
 					commit("setDaftarProdi", prodi);
 					commit("setProdiID", data.prodi_id);
 

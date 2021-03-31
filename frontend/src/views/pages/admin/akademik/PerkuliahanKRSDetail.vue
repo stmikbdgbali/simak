@@ -142,7 +142,7 @@
                                                         color="blue darken-1"
                                                         text
                                                         @click.stop="save"
-                                                        :loading="btnLoading"
+                                                        
                                                         :disabled="!form_valid||btnLoading">
                                                             SIMPAN
                                                     </v-btn>
@@ -155,7 +155,7 @@
                                     <v-btn
                                         small
                                         icon
-                                        :loading="btnLoading"
+                                        
                                         :disabled="btnLoading"
                                         @click.stop="showPilihKelas(item)">
                                         <v-icon>
@@ -165,7 +165,7 @@
                                     <v-btn
                                         small
                                         icon
-                                        :loading="btnLoading"
+                                        
                                         :disabled="btnLoading"
                                         @click.stop="deleteItem(item)">
                                         <v-icon>
@@ -282,7 +282,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{
+            }).then(({ data }) => {
                 this.datakrs=data.krs;
                 this.datatable=data.krsmatkul;
                 if (Object.keys(this.datakrs).length)
@@ -301,7 +301,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{
+            }).then(({ data }) => {
                 this.dialogfrm=true;
                 this.datamatkul=item;
                 this.daftar_kelas=data.daftarkelas;
@@ -356,7 +356,7 @@ export default {
                 }
             });
         },
-        closedialogfrm () {
+        closedialogfrm() {
             this.dialogfrm = false;
             setTimeout(() => {
                 this.datamatkul = Object.assign({}, {});

@@ -127,7 +127,7 @@
                                                     color="blue darken-1" 
                                                     text 
                                                     @click.stop="save" 
-                                                    :loading="btnLoading"
+                                                    
                                                     :disabled="!form_valid||btnLoading">
                                                         SIMPAN
                                                 </v-btn>
@@ -197,7 +197,7 @@
 <script>
 import AkademikLayout from "@/views/layouts/AkademikLayout";
 import ModuleHeader from "@/components/ModuleHeader";
-import Filter2 from '@/components/sidebar/FilterMode2';
+import Filter2 from "@/components/sidebar/FilterMode2";
 
 import { mapGetters } from "vuex";
 
@@ -365,7 +365,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data })=>{
+            }).then(({ data }) => {
                 this.daftar_ruang_kelas = data.ruangan;               
                 this.formdata = Object.assign({}, item);
                 this.dialogfrm = true;             
@@ -423,7 +423,7 @@ export default {
                 }                
             });
         },
-        closedialogfrm () {
+        closedialogfrm() {
             this.dialogfrm = false;          
             setTimeout(() => {
                 this.formdata = Object.assign({}, this.formdefault);                              

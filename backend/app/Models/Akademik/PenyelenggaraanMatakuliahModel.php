@@ -32,7 +32,6 @@ class PenyelenggaraanMatakuliahModel extends Model
         'nmatkul',
         'sks',
         'semester',
-        'ta_matkul',
         'idsmt',
         'tahun',         
         'kjur'
