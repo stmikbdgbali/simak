@@ -143,7 +143,7 @@
 											</v-expand-transition>
 											<v-card-actions>
 												<v-spacer></v-spacer>
-												<v-btn :disabled="!data_mhs" @click="createTransaction">
+												<v-btn :disabled="!data_mhs" @click="save">
 													Buat Transaksi
 													<v-icon right>
 														mdi-forward
@@ -368,13 +368,6 @@
 			data_mhs: null,
 			form_valid: true,
 			search_data_mhs: null,
-			formdata: {
-				user_id: "",
-			},
-			formdefault: {
-				user_id: "",
-			},
-			rule_user_id: [value => !!value || "User id mohon untuk diisi !!!"],
 		}),
 		methods: {
 			changeTahunPendaftaran(tahun) {
@@ -436,7 +429,6 @@
 				}
 				return alias;
 			},
-			async createTransaction() {},
 			viewItem(item) {
 				this.$router.push(
 					"/keuangan/transaksi-pendaftaranmhsbaru/" + item.transaksi_id
@@ -447,10 +439,9 @@
 					this.btnLoading = true;
 					await this.$ajax
 						.post(
-							"/keuangan/transaksi-dulangmhsbaru/store",
+							"/keuangan/transaksi-pendaftaranmhsbaru/store",
 							{
-								no_formulir: this.formdata.no_formulir,
-								TA: this.tahun_pendaftaran,
+								user_id: this.data_mhs.id,
 							},
 							{
 								headers: {
@@ -475,7 +466,6 @@
 				this.dialogfrm = false;
 				setTimeout(() => {
 					this.data_mhs = null;
-					this.formdata = Object.assign({}, this.formdefault);
 					this.$refs.frmdata.reset();
 				}, 300);
 			},
@@ -493,7 +483,7 @@
 							this.btnLoading = true;
 							this.$ajax
 								.post(
-									"/keuangan/transaksi-dulangmhsbaru/" + item.transaksi_id,
+									"/keuangan/transaksi-pendaftaranmhsbaru/" + item.transaksi_id,
 									{
 										_method: "DELETE",
 									},

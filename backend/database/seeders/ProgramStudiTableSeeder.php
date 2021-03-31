@@ -16,7 +16,7 @@ class ProgramStudiTableSeeder extends Seeder
         \DB::statement('DELETE FROM pe3_prodi');
         \DB::statement('ALTER TABLE pe3_prodi AUTO_INCREMENT = 1;');
 
-        DB::table('pe3_prodi')->insert([      
+        \DB::table('pe3_prodi')->insert([      
             'id'=>12,      
             'kode_forlap'=>'55201',
             'nama_prodi'=>'Teknik Informatika',

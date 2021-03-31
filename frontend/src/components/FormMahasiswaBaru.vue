@@ -76,7 +76,7 @@
 				</v-card>
 				<v-card class="mb-4">
 					<v-card-title>
-						ALAMAT
+						ALAMAT DOMISILI
 					</v-card-title>
 					<v-card-text>
 						<v-select
