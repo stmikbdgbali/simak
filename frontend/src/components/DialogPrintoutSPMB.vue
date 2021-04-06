@@ -23,8 +23,8 @@
 <script>
 	export default {
 		name: "DialogPrintoutSPMB",
-		props:{
-			pid:{
+		props: {
+			pid: {
 				type: String,
 				required: true,
 			},    

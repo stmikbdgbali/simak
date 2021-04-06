@@ -237,11 +237,11 @@ export default {
         expanded: [],
         datatable: [],
         headers: [
-            { text: "NO. FORMULIR", value: "no_formulir", sortable: true,width:150  },   
-            { text: "NAMA MAHASISWA", value: "nama_mhs",sortable: true },
-            { text: "TELP. HP", value: "telp_hp", sortable: true,width:150 },
-            { text: "KELAS", value: "idkelas",sortable: true,width:120, },
-            { text: "AKSI", value: "actions", sortable: false, width:100 },
+            { text: "NO. FORMULIR", value: "no_formulir", sortable: true, width:150  },   
+            { text: "NAMA MAHASISWA", value: "nama_mhs", sortable: true },
+            { text: "TELP. HP", value: "telp_hp", sortable: true, width:150 },
+            { text: "KELAS", value: "idkelas", sortable: true, width: 120, },
+            { text: "AKSI", value: "actions", sortable: false, width: 100 },
         ],
         search: "",
         

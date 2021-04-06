@@ -273,11 +273,11 @@ export default {
 		//tables
 		headers: [
 			{ text: "",value: "foto" },
-			{ text: "USERNAME", value: "username",sortable: true },
-			{ text: "NAME", value: "name",sortable: true },
-			{ text: "EMAIL", value: "email",sortable: true }, 
-			{ text: "NOMOR HP", value: "nomor_hp",sortable: true }, 
-			{ text: "AKSI", value: "actions", sortable: false, width:100 },
+			{ text: "USERNAME", value: "username", sortable: true },
+			{ text: "NAME", value: "name", sortable: true },
+			{ text: "EMAIL", value: "email", sortable: true }, 
+			{ text: "NOMOR HP", value: "nomor_hp", sortable: true }, 
+			{ text: "AKSI", value: "actions", sortable: false, width: 100 },
 		],
 		expanded: [],
 		search:"",
@@ -475,7 +475,7 @@ export default {
 							nomor_hp: this.editedItem.nomor_hp, 
 							username: this.editedItem.username,
 							password: this.editedItem.password,
-							role_id:JSON.stringify(Object.assign({},this.editedItem.role_id)),
+							role_id: JSON.stringify(Object.assign({},this.editedItem.role_id)),
 						},
 						{
 							headers: {
@@ -497,7 +497,7 @@ export default {
 							nomor_hp: this.editedItem.nomor_hp, 
 							username: this.editedItem.username,
 							password: this.editedItem.password, 
-							role_id:JSON.stringify(Object.assign({},this.editedItem.role_id)),
+							role_id: JSON.stringify(Object.assign({},this.editedItem.role_id)),
 						},
 						{
 							headers: {

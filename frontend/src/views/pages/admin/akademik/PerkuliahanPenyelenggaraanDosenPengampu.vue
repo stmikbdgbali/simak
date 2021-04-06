@@ -160,7 +160,7 @@ export default {
         this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](prodi_id);
         this.daftar_ta = this.$store.getters['uiadmin/getDaftarTA'];        
         this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];                      
-        this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];              
+        this.semester_akademik = this.$store.getters['uiadmin/getSemesterAkademik'];              
         this.formdata.idpenyelenggaraan=this.$route.params.idpenyelenggaraan;
         this.initialize();
     }, 
@@ -184,10 +184,10 @@ export default {
         expanded: [],
         datatable: [],
         headers: [
-            { text: "NIDN", value: "nidn", sortable: false,width:120  },   
-            { text: "NAMA DOSEN", value: "nama_dosen",sortable: false },
-            { text: "KETUA", value: "is_ketua", sortable: false,width:120 },
-            { text: "AKSI", value: "actions", sortable: false,width:120 },
+            { text: "NIDN", value: "nidn", sortable: false, width: 120  },   
+            { text: "NAMA DOSEN", value: "nama_dosen", sortable: false },
+            { text: "KETUA", value: "is_ketua", sortable: false, width: 120 },
+            { text: "AKSI", value: "actions", sortable: false, width: 120 },
         ],
         
         //formdata

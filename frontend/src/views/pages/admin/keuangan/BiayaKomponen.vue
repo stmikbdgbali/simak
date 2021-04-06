@@ -96,9 +96,9 @@ export default {
         expanded: [],
         datatable: [],
         headers: [                    
-            { text: "ID", value: "id", width: 10,sortable: false },
-            { text: "NAMA KOMPONEN", value: "nama",sortable: false},
-            { text: "PERIODE", value: "periode", width: 150,sortable: false },        
+            { text: "ID", value: "id", width: 10, sortable: false },
+            { text: "NAMA KOMPONEN", value: "nama", sortable: false},
+            { text: "PERIODE", value: "periode", width: 150, sortable: false },        
         ],  
     }),
     methods: {

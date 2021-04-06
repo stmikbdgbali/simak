@@ -287,7 +287,7 @@ export default {
         ];      
         this.kelas_mhs_id=this.$route.params.kelas_mhs_id;      
         this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];              
-        this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];              
+        this.semester_akademik = this.$store.getters['uiadmin/getSemesterAkademik'];              
         this.initialize()
     },  
     data: () => ({ 
@@ -305,23 +305,23 @@ export default {
         datatable_peserta: [],
         datatable_members: [], 
         headers: [
-            { text: "KODE", value: "kmatkul", sortable: false, width:100  },   
+            { text: "KODE", value: "kmatkul", sortable: false, width: 100  },   
             { text: "NAMA", value: "nmatkul", sortable: false  },   
             { text: "SKS", value: "sks", sortable: false  },
             { text: "PROGRAM STUDI", value: "kjur", sortable: false, width:200 },
-            { text: "JUMLAH MHS DI KRS", value: "jumlah_mhs", sortable: false, width:100 },
-            { text: "AKSI", value: "actions", sortable: false,width:60 },
+            { text: "JUMLAH MHS DI KRS", value: "jumlah_mhs", sortable: false, width: 100 },
+            { text: "AKSI", value: "actions", sortable: false, width:60 },
         ],
         headers_peserta: [
-            { text: "NIM", value: "nim", sortable: false, width:100  },   
+            { text: "NIM", value: "nim", sortable: false, width: 100  },   
             { text: "NAMA", value: "nama_mhs", sortable: false  },   
             { text: "PROGRAM STUDI", value: "kjur", sortable: false  },   
             { text: "KELAS", value: "idkelas", sortable: false  },
             { text: "TAHUN MASUK", value: "tahun", sortable: false },            
-            { text: "AKSI", value: "actions", sortable: false,width:60 },
+            { text: "AKSI", value: "actions", sortable: false, width:60 },
         ],
         headers_members: [
-            { text: "NIM", value: "nim", sortable: false, width:100  },   
+            { text: "NIM", value: "nim", sortable: false, width: 100  },   
             { text: "NAMA", value: "nama_mhs", sortable: false  },   
             { text: "KELAS", value: "idkelas", sortable: false  },
             { text: "TAHUN MASUK", value: "tahun", sortable: false },       
@@ -404,7 +404,7 @@ export default {
             {
                 pid: "belumterdaftar",
                 kelas_mhs_id: this.kelas_mhs_id,
-                penyelenggaraan:JSON.stringify(Object.assign({},this.datatable))
+                penyelenggaraan: JSON.stringify(Object.assign({},this.datatable))
             },
             {
                 headers: {
@@ -422,7 +422,7 @@ export default {
                 await this.$ajax.post("/akademik/perkuliahan/pembagiankelas/storepeserta",
                     {
                         kelas_mhs_id: this.kelas_mhs_id,            
-                        members_selected:JSON.stringify(Object.assign({},this.members_selected)),                           
+                        members_selected: JSON.stringify(Object.assign({},this.members_selected)),                           
                     },
                     {
                         headers: {
@@ -444,7 +444,7 @@ export default {
                 await this.$ajax.post("/akademik/perkuliahan/pembagiankelas/storematakuliah",
                     {
                         kelas_mhs_id: this.kelas_mhs_id,            
-                        penyelenggaraan_dosen_id:JSON.stringify(Object.assign({},this.formdata.penyelenggaraan_dosen_id)),
+                        penyelenggaraan_dosen_id: JSON.stringify(Object.assign({},this.formdata.penyelenggaraan_dosen_id)),
                     },
                     {
                         headers: {

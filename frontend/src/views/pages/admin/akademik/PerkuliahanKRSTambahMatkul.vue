@@ -146,11 +146,11 @@ export default {
         expanded: [],
         datatable: [],
         headers: [
-            { text: "KODE", value: "kmatkul", sortable: true,width:120  },   
-            { text: "NAMA MATAKULIAH", value: "nmatkul",sortable: true },
-            { text: "SKS", value: "sks", sortable: false,width:120 },
-            { text: "SMT", value: "semester", sortable: false,width:120 },            
-            { text: "TAHUN MATKUL", value: "ta_matkul", sortable: false,width:120 },            
+            { text: "KODE", value: "kmatkul", sortable: true, width: 120  },   
+            { text: "NAMA MATAKULIAH", value: "nmatkul", sortable: true },
+            { text: "SKS", value: "sks", sortable: false, width: 120 },
+            { text: "SMT", value: "semester", sortable: false, width: 120 },            
+            { text: "TAHUN MATKUL", value: "ta_matkul", sortable: false, width: 120 },            
         ],
     }),
     methods: {          
@@ -203,7 +203,7 @@ export default {
                 await this.$ajax.post("/akademik/perkuliahan/krs/storematkul",
                     {
                         krs_id: this.krs_id,            
-                        matkul_selected:JSON.stringify(Object.assign({},this.daftar_matkul_selected)),
+                        matkul_selected: JSON.stringify(Object.assign({},this.daftar_matkul_selected)),
                     },
                     {
                         headers: {

@@ -204,9 +204,9 @@ export default {
         
         datatableLoading: false,
         headers: [                        
-            { text: "TAHUN AKADEMIK", value: "ta",sortable: false },
-            { text: "SEMESTER", value: "semester",sortable: false },
-            { text: "STATUS", value: "k_status",sortable: false, width:250 },  
+            { text: "TAHUN AKADEMIK", value: "ta", sortable: false },
+            { text: "SEMESTER", value: "semester", sortable: false },
+            { text: "STATUS", value: "k_status", sortable: false, width:250 },  
         ],
     }),
     methods: {
@@ -265,7 +265,7 @@ export default {
                         prodi_id: this.formdata.prodi_id,     
                         idkelas: this.formdata.idkelas,       
                         tahun_pendaftaran: this.tahun_pendaftaran,     
-                        status_mhs:JSON.stringify(Object.assign({},this.formdata.status_mhs)),                                                                 
+                        status_mhs: JSON.stringify(Object.assign({},this.formdata.status_mhs)),                                                                 
                     },
                     {
                         headers: {

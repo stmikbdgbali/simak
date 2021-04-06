@@ -296,10 +296,10 @@ export default {
         expanded: [],
         datatable: [],
         headers: [
-            { text: "PROSES", value: "proses", sortable: true,width:120  },   
-            { text: "NAMA PERSYARATAN", value: "nama_persyaratan",sortable: true },
-            { text: "TA", value: "ta",sortable: true,width:80, align: "center" },
-            { text: "AKSI", value: "actions", sortable: false, width:100 },
+            { text: "PROSES", value: "proses", sortable: true, width: 120  },   
+            { text: "NAMA PERSYARATAN", value: "nama_persyaratan", sortable: true },
+            { text: "TA", value: "ta", sortable: true, width: 80, align: "center" },
+            { text: "AKSI", value: "actions", sortable: false, width: 100 },
         ],
         search: "",
 

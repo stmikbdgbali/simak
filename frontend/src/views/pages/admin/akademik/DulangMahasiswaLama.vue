@@ -140,8 +140,8 @@ export default {
         let prodi_id = this.$store.getters["uiadmin/getProdiID"];
         this.prodi_id = prodi_id;
         this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](prodi_id);
-        this.tahun_akademik=this.$store.getters['uiadmin/getTahunAkademik'];
-        this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik']; 
+        this.tahun_akademik = this.$store.getters["uiadmin/getTahunAkademik"];
+        this.semester_akademik = this.$store.getters['uiadmin/getSemesterAkademik']; 
         this.initialize()
     },  
     data: () => ({ 
@@ -158,13 +158,13 @@ export default {
         expanded: [],
         datatable: [],
         headers: [
-            { text: "NO. FORMULIR", value: "no_formulir", sortable: true,width:100  },   
-            { text: "NIM", value: "nim", sortable: true,width:100  },   
-            { text: "NIRM", value: "nirm", sortable: true,width:100  },   
-            { text: "NAMA MAHASISWA", value: "nama_mhs",sortable: true,width:250 },
-            { text: "KELAS", value: "idkelas",sortable: true,width:120, },
-            { text: "STATUS", value: "n_status",sortable: true,width:120, },
-            { text: "AKSI", value: "actions", sortable: false, width:100 },
+            { text: "NO. FORMULIR", value: "no_formulir", sortable: true, width: 100  },   
+            { text: "NIM", value: "nim", sortable: true, width: 100  },   
+            { text: "NIRM", value: "nirm", sortable: true, width: 100  },   
+            { text: "NAMA MAHASISWA", value: "nama_mhs", sortable: true, width:250 },
+            { text: "KELAS", value: "idkelas", sortable: true, width: 120, },
+            { text: "STATUS", value: "n_status", sortable: true, width: 120, },
+            { text: "AKSI", value: "actions", sortable: false, width: 100 },
         ],
         search: "",
     }),

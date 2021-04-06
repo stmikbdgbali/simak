@@ -14,8 +14,8 @@
 <script>
 export default {
     name: "DialogPrintoutKeuangan",
-    props:{
-        pid:{
+    props: {
+        pid: {
             type: String,
             required: true
         },    

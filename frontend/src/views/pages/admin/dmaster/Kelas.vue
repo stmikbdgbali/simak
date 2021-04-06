@@ -212,7 +212,7 @@ export default {
         headers: [
             { text: "KODE KELAS", value: "idkelas", width: 150 },
             { text: "NAMA KELAS", value: "nkelas" },
-            { text: "AKSI", value: "actions", sortable: false, width:100 },
+            { text: "AKSI", value: "actions", sortable: false, width: 100 },
         ],
         search: "",
 

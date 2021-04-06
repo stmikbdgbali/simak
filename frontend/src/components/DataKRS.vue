@@ -110,20 +110,20 @@ export default {
     {
         this.initialize();                   
     },
-    props:{
-        datakrs:{
+    props: {
+        datakrs: {
             type:Object,
             required: true
         },
-        totalmatkul:{
+        totalmatkul: {
             type:Number,
             requreid: true
         },
-        totalsks:{
+        totalsks: {
             type:Number,
             requreid: true
         },
-        url:{
+        url: {
             type: String,
             default: null            
         }

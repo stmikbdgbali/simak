@@ -119,7 +119,7 @@ export default {
                     {
                         _method: "PUT",
                         'pid': "token_ttl_expire",
-                        setting:JSON.stringify({
+                        setting: JSON.stringify({
                             903: this.formdata.token_ttl_expire,                
                         }),
                     },

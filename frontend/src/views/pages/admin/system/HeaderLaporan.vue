@@ -147,7 +147,7 @@ export default {
                     {
                         _method: "PUT", 
                         'pid': "Header Laporan",
-                        setting:JSON.stringify({
+                        setting: JSON.stringify({
                             701: this.formdata.header_1,
                             702: this.formdata.header_2,
                             703: this.formdata.header_3,

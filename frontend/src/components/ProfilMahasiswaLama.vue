@@ -127,12 +127,12 @@ export default {
     {
         this.initialize();                   
     },
-    props:{
-        datamhs:{
+    props: {
+        datamhs: {
             type:Object,
             required: true
         },
-        url:{
+        url: {
             type: String,
             default: null            
         }

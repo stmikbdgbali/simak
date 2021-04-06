@@ -202,7 +202,7 @@ export default {
             this.prodi_id = prodi_id;
             this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](prodi_id);
             this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];              
-            this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];                          
+            this.semester_akademik = this.$store.getters['uiadmin/getSemesterAkademik'];                          
         }     
     },  
     mounted()
@@ -228,14 +228,14 @@ export default {
         expanded: [],
         datatable: [],
         headers: [
-            { text: "NIM", value: "nim", sortable: true,width:100  },   
-            { text: "NAMA", value: "nama_mhs", sortable: true,width:250  },   
-            { text: "ANGK.", value: "tahun_masuk", sortable: true,width:100  },
-            { text: "JUMLAH MATKUL", value: "jumlah_matkul", sortable: true,width:100  },
-            { text: "JUMLAH SKS", value: "jumlah_sks", sortable: true,width:100 },
-            { text: "TA.SMT", value: "tasmt",sortable: true,width:100 },
-            { text: "SAH", value: "sah",sortable: true,width:100},
-            { text: "AKSI", value: "actions", sortable: false,width:140 },
+            { text: "NIM", value: "nim", sortable: true, width: 100  },   
+            { text: "NAMA", value: "nama_mhs", sortable: true, width:250  },   
+            { text: "ANGK.", value: "tahun_masuk", sortable: true, width: 100  },
+            { text: "JUMLAH MATKUL", value: "jumlah_matkul", sortable: true, width: 100  },
+            { text: "JUMLAH SKS", value: "jumlah_sks", sortable: true, width: 100 },
+            { text: "TA.SMT", value: "tasmt", sortable: true, width: 100 },
+            { text: "SAH", value: "sah", sortable: true, width: 100},
+            { text: "AKSI", value: "actions", sortable: false, width:140 },
         ],
         search: "",
 

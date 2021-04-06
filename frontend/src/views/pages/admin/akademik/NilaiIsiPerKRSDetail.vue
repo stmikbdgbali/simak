@@ -224,13 +224,13 @@ export default {
         expanded: [],
         datatable: [],
         headers: [
-            { text: "KODE", value: "kmatkul", sortable: true,width:100  },   
-            { text: "NAMA MATAKULIAH", value: "nmatkul",sortable: true,width:260 },
-            { text: "SKS", value: "sks", sortable: false,width:50 },
-            { text: "SMT", value: "semester", sortable: false,width:50 },
-            { text: "KELAS", value: "nama_kelas", sortable: false,width:200 },
-            { text: "NILAI ANGKA (0 s.d 100)", value: "n_kuan", sortable: false,width:70 },
-            { text: "NILAI HURUF", value: "n_kual", sortable: false, width:100 },
+            { text: "KODE", value: "kmatkul", sortable: true, width: 100  },   
+            { text: "NAMA MATAKULIAH", value: "nmatkul", sortable: true, width:260 },
+            { text: "SKS", value: "sks", sortable: false, width:50 },
+            { text: "SMT", value: "semester", sortable: false, width:50 },
+            { text: "KELAS", value: "nama_kelas", sortable: false, width:200 },
+            { text: "NILAI ANGKA (0 s.d 100)", value: "n_kuan", sortable: false, width:70 },
+            { text: "NILAI HURUF", value: "n_kual", sortable: false, width: 100 },
                                    
         ],
         //formdata
@@ -271,7 +271,7 @@ export default {
             await this.$ajax.post("/akademik/nilai/matakuliah/perkrs/storeperkrs",
                 {
                     krs_id: this.krs_id,
-                    daftar_nilai:JSON.stringify(Object.assign({},daftar_nilai)),        
+                    daftar_nilai: JSON.stringify(Object.assign({},daftar_nilai)),        
                 },
                 {
                     headers: {

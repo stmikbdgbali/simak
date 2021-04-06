@@ -184,13 +184,13 @@ export default {
         datatable: [],
         headers: [
             { text: "",value: "foto", width:70 },
-            { text: "NO. FORMULIR", value: "no_formulir", width: 140,sortable: true },
-            { text: "USERNAME", value: "username", width: 150,sortable: true },
-            { text: "NAMA MAHASISWA", value: "name", width: 350,sortable: true },
+            { text: "NO. FORMULIR", value: "no_formulir", width: 140, sortable: true },
+            { text: "USERNAME", value: "username", width: 150, sortable: true },
+            { text: "NAMA MAHASISWA", value: "name", width: 350, sortable: true },
             { text: "JK", value: "jk", width: 70 },
             { text: "NOMOR HP", value: "nomor_hp", width: 100},
-            { text: "KELAS", value: "nkelas", width: 150,sortable: true },
-            { text: "AKSI", value: "actions", sortable: false, width:100 },
+            { text: "KELAS", value: "nkelas", width: 150, sortable: true },
+            { text: "AKSI", value: "actions", sortable: false, width: 100 },
         ],
         search: "", 
         

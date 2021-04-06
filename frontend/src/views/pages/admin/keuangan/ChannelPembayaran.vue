@@ -107,8 +107,8 @@ export default {
         expanded: [],
         datatable: [],
         headers: [            
-            { text: "ID", value: "id_channel", width: 10,sortable: false },    
-            { text: "NAMA CHANNEL", value: "nama_channel",sortable: false},        
+            { text: "ID", value: "id_channel", width: 10, sortable: false },    
+            { text: "NAMA CHANNEL", value: "nama_channel", sortable: false},        
         ],
         
     }),

@@ -355,11 +355,11 @@ export default {
         datatable: [],
         headers: [            
             { text: "NAMA SOAL", value: "soal" },   
-            { text: "AKSI", value: "actions", sortable: false, width:100 },
+            { text: "AKSI", value: "actions", sortable: false, width: 100 },
         ],
         headers_detail: [
             { text: "JAWABAN", value: "jawaban", sortable: false,}, 
-            { text: "KET.", value: "status", sortable: false, width:100 },
+            { text: "KET.", value: "status", sortable: false, width: 100 },
         ],
         search: "",
 

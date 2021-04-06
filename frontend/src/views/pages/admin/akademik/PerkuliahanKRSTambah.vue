@@ -116,7 +116,7 @@ export default {
         this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];              
         this.ta_matkul=this.tahun_akademik;
         this.daftar_semester = this.$store.getters['uiadmin/getDaftarSemester'];        
-        this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];              
+        this.semester_akademik = this.$store.getters['uiadmin/getSemesterAkademik'];              
         if (this.$store.getters['uiadmin/getDefaultDashboard' ] == "mahasiswa")
         {
             this.formdata.nim=this.$store.getters['auth/AttributeUser']("username");
@@ -139,12 +139,12 @@ export default {
         expanded: [],
         datatable: [],
         headers: [
-            { text: "KODE", value: "kmatkul", sortable: true,width:120  },   
-            { text: "NAMA MATAKULIAH", value: "nmatkul",sortable: true },
-            { text: "KELOMPOK", value: "group_alias", sortable: true,width:120 },
-            { text: "SKS", value: "sks",sortable: true,width:80, align: "center" },
-            { text: "SMT", value: "semester", sortable: true,width:80 },
-            { text: "AKSI", value: "actions", sortable: false, width:100 },
+            { text: "KODE", value: "kmatkul", sortable: true, width: 120  },   
+            { text: "NAMA MATAKULIAH", value: "nmatkul", sortable: true },
+            { text: "KELOMPOK", value: "group_alias", sortable: true, width: 120 },
+            { text: "SKS", value: "sks", sortable: true, width: 80, align: "center" },
+            { text: "SMT", value: "semester", sortable: true, width: 80 },
+            { text: "AKSI", value: "actions", sortable: false, width: 100 },
         ],
         search: "",
 

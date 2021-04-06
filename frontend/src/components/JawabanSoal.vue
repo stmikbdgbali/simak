@@ -14,12 +14,12 @@ export default {
     {
              
     },
-    props:{
-        index:{
+    props: {
+        index: {
             type:Number,
             required: true
         },
-        item:{
+        item: {
             type:Object,
             required: true
         }
@@ -37,7 +37,7 @@ export default {
                 jawaban_id: this.item.id
             },
             {
-                headers:{
+                headers: {
                     Authorization: this.$store.getters["auth/Token"],
                 }
             }

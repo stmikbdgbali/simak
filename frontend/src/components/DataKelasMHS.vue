@@ -100,12 +100,12 @@
 <script>
 export default {
     name: "DataMatakuliahPenyelenggaraan",
-    props:{
-        datakelas:{
+    props: {
+        datakelas: {
             default: null,
             type:Object,
         },
-        url:{
+        url: {
             type: String,
             default: null            
         }

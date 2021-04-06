@@ -225,12 +225,12 @@ export default {
         //tables
         headers: [
             { text: "",value: "foto" },        
-            { text: "NAMA DOSEN", value: "nama_dosen",sortable: true,width:250 },
-            { text: "NIDN", value: "nidn",sortable: true }, 
-            { text: "NIPY", value: "nipy",sortable: true }, 
-            { text: "NOMOR HP", value: "nomor_hp",sortable: true }, 
-            { text: "JABATAN AKADEMIK", value: "nama_jabatan",sortable: true },  
-            { text: "AKSI", value: "actions", sortable: false, width:100 },
+            { text: "NAMA DOSEN", value: "nama_dosen", sortable: true, width:250 },
+            { text: "NIDN", value: "nidn", sortable: true }, 
+            { text: "NIPY", value: "nipy", sortable: true }, 
+            { text: "NOMOR HP", value: "nomor_hp", sortable: true }, 
+            { text: "JABATAN AKADEMIK", value: "nama_jabatan", sortable: true },  
+            { text: "AKSI", value: "actions", sortable: false, width: 100 },
         ],
         expanded: [],
         search: "",
