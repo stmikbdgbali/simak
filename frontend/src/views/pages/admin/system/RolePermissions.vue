@@ -183,7 +183,7 @@
 			permissionsselected: Array,
 		},
 		computed: {
-			...mapGetters("auth",{                  
+			...mapGetters("auth", {                  
 				TOKEN: "Token",     
 			}),
 			daftar_permissions() {

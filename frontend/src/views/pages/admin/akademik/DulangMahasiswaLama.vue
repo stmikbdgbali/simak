@@ -141,7 +141,7 @@ export default {
         this.prodi_id = prodi_id;
         this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](prodi_id);
         this.tahun_akademik = this.$store.getters["uiadmin/getTahunAkademik"];
-        this.semester_akademik = this.$store.getters['uiadmin/getSemesterAkademik']; 
+        this.semester_akademik = this.$store.getters["uiadmin/getSemesterAkademik"]; 
         this.initialize()
     },  
     data: () => ({ 
@@ -216,7 +216,7 @@ export default {
         },    
         deleteItem (item)
         {
-            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus daftar ulang '+item.nama_mhs+' ?", { color: "red", width: 600,'desc': "proses ini juga menghapus seluruh data akademik namun KEUANGAN TETAP ADA." }).then(confirm => {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus daftar ulang '+item.nama_mhs+' ?", { color: "red", width: 600,"desc": "proses ini juga menghapus seluruh data akademik namun KEUANGAN TETAP ADA." }).then(confirm => {
                 if (confirm)
                 {
                     this.btnLoadingTable=true;

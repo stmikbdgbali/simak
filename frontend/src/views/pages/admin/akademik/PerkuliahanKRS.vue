@@ -202,7 +202,7 @@ export default {
             this.prodi_id = prodi_id;
             this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](prodi_id);
             this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];              
-            this.semester_akademik = this.$store.getters['uiadmin/getSemesterAkademik'];                          
+            this.semester_akademik = this.$store.getters["uiadmin/getSemesterAkademik"];                          
         }     
     },  
     mounted()
@@ -304,7 +304,7 @@ export default {
         },  
         deleteItem (item)
         {
-            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus krs dengan NIM ("+item.nim+") ?", { color: "red", width: 600,'desc': "proses ini juga menghapus seluruh data yang berkaitan dengan krs ini." }).then(confirm => {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus krs dengan NIM ("+item.nim+") ?", { color: "red", width: 600,"desc": "proses ini juga menghapus seluruh data yang berkaitan dengan krs ini." }).then(confirm => {
                 if (confirm)
                 {
                     this.btnLoadingTable=true;

@@ -116,7 +116,7 @@ export default {
         this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];              
         this.ta_matkul=this.tahun_akademik;
         this.daftar_semester = this.$store.getters['uiadmin/getDaftarSemester'];        
-        this.semester_akademik = this.$store.getters['uiadmin/getSemesterAkademik'];              
+        this.semester_akademik = this.$store.getters["uiadmin/getSemesterAkademik"];              
         if (this.$store.getters['uiadmin/getDefaultDashboard' ] == "mahasiswa")
         {
             this.formdata.nim=this.$store.getters['auth/AttributeUser']("username");

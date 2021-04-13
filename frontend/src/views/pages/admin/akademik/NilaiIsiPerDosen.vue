@@ -145,7 +145,7 @@ export default {
             }
         ];
         this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];              
-        this.semester_akademik = this.$store.getters['uiadmin/getSemesterAkademik'];              
+        this.semester_akademik = this.$store.getters["uiadmin/getSemesterAkademik"];              
         this.initialize()
     },  
     data: () => ({ 
@@ -230,7 +230,7 @@ export default {
         },    
     },
     computed: {
-        ...mapGetters("auth",{ 
+        ...mapGetters("auth", { 
             CAN_ACCESS: "can",         
         }),
     },

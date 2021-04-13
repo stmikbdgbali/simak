@@ -160,7 +160,7 @@ export default {
         this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](prodi_id);
         this.daftar_ta = this.$store.getters['uiadmin/getDaftarTA'];        
         this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];                      
-        this.semester_akademik = this.$store.getters['uiadmin/getSemesterAkademik'];              
+        this.semester_akademik = this.$store.getters["uiadmin/getSemesterAkademik"];              
         this.formdata.idpenyelenggaraan=this.$route.params.idpenyelenggaraan;
         this.initialize();
     }, 
@@ -281,7 +281,7 @@ export default {
         },
         deleteItem (item)
         {
-            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus DOSEN PENGAMPU matakuliah ("+item.nama_dosen+") ?", { color: "red", width: 600,'desc': "proses ini juga menghapus seluruh data yang terkait dalam penyelenggaraan matkul ini." }).then(confirm => {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus DOSEN PENGAMPU matakuliah ("+item.nama_dosen+") ?", { color: "red", width: 600,"desc": "proses ini juga menghapus seluruh data yang terkait dalam penyelenggaraan matkul ini." }).then(confirm => {
                 if (confirm)
                 {
                     this.btnLoadingTable=true;

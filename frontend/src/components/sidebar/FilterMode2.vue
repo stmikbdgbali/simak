@@ -25,7 +25,7 @@ export default {
         this.tahun_akademik = this.$store.getters["uiadmin/getTahunAkademik"];
         
         this.daftar_semester = this.$store.getters['uiadmin/getDaftarSemester'];
-        this.semester_akademik = this.$store.getters['uiadmin/getSemesterAkademik'];
+        this.semester_akademik = this.$store.getters["uiadmin/getSemesterAkademik"];
     },
     data: () => ({
         firstloading: true,

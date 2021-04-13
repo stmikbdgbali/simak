@@ -215,7 +215,7 @@ export default {
         ];
         this.kelas_mhs_id=this.$route.params.kelas_mhs_id;      
         this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];              
-        this.semester_akademik = this.$store.getters['uiadmin/getSemesterAkademik'];              
+        this.semester_akademik = this.$store.getters["uiadmin/getSemesterAkademik"];              
         this.initialize()
     },  
     data: () => ({ 

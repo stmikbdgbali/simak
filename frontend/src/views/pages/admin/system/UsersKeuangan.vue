@@ -641,7 +641,7 @@ export default {
         formTitle() {
             return this.editedIndex === -1 ? "TAMBAH USER KEUANGAN" : "EDIT USER KEUANGAN"
         },
-        ...mapGetters("auth",{ 
+        ...mapGetters("auth", { 
             ACCESS_TOKEN: "AccessToken",          
             TOKEN: "Token",     
         }),

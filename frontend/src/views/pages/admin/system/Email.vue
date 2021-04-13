@@ -136,7 +136,7 @@ export default {
         }
     },
     computed: { 
-        ...mapGetters("auth",{ 
+        ...mapGetters("auth", { 
             ACCESS_TOKEN: "AccessToken",          
             TOKEN: "Token",     
         }),

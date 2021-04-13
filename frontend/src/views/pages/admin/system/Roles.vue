@@ -439,7 +439,7 @@ export default {
         formTitle() {
             return this.editedIndex === -1 ? "TAMBAH ROLE" : "EDIT ROLE"
         },
-        ...mapGetters("auth",{ 
+        ...mapGetters("auth", { 
             ACCESS_TOKEN: "AccessToken",          
             TOKEN: "Token",     
         }),
