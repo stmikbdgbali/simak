@@ -8,7 +8,7 @@
 								PENDAFTAR 
 						</template>
 						<template v-slot:subtitle>
-								TAHUN PENDAFTARAN {{tahun_pendaftaran}} - {{nama_prodi}}
+								TAHUN PENDAFTARAN {{ tahun_pendaftaran }} - {{ nama_prodi }}
 						</template>
 						<template v-slot:breadcrumbs>
 								<v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -89,7 +89,7 @@
 																						</v-card-title>
 																						<v-card-subtitle>
 																								<span class="info--text">
-																										Secara default akan tersimpan di prodi <strong>{{nama_prodi}} - {{tahun_pendaftaran}}.</strong>
+																										Secara default akan tersimpan di prodi <strong>{{ nama_prodi }} - {{ tahun_pendaftaran }}.</strong>
 																										Anda bisa merubahnya dengan memilih PRODI atau Tahun Akademik dibawah ini. Namun bila sudah memiliki NIM, T.A dan PRODI tidak bisa diubah.
 																								</span>
 																						</v-card-subtitle>
@@ -223,7 +223,7 @@
 																										<v-card flat>
 																												<v-card-title>PROGRAM STUDI :</v-card-title>
 																												<v-card-subtitle>                       
-																														{{$store.getters['uiadmin/getProdiName'](formdata.prodi_id)}}
+																														{{$store.getters["uiadmin/getProdiName"](formdata.prodi_id)}}
 																												</v-card-subtitle>
 																										</v-card>
 																								</v-col>
@@ -350,7 +350,7 @@
 							{
 									text: "HOME",
 									disabled: false,
-									href: "/dashboard/" + this.$store.getters['auth/AccessToken']
+									href: "/dashboard/" + this.$store.getters["auth/AccessToken"]
 							},
 							{
 									text: "SPMB",
@@ -365,10 +365,10 @@
 					]; 
 					this.breadcrumbs[1].disabled=(this.dashboard=='mahasiswabaru'||this.dashboard == "mahasiswa");
 
-					let prodi_id = this.$store.getters['uiadmin/getProdiID'];
+					let prodi_id = this.$store.getters["uiadmin/getProdiID"];
 					this.prodi_id = prodi_id;
-					this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
-					this.tahun_pendaftaran = this.$store.getters['uiadmin/getTahunPendaftaran'];      
+					this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](prodi_id);
+					this.tahun_pendaftaran = this.$store.getters["uiadmin/getTahunPendaftaran"];      
 					this.initialize();
 			},
 			data: () => ({ 
@@ -388,12 +388,12 @@
 					//tables
 					headers: [
 							{ text: "",value: "foto", width:70 },        
-							{ text: "NAMA MAHASISWA", value: "name", width: 350,sortable: true },
-							{ text: "USERNAME", value: "username",sortable: true },
-							{ text: "EMAIL", value: "email",sortable: true }, 
-							{ text: "NOMOR HP", value: "nomor_hp",sortable: false,width:130 }, 
-							{ text: "TGL.DAFTAR", value: "created_at",sortable: true,width:100 }, 
-							{ text: "AKSI", value: "actions", sortable: false, width:100 },
+							{ text: "NAMA MAHASISWA", value: "name", width: 350, sortable: true },
+							{ text: "USERNAME", value: "username", sortable: true },
+							{ text: "EMAIL", value: "email", sortable: true }, 
+							{ text: "NOMOR HP", value: "nomor_hp", sortable: false, width:130 }, 
+							{ text: "TGL.DAFTAR", value: "created_at", sortable: true, width: 100 }, 
+							{ text: "AKSI", value: "actions", sortable: false, width: 100 },
 					],
 					expanded: [],
 					search: "",
@@ -546,7 +546,7 @@
 									this.btnLoading = false;
 							});   
 					},
-					async addItem ()
+					async addItem()
 					{
 							this.daftar_ta = this.$store.getters['uiadmin/getDaftarTA'];
 							this.formdata.ta=this.tahun_pendaftaran;
@@ -681,7 +681,7 @@
 							});          
 					},   
 					deleteItem(item) {
-							this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus MAHASISWA BARU " + item.name+ " ?", { color: "red" }).then((confirm) => {
+							this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus MAHASISWA BARU " + item.name+ " ?", { color: "red" }).then(confirm => {
 									if (confirm){
 											this.btnLoading = true;
 											this.$ajax.post("/spmb/pmb/" + item.id,
@@ -742,7 +742,7 @@
 					{
 							if (!this.firstloading)
 							{
-									this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](val);
+									this.nama_prodi=this.$store.getters["uiadmin/getProdiName"](val);
 									this.initialize();
 							}            
 					},

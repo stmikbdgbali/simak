@@ -8,7 +8,7 @@
                 LAPORAN PMB FAKULTAS
             </template>
             <template v-slot:subtitle>
-                TAHUN PENDAFTARAN {{tahun_pendaftaran}} - {{nama_fakultas}}
+                TAHUN PENDAFTARAN {{ tahun_pendaftaran }} - {{nama_fakultas}}
             </template>
             <template v-slot:breadcrumbs>
                 <v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -126,7 +126,7 @@ export default {
             {
                 text: "HOME",
                 disabled: false,
-                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters["auth/AccessToken"]
             },
             {
                 text: "SPMB",
@@ -142,7 +142,7 @@ export default {
         let fakultas_id=this.$store.getters['uiadmin/getFakultasID'];
         this.fakultas_id=fakultas_id;
         this.nama_fakultas=this.$store.getters['uiadmin/getFakultasName'](fakultas_id);
-        this.tahun_pendaftaran = this.$store.getters['uiadmin/getTahunPendaftaran'];              
+        this.tahun_pendaftaran = this.$store.getters["uiadmin/getTahunPendaftaran"];              
         this.initialize()   
     },  
     data: () => ({
@@ -161,9 +161,9 @@ export default {
         datatable: [],
         headers: [
             { text: "",value: "foto", width:70 },
-            { text: "NAMA MAHASISWA", value: "name", width: 350,sortable: true },
+            { text: "NAMA MAHASISWA", value: "name", width: 350, sortable: true },
             { text: "NOMOR HP", value: "nomor_hp", width: 100},
-            { text: "KELAS", value: "nkelas", width: 100,sortable: true },        
+            { text: "KELAS", value: "nkelas", width: 100, sortable: true },        
         ],
         search: "", 
         

@@ -8,7 +8,7 @@
                 LAPORAN KELULUSAN MAHASISWA BARU
             </template>
             <template v-slot:subtitle v-if="dashboard!='mahasiswabaru'">
-                TAHUN PENDAFTARAN {{tahun_pendaftaran}} - {{nama_prodi}}
+                TAHUN PENDAFTARAN {{ tahun_pendaftaran }} - {{ nama_prodi }}
             </template>
             <template v-slot:breadcrumbs>
                 <v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -138,7 +138,7 @@ export default {
             {
                 text: "HOME",
                 disabled: false,
-                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters["auth/AccessToken"]
             },
             {
                 text: "SPMB",
@@ -153,10 +153,10 @@ export default {
         ];
         this.breadcrumbs[1].disabled=(this.dashboard=='mahasiswabaru'||this.dashboard == "mahasiswa");
         
-        let prodi_id = this.$store.getters['uiadmin/getProdiID'];
+        let prodi_id = this.$store.getters["uiadmin/getProdiID"];
         this.prodi_id = prodi_id;
-        this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
-        this.tahun_pendaftaran = this.$store.getters['uiadmin/getTahunPendaftaran'];              
+        this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](prodi_id);
+        this.tahun_pendaftaran = this.$store.getters["uiadmin/getTahunPendaftaran"];              
         this.initialize()   
     },  
     data: () => ({
@@ -176,13 +176,13 @@ export default {
         datatable: [],
         headers: [
             { text: "",value: "foto", width:70 },
-            { text: "NO.FORMULIR", value: "no_formulir", width: 120,sortable: true },
-            { text: "NAMA MAHASISWA", value: "name", width: 350,sortable: true },
+            { text: "NO.FORMULIR", value: "no_formulir", width: 120, sortable: true },
+            { text: "NAMA MAHASISWA", value: "name", width: 350, sortable: true },
             { text: "NOMOR HP", value: "nomor_hp", width: 100},
-            { text: "KELAS", value: "nkelas", width: 100,sortable: true },
-            { text: "NILAI", value: "nilai", width: 100,sortable: true },
-            { text: "STATUS", value: "status", width: 100,sortable: true },
-            { text: "AKSI", value: "actions", sortable: false,width:50 },
+            { text: "KELAS", value: "nkelas", width: 100, sortable: true },
+            { text: "NILAI", value: "nilai", width: 100, sortable: true },
+            { text: "STATUS", value: "status", width: 100, sortable: true },
+            { text: "AKSI", value: "actions", sortable: false, width:50 },
         ],
         search: "", 
         
@@ -304,7 +304,7 @@ export default {
         {
             if (!this.firstloading)
             {
-                this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](val);
+                this.nama_prodi=this.$store.getters["uiadmin/getProdiName"](val);
                 this.initialize();
             }            
         }

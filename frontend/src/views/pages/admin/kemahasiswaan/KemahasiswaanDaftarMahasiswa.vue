@@ -8,7 +8,7 @@
                 DAFTAR MAHASISWA 
             </template>
             <template v-slot:subtitle>
-                TAHUN PENDAFTARAN {{tahun_pendaftaran}} - {{nama_prodi}}
+                TAHUN PENDAFTARAN {{ tahun_pendaftaran }} - {{ nama_prodi }}
             </template>
             <template v-slot:breadcrumbs>
                 <v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -143,7 +143,7 @@ export default {
             {
                 text: "HOME",
                 disabled: false,
-                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters["auth/AccessToken"]
             },        
             {
                 text: "KEMAHASISWAAN",
@@ -156,10 +156,10 @@ export default {
                 href: "#"
             }
         ];
-        let prodi_id = this.$store.getters['uiadmin/getProdiID'];
+        let prodi_id = this.$store.getters["uiadmin/getProdiID"];
         this.prodi_id = prodi_id;
-        this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
-        this.tahun_pendaftaran = this.$store.getters['uiadmin/getTahunPendaftaran'];              
+        this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](prodi_id);
+        this.tahun_pendaftaran = this.$store.getters["uiadmin/getTahunPendaftaran"];              
         this.initialize()
     },  
     data: () => ({ 
@@ -176,12 +176,12 @@ export default {
         expanded: [],
         datatable: [],
         headers: [
-            { text: "NO. FORMULIR", value: "no_formulir", sortable: true,width:150  },   
-            { text: "NIM", value: "nim", sortable: true,width:150  },   
-            { text: "NIRM", value: "nirm", sortable: true,width:150  },   
-            { text: "NAMA MAHASISWA", value: "nama_mhs",sortable: true },
-            { text: "KELAS", value: "idkelas",sortable: true,width:120, },            
-            { text: "STATUS", value: "k_status",sortable: true,width:120, },            
+            { text: "NO. FORMULIR", value: "no_formulir", sortable: true, width:150  },   
+            { text: "NIM", value: "nim", sortable: true, width:150  },   
+            { text: "NIRM", value: "nirm", sortable: true, width:150  },   
+            { text: "NAMA MAHASISWA", value: "nama_mhs", sortable: true },
+            { text: "KELAS", value: "idkelas", sortable: true, width: 120, },            
+            { text: "STATUS", value: "k_status", sortable: true, width: 120, },            
         ],
         search: "",
     }),
@@ -306,7 +306,7 @@ export default {
         {
             if (!this.firstloading)
             {
-                this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](val);
+                this.nama_prodi=this.$store.getters["uiadmin/getProdiName"](val);
                 this.initialize();
             }            
         },

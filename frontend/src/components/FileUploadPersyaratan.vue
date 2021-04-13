@@ -80,16 +80,16 @@ export default {
             this.badgeIcon=this.item.verified;
         }        
     },
-    props:{
-        user_id:{
+    props: {
+        user_id: {
             type: String,
             required: true
         },
-        index:{
+        index: {
             type:Number,
             required: true
         },
-        item:{
+        item: {
             type:Object,
             required: true
         }
@@ -146,7 +146,7 @@ export default {
                     formdata.append("foto",this.filepersyaratan[index]);
                     await this.$ajax.post("/spmb/pmbpersyaratan/upload/" + this.user_id,formdata,        
                         {
-                            headers:{
+                            headers: {
                                 Authorization: this.$store.getters["auth/Token"],
                                 'Content-Type': "multipart/form-data"                    
                             }
@@ -163,7 +163,7 @@ export default {
         },
         hapusfilepersysaratan(item)
         {
-            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus persyaratan " + item.nama_persyaratan + " ?", { color: "red" }).then((confirm) => {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus persyaratan " + item.nama_persyaratan + " ?", { color: "red" }).then(confirm => {
                 if (confirm)
                 {
                     this.$ajax.post("/spmb/pmbpersyaratan/hapusfilepersyaratan/" + item.persyaratan_pmb_id,
@@ -171,7 +171,7 @@ export default {
                             _method:'DELETE'
                         },     
                         {
-                            headers:{
+                            headers: {
                                 Authorization: this.$store.getters["auth/Token"]                
                             }
                         }
@@ -209,7 +209,7 @@ export default {
                 
             },
             {
-                headers:{
+                headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
             }
@@ -225,7 +225,7 @@ export default {
         }
     },
     computed: {
-        photoPersyaratan:{
+        photoPersyaratan: {
             get()
             {   
                 if (this.image_prev==null)
@@ -243,7 +243,7 @@ export default {
             }
             
         },
-        badgeColor:{
+        badgeColor: {
             get()
             {
                 return this.verified == 1 ? 'success':'error'
@@ -254,7 +254,7 @@ export default {
             }
             
         },
-        badgeIcon:{
+        badgeIcon: {
             get()
             {
                 return this.verified == 1 ? 'mdi-check-bold':'mdi-close-thick';

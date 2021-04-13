@@ -126,7 +126,7 @@ export default {
             {
                 text: "HOME",
                 disabled: false,
-                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters["auth/AccessToken"]
             },
             {
                 text: "AKADEMIK",
@@ -145,7 +145,7 @@ export default {
             }
         ];
         this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];              
-        this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];              
+        this.semester_akademik = this.$store.getters['uiadmin/getSemesterAkademik'];              
         this.initialize()
     },  
     data: () => ({ 
@@ -159,14 +159,14 @@ export default {
         expanded: [],
         datatable: [],
         headers: [
-            { text: "KODE", value: "kmatkul", sortable: true,width:100  },   
-            { text: "NAMA MATAKULIAH/KELAS", value: "nmatkul", sortable: true,width:250  },   
-            { text: "NAMA DOSEN", value: "nama_dosen", sortable: true,width:250  },
-            { text: "HARI", value: "nama_hari", sortable: true,width:70 },
-            { text: "JAM", value: "jam_masuk",sortable: true,width:70 },
-            { text: "RUANG", value: "namaruang",sortable: true,width:100},
-            { text: "JUMLAH PESERTA", value: "jumlah_mhs",sortable: true,width:100},
-            { text: "AKSI", value: "actions", sortable: false,width:120 },
+            { text: "KODE", value: "kmatkul", sortable: true, width: 100  },   
+            { text: "NAMA MATAKULIAH/KELAS", value: "nmatkul", sortable: true, width:250  },   
+            { text: "NAMA DOSEN", value: "nama_dosen", sortable: true, width:250  },
+            { text: "HARI", value: "nama_hari", sortable: true, width:70 },
+            { text: "JAM", value: "jam_masuk", sortable: true, width:70 },
+            { text: "RUANG", value: "namaruang", sortable: true, width: 100},
+            { text: "JUMLAH PESERTA", value: "jumlah_mhs", sortable: true, width: 100},
+            { text: "AKSI", value: "actions", sortable: false, width: 120 },
         ],
         search: "",
 

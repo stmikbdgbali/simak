@@ -132,7 +132,7 @@ export default {
                     {
                         _method: "PUT",
                         'pid': "captcha google",
-                        setting:JSON.stringify({
+                        setting: JSON.stringify({
                             901: this.formdata.siteKey,
                             902: this.formdata.privateKey,
                         }),

@@ -158,7 +158,7 @@ export default {
                     {
                         _method: "PUT", 
                         'pid': "Class Css Layout",
-                        setting:JSON.stringify({
+                        setting: JSON.stringify({
                             801: this.formdata.V_SYSTEM_BAR_CSS_CLASS,
                             802: this.formdata.V_APP_BAR_NAV_ICON_CSS_CLASS,
                             803: this.formdata.V_NAVIGATION_DRAWER_CSS_CLASS,

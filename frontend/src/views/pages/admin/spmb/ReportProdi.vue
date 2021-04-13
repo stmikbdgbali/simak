@@ -8,7 +8,7 @@
 				LAPORAN PMB PROGRAM STUDI
 			</template>
 			<template v-slot:subtitle>
-				TAHUN PENDAFTARAN {{tahun_pendaftaran}} - {{nama_prodi}}
+				TAHUN PENDAFTARAN {{ tahun_pendaftaran }} - {{ nama_prodi }}
 			</template>
 			<template v-slot:breadcrumbs>
 				<v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -160,9 +160,9 @@
 			datatable: [],
 			headers: [
 				{ text: "",value: "foto", width:70 },
-				{ text: "NAMA MAHASISWA", value: "name", width: 350,sortable: true },
+				{ text: "NAMA MAHASISWA", value: "name", width: 350, sortable: true },
 				{ text: "NOMOR HP", value: "nomor_hp", width: 100},
-				{ text: "KELAS", value: "nkelas", width: 100,sortable: true },
+				{ text: "KELAS", value: "nkelas", width: 100, sortable: true },
 			],
 			search: "",			
 			datamhsbaru: {},

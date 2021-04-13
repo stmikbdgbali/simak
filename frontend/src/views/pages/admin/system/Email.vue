@@ -118,7 +118,7 @@ export default {
                     {
                         _method: "PUT", 
                         'pid': "email",
-                        setting:JSON.stringify({
+                        setting: JSON.stringify({
                             910: this.formdata.email_mhs_isvalid,                
                         }),                                                                                   
                     },

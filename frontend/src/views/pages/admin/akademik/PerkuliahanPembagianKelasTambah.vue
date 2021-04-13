@@ -179,7 +179,7 @@ export default {
             {
                 text: "HOME",
                 disabled: false,
-                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters["auth/AccessToken"]
             },
             {
                 text: "AKADEMIK",
@@ -202,8 +202,8 @@ export default {
                 href: "#"
             }
         ];
-        this.tahun_akademik=this.$store.getters['uiadmin/getTahunAkademik'];
-        this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];
+        this.tahun_akademik = this.$store.getters["uiadmin/getTahunAkademik"];
+        this.semester_akademik = this.$store.getters['uiadmin/getSemesterAkademik'];
         this.initialize()
     },
     data: () => ({
@@ -350,7 +350,7 @@ export default {
                         hari: this.formdata.hari,
                         jam_masuk: this.formdata.jam_masuk,
                         jam_keluar: this.formdata.jam_keluar,
-                        penyelenggaraan_dosen_id:JSON.stringify(Object.assign({},this.formdata.penyelenggaraan_dosen_id)),
+                        penyelenggaraan_dosen_id: JSON.stringify(Object.assign({},this.formdata.penyelenggaraan_dosen_id)),
                         ruang_kelas_id: this.formdata.ruang_kelas_id,
                         tahun: this.tahun_akademik,
                         idsmt: this.semester_akademik,

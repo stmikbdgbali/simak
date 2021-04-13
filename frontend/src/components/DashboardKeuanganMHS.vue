@@ -106,8 +106,8 @@ export default {
         total_transaction_unpaid: 0,
         total_transaction_cancelled:0
     }),
-    props:{
-        ta:{
+    props: {
+        ta: {
             type:Number,
             required: true
         }

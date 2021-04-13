@@ -380,7 +380,7 @@ export default {
                 { text: "AKHIR GENAP", value: "akhir_genap", width: 50 },
                 { text: "AWAL PENDEK", value: "awal_pendek", width: 50 },
                 { text: "AKHIR PENDEK", value: "akhir_pendek", width: 50 },
-                { text: "AKSI", value: "actions", sortable: false, width:100 },
+                { text: "AKSI", value: "actions", sortable: false, width: 100 },
             ],
             search: "",
 
@@ -494,7 +494,7 @@ export default {
                             akhir_genap: this.semester_genap[1],
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization: this.TOKEN
                             }
                         }
@@ -516,7 +516,7 @@ export default {
                             akhir_genap: this.semester_genap[1],
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization: this.TOKEN
                             }
                         }
@@ -531,7 +531,7 @@ export default {
             }
         },
         deleteItem(item) {
-            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data dengan ID '+item.tahun+' ?", { color: "red" }).then((confirm) => {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data dengan ID '+item.tahun+' ?", { color: "red" }).then(confirm => {
                 if (confirm)
                 {
                     this.btnLoading = true;
@@ -540,7 +540,7 @@ export default {
                             _method: "DELETE",
                         },
                         {
-                            headers:{
+                            headers: {
                                 Authorization: this.TOKEN
                             }
                         }
@@ -579,7 +579,7 @@ export default {
                 return this.semester_ganjil.join(" ~ ");
             }
         },
-        semesterGenapText:{
+        semesterGenapText: {
             set()
             {
 
@@ -590,7 +590,7 @@ export default {
             }
         },       
     },
-    components:{
+    components: {
         DataMasterLayout,
         ModuleHeader,
     },

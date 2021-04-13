@@ -8,7 +8,7 @@
                 ISI NILAI PER KRS
             </template>
             <template v-slot:subtitle v-if="Object.keys(datakrs).length">
-                TAHUN AKADEMIK {{tahun_akademik}} SEMESTER {{$store.getters['uiadmin/getNamaSemester'](semester_akademik)}} - {{nama_prodi}}
+                TAHUN AKADEMIK {{tahun_akademik}} SEMESTER {{$store.getters['uiadmin/getNamaSemester'](semester_akademik)}} - {{ nama_prodi }}
             </template>
             <template v-slot:breadcrumbs>
                 <v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -185,7 +185,7 @@ export default {
             {
                 text: "HOME",
                 disabled: false,
-                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters["auth/AccessToken"]
             },
             {
                 text: "AKADEMIK",
@@ -224,13 +224,13 @@ export default {
         expanded: [],
         datatable: [],
         headers: [
-            { text: "KODE", value: "kmatkul", sortable: true,width:100  },   
-            { text: "NAMA MATAKULIAH", value: "nmatkul",sortable: true,width:260 },
-            { text: "SKS", value: "sks", sortable: false,width:50 },
-            { text: "SMT", value: "semester", sortable: false,width:50 },
-            { text: "KELAS", value: "nama_kelas", sortable: false,width:200 },
-            { text: "NILAI ANGKA (0 s.d 100)", value: "n_kuan", sortable: false,width:70 },
-            { text: "NILAI HURUF", value: "n_kual", sortable: false, width:100 },
+            { text: "KODE", value: "kmatkul", sortable: true, width: 100  },   
+            { text: "NAMA MATAKULIAH", value: "nmatkul", sortable: true, width:260 },
+            { text: "SKS", value: "sks", sortable: false, width:50 },
+            { text: "SMT", value: "semester", sortable: false, width:50 },
+            { text: "KELAS", value: "nama_kelas", sortable: false, width:200 },
+            { text: "NILAI ANGKA (0 s.d 100)", value: "n_kuan", sortable: false, width:70 },
+            { text: "NILAI HURUF", value: "n_kual", sortable: false, width: 100 },
                                    
         ],
         //formdata
@@ -250,7 +250,7 @@ export default {
                 if (Object.keys(this.datakrs).length)
                 {
                     let prodi_id=this.datakrs.kjur;                  
-                    this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);              
+                    this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](prodi_id);              
                     this.tahun_akademik=this.datakrs.tahun;                                                    
                     this.semester_akademik=this.datakrs.idsmt;                      
                 }
@@ -271,7 +271,7 @@ export default {
             await this.$ajax.post("/akademik/nilai/matakuliah/perkrs/storeperkrs",
                 {
                     krs_id: this.krs_id,
-                    daftar_nilai:JSON.stringify(Object.assign({},daftar_nilai)),        
+                    daftar_nilai: JSON.stringify(Object.assign({},daftar_nilai)),        
                 },
                 {
                     headers: {

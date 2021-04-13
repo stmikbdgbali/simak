@@ -8,7 +8,7 @@
                 VERIFIKASI KRS (KARTU RENCANA STUDI)
             </template>
             <template v-slot:subtitle v-if="Object.keys(datakrs).length">
-                TAHUN AKADEMIK {{tahun_akademik}} SEMESTER {{$store.getters['uiadmin/getNamaSemester'](semester_akademik)}} - {{nama_prodi}}
+                TAHUN AKADEMIK {{tahun_akademik}} SEMESTER {{$store.getters['uiadmin/getNamaSemester'](semester_akademik)}} - {{ nama_prodi }}
             </template>
             <template v-slot:breadcrumbs>
                 <v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -90,7 +90,7 @@ export default {
             {
                 text: "HOME",
                 disabled: false,
-                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters["auth/AccessToken"]
             },
             {
                 text: "AKADEMIK",
@@ -133,12 +133,12 @@ export default {
         expanded: [],
         datatable: [],
         headers: [
-            { text: "KODE", value: "kmatkul", sortable: true,width:120  },   
-            { text: "NAMA MATAKULIAH", value: "nmatkul",sortable: true },
-            { text: "SKS", value: "sks", sortable: false,width:50 },
-            { text: "SMT", value: "semester", sortable: false,width:50 },
-            { text: "KELAS", value: "nama_kelas", sortable: false,width:200 },
-            { text: "NAMA DOSEN", value: "nama_dosen", sortable: false,width:200 },        
+            { text: "KODE", value: "kmatkul", sortable: true, width: 120  },   
+            { text: "NAMA MATAKULIAH", value: "nmatkul", sortable: true },
+            { text: "SKS", value: "sks", sortable: false, width:50 },
+            { text: "SMT", value: "semester", sortable: false, width:50 },
+            { text: "KELAS", value: "nama_kelas", sortable: false, width:200 },
+            { text: "NAMA DOSEN", value: "nama_dosen", sortable: false, width:200 },        
         ],
     }),
     methods: {          
@@ -155,7 +155,7 @@ export default {
                 if (Object.keys(this.datakrs).length)
                 {
                     let prodi_id=this.datakrs.kjur;                  
-                    this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);              
+                    this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](prodi_id);              
                     this.tahun_akademik=this.datakrs.tahun;                                                    
                     this.semester_akademik=this.datakrs.idsmt;                      
                 }

@@ -8,7 +8,7 @@
                 BIODATA
             </template>
             <template v-slot:subtitle v-if="dashboard!='mahasiswabaru'">
-                TAHUN PENDAFTARAN {{tahun_pendaftaran}} - {{nama_prodi}}
+                TAHUN PENDAFTARAN {{ tahun_pendaftaran }} - {{ nama_prodi }}
             </template>
             <template v-slot:breadcrumbs>
                 <v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -223,7 +223,7 @@ export default {
             {
                 text: "HOME",
                 disabled: false,
-                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters["auth/AccessToken"]
             },
             {
                 text: "SPMB",
@@ -397,7 +397,7 @@ export default {
                 
                 this.kode_billing=data.no_transaksi;
 
-                this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](data.formulir.kjur1);
+                this.nama_prodi=this.$store.getters["uiadmin/getProdiName"](data.formulir.kjur1);
                 this.tahun_pendaftaran=data.ta;
 
                 this.$refs.frmdata.resetValidation();     

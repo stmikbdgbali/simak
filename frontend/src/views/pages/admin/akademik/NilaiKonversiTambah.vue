@@ -8,7 +8,7 @@
                 KONVERSI NILAI 
             </template>
             <template v-slot:subtitle>
-                TAHUN PENDAFTARAN {{tahun_pendaftaran}} - {{nama_prodi}}
+                TAHUN PENDAFTARAN {{ tahun_pendaftaran }} - {{ nama_prodi }}
             </template>
             <template v-slot:breadcrumbs>
                 <v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -130,7 +130,7 @@
                             loading-text="Loading... Please wait">
                             <template v-slot:top>
                                 <v-toolbar flat color="white">
-                                    <v-toolbar-title>KURIKULUM MATAKULIAH T.A {{tahun_pendaftaran}}</v-toolbar-title>
+                                    <v-toolbar-title>KURIKULUM MATAKULIAH T.A {{ tahun_pendaftaran }}</v-toolbar-title>
                                     <v-divider
                                         class="mx-4"
                                         inset
@@ -188,7 +188,7 @@ export default {
             {
                 text: "HOME",
                 disabled: false,
-                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters["auth/AccessToken"]
             },
             {
                 text: "AKADEMIK",
@@ -211,10 +211,10 @@ export default {
                 href: "#"
             }
         ];
-        let prodi_id = this.$store.getters['uiadmin/getProdiID'];
+        let prodi_id = this.$store.getters["uiadmin/getProdiID"];
         this.prodi_id = prodi_id;
-        this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
-        this.tahun_pendaftaran = this.$store.getters['uiadmin/getTahunPendaftaran'];              
+        this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](prodi_id);
+        this.tahun_pendaftaran = this.$store.getters["uiadmin/getTahunPendaftaran"];              
         this.initialize()
     },  
     data: () => ({         
@@ -227,14 +227,14 @@ export default {
         datatableLoading: false,        
         datatable: [],
         headers: [            
-            { text: "KODE", value: "kmatkul", sortable: false, width:100  },
+            { text: "KODE", value: "kmatkul", sortable: false, width: 100  },
             { text: "NAMA", value: "nmatkul", sortable: false, width:250  },
-            { text: "SKS", value: "sks",sortable: false, width:70 },
-            { text: "SMT", value: "semester",sortable: true,width:70, },
-            { text: "KODE MATKUL ASAL", value: "kmatkul_asal",sortable: false,width:120 },
-            { text: "MATAKULIAH ASAL", value: "matkul_asal",sortable: false,width:170 },
-            { text: "SKS ASAL", value: "sks_asal",sortable: false,width:70},
-            { text: "NILAI", value: "n_kual",sortable: false,width:70},            
+            { text: "SKS", value: "sks", sortable: false, width:70 },
+            { text: "SMT", value: "semester", sortable: true, width:70, },
+            { text: "KODE MATKUL ASAL", value: "kmatkul_asal", sortable: false, width: 120 },
+            { text: "MATAKULIAH ASAL", value: "matkul_asal", sortable: false, width:170 },
+            { text: "SKS ASAL", value: "sks_asal", sortable: false, width:70},
+            { text: "NILAI", value: "n_kual", sortable: false, width:70},            
         ],
         search: "",
                 
@@ -368,7 +368,7 @@ export default {
                         nama_ps_asal: this.formdata.nama_ps_asal,                                                                    
                         tahun: this.tahun_pendaftaran,                                                                    
                         kjur: this.prodi_id,  
-                        daftar_nilai:JSON.stringify(Object.assign({},daftar_nilai)),        
+                        daftar_nilai: JSON.stringify(Object.assign({},daftar_nilai)),        
                     },
                     {
                         headers: {

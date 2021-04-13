@@ -105,7 +105,7 @@ export default {
 			{
 				text: "HOME",
 				disabled: false,
-				href: "/dashboard/" + this.$store.getters['auth/AccessToken']
+				href: "/dashboard/" + this.$store.getters["auth/AccessToken"]
 			},
 			{
 				text: "E-LEARNING",
@@ -119,7 +119,7 @@ export default {
 			}
         ];		
         this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];              
-        this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];      
+        this.semester_akademik = this.$store.getters['uiadmin/getSemesterAkademik'];      
     },
     mounted()
     {

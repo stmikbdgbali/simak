@@ -29,13 +29,13 @@ export default {
     created()
     {
         this.daftar_prodi=this.$store.getters['uiadmin/getDaftarProdi'];
-        this.prodi_id=this.$store.getters['uiadmin/getProdiID'];                                  
+        this.prodi_id=this.$store.getters["uiadmin/getProdiID"];                                  
 
         this.daftar_ta = this.$store.getters['uiadmin/getDaftarTA'];
-        this.tahun_akademik=this.$store.getters['uiadmin/getTahunAkademik'];
+        this.tahun_akademik = this.$store.getters["uiadmin/getTahunAkademik"];
         
         this.daftar_semester = this.$store.getters['uiadmin/getDaftarSemester'];
-        this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];
+        this.semester_akademik = this.$store.getters['uiadmin/getSemesterAkademik'];
     },
     data: () => ({
         firstloading: true,

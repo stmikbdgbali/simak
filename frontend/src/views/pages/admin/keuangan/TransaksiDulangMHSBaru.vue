@@ -8,7 +8,7 @@
                 TRANSAKSI DAFTAR ULANG MAHASISWA BARU
             </template>
             <template v-slot:subtitle>
-                TAHUN PENDAFTARAN {{tahun_pendaftaran}} - {{nama_prodi}}
+                TAHUN PENDAFTARAN {{ tahun_pendaftaran }} - {{ nama_prodi }}
             </template>
             <template v-slot:breadcrumbs>
                 <v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -87,7 +87,7 @@
                                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>
                                         <v-card>
                                             <v-card-title>
-                                                <span class="headline">TAMBAH TRANSAKSI T.A {{tahun_pendaftaran}}</span>
+                                                <span class="headline">TAMBAH TRANSAKSI T.A {{ tahun_pendaftaran }}</span>
                                             </v-card-title>
                                             <v-card-text>
                                                 <v-text-field 
@@ -173,7 +173,7 @@
                                 
                                 :disabled="btnLoading"
                                 @click.stop="deleteItem(item)"
-                                v-if="item.status==0">
+                                v-if="item.status == 0">
                                 mdi-delete
                             </v-icon>              
                         </template>
@@ -201,7 +201,7 @@ export default {
             {
                 text: "HOME",
                 disabled: false,
-                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters["auth/AccessToken"]
             },
             {
                 text: "KEUANGAN",
@@ -214,10 +214,10 @@ export default {
                 href: "#"
             }
         ];      
-        let prodi_id = this.$store.getters['uiadmin/getProdiID'];
+        let prodi_id = this.$store.getters["uiadmin/getProdiID"];
         this.prodi_id = prodi_id;
-        this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
-        this.tahun_pendaftaran = this.$store.getters['uiadmin/getTahunPendaftaran'];                             
+        this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](prodi_id);
+        this.tahun_pendaftaran = this.$store.getters["uiadmin/getTahunPendaftaran"];                             
     },
     mounted()
     {
@@ -239,14 +239,14 @@ export default {
         datatableLoading: false,       
         datatable: [],
         headers: [                        
-            { text: "KODE BILLING", value: "no_transaksi", width: 100,sortable: true },
-            { text: "TANGGAL", value: "tanggal", width: 90,sortable: true },
-            { text: "NO. FORMULIR", value: "no_formulir",sortable: true,width:100 },        
-            { text: "NAMA MAHASISWA", value: "nama_mhs",sortable: true,width:250 },        
-            { text: "SMT", value: "idsmt", width: 100,sortable: false },
-            { text: "JUMLAH", value: "sub_total", width: 100,sortable: false,align: "right" },
-            { text: "STATUS", value: "nama_status", width: 100,sortable: false },        
-            { text: "AKSI", value: "actions", sortable: false, width:100 },
+            { text: "KODE BILLING", value: "no_transaksi", width: 100, sortable: true },
+            { text: "TANGGAL", value: "tanggal", width: 90, sortable: true },
+            { text: "NO. FORMULIR", value: "no_formulir", sortable: true, width: 100 },        
+            { text: "NAMA MAHASISWA", value: "nama_mhs", sortable: true, width:250 },        
+            { text: "SMT", value: "idsmt", width: 100, sortable: false },
+            { text: "JUMLAH", value: "sub_total", width: 100, sortable: false,align: "right" },
+            { text: "STATUS", value: "nama_status", width: 100, sortable: false },        
+            { text: "AKSI", value: "actions", sortable: false, width: 100 },
         ],  
         expanded: [],
         search: "",
@@ -306,9 +306,9 @@ export default {
                 this.expanded = [item];
             }               
         },
-        async addItem ()
+        async addItem()
         {
-            this.dialogfrm=true;          
+            this.dialogfrm = true;          
         },
         viewItem(item)
         {
@@ -351,7 +351,7 @@ export default {
             );
         },
         deleteItem(item) {
-            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data transaksi daftar ulang mahasiswa baru dengan ID '+item.id+' ?", { color: "red", width:  "500px" }).then((confirm) => {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data transaksi daftar ulang mahasiswa baru dengan ID '+item.id+' ?", { color: "red", width:  "500px" }).then(confirm => {
                 if (confirm)
                 {
                     this.btnLoading = true;
@@ -378,33 +378,33 @@ export default {
     computed: {
         totaltransaksi_paid()
         {
-            var total=0;
+            var total = 0;
             this.datatable.forEach(item => {
                 if (item.status== 1)
                 {
-                    total+=item.total;
+                    total += item.total;
                 }
             }); 
             return total;
         },
         totaltransaksi_unpaid()
         {
-            var total=0;
+            var total = 0;
             this.datatable.forEach(item => {
-                if (item.status==0)
+                if (item.status == 0)
                 {
-                    total+=item.total;
+                    total += item.total;
                 }
             }); 
             return total;
         },
         totaltransaksi_canceled()
         {
-            var total=0;
+            var total = 0;
             this.datatable.forEach(item => {
-                if (item.status==2)
+                if (item.status == 2)
                 {
-                    total+=item.total;
+                    total += item.total;
                 }
             }); 
             return total;
@@ -422,7 +422,7 @@ export default {
         {
             if (!this.firstloading)
             {
-                this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](val);
+                this.nama_prodi=this.$store.getters["uiadmin/getProdiName"](val);
                 this.initialize();
             }            
         },

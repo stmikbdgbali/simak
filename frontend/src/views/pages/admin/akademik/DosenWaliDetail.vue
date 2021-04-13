@@ -267,12 +267,12 @@ export default {
         //tables
         headers: [
             { text: "",value: "foto", width: 70, },
-            { text: "NIM", value: "nim", width: 100,sortable: true },
-            { text: "NAMA MAHASISWA", value: "nama_mhs", width: 250,sortable: true },
-            { text: "PROGRAM STUDI", value: "nama_prodi", width: 150,sortable: true }, 
-            { text: "KELAS", value: "nkelas", width: 150,sortable: true }, 
-            { text: "TAHUN MASUK", value: "tahun",sortable: true },  
-            { text: "AKSI", value: "actions", sortable: false,width:50 },
+            { text: "NIM", value: "nim", width: 100, sortable: true },
+            { text: "NAMA MAHASISWA", value: "nama_mhs", width: 250, sortable: true },
+            { text: "PROGRAM STUDI", value: "nama_prodi", width: 150, sortable: true }, 
+            { text: "KELAS", value: "nkelas", width: 150, sortable: true }, 
+            { text: "TAHUN MASUK", value: "tahun", sortable: true },  
+            { text: "AKSI", value: "actions", sortable: false, width:50 },
         ],
         expanded: [],
         search: "",
@@ -340,7 +340,7 @@ export default {
                     Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({ data }) => {      
-                this.dialogfrm=true;
+                this.dialogfrm = true;
                 this.daftar_dw = data.users; 
                 this.formdata.dosen_id = this.dosen_id;
             }); 

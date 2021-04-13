@@ -8,7 +8,7 @@
                 TRANSAKSI
             </template>
             <template v-slot:subtitle>                
-                TAHUN AKADEMIK {{tahun_akademik}} - {{nama_prodi}}
+                TAHUN AKADEMIK {{tahun_akademik}} - {{ nama_prodi }}
             </template>
             <template v-slot:breadcrumbs>
                 <v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -263,9 +263,9 @@ export default {
             }
         ];
         this.breadcrumbs[1].disabled=(this.dashboard=='mahasiswabaru'||this.dashboard == "mahasiswa");
-        let prodi_id = this.$store.getters['uiadmin/getProdiID'];
+        let prodi_id = this.$store.getters["uiadmin/getProdiID"];
         this.prodi_id = prodi_id;
-        this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
+        this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](prodi_id);
         this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];                
     },   
     mounted()
@@ -286,15 +286,15 @@ export default {
         datatableLoading: false,       
         datatable: [],
         headers: [                        
-            { text: "KODE BILLING", value: "no_transaksi", width: 100,sortable: true },
-            { text: "TANGGAL", value: "tanggal", width: 100,sortable: true },
-            { text: "NIM", value: "nim", width: 100,sortable: true },
-            { text: "NAMA MAHASISWA", value: "nama_mhs",sortable: true,width:250 },
-            { text: "SMT", value: "idsmt", width: 50,sortable: true },
-            { text: "TOTAL", value: "total", width: 100,sortable: true },
-            { text: "STATUS", value: "nama_status", width: 50,sortable: true },        
-            { text: "KET.", value: "desc", width: 150,sortable: false },        
-            { text: "AKSI", value: "actions", sortable: false,width:50 },
+            { text: "KODE BILLING", value: "no_transaksi", width: 100, sortable: true },
+            { text: "TANGGAL", value: "tanggal", width: 100, sortable: true },
+            { text: "NIM", value: "nim", width: 100, sortable: true },
+            { text: "NAMA MAHASISWA", value: "nama_mhs", sortable: true, width:250 },
+            { text: "SMT", value: "idsmt", width: 50, sortable: true },
+            { text: "TOTAL", value: "total", width: 100, sortable: true },
+            { text: "STATUS", value: "nama_status", width: 50, sortable: true },        
+            { text: "KET.", value: "desc", width: 150, sortable: false },        
+            { text: "AKSI", value: "actions", sortable: false, width:50 },
         ],  
         expanded: [],
         search: "",
@@ -302,12 +302,12 @@ export default {
         //dialog        
         dialogdetailitem: false,
         headers_detail: [
-            { text: "KODE", value: "kombi_id", width: 50,sortable: false },
-            { text: "NAMA KOMPONEN", value: "nama_kombi",sortable: false },
-            { text: "BIAYA", value: "biaya", width: 60,sortable: false },
-            { text: "JUMLAH", value: "jumlah", width: 60,sortable: false },
-            { text: "BULAN", value: "bulan", width: 60,sortable: false },
-            { text: "JUMLAH", value: "sub_total", width: 60,sortable: false },
+            { text: "KODE", value: "kombi_id", width: 50, sortable: false },
+            { text: "NAMA KOMPONEN", value: "nama_kombi", sortable: false },
+            { text: "BIAYA", value: "biaya", width: 60, sortable: false },
+            { text: "JUMLAH", value: "jumlah", width: 60, sortable: false },
+            { text: "BULAN", value: "bulan", width: 60, sortable: false },
+            { text: "JUMLAH", value: "sub_total", width: 60, sortable: false },
         ],
         //form data
         data_transaksi: {}, 
@@ -389,7 +389,7 @@ export default {
         {
             if (!this.firstloading)
             {
-                this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](val);
+                this.nama_prodi=this.$store.getters["uiadmin/getProdiName"](val);
                 this.initialize();
             }            
         },
@@ -425,33 +425,33 @@ export default {
     computed: {
         totaltransaksi_paid()
         {
-            var total=0;
+            var total = 0;
             this.datatable.forEach(item => {
                 if (item.status== 1)
                 {
-                    total+=item.total;
+                    total += item.total;
                 }
             }); 
             return total;
         },
         totaltransaksi_unpaid()
         {
-            var total=0;
+            var total = 0;
             this.datatable.forEach(item => {
-                if (item.status==0)
+                if (item.status == 0)
                 {
-                    total+=item.total;
+                    total += item.total;
                 }
             }); 
             return total;
         },
         totaltransaksi_canceled()
         {
-            var total=0;
+            var total = 0;
             this.datatable.forEach(item => {
-                if (item.status==2)
+                if (item.status == 2)
                 {
-                    total+=item.total;
+                    total += item.total;
                 }
             }); 
             return total;

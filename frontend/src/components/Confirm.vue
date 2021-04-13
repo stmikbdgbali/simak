@@ -40,7 +40,7 @@
  * <confirm ref="confirm"></confirm>
  *
  * Call it:
- * this.$refs.confirm.open("Delete", "Are you sure?", { color: "red" }).then((confirm) => {})
+ * this.$refs.confirm.open("Delete", "Are you sure?", { color: "red" }).then(confirm => {})
  * Or use await:
  * if (await this.$refs.confirm.open("Delete", "Are you sure?", { color: "red" })) {
  *   // yes

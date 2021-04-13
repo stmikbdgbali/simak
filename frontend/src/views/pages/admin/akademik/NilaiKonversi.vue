@@ -8,7 +8,7 @@
                 KONVERSI NILAI 
             </template>
             <template v-slot:subtitle>
-                TAHUN PENDAFTARAN {{tahun_pendaftaran}} - {{nama_prodi}}
+                TAHUN PENDAFTARAN {{ tahun_pendaftaran }} - {{ nama_prodi }}
             </template>
             <template v-slot:breadcrumbs>
                 <v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -205,7 +205,7 @@ export default {
             {
                 text: "HOME",
                 disabled: false,
-                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters["auth/AccessToken"]
             },
             {
                 text: "AKADEMIK",
@@ -223,10 +223,10 @@ export default {
                 href: "#"
             }
         ];
-        let prodi_id = this.$store.getters['uiadmin/getProdiID'];
+        let prodi_id = this.$store.getters["uiadmin/getProdiID"];
         this.prodi_id = prodi_id;
-        this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
-        this.tahun_pendaftaran = this.$store.getters['uiadmin/getTahunPendaftaran'];              
+        this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](prodi_id);
+        this.tahun_pendaftaran = this.$store.getters["uiadmin/getTahunPendaftaran"];              
         this.initialize()
     },  
     data: () => ({ 
@@ -241,14 +241,14 @@ export default {
         expanded: [],
         datatable: [],
         headers: [            
-            { text: "NIM", value: "nim_asal", sortable: true,width:100  },
-            { text: "NAMA", value: "nama_mhs", sortable: true,width:250  },
-            { text: "ALAMAT", value: "alamat",sortable: true,width:200 },
-            { text: "NO. TELP", value: "no_telp",sortable: true,width:120, },
-            { text: "JUMLAH MATKUL", value: "jumlah_matkul",sortable: false, width:100, },
-            { text: "JUMLAH SKS", value: "jumlah_sks",sortable: false, width:100, },
-            { text: "NIM SISTEM", value: "nim",sortable: true,width:100, },
-            { text: "AKSI", value: "actions", sortable: false,width:150 },
+            { text: "NIM", value: "nim_asal", sortable: true, width: 100  },
+            { text: "NAMA", value: "nama_mhs", sortable: true, width:250  },
+            { text: "ALAMAT", value: "alamat", sortable: true, width:200 },
+            { text: "NO. TELP", value: "no_telp", sortable: true, width: 120, },
+            { text: "JUMLAH MATKUL", value: "jumlah_matkul", sortable: false, width: 100, },
+            { text: "JUMLAH SKS", value: "jumlah_sks", sortable: false, width: 100, },
+            { text: "NIM SISTEM", value: "nim", sortable: true, width: 100, },
+            { text: "AKSI", value: "actions", sortable: false, width:150 },
         ],
         search: "",
 
@@ -305,7 +305,7 @@ export default {
             this.$router.push("/akademik/nilai/konversi/'+item.id+'/edit");
         },
         deleteItem(item) {
-            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data nilai konvesi dengan ID '+item.id+' ?", { color: "red" }).then((confirm) => {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data nilai konvesi dengan ID '+item.id+' ?", { color: "red" }).then(confirm => {
                 if (confirm)
                 {
                     this.btnLoading = true;
@@ -366,7 +366,7 @@ export default {
         {
             if (!this.firstloading)
             {
-                this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](val);
+                this.nama_prodi=this.$store.getters["uiadmin/getProdiName"](val);
                 this.initialize();
             }            
         }

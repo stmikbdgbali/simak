@@ -175,7 +175,7 @@ export default {
     {
         this.initialize();                   
     },
-    props:{
+    props: {
         item:Object,
     },
     data()
@@ -186,7 +186,7 @@ export default {
             slides: [],
             dialogpreviewpersyaratan: false,         
 
-            datamhs:{         
+            datamhs: {         
                 tanggal_lahir:tanggal_lahir,
                 created_at:tanggal_sekarang,
                 updated_at:tanggal_sekarang
@@ -198,20 +198,20 @@ export default {
         {
             await this.$ajax.get("/spmb/formulirpendaftaran/" + this.item.id, 
                 {
-                    headers:{
+                    headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     }
                 }, 
             ).then(({ data }) => {   
                 this.datamhs=Object.assign(data.formulir,{
-                                                            nama_prodi: this.$store.getters['uiadmin/getProdiName'](data.formulir.kjur1),
+                                                            nama_prodi: this.$store.getters["uiadmin/getProdiName"](data.formulir.kjur1),
                                                             nama_kelas: this.$store.getters['uiadmin/getNamaKelas'](data.formulir.idkelas)
                                                         }); 
             });
 
             await this.$ajax.get("/spmb/pmbpersyaratan/" + this.item.id, 
                 {
-                    headers:{
+                    headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     }
                 }
@@ -244,7 +244,7 @@ export default {
             );          
         }
     },
-    components:{        
+    components: {        
         FormPersyaratan,        
     },
 }

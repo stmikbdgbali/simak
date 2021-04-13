@@ -66,8 +66,8 @@
 <script>
 export default {
     name: "DataMatakuliahPenyelenggaraan",
-    props:{
-        datamatkul:{
+    props: {
+        datamatkul: {
             default: null,
             type:Object,
         }

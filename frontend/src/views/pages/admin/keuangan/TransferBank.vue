@@ -268,7 +268,7 @@ export default {
             { text: "CABANG", value: "nama_cabang" },   
             { text: "NOMOR REKENING", value: "nomor_rekening" },   
             { text: "PEMILIK REKENING", value: "pemilik_rekening" },   
-            { text: "AKSI", value: "actions", sortable: false, width:100 },
+            { text: "AKSI", value: "actions", sortable: false, width: 100 },
         ],
         search: "",
 
@@ -402,7 +402,7 @@ export default {
             }
         },
         deleteItem(item) {
-            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data dengan ID '+item.id+' ?", { color: "red" }).then((confirm) => {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data dengan ID '+item.id+' ?", { color: "red" }).then(confirm => {
                 if (confirm)
                 {
                     this.btnLoading = true;

@@ -83,7 +83,7 @@
                                     <v-card flat>
                                         <v-card-title>PROGRAM STUDI:</v-card-title>
                                         <v-card-subtitle>
-                                            {{this.$store.getters['uiadmin/getProdiName'](data_transaksi.kjur)}}
+                                            {{this.$store.getters["uiadmin/getProdiName"](data_transaksi.kjur)}}
                                         </v-card-subtitle>
                                     </v-card>
                                 </v-col>
@@ -142,7 +142,7 @@
                                         vertical
                                     ></v-divider>
                                     <v-spacer></v-spacer>   
-                                    <v-btn color="primary" icon outlined small class="ma-2" :to="{path: '/keuangan/transaksi-spp/tambah/'+transaksi_id}" :disabled="data_transaksi.status== 1 || data_transaksi.status==2">
+                                    <v-btn color="primary" icon outlined small class="ma-2" :to="{path: '/keuangan/transaksi-spp/tambah/'+transaksi_id}" :disabled="data_transaksi.status== 1 || data_transaksi.status == 2">
                                         <v-icon>mdi-plus</v-icon>
                                     </v-btn>   
                                 </v-toolbar>
@@ -191,7 +191,7 @@ export default {
             {
                 text: "HOME",
                 disabled: false,
-                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters["auth/AccessToken"]
             },
             {
                 text: "KEUANGAN",
@@ -224,11 +224,11 @@ export default {
         datatableLoading: false,       
         datatable: [],
         headers: [                        
-            { text: "NO. BULAN", value: "no_bulan", width: 120,sortable: false },
-            { text: "BULAN", value: "nama_bulan",sortable: false },        
-            { text: "TAHUN", value: "tahun",sortable: false },        
-            { text: "BIAYA KOMBI", value: "biaya_kombi",sortable: false },
-            { text: "AKSI", value: "actions", sortable: false, width:100 },    
+            { text: "NO. BULAN", value: "no_bulan", width: 120, sortable: false },
+            { text: "BULAN", value: "nama_bulan", sortable: false },        
+            { text: "TAHUN", value: "tahun", sortable: false },        
+            { text: "BIAYA KOMBI", value: "biaya_kombi", sortable: false },
+            { text: "AKSI", value: "actions", sortable: false, width: 100 },    
         ], 
         //form
         form_valid: true  
@@ -253,7 +253,7 @@ export default {
             });                   
         }, 
         deleteItem(item) {
-            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data dengan ID '+item.id+' ?", { color: "red" }).then((confirm) => {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data dengan ID '+item.id+' ?", { color: "red" }).then(confirm => {
                 if (confirm)
                 {
                     this.btnLoading = true;

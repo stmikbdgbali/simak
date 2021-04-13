@@ -8,7 +8,7 @@
                 TRANSKRIP NILAI KURIKULUM 
             </template>
             <template v-slot:subtitle>
-                TAHUN PENDAFTARAN {{tahun_pendaftaran}} - {{nama_prodi}}
+                TAHUN PENDAFTARAN {{ tahun_pendaftaran }} - {{ nama_prodi }}
             </template>
             <template v-slot:breadcrumbs>
                 <v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -226,7 +226,7 @@ export default {
             {
                 text: "HOME",
                 disabled: false,
-                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters["auth/AccessToken"]
             },
             {
                 text: "AKADEMIK",
@@ -249,10 +249,10 @@ export default {
                 href: "#"
             }
         ];
-        let prodi_id = this.$store.getters['uiadmin/getProdiID'];
+        let prodi_id = this.$store.getters["uiadmin/getProdiID"];
         this.prodi_id = prodi_id;
-        this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
-        this.tahun_pendaftaran = this.$store.getters['uiadmin/getTahunPendaftaran'];              
+        this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](prodi_id);
+        this.tahun_pendaftaran = this.$store.getters["uiadmin/getTahunPendaftaran"];              
         this.initialize()
     },  
     data: () => ({ 
@@ -267,16 +267,16 @@ export default {
         datatableLoading: false,        
         datatable: [],
         headers: [            
-            { text: "NO", value: "no", sortable: true,width:50  },
-            { text: "MATAKULIAH", value: "nmatkul",sortable: true,width:350 },
-            { text: "KODE", value: "kmatkul",sortable: true,width:120, },
-            { text: "SMT", value: "semester",sortable: true,width:80, },
-            { text: "KLP", value: "group_alias",sortable: true,width:100, },
-            { text: "HM", value: "HM",sortable: false, width:100, },
-            { text: "AM", value: "AM",sortable: false, width:100, },
-            { text: "K", value: "sks",sortable: true,width:100, },
-            { text: "M", value: "M", sortable: false, width:100 },
-            { text: "AKSI", value: "actions", sortable: false,width:50 },
+            { text: "NO", value: "no", sortable: true, width:50  },
+            { text: "MATAKULIAH", value: "nmatkul", sortable: true, width:350 },
+            { text: "KODE", value: "kmatkul", sortable: true, width: 120, },
+            { text: "SMT", value: "semester", sortable: true, width: 80, },
+            { text: "KLP", value: "group_alias", sortable: true, width: 100, },
+            { text: "HM", value: "HM", sortable: false, width: 100, },
+            { text: "AM", value: "AM", sortable: false, width: 100, },
+            { text: "K", value: "sks", sortable: true, width: 100, },
+            { text: "M", value: "M", sortable: false, width: 100 },
+            { text: "AKSI", value: "actions", sortable: false, width:50 },
         ],
         search: "",
 
@@ -292,12 +292,12 @@ export default {
         data_history: [],
         expanded: [],
         history_headers: [            
-            { text: "NILAI HURUF", value: "n_kual",sortable: true,width:80, },            
-            { text: "NILAI AKHIR", value: "n_kuan",sortable: false, width:100, },
-            { text: "NILAI MUTU", value: "n_mutu",sortable: true,width:100, },
-            { text: "TA.SMT", value: "tasmt",sortable: false, width:100, },
-            { text: "TA.MATKUL", value: "ta_matkul",sortable: false, width:100, },            
-            { text: "DI INPUT OLEH", value: "username",sortable: false, width:100, },            
+            { text: "NILAI HURUF", value: "n_kual", sortable: true, width: 80, },            
+            { text: "NILAI AKHIR", value: "n_kuan", sortable: false, width: 100, },
+            { text: "NILAI MUTU", value: "n_mutu", sortable: true, width: 100, },
+            { text: "TA.SMT", value: "tasmt", sortable: false, width: 100, },
+            { text: "TA.MATKUL", value: "ta_matkul", sortable: false, width: 100, },            
+            { text: "DI INPUT OLEH", value: "username", sortable: false, width: 100, },            
         ],
 
         dialoghistory: false,

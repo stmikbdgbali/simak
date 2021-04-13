@@ -73,7 +73,7 @@ export default {
             {
                 text: "HOME",
                 disabled: false,
-                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters["auth/AccessToken"]
             },
             {
                 text: "DATA MASTER",
@@ -96,8 +96,8 @@ export default {
         expanded: [],
         datatable: [],
         headers: [                    
-            { text: "ID", value: "id_jabatan", width: 10,sortable: false },
-            { text: "NAMA JABATAN", value: "nama_jabatan",sortable: false},         
+            { text: "ID", value: "id_jabatan", width: 10, sortable: false },
+            { text: "NAMA JABATAN", value: "nama_jabatan", sortable: false},         
         ],  
     }),
     methods: {

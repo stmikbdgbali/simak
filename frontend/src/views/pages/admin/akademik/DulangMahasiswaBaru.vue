@@ -8,7 +8,7 @@
                 DAFTAR ULANG MAHASISWA BARU 
             </template>
             <template v-slot:subtitle>
-                TAHUN PENDAFTARAN {{tahun_pendaftaran}} - {{nama_prodi}}
+                TAHUN PENDAFTARAN {{ tahun_pendaftaran }} - {{ nama_prodi }}
             </template>
             <template v-slot:breadcrumbs>
                 <v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -113,7 +113,7 @@ export default {
             {
                 text: "HOME",
                 disabled: false,
-                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters["auth/AccessToken"]
             },
             {
                 text: "AKADEMIK",
@@ -131,10 +131,10 @@ export default {
                 href: "#"
             }
         ];
-        let prodi_id = this.$store.getters['uiadmin/getProdiID'];
+        let prodi_id = this.$store.getters["uiadmin/getProdiID"];
         this.prodi_id = prodi_id;
-        this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
-        this.tahun_pendaftaran = this.$store.getters['uiadmin/getTahunPendaftaran'];              
+        this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](prodi_id);
+        this.tahun_pendaftaran = this.$store.getters["uiadmin/getTahunPendaftaran"];              
         this.initialize()
     },  
     data: () => ({ 
@@ -149,12 +149,12 @@ export default {
         expanded: [],
         datatable: [],
         headers: [
-            { text: "NO. FORMULIR", value: "no_formulir", sortable: true,width:150  },   
-            { text: "NIM", value: "nim", sortable: true,width:150  },   
-            { text: "NIRM", value: "nirm", sortable: true,width:150  },   
-            { text: "NAMA MAHASISWA", value: "nama_mhs",sortable: true },
-            { text: "KELAS", value: "idkelas",sortable: true,width:120, },
-            { text: "AKSI", value: "actions", sortable: false, width:100 },
+            { text: "NO. FORMULIR", value: "no_formulir", sortable: true, width:150  },   
+            { text: "NIM", value: "nim", sortable: true, width:150  },   
+            { text: "NIRM", value: "nirm", sortable: true, width:150  },   
+            { text: "NAMA MAHASISWA", value: "nama_mhs", sortable: true },
+            { text: "KELAS", value: "idkelas", sortable: true, width: 120, },
+            { text: "AKSI", value: "actions", sortable: false, width: 100 },
         ],
         search: "",
 
@@ -248,14 +248,14 @@ export default {
             //         Authorization: this.$store.getters["auth/Token"]
             //     }
             // }).then(({ data }) => {      
-            //     this.dialogfrm=true;
+            //     this.dialogfrm = true;
             //     this.daftar_dw = data.users; 
             // }); 
 
         },
         deleteItem (item)
         {
-            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus daftar ulang '+item.nama_mhs+' ?", { color: "red", width: 600,'desc': "proses ini juga menghapus seluruh data akademik namun KEUANGAN TETAP ADA." }).then((confirm) => {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus daftar ulang '+item.nama_mhs+' ?", { color: "red", width: 600,'desc': "proses ini juga menghapus seluruh data akademik namun KEUANGAN TETAP ADA." }).then(confirm => {
                 if (confirm)
                 {
                     this.btnLoadingTable=true;
@@ -299,7 +299,7 @@ export default {
         {
             if (!this.firstloading)
             {
-                this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](val);
+                this.nama_prodi=this.$store.getters["uiadmin/getProdiName"](val);
                 this.initialize();
             }            
         }

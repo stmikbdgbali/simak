@@ -209,7 +209,7 @@ export default {
         daftar_prodi: [],
         daftar_kelas: [],
         
-        formdata:{
+        formdata: {
             user_id: "",
             nidn: "",
             nipy: "",
@@ -286,7 +286,7 @@ export default {
             });                     
             await this.$ajax.get("/system/usersdosen/biodatadiri/" + this.$store.getters['auth/AttributeUser']("id"), 
                 {
-                    headers:{
+                    headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     }
                 },
@@ -346,7 +346,7 @@ export default {
                     
                 },
                 {
-                    headers:{
+                    headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     }
                 }

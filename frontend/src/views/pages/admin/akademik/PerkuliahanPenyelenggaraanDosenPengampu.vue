@@ -8,7 +8,7 @@
                 PENYELENGGARAAN PERKULIAHAN
             </template>
             <template v-slot:subtitle>
-                TAHUN AKADEMIK {{tahun_akademik}} SEMESTER {{$store.getters['uiadmin/getNamaSemester'](semester_akademik)}} - {{nama_prodi}}
+                TAHUN AKADEMIK {{tahun_akademik}} SEMESTER {{$store.getters['uiadmin/getNamaSemester'](semester_akademik)}} - {{ nama_prodi }}
             </template>
             <template v-slot:breadcrumbs>
                 <v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -132,7 +132,7 @@ export default {
             {
                 text: "HOME",
                 disabled: false,
-                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters["auth/AccessToken"]
             },
             {
                 text: "AKADEMIK",
@@ -155,12 +155,12 @@ export default {
                 href: "#"
             },
         ];
-        let prodi_id = this.$store.getters['uiadmin/getProdiID'];
+        let prodi_id = this.$store.getters["uiadmin/getProdiID"];
         this.prodi_id = prodi_id;
-        this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
+        this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](prodi_id);
         this.daftar_ta = this.$store.getters['uiadmin/getDaftarTA'];        
         this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];                      
-        this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];              
+        this.semester_akademik = this.$store.getters['uiadmin/getSemesterAkademik'];              
         this.formdata.idpenyelenggaraan=this.$route.params.idpenyelenggaraan;
         this.initialize();
     }, 
@@ -184,10 +184,10 @@ export default {
         expanded: [],
         datatable: [],
         headers: [
-            { text: "NIDN", value: "nidn", sortable: false,width:120  },   
-            { text: "NAMA DOSEN", value: "nama_dosen",sortable: false },
-            { text: "KETUA", value: "is_ketua", sortable: false,width:120 },
-            { text: "AKSI", value: "actions", sortable: false,width:120 },
+            { text: "NIDN", value: "nidn", sortable: false, width: 120  },   
+            { text: "NAMA DOSEN", value: "nama_dosen", sortable: false },
+            { text: "KETUA", value: "is_ketua", sortable: false, width: 120 },
+            { text: "AKSI", value: "actions", sortable: false, width: 120 },
         ],
         
         //formdata
@@ -281,7 +281,7 @@ export default {
         },
         deleteItem (item)
         {
-            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus DOSEN PENGAMPU matakuliah ("+item.nama_dosen+") ?", { color: "red", width: 600,'desc': "proses ini juga menghapus seluruh data yang terkait dalam penyelenggaraan matkul ini." }).then((confirm) => {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus DOSEN PENGAMPU matakuliah ("+item.nama_dosen+") ?", { color: "red", width: 600,'desc': "proses ini juga menghapus seluruh data yang terkait dalam penyelenggaraan matkul ini." }).then(confirm => {
                 if (confirm)
                 {
                     this.btnLoadingTable=true;

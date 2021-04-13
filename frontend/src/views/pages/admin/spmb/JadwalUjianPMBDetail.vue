@@ -8,7 +8,7 @@
 				JADWAL UJIAN PMB
 			</template>
 			<template v-slot:subtitle>
-				TAHUN PENDAFTARAN {{tahun_pendaftaran}} - SEMESTER {{nama_semester_pendaftaran}}
+				TAHUN PENDAFTARAN {{ tahun_pendaftaran }} - SEMESTER {{nama_semester_pendaftaran}}
 			</template>
 			<template v-slot:breadcrumbs>
 				<v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -246,7 +246,7 @@
 				{
 					text: "HOME",
 					disabled: false,
-					href: "/dashboard/" + this.$store.getters['auth/AccessToken'],
+					href: "/dashboard/" + this.$store.getters["auth/AccessToken"],
 				},
 				{
 					text: "SPMB",
@@ -264,7 +264,7 @@
 					href: "#",
 				},
 			];      
-			this.tahun_pendaftaran = this.$store.getters['uiadmin/getTahunPendaftaran'];      
+			this.tahun_pendaftaran = this.$store.getters["uiadmin/getTahunPendaftaran"];      
 			this.semester_pendaftaran = this.$store.getters['uiadmin/getSemesterPendaftaran'];
 			this.nama_semester_pendaftaran = this.$store.getters['uiadmin/getNamaSemester'](this.semester_pendaftaran);			
 		},
@@ -287,14 +287,14 @@
 				expanded: [],
 				datatable: [],
 				headers: [                
-					{ text: "NO", value: "no_peserta", sortable: true,width:70 },
-					{ text: "NAMA", value: "nama_mhs", sortable: true,width:250 },
-					{ text: "JK", value: "jk", sortable: true,width:70 },
-					{ text: "NOMOR HP", value: "telp_hp", sortable: true,width:125 },
-					{ text: "NILAI", value: "nilai", sortable: true,width:100 },
-					{ text: "KET.", value: "status", sortable: true,width:90 },					
-					{ text: "STATUS", value: "isfinish", sortable: true,width:100 },					
-					{ text: "AKSI", value: "actions", sortable: false, width:100 },
+					{ text: "NO", value: "no_peserta", sortable: true, width:70 },
+					{ text: "NAMA", value: "nama_mhs", sortable: true, width:250 },
+					{ text: "JK", value: "jk", sortable: true, width:70 },
+					{ text: "NOMOR HP", value: "telp_hp", sortable: true, width:125 },
+					{ text: "NILAI", value: "nilai", sortable: true, width: 100 },
+					{ text: "KET.", value: "status", sortable: true, width:90 },					
+					{ text: "STATUS", value: "isfinish", sortable: true, width: 100 },					
+					{ text: "AKSI", value: "actions", sortable: false, width: 100 },
 				],		
 				search: "",
 			}

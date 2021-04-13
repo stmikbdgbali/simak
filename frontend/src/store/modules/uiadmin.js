@@ -285,8 +285,7 @@ const actions = {
 								")",
 							nama_prodi: nama_prodi,
 						});
-					});
-					console.log(prodi);
+					});					
 					commit("setDaftarProdi", prodi);
 					commit("setProdiID", data.prodi_id);
 

@@ -154,7 +154,7 @@ export default {
                     {
                         _method: "PUT", 
                         'pid': "Identitas Perguruan Tinggi",
-                        setting:JSON.stringify({
+                        setting: JSON.stringify({
                             101: this.formdata.nama_pt,
                             102: this.formdata.nama_alias_pt,
                             103: this.formdata.bentuk_pt,

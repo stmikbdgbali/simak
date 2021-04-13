@@ -212,7 +212,7 @@ export default {
         headers: [
             { text: "KODE FAKULTAS", value: "kode_fakultas", width:150 },   
             { text: "NAMA FAKULTAS", value: "nama_fakultas" },   
-            { text: "AKSI", value: "actions", sortable: false, width:100 },
+            { text: "AKSI", value: "actions", sortable: false, width: 100 },
         ],
         search: "",
 
@@ -326,7 +326,7 @@ export default {
             }
         },
         deleteItem(item) {
-            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data fakultas dengan kode '+item.kode_fakultas+' ?", { color: "red" }).then((confirm) => {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data fakultas dengan kode '+item.kode_fakultas+' ?", { color: "red" }).then(confirm => {
                 if (confirm)
                 {
                     this.btnLoading = true;

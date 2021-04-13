@@ -22,10 +22,10 @@ export default {
     created()
     {
         this.daftar_prodi=this.$store.getters['uiadmin/getDaftarProdi'];
-        this.prodi_id=this.$store.getters['uiadmin/getProdiID'];                                  
+        this.prodi_id=this.$store.getters["uiadmin/getProdiID"];                                  
 
         this.daftar_ta = this.$store.getters['uiadmin/getDaftarTA'];
-        this.tahun_akademik=this.$store.getters['uiadmin/getTahunAkademik'];
+        this.tahun_akademik = this.$store.getters["uiadmin/getTahunAkademik"];
     },
     data: () => ({
         firstloading: true,

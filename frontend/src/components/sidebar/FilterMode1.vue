@@ -15,7 +15,7 @@ export default {
     created()
     {
         this.daftar_ta = this.$store.getters['uiadmin/getDaftarTA'];
-        this.tahun_akademik=this.$store.getters['uiadmin/getTahunAkademik'];
+        this.tahun_akademik = this.$store.getters["uiadmin/getTahunAkademik"];
     },
     data: () => ({
         firstloading: true,

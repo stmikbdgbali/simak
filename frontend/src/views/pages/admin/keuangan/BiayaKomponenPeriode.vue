@@ -8,7 +8,7 @@
 				BIAYA KOMPONEN PER PERIODE
 			</template>
 			<template v-slot:subtitle>
-				TAHUN PENDAFTARAN {{tahun_pendaftaran}} - PROGRAM STUDI {{nama_prodi}}
+				TAHUN PENDAFTARAN {{ tahun_pendaftaran }} - PROGRAM STUDI {{ nama_prodi }}
 			</template>
 			<template v-slot:breadcrumbs>
 				<v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -190,11 +190,11 @@
 			expanded: [],
 			datatable: [],
 			headers: [
-				{ text: "ID KOMPONEN", value: "kombi_id", width: 10,sortable: false },
-				{ text: "NAMA KOMPONEN", value: "nama_kombi",sortable: false},
-				{ text: "PERIODE", value: "periode", width: 150,sortable: false },
-				{ text: "KELAS", value: "nkelas", width: 120,sortable: false },
-				{ text: "BIAYA", value: "biaya", width: 150,sortable: false },
+				{ text: "ID KOMPONEN", value: "kombi_id", width: 10, sortable: false },
+				{ text: "NAMA KOMPONEN", value: "nama_kombi", sortable: false},
+				{ text: "PERIODE", value: "periode", width: 150, sortable: false },
+				{ text: "KELAS", value: "nkelas", width: 120, sortable: false },
+				{ text: "BIAYA", value: "biaya", width: 150, sortable: false },
 			],
 			search: "",
 		}),

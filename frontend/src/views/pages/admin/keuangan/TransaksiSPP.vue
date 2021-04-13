@@ -8,7 +8,7 @@
                 TRANSAKSI SPP
             </template>
             <template v-slot:subtitle>
-                TAHUN AKADEMIK {{tahun_akademik}} - {{nama_prodi}}
+                TAHUN AKADEMIK {{tahun_akademik}} - {{ nama_prodi }}
             </template>
             <template v-slot:breadcrumbs>
                 <v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -193,7 +193,7 @@ export default {
             {
                 text: "HOME",
                 disabled: false,
-                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters["auth/AccessToken"]
             },
             {
                 text: "KEUANGAN",
@@ -206,9 +206,9 @@ export default {
                 href: "#"
             }
         ];      
-        let prodi_id = this.$store.getters['uiadmin/getProdiID'];
+        let prodi_id = this.$store.getters["uiadmin/getProdiID"];
         this.prodi_id = prodi_id;
-        this.nama_prodi = this.$store.getters['uiadmin/getProdiName'](prodi_id);
+        this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](prodi_id);
         this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];                
     },
     mounted()
@@ -230,15 +230,15 @@ export default {
         datatableLoading: false,       
         datatable: [],
         headers: [                        
-            { text: "KODE BILLING", value: "no_transaksi", width: 100,sortable: true },
-            { text: "TANGGAL", value: "tanggal", width: 90,sortable: true },
-            { text: "NIM", value: "nim",sortable: true,width:100 },
-            { text: "NAMA MAHASISWA", value: "nama_mhs",sortable: true,width:250 },        
-            { text: "BULAN", value: "nama_bulan", width: 100,sortable: true },
-            { text: "TA/SMT", value: "idsmt", width: 50,sortable: false },
-            { text: "JUMLAH", value: "sub_total", width: 100,sortable: false,align: "right" },
-            { text: "STATUS", value: "nama_status", width: 100,sortable: false },        
-            { text: "AKSI", value: "actions", sortable: false,width:50 },
+            { text: "KODE BILLING", value: "no_transaksi", width: 100, sortable: true },
+            { text: "TANGGAL", value: "tanggal", width: 90, sortable: true },
+            { text: "NIM", value: "nim", sortable: true, width: 100 },
+            { text: "NAMA MAHASISWA", value: "nama_mhs", sortable: true, width:250 },        
+            { text: "BULAN", value: "nama_bulan", width: 100, sortable: true },
+            { text: "TA/SMT", value: "idsmt", width: 50, sortable: false },
+            { text: "JUMLAH", value: "sub_total", width: 100, sortable: false,align: "right" },
+            { text: "STATUS", value: "nama_status", width: 100, sortable: false },        
+            { text: "AKSI", value: "actions", sortable: false, width:50 },
         ],  
         expanded: [],
         search: "",
@@ -304,7 +304,7 @@ export default {
                 this.expanded = [item];
             }               
         },
-        async addItem ()
+        async addItem()
         {
             this.daftar_semester = this.$store.getters['uiadmin/getDaftarSemester'];
             this.formdata.semester_akademik=this.semester_akademik;
@@ -312,7 +312,7 @@ export default {
             {
                 this.formdata.nim=this.$store.getters['auth/AttributeUser']("username");
             }
-            this.dialogfrm=true;          
+            this.dialogfrm = true;          
         },
         viewItem(item)
         {
@@ -352,7 +352,7 @@ export default {
     computed: {
         totaltransaksi_paid()
         {
-            var total=0;
+            var total = 0;
             this.datatable.forEach(item => {
                 if (item.status== 1)
                 {
@@ -363,9 +363,9 @@ export default {
         },
         totaltransaksi_unpaid()
         {
-            var total=0;
+            var total = 0;
             this.datatable.forEach(item => {
-                if (item.status==0)
+                if (item.status == 0)
                 {
                     total+=item.sub_total;
                 }
@@ -374,9 +374,9 @@ export default {
         },
         totaltransaksi_canceled()
         {
-            var total=0;
+            var total = 0;
             this.datatable.forEach(item => {
-                if (item.status==2)
+                if (item.status == 2)
                 {
                     total+=item.sub_total;
                 }
@@ -396,7 +396,7 @@ export default {
         {
             if (!this.firstloading)
             {
-                this.nama_prodi=this.$store.getters['uiadmin/getProdiName'](val);
+                this.nama_prodi=this.$store.getters["uiadmin/getProdiName"](val);
                 this.initialize();
             }            
         },

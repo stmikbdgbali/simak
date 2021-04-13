@@ -241,7 +241,7 @@ export default {
 			{
 				text: "HOME",
 				disabled: false,
-				href: "/dashboard/" + this.$store.getters['auth/AccessToken']
+				href: "/dashboard/" + this.$store.getters["auth/AccessToken"]
 			},
 			{
 				text: "KEMAHASISWAAN",
@@ -277,14 +277,14 @@ export default {
         datatableLoading: false,       
         datatable: [],
         headers: [                        
-            { text: "KODE BILLING", value: "no_transaksi", width: 100,sortable: true },
-            { text: "TANGGAL", value: "tanggal", width: 100,sortable: true },
-            { text: "NIM", value: "nim", width: 100,sortable: true },
-            { text: "NAMA MAHASISWA", value: "nama_mhs",sortable: true,width:250 },
-            { text: "T.A/SMT", value: "idsmt", width: 100,sortable: true },
-            { text: "TOTAL", value: "total", width: 100,sortable: true },
-            { text: "STATUS", value: "nama_status", width: 50,sortable: true },        
-            { text: "AKSI", value: "actions", sortable: false,width:50 },
+            { text: "KODE BILLING", value: "no_transaksi", width: 100, sortable: true },
+            { text: "TANGGAL", value: "tanggal", width: 100, sortable: true },
+            { text: "NIM", value: "nim", width: 100, sortable: true },
+            { text: "NAMA MAHASISWA", value: "nama_mhs", sortable: true, width:250 },
+            { text: "T.A/SMT", value: "idsmt", width: 100, sortable: true },
+            { text: "TOTAL", value: "total", width: 100, sortable: true },
+            { text: "STATUS", value: "nama_status", width: 50, sortable: true },        
+            { text: "AKSI", value: "actions", sortable: false, width:50 },
         ],  
         expanded: [],
         search: "",

@@ -69,7 +69,7 @@
                                 {{$store.getters['uiadmin/getNamaKelas'](item.idkelas)}}
                             </template>
                             <template v-slot:item.kjur="{item}">
-                                {{$store.getters['uiadmin/getProdiName'](item.kjur)}}
+                                {{$store.getters["uiadmin/getProdiName"](item.kjur)}}
                             </template>     
                             <template v-slot:item.n_kuan="props"> 
                                 <v-numeric                
@@ -130,7 +130,7 @@ export default {
             {
                 text: "HOME",
                 disabled: false,
-                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters["auth/AccessToken"]
             },
             {
                 text: "AKADEMIK",
@@ -150,7 +150,7 @@ export default {
         ];
         this.kelas_mhs_id=this.$route.params.kelas_mhs_id;      
         this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];              
-        this.semester_akademik=this.$store.getters['uiadmin/getSemesterAkademik'];              
+        this.semester_akademik = this.$store.getters['uiadmin/getSemesterAkademik'];              
         this.initialize()
     },  
     data: () => ({ 
@@ -166,7 +166,7 @@ export default {
         datatable: [],
         datatable_peserta: [], 
         headers_peserta: [
-            { text: "NIM", value: "nim", sortable: false, width:100  },   
+            { text: "NIM", value: "nim", sortable: false, width: 100  },   
             { text: "NAMA", value: "nama_mhs", sortable: false  },   
             { text: "PROGRAM STUDI", value: "kjur", sortable: false  },   
             { text: "KELAS", value: "idkelas", sortable: false  },

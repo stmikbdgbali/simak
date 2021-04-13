@@ -8,7 +8,7 @@
 				KONFIRMASI PEMBAYARAN
 			</template>
 			<template v-slot:subtitle>
-				TAHUN AKADEMIK {{tahun_akademik}} - {{nama_prodi}}
+				TAHUN AKADEMIK {{tahun_akademik}} - {{ nama_prodi }}
 			</template>
 			<template v-slot:breadcrumbs>
 				<v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -541,18 +541,18 @@
 			datatableLoading: false,
 			datatable: [],
 			headers: [
-				{ text: "KODE BILLING", value: "no_transaksi", width: 100,sortable: true },
-				{ text: "NO.REF", value: "no_faktur", width: 100,sortable: true },
-				{ text: "TANGGAL TRANSAKSI", value: "tanggal", width: 100,sortable: true },
-				{ text: "NO. FORMULIR", value: "no_formulir",sortable: true,width:100 },
-				{ text: "NIM", value: "nim",sortable: true,width:100 },
-				{ text: "NAMA MAHASISWA", value: "nama_mhs",sortable: true,width:250 },
-				{ text: "SMT", value: "idsmt", width: 100,sortable: true },
-				{ text: "TOTAL", value: "total", width: 100,sortable: true },
-				{ text: "STATUS TRANSAKSI", value: "nama_status", width: 50,sortable: true },
-				{ text: "KONFIRM.", value: "status_konfirmasi", width: 50,sortable: true },
-				{ text: "KET.", value: "desc", width: 100,sortable: true },
-				{ text: "AKSI", value: "actions", sortable: false,width:120 },
+				{ text: "KODE BILLING", value: "no_transaksi", width: 100, sortable: true },
+				{ text: "NO.REF", value: "no_faktur", width: 100, sortable: true },
+				{ text: "TANGGAL TRANSAKSI", value: "tanggal", width: 100, sortable: true },
+				{ text: "NO. FORMULIR", value: "no_formulir", sortable: true, width: 100 },
+				{ text: "NIM", value: "nim", sortable: true, width: 100 },
+				{ text: "NAMA MAHASISWA", value: "nama_mhs", sortable: true, width:250 },
+				{ text: "SMT", value: "idsmt", width: 100, sortable: true },
+				{ text: "TOTAL", value: "total", width: 100, sortable: true },
+				{ text: "STATUS TRANSAKSI", value: "nama_status", width: 50, sortable: true },
+				{ text: "KONFIRM.", value: "status_konfirmasi", width: 50, sortable: true },
+				{ text: "KET.", value: "desc", width: 100, sortable: true },
+				{ text: "AKSI", value: "actions", sortable: false, width: 120 },
 			],
 			expanded: [],
 			search: "",
@@ -662,7 +662,7 @@
 				}).then(({ data }) => {
 					this.daftar_channel=data.channel;
 					this.data_transaksi=item;
-					this.dialogfrm=true;
+					this.dialogfrm = true;
 				});
 
 			},
@@ -725,7 +725,7 @@
 			},
 			async verifikasi(item)
 			{
-				this.$root.$confirm.open("Konfirmasi Pembayaran", "Apakah sudah benar data bukti bayar kode billing "+item.no_transaksi + " ?", { color: "primary" }).then((confirm) => {
+				this.$root.$confirm.open("Konfirmasi Pembayaran", "Apakah sudah benar data bukti bayar kode billing "+item.no_transaksi + " ?", { color: "primary" }).then(confirm => {
 					if (confirm) {
 						this.btnLoading = true;
 						this.$ajax.post("/keuangan/transaksi/verifikasi/" + item.id,
@@ -748,7 +748,7 @@
 			},
 			async cancel(item)
 			{
-				this.$root.$confirm.open("Batalkan Transaksi", "Apakah Anda ingin membatalkan transaksi dengan kode billing "+item.no_transaksi + " ?", { color: "red" }).then((confirm) => {
+				this.$root.$confirm.open("Batalkan Transaksi", "Apakah Anda ingin membatalkan transaksi dengan kode billing "+item.no_transaksi + " ?", { color: "red" }).then(confirm => {
 					if (confirm)
 					{
 						this.btnLoading = true;

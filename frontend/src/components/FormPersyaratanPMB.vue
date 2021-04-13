@@ -14,7 +14,7 @@ export default {
     {
         this.initialize();
     },
-    props:{
+    props: {
         user_id: {
             type: String,
             required: true
@@ -29,7 +29,7 @@ export default {
         {
             await this.$ajax.get("/spmb/pmbpersyaratan/" + this.user_id, 
                 {
-                    headers:{
+                    headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     }
                 }
@@ -38,7 +38,7 @@ export default {
             })
         }, 
     },
-    components:{
+    components: {
         FileUpload
     }
 }

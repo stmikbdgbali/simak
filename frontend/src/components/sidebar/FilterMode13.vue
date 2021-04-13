@@ -22,7 +22,7 @@ export default {
     created()
     {
         this.daftar_ta = this.$store.getters['uiadmin/getDaftarTA'];
-        this.tahun_pendaftaran = this.$store.getters['uiadmin/getTahunPendaftaran'];
+        this.tahun_pendaftaran = this.$store.getters["uiadmin/getTahunPendaftaran"];
 
         this.daftar_kelas=this.$store.getters['uiadmin/getDaftarKelas'];
         this.idkelas=this.$store.getters['uiadmin/getIDKelas'];                                          

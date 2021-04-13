@@ -65,7 +65,7 @@
                             </v-toolbar>
                         </template>
                         <template v-slot:item.kjur="{item}">
-                            {{$store.getters['uiadmin/getProdiName'](item.kjur)}}
+                            {{$store.getters["uiadmin/getProdiName"](item.kjur)}}
                         </template>
                         <template v-slot:item.nilai="props">
                             <v-edit-dialog
@@ -117,7 +117,7 @@ export default {
             {
                 text: "HOME",
                 disabled: false,
-                href: "/dashboard/" + this.$store.getters['auth/AccessToken']
+                href: "/dashboard/" + this.$store.getters["auth/AccessToken"]
             },
             {
                 text: "SPMB",
@@ -154,7 +154,7 @@ export default {
         datatable: [],
         headers: [                
             { text: "PROGRAM STUDI", value: "kjur", sortable: true},
-            { text: "NILAI", value: "nilai", sortable: false, width:100 },         
+            { text: "NILAI", value: "nilai", sortable: false, width: 100 },         
         ],
         search: "",
 

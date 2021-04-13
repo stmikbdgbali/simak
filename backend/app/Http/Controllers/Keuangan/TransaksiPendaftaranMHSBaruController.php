@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Keuangan;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Akademik\RegisterMahasiswaModel;
+use App\Models\SPMB\FormulirPendaftaranModel;
 use App\Models\Keuangan\BiayaKomponenPeriodeModel;
 use App\Models\Keuangan\TransaksiModel;
 use App\Models\Keuangan\TransaksiDetailModel;
@@ -85,28 +85,25 @@ class TransaksiPendaftaranMHSBaruController extends Controller {
      */
     public function store (Request $request)
     {
-        $this->hasPermissionTo('KEUANGAN-TRANSAKSI-PENDAFTARAN-MHS-BARU_STORE');
+        $this->hasPermissionTo('KEUANGAN-TRANSAKSI-BIAYA-PENDAFTARAN_STORE');
 
         $this->validate($request, [           
-            'nim'=>'required|exists:pe3_register_mahasiswa,nim',                 
-            'semester_akademik'=>'required',
-            'TA'=>'required'
+            'user_id'=>'required|exists:pe3_formulir_pendaftaran,user_id',                        
         ]);
         
         try 
         {
-            $nim=$request->input('nim');
-            $semester_akademik=$request->input('semester_akademik');
-            $ta=$request->input('TA');
-            
+            $user_id=$request->input('user_id');           
+            $formulir = FormulirPendaftaranModel::find($user_id);
+            $ta = $formulir->ta;
             $transaksi=TransaksiDetailModel::select(\DB::raw('
                                                 1
                                             '))
                                             ->join('pe3_transaksi','pe3_transaksi_detail.transaksi_id','pe3_transaksi.id')
-                                            ->where('pe3_transaksi.ta',$ta)                                        
-                                            ->where('pe3_transaksi.idsmt',$semester_akademik)
-                                            ->where('pe3_transaksi.nim',$nim)
-                                            ->where('pe3_transaksi_detail.kombi_id',202)                                                                                      
+                                            ->where('pe3_transaksi.ta',$formulir->ta)
+                                            ->where('pe3_transaksi.idsmt',$formulir->idsmt)
+                                            ->where('pe3_transaksi.user_id',$user_id)
+                                            ->where('pe3_transaksi_detail.kombi_id',101)                                                                                      
                                             ->where(function($query) {
                                                 $query->where('pe3_transaksi.status',0)
                                                     ->orWhere('pe3_transaksi.status',1);
@@ -114,43 +111,33 @@ class TransaksiPendaftaranMHSBaruController extends Controller {
                                             ->first();
 
             if (!is_null($transaksi))
-            {                
-                throw new Exception ("Transaksi tidak bisa dibuat karena ($nim) sudah melakukan transaksi pada $ta semester $semester_akademik.");  
+            {
+                $nama_mhs = $formulir->nama_mhs;
+                throw new Exception ("Transaksi tidak bisa dibuat karena ($nama_mhs) sudah melakukan transaksi pada $ta.");  
             }
 
-            $mahasiswa=RegisterMahasiswaModel::select(\DB::raw('pe3_register_mahasiswa.*,pe3_formulir_pendaftaran.no_formulir'))
-                                                ->join('pe3_formulir_pendaftaran','pe3_formulir_pendaftaran.user_id','pe3_register_mahasiswa.user_id')
-                                                ->where('nim',$nim)
-                                                ->first();
-
-            $tahun=$mahasiswa->tahun;
-            $idkelas=$mahasiswa->idkelas;
-            $kjur=$mahasiswa->kjur;
-            
-            $biaya_kombi=BiayaKomponenPeriodeModel::where('tahun',$tahun)
-                                                    ->where('idkelas',$idkelas)
-                                                    ->where('kjur',$kjur)
-                                                    ->where('kombi_id',202)
+            $biaya_kombi=BiayaKomponenPeriodeModel::where('tahun',$formulir->ta)
+                                                    ->where('idkelas',$formulir->idkelas)
+                                                    ->where('kjur',$formulir->kjur1)
+                                                    ->where('kombi_id',101)
                                                     ->value('biaya');
             
             if (!($biaya_kombi > 0))
             {
-                throw new Exception ("Komponen Biaya Registrasi KRS (202) belum disetting pada TA $tahun");  
+                throw new Exception ("Komponen Biaya Pendaftaran (101) belum disetting pada TA $tahun");  
             }
 
-            $transaksi = \DB::transaction(function () use ($request,$mahasiswa,$biaya_kombi){
-                $no_transaksi='202'.date('YmdHms');
+            $transaksi = \DB::transaction(function () use ($request,$formulir,$biaya_kombi){
+                $no_transaksi='101'.date('YmdHms');
                 $transaksi=TransaksiModel::create([
                     'id'=>Uuid::uuid4()->toString(),
-                    'user_id'=>$mahasiswa->user_id,
+                    'user_id'=>$formulir->user_id,
                     'no_transaksi'=>$no_transaksi,
                     'no_faktur'=>'',
-                    'kjur'=>$mahasiswa->kjur,
-                    'ta'=>$request->input('TA'),
-                    'idsmt'=>$request->input('semester_akademik'),
-                    'idkelas'=>$mahasiswa->idkelas,
-                    'no_formulir'=>$mahasiswa->no_formulir,
-                    'nim'=>$mahasiswa->nim,
+                    'kjur'=>$formulir->kjur1,
+                    'ta'=>$formulir->ta,
+                    'idsmt'=>$formulir->idsmt,
+                    'idkelas'=>$formulir->idkelas,                                        
                     'commited'=>0,
                     'total'=>0,
                     'tanggal'=>date('Y-m-d'),
@@ -159,18 +146,18 @@ class TransaksiPendaftaranMHSBaruController extends Controller {
                 
                 $transaksi_detail=TransaksiDetailModel::create([
                     'id'=>Uuid::uuid4()->toString(),
-                    'user_id'=>$mahasiswa->user_id,
+                    'user_id'=>$formulir->user_id,
                     'transaksi_id'=>$transaksi->id,
                     'no_transaksi'=>$transaksi->no_transaksi,
-                    'kombi_id'=>202,
-                    'nama_kombi'=>'REGISTRASI KRS',
+                    'kombi_id'=>101,
+                    'nama_kombi'=>'BIAYA PENDAFTARAN',
                     'biaya'=>$biaya_kombi,
                     'jumlah'=>1,
                     'sub_total'=>$biaya_kombi    
                 ]);
 
                 $transaksi->total=$biaya_kombi;
-                $transaksi->desc='REGISTRASI KRS '.$request->input('TA').$request->input('semester_akademik');
+                $transaksi->desc='BIAYA PENDAFTARAN '.$formulir->ta.$formulir->idsmst;
                 $transaksi->save();
 
                 return $transaksi;
@@ -181,7 +168,7 @@ class TransaksiPendaftaranMHSBaruController extends Controller {
                                         'status'=>1,
                                         'pid'=>'store',                   
                                         'transaksi'=>$transaksi,                                                                                                                                   
-                                        'message'=>'Transaksi Registrasi KRS berhasil di input.'
+                                        'message'=>'Transaksi Biaya Pendaftaran berhasil di input.'
                                     ],200); 
         }
         catch (Exception $e)
@@ -195,7 +182,7 @@ class TransaksiPendaftaranMHSBaruController extends Controller {
     }
     public function destroy(Request $request,$id)
     {
-        $this->hasPermissionTo('KEUANGAN-TRANSAKSI-PENDAFTARAN-MHS-BARU_DESTROY');
+        $this->hasPermissionTo('KEUANGAN-TRANSAKSI-BIAYA-PENDAFTARAN_DESTROY');
 
         if ($this->hasRole('mahasiswa'))
         {

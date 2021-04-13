@@ -8,7 +8,7 @@
 				SPMB 
 			</template>
 			<template v-slot:subtitle>
-				TAHUN PENDAFTARAN {{tahun_pendaftaran}}
+				TAHUN PENDAFTARAN {{ tahun_pendaftaran }}
 			</template>
 			<template v-slot:breadcrumbs>
 				<v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -248,7 +248,7 @@
 				{
 					text: "HOME",
 					disabled: false,
-					href: "/dashboard/" + this.$store.getters['auth/AccessToken'],
+					href: "/dashboard/" + this.$store.getters["auth/AccessToken"],
 				},
 				{
 					text: "SPMB",
@@ -256,7 +256,7 @@
 					href: "#",
 				},
 			];		
-			this.tahun_pendaftaran = this.$store.getters['uiadmin/getTahunPendaftaran']; 
+			this.tahun_pendaftaran = this.$store.getters["uiadmin/getTahunPendaftaran"]; 
 		},
 		mounted() {
 			this.initialize();

@@ -8,7 +8,7 @@
                 PERSYARATAN PMB
             </template>
             <template v-slot:subtitle>
-                TAHUN PENDAFTARAN {{tahun_pendaftaran}}
+                TAHUN PENDAFTARAN {{ tahun_pendaftaran }}
             </template>
             <template v-slot:breadcrumbs>
                 <v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -191,7 +191,7 @@
                                                 <v-alert
                                                     class="info"
                                                     dark>
-                                                    Salin persyaratan PMB dari tahun pendaftaran berikut ke tahun akademik {{tahun_pendaftaran}}
+                                                    Salin persyaratan PMB dari tahun pendaftaran berikut ke tahun akademik {{ tahun_pendaftaran }}
                                                 </v-alert>
                                                 <v-select
                                                     v-model="dari_tahun_pendaftaran"
@@ -284,7 +284,7 @@ export default {
                 href: "#"
             }
         ];      
-        this.tahun_pendaftaran = this.$store.getters['uiadmin/getTahunPendaftaran'];              
+        this.tahun_pendaftaran = this.$store.getters["uiadmin/getTahunPendaftaran"];              
         this.initialize()
     },  
     data: () => ({ 
@@ -296,10 +296,10 @@ export default {
         expanded: [],
         datatable: [],
         headers: [
-            { text: "PROSES", value: "proses", sortable: true,width:120  },   
-            { text: "NAMA PERSYARATAN", value: "nama_persyaratan",sortable: true },
-            { text: "TA", value: "ta",sortable: true,width:80, align: "center" },
-            { text: "AKSI", value: "actions", sortable: false, width:100 },
+            { text: "PROSES", value: "proses", sortable: true, width: 120  },   
+            { text: "NAMA PERSYARATAN", value: "nama_persyaratan", sortable: true },
+            { text: "TA", value: "ta", sortable: true, width: 80, align: "center" },
+            { text: "AKSI", value: "actions", sortable: false, width: 100 },
         ],
         search: "",
 
@@ -374,7 +374,7 @@ export default {
         },
         tambahItem: async function()
         {   
-            this.dialogfrm=true;
+            this.dialogfrm = true;
         },
         viewItem(item) {
             this.formdata = item;             
@@ -472,7 +472,7 @@ export default {
             }
         },
         deleteItem(item) {
-            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus persyaratan " + item.nama_persyaratan + " ?", { color: "red" }).then((confirm) => {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus persyaratan " + item.nama_persyaratan + " ?", { color: "red" }).then(confirm => {
                 if (confirm)
                 {
                     this.btnLoading = true;
