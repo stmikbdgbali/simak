@@ -131,6 +131,7 @@ class TransaksiController extends Controller {
                                         pe3_status_transaksi.style,
                                         pe3_transaksi.total,
                                         pe3_transaksi.tanggal,   
+                                        pe3_transaksi.desc,   
                                         COALESCE(pe3_transaksi.desc,\'N.A\') AS `desc`,
                                         pe3_formulir_pendaftaran.ta AS tahun_masuk,                                             
                                         pe3_transaksi.created_at,

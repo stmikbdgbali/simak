@@ -159,6 +159,136 @@
 										</v-card>
 									</v-form>
 								</v-dialog>
+								<v-dialog v-model="dialogeditfrm" max-width="750px" persistent>
+									<v-form
+										ref="frmeditdata"
+										v-model="form_valid"
+										lazy-validation
+									>
+										<v-card outlined>
+											<v-card-title>
+												UBAH TRANSAKSI
+											</v-card-title>
+											<v-card-text>
+												<v-row no-gutters>
+													<v-col xs="12" sm="6" md="6">
+														<v-card flat>
+															<v-card-title>ID :</v-card-title>
+															<v-card-subtitle>
+																{{ data_transaksi.id }}
+															</v-card-subtitle>
+														</v-card>
+													</v-col>
+													<v-responsive
+														width="100%"
+														v-if="$vuetify.breakpoint.xsOnly"
+													/>
+													<v-col xs="12" sm="6" md="6">
+														<v-card flat>
+															<v-card-title>KODE BILLING :</v-card-title>
+															<v-card-subtitle>
+																{{ data_transaksi.no_transaksi }}
+															</v-card-subtitle>
+														</v-card>
+													</v-col>
+													<v-responsive
+														width="100%"
+														v-if="$vuetify.breakpoint.xsOnly"
+													/>
+												</v-row>
+												<v-row no-gutters>
+													<v-col xs="12" sm="6" md="6">
+														<v-card flat>
+															<v-card-title>NAMA MAHASISWA :</v-card-title>
+															<v-card-subtitle>
+																{{  data_transaksi.nama_mhs }}
+															</v-card-subtitle>
+														</v-card>
+													</v-col>
+													<v-responsive
+														width="100%"
+														v-if="$vuetify.breakpoint.xsOnly"
+													/>
+													<v-col xs="12" sm="6" md="6">
+														<v-card flat>
+															<v-card-title>STATUS :</v-card-title>
+															<v-card-subtitle>
+																<v-chip :color="data_transaksi.style" dark>
+																	{{ data_transaksi.nama_status }}
+																</v-chip>																
+															</v-card-subtitle>
+														</v-card>
+													</v-col>
+													<v-responsive
+														width="100%"
+														v-if="$vuetify.breakpoint.xsOnly"
+													/>
+												</v-row>
+												<v-row no-gutters>
+													<v-col xs="12" sm="6" md="6">
+														<v-card flat>
+															<v-card-title>BIAYA PENDAFTARAN :</v-card-title>
+															<v-card-subtitle>
+																{{  data_transaksi.biaya | formatUang }}
+															</v-card-subtitle>
+														</v-card>
+													</v-col>
+													<v-responsive
+														width="100%"
+														v-if="$vuetify.breakpoint.xsOnly"
+													/>
+													<v-col xs="12" sm="6" md="6">
+														<v-card flat>
+															<v-card-title>TOTAL :</v-card-title>
+															<v-card-subtitle>																
+																{{ data_transaksi.total | formatUang }}																													
+															</v-card-subtitle>
+														</v-card>
+													</v-col>
+													<v-responsive
+														width="100%"
+														v-if="$vuetify.breakpoint.xsOnly"
+													/>
+												</v-row>
+												<v-row no-gutters>
+													<v-col cols="12">
+														<v-card>
+															<v-card-text>
+																<v-currency-field
+																	label="POTONGAN :"
+																	:min="null"
+																	:max="null"
+																	outlined
+																	v-model="formdata.promovalue">
+																</v-currency-field>
+																<v-textarea
+																	v-model="formdata.desc"
+																	label="CATATAN:"
+																	outlined 
+																/>
+															</v-card-text>															
+														</v-card>
+													</v-col>
+												</v-row>
+											</v-card-text>
+											<v-card-actions>
+												<v-spacer></v-spacer>
+												<v-btn @click.stop="save">
+													SIMPAN
+													<v-icon right>
+														mdi-content-save
+													</v-icon>
+												</v-btn>
+												<v-btn @click="closedialogeditfrm">
+													Close
+													<v-icon right>
+														mdi-close-circle
+													</v-icon>
+												</v-btn>
+											</v-card-actions>
+										</v-card>
+									</v-form>
+								</v-dialog>
 							</v-toolbar>
 						</template>
 						<template v-slot:item.idsmt="{ item }">
@@ -229,6 +359,9 @@
 						<template v-slot:item.actions="{ item }">
 							<v-icon small class="mr-2" @click.stop="viewItem(item)">
 								mdi-eye
+							</v-icon>
+							<v-icon small class="mr-2" @click.stop="editItem(item)">
+								mdi-pencil
 							</v-icon>
 							<v-icon
 								small
@@ -361,13 +494,20 @@
 
 			//dialog
 			dialogfrm: false,
+			dialogeditfrm: false,
 
 			//form data
 			entries: [],
 			isLoading: false,
 			data_mhs: null,
-			form_valid: true,
 			search_data_mhs: null,
+
+			form_valid: true,
+			data_transaksi: {},
+			formdata: {
+				promovalue: 0,
+				desc: "",
+			},
 		}),
 		methods: {
 			changeTahunPendaftaran(tahun) {
@@ -407,6 +547,10 @@
 			},
 			async addItem() {
 				this.dialogfrm = true;
+			},
+			async editItem(item) {
+				this.dialogeditfrm = true;
+				this.data_transaksi = item;
 			},
 			field_alias(atr) {
 				var alias;
@@ -467,6 +611,13 @@
 				setTimeout(() => {
 					this.data_mhs = null;
 					this.$refs.frmdata.reset();
+				}, 300);
+			},
+			closedialogeditfrm() {
+				this.dialogeditfrm = false;
+				setTimeout(() => {
+					this.data_transaksi = {};
+					this.$refs.frmeditdata.reset();
 				}, 300);
 			},
 			deleteItem(item) {

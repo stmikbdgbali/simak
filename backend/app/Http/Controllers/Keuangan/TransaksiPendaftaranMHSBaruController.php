@@ -52,7 +52,8 @@ class TransaksiPendaftaranMHSBaruController extends Controller {
                                                   pe3_status_transaksi.nama_status,
                                                   pe3_status_transaksi.style,
                                                   pe3_transaksi.total,
-                                                  pe3_transaksi.tanggal,     
+                                                  pe3_transaksi.tanggal,
+                                                  pe3_transaksi.desc,
                                                   pe3_transaksi_detail.created_at,
                                                   pe3_transaksi_detail.updated_at
                                               '))
