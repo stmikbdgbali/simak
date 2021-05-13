@@ -244,7 +244,7 @@ class TransaksiRegistrasiKRSController extends Controller {
                 'status'=>0,
                 'pid'=>'store',                                                                                                                                                  
                 'message'=>[$e->getMessage()]
-            ],422); 
+            ], 422); 
         }        
     }
     public function destroy(Request $request,$id)
@@ -268,7 +268,7 @@ class TransaksiRegistrasiKRSController extends Controller {
                                     'pid'=>'destroy',           
                                     'transaksi'=>$transaksi,     
                                     'message'=>["Transaksi registrasi krs dengan ($id) gagal dihapus"]
-                                ],422); 
+                                ], 422); 
         }
         else if ($transaksi->status==0)
         {
@@ -292,7 +292,7 @@ class TransaksiRegistrasiKRSController extends Controller {
                                     'pid'=>'destroy',           
                                     'transaksi'=>$transaksi,     
                                     'message'=>["Transaksi registrasi krs dengan ($id) gagal dihapus"]
-                                ],422); 
+                                ], 422); 
         }
     }
 }

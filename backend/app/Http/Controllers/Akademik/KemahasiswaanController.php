@@ -29,7 +29,7 @@ class KemahasiswaanController extends Controller {
                                     'status'=>0,
                                     'pid'=>'store',                
                                     'message'=>["Data User tidak ditemukan."]
-                                ],422);         
+                                ], 422);         
         }
         else
         {
@@ -68,7 +68,7 @@ class KemahasiswaanController extends Controller {
                                     'status'=>0,
                                     'pid'=>'update',                
                                     'message'=>["Biodata Mahasiswa dengan User ID ($id) gagal diperoleh"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {
@@ -148,7 +148,7 @@ class KemahasiswaanController extends Controller {
                                     'status'=>0,
                                     'pid'=>'store',                
                                     'message'=>["Data Mahasiswa tidak ditemukan."]
-                                ],422);         
+                                ], 422);         
         }
         else
         {

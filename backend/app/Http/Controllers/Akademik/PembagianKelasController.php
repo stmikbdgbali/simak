@@ -170,7 +170,7 @@ class PembagianKelasController extends Controller
                                     'status'=>0,
                                     'pid'=>'fetchdata',
                                     'message'=>["Pembagian Kelas dengan ($id) gagal diperoleh"]
-                                ],422);
+                                ], 422);
         }
         else
         {
@@ -234,7 +234,7 @@ class PembagianKelasController extends Controller
                                     'status'=>0,
                                     'pid'=>'fetchdata',
                                     'message'=>["Kelas Mahasiswa dengan ($id) gagal diperoleh"]
-                                ],422);
+                                ], 422);
         }
         else
         {
@@ -272,7 +272,7 @@ class PembagianKelasController extends Controller
                                     'status'=>0,
                                     'pid'=>'fetchdata',
                                     'message'=>["Kelas Mahasiswa dengan ($id) gagal diperoleh"]
-                                ],422);
+                                ], 422);
         }
         else
         {
@@ -468,7 +468,7 @@ class PembagianKelasController extends Controller
                                     'status'=>0,
                                     'pid'=>'destroy',
                                     'message'=>["Dosen Pengampu dengan ($id) gagal diperoleh"]
-                                ],422);
+                                ], 422);
         }
         else
         {
@@ -517,7 +517,7 @@ class PembagianKelasController extends Controller
                                     'status'=>0,
                                     'pid'=>'destroy',
                                     'message'=>["Kelas dengan ($id) gagal dihapus"]
-                                ],422);
+                                ], 422);
         }
         else
         {
@@ -561,7 +561,7 @@ class PembagianKelasController extends Controller
                                     'status'=>0,
                                     'pid'=>'destroy',
                                     'message'=>["Anggota Matakuliah di kelas dengan ($id) gagal dihapus"]
-                                ],422);
+                                ], 422);
         }
         else
         {
@@ -613,7 +613,7 @@ class PembagianKelasController extends Controller
                                     'status'=>0,
                                     'pid'=>'destroy',
                                     'message'=>["Peserta dengan ($id) gagal dihapus"]
-                                ],422);
+                                ], 422);
         }
         else
         {

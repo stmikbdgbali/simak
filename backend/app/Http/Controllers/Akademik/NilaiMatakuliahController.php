@@ -51,7 +51,7 @@ class NilaiMatakuliahController extends Controller
                                     'status'=>0,
                                     'pid'=>'fetchdata',                
                                     'message'=>["Kelas Mahasiswa dengan ($id) gagal diperoleh"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {
@@ -120,7 +120,7 @@ class NilaiMatakuliahController extends Controller
                                     'status'=>0,
                                     'pid'=>'destroy',                
                                     'message'=>["KRS dengan ($id) gagal diperoleh"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {

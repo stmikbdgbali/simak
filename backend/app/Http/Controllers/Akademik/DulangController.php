@@ -95,7 +95,7 @@ class DulangController extends Controller
                                     'status'=>0,
                                     'pid'=>'destroy',                
                                     'message'=>["Daftar Ulang Mahasiswa Baru ($id) gagal dihapus"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {

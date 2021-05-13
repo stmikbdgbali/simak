@@ -164,7 +164,7 @@ class NilaiUjianController extends Controller {
 																		'status'=>0,
 																		'pid'=>'fetchdata',                
 																		'message'=>["Formulir Pendaftaran dengan ID ($id) gagal diperoleh"]
-																],422); 
+																], 422); 
 				}
 				else
 				{
@@ -218,7 +218,7 @@ class NilaiUjianController extends Controller {
 																		'status'=>0,
 																		'pid'=>'update',                
 																		'message'=>["Nilai ujian dengan ID ($id) gagal diperoleh"]
-																],422); 
+																], 422); 
 				}
 				else
 				{
@@ -286,7 +286,7 @@ class NilaiUjianController extends Controller {
 																		'status'=>0,
 																		'pid'=>'destroy',                
 																		'message'=>["Nilai Ujian dengan ID ($id) gagal dihapus"]
-																],422); 
+																], 422); 
 				}
 				else
 				{

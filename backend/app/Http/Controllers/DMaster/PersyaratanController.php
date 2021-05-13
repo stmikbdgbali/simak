@@ -184,7 +184,7 @@ class PersyaratanController extends Controller {
                                         'status'=>0,
                                         'pid'=>'destroy',                
                                         'message'=>["Kode persyaratan ($id) gagal dihapus"]
-                                    ],422); 
+                                    ], 422); 
         }
         else
         {
@@ -220,7 +220,7 @@ class PersyaratanController extends Controller {
                                     'status'=>0,
                                     'pid'=>'destroy',                
                                     'message'=>["Kode persyaratan ($id) gagal dihapus"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {

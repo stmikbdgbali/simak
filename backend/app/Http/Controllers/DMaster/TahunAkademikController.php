@@ -53,7 +53,7 @@ class TahunAkademikController extends Controller {
                                     'status'=>0,
                                     'pid'=>'fetchdata',                
                                     'message'=>["Tahun Akademik ($id) gagal diperoleh"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {
@@ -84,7 +84,7 @@ class TahunAkademikController extends Controller {
                                     'status'=>0,
                                     'pid'=>'fetchdata',                
                                     'message'=>["Awal bulan semester ganjil Tahun Akademik ($id) belum disetting"]
-                                ],422);
+                                ], 422);
             }
       
             return Response()->json([
@@ -166,7 +166,7 @@ class TahunAkademikController extends Controller {
                                     'status'=>0,
                                     'pid'=>'update',
                                     'message'=>["Tahun Akademik ($id) gagal diupdate"]
-                                ],422);
+                                ], 422);
         }
         else
         {
@@ -238,7 +238,7 @@ class TahunAkademikController extends Controller {
                                     'status'=>0,
                                     'pid'=>'destroy',
                                     'message'=>["Kode tahun akademik ($id) gagal dihapus"]
-                                ],422);
+                                ], 422);
         }
         else
         {

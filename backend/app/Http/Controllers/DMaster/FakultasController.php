@@ -74,7 +74,7 @@ class FakultasController extends Controller {
                                     'status'=>0,
                                     'pid'=>'update',                
                                     'message'=>["Kode Fakultas ($id) gagal diupdate"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {
@@ -122,7 +122,7 @@ class FakultasController extends Controller {
                                     'status'=>0,
                                     'pid'=>'fetchdata',                
                                     'message'=>["Fetch data program studi berdasarkan id fakultas gagal"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {
@@ -154,7 +154,7 @@ class FakultasController extends Controller {
                                     'status'=>0,
                                     'pid'=>'destroy',                
                                     'message'=>["Kode fakultas ($id) gagal dihapus"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {

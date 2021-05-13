@@ -85,7 +85,7 @@ class TransferBankController extends Controller {
                                     'status'=>0,
                                     'pid'=>'update',                
                                     'message'=>["Kode Kelas ($id) gagal diupdate"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {
@@ -141,7 +141,7 @@ class TransferBankController extends Controller {
                                     'status'=>0,
                                     'pid'=>'destroy',                
                                     'message'=>["Kode bank ($id) gagal dihapus"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {

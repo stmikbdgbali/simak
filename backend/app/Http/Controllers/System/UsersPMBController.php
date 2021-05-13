@@ -169,7 +169,7 @@ class UsersPMBController extends Controller {
                                     'status'=>0,
                                     'pid'=>'update',                
                                     'message'=>["User ID ($id) gagal diupdate"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {
@@ -320,7 +320,7 @@ class UsersPMBController extends Controller {
                                     'status'=>0,
                                     'pid'=>'destroy',                
                                     'message'=>["User ID ($id) gagal dihapus"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {

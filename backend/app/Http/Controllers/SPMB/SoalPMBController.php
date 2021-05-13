@@ -128,7 +128,7 @@ class SoalPMBController extends Controller {
                                     'status'=>0,
                                     'pid'=>'show',
                                     'message'=>["Fetch data soal pmb dengan ID ($id) gagal diperoleh"]
-                                ],422);
+                                ], 422);
         }
         else
         {
@@ -156,7 +156,7 @@ class SoalPMBController extends Controller {
                                     'status'=>0,
                                     'pid'=>'update',
                                     'message'=>["Fetch data soal pmb dengan ID ($id) gagal diperoleh"]
-                                ],422);
+                                ], 422);
         }
         else
         {
@@ -208,7 +208,7 @@ class SoalPMBController extends Controller {
                                     'status'=>0,
                                     'pid'=>'destroy',
                                     'message'=>["Soal PMB dengan ID ($id) gagal dihapus"]
-                                ],422);
+                                ], 422);
         }
         else
         {

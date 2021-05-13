@@ -205,7 +205,7 @@ class NilaiKonversiController  extends Controller
                                     'status'=>0,
                                     'pid'=>'update',                
                                     'message'=>["Data Konversi dengan ($id) gagal diperoleh"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {
@@ -305,7 +305,7 @@ class NilaiKonversiController  extends Controller
                                     'status'=>0,
                                     'pid'=>'show',                
                                     'message'=>["Data Konversi dengan ($id) gagal diperoleh"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {
@@ -403,7 +403,7 @@ class NilaiKonversiController  extends Controller
                                     'status'=>0,
                                     'pid'=>'destroy',                
                                     'message'=>["Data Konversi ($id) gagal dihapus"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {
@@ -454,7 +454,7 @@ class NilaiKonversiController  extends Controller
                                     'status'=>0,
                                     'pid'=>'show',                
                                     'message'=>["Data Konversi dengan ($id) gagal diperoleh"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {

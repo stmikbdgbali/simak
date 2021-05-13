@@ -101,7 +101,7 @@ class PermissionsController extends Controller {
                                     'status'=>0,
                                     'pid'=>'destroy',                
                                     'message'=>["Permission dengan ID ($id) gagal dihapus"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {

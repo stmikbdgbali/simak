@@ -92,7 +92,7 @@ class ReportKelulusanController extends Controller {
                                     'status'=>0,
                                     'pid'=>'fetchdata',                
                                     'message'=>["Formulir Pendaftaran dengan ID ($id) gagal diperoleh"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {

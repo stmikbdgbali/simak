@@ -505,9 +505,16 @@
 			form_valid: true,
 			data_transaksi: {},
 			formdata: {
+				id: null,
 				promovalue: 0,
 				desc: "",
 			},
+			formdefault: {
+				id: null,
+				promovalue: 0,
+				desc: "",
+			},
+			editedIndex: -1,
 		}),
 		methods: {
 			changeTahunPendaftaran(tahun) {
@@ -549,6 +556,8 @@
 				this.dialogfrm = true;
 			},
 			async editItem(item) {
+				this.editedIndex = this.datatable.indexOf(item);
+				this.formdata = Object.assign({}, item);
 				this.dialogeditfrm = true;
 				this.data_transaksi = item;
 			},
@@ -581,26 +590,51 @@
 			save: async function() {
 				if (this.$refs.frmdata.validate()) {
 					this.btnLoading = true;
-					await this.$ajax
-						.post(
-							"/keuangan/transaksi-pendaftaranmhsbaru/store",
-							{
-								user_id: this.data_mhs.id,
-							},
-							{
-								headers: {
-									Authorization: this.$store.getters["auth/Token"],
+					if (this.editedIndex > -1) {
+						await this.$ajax
+							.post(
+								"/keuangan/transaksi-pendaftaranmhsbaru/" + this.formdata.id,
+								{
+									_method: "put",
+									promovalue: this.formdata.promovalue,
+									desc: this.formdata.desc,
 								},
-							}
-						)
-						.then(() => {
-							this.closedialogfrm();
-							this.btnLoading = false;
-							this.initialize();
-						})
-						.catch(() => {
-							this.btnLoading = false;
-						});
+								{
+									headers: {
+										Authorization: this.$store.getters["auth/Token"],
+									},
+								}
+							)
+							.then(() => {
+								this.closedialogfrm();
+								this.btnLoading = false;
+								this.initialize();
+							})
+							.catch(() => {
+								this.btnLoading = false;
+							});
+					} else {
+						await this.$ajax
+							.post(
+								"/keuangan/transaksi-pendaftaranmhsbaru/store",
+								{
+									user_id: this.data_mhs.id,
+								},
+								{
+									headers: {
+										Authorization: this.$store.getters["auth/Token"],
+									},
+								}
+							)
+							.then(() => {
+								this.closedialogfrm();
+								this.btnLoading = false;
+								this.initialize();
+							})
+							.catch(() => {
+								this.btnLoading = false;
+							});
+					}
 				}
 			},
 			showDialogPrintout() {

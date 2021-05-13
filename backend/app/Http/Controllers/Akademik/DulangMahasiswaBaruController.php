@@ -75,7 +75,7 @@ class DulangMahasiswaBaruController extends Controller
                                     'status'=>1,
                                     'pid'=>'destroy',                
                                     'message'=>["Daftar Ulang Mahasiswa Baru ($id) gagal dihapus"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {
