@@ -32,7 +32,7 @@ class ProvinsiController extends Controller {
                                     'status'=>0,
                                     'pid'=>'fetchdata',                
                                     'message'=>["Fetch data kabupaten berdasarkan id provinsi gagal"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {

@@ -12,10 +12,10 @@ class CreateMatakuliahTable extends Migration
      * @return void
      */
     public function up()
-    {   
+    {
         Schema::defaultStringLength(191);
         Schema::create('pe3_matakuliah', function (Blueprint $table) {
-            $table->uuid('id')->primary();    
+            $table->uuid('id')->primary();
             $table->tinyInteger('id_group')->nullable();
             $table->string('nama_group')->nullable();
             $table->string('group_alias')->nullable();
@@ -31,14 +31,13 @@ class CreateMatakuliahTable extends Migration
             $table->tinyinteger('sks_praktik_lapangan')->nullable();
             $table->string('minimal_nilai',10);
             $table->boolean('syarat_skripsi')->default(false);
-            $table->boolean('status')->default(false);            
+            $table->boolean('status')->default(false);
             $table->tinyinteger('kjur');
-            $table->timestamps();  
-            
+            $table->timestamps();
+
             $table->index('kmatkul');
             $table->index('nmatkul');
-            $table->index('kjur');
-            $table->index('ta');
+            $table->index('kjur');            
             $table->index('id_group');
         });
     }
@@ -50,6 +49,6 @@ class CreateMatakuliahTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pe3_matakuliah');        
+        Schema::dropIfExists('pe3_matakuliah');
     }
 }

@@ -81,7 +81,7 @@ class RuanganKelasController extends Controller {
                                     'status'=>0,
                                     'pid'=>'update',                
                                     'message'=>["Rung Kelas ($id) gagal diupdate"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {
@@ -138,7 +138,7 @@ class RuanganKelasController extends Controller {
                                     'status'=>0,
                                     'pid'=>'destroy',                
                                     'message'=>["Ruang kelas dengan id ($id) gagal dihapus"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {

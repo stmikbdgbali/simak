@@ -176,7 +176,7 @@ export default {
 						this.prodi_id = prodi_id;
 						this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](prodi_id);
 						this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];              
-						this.semester_akademik = this.$store.getters['uiadmin/getSemesterAkademik'];                          
+						this.semester_akademik = this.$store.getters["uiadmin/getSemesterAkademik"];                          
 				}     
 		},  
 		mounted()
@@ -272,7 +272,7 @@ export default {
 				},
 				dataTableRowClicked(item)
 				{
-						if ( item === this.expanded[0])
+						if (item === this.expanded[0])
 						{
 								this.expanded = [];              
 						}

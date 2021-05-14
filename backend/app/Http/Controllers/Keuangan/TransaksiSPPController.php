@@ -275,7 +275,7 @@ class TransaksiSPPController extends Controller {
                 'status'=>0,
                 'pid'=>'fetchdata',                                                                                                                                                  
                 'message'=>[$e->getMessage()]
-            ],422); 
+            ], 422); 
         }      
     }
     public function newtransaction (Request $request)
@@ -375,7 +375,7 @@ class TransaksiSPPController extends Controller {
                 'status'=>0,
                 'pid'=>'store',                                                                                                                                                  
                 'message'=>[$e->getMessage()]
-            ],422); 
+            ], 422); 
         }  
     }
     public function store(Request $request)
@@ -480,7 +480,7 @@ class TransaksiSPPController extends Controller {
                                     'status'=>0,
                                     'pid'=>'destroy',                
                                     'message'=>["Transaksi Detail dengan ID ($id) gagal dihapus"]
-                                ],422); 
+                                ], 422); 
         }
         else if ($transaksi->status==1 || $transaksi->status==2)
         {
@@ -488,7 +488,7 @@ class TransaksiSPPController extends Controller {
                                     'status'=>1,
                                     'pid'=>'destroy',                
                                     'message'=>["Transaksi dengan ID ($id) sudah tidak bisa dihapus"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {

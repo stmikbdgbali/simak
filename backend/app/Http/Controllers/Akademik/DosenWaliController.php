@@ -59,7 +59,7 @@ class DosenWaliController extends Controller {
                                     'status'=>0,
                                     'pid'=>'fetchdata',                
                                     'message'=>["User ID ($id) gagal diupdate"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {
@@ -186,7 +186,7 @@ class DosenWaliController extends Controller {
                                     'status'=>0,
                                     'pid'=>'update',                
                                     'message'=>["User ID ($id) gagal diupdate"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {
@@ -236,7 +236,7 @@ class DosenWaliController extends Controller {
                                     'status'=>0,
                                     'pid'=>'destroy',                
                                     'message'=>["Dosen wali dengan ID ($id) gagal dihapus"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {

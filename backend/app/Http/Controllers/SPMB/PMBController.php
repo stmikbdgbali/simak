@@ -334,7 +334,7 @@ class PMBController extends Controller {
                                     'status'=>0,
                                     'pid'=>'update',                
                                     'message'=>["User ID ($id) gagal diupdate"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {
@@ -431,7 +431,7 @@ class PMBController extends Controller {
                                     'status'=>0,
                                     'pid'=>'fetchdata',                
                                     'message'=>["Formulir Pendaftaran dengan ID ($id) gagal diperoleh"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {
@@ -500,7 +500,7 @@ class PMBController extends Controller {
                                         'status'=>1,
                                         'pid'=>'update',                                                                                                                                        
                                         'message'=>['Email Registrasi Mahasiswa gagal diverifikasi.']
-                                    ],422);
+                                    ], 422);
         }
 
     }   
@@ -520,7 +520,7 @@ class PMBController extends Controller {
                                     'status'=>0,
                                     'pid'=>'update',                
                                     'message'=>["Formulir Pendaftaran dengan ID ($id) gagal diperoleh"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {
@@ -674,7 +674,7 @@ class PMBController extends Controller {
                                     'status'=>0,
                                     'pid'=>'destroy',                
                                     'message'=>["Calon Mahasiswa Baru dengan ID ($id) gagal dihapus"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {

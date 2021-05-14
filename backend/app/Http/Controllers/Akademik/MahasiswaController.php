@@ -41,7 +41,7 @@ class MahasiswaController extends Controller
                                     'status'=>0,
                                     'pid'=>'fetchdata',                
                                     'message'=>["Data Mahasiswa dengan id ($id) gagal diperoleh"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {

@@ -213,7 +213,7 @@ export default {
         },
         dataTableRowClicked(item)
         {
-            if ( item === this.expanded[0])
+            if (item === this.expanded[0])
             {
                 this.expanded = [];              
             }
@@ -290,7 +290,7 @@ export default {
         formTitle() {
             return this.editedIndex === -1 ? "TAMBAH PERMISSION" : "EDIT PERMISSION"
         },
-        ...mapGetters("auth",{ 
+        ...mapGetters("auth", { 
             ACCESS_TOKEN: "AccessToken",          
             TOKEN: "Token",          
             CAN_ACCESS: "can",         

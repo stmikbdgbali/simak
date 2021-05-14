@@ -416,7 +416,7 @@ class UIController extends Controller {
                                         'status'=>0,
                                         'pid'=>'fetchdata',
                                         'message'=>'Fetch data ui gagal karena roles kosong.'
-                                    ],422);
+                                    ], 422);
         }
     }
 }

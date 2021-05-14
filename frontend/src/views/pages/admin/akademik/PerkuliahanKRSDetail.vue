@@ -333,7 +333,7 @@ export default {
         },
         deleteItem (item)
         {
-            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus matakuliah ("+item.nmatkul+") ?", { color: "red", width: 600,'desc': "proses ini juga menghapus seluruh data yang terkait dengan matkul ini." }).then(confirm => {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus matakuliah ("+item.nmatkul+") ?", { color: "red", width: 600,"desc": "proses ini juga menghapus seluruh data yang terkait dengan matkul ini." }).then(confirm => {
                 if (confirm)
                 {
                     this.btnLoadingTable=true;

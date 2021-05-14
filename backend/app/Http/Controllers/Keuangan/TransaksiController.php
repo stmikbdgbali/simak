@@ -131,6 +131,7 @@ class TransaksiController extends Controller {
                                         pe3_status_transaksi.style,
                                         pe3_transaksi.total,
                                         pe3_transaksi.tanggal,   
+                                        pe3_transaksi.desc,   
                                         COALESCE(pe3_transaksi.desc,\'N.A\') AS `desc`,
                                         pe3_formulir_pendaftaran.ta AS tahun_masuk,                                             
                                         pe3_transaksi.created_at,
@@ -147,7 +148,7 @@ class TransaksiController extends Controller {
                                         'status'=>0,
                                         'pid'=>'fetchdata',                                          
                                         'message'=>"Fetch data transaksi dengan id ($id) gagal diperoleh."
-                                    ],422); 
+                                    ], 422); 
         }
         else
         {
@@ -206,7 +207,7 @@ class TransaksiController extends Controller {
                 'status'=>0,
                 'pid'=>'update',                                                                                                                                                  
                 'message'=>[$e->getMessage()]
-            ],422); 
+            ], 422); 
         }
     }
     /**
@@ -227,7 +228,7 @@ class TransaksiController extends Controller {
                 'pid'=>'update',  
                 'transaksi_id'=>$transaksi_id,                                                                                                                                   
                 'message'=>'Transaksi ini gagal dibatalkan karena status sudah PAID.'
-            ],422);   
+            ], 422);   
         }
         else if ($transaksi->status==2)
         {
@@ -236,7 +237,7 @@ class TransaksiController extends Controller {
                 'pid'=>'update',  
                 'transaksi_id'=>$transaksi_id,                                                                                                                                   
                 'message'=>'Transaksi ini gagal dibatalkan karena status sudah DIBATALKAN.'
-            ],422); 
+            ], 422); 
         }
         else if ($transaksi->status==0)
         {
@@ -273,7 +274,7 @@ class TransaksiController extends Controller {
                                     'status'=>0,
                                     'pid'=>'update',                
                                     'message'=>["Update data transaksi dengan ID ($id) gagal diperoleh"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {

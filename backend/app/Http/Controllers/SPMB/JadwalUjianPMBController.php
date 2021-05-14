@@ -147,7 +147,7 @@ class JadwalUjianPMBController extends Controller {
                                     'status'=>0,
                                     'pid'=>'show',                
                                     'message'=>["Fetch data jadwal ujian pmb dengan ID ($id) gagal diperoleh"]
-                                ],422); 
+                                ], 422); 
         }
         else if ($this->hasRole(['mahasiswabaru','mahasiswa']))
         {
@@ -211,7 +211,7 @@ class JadwalUjianPMBController extends Controller {
                                     'status'=>0,
                                     'pid'=>'update',                
                                     'message'=>["Fetch data jadwal ujian pmb dengan ID ($id) gagal diperoleh"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {
@@ -256,7 +256,7 @@ class JadwalUjianPMBController extends Controller {
                                     'status'=>0,
                                     'pid'=>'update',                
                                     'message'=>["Fetch data jadwal ujian pmb dengan ID ($id) gagal diperoleh"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {
@@ -306,7 +306,7 @@ class JadwalUjianPMBController extends Controller {
                                     'status'=>0,
                                     'pid'=>'destroy',                
                                     'message'=>["Menghapus jadwal ujian PMB dengan ID ($id) gagal dihapus"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {

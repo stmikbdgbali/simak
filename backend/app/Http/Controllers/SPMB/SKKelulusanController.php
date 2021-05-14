@@ -28,7 +28,7 @@ class SKKelulusanController extends Controller {
 																'status'=>0,
 																'pid'=>'fetchdata',                
 																'message'=>["SK Kelulusan tidak dikenali"]
-														],422); 
+														], 422); 
 		}
 		else
 		{
@@ -54,7 +54,7 @@ class SKKelulusanController extends Controller {
 																'status'=>0,
 																'pid'=>'fetchdata',                
 																'message'=>["Formulir Pendaftaran dengan ID ($id) gagal diperoleh"]
-														],422); 
+														], 422); 
 		}
 		else
 		{
@@ -187,7 +187,7 @@ class SKKelulusanController extends Controller {
 																'status'=>0,
 																'pid'=>'fetchdata',															
 																'SK Kelulusan tidak bisa dicetak disebakan belum lulus atau belum diterima di prodi'                       
-														],422);
+														], 422);
 			}
 		}			
 	}

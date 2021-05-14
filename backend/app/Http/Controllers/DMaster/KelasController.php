@@ -78,7 +78,7 @@ class KelasController extends Controller {
                                     'status'=>0,
                                     'pid'=>'update',                
                                     'message'=>["Kode Kelas ($id) gagal diupdate"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {
@@ -156,7 +156,7 @@ class KelasController extends Controller {
                                     'status'=>0,
                                     'pid'=>'destroy',                
                                     'message'=>["Kode kelas ($id) gagal dihapus"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {

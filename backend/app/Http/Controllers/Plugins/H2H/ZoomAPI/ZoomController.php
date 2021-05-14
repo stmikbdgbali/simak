@@ -85,7 +85,7 @@ class ZoomController extends Controller {
                                     'status'=>0,
                                     'pid'=>'update',                
                                     'message'=>["account zoom ($id) gagal di testing"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {
@@ -157,7 +157,7 @@ class ZoomController extends Controller {
                     'request'=> \GuzzleHttp\Psr7\Message::toString($e->getRequest()),  
                     'response'=> \GuzzleHttp\Psr7\Message::toString($e->getResponse()),  
                     'message'=>["account zoom ($id) gagal di sync (check response untuk lebih detail)"]
-                ],422);                 
+                ], 422);                 
             }
         }
     }
@@ -179,7 +179,7 @@ class ZoomController extends Controller {
                                     'status'=>0,
                                     'pid'=>'update',                
                                     'message'=>["account zoom ($id) gagal diupdate"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {
@@ -251,7 +251,7 @@ class ZoomController extends Controller {
                                     'status'=>0,
                                     'pid'=>'update',                
                                     'message'=>["account zoom ($id) gagal diperoleh"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {
@@ -282,7 +282,7 @@ class ZoomController extends Controller {
                                     'status'=>0,
                                     'pid'=>'destroy',                
                                     'message'=>["Kode account zoom ($id) gagal dihapus"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {

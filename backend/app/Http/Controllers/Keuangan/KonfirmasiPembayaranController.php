@@ -151,7 +151,7 @@ class KonfirmasiPembayaranController extends Controller {
                                     'status'=>0,
                                     'pid'=>'fetchdata',                
                                     'message'=>["Fetch data transaksi dengan ID ($id) gagal diperoleh"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {
@@ -220,7 +220,7 @@ class KonfirmasiPembayaranController extends Controller {
                                         'status'=>1,
                                         'pid'=>'store',
                                         'message'=>["Extensi file yang diupload bukan jpg atau png."]
-                                    ],422); 
+                                    ], 422); 
         } 
         
     }
@@ -238,7 +238,7 @@ class KonfirmasiPembayaranController extends Controller {
                                     'status'=>0,
                                     'pid'=>'update',                
                                     'message'=>["Update data transaksi dengan ID ($id) gagal diperoleh"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {

@@ -443,7 +443,7 @@ export default {
         },
         dataTableRowClicked(item)
         {
-            if ( item === this.expanded[0])
+            if (item === this.expanded[0])
             {
                 this.expanded = [];              
             }
@@ -587,7 +587,7 @@ export default {
         formTitle() {
             return this.editedIndex === -1 ? "TAMBAH USER DOSEN" : "EDIT USER DOSEN"
         },
-        ...mapGetters("auth",{ 
+        ...mapGetters("auth", { 
             ACCESS_TOKEN: "AccessToken",          
             TOKEN: "Token",     
         }),

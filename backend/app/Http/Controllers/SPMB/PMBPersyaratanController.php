@@ -70,7 +70,7 @@ class PMBPersyaratanController extends Controller {
                                         'status'=>0,
                                         'pid'=>'fetchdata',                
                                         'message'=>["User ID ($id) gagal diperoleh"]
-                                    ],422); 
+                                    ], 422); 
         }
         else
         {
@@ -114,7 +114,7 @@ class PMBPersyaratanController extends Controller {
                                     'status'=>0,
                                     'pid'=>'store',                
                                     'message'=>["Data Mahasiswa tidak ditemukan."]
-                                ],422);         
+                                ], 422);         
         }
         else
         {
@@ -176,7 +176,7 @@ class PMBPersyaratanController extends Controller {
                                         'status'=>1,
                                         'pid'=>'store',
                                         'message'=>["Extensi file yang diupload bukan jpg atau png."]
-                                    ],422); 
+                                    ], 422); 
                 
 
             }
@@ -194,7 +194,7 @@ class PMBPersyaratanController extends Controller {
                                     'status'=>0,
                                     'pid'=>'destroy',                
                                     'message'=>["Data Persyaratan Mahasiswa Baru tidak ditemukan."]
-                                ],422);         
+                                ], 422);         
         }
         else
         {
@@ -230,7 +230,7 @@ class PMBPersyaratanController extends Controller {
                                     'status'=>0,
                                     'pid'=>'update',                
                                     'message'=>["Data Persyaratan Mahasiswa Baru tidak ditemukan."]
-                                ],422);         
+                                ], 422);         
         }
         else
         {

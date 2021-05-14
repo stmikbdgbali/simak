@@ -220,7 +220,7 @@ export default {
         },
         dataTableRowClicked(item)
         {
-            if ( item === this.expanded[0])
+            if (item === this.expanded[0])
             {
                 this.expanded = [];              
             }
@@ -255,7 +255,7 @@ export default {
         },
         deleteItem (item)
         {
-            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus daftar ulang '+item.nama_mhs+' ?", { color: "red", width: 600,'desc': "proses ini juga menghapus seluruh data akademik namun KEUANGAN TETAP ADA." }).then(confirm => {
+            this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus daftar ulang '+item.nama_mhs+' ?", { color: "red", width: 600,"desc": "proses ini juga menghapus seluruh data akademik namun KEUANGAN TETAP ADA." }).then(confirm => {
                 if (confirm)
                 {
                     this.btnLoadingTable=true;

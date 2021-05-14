@@ -146,7 +146,7 @@ class NilaiKHSController extends Controller
                                     'status'=>0,
                                     'pid'=>'destroy',                
                                     'message'=>["KRS dengan ($id) gagal diperoleh"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {
@@ -313,7 +313,7 @@ class NilaiKHSController extends Controller
                                     'status'=>0,
                                     'pid'=>'destroy',                
                                     'message'=>["KRS dengan ($id) gagal diperoleh"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {
@@ -481,7 +481,7 @@ class NilaiKHSController extends Controller
                                         'status'=>0,
                                         'pid'=>'fetchdata',                                        
                                         'message'=>'Ketua program studi belum disetting di halaman Data Master -> Program Studi'
-                                    ],422);
+                                    ], 422);
             }
         }
     }

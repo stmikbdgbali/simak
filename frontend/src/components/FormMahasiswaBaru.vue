@@ -311,6 +311,7 @@
 			rule_fakultas: [value => !!value || "Fakultas mohon untuk dipilih !!!"],
 			rule_prodi: [value => !!value || "Program studi mohon untuk dipilih !!!"],
 			rule_kelas: [value => !!value || "Kelas mohon untuk dipilih !!!"],
+			
 			dialogkodebilling: false,
 		}),
 		methods: {

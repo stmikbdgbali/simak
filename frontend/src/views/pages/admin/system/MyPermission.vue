@@ -142,7 +142,7 @@ export default {
         },
         dataTableRowClicked(item)
         {
-            if ( item === this.expanded[0])
+            if (item === this.expanded[0])
             {
                 this.expanded = [];              
             }
@@ -153,7 +153,7 @@ export default {
         },    
     },
     computed: {
-        ...mapGetters("auth",{ 
+        ...mapGetters("auth", { 
             ACCESS_TOKEN: "AccessToken",          
             TOKEN: "Token",          
             CAN_ACCESS: "can",         

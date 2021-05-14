@@ -38,13 +38,18 @@ class MatakuliahController extends Controller {
                                 '))       
                                 ->where('kjur',$prodi_id)                                
                                 ->orderBy('semester','ASC')                      
-                                ->orderBy('kmatkul','ASC')                      
-                                ->get();
-        
+                                ->orderBy('kmatkul','ASC');                                
+
+        if ($request->has('filter_semester'))
+        {
+            $matakuliah = $matakuliah->where('semester',$request->input('filter_semester'));
+        }
+        $matakuliah = $matakuliah->get();
         $matakuliah->transform(function ($item,$key) {                
             $item->jummlah_penyelenggaraan=\DB::table('pe3_penyelenggaraan')->where('matkul_id',$item->id)->count();                
             return $item;
         });
+        
         return Response()->json([
                                     'status'=>1,
                                     'pid'=>'fetchdata',  
@@ -74,7 +79,7 @@ class MatakuliahController extends Controller {
                                     'status'=>0,
                                     'pid'=>'update',                
                                     'message'=>["matakuliah dengan ($id) gagal diupdate"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {
@@ -187,7 +192,7 @@ class MatakuliahController extends Controller {
                                     'status'=>0,
                                     'pid'=>'update',                
                                     'message'=>["matakuliah dengan id ($id) gagal diupdate"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {
@@ -288,7 +293,7 @@ class MatakuliahController extends Controller {
                                     'status'=>0,
                                     'pid'=>'destroy',                
                                     'message'=>["Kode matakuliah ($id) gagal dihapus"]
-                                ],422); 
+                                ], 422); 
         }
         else
         {
