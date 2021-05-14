@@ -226,7 +226,7 @@
 				},
 				dataTableRowClicked(item)
 				{
-						if ( item === this.expanded[0])
+						if (item === this.expanded[0])
 						{
 								this.expanded = [];              
 						}
