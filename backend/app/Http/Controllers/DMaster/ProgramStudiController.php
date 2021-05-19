@@ -19,7 +19,7 @@ class ProgramStudiController extends Controller {
                                     id,
                                     kode_forlap,
                                     nama_prodi,
-                                    CASE 
+                                    CASE
                                         WHEN konsentrasi IS NULL THEN CONCAT(nama_prodi,\' (\',nama_jenjang,\')\')
                                         WHEN konsentrasi IS NOT NULL THEN CONCAT(nama_prodi_alias,\' Kons. \',konsentrasi,\' (\',nama_jenjang,\')\')                                        
                                     END AS nama_prodi2,                                    

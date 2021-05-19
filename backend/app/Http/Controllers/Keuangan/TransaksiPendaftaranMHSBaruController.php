@@ -37,6 +37,7 @@ class TransaksiPendaftaranMHSBaruController extends Controller {
 																								pe3_transaksi_detail.biaya,
 																								pe3_transaksi_detail.jumlah,
 																								pe3_transaksi_detail.bulan,
+																								pe3_transaksi_detail.promovalue,
 																								pe3_transaksi_detail.sub_total,
 
 																								pe3_formulir_pendaftaran.nama_mhs,
@@ -46,7 +47,8 @@ class TransaksiPendaftaranMHSBaruController extends Controller {
 																								pe3_transaksi.ta,
 																								pe3_transaksi.idsmt,
 																								pe3_transaksi.idkelas,
-																								pe3_transaksi.no_formulir,
+																								
+																								COALESCE(pe3_transaksi.no_formulir,"N.A") AS no_formulir,
 																								pe3_transaksi.nim,
 																								pe3_transaksi.status,
 																								pe3_status_transaksi.nama_status,
@@ -196,35 +198,38 @@ class TransaksiPendaftaranMHSBaruController extends Controller {
 			}
 			else
 			{
-				$this->valudate($request, [
+				$this->validate($request, [
 					'promovalue'=>'required'
 				]);
 				
-				$transaksi_detail = \DB::transaction(function () use ($request,$transaksi_detail) {
+				$transaksi_detail = \DB::transaction(function () use ($request, $transaksi_detail) {
 					$promovalue = $request->input('promovalue');
 					$transaksi_detail->promovalue = $promovalue;
-					$transaksi_detail->sub_total = $transaksi_detail - $promovalue;
+					$transaksi_detail->sub_total = $transaksi_detail->sub_total - $promovalue;
 					$transaksi_detail->save();
 
 					$total = \DB::table('pe3_transaksi_detail')
 									->where('transaksi_id', $transaksi_detail->transaksi_id)
 									->sum('sub_total');
 
-					\DB::update('pe3_transaksi')
+					\DB::table('pe3_transaksi')
 							->where('id', $transaksi_detail->transaksi_id)
 							->update([
 								'total'=>$total
 							]);
-
+					
+					$transaksi = $transaksi_detail->transaksi;
+					$transaksi->desc = $request->input('desc');
+					$transaksi->save();
 					return $transaksi_detail;
 				});
 
 				return Response()->json([
-																			'status'=>1,
-																			'pid'=>'store',                   
-																			'transaksi_detail'=>$transaksi_detail,                                                                                                                                   
-																			'message'=>'Transaksi Biaya Pendaftaran berhasil diubah.'
-																	],200); 
+																'status'=>1,
+																'pid'=>'store',                   
+																'transaksi_detail'=>$transaksi_detail,                                                                                                                                   
+																'message'=>'Transaksi Biaya Pendaftaran berhasil diubah.'
+														], 200); 
 			}
 	}
 	public function destroy(Request $request,$id)

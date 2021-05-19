@@ -201,7 +201,7 @@
 														<v-card flat>
 															<v-card-title>NAMA MAHASISWA :</v-card-title>
 															<v-card-subtitle>
-																{{  data_transaksi.nama_mhs }}
+																{{ data_transaksi.nama_mhs }}
 															</v-card-subtitle>
 														</v-card>
 													</v-col>
@@ -215,7 +215,7 @@
 															<v-card-subtitle>
 																<v-chip :color="data_transaksi.style" dark>
 																	{{ data_transaksi.nama_status }}
-																</v-chip>																
+																</v-chip>
 															</v-card-subtitle>
 														</v-card>
 													</v-col>
@@ -229,7 +229,7 @@
 														<v-card flat>
 															<v-card-title>BIAYA PENDAFTARAN :</v-card-title>
 															<v-card-subtitle>
-																{{  data_transaksi.biaya | formatUang }}
+																{{ data_transaksi.biaya | formatUang }}
 															</v-card-subtitle>
 														</v-card>
 													</v-col>
@@ -240,8 +240,8 @@
 													<v-col xs="12" sm="6" md="6">
 														<v-card flat>
 															<v-card-title>TOTAL :</v-card-title>
-															<v-card-subtitle>																
-																{{ data_transaksi.total | formatUang }}																													
+															<v-card-subtitle>
+																{{ data_transaksi.total | formatUang }}
 															</v-card-subtitle>
 														</v-card>
 													</v-col>
@@ -259,14 +259,15 @@
 																	:min="null"
 																	:max="null"
 																	outlined
-																	v-model="formdata.promovalue">
+																	v-model="formdata.promovalue"
+																>
 																</v-currency-field>
 																<v-textarea
 																	v-model="formdata.desc"
 																	label="CATATAN:"
-																	outlined 
+																	outlined
 																/>
-															</v-card-text>															
+															</v-card-text>
 														</v-card>
 													</v-col>
 												</v-row>
@@ -588,9 +589,9 @@
 				);
 			},
 			save: async function() {
-				if (this.$refs.frmdata.validate()) {
-					this.btnLoading = true;
-					if (this.editedIndex > -1) {
+				this.btnLoading = true;
+				if (this.editedIndex > -1) {
+					if (this.$refs.frmeditdata.validate()) {
 						await this.$ajax
 							.post(
 								"/keuangan/transaksi-pendaftaranmhsbaru/" + this.formdata.id,
@@ -606,14 +607,16 @@
 								}
 							)
 							.then(() => {
-								this.closedialogfrm();
+								this.closedialogeditfrm();
 								this.btnLoading = false;
 								this.initialize();
 							})
 							.catch(() => {
 								this.btnLoading = false;
 							});
-					} else {
+					}
+				} else {
+					if (this.$refs.frmdata.validate()) {
 						await this.$ajax
 							.post(
 								"/keuangan/transaksi-pendaftaranmhsbaru/store",
