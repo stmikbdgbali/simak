@@ -31,7 +31,7 @@
         <template v-slot:filtersidebar v-if="$store.getters['uiadmin/getDefaultDashboard']!='mahasiswa'">
             <Filter6 v-on:changeTahunAkademik="changeTahunAkademik" v-on:changeSemesterAkademik="changeSemesterAkademik" v-on:changeProdi="changeProdi" ref="filter6" />	
         </template>
-        <v-container fluid>      
+        <v-container fluid> 
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
                     <v-card>
@@ -71,7 +71,7 @@
                                 ></v-divider>
                                 <v-spacer></v-spacer>
                             </v-toolbar>
-                            <v-dialog v-model="dialogprintpdf" max-width="500px" persistent>                
+                            <v-dialog v-model="dialogprintpdf" max-width="500px" persistent>       
                                 <v-card>
                                     <v-card-title>
                                         <span class="headline">Print to PDF</span>
@@ -80,15 +80,15 @@
                                         <v-btn
                                             color="green"
                                             text
-                                            :href="$api.url+'/'+file_pdf">         
+                                            :href="$api.url+'/'+file_pdf">
                                             Download
-                                        </v-btn>        
+                                        </v-btn>   
                                     </v-card-text>
                                     <v-card-actions>
                                         <v-spacer></v-spacer>
-                                        <v-btn color="blue darken-1" text @click.stop="closedialogprintpdf">CLOSE</v-btn>         
+                                        <v-btn color="blue darken-1" text @click.stop="closedialogprintpdf">CLOSE</v-btn>
                                     </v-card-actions>
-                                </v-card>            
+                                </v-card>   
                             </v-dialog>
                         </template>
                         <template v-slot:item.idkelas="{item}">
@@ -110,11 +110,11 @@
                                 <v-icon>
                                     mdi-eye
                                 </v-icon>
-                            </v-btn>            
-                        </template>           
+                            </v-btn>   
+                        </template>  
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
-                                <v-col cols="12">       
+                                <v-col cols="12">  
                                     <strong>krs_id:</strong>{{ item.id }}          
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
@@ -168,15 +168,15 @@ export default {
             let prodi_id = this.$store.getters["uiadmin/getProdiID"];
             this.prodi_id = prodi_id;
             this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](prodi_id);
-            this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];              
-            this.semester_akademik = this.$store.getters["uiadmin/getSemesterAkademik"];                          
+            this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];
+            this.semester_akademik = this.$store.getters["uiadmin/getSemesterAkademik"]; 
         }     
     },  
     mounted()
     {
         if (this.$store.getters['uiadmin/getDefaultDashboard']!="mahasiswa")        
         { 
-            this.initialize();                 
+            this.initialize();
         }
     },
     data: () => ({ 
@@ -192,8 +192,8 @@ export default {
         expanded: [],
         datatable: [],
         headers: [
-            { text: "NIM", value: "nim", sortable: true, width: 100  },   
-            { text: "NAMA", value: "nama_mhs", sortable: true, width:250  },   
+            { text: "NIM", value: "nim", sortable: true, width: 100  },
+            { text: "NAMA", value: "nama_mhs", sortable: true, width:250  },
             { text: "ANGK.", value: "tahun_masuk", sortable: true, width: 80  },
             { text: "JUMLAH MATKUL", value: "jumlah_matkul", sortable: true, width: 80  },
             { text: "JUMLAH SKS", value: "jumlah_sks", sortable: true, width: 80 },
@@ -230,12 +230,12 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {               
+            }).then(({ data }) => {      
                 this.datatable = data.daftar_krs;
                 this.datatableLoading = false;
             }).catch(() => {
                 this.datatableLoading = false;
-            });            
+            }); 
         },
         initialize: async function() 
         {
@@ -250,20 +250,20 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {            
+            }).then(({ data }) => {   
                 this.datatable = data.daftar_krs;
                 this.datatableLoading = false;
-                this.firstloading = false;   
+                this.firstloading = false;
                 this.$refs.filter6.setFirstTimeLoading(this.firstloading); 
             }).catch(() => {
                 this.datatableLoading = false;
-            });            
+            }); 
         },
         dataTableRowClicked(item)
         {
             if (item === this.expanded[0])
             {
-                this.expanded = [];              
+                this.expanded = [];
             }
             else
             {
@@ -298,25 +298,25 @@ export default {
         async printpdf(item)
         {
             this.btnLoadingTable=true;
-            await this.$ajax.get("/akademik/perkuliahan/krs/printpdf/" + item.id,    
+            await this.$ajax.get("/akademik/perkuliahan/krs/printpdf/" + item.id,
                 {
                     headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     },
                     
                 }
-            ).then(({ data }) => {  
+            ).then(({ data }) => {
                 this.file_pdf=data.pdf_file;
                 this.dialogprintpdf=true;
                 this.btnLoadingTable=false;
             }).catch(() => {
                 this.btnLoadingTable=false;
-            });               
+            }); 
         },
-        closedialogprintpdf () {       
+        closedialogprintpdf () {
             setTimeout(() => {
                 this.file_pdf=null;
-                this.dialogprintpdf = false;    
+                this.dialogprintpdf = false; 
                 }, 300
             );
         },
@@ -347,7 +347,7 @@ export default {
     },
     components: {
         AkademikLayout,
-        ModuleHeader,    
+        ModuleHeader,
         Filter6               
     },
 }

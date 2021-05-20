@@ -39,7 +39,7 @@
                                     label="NAMA PERGURUAN TINGGI"
                                     outlined
                                     :rules="rule_nama_pt">
-                                </v-text-field>                                                          
+                                </v-text-field>                                                 
                                 <v-text-field 
                                     v-model="formdata.nama_alias_pt" 
                                     label="NAMA SINGKATAN PERGURUAN TINGGI"
@@ -56,7 +56,7 @@
                                     label="KODE PERGURUAN TINGGI (SESUAI FORLAP)"
                                     outlined
                                     :rules="rule_kode_pt">
-                                </v-text-field>                                                          
+                                </v-text-field>                                                 
                             </v-card-text>
                             <v-card-actions>
                                 <v-spacer></v-spacer>
@@ -108,7 +108,7 @@ export default {
     },
     data: () => ({
         breadcrumbs: [],
-        btnLoading: false,   
+        btnLoading: false,
         //form
         form_valid: true,  
         formdata: {
@@ -125,7 +125,7 @@ export default {
             value => !!value || "Mohon untuk di isi Nama Alias Perguruan Tinggi !!!", 
         ],
         rule_kode_pt: [
-            value => !!value || "Mohon untuk di isi Kode Perguruan Tinggi !!!",         
+            value => !!value || "Mohon untuk di isi Kode Perguruan Tinggi !!!",  
             value => /^[0-9]+$/.test(value) || "Kode Perguruan Tinggi hanya boleh angka",
         ]
     }),
@@ -137,19 +137,19 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data }) => {  
-                let setting = data.setting;                         
+            }).then(({ data }) => {
+                let setting = data.setting;
                 this.formdata.nama_pt=setting.NAMA_PT;
                 this.formdata.nama_alias_pt=setting.NAMA_PT_ALIAS;
                 this.formdata.bentuk_pt=setting.BENTUK_PT;
                 this.formdata.kode_pt=setting.KODE_PT;
-            });        
+            });
             
         },
         save() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading = true;              
+                this.btnLoading = true;
                 this.$ajax.post("/system/setting/variables",
                     {
                         _method: "PUT", 
@@ -159,30 +159,30 @@ export default {
                             102: this.formdata.nama_alias_pt,
                             103: this.formdata.bentuk_pt,
                             104: this.formdata.kode_pt,
-                        }),                                                                                   
+                        }),                                                                            
                     },
                     {
                         headers: {
                             Authorization: this.TOKEN
                         }
                     }
-                ).then(() => {         
+                ).then(() => {
                     this.btnLoading = false;
                 }).catch(() => {
                     this.btnLoading = false;
-                });      
+                });   
             }
         }
     },
     computed: { 
         ...mapGetters("auth", { 
-            ACCESS_TOKEN: "AccessToken",          
-            TOKEN: "Token",     
+            ACCESS_TOKEN: "AccessToken",   
+            TOKEN: "Token", 
         }),
     },
     components: {
 		SystemConfigLayout,
-        ModuleHeader,        
+        ModuleHeader, 
 	}
 }
 </script>

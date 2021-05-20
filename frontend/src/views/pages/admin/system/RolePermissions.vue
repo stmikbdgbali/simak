@@ -28,7 +28,7 @@
 										</v-card>
 								   </v-col>
 								   <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
-								</v-row>        
+								</v-row>   
 								<v-row no-gutters>
 								   <v-col xs="12" sm="6" md="6">
 									   <v-card flat>
@@ -80,7 +80,7 @@
 							show-select
 							class="elevation-1"
 						>
-							<template v-slot:item.actions="{ item }">      
+							<template v-slot:item.actions="{ item }"> 
 								<v-tooltip color="info" bottom>
 									<template v-slot:activator="{on,attrs}">
 										<v-btn 
@@ -93,7 +93,7 @@
 											<v-icon small>
 												mdi-delete
 											</v-icon>
-										</v-btn>                                     
+										</v-btn>                            
 									</template>
 									<span>Hapus Permission dari Role ini</span>  
 								</v-tooltip>
@@ -127,9 +127,9 @@
 			headers: [
 				{ text: "NAMA PERMISSION", value: "name" },
 				{ text: "GUARD", value: "guard_name" },  
-				{ text: "AKSI", value: "actions", sortable: false, width: 100 },      
+				{ text: "AKSI", value: "actions", sortable: false, width: 100 },  
 			],
-			search: "",   
+			search: "",
 			perm_selected: []
 		}),
 		methods: {
@@ -147,13 +147,13 @@
 					}
 				).then(() => {
 					this.btnLoading = false;
-					this.close();              
+					this.close();
 				}).catch(() => {
 					this.btnLoading = false;
 				});
 			},
-			revoke(item) {   
-				this.btnLoading = true;       
+			revoke(item) { 
+				this.btnLoading = true;    
 				this.$ajax.post("/system/setting/roles/revokerolepermissions",
 					{
 						role_id: this.role.id,
@@ -166,7 +166,7 @@
 					}
 				).then(() => {
 					this.btnLoading = false;
-					this.close();              
+					this.close();
 				}).catch(() => {
 					this.btnLoading = false;
 				});
@@ -183,22 +183,22 @@
 			permissionsselected: Array,
 		},
 		computed: {
-			...mapGetters("auth", {                  
-				TOKEN: "Token",     
+			...mapGetters("auth", {         
+				TOKEN: "Token", 
 			}),
 			daftar_permissions() {
 				return this.daftarpermissions;
 			},
 			permissions_selected: {
-				get() {     
+				get() {   
 					if (this.perm_selected.length >0) {
 						return this.perm_selected;
 					} else {
 						return this.permissionsselected;
 					}
 				},
-				set(val) {     
-					this.perm_selected=val;              
+				set(val) {   
+					this.perm_selected=val;
 				}
 			},
 		},

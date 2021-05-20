@@ -110,7 +110,7 @@ export default {
             default: null            
         }
     },  
-    methods: {       
+    methods: {
         exit()
         {
             if (this.url != null)

@@ -8,7 +8,7 @@
 			<v-toolbar-title class="headline clickable" @click.stop="$router.push('/dashboard/'+$store.getters['auth/AccessToken']).catch(err => {})">
 				<span class="hidden-sm-and-down">{{ APP_NAME }}</span>
 			</v-toolbar-title>
-			<v-spacer></v-spacer>     
+			<v-spacer></v-spacer>
 			<v-menu 
 				:close-on-content-click="true"
 				origin="center center"
@@ -30,7 +30,7 @@
 							<v-list-item-title class="title">
 								{{ ATTRIBUTE_USER("username") }}
 							</v-list-item-title>
-							<v-list-item-subtitle>             
+							<v-list-item-subtitle>    
 								[{{ DEFAULT_ROLE }}]
 							</v-list-item-subtitle>
 						</v-list-item-content>
@@ -58,8 +58,8 @@
 			></v-divider>
 			<v-app-bar-nav-icon @click.stop="drawerRight = !drawerRight">
 				<v-icon>mdi-menu-open</v-icon>
-			</v-app-bar-nav-icon>            
-		</v-app-bar>    
+			</v-app-bar-nav-icon>   
+		</v-app-bar>
 		<v-navigation-drawer v-model="drawer" width="300" dark class="green darken-1" :temporary="temporaryleftsidebar" app>
 			<v-list-item>
 				<v-list-item-avatar>
@@ -83,7 +83,7 @@
 					<v-list-item-content>
 						<v-list-item-title>BOARD DATA MASTER</v-list-item-title>
 					</v-list-item-content>
-				</v-list-item>                
+				</v-list-item>       
 				<v-subheader>FASILITAS</v-subheader>
 				<v-list-item link to="/dmaster/ruangkelas">
 					<v-list-item-icon class="mr-2">
@@ -126,7 +126,7 @@
 							KELAS
 						</v-list-item-title>
 					</v-list-item-content>
-				</v-list-item>    
+				</v-list-item>
 				<v-list-item link to="/dmaster/jenjangstudi">
 					<v-list-item-icon class="mr-2">
 						<v-icon>mdi-stairs-up</v-icon>
@@ -136,7 +136,7 @@
 							JENJANG STUDI
 						</v-list-item-title>
 					</v-list-item-content>
-				</v-list-item>      
+				</v-list-item> 
 				<v-list-item link v-if="CAN_ACCESS('DMASTER-FAKULTAS_BROWSE') && isBentukPT('universitas')" to="/dmaster/fakultas">
 					<v-list-item-icon class="mr-2">
 						<v-icon>mdi-home</v-icon>
@@ -156,7 +156,7 @@
 							PROGRAM STUDI
 						</v-list-item-title>
 					</v-list-item-content>
-				</v-list-item>               
+				</v-list-item>      
 				<v-subheader>DOSEN</v-subheader>
 				<v-list-item link to="/dmaster/jabatanakademik">
 					<v-list-item-icon class="mr-2">
@@ -219,7 +219,7 @@
 				</v-card-text>
 			</v-card>
 		</v-footer> 
-	</div>    
+	</div>
 </template>
 <script>
 import { mapGetters } from "vuex";
@@ -239,8 +239,8 @@ export default {
 		loginTime: 0,
 		drawer: null,
 		drawerRight: null,  
-	}),       
-	methods: {        
+	}),
+	methods: { 
 		logout()
 		{
 			this.loginTime = 0;
@@ -251,7 +251,7 @@ export default {
 						Authorization: this.TOKEN,
 					}
 				}
-			).then(()=> {     
+			).then(()=> {   
 				this.$store.dispatch("auth/logout");	
 				this.$store.dispatch("uifront/reinit");
 				this.$store.dispatch("uiadmin/reinit");
@@ -272,12 +272,12 @@ export default {
 	computed: {
 		...mapGetters("auth", {
 			AUTHENTICATED: "Authenticated",  
-			ACCESS_TOKEN: "AccessToken",          
-			TOKEN: "Token",          
+			ACCESS_TOKEN: "AccessToken",   
+			TOKEN: "Token",   
 			DEFAULT_ROLE: "DefaultRole",
 			ROLE: "Role",
-			CAN_ACCESS: "can",         
-			ATTRIBUTE_USER: "AttributeUser",   
+			CAN_ACCESS: "can",  
+			ATTRIBUTE_USER: "AttributeUser",
 		}),
 		APP_NAME ()
 		{
@@ -296,7 +296,7 @@ export default {
 				photo = this.$api.url+'/'+img;	
 			}
 			return photo;
-		},   
+		},
 	},
 	watch: {
 		loginTime: {
@@ -306,7 +306,7 @@ export default {
 				if (value >= 0)
 				{
 					setTimeout(() => { 
-						this.loginTime=this.AUTHENTICATED==true?this.loginTime+1:-1;                                                                   
+						this.loginTime=this.AUTHENTICATED==true?this.loginTime+1:-1;                   
 					}, 1000);
 				}
 				else
@@ -316,7 +316,7 @@ export default {
 				}
 			},
 			immediate: true
-		},    
+		},
 	}
 }
 </script>

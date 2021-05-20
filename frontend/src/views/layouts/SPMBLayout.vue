@@ -30,7 +30,7 @@
 							<v-list-item-title class="title">
 								{{ ATTRIBUTE_USER("username") }}
 							</v-list-item-title>
-							<v-list-item-subtitle>             
+							<v-list-item-subtitle>    
 								[{{ DEFAULT_ROLE }}]
 							</v-list-item-subtitle>
 						</v-list-item-content>
@@ -58,8 +58,8 @@
 			></v-divider>
 			<v-app-bar-nav-icon @click.stop="drawerRight = !drawerRight">
 				<v-icon>mdi-menu-open</v-icon>
-			</v-app-bar-nav-icon>            
-		</v-app-bar>    
+			</v-app-bar-nav-icon>   
+		</v-app-bar>
 		<v-navigation-drawer v-model="drawer" width="300" dark class="green darken-1" :temporary="temporaryleftsidebar" app>
 			<v-list-item>
 				<v-list-item-avatar>
@@ -93,8 +93,8 @@
 							SOAL PMB
 						</v-list-item-title>
 					</v-list-item-content>
-				</v-list-item>        
-				<v-subheader>DATA MHS. BARU</v-subheader>                
+				</v-list-item>   
+				<v-subheader>DATA MHS. BARU</v-subheader>       
 				<v-list-item link v-if="CAN_ACCESS('SPMB-PMB_BROWSE')" to="/spmb/pendaftaranbaru">
 					<v-list-item-icon class="mr-2">
 						<v-icon>mdi-account-plus</v-icon>
@@ -124,8 +124,8 @@
 							PERSYARATAN
 						</v-list-item-title>
 					</v-list-item-content>
-				</v-list-item>            
-				<v-subheader v-if="CAN_ACCESS('SPMB-PMB-JADWAL-UJIAN_BROWSE') && dashboard!='mahasiswabaru' && dashboard!='mahasiswa'">UJIAN PMB</v-subheader>       
+				</v-list-item>   
+				<v-subheader v-if="CAN_ACCESS('SPMB-PMB-JADWAL-UJIAN_BROWSE') && dashboard!='mahasiswabaru' && dashboard!='mahasiswa'">UJIAN PMB</v-subheader>  
 				<v-list-item link v-if="CAN_ACCESS('SPMB-PMB-JADWAL-UJIAN_BROWSE') && dashboard!='mahasiswabaru' && dashboard!='mahasiswa'" to="/spmb/jadwalujianpmb">
 					<v-list-item-icon class="mr-2">
 						<v-icon>mdi-calendar-account</v-icon>
@@ -135,7 +135,7 @@
 							JADWAL UJIAN
 						</v-list-item-title>
 					</v-list-item-content>
-				</v-list-item>      
+				</v-list-item> 
 				<v-list-item link v-if="CAN_ACCESS('SPMB-PMB-NILAI-UJIAN_BROWSE') && dashboard!='mahasiswabaru' && dashboard!='mahasiswa'" to="/spmb/nilaiujian">
 					<v-list-item-icon class="mr-2">
 						<v-icon>mdi-calendar-account</v-icon>
@@ -145,7 +145,7 @@
 							NILAI UJIAN
 						</v-list-item-title>
 					</v-list-item-content>
-				</v-list-item>      
+				</v-list-item> 
 				<v-subheader v-if="CAN_ACCESS('SPMB-GROUP') && dashboard!='mahasiswabaru' && dashboard!='mahasiswa'">LAPORAN</v-subheader>   
 				<v-list-item link v-if="CAN_ACCESS('SPMB-PMB-LAPORAN-FAKULTAS_BROWSE') && isBentukPT('universitas')" to="/spmb/laporanfakultas">
 					<v-list-item-icon class="mr-2">
@@ -166,7 +166,7 @@
 							LAPORAN PRODI
 						</v-list-item-title>
 					</v-list-item-content>
-				</v-list-item>                
+				</v-list-item>       
 				<v-list-item link v-if="CAN_ACCESS('SPMB-PMB-LAPORAN-KELULUSAN_BROWSE')" to="/spmb/laporankelulusan">
 					<v-list-item-icon class="mr-2">
 						<v-icon>mdi-file-document-edit-outline</v-icon>
@@ -176,7 +176,7 @@
 							LAPORAN KELULUSAN
 						</v-list-item-title>
 					</v-list-item-content>
-				</v-list-item>                
+				</v-list-item>       
 			</v-list>
 		</v-navigation-drawer>
 		<v-navigation-drawer v-model="drawerRight" width="300" app fixed right temporary v-if="showrightsidebar">
@@ -217,15 +217,15 @@
 				</v-card-text>
 			</v-card>
 		</v-footer> 
-	</div>    
+	</div>
 </template>
 <script>
 import { mapGetters } from "vuex";
 export default {
-	name: "SPMBLayout",     
+	name: "SPMBLayout", 
 	created()
 	{
-		this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];      
+		this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];   
 	},
 	props: {
 		showrightsidebar: {
@@ -243,8 +243,8 @@ export default {
 		drawerRight: null,
 		
 		dashboard: null,
-	}),       
-	methods: {        
+	}),
+	methods: { 
 		logout()
 		{
 			this.loginTime = 0;
@@ -255,7 +255,7 @@ export default {
 						Authorization: this.TOKEN,
 					}
 				}
-			).then(()=> {     
+			).then(()=> {   
 				this.$store.dispatch("auth/logout");	
 				this.$store.dispatch("uifront/reinit");
 				this.$store.dispatch("uiadmin/reinit");
@@ -276,12 +276,12 @@ export default {
 	computed: {
 		...mapGetters("auth", {
 			AUTHENTICATED: "Authenticated",  
-			ACCESS_TOKEN: "AccessToken",          
-			TOKEN: "Token",   
-			DEFAULT_ROLE: "DefaultRole",       
+			ACCESS_TOKEN: "AccessToken",   
+			TOKEN: "Token",
+			DEFAULT_ROLE: "DefaultRole",
 			ROLE: "Role",
-			CAN_ACCESS: "can",         
-			ATTRIBUTE_USER: "AttributeUser",   
+			CAN_ACCESS: "can",  
+			ATTRIBUTE_USER: "AttributeUser",
 		}),
 		APP_NAME ()
 		{
@@ -310,7 +310,7 @@ export default {
 				if (value >= 0)
 				{
 					setTimeout(() => { 
-						this.loginTime=this.AUTHENTICATED==true?this.loginTime+1:-1;                                                                   
+						this.loginTime=this.AUTHENTICATED==true?this.loginTime+1:-1;                   
 					}, 1000);
 				}
 				else
@@ -320,7 +320,7 @@ export default {
 				}
 			},
 			immediate: true,
-		},    
+		},
 	}
 }
 </script>

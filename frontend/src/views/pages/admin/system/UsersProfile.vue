@@ -25,12 +25,12 @@
                 </v-alert>
             </template>
         </ModuleHeader>  
-        <v-container fluid>    
+        <v-container fluid>
             <v-row class="mb-4">
                 <v-col cols="12">
                     <v-card color="grey lighten-4">
                         <v-toolbar elevation="2"> 
-                            <v-toolbar-title>DATA USER</v-toolbar-title>                   
+                            <v-toolbar-title>DATA USER</v-toolbar-title>          
                         </v-toolbar>
                         <v-card-text>
                             <v-row>
@@ -170,7 +170,7 @@
                             <v-card-title>
                                 <span class="headline">GANTI PASSWORD</span>
                             </v-card-title>
-                            <v-card-text>    
+                            <v-card-text>
                                  <v-text-field 
                                     v-model="formdata.password" 
                                     label="PASSWORD BARU"
@@ -240,37 +240,37 @@
                     nama_prodi: "N.A",
                     nama_kelas: "N.A",
                     dosen_wali: "N.A",
-                },   
-                form_valid: true,        
+                },
+                form_valid: true, 
                 formdata: {
-                    id: 0,            
-                    username: "",    
-                    password: "",           
-                    name: "",       
-                    email: "",       
-                    nomor_hp: "",       
-                    theme: "",      
+                    id: 0,     
+                    username: "",
+                    password: "",    
+                    name: "",
+                    email: "",
+                    nomor_hp: "",
+                    theme: "",  
                     foto: "", 
-                    active: "",                                                 
-                    default_role: "",      
-                    locked: "",      
-                    created_at: "",      
-                    updated_at: "",      
+                    active: "",                                          
+                    default_role: "",  
+                    locked: "",  
+                    created_at: "",  
+                    updated_at: "",  
                 },
                 formdefault: {
-                    id: 0,            
-                    username: "",    
-                    password: "",           
-                    name: "",       
-                    email: "",       
-                    nomor_hp: "",       
-                    theme: "",      
+                    id: 0,     
+                    username: "",
+                    password: "",    
+                    name: "",
+                    email: "",
+                    nomor_hp: "",
+                    theme: "",  
                     foto: "", 
-                    active: "",                                                 
-                    default_role: "",      
-                    locked: "",      
-                    created_at: "",      
-                    updated_at: "",      
+                    active: "",                                          
+                    default_role: "",  
+                    locked: "",  
+                    created_at: "",  
+                    updated_at: "",  
                 },
                 //form rules  
                 rule_foto: [
@@ -299,22 +299,22 @@
                     this.btnLoading = true;
                     this.$ajax.post("/system/users/updatepassword/" + this.$store.getters['auth/AttributeUser']("id"),
                         {
-                            _method: "PUT",            
-                            password: this.formdata.password,               
+                            _method: "PUT",     
+                            password: this.formdata.password,        
                         },
                         {
                             headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
-                    ).then(({ data }) => {                                                
+                    ).then(({ data }) => {                                       
                         this.$refs.frmdata.reset(); 
-                        this.formdata.foto=data.foto;     
+                        this.formdata.foto=data.foto;  
                         this.formdata=this.formdefault; 
                         this.btnLoading = false;
                     }).catch(() => {
                         this.btnLoading = false;
-                    });                   
+                    });  
                 }
             },
             previewImage(e) {
@@ -323,27 +323,27 @@
                 } else {
                     let reader = new FileReader();
                     reader.readAsDataURL(e);
-                    reader.onload = img => {         
+                    reader.onload = img => {
                         this.photoUser = img.target.result;
                     }
                 }
             },
             uploadFoto: async function() {
                 if (this.$refs.frmuploadfoto.validate()) {
-                    if (this.formdata.foto) {     
+                    if (this.formdata.foto) {   
                         this.btnLoading = true;
                         var formdata = new FormData();
                         formdata.append("foto",this.formdata.foto);
-                        await this.$ajax.post("/setting/users/uploadfoto/" + this.$store.getters.User.id,formdata,        
+                        await this.$ajax.post("/setting/users/uploadfoto/" + this.$store.getters.User.id,formdata, 
                             {
                                 headers: {
                                     Authorization: this.$store.getters["auth/Token"],
                                     'Content-Type': "multipart/form-data"                      
                                 }
                             }
-                        ).then(({ data }) => {                
+                        ).then(({ data }) => {       
                             this.btnLoading = false;
-                            this.$store.dispatch("updateFoto",data.user.foto);                      
+                            this.$store.dispatch("updateFoto",data.user.foto);
                         }).catch(() => {
                             this.btnLoading = false;
                         });  
@@ -354,13 +354,13 @@
             resetFoto: async function() 
             {
                 this.btnLoading = true;
-                await this.$ajax.post("/setting/users/resetfoto/" + this.$store.getters.User.id,{},     
+                await this.$ajax.post("/setting/users/resetfoto/" + this.$store.getters.User.id,{}, 
                     {
                         headers: {
-                            Authorization: this.$store.getters["auth/Token"],     
+                            Authorization: this.$store.getters["auth/Token"], 
                         }
                     }
-                ).then(({ data }) => {                
+                ).then(({ data }) => {       
                     this.btnLoading = false;
                     this.$store.dispatch("updateFoto",data.user.foto);
                 }).catch(() => {
@@ -369,19 +369,19 @@
             },
             async fetchMahasiswa()
             {
-                await this.$ajax.get("/akademik/kemahasiswaan/biodatamhs1/" + this.$store.getters['auth/AttributeUser']("id"),        
+                await this.$ajax.get("/akademik/kemahasiswaan/biodatamhs1/" + this.$store.getters['auth/AttributeUser']("id"), 
                     {
                         headers: {
-                            Authorization: this.$store.getters["auth/Token"],     
+                            Authorization: this.$store.getters["auth/Token"], 
                         }
                     }
-                ).then(({ data }) => {                
-                    this.data_mhs=data.mahasiswa;          
+                ).then(({ data }) => {       
+                    this.data_mhs=data.mahasiswa;  
                 })
             }
             
         },
-        computed: {        
+        computed: { 
             photoUser: {
                 get()
                 {
@@ -397,7 +397,7 @@
                     
                 },
                 set(val)
-                {   
+                { 
                     this.avatar = val;
                 }
             },

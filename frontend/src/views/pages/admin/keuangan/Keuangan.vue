@@ -31,8 +31,8 @@
         <template v-slot:filtersidebar>
             <Filter1 v-on:changeTahunAkademik="changeTahunAkademik" ref="filter1" />
         </template>
-        <DashboardKeuanganMHS :ta="tahun_akademik" v-if="dashboard=='mahasiswa'"></DashboardKeuanganMHS>        
-        <DashboardKeuanganAdmin :ta="tahun_akademik" v-else></DashboardKeuanganAdmin>        
+        <DashboardKeuanganMHS :ta="tahun_akademik" v-if="dashboard=='mahasiswa'"></DashboardKeuanganMHS>   
+        <DashboardKeuanganAdmin :ta="tahun_akademik" v-else></DashboardKeuanganAdmin>   
     </KeuanganLayout>
 </template>
 <script>
@@ -58,11 +58,11 @@ export default {
 				href: "#"
 			}
         ];		
-        this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];       
+        this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];    
     },
     mounted()
     {
-        this.firstloading = false;          
+        this.firstloading = false;  
         this.$refs.filter1.setFirstTimeLoading(this.firstloading);
     },
     data: () => ({
@@ -80,8 +80,8 @@ export default {
     },
     components: {
         KeuanganLayout,
-        ModuleHeader,           
-        Filter1,      
+        ModuleHeader,    
+        Filter1,  
         DashboardKeuanganMHS,
         DashboardKeuanganAdmin 
     },

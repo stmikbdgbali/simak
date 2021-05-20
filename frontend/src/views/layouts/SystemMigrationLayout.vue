@@ -30,7 +30,7 @@
                             <v-list-item-title class="title">
                                 {{ ATTRIBUTE_USER("username") }}
                             </v-list-item-title>
-                            <v-list-item-subtitle>             
+                            <v-list-item-subtitle>    
                                 [{{ DEFAULT_ROLE }}]
                             </v-list-item-subtitle>
                         </v-list-item-content>
@@ -58,8 +58,8 @@
             ></v-divider>
 			<v-app-bar-nav-icon @click.stop="drawerRight = !drawerRight">
                 <v-icon>mdi-menu-open</v-icon>
-			</v-app-bar-nav-icon>            
-        </v-app-bar>    
+			</v-app-bar-nav-icon>   
+        </v-app-bar>
         <v-navigation-drawer v-model="drawer" width="300" dark class="green darken-1" app>
 			<v-list-item>
 				<v-list-item-avatar>
@@ -124,12 +124,12 @@
 				</v-card-text>
 			</v-card>
 		</v-footer> 
-    </div>    
+    </div>
 </template>
 <script>
 import { mapGetters } from "vuex";
 export default {
-    name: "SystemMigrationLayout",    
+    name: "SystemMigrationLayout",
     props: {
         showrightsidebar: {
             type: Boolean,
@@ -142,7 +142,7 @@ export default {
     }, 
     created()
     {
-        this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];      
+        this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];   
     },
     data: () => ({
         loginTime: 0,
@@ -150,8 +150,8 @@ export default {
         drawerRight: null,
         
         dashboard: null,
-    }),       
-    methods: {        
+    }),
+    methods: { 
         logout()
         {
             this.loginTime = 0;
@@ -162,7 +162,7 @@ export default {
                         Authorization: this.TOKEN,
                     }
                 }
-            ).then(()=> {     
+            ).then(()=> {   
                 this.$store.dispatch("auth/logout");	
                 this.$store.dispatch("uifront/reinit");
                 this.$store.dispatch("uiadmin/reinit");
@@ -183,12 +183,12 @@ export default {
     computed: {
         ...mapGetters("auth", {
             AUTHENTICATED: "Authenticated",  
-            ACCESS_TOKEN: "AccessToken",          
-            TOKEN: "Token",      
-            DEFAULT_ROLE: "DefaultRole",    
+            ACCESS_TOKEN: "AccessToken",   
+            TOKEN: "Token",  
+            DEFAULT_ROLE: "DefaultRole",
             ROLE: "Role",
-            CAN_ACCESS: "can",         
-            ATTRIBUTE_USER: "AttributeUser",   
+            CAN_ACCESS: "can",  
+            ATTRIBUTE_USER: "AttributeUser",
         }),
         APP_NAME ()
         {
@@ -217,7 +217,7 @@ export default {
                 if (value >= 0)
                 {
                     setTimeout(() => { 
-                        this.loginTime=this.AUTHENTICATED==true?this.loginTime+1:-1;                                                                   
+                        this.loginTime=this.AUTHENTICATED==true?this.loginTime+1:-1;                   
 					}, 1000);
                 }
                 else
@@ -227,7 +227,7 @@ export default {
                 }
             },
             immediate: true
-        },    
+        },
     }
 }
 </script>

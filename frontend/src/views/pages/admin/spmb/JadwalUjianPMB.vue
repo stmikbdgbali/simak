@@ -23,7 +23,7 @@
 				</v-alert>
 			</template>
 		</ModuleHeader>  
-		<v-container fluid>             
+		<v-container fluid>    
 			<v-row class="mb-4" no-gutters>
 				<v-col cols="12">
 					<v-card>
@@ -113,12 +113,12 @@
 													<v-date-picker
 														v-model="formdata.tanggal_akhir_daftar"                                        
 														no-title                                
-														scrollable>                   
+														scrollable>          
 														<v-spacer></v-spacer>
 														<v-btn text color="primary" @click="menuTanggalAkhirPendaftaran = false">Cancel</v-btn>
 														<v-btn text color="primary" @click="$refs.menuTanggalAkhirPendaftaran.save(formdata.tanggal_akhir_daftar)">OK</v-btn>
 													</v-date-picker>
-												</v-menu>           
+												</v-menu>  
 												<v-menu
 													ref="menuTanggalUjian"
 													v-model="menuTanggalUjian"
@@ -140,7 +140,7 @@
 													<v-date-picker
 														v-model="formdata.tanggal_ujian"                                        
 														no-title                                
-														scrollable>                   
+														scrollable>          
 														<v-spacer></v-spacer>
 														<v-btn text color="primary" @click="menuTanggalUjian = false">Cancel</v-btn>
 														<v-btn text color="primary" @click="$refs.menuTanggalUjian.save(formdata.tanggal_ujian)">OK</v-btn>
@@ -225,7 +225,7 @@
 											</v-card-actions>
 										</v-card>
 									</v-form>
-								</v-dialog>                                
+								</v-dialog>                       
 							</v-toolbar>
 						</template>
 						<template v-slot:item.tanggal_ujian="{ item }">
@@ -271,10 +271,10 @@
 									<strong>Ruangan:</strong>{{item.namaruang}} 
 									<strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }} 
 									<strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }} 
-								</v-col>     
+								</v-col>
 								<v-col cols="12">
 									<v-btn text small color="primary" :to="'/spmb/jadwalujianpmb/passinggrade/'+item.id" v-if="dashboard !='mahasiswabaru' && dashboard !='mahasiswa'">TENTUKAN PASSING GRADE</v-btn>
-								</v-col>     
+								</v-col>
 							</td>
 						</template>
 						<template v-slot:no-data>
@@ -309,8 +309,8 @@
 					disabled: true,
 					href: "#",
 				},
-			];      
-			this.tahun_pendaftaran = this.$store.getters["uiadmin/getTahunPendaftaran"];      
+			];   
+			this.tahun_pendaftaran = this.$store.getters["uiadmin/getTahunPendaftaran"];   
 			this.semester_pendaftaran = this.$store.getters['uiadmin/getSemesterPendaftaran'];
 			this.nama_semester_pendaftaran = this.$store.getters['uiadmin/getNamaSemester'](this.semester_pendaftaran);
 			this.initialize();
@@ -431,7 +431,7 @@
 								Authorization: this.$store.getters["auth/Token"],
 							},
 						})
-						.then(({ data }) => {   
+						.then(({ data }) => { 
 							this.jumlah_bank_soal=data.jumlah_bank_soal;
 							this.datatable = data.jadwal_ujian;
 							this.datatableLoading = false;
@@ -466,7 +466,7 @@
 					headers: {
 						Authorization: this.$store.getters["auth/Token"]
 					}
-				}).then(({ data }) => {    
+				}).then(({ data }) => {  
 					this.daftar_ruangan = data.ruangan;
 					this.btnLoading = false;
 					this.dialogfrm = true;
@@ -490,7 +490,7 @@
 								Authorization: this.$store.getters["auth/Token"]
 							}
 						})
-						.then(({ data }) => {    
+						.then(({ data }) => {  
 							this.daftar_ruangan = data.ruangan;
 							this.btnLoading = false;
 							this.editedIndex = this.datatable.indexOf(item);
@@ -523,7 +523,7 @@
 									Authorization: this.$store.getters["auth/Token"]
 								}
 							}
-						).then(() => {     
+						).then(() => {   
 							this.closedialogfrm();
 							this.btnLoading = false;
 							this.initialize();
@@ -550,7 +550,7 @@
 									Authorization: this.$store.getters["auth/Token"]
 								}
 							}
-						).then(() => {     
+						).then(() => {   
 							this.closedialogfrm();
 							this.btnLoading = false;
 							this.initialize();

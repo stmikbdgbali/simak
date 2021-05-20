@@ -30,7 +30,7 @@
                             <v-list-item-title class="title">
                                 {{ATTRIBUTE_USER("username")}}
                             </v-list-item-title>
-                            <v-list-item-subtitle>             
+                            <v-list-item-subtitle>    
                                 [{{DEFAULT_ROLE}}]
                             </v-list-item-subtitle>
                         </v-list-item-content>
@@ -58,8 +58,8 @@
             ></v-divider>
             <v-app-bar-nav-icon @click.stop="drawerRight = !drawerRight">
                 <v-icon>mdi-menu-open</v-icon>
-            </v-app-bar-nav-icon>            
-        </v-app-bar>    
+            </v-app-bar-nav-icon>   
+        </v-app-bar>
         <v-navigation-drawer v-model="drawer" width="300" dark :class="this.$store.getters['uiadmin/getTheme']('V_NAVIGATION_DRAWER_CSS_CLASS')" :temporary="temporaryleftsidebar" app>
             <v-list-item>
                 <v-list-item-avatar>
@@ -94,7 +94,7 @@
                             DOSEN WALI
                         </v-list-item-title>
                     </v-list-item-content>
-                </v-list-item>                
+                </v-list-item>       
                 <v-subheader v-if="CAN_ACCESS('AKADEMIK-DULANG-BARU_BROWSE')||CAN_ACCESS('AKADEMIK-DULANG-LAMA_BROWSE')">DAFTAR ULANG</v-subheader>
                 <v-list-item link to="/akademik/dulang/mhsbelumpunyanim" :active-class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_ACTIVE_CSS_CLASS')" v-if="CAN_ACCESS('AKADEMIK-DULANG-BARU_BROWSE')">
                     <v-list-item-icon class="mr-2">
@@ -115,7 +115,7 @@
                             MAHASISWA BARU
                         </v-list-item-title>
                     </v-list-item-content>
-                </v-list-item>                
+                </v-list-item>       
                 <v-list-item link to="/akademik/dulang/mahasiswalama" :active-class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_ACTIVE_CSS_CLASS')" v-if="CAN_ACCESS('AKADEMIK-DULANG-LAMA_BROWSE')">
                     <v-list-item-icon class="mr-2">
                         <v-icon>mdi-book</v-icon>
@@ -125,8 +125,8 @@
                             MAHASISWA LAMA
                         </v-list-item-title>
                     </v-list-item-content>
-                </v-list-item>             
-                <v-subheader>PERKULIAHAN</v-subheader>    
+                </v-list-item>    
+                <v-subheader>PERKULIAHAN</v-subheader>
                 <v-list-item link to="/akademik/matakuliah" :active-class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_ACTIVE_CSS_CLASS')" v-if="CAN_ACCESS('AKADEMIK-MATAKULIAH_BROWSE')">
                     <v-list-item-icon class="mr-2">
                         <v-icon>mdi-book</v-icon>
@@ -178,7 +178,7 @@
                             </v-list-item-content>
                         </v-list-item>   						 
                     </div>
-                </v-list-group>                
+                </v-list-group>       
                 <v-list-group group="/akademik/perkuliahan/krs" active-class="yellow" no-action v-if="CAN_ACCESS('AKADEMIK-PERKULIAHAN-KRS_BROWSE')" color="green">
                     <template v-slot:activator>
                         <v-list-item-icon class="mr-2">
@@ -305,7 +305,7 @@
                             </v-list-item-content>
                         </v-list-item>   						 						
                     </div> 
-                </v-list-group>     
+                </v-list-group>
                 <v-list-item link v-if="CAN_ACCESS('AKADEMIK-NILAI-KHS_BROWSE')" :active-class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_ACTIVE_CSS_CLASS')" :to="{path: '/akademik/nilai/khs'}">
                     <v-list-item-icon class="mr-2">
                         <v-icon>mdi-arrow-right-bold-hexagon-outline</v-icon>
@@ -355,15 +355,15 @@
         <v-main class="mx-4 mb-4">			
             <slot />
         </v-main>
-    </div>    
+    </div>
 </template>
 <script>
 import {mapGetters} from 'vuex';
 export default {
-    name: "AkademikLayout",     
+    name: "AkademikLayout", 
     created()
     {
-        this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];        
+        this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];
     },
     props: {
         showrightsidebar: {
@@ -381,8 +381,8 @@ export default {
         drawerRight: null,
         
         dashboard: null,
-    }),       
-    methods: {        
+    }),
+    methods: { 
         logout ()
         {
             this.loginTime=0;
@@ -393,7 +393,7 @@ export default {
                         'Authorization': this.TOKEN,
                     }
                 }
-            ).then(()=> {     
+            ).then(()=> {   
                 this.$store.dispatch("auth/logout");	
                 this.$store.dispatch("uifront/reinit");	
                 this.$store.dispatch("uiadmin/reinit");	
@@ -414,12 +414,12 @@ export default {
     computed: {
         ...mapGetters("auth", {
             AUTHENTICATED: "Authenticated",  
-            ACCESS_TOKEN: "AccessToken",          
-            TOKEN: "Token",          
+            ACCESS_TOKEN: "AccessToken",   
+            TOKEN: "Token",   
             DEFAULT_ROLE: "DefaultRole",
             ROLE: "Role",
-            CAN_ACCESS: "can",         
-            ATTRIBUTE_USER: "AttributeUser",   
+            CAN_ACCESS: "can",  
+            ATTRIBUTE_USER: "AttributeUser",
         }),
         APP_NAME ()
         {
@@ -438,10 +438,10 @@ export default {
                 photo = this.$api.storageURL+'/'+img;	
             }
             return photo;
-        },    
+        },
         paramid ()
         {
-            var id='empty';                      
+            var id='empty';
             switch (this.$route.name)
             {
                 case 'PerkuliahanPenyelenggaraanDosenPengampu':
@@ -468,7 +468,7 @@ export default {
                 if (value >= 0)
                 {
                     setTimeout(() => { 
-                        this.loginTime=this.AUTHENTICATED==true?this.loginTime+1:-1;                                                                   
+                        this.loginTime=this.AUTHENTICATED==true?this.loginTime+1:-1;                   
                     }, 1000);
                 }
                 else
@@ -478,7 +478,7 @@ export default {
                 }
             },
             immediate: true
-        },    
+        },
     }
 }
 </script>

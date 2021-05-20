@@ -29,7 +29,7 @@
 										<li>Email yang valid dan aktif</li>
 										<li>Program studi yang di pilih Sistem Informasi atau Teknik Informatika</li>
 										<li>Tentukan Username dan Password</li>
-										<li>Ceklis Recaptcha / I'm Not Robot</li>                        
+										<li>Ceklis Recaptcha / I'm Not Robot</li>               
 									</ol>
 									Setelah tekan tombol "Daftar" maka akan muncul konfirmasi pendaftaran yang menyatakan proses pengisian form telah berhasil;
 									Sistem akan mengirimkan kode aktivasi bila sudah tersedia kode tersebut tekan tombol "Konfirmasi".                                                                                                                                                       
@@ -53,7 +53,7 @@
 									<ol>
 										<li>Identitas Diri</li>
 										<li>Alamat Domisili</li>
-										<li>Rencana Studi dan Menentukan Kelas (Pagi, Sore, Karyawan)</li>                        
+										<li>Rencana Studi dan Menentukan Kelas (Pagi, Sore, Karyawan)</li>               
 									</ol>
 									Setelah tekan tombol "Simpan" maka lanjutkan langkah 3.
 									Selanjutnya lakukan pembayaran dengan cara ditransfer ke :

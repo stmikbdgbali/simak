@@ -103,12 +103,12 @@
         </v-card-text>
     </v-card>
 </template>
-<script>    
+<script>
 export default {
     name: "DataKRS",
     created()
     {
-        this.initialize();                   
+        this.initialize();  
     },
     props: {
         datakrs: {

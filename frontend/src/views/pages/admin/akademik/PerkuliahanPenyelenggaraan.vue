@@ -31,7 +31,7 @@
 				<template v-slot:filtersidebar>
 						<Filter6 v-on:changeTahunAkademik="changeTahunAkademik" v-on:changeSemesterAkademik="changeSemesterAkademik" v-on:changeProdi="changeProdi" ref="filter6" />	
 				</template>
-				<v-container fluid>      
+				<v-container fluid> 
 						<v-row class="mb-4" no-gutters>
 								<v-col cols="12">
 										<v-card>
@@ -105,13 +105,13 @@
 																		mdi-delete
 																</v-icon>
 														</v-btn>   
-												</template>           
+												</template>  
 												<template v-slot:item.actions v-else>
 														N.A
-												</template>           
+												</template>  
 												<template v-slot:expanded-item="{ headers, item }">
 														<td :colspan="headers.length" class="text-center">
-																<v-col cols="12">       
+																<v-col cols="12">  
 																		<strong>id:</strong>{{ item.id }}          
 																		<strong>matkul_id:</strong>{{ item.matkul_id }}          
 																		<strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
@@ -161,14 +161,14 @@
 				let prodi_id = this.$store.getters["uiadmin/getProdiID"];
 				this.prodi_id = prodi_id;
 				this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](prodi_id);
-				this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];              
-				this.semester_akademik = this.$store.getters["uiadmin/getSemesterAkademik"];              
+				this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];
+				this.semester_akademik = this.$store.getters["uiadmin/getSemesterAkademik"];
 				this.initialize()
 			},
 			data: () => ({ 
 				firstloading: true,
 				prodi_id: null,
-				nama_prodi: null,   
+				nama_prodi: null,
 				tahun_akademik: null,
 				semester_akademik: null,
 
@@ -177,8 +177,8 @@
 				expanded: [],
 				datatable: [],
 				headers: [
-						{ text: "KODE", value: "kmatkul", sortable: true, width: 120  },   
-						{ text: "NAMA MATAKULIAH", value: "nmatkul", sortable: true  },   
+						{ text: "KODE", value: "kmatkul", sortable: true, width: 120  },
+						{ text: "NAMA MATAKULIAH", value: "nmatkul", sortable: true  },
 						{ text: "SKS", value: "sks", sortable: true, width:50  },
 						{ text: "SMT. MATKUL", value: "semester", sortable: true, width:50  },
 						{ text: "TAHUN MATKUL", value: "ta_matkul", sortable: true, width:50 },
@@ -215,7 +215,7 @@
 								headers: {
 										Authorization: this.$store.getters["auth/Token"]
 								}
-						}).then(({ data }) => {    
+						}).then(({ data }) => {  
 								this.datatable = data.penyelenggaraan;
 								this.datatableLoading = false;
 						}).catch(() => {
@@ -228,7 +228,7 @@
 				{
 						if (item === this.expanded[0])
 						{
-								this.expanded = [];              
+								this.expanded = [];
 						}
 						else
 						{

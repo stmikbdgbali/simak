@@ -25,7 +25,7 @@ export default {
         this.tahun_pendaftaran = this.$store.getters["uiadmin/getTahunPendaftaran"];
 
         this.daftar_kelas=this.$store.getters['uiadmin/getDaftarKelas'];
-        this.idkelas=this.$store.getters['uiadmin/getIDKelas'];                                          
+        this.idkelas=this.$store.getters['uiadmin/getIDKelas'];  
     },
     data: () => ({
         firstloading: true,
@@ -48,7 +48,7 @@ export default {
             if (!this.firstloading)
             {
                 this.$store.dispatch("uiadmin/updateTahunPendaftaran",val);
-                this.$emit("changeTahunPendaftaran",val);        
+                this.$emit("changeTahunPendaftaran",val);
             }            
         },
         idkelas(val)
@@ -56,7 +56,7 @@ export default {
             if (!this.firstloading)
             {
                 this.$store.dispatch("uiadmin/updateIDKelas",val);
-                this.$emit("changeIDKelas",val);        
+                this.$emit("changeIDKelas",val);
             }
         },
     }

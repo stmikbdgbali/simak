@@ -31,7 +31,7 @@
         <template v-slot:filtersidebar>
             <Filter6 v-on:changeTahunAkademik="changeTahunAkademik" v-on:changeSemesterAkademik="changeSemesterAkademik" v-on:changeProdi="changeProdi" ref="filter6" />	
         </template>
-        <v-container fluid>             
+        <v-container fluid>    
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
                     <v-card>
@@ -87,11 +87,11 @@
                                 :disabled="btnLoading"
                                 @click.stop="deleteItem(item)">
                                 mdi-delete
-                            </v-icon>    
-                        </template>           
+                            </v-icon>
+                        </template>  
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
-                                <v-col cols="12">       
+                                <v-col cols="12">  
                                     <strong>id:</strong>{{ item.id }}          
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
@@ -158,9 +158,9 @@ export default {
         expanded: [],
         datatable: [],
         headers: [
-            { text: "NO. FORMULIR", value: "no_formulir", sortable: true, width: 100  },   
-            { text: "NIM", value: "nim", sortable: true, width: 100  },   
-            { text: "NIRM", value: "nirm", sortable: true, width: 100  },   
+            { text: "NO. FORMULIR", value: "no_formulir", sortable: true, width: 100  },
+            { text: "NIM", value: "nim", sortable: true, width: 100  },
+            { text: "NIRM", value: "nirm", sortable: true, width: 100  },
             { text: "NAMA MAHASISWA", value: "nama_mhs", sortable: true, width:250 },
             { text: "KELAS", value: "idkelas", sortable: true, width: 120, },
             { text: "STATUS", value: "n_status", sortable: true, width: 120, },
@@ -194,7 +194,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {    
+            }).then(({ data }) => {  
                 this.datatable = data.mahasiswa;
                 this.datatableLoading = false;
             }).catch(() => {
@@ -207,13 +207,13 @@ export default {
         {
             if (item === this.expanded[0])
             {
-                this.expanded = [];              
+                this.expanded = [];
             }
             else
             {
                 this.expanded = [item];
             }               
-        },    
+        },
         deleteItem (item)
         {
             this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus daftar ulang '+item.nama_mhs+' ?", { color: "red", width: 600,"desc": "proses ini juga menghapus seluruh data akademik namun KEUANGAN TETAP ADA." }).then(confirm => {
@@ -240,9 +240,9 @@ export default {
             });
         },
         closedialogfrm() { 
-            this.dialogfrm = false;          
-            setTimeout(() => {       
-                this.formdata = Object.assign({}, this.formdefault);                              
+            this.dialogfrm = false;  
+            setTimeout(() => {
+                this.formdata = Object.assign({}, this.formdefault);     
                 this.data_mhs = Object.assign({}, {}); 
                 }, 300
             );
@@ -274,7 +274,7 @@ export default {
     },
     components: {
         AkademikLayout,
-        ModuleHeader,    
+        ModuleHeader,
         Filter6               
     },
 }

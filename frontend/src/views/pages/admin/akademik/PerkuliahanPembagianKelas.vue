@@ -31,7 +31,7 @@
         <template v-slot:filtersidebar>
             <Filter2 v-on:changeTahunAkademik="changeTahunAkademik" v-on:changeSemesterAkademik="changeSemesterAkademik" ref="filter2" />	
         </template>
-        <v-container fluid>      
+        <v-container fluid> 
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
                     <v-card>
@@ -78,7 +78,7 @@
                                 <v-btn color="primary" icon outlined small class="ma-2">
                                     <v-icon>mdi-printer</v-icon>
                                 </v-btn>
-                                <v-dialog v-model="dialogfrm" max-width="750px" persistent>                 
+                                <v-dialog v-model="dialogfrm" max-width="750px" persistent>        
                                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>
                                         <v-card>
                                             <v-card-title>
@@ -172,13 +172,13 @@
                                     mdi-delete
                                 </v-icon>
                             </v-btn>   
-                        </template>           
+                        </template>  
                         <template v-slot:item.actions v-else>
                             N.A
-                        </template>           
+                        </template>  
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
-                                <v-col cols="12">       
+                                <v-col cols="12">  
                                     <strong>ID:</strong>{{ item.id }}          
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
@@ -225,24 +225,24 @@ export default {
                 disabled: true,
                 href: "#"
             }
-        ];      
-        this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];              
-        this.semester_akademik = this.$store.getters["uiadmin/getSemesterAkademik"];              
+        ];   
+        this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];
+        this.semester_akademik = this.$store.getters["uiadmin/getSemesterAkademik"];
         this.initialize()
     },  
     data: () => ({ 
-        firstloading: true,       
+        firstloading: true,
         tahun_akademik: null,
         semester_akademik: null,
 
         btnLoading: false,
-        btnLoadingTable: false,        
+        btnLoadingTable: false, 
         datatableLoading: false,
         expanded: [],
         datatable: [],
         headers: [
-            { text: "KODE", value: "kmatkul", sortable: true, width: 100  },   
-            { text: "NAMA MATAKULIAH/KELAS", value: "nmatkul", sortable: true  },   
+            { text: "KODE", value: "kmatkul", sortable: true, width: 100  },
+            { text: "NAMA MATAKULIAH/KELAS", value: "nmatkul", sortable: true  },
             { text: "NAMA DOSEN", value: "nama_dosen", sortable: true  },
             { text: "HARI", value: "nama_hari", sortable: true, width: 100 },
             { text: "JAM", value: "jam_masuk", sortable: true, width: 100 },
@@ -286,22 +286,22 @@ export default {
         ],
         formdata: { 
             id: "",
-            idkelas: "",       
-            hari: "",       
+            idkelas: "",
+            hari: "",
             jam_masuk: "",
             jam_keluar: "",
             penyelenggaraan_dosen_id: "",
-            ruang_kelas_id: "",       
+            ruang_kelas_id: "",
         }, 
         formdefault: { 
             id: "",
-            idkelas: "",       
-            hari: "",       
+            idkelas: "",
+            hari: "",
             jam_masuk: "",
             jam_keluar: "",
             penyelenggaraan_dosen_id: "",
-            ruang_kelas_id: "",       
-        },     
+            ruang_kelas_id: "",
+        }, 
 
         rule_hari: [
             value => !!value || "Mohon dipilih hari mengajar!!!"
@@ -327,7 +327,7 @@ export default {
         changeSemesterAkademik (semester)
         {
             this.semester_akademik=semester;
-        },    
+        },
         initialize: async function() 
         {
             this.datatableLoading = true;
@@ -340,7 +340,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {   
+            }).then(({ data }) => { 
                 this.datatable = data.pembagiankelas;
                 this.datatableLoading = false;
             }).catch(() => {
@@ -353,22 +353,22 @@ export default {
         {
             if (item === this.expanded[0])
             {
-                this.expanded = [];              
+                this.expanded = [];
             }
             else
             {
                 this.expanded = [item];
             }               
-        },    
+        },
         async editItem(item) {
             await this.$ajax.get("/datamaster/ruangankelas",{
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({ data }) => {
-                this.daftar_ruang_kelas = data.ruangan;               
+                this.daftar_ruang_kelas = data.ruangan; 
                 this.formdata = Object.assign({}, item);
-                this.dialogfrm = true;             
+                this.dialogfrm = true;  
             });
         },
         save: async function() {
@@ -378,11 +378,11 @@ export default {
                 
                 await this.$ajax.post("/akademik/perkuliahan/pembagiankelas/" + this.formdata.id,
                     {
-                        _method: "PUT",            
-                        hari: this.formdata.hari,                
+                        _method: "PUT",     
+                        hari: this.formdata.hari,         
                         jam_masuk: this.formdata.jam_masuk,
-                        jam_keluar: this.formdata.jam_keluar,            
-                        ruang_kelas_id: this.formdata.ruang_kelas_id,                
+                        jam_keluar: this.formdata.jam_keluar,     
+                        ruang_kelas_id: this.formdata.ruang_kelas_id,         
                     },
                     {
                         headers: {
@@ -397,7 +397,7 @@ export default {
                     this.btnLoading = false;
                 });
             }
-        },        
+        }, 
         deleteItem (item)
         {
             this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus pembagian kelas matakuliah ("+item.nmatkul+") ?", { color: "red", width: 600,"desc": "proses ini membuat mahasiswa tidak memiliki kelas." }).then(confirm => {
@@ -424,9 +424,9 @@ export default {
             });
         },
         closedialogfrm() {
-            this.dialogfrm = false;          
+            this.dialogfrm = false;  
             setTimeout(() => {
-                this.formdata = Object.assign({}, this.formdefault);                              
+                this.formdata = Object.assign({}, this.formdefault);     
                 this.$refs.frmdata.reset(); 
                 }, 300
             );
@@ -446,16 +446,16 @@ export default {
             {
                 this.initialize();
             }            
-        },    
+        },
     },
     computed: {
         ...mapGetters("auth", { 
-            CAN_ACCESS: "can",         
+            CAN_ACCESS: "can",  
         }),
     },
     components: {
         AkademikLayout,
-        ModuleHeader,    
+        ModuleHeader,
         Filter2               
     },
 }

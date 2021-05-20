@@ -24,8 +24,8 @@
                         Halaman ini berisi daftar DOSEN WALI / PENDAMPING AKADEMIK yang bertanggungjawab untuk membantu pembelajaran mahasiswa.
                 </v-alert>
             </template>
-        </ModuleHeader>       
-        <v-container fluid>    
+        </ModuleHeader>  
+        <v-container fluid>
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
                     <v-card>
@@ -74,7 +74,7 @@
                         <template v-slot:item.is_dw="{ item }">
                             {{ item.is_dw == false ? 'BUKAN': "YA" }}
                         </template>
-                        <template v-slot:item.actions="{ item }">         
+                        <template v-slot:item.actions="{ item }">
                             <v-icon
                                 small
                                 class="mr-2"
@@ -93,10 +93,10 @@
                                 mdi-delete
                             </v-icon>
                         </template>
-                        <template v-slot:item.foto="{ item }">         
+                        <template v-slot:item.foto="{ item }">
                             <v-avatar size="30">
-                                <v-img :src="$api.url+'/'+item.foto" />             
-                            </v-avatar>                                                             
+                                <v-img :src="$api.url+'/'+item.foto" />    
+                            </v-avatar>                                                    
                         </template>
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
@@ -148,7 +148,7 @@ export default {
     data: () => ({ 
         role_id: 0,
         datatableLoading: false,
-        btnLoading: false,      
+        btnLoading: false,  
         //tables
         headers: [
             { text: "",value: "foto" },
@@ -171,18 +171,18 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data }) => {    
+            }).then(({ data }) => {  
                 this.daftar_users = data.users;
                 this.role_id=data.role.id;
                 this.datatableLoading = false;
-            });        
+            });
             
         },
         dataTableRowClicked(item)
         {
             if (item === this.expanded[0])
             {
-                this.expanded = [];              
+                this.expanded = [];
             }
             else
             {
@@ -217,10 +217,10 @@ export default {
             });
         },
     },
-    computed: {        
+    computed: { 
         ...mapGetters("auth", { 
-            ACCESS_TOKEN: "AccessToken",          
-            TOKEN: "Token",     
+            ACCESS_TOKEN: "AccessToken",   
+            TOKEN: "Token", 
         }),
     },
     watch: {
@@ -229,11 +229,11 @@ export default {
         },
         dialogAlihkan (val) {
             val || this.close()
-        },    
+        },
     },
     components: {
         AkademikLayout,
-        ModuleHeader,        
+        ModuleHeader, 
     },
 }
 </script>

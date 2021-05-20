@@ -40,7 +40,7 @@
 										</v-card-subtitle>
 									</v-card>
 								</v-col>
-								<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>           
+								<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>  
 								
 								<v-col xs="12" sm="6" md="6">
 									<v-card flat>
@@ -133,7 +133,7 @@
 								<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
 							</v-row>							
 						</v-card-text>							
-					</v-card>                 
+					</v-card>        
 				</v-col>
 			</v-row>
 			<v-row>
@@ -222,7 +222,7 @@
 									<strong>Username:</strong>{{ item.username }} 									
 									<strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }} 
 									<strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }} 
-								</v-col>     								
+								</v-col>								
 							</td>
 						</template>
 						<template v-slot:no-data>
@@ -263,8 +263,8 @@
 					disabled: true,
 					href: "#",
 				},
-			];      
-			this.tahun_pendaftaran = this.$store.getters["uiadmin/getTahunPendaftaran"];      
+			];   
+			this.tahun_pendaftaran = this.$store.getters["uiadmin/getTahunPendaftaran"];   
 			this.semester_pendaftaran = this.$store.getters['uiadmin/getSemesterPendaftaran'];
 			this.nama_semester_pendaftaran = this.$store.getters['uiadmin/getNamaSemester'](this.semester_pendaftaran);			
 		},

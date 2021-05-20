@@ -419,6 +419,16 @@ const routes = [
 			import("../views/pages/admin/keuangan/TransaksiPendaftaranMHSBaru.vue"),
 	},
 	{
+		path: "/keuangan/transaksi-pendaftaranmhsbaru/:transaksi_id",
+		name: "KeuanganTransaksiPendaftaranMHSBaruInvoice",
+		meta: {
+			title: "KEUANGAN - TRANSAKSI PENDAFTARAN MAHASISWA BARU",
+			requiresAuth: true,
+		},
+		component: () =>
+			import("../views/pages/admin/keuangan/TransaksiInvoice.vue"),
+	},
+	{
 		path: "/keuangan/transaksi-spp",
 		name: "KeuanganTransaksiSPP",
 		meta: {

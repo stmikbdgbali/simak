@@ -1,8 +1,8 @@
 <template>
-    <v-row>        
-        <v-col xs="12" sm="6" md="4" v-for="(item,index) in daftar_persyaratan" v-bind:key="item.persyaratan_id">            
+    <v-row>   
+        <v-col xs="12" sm="6" md="4" v-for="(item,index) in daftar_persyaratan" v-bind:key="item.persyaratan_id">   
             <FileUpload :user_id="user_id" :item="item" :index="index" />
-        </v-col>     
+        </v-col>
         <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>   
     </v-row>
 </template>
@@ -23,7 +23,7 @@ export default {
     data: () => ({
         //form        
         daftar_persyaratan: [],
-    }),    
+    }),
     methods: {
         initialize: async function()
         {
@@ -33,7 +33,7 @@ export default {
                         Authorization: this.$store.getters["auth/Token"]
                     }
                 }
-            ).then(({ data }) => {        
+            ).then(({ data }) => { 
                 this.daftar_persyaratan=data.persyaratan;
             })
         }, 

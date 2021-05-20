@@ -27,7 +27,7 @@
                         Berisi laporan kelulusan calon mahasiswa baru.
                 </v-alert>
             </template>
-        </ModuleHeader>        
+        </ModuleHeader>   
         <v-container fluid>
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
@@ -77,22 +77,22 @@
                                     <v-icon>
                                         mdi-printer
                                     </v-icon>
-                                </v-btn>           
-                                <v-dialog v-model="dialogprofilmhsbaru" :fullscreen="true">                 
-                                    <ProfilMahasiswaBaru :item="datamhsbaru" v-on:closeProfilMahasiswaBaru="closeProfilMahasiswaBaru" />                 
-                                </v-dialog>             
+                                </v-btn>  
+                                <v-dialog v-model="dialogprofilmhsbaru" :fullscreen="true">        
+                                    <ProfilMahasiswaBaru :item="datamhsbaru" v-on:closeProfilMahasiswaBaru="closeProfilMahasiswaBaru" />        
+                                </v-dialog>    
                             </v-toolbar>
                         </template>
-                        <template v-slot:item.foto="{ item }">    
+                        <template v-slot:item.foto="{ item }">
                             <v-badge
                                     bordered
                                     :color="badgeColor(item)"
                                     :icon="badgeIcon(item)"
                                     overlap
-                                >                
+                                >       
                                     <v-avatar size="30">   
-                                        <v-img :src="$api.url+'/'+item.foto" />                                
-                                    </v-avatar>                                                             
+                                        <v-img :src="$api.url+'/'+item.foto" />                       
+                                    </v-avatar>                                                    
                             </v-badge>
                         </template>
                         <template v-slot:item.actions="{ item }">
@@ -118,7 +118,7 @@
                     </v-data-table>
                 </v-col>
             </v-row>
-        </v-container>        
+        </v-container>   
         <template v-slot:filtersidebar v-if="dashboard!='mahasiswabaru'">
             <Filter7 v-on:changeTahunPendaftaran="changeTahunPendaftaran" v-on:changeProdi="changeProdi" ref="filter7" />	
         </template>
@@ -156,7 +156,7 @@ export default {
         let prodi_id = this.$store.getters["uiadmin/getProdiID"];
         this.prodi_id = prodi_id;
         this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](prodi_id);
-        this.tahun_pendaftaran = this.$store.getters["uiadmin/getTahunPendaftaran"];              
+        this.tahun_pendaftaran = this.$store.getters["uiadmin/getTahunPendaftaran"];
         this.initialize()   
     },  
     data: () => ({
@@ -192,7 +192,7 @@ export default {
         filter_status:1,  
         form_valid: true,  
 
-        data_mhs: {},    
+        data_mhs: {},
         daftar_prodi: [],
         
     }),
@@ -213,7 +213,7 @@ export default {
 
                 break;
                 default :
-                    this.datatableLoading = true;          
+                    this.datatableLoading = true;  
                     await this.$ajax.post("/spmb/reportspmbkelulusan",
                     {
                         TA: this.tahun_pendaftaran,
@@ -224,10 +224,10 @@ export default {
                         headers: {
                             Authorization: this.$store.getters["auth/Token"]
                         }
-                    }).then(({ data }) => {    
-                        this.datatable = data.pmb;              
+                    }).then(({ data }) => {  
+                        this.datatable = data.pmb;
                         this.datatableLoading = false;
-                    });       
+                    });    
                     this.firstloading = false;
                     this.$refs.filter7.setFirstTimeLoading(this.firstloading); 
             }
@@ -237,7 +237,7 @@ export default {
         {
             if (item === this.expanded[0])
             {
-                this.expanded = [];              
+                this.expanded = [];
             }
             else
             {
@@ -262,10 +262,10 @@ export default {
             this.btnLoading = true;
             await this.$ajax.post("/spmb/reportspmbkelulusan/printtoexcel",
                 {
-                    TA: this.tahun_pendaftaran,                       
-                    prodi_id: this.prodi_id,    
-                    nama_prodi: this.nama_prodi,     
-                    filter_status: this.filter_status,     
+                    TA: this.tahun_pendaftaran,                
+                    prodi_id: this.prodi_id,
+                    nama_prodi: this.nama_prodi, 
+                    filter_status: this.filter_status, 
                 },
                 {
                     headers: {
@@ -273,23 +273,23 @@ export default {
                     },
                     responseType: "arraybuffer"
                 }
-            ).then(({ data }) => {   
+            ).then(({ data }) => { 
                 const url = window.URL.createObjectURL(new Blob([data]));
                 const link = document.createElement("a");
                 link.href = url;
-                link.setAttribute("download", 'laporan_prodi_'+Date.now() + ".xlsx");              
-                link.setAttribute("id", "download_laporan");              
+                link.setAttribute("download", 'laporan_prodi_'+Date.now() + ".xlsx");
+                link.setAttribute("id", "download_laporan");
                 document.body.appendChild(link);
-                link.click();                   
+                link.click();  
                 document.body.removeChild(link);
                 this.btnLoading = false;
             }).catch(() => {
                 this.btnLoading = false;
-            });   
-        },         
+            });
+        },  
         closeProfilMahasiswaBaru ()
         {
-            this.dialogprofilmhsbaru = false;                   
+            this.dialogprofilmhsbaru = false;  
         }        
     },
     watch: {
@@ -311,7 +311,7 @@ export default {
     },
     components: {
         SPMBLayout,
-        ModuleHeader,    
+        ModuleHeader,
         ProfilMahasiswaBaru,
         Filter7    
     },

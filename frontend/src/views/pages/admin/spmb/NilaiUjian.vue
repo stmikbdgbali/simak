@@ -16,7 +16,7 @@
 						<v-icon>mdi-chevron-right</v-icon>
 					</template>
 				</v-breadcrumbs>
-			</template>            
+			</template>   
 			<template v-slot:desc>
 				<v-alert                                        
 					color="cyan"
@@ -71,8 +71,8 @@
 									vertical
 								></v-divider>
 								<v-spacer></v-spacer>
-								<v-dialog v-model="dialogprofilmhsbaru" :fullscreen="true">                 
-									<ProfilMahasiswaBaru :item="datamhsbaru" v-on:closeProfilMahasiswaBaru="closeProfilMahasiswaBaru" />                 
+								<v-dialog v-model="dialogprofilmhsbaru" :fullscreen="true">        
+									<ProfilMahasiswaBaru :item="datamhsbaru" v-on:closeProfilMahasiswaBaru="closeProfilMahasiswaBaru" />        
 								</v-dialog>
 								<v-dialog v-model="dialogfrm" persistent v-if="dialogfrm">
 									<v-card color="grey lighten-4">
@@ -99,7 +99,7 @@
 														</v-card-subtitle>
 													</v-card>
 												</v-col>
-												<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>           
+												<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>  
 												<v-col xs="12" sm="3" md="3">
 													<v-card flat>
 														<v-card-title>NAMA MAHASISWA :</v-card-title>
@@ -108,7 +108,7 @@
 														</v-card-subtitle>
 													</v-card>
 												</v-col>
-												<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>           
+												<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>  
 												<v-col xs="12" sm="3" md="3">
 													<v-card flat>
 														<v-card-title>NOMOR HP :</v-card-title>
@@ -131,8 +131,8 @@
 											<v-row>
 												<v-col cols="12">
 													<v-form ref="frmdata" v-model="form_valid" lazy-validation>
-														<v-card>                       
-															<v-card-text>                                 
+														<v-card>              
+															<v-card-text>                        
 																<v-currency-field 
 																	label="NILAI UJIAN:" 
 																	:min="null"
@@ -180,16 +180,16 @@
 								</v-dialog>
 							</v-toolbar>
 						</template>
-						<template v-slot:item.foto="{ item }">    
+						<template v-slot:item.foto="{ item }">
 							<v-badge
 									bordered
 									:color="badgeColor(item)"
 									:icon="badgeIcon(item)"
 									overlap
-								>                
+								>       
 									<v-avatar size="30">   
-										<v-img :src="$api.url+'/'+item.foto" />                                
-									</v-avatar>                                                             
+										<v-img :src="$api.url+'/'+item.foto" />                       
+									</v-avatar>                                                    
 							</v-badge>
 						</template>
 						<template v-slot:item.no_formulir="{ item }">
@@ -217,8 +217,8 @@
 									<strong>Username:</strong>{{ item.username }}
 									<strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
 									<strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
-								</v-col>      
-								<v-col cols="12" v-if="item.ket_lulus == '0'">       
+								</v-col> 
+								<v-col cols="12" v-if="item.ket_lulus == '0'">  
 									<v-btn 
 										text 
 										small 
@@ -245,7 +245,7 @@
 					</v-data-table>
 				</v-col>
 			</v-row>
-		</v-container>        
+		</v-container>   
 		<template v-slot:filtersidebar v-if="dashboard!='mahasiswabaru'">
 			<Filter7 v-on:changeTahunPendaftaran="changeTahunPendaftaran" v-on:changeProdi="changeProdi" ref="filter7" />	
 		</template>
@@ -335,32 +335,32 @@
 			],
 			formdata: { 
 				user_id: "",
-				jadwal_ujian_id: null,   
-				jumlah_soal: null,   
-				jawaban_benar: null,   
-				jawaban_salah: null,   
-				soal_tidak_terjawab: null,   
-				passing_grade_1: null,   
-				passing_grade_2: null,   
-				nilai:0,    
+				jadwal_ujian_id: null,
+				jumlah_soal: null,
+				jawaban_benar: null,
+				jawaban_salah: null,
+				soal_tidak_terjawab: null,
+				passing_grade_1: null,
+				passing_grade_2: null,
+				nilai:0,
 				ket_lulus: "",
-				kjur: null,   
+				kjur: null,
 				desc: "",
 				created_at: "",
 				updated_at: "",
 			},
 			formdefault: { 
 				user_id: "",
-				jadwal_ujian_id: null,   
-				jumlah_soal: null,   
-				jawaban_benar: null,   
-				jawaban_salah: null,   
-				soal_tidak_terjawab: null,   
-				passing_grade_1: null,   
-				passing_grade_2: null,   
-				nilai:0,    
+				jadwal_ujian_id: null,
+				jumlah_soal: null,
+				jawaban_benar: null,
+				jawaban_salah: null,
+				soal_tidak_terjawab: null,
+				passing_grade_1: null,
+				passing_grade_2: null,
+				nilai:0,
 				ket_lulus: "",
-				kjur: null,   
+				kjur: null,
 				desc: "",
 				created_at: "",
 				updated_at: "",
@@ -397,7 +397,7 @@
 							headers: {
 								Authorization: this.$store.getters["auth/Token"]
 							}
-						}).then(({ data }) => {    
+						}).then(({ data }) => {  
 							this.datatable = data.pmb;
 							this.datatableLoading = false;
 						});
@@ -430,7 +430,7 @@
 							Authorization: this.$store.getters["auth/Token"]
 						}
 					})
-					.then(({ data }) => {   
+					.then(({ data }) => { 
 						if (data.transaksi_status== 1)
 						{
 							this.dialogfrm = true;
@@ -469,10 +469,10 @@
 							kjur: this.formdata.kjur,
 							ket_lulus: this.formdata.ket_lulus,
 							desc: this.formdata.desc,
-						},    
+						},
 						{
 							headers: {
-								Authorization: this.$store.getters["auth/Token"],   
+								Authorization: this.$store.getters["auth/Token"],
 							}
 						}
 						).then(() => { 

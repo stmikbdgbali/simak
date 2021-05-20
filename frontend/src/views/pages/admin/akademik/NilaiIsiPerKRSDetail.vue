@@ -72,7 +72,7 @@
                                         </v-card-subtitle>
                                     </v-card>
                                 </v-col>
-                                <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>                
+                                <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>       
                                 <v-col xs="12" sm="6" md="6">
                                     <v-card flat>
                                         <v-card-title>NAMA MAHASISWA:</v-card-title>
@@ -97,12 +97,12 @@
                 </v-col>   
             </v-row>
             <v-row>
-                <v-col cols="12">     
-                    <v-form ref="frmdata" v-model="form_valid" lazy-validation>      
+                <v-col cols="12">
+                    <v-form ref="frmdata" v-model="form_valid" lazy-validation> 
                         <v-card>
                             <v-card-title>
                                 DAFTAR MATAKULIAH
-                                <v-spacer></v-spacer>         
+                                <v-spacer></v-spacer>
                             </v-card-title>
                             <v-card-text>
                                 <v-data-table        
@@ -113,8 +113,8 @@
                                     :disable-pagination="true"
                                     :hide-default-footer="true"                                                                
                                     :loading="datatableLoading"
-                                    loading-text="Loading... Please wait">             
-                                    <template v-slot:item.n_kuan="props">                 
+                                    loading-text="Loading... Please wait">    
+                                    <template v-slot:item.n_kuan="props">        
                                         <VAngkaNilai                                                            
                                             v-model="props.item.n_kuan"                                    
                                             dense                                    
@@ -122,7 +122,7 @@
                                             :disabled="props.item.bydosen">
                                         </VAngkaNilai> 
                                     </template> 
-                                    <template v-slot:item.n_kual="props">                 
+                                    <template v-slot:item.n_kual="props">        
                                         <v-select 
                                             :items="$store.getters['uiadmin/getSkalaNilai']" 
                                             v-model="props.item.n_kual"
@@ -138,7 +138,7 @@
                                             <td></td>
                                             <td></td>
                                             <td></td>
-                                            <td></td>       
+                                            <td></td>  
                                         </tr>
                                         <tr class="grey lighten-4 font-weight-black">
                                             <td class="text-right" colspan="2">TOTAL SKS</td>
@@ -146,7 +146,7 @@
                                             <td></td>
                                             <td></td>
                                             <td></td>
-                                            <td></td>       
+                                            <td></td>  
                                         </tr>
                                     </template>   
                                     <template v-slot:no-data>
@@ -180,7 +180,7 @@ import VAngkaNilai from '@/components/VAngkaNilai';
 export default {
     name: "NilaiIsiPerKRSDetail",
     created() {
-        this.krs_id=this.$route.params.krsid;      
+        this.krs_id=this.$route.params.krsid;   
         this.breadcrumbs = [
             {
                 text: "HOME",
@@ -203,13 +203,13 @@ export default {
                 href: "#"
             }
         ];
-        this.fetchKRS();             
+        this.fetchKRS();  
     },  
     data: () => ({ 
         test:100,
-        firstloading: true,       
+        firstloading: true,
         nama_prodi: null,
-        tahun_akademik: null,       
+        tahun_akademik: null,
         semester_akademik: null,
     
         btnLoading: false, 
@@ -224,7 +224,7 @@ export default {
         expanded: [],
         datatable: [],
         headers: [
-            { text: "KODE", value: "kmatkul", sortable: true, width: 100  },   
+            { text: "KODE", value: "kmatkul", sortable: true, width: 100  },
             { text: "NAMA MATAKULIAH", value: "nmatkul", sortable: true, width:260 },
             { text: "SKS", value: "sks", sortable: false, width:50 },
             { text: "SMT", value: "semester", sortable: false, width:50 },
@@ -234,25 +234,25 @@ export default {
                                    
         ],
         //formdata
-        form_valid: true,    
+        form_valid: true,
     }),
-    methods: {          
+    methods: { 
         async fetchKRS()
         {
-            await this.$ajax.get("/akademik/nilai/matakuliah/perkrs/" + this.krs_id,            
+            await this.$ajax.get("/akademik/nilai/matakuliah/perkrs/" + this.krs_id,     
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {                   
-                this.datakrs=data.krs;              
-                this.datatable=data.krsmatkul;              
+            }).then(({ data }) => {          
+                this.datakrs=data.krs;
+                this.datatable=data.krsmatkul;
                 if (Object.keys(this.datakrs).length)
                 {
-                    let prodi_id=this.datakrs.kjur;                  
-                    this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](prodi_id);              
-                    this.tahun_akademik=this.datakrs.tahun;                                                    
-                    this.semester_akademik=this.datakrs.idsmt;                      
+                    let prodi_id=this.datakrs.kjur; 
+                    this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](prodi_id);
+                    this.tahun_akademik=this.datakrs.tahun;    
+                    this.semester_akademik=this.datakrs.idsmt;
                 }
             })  
         }, 
@@ -267,28 +267,28 @@ export default {
                     n_kuan:item.n_kuan,
                     n_kual:item.n_kual
                 });
-            });          
+            });  
             await this.$ajax.post("/akademik/nilai/matakuliah/perkrs/storeperkrs",
                 {
                     krs_id: this.krs_id,
-                    daftar_nilai: JSON.stringify(Object.assign({},daftar_nilai)),        
+                    daftar_nilai: JSON.stringify(Object.assign({},daftar_nilai)), 
                 },
                 {
                     headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     }
                 }
-            ).then(() => {     
+            ).then(() => {   
                 this.$router.go();
             }).catch(() => {
                 this.btnLoadingTable=false;
             });
-        },       
+        },
     },
     computed: {
         totalMatkul()
         {
-            return this.datatable.length;          
+            return this.datatable.length;  
         },
         totalSKS()
         {

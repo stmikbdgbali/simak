@@ -31,7 +31,7 @@
         <template v-slot:filtersidebar>
             <Filter7 v-on:changeTahunPendaftaran="changeTahunPendaftaran" v-on:changeProdi="changeProdi" ref="filter7" />	
         </template>
-        <v-container fluid>      
+        <v-container fluid> 
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
                     <v-card>
@@ -83,8 +83,8 @@
                             {{$store.getters['uiadmin/getNamaKelas'](item.idkelas)}}
                         </template>
                         <template v-slot:item.actions="{ item }">
-                            <v-tooltip bottom>             
-                                <template v-slot:activator="{ on, attrs }">        
+                            <v-tooltip bottom>    
+                                <template v-slot:activator="{ on, attrs }">   
                                     <v-btn 
                                         v-bind="attrs"
                                         v-on="on"
@@ -97,12 +97,12 @@
                                         
                                         :disabled="btnLoading">
                                         <v-icon>mdi-eye</v-icon>
-                                    </v-btn>     
+                                    </v-btn>
                                 </template>
-                                <span>Detail Transkrip</span>                
+                                <span>Detail Transkrip</span>       
                             </v-tooltip> 
-                            <v-tooltip bottom>             
-                                <template v-slot:activator="{ on, attrs }">        
+                            <v-tooltip bottom>    
+                                <template v-slot:activator="{ on, attrs }">   
                                     <v-btn 
                                         v-bind="attrs"
                                         v-on="on"
@@ -115,14 +115,14 @@
                                         
                                         :disabled="btnLoading">
                                         <v-icon>mdi-printer</v-icon>
-                                    </v-btn>     
+                                    </v-btn>
                                 </template>
-                                <span>Cetak Transkrip Dua Kolom</span>                
-                            </v-tooltip>                 
-                        </template>           
+                                <span>Cetak Transkrip Dua Kolom</span>       
+                            </v-tooltip>        
+                        </template>  
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
-                                <v-col cols="12">       
+                                <v-col cols="12">  
                                     <strong>user_id:</strong>{{ item.user_id }}                                              
                                 </v-col>
                             </td>
@@ -134,7 +134,7 @@
                 </v-col>
             </v-row> 
         </v-container>
-        <v-dialog v-model="dialogprintpdf" max-width="500px" persistent>                
+        <v-dialog v-model="dialogprintpdf" max-width="500px" persistent>       
             <v-card>
                 <v-card-title>
                     <span class="headline">Print to PDF</span>
@@ -143,15 +143,15 @@
                     <v-btn
                         color="green"
                         text
-                        :href="$api.url+'/'+file_pdf">         
+                        :href="$api.url+'/'+file_pdf">
                         Download
-                    </v-btn>        
+                    </v-btn>   
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="blue darken-1" text @click.stop="closedialogprintpdf">CLOSE</v-btn>         
+                    <v-btn color="blue darken-1" text @click.stop="closedialogprintpdf">CLOSE</v-btn>
                 </v-card-actions>
-            </v-card>            
+            </v-card>   
         </v-dialog>
     </AkademikLayout>
 </template>
@@ -187,7 +187,7 @@ export default {
         let prodi_id = this.$store.getters["uiadmin/getProdiID"];
         this.prodi_id = prodi_id;
         this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](prodi_id);
-        this.tahun_pendaftaran = this.$store.getters["uiadmin/getTahunPendaftaran"];              
+        this.tahun_pendaftaran = this.$store.getters["uiadmin/getTahunPendaftaran"];
         this.initialize()
     },  
     data: () => ({ 
@@ -238,7 +238,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {    
+            }).then(({ data }) => {  
                 this.datatable = data.mahasiswa;
                 this.datatableLoading = false;
             }).catch(() => {
@@ -251,7 +251,7 @@ export default {
         {
             if (item === this.expanded[0])
             {
-                this.expanded = [];              
+                this.expanded = [];
             }
             else
             {
@@ -265,25 +265,25 @@ export default {
         async printpdf2(item)
         {
             this.btnLoading = true;
-            await this.$ajax.get("/akademik/nilai/transkripkurikulum/printpdf2/" + item.user_id,    
+            await this.$ajax.get("/akademik/nilai/transkripkurikulum/printpdf2/" + item.user_id,
                 {
                     headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     },
                     
                 }
-            ).then(({ data }) => {  
+            ).then(({ data }) => {
                 this.file_pdf=data.pdf_file;
                 this.dialogprintpdf=true;
                 this.btnLoading = false;
             }).catch(() => {
                 this.btnLoading = false;
-            });               
+            }); 
         },
-        closedialogprintpdf () {       
+        closedialogprintpdf () {
             setTimeout(() => {
                 this.file_pdf=null;
-                this.dialogprintpdf = false;    
+                this.dialogprintpdf = false; 
                 }, 300
             );
         }, 
@@ -311,7 +311,7 @@ export default {
                 setTimeout(async () => {
                     if (this.search.length > 0 && this.filter_ignore)
                     {
-                        this.datatableLoading = true;          
+                        this.datatableLoading = true;  
                         await this.$ajax.post("/akademik/nilai/transkripkurikulum",
                         {
                             prodi_id: this.prodi_id,
@@ -322,10 +322,10 @@ export default {
                             headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
-                        }).then(({ data }) => {    
+                        }).then(({ data }) => {  
                             this.datatable = data.mahasiswa;
                             this.datatableLoading = false;
-                        });                   
+                        });  
                     }
                     this.awaiting_search = false;
                 }, 1000); // 1 sec delay
@@ -336,7 +336,7 @@ export default {
     },
     components: {
         AkademikLayout,
-        ModuleHeader,    
+        ModuleHeader,
         Filter7               
     },
 }

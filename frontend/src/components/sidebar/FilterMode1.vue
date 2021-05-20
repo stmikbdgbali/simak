@@ -35,7 +35,7 @@ export default {
             if (!this.firstloading)
             {
                 this.$store.dispatch("uiadmin/updateTahunAkademik",val);
-                this.$emit("changeTahunAkademik",val);        
+                this.$emit("changeTahunAkademik",val);
             }            
         },
     }

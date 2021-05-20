@@ -40,7 +40,7 @@
 						</v-card-subtitle>
 					</v-card>
 				</v-col>   
-				<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>            
+				<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>   
 				<v-col xs="12" sm="4" md="3" v-if="$store.getters['auth/can']('SPMB-GROUP')">
 					<v-card
 					elevation="0"
@@ -70,7 +70,7 @@
 						</v-card-subtitle>
 					</v-card>
 				</v-col>
-				<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>            
+				<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>   
 				<v-col xs="12" sm="4" md="3" v-if="$store.getters['auth/can']('KEUANGAN-GROUP')">
 					<v-card
 					elevation="0"
@@ -100,7 +100,7 @@
 						</v-card-subtitle>
 					</v-card>
 				</v-col>
-				<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>            
+				<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>   
 				<v-col xs="12" sm="4" md="3" v-if="$store.getters['auth/can']('AKADEMIK-GROUP')">
 					<v-card
 					elevation="0"
@@ -130,7 +130,7 @@
 						</v-card-subtitle>
 					</v-card>
 				</v-col>
-				<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>            
+				<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>   
 				<v-col xs="12" sm="4" md="3" v-if="$store.getters['auth/can']('SYSTEM-USERS-GROUP')">
 					<v-card
 					elevation="0"
@@ -160,7 +160,7 @@
 						</v-card-subtitle>
 					</v-card>
 				</v-col>
-				<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>            
+				<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>   
 				<v-col xs="12" sm="4" md="3" v-if="$store.getters['auth/can']('ELEARNING-GROUP')">
 					<v-card
 					elevation="0"
@@ -190,7 +190,7 @@
 						</v-card-subtitle>
 					</v-card>
 				</v-col>
-				<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>            
+				<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>   
 				<v-col xs="12" sm="4" md="3" v-if="$store.getters['auth/can']('SYSTEM-USERS-GROUP')">
 					<v-card
 					elevation="0"
@@ -220,7 +220,7 @@
 						</v-card-subtitle>
 					</v-card>
 				</v-col>
-				<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>            
+				<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>   
 				<v-col xs="12" sm="4" md="3" v-if="$store.getters['auth/can']('SYSTEM-SETTING-GROUP')">
 					<v-card
 					elevation="0"
@@ -250,7 +250,7 @@
 						</v-card-subtitle>
 					</v-card>
 				</v-col>
-				<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>            
+				<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>   
 				<v-col xs="12" sm="4" md="3" v-if="$store.getters['auth/can']('SYSTEM-USERS-GROUP')">
 					<v-card
 					elevation="0"
@@ -279,7 +279,7 @@
 							Modul ini digunakan untuk melakukan migrasi data atau sistem lama.
 						</v-card-subtitle>
 					</v-card>
-				</v-col>     
+				</v-col>
 			</v-row>
 		</v-container>
 	</AdminLayout>
@@ -290,7 +290,7 @@
 	export default {
 		name: "Dashboard",
 		created() {
-			this.TOKEN = this.$route.params.token;              
+			this.TOKEN = this.$route.params.token;
 			this.tahun_pendaftaran = this.$store.getters['uifront/getTahunPendaftaran'];
 			this.color_dashboard=this.$store.getters['uifront/getTheme']("COLOR_DASHBOARD");
 			this.breadcrumbs = [
@@ -319,21 +319,21 @@
 		methods: {
 			initialize: async function() {	            
 				await this.$ajax
-				.get("/auth/me",        
+				.get("/auth/me", 
 				{
 					headers: {
 						Authorization: "Bearer " + this.TOKEN,
 					}
 				})
-				.then(({ data }) => {          
+				.then(({ data }) => { 
 					this.dashboard = data.role[0];  
-					this.$store.dispatch("uiadmin/changeDashboard", this.dashboard);               
+					this.$store.dispatch("uiadmin/changeDashboard", this.dashboard); 
 				})
 				.catch(error => {					
 					if (error.response.status == 401){						
 						this.$router.push('/login');
 					}
-				});         
+				}); 
 				this.$store.dispatch("uiadmin/init", this.$ajax); 
 			},
 		},

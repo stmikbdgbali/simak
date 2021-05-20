@@ -35,7 +35,7 @@ export default {
             if (!this.firstloading)
             {
                 this.$store.dispatch("uiadmin/updateTahunPendaftaran",val);
-                this.$emit("changeTahunPendaftaran",val);        
+                this.$emit("changeTahunPendaftaran",val);
             }            
         },
     }

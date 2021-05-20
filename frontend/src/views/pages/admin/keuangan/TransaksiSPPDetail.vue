@@ -28,7 +28,7 @@
                     </v-alert>
             </template>
         </ModuleHeader>
-        <v-container fluid v-if="data_transaksi">           
+        <v-container fluid v-if="data_transaksi">  
             <v-row>   
                 <v-col cols="12">
                     <v-card>
@@ -83,11 +83,11 @@
                                     <v-card flat>
                                         <v-card-title>PROGRAM STUDI:</v-card-title>
                                         <v-card-subtitle>
-                                            {{this.$store.getters["uiadmin/getProdiName"](data_transaksi.kjur)}}
+                                            {{ this.$store.getters["uiadmin/getProdiName"](data_transaksi.kjur)}}
                                         </v-card-subtitle>
                                     </v-card>
                                 </v-col>
-                                <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>             
+                                <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>    
                                 
                                 <v-col xs="12" sm="6" md="6">
                                     <v-card flat>
@@ -123,7 +123,7 @@
             </v-row>
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
-                    <v-form ref="frmdata" v-model="form_valid" lazy-validation>      
+                    <v-form ref="frmdata" v-model="form_valid" lazy-validation> 
                         <v-data-table
                             :headers="headers"
                             :items="item_selected"                                                                       
@@ -150,7 +150,7 @@
                             <template v-slot:item.biaya_kombi="{ item }">  
                                 {{item.biaya_kombi|formatUang}}
                             </template>
-                            <template v-slot:item.actions="{ item }">          
+                            <template v-slot:item.actions="{ item }"> 
                                 <v-icon
                                     small
                                     
@@ -165,8 +165,8 @@
                                     <td>{{totalBulan}} Bulan</td> 
                                     <td></td>
                                     <td>{{totalBiayaKombi|formatUang}}</td>   
-                                    <td></td>          
-                                </tr>         
+                                    <td></td> 
+                                </tr>
                             </template>   
                             <template v-slot:no-data>
                                 daftar bulan yang akan dibayar belum tersedia; silahkan pilih bulan di bawah ini.
@@ -186,7 +186,7 @@ export default {
     created()
     {
         this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard']; 
-        this.transaksi_id=this.$route.params.transaksi_id;      
+        this.transaksi_id=this.$route.params.transaksi_id;   
         this.breadcrumbs = [
             {
                 text: "HOME",
@@ -208,7 +208,7 @@ export default {
                 disabled: true,
                 href: "#"
             }
-        ];                        
+        ];  
         this.initialize();
         this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];
     },
@@ -221,14 +221,14 @@ export default {
         tahun_akademik:0,
         btnLoading: false,  
         //tables
-        datatableLoading: false,       
+        datatableLoading: false,
         datatable: [],
         headers: [                        
             { text: "NO. BULAN", value: "no_bulan", width: 120, sortable: false },
-            { text: "BULAN", value: "nama_bulan", sortable: false },        
-            { text: "TAHUN", value: "tahun", sortable: false },        
+            { text: "BULAN", value: "nama_bulan", sortable: false }, 
+            { text: "TAHUN", value: "tahun", sortable: false }, 
             { text: "BIAYA KOMBI", value: "biaya_kombi", sortable: false },
-            { text: "AKSI", value: "actions", sortable: false, width: 100 },    
+            { text: "AKSI", value: "actions", sortable: false, width: 100 },
         ], 
         //form
         form_valid: true  
@@ -240,17 +240,17 @@ export default {
         },
         initialize: async function() 
         {
-            this.datatableLoading = true;          
+            this.datatableLoading = true;  
             await this.$ajax.get("/keuangan/transaksi-spp/" + this.transaksi_id,
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {       
-                this.data_transaksi=data.transaksi;                                     
-                this.item_selected = data.item_selected;              
+            }).then(({ data }) => {
+                this.data_transaksi=data.transaksi;
+                this.item_selected = data.item_selected;
                 this.datatableLoading = false;
-            });                   
+            });  
         }, 
         deleteItem(item) {
             this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus data dengan ID '+item.id+' ?", { color: "red" }).then(confirm => {
@@ -288,7 +288,7 @@ export default {
         },
         totalBulan()
         {
-            return this.item_selected.length;          
+            return this.item_selected.length;  
         },
         totalBiayaKombi()
         {

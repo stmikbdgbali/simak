@@ -1,4 +1,4 @@
-<template>    
+<template>
     <v-card
         class="clickable"
         @click.native="jawabSoal">
@@ -27,7 +27,7 @@ export default {
     data: () => ({     
         
     }),
-    methods: {        
+    methods: { 
         jawabSoal: async function()
         {
             await this.$ajax.post("/spmb/ujianonline/store",
@@ -41,7 +41,7 @@ export default {
                     Authorization: this.$store.getters["auth/Token"],
                 }
             }
-            ).then(() => {                                     
+            ).then(() => {                            
                 this.$emit("selesaiJawab");
             }).catch(() => {
                 

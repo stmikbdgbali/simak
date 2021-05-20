@@ -31,8 +31,8 @@
         <template v-slot:filtersidebar>
             <Filter7 v-on:changeTahunPendaftaran="changeTahunPendaftaran" v-on:changeProdi="changeProdi" ref="filter7" />	
         </template>
-        <v-container fluid>             
-            <v-row class="mb-4" no-gutters>     
+        <v-container fluid>    
+            <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
                     <v-card>
                         <v-card-text>
@@ -82,11 +82,11 @@
                                 :disabled="btnLoading"
                                 @click.stop="deleteItem(item)">
                                 mdi-delete
-                            </v-icon>    
-                        </template>           
+                            </v-icon>
+                        </template>  
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
-                                <v-col cols="12">       
+                                <v-col cols="12">  
                                     <strong>id:</strong>{{ item.id }}          
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
@@ -134,7 +134,7 @@ export default {
         let prodi_id = this.$store.getters["uiadmin/getProdiID"];
         this.prodi_id = prodi_id;
         this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](prodi_id);
-        this.tahun_pendaftaran = this.$store.getters["uiadmin/getTahunPendaftaran"];              
+        this.tahun_pendaftaran = this.$store.getters["uiadmin/getTahunPendaftaran"];
         this.initialize()
     },  
     data: () => ({ 
@@ -149,9 +149,9 @@ export default {
         expanded: [],
         datatable: [],
         headers: [
-            { text: "NO. FORMULIR", value: "no_formulir", sortable: true, width:150  },   
-            { text: "NIM", value: "nim", sortable: true, width:150  },   
-            { text: "NIRM", value: "nirm", sortable: true, width:150  },   
+            { text: "NO. FORMULIR", value: "no_formulir", sortable: true, width:150  },
+            { text: "NIM", value: "nim", sortable: true, width:150  },
+            { text: "NIRM", value: "nirm", sortable: true, width:150  },
             { text: "NAMA MAHASISWA", value: "nama_mhs", sortable: true },
             { text: "KELAS", value: "idkelas", sortable: true, width: 120, },
             { text: "AKSI", value: "actions", sortable: false, width: 100 },
@@ -165,12 +165,12 @@ export default {
         dialogfrm: false, 
         daftar_dw: [],  
 
-        formdata: {             
+        formdata: {    
             nim: "",
             nirm: "",
             dosen_id: ""           
         },
-        formdefault: {             
+        formdefault: {    
             nim: "",
             nirm: "",
             dosen_id: ""           
@@ -209,7 +209,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {    
+            }).then(({ data }) => {  
                 this.datatable = data.mahasiswa;
                 this.datatableLoading = false;
             }).catch(() => {
@@ -222,7 +222,7 @@ export default {
         {
             if (item === this.expanded[0])
             {
-                this.expanded = [];              
+                this.expanded = [];
             }
             else
             {
@@ -230,7 +230,7 @@ export default {
             }               
         },
         async tambahItem ()
-        {    
+        {  
             await this.$ajax.post("/keuangan/transaksi/" + this.formdata.nim+"/sppmhsbaru",
             {
                 jenis_id: "nim"
@@ -239,7 +239,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(() => {                    
+            }).then(() => {           
                 
             }); 
 
@@ -247,7 +247,7 @@ export default {
             //     headers: {
             //         Authorization: this.$store.getters["auth/Token"]
             //     }
-            // }).then(({ data }) => {      
+            // }).then(({ data }) => {    
             //     this.dialogfrm = true;
             //     this.daftar_dw = data.users; 
             // }); 
@@ -279,9 +279,9 @@ export default {
             });
         },
         closedialogfrm() { 
-            this.dialogfrm = false;          
-            setTimeout(() => {       
-                this.formdata = Object.assign({}, this.formdefault);                              
+            this.dialogfrm = false;  
+            setTimeout(() => {
+                this.formdata = Object.assign({}, this.formdefault);     
                 this.data_mhs = Object.assign({}, {}); 
                 }, 300
             );
@@ -306,7 +306,7 @@ export default {
     },
     components: {
         AkademikLayout,
-        ModuleHeader,    
+        ModuleHeader,
         Filter7               
     },
 }

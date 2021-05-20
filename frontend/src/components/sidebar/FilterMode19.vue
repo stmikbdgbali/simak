@@ -25,7 +25,7 @@ export default {
         this.tahun_pendaftaran = this.$store.getters["uiadmin/getTahunPendaftaran"];
 
         this.daftar_semester = this.$store.getters['uiadmin/getDaftarSemester'];
-        this.semester_pendaftaran = this.$store.getters['uiadmin/getSemesterPendaftaran'];                                          
+        this.semester_pendaftaran = this.$store.getters['uiadmin/getSemesterPendaftaran'];  
     },
     data: () => ({
         firstloading: true,
@@ -48,7 +48,7 @@ export default {
             if (!this.firstloading)
             {
                 this.$store.dispatch("uiadmin/updateTahunPendaftaran",val);
-                this.$emit("changeTahunPendaftaran",val);        
+                this.$emit("changeTahunPendaftaran",val);
             }            
         },
         semester_pendaftaran(val)
@@ -56,7 +56,7 @@ export default {
             if (!this.firstloading)
             {
                 this.$store.dispatch("uiadmin/updateSemesterPendaftaran",val);
-                this.$emit("changeSemesterPendaftaran",val);        
+                this.$emit("changeSemesterPendaftaran",val);
             }
         },
     }

@@ -31,7 +31,7 @@
 		<template v-slot:filtersidebar>
 			<Filter1 v-on:changeTahunAkademik="changeTahunAkademik" ref="filter1" />
 		</template>
-		<v-container fluid>            
+		<v-container fluid>   
 			<v-row>
 				<v-col cols="12">
 					<v-card outlined>
@@ -39,8 +39,8 @@
 							<v-list-item-content>
 								<div class="overline mb-1">
 									PROFIL MAHASISWA (MASUKAN NIM)
-								</div>             
-								<v-list-item-subtitle>                 
+								</div>    
+								<v-list-item-subtitle>        
 									<v-autocomplete
 										v-model="data_mhs"
 										:items="entries"
@@ -69,10 +69,10 @@
 						<v-divider></v-divider>
 						<v-expand-transition>
 							<v-list v-if="data_mhs">
-								<template v-for="(field, i) in fields">                 
+								<template v-for="(field, i) in fields">        
 								<v-list-item :key="i" v-if="field.key!='foto' && field.key!='nama_mhs_alias'">
 									<v-list-item-content>
-										<v-list-item-title>       
+										<v-list-item-title>  
 											{{field.value}}
 										</v-list-item-title>
 										<v-list-item-subtitle>
@@ -129,7 +129,7 @@
 					href: "#"
 				}
 			];		
-			this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];               
+			this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik']; 
 		},
 		mounted() {
 			this.initialize();
@@ -153,7 +153,7 @@
 			},
 			initialize: async function()
 			{	            
-				this.firstloading = false;          
+				this.firstloading = false;  
 				this.$refs.filter1.setFirstTimeLoading(this.firstloading); 
 			},
 			field_alias(atr)
@@ -163,16 +163,16 @@
 				{
 					case 'user_id' :
 						alias = 'USER ID';
-					break;              
+					break;
 					case 'nim' :
 						alias = 'NIM';
-					break;              
+					break;
 					case 'nama_mhs' :
 						alias = 'NAMA MAHASIWA';
-					break;              
+					break;
 					case 'nama_prodi' :
 						alias = 'PROGRAM STUDI';
-					break;              
+					break;
 				}
 				return alias;
 			},
@@ -181,7 +181,7 @@
 			},
 			clearDataMhs() {
 				this.data_mhs = null;
-				this.$refs.ref_data_mhs.cachedItems=[];          
+				this.$refs.ref_data_mhs.cachedItems=[];  
 			},
 		},
 		computed: {
@@ -217,7 +217,7 @@
 							headers: {
 								Authorization: this.$store.getters["auth/Token"]
 							}
-						}).then(({ data }) => {                           
+						}).then(({ data }) => {                  
 							const { jumlah, daftar_mhs } = data;
 							this.count = jumlah;
 							this.entries = daftar_mhs;

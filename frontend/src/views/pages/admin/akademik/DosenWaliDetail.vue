@@ -24,7 +24,7 @@
                         Halaman ini berisi daftar DOSEN WALI / PENDAMPING AKADEMIK yang bertanggungjawab untuk membantu pembelajaran mahasiswa.
                 </v-alert>
             </template>
-        </ModuleHeader>       
+        </ModuleHeader>  
         <v-container fluid>   
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
@@ -71,7 +71,7 @@
                                     vertical
                                 ></v-divider>
                                 <v-spacer></v-spacer> 
-                                <v-dialog v-model="dialogfrm" max-width="750px" persistent>                 
+                                <v-dialog v-model="dialogfrm" max-width="750px" persistent>        
                                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>
                                         <v-card>
                                             <v-toolbar elevation="2"> 
@@ -157,7 +157,7 @@
                                                             item-text="name"
                                                             item-value="id"
                                                             :rules="rule_dw"
-                                                            outlined />              
+                                                            outlined />     
                                                     </v-col>
                                                 </v-row>
                                             </v-card-text>
@@ -184,9 +184,9 @@
                         <template v-slot:item.is_dw="{ item }">
                             {{item.is_dw == false ? "BUKAN": "YA"}}
                         </template>
-                        <template v-slot:item.actions="{ item }">         
-                            <v-tooltip bottom>             
-                                <template v-slot:activator="{ on, attrs }">        
+                        <template v-slot:item.actions="{ item }">
+                            <v-tooltip bottom>    
+                                <template v-slot:activator="{ on, attrs }">   
                                     <v-btn 
                                         v-bind="attrs"
                                         v-on="on"
@@ -197,15 +197,15 @@
                                         :disabled="btnLoading"
                                         @click.stop="showDialogChangeDW(item)">
                                         <v-icon>mdi-file-replace-outline</v-icon>
-                                    </v-btn>     
+                                    </v-btn>
                                 </template>
-                                <span>Ganti Dosen Wali</span>                
+                                <span>Ganti Dosen Wali</span>       
                             </v-tooltip>
                         </template>
-                        <template v-slot:item.foto="{ item }">         
+                        <template v-slot:item.foto="{ item }">
                             <v-avatar size="30">
-                                <v-img :src="$api.url+'/'+item.foto" />             
-                            </v-avatar>                                                             
+                                <v-img :src="$api.url+'/'+item.foto" />    
+                            </v-avatar>                                                    
                         </template>
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
@@ -263,7 +263,7 @@ export default {
         dosen_id: null,
         data_dosen: {},
         datatableLoading: false,
-        btnLoading: false,      
+        btnLoading: false,  
         //tables
         headers: [
             { text: "",value: "foto", width: 70, },
@@ -284,10 +284,10 @@ export default {
         data_mhs: {},
         daftar_dw: [],  
 
-        formdata: {                         
+        formdata: {                
             dosen_id: ""           
         },
-        formdefault: {                         
+        formdefault: {                
             dosen_id: ""           
         },
 
@@ -306,31 +306,31 @@ export default {
                     }
                 },
                 
-            ).then(({ data }) => {   
-                this.data_dosen=data.biodatadiri;                                         
-            });     
+            ).then(({ data }) => { 
+                this.data_dosen=data.biodatadiri; 
+            });  
 
             await this.$ajax.get("/akademik/dosenwali/" + this.dosen_id,{
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data }) => {    
-                this.daftar_mahasiswa = data.daftar_mahasiswa;              
+            }).then(({ data }) => {  
+                this.daftar_mahasiswa = data.daftar_mahasiswa;
                 this.datatableLoading = false;
-            });        
+            });
             
         },
         dataTableRowClicked(item)
         {
             if (item === this.expanded[0])
             {
-                this.expanded = [];              
+                this.expanded = [];
             }
             else
             {
                 this.expanded = [item];
             }               
-        },   
+        },
         async showDialogChangeDW(item)
         {
             this.data_mhs = item;
@@ -339,12 +339,12 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {      
+            }).then(({ data }) => {    
                 this.dialogfrm = true;
                 this.daftar_dw = data.users; 
                 this.formdata.dosen_id = this.dosen_id;
             }); 
-        },      
+        },  
         changeDosenWali ()
         {
             this.btnLoading = true;
@@ -364,20 +364,20 @@ export default {
             }).catch(() => {
                 this.btnLoading = false;
             });
-        },    
+        },
         closedialogfrm() { 
-            this.dialogfrm = false;          
-            setTimeout(() => {       
-                this.formdata = Object.assign({}, this.formdefault);                              
+            this.dialogfrm = false;  
+            setTimeout(() => {
+                this.formdata = Object.assign({}, this.formdefault);     
                 this.data_mhs = Object.assign({}, {}); 
                 }, 300
             );
         },
     },
-    computed: {        
+    computed: { 
         ...mapGetters("auth", { 
-            ACCESS_TOKEN: "AccessToken",          
-            TOKEN: "Token",     
+            ACCESS_TOKEN: "AccessToken",   
+            TOKEN: "Token", 
         }),
     },
     components: {

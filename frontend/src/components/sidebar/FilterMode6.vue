@@ -7,19 +7,19 @@
                 item-text="text"
                 item-value="id"
                 label="PROGRAM STUDI"
-                outlined />            
+                outlined />   
             <v-select
                 v-model="tahun_akademik"
                 :items="daftar_ta"                
                 label="TAHUN AKADEMIK"
-                outlined />            
+                outlined />   
             <v-select
                 v-model="semester_akademik"
                 :items="daftar_semester"
                 item-text="text"
                 item-value="id"
                 label="SEMESTER"
-                outlined />            
+                outlined />   
         </v-list-item-content>
     </v-list-item>	
 </template>
@@ -29,7 +29,7 @@ export default {
     created()
     {
         this.daftar_prodi=this.$store.getters['uiadmin/getDaftarProdi'];
-        this.prodi_id=this.$store.getters["uiadmin/getProdiID"];                                  
+        this.prodi_id=this.$store.getters["uiadmin/getProdiID"];         
 
         this.daftar_ta = this.$store.getters['uiadmin/getDaftarTA'];
         this.tahun_akademik = this.$store.getters["uiadmin/getTahunAkademik"];
@@ -60,7 +60,7 @@ export default {
             if (!this.firstloading)
             {
                 this.$store.dispatch("uiadmin/updateTahunAkademik",val);
-                this.$emit("changeTahunAkademik",val);        
+                this.$emit("changeTahunAkademik",val);
             }            
         },
         prodi_id(val)
@@ -68,7 +68,7 @@ export default {
             if (!this.firstloading)
             {
                 this.$store.dispatch("uiadmin/updateProdi",val);
-                this.$emit("changeProdi",val);        
+                this.$emit("changeProdi",val);
             }
         },
         semester_akademik(val)
@@ -76,7 +76,7 @@ export default {
             if (!this.firstloading)
             {
                 this.$store.dispatch("uiadmin/updateSemesterAkademik",val);
-                this.$emit("changeSemesterAkademik",val);        
+                this.$emit("changeSemesterAkademik",val);
             }
         },
     }

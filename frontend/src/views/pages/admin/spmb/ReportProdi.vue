@@ -16,7 +16,7 @@
 						<v-icon>mdi-chevron-right</v-icon>
 					</template>
 				</v-breadcrumbs>
-			</template>            
+			</template>   
 			<template v-slot:desc>
 				<v-alert                                        
 					color="cyan"
@@ -77,19 +77,19 @@
 									<v-icon>
 										mdi-printer
 									</v-icon>
-								</v-btn>           
+								</v-btn>  
 							</v-toolbar>
 						</template>
-						<template v-slot:item.foto="{ item }">    
+						<template v-slot:item.foto="{ item }">
 							<v-badge
 									bordered
 									:color="badgeColor(item)"
 									:icon="badgeIcon(item)"
 									overlap
-								>                
+								>       
 									<v-avatar size="30">   
-										<v-img :src="$api.url+'/'+item.foto" />                                
-									</v-avatar>                                                             
+										<v-img :src="$api.url+'/'+item.foto" />                       
+									</v-avatar>                                                    
 							</v-badge>
 						</template>
 						<template v-slot:expanded-item="{ headers, item }">
@@ -107,7 +107,7 @@
 					</v-data-table>
 				</v-col>
 			</v-row>
-		</v-container>        
+		</v-container>   
 		<template v-slot:filtersidebar>
 			<Filter7 v-on:changeTahunPendaftaran="changeTahunPendaftaran" v-on:changeProdi="changeProdi" ref="filter7" />	
 		</template>
@@ -189,7 +189,7 @@
 									Authorization: this.$store.getters["auth/Token"],
 								}
 							})
-							.then(({ data }) => {    
+							.then(({ data }) => {  
 								this.datatable = data.pmb;
 								this.datatableLoading = false;
 							}); 
@@ -215,7 +215,7 @@
 				await this.$ajax
 					.post("/spmb/reportspmbprodi/printtoexcel",
 					{
-						TA: this.tahun_pendaftaran,   
+						TA: this.tahun_pendaftaran,
 						prodi_id: this.prodi_id,
 						nama_prodi: this.nama_prodi, 
 					},
@@ -225,7 +225,7 @@
 						},
 						responseType: "arraybuffer"
 					})
-					.then(({ data }) => {   
+					.then(({ data }) => { 
 						const url = window.URL.createObjectURL(new Blob([data]));
 						const link = document.createElement("a");
 						link.href = url;

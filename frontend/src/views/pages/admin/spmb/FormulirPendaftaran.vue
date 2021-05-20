@@ -81,21 +81,21 @@
                                     vertical
                                 ></v-divider>
                                 <v-spacer></v-spacer>
-                                <v-dialog v-model="dialogprofilmhsbaru" :fullscreen="true">                 
-                                    <ProfilMahasiswaBaru :item="datamhsbaru" v-on:closeProfilMahasiswaBaru="closeProfilMahasiswaBaru" />                 
+                                <v-dialog v-model="dialogprofilmhsbaru" :fullscreen="true">        
+                                    <ProfilMahasiswaBaru :item="datamhsbaru" v-on:closeProfilMahasiswaBaru="closeProfilMahasiswaBaru" />        
                                 </v-dialog>
                             </v-toolbar>
                         </template>
-                        <template v-slot:item.foto="{ item }">    
+                        <template v-slot:item.foto="{ item }">
                             <v-badge
                                     bordered
                                     :color="badgeColor(item)"
                                     :icon="badgeIcon(item)"
                                     overlap
-                                >                
+                                >       
                                     <v-avatar size="30">   
-                                        <v-img :src="$api.url+'/'+item.foto" />                                
-                                    </v-avatar>                                                             
+                                        <v-img :src="$api.url+'/'+item.foto" />                       
+                                    </v-avatar>                                                    
                             </v-badge>
                         </template>
                         <template v-slot:item.actions="{ item }">
@@ -127,7 +127,7 @@
                     </v-data-table>
                 </v-col>
             </v-row>
-        </v-container>        
+        </v-container>   
         <template v-slot:filtersidebar v-if="dashboard!='mahasiswabaru'">
             <Filter7 v-on:changeTahunPendaftaran="changeTahunPendaftaran" v-on:changeProdi="changeProdi" ref="filter7" />	
         </template>
@@ -165,7 +165,7 @@ export default {
         let prodi_id = this.$store.getters["uiadmin/getProdiID"];
         this.prodi_id = prodi_id;
         this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](prodi_id);
-        this.tahun_pendaftaran = this.$store.getters["uiadmin/getTahunPendaftaran"];              
+        this.tahun_pendaftaran = this.$store.getters["uiadmin/getTahunPendaftaran"];
         this.initialize()   
     },  
     data: () => ({
@@ -213,7 +213,7 @@ export default {
 
                 break;
                 default :
-                    this.datatableLoading = true;          
+                    this.datatableLoading = true;  
                     await this.$ajax.post("/spmb/formulirpendaftaran",
                     {
                         TA: this.tahun_pendaftaran,
@@ -223,10 +223,10 @@ export default {
                         headers: {
                             Authorization: this.$store.getters["auth/Token"]
                         }
-                    }).then(({ data }) => {    
-                        this.datatable = data.pmb;              
+                    }).then(({ data }) => {  
+                        this.datatable = data.pmb;
                         this.datatableLoading = false;
-                    });       
+                    });    
                     this.firstloading = false;
                     this.$refs.filter7.setFirstTimeLoading(this.firstloading); 
             }
@@ -236,7 +236,7 @@ export default {
         {
             if (item === this.expanded[0])
             {
-                this.expanded = [];              
+                this.expanded = [];
             }
             else
             {
@@ -262,7 +262,7 @@ export default {
         },
         closeProfilMahasiswaBaru ()
         {
-            this.dialogprofilmhsbaru = false;                    
+            this.dialogprofilmhsbaru = false;   
         }        
     },
     watch: {
@@ -284,7 +284,7 @@ export default {
     },
     components: {
         SPMBLayout,
-        ModuleHeader,        
+        ModuleHeader, 
         FormMhsBaru,
         ProfilMahasiswaBaru,
         Filter7    
