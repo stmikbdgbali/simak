@@ -127,7 +127,7 @@ class TransaksiPendaftaranMHSBaruController extends Controller {
 					
 					if (!($biaya_kombi > 0))
 					{
-							throw new Exception ("Komponen Biaya Pendaftaran (101) belum disetting pada TA $tahun");  
+							throw new Exception ("Komponen Biaya Pendaftaran (101) belum disetting pada TA $ta");  
 					}
 
 					$transaksi = \DB::transaction(function () use ($request,$formulir,$biaya_kombi){
