@@ -92,13 +92,13 @@
                         </template>
                         <template v-slot:item.idkelas="{item}">
                             {{$store.getters['uiadmin/getNamaKelas'](item.idkelas)}}
-                        </template>     
+                        </template>
                         <template v-slot:item.k_status="{item}">
                             {{$store.getters['uiadmin/getStatusMahasiswa'](item.k_status)}}
-                        </template>     
+                        </template>
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
-                                <v-col cols="12">       
+                                <v-col cols="12">  
                                     <strong>id:</strong>{{ item.user_id }}          
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
@@ -147,7 +147,7 @@ export default {
         let prodi_id = this.$store.getters["uiadmin/getProdiID"];
         this.prodi_id = prodi_id;
         this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](prodi_id);
-        this.tahun_pendaftaran = this.$store.getters["uiadmin/getTahunPendaftaran"];              
+        this.tahun_pendaftaran = this.$store.getters["uiadmin/getTahunPendaftaran"];
         this.initialize()
     },  
     data: () => ({ 
@@ -162,12 +162,12 @@ export default {
         expanded: [],
         datatable: [],
         headers: [
-            { text: "NO. FORMULIR", value: "no_formulir", sortable: true, width:150  },   
-            { text: "NIM", value: "nim", sortable: true, width:150  },   
-            { text: "NIRM", value: "nirm", sortable: true, width:150  },   
+            { text: "NO. FORMULIR", value: "no_formulir", sortable: true, width:150  },
+            { text: "NIM", value: "nim", sortable: true, width:150  },
+            { text: "NIRM", value: "nirm", sortable: true, width:150  },
             { text: "NAMA MAHASISWA", value: "nama_mhs", sortable: true },
-            { text: "KELAS", value: "idkelas", sortable: true, width: 120, },            
-            { text: "STATUS", value: "k_status", sortable: true, width: 120, },            
+            { text: "KELAS", value: "idkelas", sortable: true, width: 120, },     
+            { text: "STATUS", value: "k_status", sortable: true, width: 120, },     
         ],
         search: "",
     }),
@@ -192,7 +192,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {    
+            }).then(({ data }) => {  
                 this.datatable = data.mahasiswa;
                 this.datatableLoading = false;
             }).catch(() => {
@@ -205,7 +205,7 @@ export default {
         {
             if (item === this.expanded[0])
             {
-                this.expanded = [];              
+                this.expanded = [];
             }
             else
             {
@@ -217,9 +217,9 @@ export default {
             this.btnLoading = true;
             await this.$ajax.post("/akademik/kemahasiswaan/daftarmhs/printtoexcel",
                 {
-                    TA: this.tahun_pendaftaran,                       
-                    prodi_id: this.prodi_id,    
-                    nama_prodi: this.nama_prodi,     
+                    TA: this.tahun_pendaftaran,                
+                    prodi_id: this.prodi_id,
+                    nama_prodi: this.nama_prodi, 
                 },
                 {
                     headers: {
@@ -227,19 +227,19 @@ export default {
                     },
                     responseType: "arraybuffer"
                 }
-            ).then(({ data }) => {   
+            ).then(({ data }) => { 
                 const url = window.URL.createObjectURL(new Blob([data]));
                 const link = document.createElement("a");
                 link.href = url;
-                link.setAttribute("download", 'daftar_mahasiswa_'+Date.now() + ".xlsx");              
-                link.setAttribute("id", "download_laporan");              
+                link.setAttribute("download", 'daftar_mahasiswa_'+Date.now() + ".xlsx");
+                link.setAttribute("id", "download_laporan");
                 document.body.appendChild(link);
-                link.click();                   
+                link.click();  
                 document.body.removeChild(link);
                 this.btnLoading = false;
             }).catch(() => {
                 this.btnLoading = false;
-            });   
+            });
         },
         syncPermission: async function()
         {
@@ -247,7 +247,7 @@ export default {
             await this.$ajax.post("/system/users/syncallpermissions",
                 {
                     role_name: "mahasiswa",
-                    TA: this.tahun_pendaftaran,        
+                    TA: this.tahun_pendaftaran, 
                     prodi_id: this.prodi_id                     
                 },
                 {
@@ -255,11 +255,11 @@ export default {
                         Authorization: this.$store.getters["auth/Token"]
                     }
                 }
-            ).then(() => {     
+            ).then(() => {   
                 this.btnLoading = false;
             }).catch(() => {
                 this.btnLoading = false;
-            });   
+            });
         },
     },
     watch: {
@@ -281,7 +281,7 @@ export default {
     },
     components: {
         AkademikLayout,
-        ModuleHeader,    
+        ModuleHeader,
         Filter7               
     },
 }

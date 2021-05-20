@@ -29,7 +29,7 @@
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>
-                        <v-card>         
+                        <v-card>
                             <v-card-text>
                                 <v-row>
                                     <v-col xs="12" sm="6" md="6">
@@ -104,23 +104,23 @@ export default {
     data: () => ({
         breadcrumbs: [],
         datatableLoading: false,
-        btnLoading: false,   
+        btnLoading: false,
         //form
         form_valid: true,
         currentBox: "dmaster",
-        color: "#fff",          
+        color: "#fff",   
         formdata: {
-            dmaster: null,           
-            perencanaan: null,           
-            spmb: null,           
-            keuangan: null,           
-            akademik: null,           
-            kemahasiswaan: null,           
-            elearning: null,           
-            user_sistem: null,           
-            konfigurasi_sistem: null,           
-            migrasi_sistem: null,           
-        },    
+            dmaster: null,    
+            perencanaan: null,    
+            spmb: null,    
+            keuangan: null,    
+            akademik: null,    
+            kemahasiswaan: null,    
+            elearning: null,    
+            user_sistem: null,    
+            konfigurasi_sistem: null,    
+            migrasi_sistem: null,    
+        },
     }),
     methods: {
         initialize: async function() 
@@ -131,21 +131,21 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data }) => {  
-                let setting = JSON.parse(data.setting.COLOR_DASHBOARD);            
-                this.showColor=setting.dmaster;                           
-                this.formdata.dmaster=setting.dmaster;          
-                this.formdata.perencanaan=setting.perencanaan;          
-                this.formdata.spmb=setting.spmb;          
-                this.formdata.keuangan=setting.keuangan;          
-                this.formdata.akademik=setting.akademik;          
-                this.formdata.kemahasiswaan=setting.kemahasiswaan;          
-                this.formdata.elearning=setting.elearning;          
-                this.formdata.user_sistem=setting.user_sistem;          
-                this.formdata.konfigurasi_sistem=setting.konfigurasi_sistem;          
-                this.formdata.migrasi_sistem=setting.migrasi_sistem;          
+            }).then(({ data }) => {
+                let setting = JSON.parse(data.setting.COLOR_DASHBOARD); 
+                this.showColor=setting.dmaster;  
+                this.formdata.dmaster=setting.dmaster;  
+                this.formdata.perencanaan=setting.perencanaan;  
+                this.formdata.spmb=setting.spmb;  
+                this.formdata.keuangan=setting.keuangan;  
+                this.formdata.akademik=setting.akademik;  
+                this.formdata.kemahasiswaan=setting.kemahasiswaan;  
+                this.formdata.elearning=setting.elearning;  
+                this.formdata.user_sistem=setting.user_sistem;  
+                this.formdata.konfigurasi_sistem=setting.konfigurasi_sistem;  
+                this.formdata.migrasi_sistem=setting.migrasi_sistem;  
             
-            });        
+            });
             
         },
         save() {
@@ -159,31 +159,31 @@ export default {
                     break;
                     case 'perencanaan':
                         this.formdata.perencanaan=this.showColor;
-                    break;                  
+                    break; 
                     case 'spmb':
-                        this.formdata.spmb=this.showColor;            
+                        this.formdata.spmb=this.showColor; 
                     break;
                     case 'keuangan':
-                        this.formdata.keuangan=this.showColor;               
+                        this.formdata.keuangan=this.showColor; 
                     break;
                     case 'kemahasiswaan':
-                        this.formdata.kemahasiswaan=this.showColor;             
+                        this.formdata.kemahasiswaan=this.showColor;  
                     break;
                     case 'akademik':
-                        this.formdata.akademik=this.showColor;             
+                        this.formdata.akademik=this.showColor;  
                     break;
                     case 'elearning':
-                        this.formdata.elearning=this.showColor;              
+                        this.formdata.elearning=this.showColor;
                     break;
                     case 'user_sistem':
-                        this.formdata.user_sistem=this.showColor;             
+                        this.formdata.user_sistem=this.showColor;  
                     break;
                     case 'konfigurasi_sistem':
                         this.formdata.konfigurasi_sistem=this.showColor; 
                     break;
                     case 'migrasi_sistem':
-                        this.formdata.migrasi_sistem=this.showColor;                
-                    break;              
+                        this.formdata.migrasi_sistem=this.showColor;  
+                    break;
                 }
                             
                 this.$ajax.post("/system/setting/variables",
@@ -191,32 +191,32 @@ export default {
                         _method: "PUT", 
                         'pid': "Color Dashboard",
                         setting: JSON.stringify({
-                            807: this.formdata,                
-                        }),                                                                                   
+                            807: this.formdata,         
+                        }),                                                                            
                     },
                     {
                         headers: {
                             Authorization: this.TOKEN
                         }
                     }
-                ).then(() => {         
+                ).then(() => {
                     this.btnLoading = false;
                 }).catch(() => {
                     this.btnLoading = false;
-                });      
+                });   
                 this.$store.dispatch("uiadmin/init",this.$ajax); 
             }
         }
     },
     computed: { 
         ...mapGetters("auth", { 
-            ACCESS_TOKEN: "AccessToken",          
-            TOKEN: "Token",     
+            ACCESS_TOKEN: "AccessToken",   
+            TOKEN: "Token", 
         }),
         showColor: {
             set(val)
             {
-                this.color=val;              
+                this.color=val;
             },
             get()
             {
@@ -234,38 +234,38 @@ export default {
                     this.showColor=this.formdata.dmaster;
                 break;
                 case 'perencanaan':
-                    this.showColor=this.formdata.perencanaan;               
-                break;                  
+                    this.showColor=this.formdata.perencanaan; 
+                break; 
                 case 'spmb':
-                    this.showColor=this.formdata.spmb;               
+                    this.showColor=this.formdata.spmb; 
                 break;
                 case 'keuangan':
-                    this.showColor=this.formdata.keuangan;               
+                    this.showColor=this.formdata.keuangan; 
                 break;
                 case 'akademik':
-                    this.showColor=this.formdata.akademik;               
+                    this.showColor=this.formdata.akademik; 
                 break;
                 case 'kemahasiswaan':
-                    this.showColor=this.formdata.kemahasiswaan;               
+                    this.showColor=this.formdata.kemahasiswaan; 
                 break;
                 case 'elearning':
-                    this.showColor=this.formdata.elearning;               
+                    this.showColor=this.formdata.elearning; 
                 break;
                 case 'user_sistem':
-                    this.showColor=this.formdata.user_sistem;               
+                    this.showColor=this.formdata.user_sistem; 
                 break;
                 case 'konfigurasi_sistem':
-                    this.showColor=this.formdata.konfigurasi_sistem;               
+                    this.showColor=this.formdata.konfigurasi_sistem; 
                 break;
                 case 'migrasi_sistem':
-                    this.showColor=this.formdata.migrasi_sistem;               
-                break;              
+                    this.showColor=this.formdata.migrasi_sistem; 
+                break;
             }
         }
     },
     components: {
 		SystemConfigLayout,
-        ModuleHeader,        
+        ModuleHeader, 
 	}
 }
 </script>

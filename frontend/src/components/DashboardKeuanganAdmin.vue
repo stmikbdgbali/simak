@@ -1,5 +1,5 @@
 <template>
-    <v-container fluid>            
+    <v-container fluid>   
         <v-row dense>
             <v-col xs="12" sm="4" md="3">
                 <v-card                         
@@ -9,7 +9,7 @@
                     dark>
                     <v-card-title class="headline">
                         TOTAL
-                    </v-card-title>    
+                    </v-card-title>
                     <v-card-subtitle>
                         Total transaksi keseluruhan
                     </v-card-subtitle>
@@ -27,7 +27,7 @@
                     dark>
                     <v-card-title class="headline">
                         PAID
-                    </v-card-title>    
+                    </v-card-title>
                     <v-card-subtitle>
                         Total transaksi dengan status PAID
                     </v-card-subtitle>
@@ -45,7 +45,7 @@
                     dark>
                     <v-card-title class="headline">
                         UNPAID
-                    </v-card-title>    
+                    </v-card-title>
                     <v-card-subtitle>
                         Total transaksi dengan status UNPAID
                     </v-card-subtitle>
@@ -63,7 +63,7 @@
                     dark>
                     <v-card-title class="headline">
                         CANCELLED
-                    </v-card-title>    
+                    </v-card-title>
                     <v-card-subtitle>
                         Total transaksi dengan status CANCELLED
                     </v-card-subtitle>
@@ -92,18 +92,18 @@
                             :hide-default-footer="true"
                             :headers="headers"
                             :items="kombi_ganjil_paid"> 
-                            <template v-slot:item.jumlah="{ item }">         
+                            <template v-slot:item.jumlah="{ item }">
                                 {{  item.jumlah|formatUang }}
-                            </template>    
+                            </template>
                             <template v-slot:body.append v-if="kombi_ganjil_paid.length > 0">
                                 <tr class="grey lighten-4 font-weight-black">
                                     <td class="text-right">TOTAL</td>
-                                    <td class="text-right">{{totalKombiGanjilPaid|formatUang}}</td>                                           
+                                    <td class="text-right">{{totalKombiGanjilPaid|formatUang}}</td>                                  
                                 </tr>
                             </template>
-                            <template v-slot:no-data>         
+                            <template v-slot:no-data>
                                 belum ada transaksi dengan status PAID.
-                            </template>        
+                            </template>   
                         </v-data-table>
                     </v-card-text>
                 </v-card> 
@@ -126,25 +126,25 @@
                             :hide-default-footer="true"
                             :headers="headers"
                             :items="kombi_genap_paid"> 
-                            <template v-slot:item.jumlah="{ item }">         
+                            <template v-slot:item.jumlah="{ item }">
                                 {{  item.jumlah|formatUang }}
-                            </template>    
+                            </template>
                             <template v-slot:body.append v-if="kombi_genap_paid.length > 0">
                                 <tr class="grey lighten-4 font-weight-black">
                                     <td class="text-right">TOTAL</td>
-                                    <td class="text-right">{{totalKombiGenapPaid|formatUang}}</td>                                           
+                                    <td class="text-right">{{totalKombiGenapPaid|formatUang}}</td>                                  
                                 </tr>
                             </template>
-                            <template v-slot:no-data>         
+                            <template v-slot:no-data>
                                 belum ada transaksi dengan status PAID.
-                            </template>        
+                            </template>   
                         </v-data-table>
                     </v-card-text>
                 </v-card>
             </v-col>
             <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>  
         </v-row>
-    </v-container>    
+    </v-container>
 </template>
 <script>
 export default {
@@ -185,20 +185,20 @@ export default {
     methods: {
         initialize: async function()
 		{	
-            this.datatableLoading=true;          
+            this.datatableLoading=true;  
             await this.$ajax.post("/dashboard/keuangan",
             {
-                TA: this.ta,    
+                TA: this.ta,
             },
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {      
+            }).then(({ data }) => {    
                 this.total_transaction=data.total_transaction;
-                this.total_transaction_paid=data.total_transaction_paid;        
-                this.total_transaction_unpaid=data.total_transaction_unpaid;        
-                this.total_transaction_cancelled=data.total_transaction_cancelled;        
+                this.total_transaction_paid=data.total_transaction_paid;
+                this.total_transaction_unpaid=data.total_transaction_unpaid;
+                this.total_transaction_cancelled=data.total_transaction_cancelled;
 
                 this.kombi_ganjil_unpaid=data.kombi_ganjil_unpaid;
                 this.kombi_genap_unpaid=data.kombi_genap_unpaid;
@@ -212,17 +212,17 @@ export default {
                 this.datatableLoading=false;
             }).catch(() => {
                 this.datatableLoading=false;
-            });           
+            });
 
         }
     },
-    computed: {        
+    computed: { 
         totalKombiGanjilPaid()
         {
-            var total = 0;          
+            var total = 0;  
             for (var i =0; i < this.kombi_ganjil_paid.length; i++)
             {
-                var item = this.kombi_ganjil_paid[i];                              
+                var item = this.kombi_ganjil_paid[i];     
                 total = total + parseFloat(item.jumlah);
             }           
             return total;

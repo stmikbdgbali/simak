@@ -28,7 +28,7 @@
                 </v-alert>
             </template>
         </ModuleHeader>  
-        <v-container fluid>             
+        <v-container fluid>    
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
                     <v-card>
@@ -79,13 +79,13 @@
                                     v-if="$store.getters['auth/can']('DMASTER-PERSYARATAN-PMB_STORE')">
                                     TAMBAH
                                 </v-btn>
-                                <v-dialog v-model="dialogfrm" max-width="500px" persistent>                 
+                                <v-dialog v-model="dialogfrm" max-width="500px" persistent>        
                                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>
                                         <v-card>
                                             <v-card-title>
                                                 <span class="headline">{{ formTitle }}</span>
                                             </v-card-title>
-                                            <v-card-text>                                                                 
+                                            <v-card-text>                                                        
                                                 <v-text-field 
                                                     v-model="formdata.nama_persyaratan" 
                                                     label="NAMA PERSYARATAN"
@@ -133,7 +133,7 @@
                                                     </v-card>
                                                 </v-col>
                                                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
-                                            </v-row>       
+                                            </v-row>  
                                             <v-row no-gutters>
                                                 <v-col xs="12" sm="6" md="6">
                                                     <v-card flat>
@@ -143,7 +143,7 @@
                                                         </v-card-subtitle>
                                                     </v-card>
                                                 </v-col>
-                                                <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>           
+                                                <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>  
                                                 <v-col xs="12" sm="6" md="6">
                                                     <v-card flat>
                                                         <v-card-title>CREATED :</v-card-title>
@@ -153,7 +153,7 @@
                                                     </v-card>
                                                 </v-col>
                                                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
-                                            </v-row>       
+                                            </v-row>  
                                             <v-row no-gutters>
                                                 <v-col xs="12" sm="6" md="6">
                                                     <v-card flat>
@@ -163,7 +163,7 @@
                                                         </v-card-subtitle>
                                                     </v-card>
                                                 </v-col>
-                                                <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>           
+                                                <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>  
                                                 <v-col xs="12" sm="6" md="6">
                                                     <v-card flat>
                                                         <v-card-title>UPDATED :</v-card-title>
@@ -173,21 +173,21 @@
                                                     </v-card>
                                                 </v-col>
                                                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
-                                            </v-row>                     
+                                            </v-row>            
                                         </v-card-text>
                                         <v-card-actions>
                                             <v-spacer></v-spacer>
                                             <v-btn color="blue darken-1" text @click.stop="closedialogdetailitem">KELUAR</v-btn>
                                         </v-card-actions>
-                                    </v-card>                 
+                                    </v-card>        
                                 </v-dialog>
-                                <v-dialog v-model="dialogcopypersyaratan" max-width="500px" persistent>     
+                                <v-dialog v-model="dialogcopypersyaratan" max-width="500px" persistent>
                                     <v-form ref="frmdialogcopypersyaratan" v-model="form_valid" lazy-validation>
                                         <v-card>
                                             <v-card-title>
                                                 <span class="headline">SALIN PERSYARATAN PMB</span>
-                                            </v-card-title>       
-                                            <v-card-text>       
+                                            </v-card-title>  
+                                            <v-card-text>  
                                                 <v-alert
                                                     class="info"
                                                     dark>
@@ -200,7 +200,7 @@
                                                     :rules="rule_dari_tahun_pendaftaran"
                                                     outlined />   
                                             </v-card-text>
-                                            <v-card-actions>           
+                                            <v-card-actions>  
                                                 <v-spacer></v-spacer>
                                                     <v-btn color="blue darken-1" text @click.stop="closedialogsalinpersyaratan">BATAL</v-btn>
                                                     <v-btn 
@@ -240,13 +240,13 @@
                         </template>
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
-                                <v-col cols="12">       
+                                <v-col cols="12">  
                                     <strong>ID:</strong>{{ item.id }}          
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
                                 </v-col>
                             </td>
-                        </template>     
+                        </template>
                         <template v-slot:no-data>
                             Data belum tersedia
                         </template>
@@ -283,20 +283,20 @@ export default {
                 disabled: true,
                 href: "#"
             }
-        ];      
-        this.tahun_pendaftaran = this.$store.getters["uiadmin/getTahunPendaftaran"];              
+        ];   
+        this.tahun_pendaftaran = this.$store.getters["uiadmin/getTahunPendaftaran"];
         this.initialize()
     },  
     data: () => ({ 
-        firstloading: true,       
-        tahun_pendaftaran: null,       
+        firstloading: true,
+        tahun_pendaftaran: null,
 
         btnLoading: false,
         datatableLoading: false,
         expanded: [],
         datatable: [],
         headers: [
-            { text: "PROSES", value: "proses", sortable: true, width: 120  },   
+            { text: "PROSES", value: "proses", sortable: true, width: 120  },
             { text: "NAMA PERSYARATAN", value: "nama_persyaratan", sortable: true },
             { text: "TA", value: "ta", sortable: true, width: 80, align: "center" },
             { text: "AKSI", value: "actions", sortable: false, width: 100 },
@@ -311,18 +311,18 @@ export default {
         //form data   
         form_valid: true,
         daftar_ta: [],
-        dari_tahun_pendaftaran: null,         
+        dari_tahun_pendaftaran: null,  
         formdata: {
-            id: "",       
-            proses: "pmb",            
-            nama_persyaratan: null,           
+            id: "",
+            proses: "pmb",     
+            nama_persyaratan: null,    
             prodi_id: null,
             ta: "",  
         },
         formdefault: {
-            id: "",       
+            id: "",
             proses: "pmb",
-            nama_persyaratan: null,           
+            nama_persyaratan: null,    
             prodi_id: null,
             ta: "",  
         },
@@ -340,7 +340,7 @@ export default {
         ChangeTahunPendaftaran (tahun)
         {
             this.tahun_pendaftaran = tahun;
-        },    
+        },
         initialize: async function() 
         {
             this.datatableLoading = true;
@@ -352,7 +352,7 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data }) => {    
+            }).then(({ data }) => {  
                 this.datatable = data.persyaratan;
                 this.datatableLoading = false;
             }).catch(() => {
@@ -365,7 +365,7 @@ export default {
         {
             if (item === this.expanded[0])
             {
-                this.expanded = [];              
+                this.expanded = [];
             }
             else
             {
@@ -373,15 +373,15 @@ export default {
             }               
         },
         tambahItem: async function()
-        {   
+        { 
             this.dialogfrm = true;
         },
         viewItem(item) {
-            this.formdata = item;             
-            this.dialogdetailitem = true;                    
+            this.formdata = item;  
+            this.dialogdetailitem = true;   
         },
         editItem: async function(item) { 
-            this.editedIndex = this.datatable.indexOf(item);                
+            this.editedIndex = this.datatable.indexOf(item);  
             this.formdata = item;  
             this.dialogfrm = true
         },
@@ -390,7 +390,7 @@ export default {
             let list_ta = this.$store.getters['uiadmin/getDaftarTA'];
             for (var i =0; i < list_ta.length; i++)
             {
-                var item = list_ta[i];                
+                var item = list_ta[i];  
                 if (this.tahun_pendaftaran!=item.value)
                 {
                     this.daftar_ta.push({
@@ -409,8 +409,8 @@ export default {
                 {
                     await this.$ajax.post("/datamaster/persyaratan/" + this.formdata.id,
                         {
-                            _method: "PUT",                
-                            nama_persyaratan: this.formdata.nama_persyaratan,                                   
+                            _method: "PUT",         
+                            nama_persyaratan: this.formdata.nama_persyaratan,                            
                         },
                         {
                             headers: {
@@ -420,17 +420,17 @@ export default {
                     ).then(() => {
                         this.initialize();
                         this.btnLoading = false;
-                        this.closedialogfrm();                      
+                        this.closedialogfrm();
                     }).catch(() => {
                         this.btnLoading = false;
-                    });               
+                    }); 
                     
-                } else {         
+                } else {
                     await this.$ajax.post("/datamaster/persyaratan/store",
                         {
-                            proses: this.formdata.proses,           
-                            nama_persyaratan: this.formdata.nama_persyaratan,                                                              
-                            ta: this.tahun_pendaftaran,        
+                            proses: this.formdata.proses,    
+                            nama_persyaratan: this.formdata.nama_persyaratan,                                                       
+                            ta: this.tahun_pendaftaran, 
                         },
                         {
                             headers: {
@@ -438,7 +438,7 @@ export default {
                             }
                         }
                     ).then(() => {
-                        this.initialize();                
+                        this.initialize();  
                         this.btnLoading = false;
                         this.closedialogfrm();
                     }).catch(() => {
@@ -462,13 +462,13 @@ export default {
                             Authorization: this.TOKEN
                         }
                     }
-                ).then(({ data }) => {   
+                ).then(({ data }) => { 
                     this.datatable=data.persyaratan;
                     this.btnLoading = false;
                     this.closedialogsalinpersyaratan();
                 }).catch(() => {
                     this.btnLoading = false;
-                });          
+                });  
             }
         },
         deleteItem(item) {
@@ -496,7 +496,7 @@ export default {
             });
         },
         closedialogdetailitem() {
-            this.dialogdetailitem = false;          
+            this.dialogdetailitem = false;  
             setTimeout(() => {
                 this.formdata = Object.assign({}, this.formdefault)
                 this.editedIndex = -1
@@ -504,31 +504,31 @@ export default {
             );
         },
         closedialogfrm() {
-            this.dialogfrm = false;          
-            setTimeout(() => {                   
-                this.$refs.frmdata.resetValidation();                               
+            this.dialogfrm = false;  
+            setTimeout(() => {          
+                this.$refs.frmdata.resetValidation();      
                 this.formdata = Object.assign({}, this.formdefault);
                 this.editedIndex = -1
                 }, 300
             );
         },
-        closedialogsalinpersyaratan () {            
+        closedialogsalinpersyaratan () {   
             this.dialogcopypersyaratan = false; 
-            setTimeout(() => {     
-                this.$refs.frmdialogcopypersyaratan.reset();                               
+            setTimeout(() => {   
+                this.$refs.frmdialogcopypersyaratan.reset();      
                 this.editedIndex = -1
                 }, 300
-            );         
+            ); 
         },
     },
     computed: {
         ...mapGetters("auth", { 
-            ACCESS_TOKEN: "AccessToken",          
-            TOKEN: "Token",     
+            ACCESS_TOKEN: "AccessToken",   
+            TOKEN: "Token", 
         }),
         formTitle() {
             return this.editedIndex === -1 ? "TAMBAH PERSYARATAN PMB" : "UBAH PERSYARATAN PMB";
-        },     
+        }, 
     },
     watch: {
         tahun_pendaftaran()
@@ -537,7 +537,7 @@ export default {
             {
                 this.initialize();
             }            
-        },    
+        },
     },
     components: {
         DataMasterLayout,

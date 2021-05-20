@@ -143,7 +143,7 @@
                                                     </v-card>
                                                 </v-col>
                                                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
-                                            </v-row>       
+                                            </v-row>  
                                             <v-row no-gutters>
                                                 <v-col xs="12" sm="6" md="6">
                                                     <v-card flat>
@@ -163,7 +163,7 @@
                                                     </v-card>
                                                 </v-col>
                                                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
-                                            </v-row>       
+                                            </v-row>  
                                             <v-row no-gutters>
                                                 <v-col xs="12" sm="6" md="6">
                                                     <v-card flat>
@@ -183,13 +183,13 @@
                                                     </v-card>
                                                 </v-col>
                                                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
-                                            </v-row>       
+                                            </v-row>  
                                         </v-card-text>
                                         <v-card-actions>
                                             <v-spacer></v-spacer>
                                             <v-btn color="blue darken-1" text @click.stop="closedialogdetailitem">KELUAR</v-btn>
                                         </v-card-actions>
-                                    </v-card>                 
+                                    </v-card>        
                                 </v-dialog>
                             </v-toolbar>
                         </template>
@@ -264,10 +264,10 @@ export default {
         expanded: [],
         datatable: [],
         headers: [
-            { text: "NAMA BANK", value: "nama_bank", width: 350 },   
-            { text: "CABANG", value: "nama_cabang" },   
-            { text: "NOMOR REKENING", value: "nomor_rekening" },   
-            { text: "PEMILIK REKENING", value: "pemilik_rekening" },   
+            { text: "NAMA BANK", value: "nama_bank", width: 350 },
+            { text: "CABANG", value: "nama_cabang" },
+            { text: "NOMOR REKENING", value: "nomor_rekening" },
+            { text: "PEMILIK REKENING", value: "pemilik_rekening" },
             { text: "AKSI", value: "actions", sortable: false, width: 100 },
         ],
         search: "",
@@ -277,23 +277,23 @@ export default {
         dialogdetailitem: false,
 
         //form data           
-        form_valid: true,        
+        form_valid: true, 
         formdata: {
-            id: "",       
-            nama_bank: "",       
-            nama_cabang: "",       
-            nomor_rekening: "",       
-            pemilik_rekening: "",       
-            created_at: "",       
-            updated_at: "",       
+            id: "",
+            nama_bank: "",
+            nama_cabang: "",
+            nomor_rekening: "",
+            pemilik_rekening: "",
+            created_at: "",
+            updated_at: "",
         },
         formdefault: {
-            id: "",       
-            nama_bank: "",       
-            nama_cabang: "",       
-            nomor_rekening: "",       
-            pemilik_rekening: "",       
-            created_at: "",       
+            id: "",
+            nama_bank: "",
+            nama_cabang: "",
+            nomor_rekening: "",
+            pemilik_rekening: "",
+            created_at: "",
             updated_at: "",  
         },
         editedIndex: -1,
@@ -301,19 +301,19 @@ export default {
         //form rules  
         rule_nama_bank: [
             value => !!value || "Mohon untuk di isi nama bank !!!",  
-            value => /^[A-Za-z\s]*$/.test(value) || "Nama bank hanya boleh string dan spasi",    
+            value => /^[A-Za-z\s]*$/.test(value) || "Nama bank hanya boleh string dan spasi",
         ],
         rule_nama_cabang: [
             value => !!value || "Mohon untuk di isi nama cabang bank !!!",  
-            value => /^[A-Za-z\s]*$/.test(value) || "Nama cabang bank hanya boleh string dan spasi",    
+            value => /^[A-Za-z\s]*$/.test(value) || "Nama cabang bank hanya boleh string dan spasi",
         ],
         rule_no_rekening: [
-            value => !!value || "Mohon untuk di isi nomor rekening !!!",         
+            value => !!value || "Mohon untuk di isi nomor rekening !!!",  
             value => /^[0-9]+$/.test(value) || "Nomor rekening hanya boleh angka",
         ],
         rule_pemilik: [
             value => !!value || "Mohon untuk di isi nama pemilik rekening !!!",  
-            value => /^[A-Za-z\s]*$/.test(value) || "Nama pemilik rekening hanya boleh string dan spasi",    
+            value => /^[A-Za-z\s]*$/.test(value) || "Nama pemilik rekening hanya boleh string dan spasi",
         ],
     }),
     methods: {
@@ -324,7 +324,7 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data }) => {    
+            }).then(({ data }) => {  
                 this.datatable = data.bank;
                 this.datatableLoading = false;
             }).catch(() => {
@@ -335,7 +335,7 @@ export default {
         {
             if (item === this.expanded[0])
             {
-                this.expanded = [];              
+                this.expanded = [];
             }
             else
             {
@@ -344,11 +344,11 @@ export default {
         },
         viewItem(item) {
             this.formdata = item;  
-            this.dialogdetailitem = true;                
+            this.dialogdetailitem = true;  
         },
         editItem(item) {
             this.editedIndex = this.datatable.indexOf(item);
-            this.formdata = Object.assign({}, item);          
+            this.formdata = Object.assign({}, item);  
             this.dialogfrm = true
         },
         save: async function() {
@@ -360,38 +360,38 @@ export default {
                     await this.$ajax.post("/keuangan/transferbank/" + this.formdata.id,
                         {
                             _method: "PUT",
-                            nama_bank: this.formdata.nama_bank,    
-                            nama_cabang: this.formdata.nama_cabang,    
-                            nomor_rekening: this.formdata.nomor_rekening,    
-                            pemilik_rekening: this.formdata.pemilik_rekening,    
+                            nama_bank: this.formdata.nama_bank,
+                            nama_cabang: this.formdata.nama_cabang,
+                            nomor_rekening: this.formdata.nomor_rekening,
+                            pemilik_rekening: this.formdata.pemilik_rekening,
                         },
                         {
                             headers: {
                                 Authorization: this.TOKEN
                             }
                         }
-                    ).then(({ data }) => {   
+                    ).then(({ data }) => { 
                         Object.assign(this.datatable[this.editedIndex],data.bank);
                         this.closedialogfrm();
                         this.btnLoading = false;
                     }).catch(() => {
                         this.btnLoading = false;
-                    });               
+                    }); 
                     
                 } else {
                     await this.$ajax.post("/keuangan/transferbank/store",
                         {
-                            nama_bank: this.formdata.nama_bank,    
-                            nama_cabang: this.formdata.nama_cabang,    
-                            nomor_rekening: this.formdata.nomor_rekening,    
-                            pemilik_rekening: this.formdata.pemilik_rekening,    
+                            nama_bank: this.formdata.nama_bank,
+                            nama_cabang: this.formdata.nama_cabang,
+                            nomor_rekening: this.formdata.nomor_rekening,
+                            pemilik_rekening: this.formdata.pemilik_rekening,
                         },
                         {
                             headers: {
                                 Authorization: this.TOKEN
                             }
                         }
-                    ).then(({ data }) => {   
+                    ).then(({ data }) => { 
                         this.datatable.push(data.bank);
                         this.closedialogfrm();
                         this.btnLoading = false;
@@ -426,7 +426,7 @@ export default {
             });
         },
         closedialogdetailitem() {
-            this.dialogdetailitem = false;          
+            this.dialogdetailitem = false;  
             setTimeout(() => {
                 this.formdata = Object.assign({}, this.formdefault)
                 this.editedIndex = -1
@@ -434,7 +434,7 @@ export default {
             );
         },
         closedialogfrm() { 
-            this.dialogfrm = false;          
+            this.dialogfrm = false;  
             setTimeout(() => {
                 this.formdata = Object.assign({}, this.formdefault);
                 this.$refs.frmdata.reset(); 
@@ -445,16 +445,16 @@ export default {
     },
     computed: {
         ...mapGetters("auth", { 
-            ACCESS_TOKEN: "AccessToken",          
-            TOKEN: "Token",     
+            ACCESS_TOKEN: "AccessToken",   
+            TOKEN: "Token", 
         }),
         formTitle() {
             return this.editedIndex === -1 ? "TAMBAH DATA" : "UBAH DATA"
-        },    
+        },
     },
     components: {
         KeuanganLayout,
-        ModuleHeader,        
+        ModuleHeader, 
     },
 
 }

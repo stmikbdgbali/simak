@@ -24,8 +24,8 @@
                     Halaman ini untuk melakukan pengelolaan data dosen. Namun untuk menghapus dan menambah di halaman user dosen.
                 </v-alert>
             </template>
-        </ModuleHeader>       
-        <v-container fluid>    
+        </ModuleHeader>  
+        <v-container fluid>
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
                     <v-card>
@@ -65,14 +65,14 @@
                                     inset
                                     vertical
                                 ></v-divider>
-                                <v-spacer></v-spacer>              
+                                <v-spacer></v-spacer>     
                                 <v-dialog v-model="dialogEdit" max-width="700px" persistent>
                                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>
                                         <v-card>
                                             <v-card-title>
                                                 <span class="headline">UBAH DATA DOSEN</span>
-                                            </v-card-title>       
-                                            <v-card-text>                                                           
+                                            </v-card-title>  
+                                            <v-card-text>                                                  
                                                 <v-row>
                                                     <v-col cols="3">
                                                         <v-text-field 
@@ -101,13 +101,13 @@
                                                     v-model="editedItem.nidn" 
                                                     label="NIDN (NOMOR INDUK DOSEN NASIONAL)"
                                                     outlined>
-                                                </v-text-field>                                                          
+                                                </v-text-field>                                                 
                                                 <v-text-field 
                                                     v-model="editedItem.nipy" 
                                                     label="NIPY (NOMOR INDUK PEGAWAI YAYASAN)"
                                                     outlined
                                                     :rules="rule_nipy">
-                                                </v-text-field>     
+                                                </v-text-field>
                                                 <v-select 
                                                     v-model="editedItem.id_jabatan" 
                                                     label="JABATAN AKADEMIK"
@@ -115,7 +115,7 @@
                                                     item-text="nama_jabatan"
                                                     item-value="id_jabatan"                                                    
                                                     outlined>
-                                                </v-select>    
+                                                </v-select>
                                                 <v-text-field 
                                                     v-model="editedItem.email" 
                                                     label="EMAIL"
@@ -127,7 +127,7 @@
                                                     label="NOMOR HP"
                                                     outlined
                                                     :rules="rule_user_nomorhp">
-                                                </v-text-field>           
+                                                </v-text-field>  
                                             </v-card-text>
                                             <v-card-actions>
                                                 <v-spacer></v-spacer>
@@ -141,15 +141,15 @@
                                             </v-card-actions>
                                         </v-card>
                                     </v-form>
-                                </v-dialog>                
+                                </v-dialog>       
                             </v-toolbar>
                         </template>
                         <template v-slot:item.nidn="{ item }">
                             {{(item.nidn && item.nidn.length > 0) > 0 ? item.nidn: "N.A'}}
                         </template>
-                        <template v-slot:item.actions="{ item }">      
-                            <v-tooltip bottom>             
-                                <template v-slot:activator="{ on, attrs }">        
+                        <template v-slot:item.actions="{ item }"> 
+                            <v-tooltip bottom>    
+                                <template v-slot:activator="{ on, attrs }">   
                                     <v-btn 
                                         v-bind="attrs"
                                         v-on="on"
@@ -161,15 +161,15 @@
                                         
                                         :disabled="btnLoading">
                                         <v-icon>mdi-pencil</v-icon>
-                                    </v-btn>     
+                                    </v-btn>
                                 </template>
-                                <span>Ubah data user dosen</span>                
-                            </v-tooltip>           
+                                <span>Ubah data user dosen</span>       
+                            </v-tooltip>  
                         </template>
-                        <template v-slot:item.foto="{ item }">         
+                        <template v-slot:item.foto="{ item }">
                             <v-avatar size="30">
-                                <v-img :src="$api.url+'/'+item.foto" />             
-                            </v-avatar>                                                             
+                                <v-img :src="$api.url+'/'+item.foto" />    
+                            </v-avatar>                                                    
                         </template>
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
@@ -219,12 +219,12 @@ export default {
         this.initialize()
     },  
    
-    data: () => ({         
+    data: () => ({  
         datatableLoading: false,
-        btnLoading: false,      
+        btnLoading: false,  
         //tables
         headers: [
-            { text: "",value: "foto" },        
+            { text: "",value: "foto" }, 
             { text: "NAMA DOSEN", value: "nama_dosen", sortable: true, width:250 },
             { text: "NIDN", value: "nidn", sortable: true }, 
             { text: "NIPY", value: "nipy", sortable: true }, 
@@ -234,59 +234,59 @@ export default {
         ],
         expanded: [],
         search: "",
-        daftar_dosen: [],    
+        daftar_dosen: [],
         
         //form
-        form_valid: true,       
-        dialogEdit: false,           
-        editedIndex: -1,      
+        form_valid: true,
+        dialogEdit: false,    
+        editedIndex: -1,  
         daftar_jabatan: [],
         editedItem: {
             id: 0,
-            username: "",      
-            name: "",      
+            username: "",  
+            name: "",  
             nama_dosen: "", 
-            id_jabatan:1,           
-            gelar_depan: "",      
-            gelar_belakang: "1",           
+            id_jabatan:1,    
+            gelar_depan: "",  
+            gelar_belakang: "1",    
             nidn: "",  
-            nipy: "",    
-            email: "",      
+            nipy: "",
+            email: "",  
             nomor_hp: "",
-            is_dw: false,      
-            created_at: "",      
+            is_dw: false,  
+            created_at: "",  
             updated_at: "",  
         },
         defaultItem: {
             id: 0,
-            username: "",      
-            name: "",      
-            nama_dosen: "",      
-            id_jabatan:1,      
-            gelar_depan: "",      
+            username: "",  
+            name: "",  
+            nama_dosen: "",  
+            id_jabatan:1,  
+            gelar_depan: "",  
             gelar_belakang: "1",
             nidn: "",
             nipy: "",  
-            email: "",      
-            nomor_hp: "",     
-            is_dw: false,    
-            created_at: "",      
-            updated_at: "",   
+            email: "",  
+            nomor_hp: "", 
+            is_dw: false,
+            created_at: "",  
+            updated_at: "",
         },
         //form rules    
         rule_user_name: [
             value => !!value || "Mohon untuk di isi nama Dosen !!!",  
-            value => /^[A-Za-z\s]*$/.test(value) || "Nama Dosen hanya boleh string dan spasi",    
+            value => /^[A-Za-z\s]*$/.test(value) || "Nama Dosen hanya boleh string dan spasi",
         ],
         rule_nidn: [                         
-            value => /^[0-9]+$/.test(value) || "NIDN hanya boleh angka",    
+            value => /^[0-9]+$/.test(value) || "NIDN hanya boleh angka",
         ],
         rule_nipy: [            
-            value => /^[0-9]+$/.test(value) || "Nomor Induk Pegawai Yayasan (NIPY) hanya boleh angka",    
+            value => /^[0-9]+$/.test(value) || "Nomor Induk Pegawai Yayasan (NIPY) hanya boleh angka",
         ],
         rule_user_email: [
             value => !!value || "Mohon untuk di isi email User !!!",  
-            value => /.+@.+\..+/.test(value) || "Format E-mail harus benar",       
+            value => /.+@.+\..+/.test(value) || "Format E-mail harus benar",
         ],
         rule_user_nomorhp: [
             value => !!value || "Nomor HP mohon untuk diisi !!!",
@@ -301,41 +301,41 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data }) => {    
-                this.daftar_dosen = data.dosen;              
+            }).then(({ data }) => {  
+                this.daftar_dosen = data.dosen;
                 this.datatableLoading = false;
-            });        
+            });
             
         },
         dataTableRowClicked(item)
         {
             if (item === this.expanded[0])
             {
-                this.expanded = [];              
+                this.expanded = [];
             }
             else
             {
                 this.expanded = [item];
             }               
-        },         
+        },  
         editItem: async function(item) {
-            this.$ajax.get("/datamaster/jabatanakademik",    
+            this.$ajax.get("/datamaster/jabatanakademik",
                 {
                     headers: {
                         Authorization: this.TOKEN
                     }
                 }
-            ).then(({ data }) => {   
+            ).then(({ data }) => { 
                 this.daftar_jabatan=data.jabatan_akademik;
-            });           
+            });
             
-            this.editedIndex = this.daftar_dosen.indexOf(item);                
-            this.editedItem = Object.assign({}, item);                            
+            this.editedIndex = this.daftar_dosen.indexOf(item);  
+            this.editedItem = Object.assign({}, item);   
             this.dialogEdit = true;
-        },    
+        },
         close () { 
-            this.btnLoading = false;          
-            this.dialogEdit = false;          
+            this.btnLoading = false;  
+            this.dialogEdit = false;  
             setTimeout(() => {
                 this.$refs.frmdata.resetValidation(); 
                 this.editedItem = Object.assign({}, this.defaultItem)
@@ -359,7 +359,7 @@ export default {
                             nidn: this.editedItem.nidn,
                             nipy: this.editedItem.nipy,
                             email: this.editedItem.email,
-                            nomor_hp: this.editedItem.nomor_hp,                                                
+                            nomor_hp: this.editedItem.nomor_hp,                                         
                         },
                         {
                             headers: {
@@ -371,27 +371,27 @@ export default {
                         this.close();
                     }).catch(() => {
                         this.btnLoading = false;
-                    });                  
+                    }); 
                     
                 } 
             }
         }, 
     },
-    computed: {        
+    computed: { 
         ...mapGetters("auth", { 
-            ACCESS_TOKEN: "AccessToken",          
-            TOKEN: "Token",     
+            ACCESS_TOKEN: "AccessToken",   
+            TOKEN: "Token", 
         }),
     },
 
-    watch: {        
+    watch: { 
         dialogEdit (val) {
             val || this.close()
-        },    
+        },
     },
     components: {
         KepegawaianLayout,
-        ModuleHeader,         
+        ModuleHeader,  
     },
 }
 </script>

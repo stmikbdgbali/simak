@@ -86,11 +86,11 @@ export default {
     },
     data: () => ({
         breadcrumbs: [],
-        btnLoading: false,   
+        btnLoading: false,
         //form
         form_valid: true,  
         formdata: {
-            email_mhs_isvalid: null,           
+            email_mhs_isvalid: null,    
         },
         //form rules    
         
@@ -104,10 +104,10 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data }) => {       
-                let setting = data.setting;           
-                this.formdata.email_mhs_isvalid=parseInt(setting.EMAIL_MHS_ISVALID);              
-            });        
+            }).then(({ data }) => {
+                let setting = data.setting;
+                this.formdata.email_mhs_isvalid=parseInt(setting.EMAIL_MHS_ISVALID);
+            });
             
         },
         save() {
@@ -119,31 +119,31 @@ export default {
                         _method: "PUT", 
                         'pid': "email",
                         setting: JSON.stringify({
-                            910: this.formdata.email_mhs_isvalid,                
-                        }),                                                                                   
+                            910: this.formdata.email_mhs_isvalid,         
+                        }),                                                                            
                     },
                     {
                         headers: {
                             Authorization: this.TOKEN
                         }
                     }
-                ).then(() => {         
+                ).then(() => {
                     this.btnLoading = false;
                 }).catch(() => {
                     this.btnLoading = false;
-                });      
+                });   
             }
         }
     },
     computed: { 
         ...mapGetters("auth", { 
-            ACCESS_TOKEN: "AccessToken",          
-            TOKEN: "Token",     
+            ACCESS_TOKEN: "AccessToken",   
+            TOKEN: "Token", 
         }),
     },
     components: {
 		SystemConfigLayout,
-        ModuleHeader,        
+        ModuleHeader, 
 	}
 }
 </script>

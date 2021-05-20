@@ -299,6 +299,9 @@
 						<template v-slot:item.tanggal="{ item }">
 							{{ $date(item.tanggal).format("DD/MM/YYYY") }}
 						</template>
+						<template v-slot:item.promovalue="{ item }">
+							{{ item.promovalue | formatUang }}
+						</template>
 						<template v-slot:item.sub_total="{ item }">
 							{{ item.sub_total | formatUang }}
 						</template>
@@ -309,7 +312,7 @@
 						</template>
 						<template v-slot:body.append v-if="datatable.length > 0">
 							<tr class="grey lighten-4 font-weight-black">
-								<td class="text-right" colspan="6">TOTAL TRANSAKSI PAID</td>
+								<td class="text-right" colspan="7">TOTAL TRANSAKSI PAID</td>
 								<td class="text-right">
 									{{ totaltransaksi_paid | formatUang }}
 								</td>
@@ -317,7 +320,7 @@
 								<td></td>
 							</tr>
 							<tr class="grey lighten-4 font-weight-black">
-								<td class="text-right" colspan="6">TOTAL TRANSAKSI UNPAID</td>
+								<td class="text-right" colspan="7">TOTAL TRANSAKSI UNPAID</td>
 								<td class="text-right">
 									{{ totaltransaksi_unpaid | formatUang }}
 								</td>
@@ -325,7 +328,7 @@
 								<td></td>
 							</tr>
 							<tr class="grey lighten-4 font-weight-black">
-								<td class="text-right" colspan="6">TOTAL TRANSAKSI CANCELED</td>
+								<td class="text-right" colspan="7">TOTAL TRANSAKSI CANCELED</td>
 								<td class="text-right">
 									{{ totaltransaksi_canceled | formatUang }}
 								</td>
@@ -333,7 +336,7 @@
 								<td></td>
 							</tr>
 							<tr class="grey lighten-4 font-weight-black">
-								<td class="text-right" colspan="6">TOTAL TRANSAKSI</td>
+								<td class="text-right" colspan="7">TOTAL TRANSAKSI</td>
 								<td class="text-right">
 									{{
 										(totaltransaksi_canceled +
@@ -348,7 +351,7 @@
 						</template>
 						<template v-slot:expanded-item="{ headers, item }">
 							<td :colspan="headers.length" class="text-center">
-								<v-col cols="12">
+								<v-col cols="13">
 									<strong>TRANS.DETAIL ID:</strong>{{ item.id }}
 									<strong>created_at:</strong>
 									{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
@@ -469,6 +472,13 @@
 					value: "idsmt",
 					width: 100,
 					sortable: false,
+				},
+				{
+					text: "POTONGAN",
+					value: "promovalue",
+					width: 100,
+					sortable: false,
+					align: "right",
 				},
 				{
 					text: "JUMLAH",

@@ -27,8 +27,8 @@
                     Halaman untuk melakukan tambah krs 
                 </v-alert>
             </template>
-        </ModuleHeader>       
-        <v-container fluid>      
+        </ModuleHeader>  
+        <v-container fluid> 
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12"> 
                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>
@@ -36,7 +36,7 @@
                             <v-card-title>
                                 PILIH TAHUN & SEMESTER DAFTAR ULANG
                             </v-card-title>
-                            <v-card-text>        
+                            <v-card-text>   
                                 <v-alert type="info">
                                     Silahkan pilih tahun dan semester daftar ulang. Bila tidak ada disebabkan belum melakukan pembayaran atau status daftar ulang dinyatakan tidak aktif
                                 </v-alert>
@@ -55,7 +55,7 @@
                                     label="DAFTAR ULANG"                                            
                                     class="mr-2"
                                     :rules="rule_dulang"
-                                    outlined />              
+                                    outlined />     
                             </v-card-text>
                             <v-card-actions>
                                 <v-spacer></v-spacer>
@@ -112,11 +112,11 @@ export default {
         let prodi_id = this.$store.getters["uiadmin/getProdiID"];
         this.prodi_id = prodi_id;
         this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](prodi_id);
-        this.daftar_ta = this.$store.getters['uiadmin/getDaftarTA'];        
-        this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];              
+        this.daftar_ta = this.$store.getters['uiadmin/getDaftarTA'];
+        this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];
         this.ta_matkul=this.tahun_akademik;
-        this.daftar_semester = this.$store.getters['uiadmin/getDaftarSemester'];        
-        this.semester_akademik = this.$store.getters["uiadmin/getSemesterAkademik"];              
+        this.daftar_semester = this.$store.getters['uiadmin/getDaftarSemester'];
+        this.semester_akademik = this.$store.getters["uiadmin/getSemesterAkademik"];
         if (this.$store.getters['uiadmin/getDefaultDashboard' ] == "mahasiswa")
         {
             this.formdata.nim=this.$store.getters['auth/AttributeUser']("username");
@@ -131,7 +131,7 @@ export default {
         ta_matkul: null,
         semester_akademik: null,
 
-        btnLoading: false,        
+        btnLoading: false, 
 
         //table
         dialogdetailitem: false,
@@ -139,7 +139,7 @@ export default {
         expanded: [],
         datatable: [],
         headers: [
-            { text: "KODE", value: "kmatkul", sortable: true, width: 120  },   
+            { text: "KODE", value: "kmatkul", sortable: true, width: 120  },
             { text: "NAMA MATAKULIAH", value: "nmatkul", sortable: true },
             { text: "KELOMPOK", value: "group_alias", sortable: true, width: 120 },
             { text: "SKS", value: "sks", sortable: true, width: 80, align: "center" },
@@ -154,7 +154,7 @@ export default {
         formdata: {
             nim: "",
             dulang_id: ""
-        },    
+        },
         rule_nim: [
             value => !!value || "Nomor Induk Mahasiswa (NIM) mohon untuk diisi !!!",
             value => /^[0-9]+$/.test(value) || "Nomor Induk Mahasiswa (NIM) hanya boleh angka",
@@ -163,19 +163,19 @@ export default {
             value => !!value || "Mohon dipilih Daftar Ulang yang telah dilakukan !!!"
         ],
     }),
-    methods: {          
+    methods: { 
         async fetchDulang()
         {
             await this.$ajax.post("/akademik/dulang/dulangnotinkrs",
             {
-                nim: this.formdata.nim,    
+                nim: this.formdata.nim,
             },
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {   
-                this.daftar_dulang=data.daftar_dulang;              
+            }).then(({ data }) => { 
+                this.daftar_dulang=data.daftar_dulang;
             })
         }, 
         cekNIM ()
@@ -192,23 +192,23 @@ export default {
                 await this.$ajax.post("/akademik/perkuliahan/krs/store",
                 {
                     nim: this.formdata.nim,
-                    dulang_id: this.formdata.dulang_id,        
+                    dulang_id: this.formdata.dulang_id, 
                 },
                 {
                     headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     }
-                }).then(({ data }) => {    
+                }).then(({ data }) => {  
                     this.$router.push("/akademik/perkuliahan/krs/" + data.krs.id + "/detail");
                     this.btnLoading = false;
                 }).catch(() => {
                     this.btnLoading = false;
-                });                
+                });  
             }
         },
-        closedialogfrm() {                  
-            setTimeout(() => {       
-                this.formdata = Object.assign({}, this.formdefault);                              
+        closedialogfrm() {         
+            setTimeout(() => {
+                this.formdata = Object.assign({}, this.formdefault);     
                 this.$router.push("/akademik/perkuliahan/krs/daftar");
                 }, 300
             );

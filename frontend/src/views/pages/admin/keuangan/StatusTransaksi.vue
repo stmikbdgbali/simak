@@ -6,7 +6,7 @@
             </template>
             <template v-slot:name>
                 STATUS TRANSAKSI
-            </template>            
+            </template>   
             <template v-slot:breadcrumbs>
                 <v-breadcrumbs :items="breadcrumbs" class="pa-0">
                     <template v-slot:divider>
@@ -24,7 +24,7 @@
                         Halaman ini berisi informasi status transaksi.
                     </v-alert>
             </template>
-        </ModuleHeader>       
+        </ModuleHeader>  
         <v-container fluid>
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
@@ -41,7 +41,7 @@
                         @click:row="dataTableRowClicked"
                         class="elevation-1"
                         :loading="datatableLoading"
-                        loading-text="Loading... Please wait">     
+                        loading-text="Loading... Please wait">
                         <template v-slot:top>
                             <v-toolbar flat color="white">
                                 <v-toolbar-title>DAFTAR STATUS TRANSAKSI</v-toolbar-title>
@@ -61,7 +61,7 @@
                                 @cancel="cancelItem"
                                 @open="openItem"
                                 @close="closeItem">
-                                    <v-chip :color="props.item.style" dark>{{props.item.style}}</v-chip>               
+                                    <v-chip :color="props.item.style" dark>{{props.item.style}}</v-chip>      
                                     <template v-slot:input>
                                         <div class="mt-4 title">Update Style</div>   
                                         <v-text-field 
@@ -75,7 +75,7 @@
                         </template>   
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
-                                <v-col cols="12">       
+                                <v-col cols="12">  
                                     <strong>ID:</strong>{{ item.id_status }}          
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
@@ -115,7 +115,7 @@ export default {
                 disabled: true,
                 href: "#"
             }
-        ];      
+        ];   
         this.initialize();
     },  
     data: () => ({
@@ -127,43 +127,43 @@ export default {
         expanded: [],
         datatable: [],
         headers: [            
-            { text: "ID", value: "id_status", width: 10, sortable: false },    
+            { text: "ID", value: "id_status", width: 10, sortable: false },
             { text: "NAMA STATUS", value: "nama_status", sortable: false},
-            { text: "STYLE", value: "style", width: 200, sortable: false },         
+            { text: "STYLE", value: "style", width: 200, sortable: false },  
         ],
         
     }),
-    methods: {        
+    methods: { 
         initialize: async function()
 		{
-            this.datatableLoading = true;          
+            this.datatableLoading = true;  
             await this.$ajax.get("/keuangan/statustransaksi",
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {    
-                this.datatable = data.status;              
+            }).then(({ data }) => {  
+                this.datatable = data.status;
                 this.datatableLoading = false;
-            });                   
-            this.firstloading = false;                      
+            });  
+            this.firstloading = false;
         },
         dataTableRowClicked(item)
         {
             if (item === this.expanded[0])
             {
-                this.expanded = [];              
+                this.expanded = [];
             }
             else
             {
                 this.expanded = [item];
             }               
-        },    
+        },
         saveItem: async function({id,style})
         {
             await this.$ajax.post("/keuangan/statustransaksi/" + id,
             {
-                _method: "put",    
+                _method: "put",
                 id_status:id,
                 style:style
             },
@@ -172,7 +172,7 @@ export default {
                     Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(() => { 
-                this.initialize();                      
+                this.initialize();
             });
         },
         cancelItem()
@@ -187,7 +187,7 @@ export default {
         {
 
         },
-    },   
+    },
     components: {
         KeuanganLayout,
         ModuleHeader,

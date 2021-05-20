@@ -8,7 +8,7 @@
 			<v-toolbar-title class="headline clickable" @click.stop="$router.push('/dashboard/'+$store.getters['auth/AccessToken']).catch(err => {})">
 				<span class="hidden-sm-and-down">{{ APP_NAME }}</span>
 			</v-toolbar-title>
-			<v-spacer></v-spacer>            
+			<v-spacer></v-spacer>   
 			<v-divider
 				class="mx-4"
 				inset
@@ -35,7 +35,7 @@
 							<v-list-item-title class="title">
 								{{ ATTRIBUTE_USER("username") }}
 							</v-list-item-title>
-							<v-list-item-subtitle>             
+							<v-list-item-subtitle>    
 								[{{ DEFAULT_ROLE }}]
 							</v-list-item-subtitle>
 						</v-list-item-content>
@@ -56,7 +56,7 @@
 					</v-list-item>
 				</v-list>
 			</v-menu>			
-		</v-app-bar>    
+		</v-app-bar>
 		<v-navigation-drawer v-model="drawer" width="300" dark class="green darken-1" :temporary="temporaryleftsidebar" app>
 			<v-list-item>
 				<v-list-item-avatar>
@@ -91,7 +91,7 @@
 							IDENTITAS DIRI
 						</v-list-item-title>
 					</v-list-item-content>
-				</v-list-item>    
+				</v-list-item>
 				<v-list-item link v-if="CAN_ACCESS('SYSTEM-SETTINGp-VARIABLES')" to="/system-setting/variables">
 					<v-list-item-icon class="mr-2">
 						<v-icon>mdi-variable</v-icon>
@@ -101,7 +101,7 @@
 							VARIABLES
 						</v-list-item-title>
 					</v-list-item-content>
-				</v-list-item>    
+				</v-list-item>
 				<v-subheader>HEADER</v-subheader>
 				<v-list-item link v-if="CAN_ACCESS('SYSTEM-SETTING-IDENTITAS-DIRI')" to="/system-setting/headerlaporan">
 					<v-list-item-icon class="mr-2">
@@ -112,7 +112,7 @@
 							HEADER LAPORAN
 						</v-list-item-title>
 					</v-list-item-content>
-				</v-list-item>    
+				</v-list-item>
 				<v-subheader>SERVER</v-subheader>
 				<v-list-item link v-if="CAN_ACCESS('SYSTEM-SETTINGp-VARIABLES')" to="/system-setting/captcha">
 					<v-list-item-icon class="mr-2">
@@ -123,7 +123,7 @@
 							CAPTCHA
 						</v-list-item-title>
 					</v-list-item-content>
-				</v-list-item>    
+				</v-list-item>
 				<v-list-item link v-if="CAN_ACCESS('SYSTEM-SETTINGp-VARIABLES')" to="/system-setting/email">
 					<v-list-item-icon class="mr-2">
 						<v-icon>mdi-account</v-icon>
@@ -143,7 +143,7 @@
 							CACHE
 						</v-list-item-title>
 					</v-list-item-content>
-				</v-list-item>           
+				</v-list-item>  
 				<v-subheader>PLUGIN</v-subheader> 
 				<v-list-item link v-if="CAN_ACCESS('PLUGINS-H2H-ZOOMAPI_BROWSE')" to="/system-setting/zoom">
 					<v-list-item-icon class="mr-2">
@@ -154,7 +154,7 @@
 							ZOOM
 						</v-list-item-title>
 					</v-list-item-content>
-				</v-list-item>    
+				</v-list-item>
 				<v-subheader v-if="CAN_ACCESS('SYSTEM-SETTING-THEMES_BROWSE')" >THEMES</v-subheader> 
 				<v-list-item link v-if="CAN_ACCESS('SYSTEM-SETTING-THEMES_BROWSE')" to="/system-setting/themes/colordashboard">
 					<v-list-item-icon class="mr-2">
@@ -175,9 +175,9 @@
 							LAYOUT
 						</v-list-item-title>
 					</v-list-item-content>
-				</v-list-item>        
+				</v-list-item>   
 			</v-list>
-		</v-navigation-drawer>        
+		</v-navigation-drawer>   
 		<v-main class="mx-4 mb-4">			
 			<slot />
 		</v-main>
@@ -192,12 +192,12 @@
 				</v-card-text>
 			</v-card>
 		</v-footer> 
-	</div>    
+	</div>
 </template>
 <script>
 import { mapGetters } from "vuex";
 export default {
-	name: "SystemConfigLayout",   
+	name: "SystemConfigLayout",
 	props: {
 		showrightsidebar: {
 			type: Boolean,
@@ -210,9 +210,9 @@ export default {
 	}, 
 	data: () => ({
 		loginTime: 0,
-		drawer: null,       
-	}),       
-	methods: {        
+		drawer: null,
+	}),
+	methods: { 
 		logout() {
 			this.loginTime = 0;
 			this.$ajax.post("/auth/logout",
@@ -222,7 +222,7 @@ export default {
 						Authorization: this.TOKEN,
 					}
 				}
-			).then(()=> {     
+			).then(()=> {   
 				this.$store.dispatch("auth/logout");	
 				this.$store.dispatch("uifront/reinit");
 				this.$store.dispatch("uiadmin/reinit");
@@ -242,12 +242,12 @@ export default {
 	computed: {
 		...mapGetters("auth", {
 			AUTHENTICATED: "Authenticated",  
-			ACCESS_TOKEN: "AccessToken",          
-			TOKEN: "Token",          
+			ACCESS_TOKEN: "AccessToken",   
+			TOKEN: "Token",   
 			DEFAULT_ROLE: "DefaultRole",
 			ROLE: "Role",
-			CAN_ACCESS: "can",         
-			ATTRIBUTE_USER: "AttributeUser",   
+			CAN_ACCESS: "can",  
+			ATTRIBUTE_USER: "AttributeUser",
 		}),
 		APP_NAME() {
 			return process.env.VUE_APP_NAME;
@@ -272,7 +272,7 @@ export default {
 				if (value >= 0)
 				{
 					setTimeout(() => { 
-						this.loginTime=this.AUTHENTICATED==true?this.loginTime+1:-1;                                                                   
+						this.loginTime=this.AUTHENTICATED==true?this.loginTime+1:-1;                   
 					}, 1000);
 				}
 				else
@@ -282,7 +282,7 @@ export default {
 				}
 			},
 			immediate: true,
-		},    
+		},
 	},
 }
 </script>

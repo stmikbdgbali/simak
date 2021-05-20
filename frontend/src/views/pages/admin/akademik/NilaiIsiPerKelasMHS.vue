@@ -31,7 +31,7 @@
         <template v-slot:filtersidebar>
             <Filter2 v-on:changeTahunAkademik="changeTahunAkademik" v-on:changeSemesterAkademik="changeSemesterAkademik" ref="filter2" />	
         </template>
-        <v-container fluid>      
+        <v-container fluid> 
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
                     <v-card>
@@ -93,10 +93,10 @@
                             <span v-else>
                                 N.A
                             </span>
-                        </template>                
+                        </template>       
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
-                                <v-col cols="12">       
+                                <v-col cols="12">  
                                     <strong>ID:</strong>{{ item.id }}          
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
@@ -144,12 +144,12 @@ export default {
                 href: "#"
             }
         ];
-        this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];              
-        this.semester_akademik = this.$store.getters["uiadmin/getSemesterAkademik"];              
+        this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];
+        this.semester_akademik = this.$store.getters["uiadmin/getSemesterAkademik"];
         this.initialize()
     },  
     data: () => ({ 
-        firstloading: true,       
+        firstloading: true,
         daftar_ta: [],
         tahun_akademik: null,
         semester_akademik: null,
@@ -159,8 +159,8 @@ export default {
         expanded: [],
         datatable: [],
         headers: [
-            { text: "KODE", value: "kmatkul", sortable: true, width: 100  },   
-            { text: "NAMA MATAKULIAH/KELAS", value: "nmatkul", sortable: true  },   
+            { text: "KODE", value: "kmatkul", sortable: true, width: 100  },
+            { text: "NAMA MATAKULIAH/KELAS", value: "nmatkul", sortable: true  },
             { text: "NAMA DOSEN", value: "nama_dosen", sortable: true  },
             { text: "HARI", value: "nama_hari", sortable: true, width: 100 },
             { text: "JAM", value: "jam_masuk", sortable: true, width: 100 },
@@ -179,7 +179,7 @@ export default {
         changeSemesterAkademik (semester)
         {
             this.semester_akademik=semester;
-        },    
+        },
         initialize: async function() 
         {
             this.datatableLoading = true;
@@ -192,7 +192,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {   
+            }).then(({ data }) => { 
                 this.datatable = data.pembagiankelas;
                 this.datatableLoading = false;
             }).catch(() => {
@@ -205,7 +205,7 @@ export default {
         {
             if (item === this.expanded[0])
             {
-                this.expanded = [];              
+                this.expanded = [];
             }
             else
             {
@@ -227,16 +227,16 @@ export default {
             {
                 this.initialize();
             }            
-        },    
+        },
     },
     computed: {
         ...mapGetters("auth", { 
-            CAN_ACCESS: "can",         
+            CAN_ACCESS: "can",  
         }),
     },
     components: {
         AkademikLayout,
-        ModuleHeader,    
+        ModuleHeader,
         Filter2               
     },
 }

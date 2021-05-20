@@ -27,14 +27,14 @@
                     Halaman untuk melakukan pengisian nilai berdasarkan kelas mahasiswa yang telah dibentuk pada pembagian kelas.
                 </v-alert>
             </template>
-        </ModuleHeader>       
-        <v-container fluid v-if="data_kelas_mhs">        
+        </ModuleHeader>  
+        <v-container fluid v-if="data_kelas_mhs">   
             <v-row>
-                <v-col cols="12">         
+                <v-col cols="12">
                     <DataKelasMHS :datakelas="data_kelas_mhs" />
                 </v-col>
             </v-row> 
-            <v-row>                 
+            <v-row>        
                 <v-col cols="12">  
                     <v-alert type="info">
                         Catatan: Pilihlah mahasiswa yang di isi nilainya. Untuk meningkatkan performance bila jumlah peserta lebih dari 10; maka disarankan mengisi nilai per 10 mahasiswa.
@@ -64,13 +64,13 @@
                                     ></v-divider>
                                     <v-spacer></v-spacer>
                                 </v-toolbar>
-                            </template>     
+                            </template>
                             <template v-slot:item.idkelas="{item}">
                                 {{$store.getters['uiadmin/getNamaKelas'](item.idkelas)}}
                             </template>
                             <template v-slot:item.kjur="{item}">
                                 {{$store.getters["uiadmin/getProdiName"](item.kjur)}}
-                            </template>     
+                            </template>
                             <template v-slot:item.n_kuan="props"> 
                                 <v-numeric                
                                     v-model="props.item.n_kuan"
@@ -84,10 +84,10 @@
                                     :useCalculator="false"
                                     :calcIcon="null"
                                     style="width:65px">
-                                </v-numeric>     
-                                <v-chip color="primary" class="ma-2" outlined label v-if="props.item.n_kuan != null">{{props.item.n_kuan}}</v-chip>        
-                            </template>     
-                            <template v-slot:item.n_kual="props">             
+                                </v-numeric>
+                                <v-chip color="primary" class="ma-2" outlined label v-if="props.item.n_kuan != null">{{props.item.n_kuan}}</v-chip>   
+                            </template>
+                            <template v-slot:item.n_kual="props">    
                                 <v-select 
                                     :items="skala_nilai" 
                                     v-model="props.item.n_kual"
@@ -106,16 +106,16 @@
                                                 SIMPAN
                                         </v-btn>
                                     </td>
-                                </tr>             
+                                </tr>    
                             </template>  
                             <template v-slot:no-data>
                                 Data belum tersedia
                             </template>   
-                        </v-data-table>       
+                        </v-data-table>  
                     </v-form>
-                </v-col>     
+                </v-col>
             </v-row> 
-        </v-container>        
+        </v-container>   
     </AkademikLayout>
 </template>
 <script>
@@ -148,9 +148,9 @@ export default {
                 href: "#"
             }
         ];
-        this.kelas_mhs_id=this.$route.params.kelas_mhs_id;      
-        this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];              
-        this.semester_akademik = this.$store.getters["uiadmin/getSemesterAkademik"];              
+        this.kelas_mhs_id=this.$route.params.kelas_mhs_id;   
+        this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];
+        this.semester_akademik = this.$store.getters["uiadmin/getSemesterAkademik"];
         this.initialize()
     },  
     data: () => ({ 
@@ -166,14 +166,14 @@ export default {
         datatable: [],
         datatable_peserta: [], 
         headers_peserta: [
-            { text: "NIM", value: "nim", sortable: false, width: 100  },   
-            { text: "NAMA", value: "nama_mhs", sortable: false  },   
-            { text: "PROGRAM STUDI", value: "kjur", sortable: false  },   
+            { text: "NIM", value: "nim", sortable: false, width: 100  },
+            { text: "NAMA", value: "nama_mhs", sortable: false  },
+            { text: "PROGRAM STUDI", value: "kjur", sortable: false  },
             { text: "KELAS", value: "idkelas", sortable: false  },
-            { text: "TAHUN MASUK", value: "tahun", sortable: false },       
-            { text: "NILAI ANGKA (0 s.d 100)", value: "n_kuan", sortable: false },       
-            { text: "NILAI HURUP", value: "n_kual", sortable: false },       
-        ],   
+            { text: "TAHUN MASUK", value: "tahun", sortable: false },
+            { text: "NILAI ANGKA (0 s.d 100)", value: "n_kuan", sortable: false },
+            { text: "NILAI HURUP", value: "n_kual", sortable: false },
+        ],
 
         //formdata
         form_valid: true,
@@ -186,7 +186,7 @@ export default {
             "E",
         ],  
     }),
-    methods: {        
+    methods: { 
         initialize: async function() 
         {
             await this.$ajax.get("/akademik/perkuliahan/pembagiankelas/" + this.kelas_mhs_id,
@@ -195,7 +195,7 @@ export default {
                     Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({ data }) => {
-                this.data_kelas_mhs=data.pembagiankelas;                                       
+                this.data_kelas_mhs=data.pembagiankelas;  
             });
             this.datatableLoading = true;
             await this.$ajax.get("/akademik/nilai/matakuliah/pesertakelas/" + this.kelas_mhs_id,
@@ -203,11 +203,11 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {                                                     
+            }).then(({ data }) => {                                            
                 this.datatableLoading = false;
                 this.datatable_peserta=data.peserta; 
             })              
-        },    
+        },
         async fetchPeserta()
         {
             this.datatableLoading = true;
@@ -216,11 +216,11 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {                          
-                this.datatable_peserta=data.peserta;                              
+            }).then(({ data }) => {                 
+                this.datatable_peserta=data.peserta;     
                 this.datatableLoading = false;
             })   
-        },      
+        },  
         save()
         {
             
@@ -231,7 +231,7 @@ export default {
     },
     components: {
         AkademikLayout,
-        ModuleHeader,     
+        ModuleHeader, 
         DataKelasMHS       
     },
 }

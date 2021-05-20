@@ -31,7 +31,7 @@
         <template v-slot:filtersidebar>
             <Filter2 v-on:changeTahunAkademik="changeTahunAkademik" v-on:changeSemesterAkademik="changeSemesterAkademik" ref="filter2" />	
         </template>
-        <v-container fluid>            
+        <v-container fluid>   
             <v-row class="mb-4" no-gutters>
                 <v-col
                 cols="4"
@@ -118,8 +118,8 @@ export default {
 				href: "#"
 			}
         ];		
-        this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];              
-        this.semester_akademik = this.$store.getters["uiadmin/getSemesterAkademik"];      
+        this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];
+        this.semester_akademik = this.$store.getters["uiadmin/getSemesterAkademik"];   
     },
     mounted()
     {
@@ -155,7 +155,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {   
+            }).then(({ data }) => { 
                 this.datatable = data.pembagiankelas;
                 this.datatableLoading = false;
             }).catch(() => {
@@ -183,8 +183,8 @@ export default {
     },
     components: {
         ElearningLayout,
-        ModuleHeader,           
-        Filter2,        
+        ModuleHeader,    
+        Filter2, 
     },
 }
 </script>

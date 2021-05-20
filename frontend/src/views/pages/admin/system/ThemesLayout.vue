@@ -39,31 +39,31 @@
                                     label="SYSTEM BAR"
                                     outlined
                                     :rules="rule_required">
-                                </v-text-field>                                                          
+                                </v-text-field>                                                 
                                 <v-text-field 
                                     v-model="formdata.V_APP_BAR_NAV_ICON_CSS_CLASS" 
                                     label="APPLICATION BAR"
                                     outlined
                                     :rules="rule_required">
-                                </v-text-field>             
+                                </v-text-field>    
                                 <v-text-field 
                                     v-model="formdata.V_NAVIGATION_DRAWER_CSS_CLASS" 
                                     label="NAVIGATION DRAWER"
                                     outlined
                                     :rules="rule_required">
-                                </v-text-field>             
+                                </v-text-field>    
                                 <v-text-field 
                                     v-model="formdata.V_LIST_ITEM_BOARD_CSS_CLASS" 
                                     label="LIST ITEM BOARD"
                                     outlined
                                     :rules="rule_required">
-                                </v-text-field>             
+                                </v-text-field>    
                                 <v-text-field 
                                     v-model="formdata.V_LIST_ITEM_ACTIVE_CSS_CLASS" 
                                     label="LIST ITEM ACTIVE"
                                     outlined
                                     :rules="rule_required">
-                                </v-text-field>             
+                                </v-text-field>    
                             </v-card-text>
                             <v-card-actions>
                                 <v-spacer></v-spacer>
@@ -116,7 +116,7 @@ export default {
     data: () => ({
         breadcrumbs: [],
         datatableLoading: false,
-        btnLoading: false,   
+        btnLoading: false,
         //form
         form_valid: true,  
         formdata: {
@@ -140,20 +140,20 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data }) => {  
-                let setting = data.setting;                         
+            }).then(({ data }) => {
+                let setting = data.setting;
                 this.formdata.V_SYSTEM_BAR_CSS_CLASS=setting.V_SYSTEM_BAR_CSS_CLASS;
                 this.formdata.V_APP_BAR_NAV_ICON_CSS_CLASS=setting.V_APP_BAR_NAV_ICON_CSS_CLASS;
                 this.formdata.V_NAVIGATION_DRAWER_CSS_CLASS=setting.V_NAVIGATION_DRAWER_CSS_CLASS;
                 this.formdata.V_LIST_ITEM_BOARD_CSS_CLASS=setting.V_LIST_ITEM_BOARD_CSS_CLASS;
                 this.formdata.V_LIST_ITEM_ACTIVE_CSS_CLASS=setting.V_LIST_ITEM_ACTIVE_CSS_CLASS;
-            });        
+            });
             
         },
         save() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading = true;              
+                this.btnLoading = true;
                 this.$ajax.post("/system/setting/variables",
                     {
                         _method: "PUT", 
@@ -165,31 +165,31 @@ export default {
                             804: this.formdata.V_LIST_ITEM_BOARD_CSS_CLASS,
                             805: this.formdata.V_LIST_ITEM_BOARD_COLOR,
                             806: this.formdata.V_LIST_ITEM_ACTIVE_CSS_CLASS,
-                        }),                                                                                   
+                        }),                                                                            
                     },
                     {
                         headers: {
                             Authorization: this.TOKEN
                         }
                     }
-                ).then(() => {         
+                ).then(() => {
                     this.btnLoading = false;
                 }).catch(() => {
                     this.btnLoading = false;
-                });      
+                });   
                 this.$store.dispatch("uiadmin/init",this.$ajax); 
             }
         }
     },
     computed: { 
         ...mapGetters("auth", { 
-            ACCESS_TOKEN: "AccessToken",          
-            TOKEN: "Token",     
+            ACCESS_TOKEN: "AccessToken",   
+            TOKEN: "Token", 
         }),
     },
     components: {
 		SystemConfigLayout,
-        ModuleHeader,        
+        ModuleHeader, 
 	}
 }
 </script>

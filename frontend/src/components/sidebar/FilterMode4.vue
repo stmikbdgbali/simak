@@ -32,7 +32,7 @@
 			prodi_id(val) {
 				if (!this.firstloading) {
 					this.$store.dispatch("uiadmin/updateProdi",val);
-					this.$emit("changeProdi",val);        
+					this.$emit("changeProdi",val);
 				}
 			},			
 		}

@@ -3,11 +3,11 @@
         <v-system-bar app color="#a4b0be" class="white--text">
             <strong>Hak Akses Sebagai :</strong> {{ ROLE }}
 		</v-system-bar>	
-        <v-app-bar app class="white" elevation="0">            
+        <v-app-bar app class="white" elevation="0">   
             <v-toolbar-title class="headline clickable" @click.stop="$router.push('/dashboard/'+$store.getters['auth/AccessToken']).catch(err => {})">
 				<span class="hidden-sm-and-down">{{ APP_NAME }}</span>
 			</v-toolbar-title>
-            <v-spacer></v-spacer>            
+            <v-spacer></v-spacer>   
             <v-divider
                 class="mx-4"
                 inset
@@ -34,7 +34,7 @@
                             <v-list-item-title class="title">
                                 {{ ATTRIBUTE_USER("username") }}
                             </v-list-item-title>
-                            <v-list-item-subtitle>             
+                            <v-list-item-subtitle>    
                                 [{{ DEFAULT_ROLE }}]
                             </v-list-item-subtitle>
                         </v-list-item-content>
@@ -75,7 +75,7 @@
 				</v-card-text>
 			</v-card>
 		</v-footer>
-    </div>    
+    </div>
 </template>
 <script>
     import { mapGetters } from "vuex";
@@ -95,8 +95,8 @@
             loginTime: 0,
             drawer: null,
             drawerRight: null,  
-        }),       
-        methods: {        
+        }),
+        methods: { 
             logout()
             {
                 this.loginTime = 0;
@@ -107,7 +107,7 @@
                             Authorization: this.TOKEN,
                         }
                     }
-                ).then(()=> {     
+                ).then(()=> {   
                     this.$store.dispatch("auth/logout");	
                     this.$store.dispatch("uifront/reinit");
                     this.$store.dispatch("uiadmin/reinit");
@@ -128,12 +128,12 @@
         computed: {
             ...mapGetters("auth", {
                 AUTHENTICATED: "Authenticated",  
-                ACCESS_TOKEN: "AccessToken",          
+                ACCESS_TOKEN: "AccessToken",   
                 TOKEN: "Token", 
-                DEFAULT_ROLE: "DefaultRole",         
+                DEFAULT_ROLE: "DefaultRole",  
                 ROLE: "Role",
-                CAN_ACCESS: "can",         
-                ATTRIBUTE_USER: "AttributeUser",   
+                CAN_ACCESS: "can",  
+                ATTRIBUTE_USER: "AttributeUser",
             }),
             APP_NAME ()
             {
@@ -156,7 +156,7 @@
                 handler(value) {
                     if (value >= 0) {
                         setTimeout(() => { 
-                            this.loginTime=this.AUTHENTICATED==true?this.loginTime+1:-1;                                                                   
+                            this.loginTime=this.AUTHENTICATED==true?this.loginTime+1:-1;                   
                         }, 1000);
                     } else {
                         this.$store.dispatch("auth/logout");
@@ -164,7 +164,7 @@
                     }
                 },
                 immediate: true
-            },    
+            },
         },
     };
 </script>

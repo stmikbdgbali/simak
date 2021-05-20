@@ -131,7 +131,7 @@
                                                                 item-value="id"
                                                                 item-text="nmatkul"                                                      
                                                                 outlined>
-                                                            </v-select>     
+                                                            </v-select>
                                                         </v-col>
                                                     </v-row>
                                                 </v-card-text>
@@ -249,7 +249,7 @@ export default {
         btnLoadingTable: false,
 
         //formdata
-        form_valid: true,        
+        form_valid: true, 
         krs_id: null,
         datakrs: {},
         datamatkul: {},
@@ -311,10 +311,10 @@ export default {
         save: async function() {
             if (this.$refs.frmdata.validate())
             {
-                this.btnLoading = true;              
+                this.btnLoading = true;
                 await this.$ajax.post("/akademik/perkuliahan/pembagiankelas/storepeserta",
                     {
-                        kelas_mhs_id: this.formdata.kelas_mhs_id,            
+                        kelas_mhs_id: this.formdata.kelas_mhs_id,     
                         krsmatkul_id: this.datamatkul.id                                                                                                    
                     },
                     {
@@ -322,7 +322,7 @@ export default {
                             Authorization: this.$store.getters["auth/Token"]
                         }
                     }
-                ).then(() => {             
+                ).then(() => {    
                     this.closedialogfrm();
                     this.fetchKRS();
                     this.btnLoading = false;

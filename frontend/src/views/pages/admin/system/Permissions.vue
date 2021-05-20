@@ -24,8 +24,8 @@
                     Daftar aksi-aksi terhadap sebuah modul. Format penulisan permission, NAMAMODULE atau NAMA MODULE. Nama Permission tighly coupling dengan kode sumber.
                 </v-alert>
             </template>
-        </ModuleHeader>       
-        <v-container fluid>    
+        </ModuleHeader>  
+        <v-container fluid>
             <v-row class="mb-4" no-gutters>
                 <v-col xs="12" sm="12" md="12">
                     <v-card>
@@ -77,7 +77,7 @@
                                             <v-card-title>
                                                 <span class="headline">{{ formTitle }}</span>
                                             </v-card-title>
-                                            <v-card-text>           
+                                            <v-card-text>  
                                                 <v-container fluid>
                                                     <v-row>
                                                         <v-col cols="12" sm="12" md="12">
@@ -86,7 +86,7 @@
                                                                 label="NAMA PERMISSION"
                                                                 :rules="rule_permission_name">
                                                             </v-text-field>
-                                                        </v-col>       
+                                                        </v-col>  
                                                     </v-row>
                                                 </v-container>
                                             </v-card-text>
@@ -169,32 +169,32 @@ export default {
         //tables
         headers: [
             { text: "NAMA PERMISSION", value: "name" },
-            { text: "GUARD", value: "guard_name" },        
+            { text: "GUARD", value: "guard_name" }, 
             { text: "AKSI", value: "actions", sortable: false, width: 100 },
         ],
-        search: "",   
+        search: "",
         //form
         form_valid: true,
         dialog: false,
         editedIndex: -1,
         editedItem: {
             id: 0,
-            name: "",      
-            guard: "",      
-            created_at: "",      
-            updated_at: "",      
+            name: "",  
+            guard: "",  
+            created_at: "",  
+            updated_at: "",  
         },
         defaultItem: {
             id: 0,
-            name: "",      
-            guard: "api",           
-            created_at: "",      
-            updated_at: "",      
+            name: "",  
+            guard: "api",    
+            created_at: "",  
+            updated_at: "",  
         },
         //form rules    
         rule_permission_name: [
             value => !!value || "Mohon untuk di isi nama Permission !!!",  
-            value => /^[0-9\\a-zA-Z\\-]+$/.test(value) || "Nama Permission hanya boleh angka,huruf,dan tanda -",    
+            value => /^[0-9\\a-zA-Z\\-]+$/.test(value) || "Nama Permission hanya boleh angka,huruf,dan tanda -",
         ],
     }),
     methods: {
@@ -205,17 +205,17 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data }) => {     
+            }).then(({ data }) => {   
                 this.daftar_permissions = data.permissions;
                 this.datatableLoading = false;
-            });        
+            });
             
         },
         dataTableRowClicked(item)
         {
             if (item === this.expanded[0])
             {
-                this.expanded = [];              
+                this.expanded = [];
             }
             else
             {
@@ -261,7 +261,7 @@ export default {
                 }
             }
         },
-        deleteItem(item) {   
+        deleteItem(item) { 
             this.$root.$confirm.open("Delete", "Apakah Anda ingin menghapus permission '+item.name+' ?", { color: "red" }).then(confirm => {
                 if (confirm)
                 {
@@ -283,7 +283,7 @@ export default {
                         this.btnLoading = false;
                     });
                 }
-            });    
+            }); 
         },
     },
     computed: {
@@ -291,17 +291,17 @@ export default {
             return this.editedIndex === -1 ? "TAMBAH PERMISSION" : "EDIT PERMISSION"
         },
         ...mapGetters("auth", { 
-            ACCESS_TOKEN: "AccessToken",          
-            TOKEN: "Token",          
-            CAN_ACCESS: "can",         
-            ATTRIBUTE_USER: "AttributeUser",          
+            ACCESS_TOKEN: "AccessToken",   
+            TOKEN: "Token",   
+            CAN_ACCESS: "can",  
+            ATTRIBUTE_USER: "AttributeUser",   
         }),
     },
     watch: {
         dialog (val) {
             val || this.close()
         },
-    },   
+    },
     components: {
 		SystemUserLayout,
 		ModuleHeader,

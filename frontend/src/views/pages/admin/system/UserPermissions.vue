@@ -106,7 +106,7 @@
 									label="ROLES"
 									:items="daftar_role"
 									v-model="role_name"
-								>                 
+								>        
 								</v-select>
 								<v-text-field
 									v-model="search"
@@ -132,7 +132,7 @@
 							show-select
 							class="elevation-1"
 						>
-						<template v-slot:item.actions="{ item }">         
+						<template v-slot:item.actions="{ item }">
 							<v-icon
 								small
 								
@@ -175,8 +175,8 @@
 			//tables
 			headers: [
 				{ text: "NAMA PERMISSION", value: "name" },
-				{ text: "GUARD", value: "guard_name" },   
-				{ text: "AKSI", value: "actions", sortable: false, width: 100 },     
+				{ text: "GUARD", value: "guard_name" },
+				{ text: "AKSI", value: "actions", sortable: false, width: 100 }, 
 			],
 			search: "",
 
@@ -186,7 +186,7 @@
 			daftar_permissions: [],
 			permissions_selected: [],
 		}),
-		props: {       
+		props: {
 			user: {
 				type: Object,
 				required: true,
@@ -198,7 +198,7 @@
 		methods: {
 			initialize() {
 				this.$ajax
-					.get("/system/users/" + this.user.id+"/roles",    
+					.get("/system/users/" + this.user.id+"/roles",
 					{
 						headers: {
 							Authorization: this.$store.getters["auth/Token"],

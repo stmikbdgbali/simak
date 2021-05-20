@@ -7,12 +7,12 @@
                 item-text="text"
                 item-value="id"
                 label="PROGRAM STUDI"
-                outlined />            
+                outlined />   
             <v-select
                 v-model="tahun_pendaftaran"
                 :items="daftar_ta"                
                 label="TAHUN PENDAFTARAN"
-                outlined />            
+                outlined />   
         </v-list-item-content>
     </v-list-item>	
 </template>
@@ -22,7 +22,7 @@ export default {
     created()
     {
         this.daftar_prodi=this.$store.getters['uiadmin/getDaftarProdi'];
-        this.prodi_id=this.$store.getters["uiadmin/getProdiID"];                                  
+        this.prodi_id=this.$store.getters["uiadmin/getProdiID"];         
 
         this.daftar_ta = this.$store.getters['uiadmin/getDaftarTA'];
         this.tahun_pendaftaran = this.$store.getters["uiadmin/getTahunPendaftaran"];
@@ -47,7 +47,7 @@ export default {
             if (!this.firstloading)
             {
                 this.$store.dispatch("uiadmin/updateTahunPendaftaran",val);
-                this.$emit("changeTahunPendaftaran",val);        
+                this.$emit("changeTahunPendaftaran",val);
             }            
         },
         prodi_id(val)
@@ -55,7 +55,7 @@ export default {
             if (!this.firstloading)
             {
                 this.$store.dispatch("uiadmin/updateProdi",val);
-                this.$emit("changeProdi",val);        
+                this.$emit("changeProdi",val);
             }
         },
     }

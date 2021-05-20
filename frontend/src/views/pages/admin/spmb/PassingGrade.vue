@@ -44,7 +44,7 @@
                         @click:row="dataTableRowClicked"
                         class="elevation-1"
                         :loading="datatableLoading"
-                        loading-text="Loading... Please wait">     
+                        loading-text="Loading... Please wait">
                         <template v-slot:top>
                             <v-toolbar flat color="white">
                                 <v-toolbar-title>DAFTAR NILAI PASSING GRADE</v-toolbar-title>
@@ -90,7 +90,7 @@
                         </template>
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
-                                <v-col cols="12">       
+                                <v-col cols="12">  
                                     <strong>ID:</strong>{{ item.id }}          
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
@@ -112,7 +112,7 @@ import ModuleHeader from "@/components/ModuleHeader";
 export default {
     name: "PassingGrade",
     created() {
-        this.jadwal_ujian_id = this.$route.params.idjadwalujian;   
+        this.jadwal_ujian_id = this.$route.params.idjadwalujian;
         this.breadcrumbs = [
             {
                 text: "HOME",
@@ -140,21 +140,21 @@ export default {
     data: () => ({
         jadwal_ujian_id: null,
         jadwal_ujian: {
-            id: 0,            
-            nama_kegiatan: "",       
-            ta: "",       
+            id: 0,     
+            nama_kegiatan: "",
+            ta: "",
             idsmt: "",  
         },
         breadcrumbs: [],
         dashboard: null,
 
         btnLoading: false,
-        datatableLoading: false,        
+        datatableLoading: false, 
         expanded: [],
         datatable: [],
         headers: [                
             { text: "PROGRAM STUDI", value: "kjur", sortable: true},
-            { text: "NILAI", value: "nilai", sortable: false, width: 100 },         
+            { text: "NILAI", value: "nilai", sortable: false, width: 100 },  
         ],
         search: "",
 
@@ -169,25 +169,25 @@ export default {
             this.datatableLoading = true;
             await this.$ajax.post("/spmb/passinggrade",
             {
-                jadwal_ujian_id: this.jadwal_ujian_id,    
+                jadwal_ujian_id: this.jadwal_ujian_id,
             },
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {      
+            }).then(({ data }) => {    
                 this.datatableLoading = false;
-                this.jadwal_ujian=data.jadwal_ujian;    
-                this.datatable=data.passing_grade;                             
+                this.jadwal_ujian=data.jadwal_ujian; 
+                this.datatable=data.passing_grade;    
             }).catch(() => {
-                this.datatableLoading = false;              
+                this.datatableLoading = false;
             });
         },
         dataTableRowClicked(item)
         {
             if (item === this.expanded[0])
             {
-                this.expanded = [];              
+                this.expanded = [];
             }
             else
             {
@@ -199,19 +199,19 @@ export default {
             this.btnLoading = true;
             await this.$ajax.post("/spmb/passinggrade/loadprodi",
                 {
-                    jadwal_ujian_id: this.jadwal_ujian_id,   
+                    jadwal_ujian_id: this.jadwal_ujian_id,
                 },
                 {
                     headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     }
                 }
-            ).then(() => {      
+            ).then(() => {    
                 this.btnLoading = false;
                 this.initialize();
             }).catch(() => {
                 this.btnLoading = false;
-            });      
+            });   
         },
         saveItem: async function({id,nilai})
         {
@@ -226,9 +226,9 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(() => {     
-                this.btnLoading = false;     
-                this.initialize();                      
+            }).then(() => {   
+                this.btnLoading = false;  
+                this.initialize();
             });
         },
         cancelItem()
@@ -244,12 +244,12 @@ export default {
 
         },
     },
-    computed: {        
+    computed: { 
         
     },
     components: {
         SPMBLayout,
-        ModuleHeader,        
+        ModuleHeader, 
     },
 }
 </script>

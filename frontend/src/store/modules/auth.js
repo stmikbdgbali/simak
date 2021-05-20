@@ -1,7 +1,7 @@
 //state
 const getDefaultState = () => 
 {
-	return {   
+	return { 
 		access_token: null,
 		token_type: null,
 		expires_in: null,
@@ -12,10 +12,10 @@ const state = getDefaultState();
 
 //mutations
 const mutations = {
-	setToken: (state,token) => {   
+	setToken: (state,token) => { 
 		state.access_token = token.access_token;
 		state.token_type = token.token_type;
-		state.expires_in = token.expires_in;        
+		state.expires_in = token.expires_in;
 	},
 	setUser: (state,user) => {
 		state.user = user;
@@ -39,7 +39,7 @@ const getters= {
 	},
 	DefaultRole:state=>{
 		if (state.user===null || typeof state.user === "undefined"){
-			return "N.A";          
+			return "N.A";  
 		} else {
 			return state.user.default_role;
 		}
@@ -86,8 +86,8 @@ const getters= {
 		}
 		else
 		{
-			let permissions = state.user.permissions;              
-			return name in permissions ? true : false;              
+			let permissions = state.user.permissions;
+			return name in permissions ? true : false;
 		}
 	}
 }
@@ -102,7 +102,7 @@ const actions = {
 }
 export default {
 	namespaced: true,
-	state,        
+	state, 
 	mutations,
 	getters,
 	actions,

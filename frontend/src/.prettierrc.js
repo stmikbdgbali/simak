@@ -6,6 +6,6 @@ module.exports = {
     tabWidth: 2,
 	useTabs: true,
     semi: true,
-    jsxBracketSameLine: true,   
+    jsxBracketSameLine: true,
     indent: [2,"tab"],
 };

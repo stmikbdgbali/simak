@@ -30,7 +30,7 @@
                             <v-list-item-title class="title">
                                 {{ATTRIBUTE_USER("username")}}
                             </v-list-item-title>
-                            <v-list-item-subtitle>             
+                            <v-list-item-subtitle>    
                                 {{ROLE}}
                             </v-list-item-subtitle>
                         </v-list-item-content>
@@ -58,8 +58,8 @@
             ></v-divider>
 			<v-app-bar-nav-icon @click.stop="drawerRight = !drawerRight">
                 <v-icon>mdi-menu-open</v-icon>
-			</v-app-bar-nav-icon>            
-        </v-app-bar>    
+			</v-app-bar-nav-icon>   
+        </v-app-bar>
         <v-navigation-drawer v-model="drawer" width="300" dark :class="this.$store.getters['uiadmin/getTheme']('V_NAVIGATION_DRAWER_CSS_CLASS')" :temporary="temporaryleftsidebar" app>
 			<v-list-item>
 				<v-list-item-avatar>
@@ -84,7 +84,7 @@
                         <v-list-item-title>BOARD E-LEARNING</v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>   
-                <v-subheader>DATA MASTER</v-subheader>                
+                <v-subheader>DATA MASTER</v-subheader>       
                 <v-list-item link to="/elearning/kelas" :active-class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_ACTIVE_CSS_CLASS')" v-if="CAN_ACCESS('ELEARNING-GROUP')">
                     <v-list-item-icon class="mr-2">
                         <v-icon>mdi-google-classroom</v-icon>
@@ -135,15 +135,15 @@
         <v-main class="mx-4 mb-4">			
 			<slot />
 		</v-main>
-    </div>    
+    </div>
 </template>
 <script>
 import {mapGetters} from 'vuex';
 export default {
-    name: "AkademikLayout",     
+    name: "AkademikLayout", 
     created()
     {
-        this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];        
+        this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];
     },
     props: {
         showrightsidebar: {
@@ -161,8 +161,8 @@ export default {
         drawerRight: null,
         
         dashboard: null,
-    }),       
-    methods: {        
+    }),
+    methods: { 
         logout ()
         {
             this.loginTime=0;
@@ -173,7 +173,7 @@ export default {
                         'Authorization': this.TOKEN,
                     }
                 }
-            ).then(()=> {     
+            ).then(()=> {   
                 this.$store.dispatch("auth/logout");	
                 this.$store.dispatch("uifront/reinit");	
                 this.$store.dispatch("uiadmin/reinit");	
@@ -194,11 +194,11 @@ export default {
     computed: {
         ...mapGetters("auth", {
             AUTHENTICATED: "Authenticated",  
-            ACCESS_TOKEN: "AccessToken",          
-            TOKEN: "Token",          
+            ACCESS_TOKEN: "AccessToken",   
+            TOKEN: "Token",   
             ROLE: "Role",
-            CAN_ACCESS: "can",         
-            ATTRIBUTE_USER: "AttributeUser",   
+            CAN_ACCESS: "can",  
+            ATTRIBUTE_USER: "AttributeUser",
         }),
         APP_NAME ()
         {
@@ -217,10 +217,10 @@ export default {
 				photo = this.$api.storageURL+'/'+img;	
 			}
 			return photo;
-        },    
+        },
         paramid ()
         {
-            var id='empty';                      
+            var id='empty';
             switch (this.$route.name)
             {
                 case 'PerkuliahanPenyelenggaraanDosenPengampu':
@@ -247,7 +247,7 @@ export default {
                 if (value >= 0)
                 {
                     setTimeout(() => { 
-                        this.loginTime=this.AUTHENTICATED==true?this.loginTime+1:-1;                                                                   
+                        this.loginTime=this.AUTHENTICATED==true?this.loginTime+1:-1;                   
 					}, 1000);
                 }
                 else
@@ -257,7 +257,7 @@ export default {
                 }
             },
             immediate: true
-        },    
+        },
     }
 }
 </script>

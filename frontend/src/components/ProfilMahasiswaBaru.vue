@@ -63,7 +63,7 @@
                                         </v-col>
                                         <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
                                     </v-row>
-                                    <v-row no-gutters>                
+                                    <v-row no-gutters>       
                                         <v-col xs="12" sm="6" md="7">
                                             <v-card flat>
                                                 <v-card-title>NAMA MAHASISWA :</v-card-title>
@@ -83,7 +83,7 @@
                                         </v-col>
                                         <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
                                     </v-row>
-                                    <v-row no-gutters>                
+                                    <v-row no-gutters>       
                                         <v-col xs="12" sm="6" md="7">
                                             <v-card flat>
                                                 <v-card-title>TEMPAT DAN TGL. LAHIR :</v-card-title>
@@ -103,7 +103,7 @@
                                         </v-col>
                                         <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
                                     </v-row>
-                                    <v-row no-gutters>               
+                                    <v-row no-gutters>      
                                         <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
                                         <v-col xs="12" sm="6" md="7">
                                             <v-card flat>
@@ -125,9 +125,9 @@
                                         <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
                                     </v-row>
                                 </v-col>
-                            </v-row>         
+                            </v-row>
                         </v-card-text>
-                    </v-card>     
+                    </v-card>
                 </v-col>
             </v-row>
             <v-row>
@@ -161,19 +161,19 @@
                                 </v-carousel>
                             </v-dialog>
                         </v-card-text>
-                    </v-card>     
+                    </v-card>
                 </v-col>
             </v-row>
         </v-card-text>
     </v-card>
 </template>
-<script>    
+<script>
 import FormPersyaratan from '@/components/FormPersyaratanPMB';
 export default {
     name: "ProfilMahasiswaBaru",
     created()
     {
-        this.initialize();                   
+        this.initialize();  
     },
     props: {
         item:Object,
@@ -184,13 +184,13 @@ export default {
         let tanggal_sekarang=this.$date().format("YYYY-MM-DD HH:mm:ss");
         return {
             slides: [],
-            dialogpreviewpersyaratan: false,         
+            dialogpreviewpersyaratan: false,  
 
-            datamhs: {         
+            datamhs: {
                 tanggal_lahir:tanggal_lahir,
                 created_at:tanggal_sekarang,
                 updated_at:tanggal_sekarang
-            },    
+            },
         }
     },
     methods: {
@@ -202,7 +202,7 @@ export default {
                         Authorization: this.$store.getters["auth/Token"]
                     }
                 }, 
-            ).then(({ data }) => {   
+            ).then(({ data }) => { 
                 this.datamhs=Object.assign(data.formulir,{
                                                             nama_prodi: this.$store.getters["uiadmin/getProdiName"](data.formulir.kjur1),
                                                             nama_kelas: this.$store.getters['uiadmin/getNamaKelas'](data.formulir.idkelas)
@@ -215,7 +215,7 @@ export default {
                         Authorization: this.$store.getters["auth/Token"]
                     }
                 }
-            ).then(({ data }) => {    
+            ).then(({ data }) => {  
                 let persyaratan = data.persyaratan;
                 persyaratan.forEach(element => {
                     if (element.path != null)
@@ -225,7 +225,7 @@ export default {
                             nama_persyaratan:element.nama_persyaratan
                         });
                     }
-                });              
+                });
             })
         },
         downloadImage ()
@@ -239,13 +239,13 @@ export default {
         closeDialog() 
         {
             setTimeout(() => {
-                this.$emit("closeProfilMahasiswaBaru");              
+                this.$emit("closeProfilMahasiswaBaru");
                 }, 300
-            );          
+            );  
         }
     },
-    components: {        
-        FormPersyaratan,        
+    components: { 
+        FormPersyaratan, 
     },
 }
 </script>

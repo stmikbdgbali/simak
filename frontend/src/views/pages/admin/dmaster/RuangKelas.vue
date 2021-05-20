@@ -277,7 +277,7 @@ export default {
         },
         editItem(item) {
             this.editedIndex = this.datatable.indexOf(item);
-            this.formdata = Object.assign({}, item);          
+            this.formdata = Object.assign({}, item);  
             this.dialogfrm = true
         },
         save: async function() {

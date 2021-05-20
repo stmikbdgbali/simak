@@ -130,7 +130,7 @@ class TransaksiController extends Controller {
                                         pe3_status_transaksi.nama_status,
                                         pe3_status_transaksi.style,
                                         pe3_transaksi.total,
-                                        pe3_transaksi.tanggal,   
+                                        pe3_transaksi.tanggal,
                                         pe3_transaksi.desc,   
                                         COALESCE(pe3_transaksi.desc,\'N.A\') AS `desc`,
                                         pe3_formulir_pendaftaran.ta AS tahun_masuk,                                             
@@ -152,7 +152,23 @@ class TransaksiController extends Controller {
         }
         else
         {
-            $transaksi_detail=TransaksiDetailModel::where('transaksi_id',$id)
+            $transaksi_detail=TransaksiDetailModel::select(\DB::raw('
+                                                        transaksi_id,
+                                                        kombi_id,                                                        
+                                                        nama_kombi,
+                                                        no_transaksi,
+                                                        promocode,
+                                                        promotype,
+                                                        promovalue,
+                                                        jumlah,
+                                                        biaya,
+                                                        sub_total,
+                                                        COALESCE(bulan,"N.A") AS bulan,
+                                                        COALESCE(tahun,"N.A") AS tahun,
+                                                        created_at,
+                                                        updated_at
+                                                    '))
+                                                    ->where('transaksi_id',$id)
                                                     ->get();
             return Response()->json([
                                         'status'=>1,

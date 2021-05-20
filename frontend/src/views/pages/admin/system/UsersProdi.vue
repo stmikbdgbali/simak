@@ -229,7 +229,7 @@
 																				</v-card>
 																		</v-form>
 																</v-dialog>
-																<v-dialog v-if="dialogUserPermission"  v-model="dialogUserPermission" max-width="800px" persistent>                 
+																<v-dialog v-if="dialogUserPermission"  v-model="dialogUserPermission" max-width="800px" persistent>        
 																		<UserPermissions :user="editedItem" v-on:closeUserPermissions="closeUserPermissions" role_default="programstudi" />
 																</v-dialog>
 														</v-toolbar>
@@ -364,7 +364,7 @@ export default {
 				},
 				//form rules
 				rule_user_name: [
-						value => !!value || "Mohon untuk di isi nama User !!!",            
+						value => !!value || "Mohon untuk di isi nama User !!!",     
 				],
 				rule_user_email: [
 						value => !!value || "Mohon untuk di isi email User !!!",
@@ -555,7 +555,7 @@ export default {
 						);
 				},
 				closeUserPermissions () {
-						this.btnLoading = false;          
+						this.btnLoading = false;  
 						this.dialogUserPermission = false;
 				},
 				save() {

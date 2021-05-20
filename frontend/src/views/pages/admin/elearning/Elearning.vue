@@ -31,7 +31,7 @@
         <template v-slot:filtersidebar>
             <Filter1 v-on:changeTahunAkademik="changeTahunAkademik" ref="filter1" />
         </template>
-        <v-container fluid>            
+        <v-container fluid>   
             
         </v-container>
     </ElearningLayout>
@@ -56,7 +56,7 @@ export default {
 				href: "#"
 			}
         ];		
-        this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];       
+        this.tahun_akademik = this.$store.getters['uiadmin/getTahunAkademik'];    
     },
     mounted()
     {
@@ -76,9 +76,9 @@ export default {
         },
 		initialize: async function()
 		{	
-            this.datatableLoading = true;          
+            this.datatableLoading = true;  
             
-            this.firstloading = false;          
+            this.firstloading = false;  
             this.$refs.filter1.setFirstTimeLoading(this.firstloading); 
 
         }
@@ -94,8 +94,8 @@ export default {
     },
     components: {
         ElearningLayout,
-        ModuleHeader,           
-        Filter1,        
+        ModuleHeader,    
+        Filter1, 
     },
 }
 </script>

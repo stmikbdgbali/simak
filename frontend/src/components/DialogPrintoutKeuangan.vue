@@ -18,11 +18,11 @@ export default {
         pid: {
             type: String,
             required: true
-        },    
+        },
         title: {
             type: String,
             default: ""
-        },    
+        },
     },
     data: () => ({
         dialog: false

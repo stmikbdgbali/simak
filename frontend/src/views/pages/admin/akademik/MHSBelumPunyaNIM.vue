@@ -28,7 +28,7 @@
                 </v-alert>
             </template>
         </ModuleHeader> 
-        <v-container fluid>             
+        <v-container fluid>    
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
                     <v-card>
@@ -68,7 +68,7 @@
                                     inset
                                     vertical
                                 ></v-divider>
-                                <v-dialog v-model="dialogfrm" width="600" persistent v-if="dialogfrm">                 
+                                <v-dialog v-model="dialogfrm" width="600" persistent v-if="dialogfrm">        
                                     <v-card color="grey lighten-4">
                                         <v-toolbar elevation="2"> 
                                             <v-toolbar-title>SETTING NIM !!!</v-toolbar-title>
@@ -110,13 +110,13 @@
                                                             {{data_mhs.nama_mhs}}
                                                         </v-card-subtitle>
                                                     </v-card>
-                                                </v-col>           
+                                                </v-col>  
                                             </v-row>
                                             <v-row>
                                                 <v-col cols="12">
                                                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>
-                                                        <v-card>                       
-                                                            <v-card-text>            
+                                                        <v-card>              
+                                                            <v-card-text>   
                                                                 <v-text-field 
                                                                     v-model="formdata.nim"
                                                                     label="NIM"   
@@ -165,13 +165,13 @@
                             <v-icon
                                 small
                                 class="mr-2"
-                                @click.stop="addItem(item)">             
+                                @click.stop="addItem(item)">    
                                 mdi-send
-                            </v-icon>     
-                        </template>           
+                            </v-icon>
+                        </template>  
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
-                                <v-col cols="12">       
+                                <v-col cols="12">  
                                     <strong>userid:</strong>{{ item.user_id }}          
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
@@ -223,21 +223,21 @@ export default {
         let prodi_id = this.$store.getters["uiadmin/getProdiID"];
         this.prodi_id = prodi_id;
         this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](prodi_id);
-        this.tahun_pendaftaran = this.$store.getters["uiadmin/getTahunPendaftaran"];              
+        this.tahun_pendaftaran = this.$store.getters["uiadmin/getTahunPendaftaran"];
         this.initialize()
     },  
     data: () => ({ 
         firstloading: true,
         prodi_id: null,
         nama_prodi: null,
-        tahun_pendaftaran: null,       
+        tahun_pendaftaran: null,
 
         btnLoading: false,
         datatableLoading: false,
         expanded: [],
         datatable: [],
         headers: [
-            { text: "NO. FORMULIR", value: "no_formulir", sortable: true, width:150  },   
+            { text: "NO. FORMULIR", value: "no_formulir", sortable: true, width:150  },
             { text: "NAMA MAHASISWA", value: "nama_mhs", sortable: true },
             { text: "TELP. HP", value: "telp_hp", sortable: true, width:150 },
             { text: "KELAS", value: "idkelas", sortable: true, width: 120, },
@@ -252,12 +252,12 @@ export default {
         dialogfrm: false, 
         daftar_dw: [],  
         
-        formdata: {             
+        formdata: {    
             nim: "",
             nirm: "",
             dosen_id: ""           
         },
-        formdefault: {             
+        formdefault: {    
             nim: "",
             nirm: "",
             dosen_id: ""           
@@ -295,7 +295,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {    
+            }).then(({ data }) => {  
                 this.datatable = data.mahasiswa;
                 this.datatableLoading = false;
             }).catch(() => {
@@ -308,7 +308,7 @@ export default {
         {
             if (item === this.expanded[0])
             {
-                this.expanded = [];              
+                this.expanded = [];
             }
             else
             {
@@ -321,11 +321,11 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {       
+            }).then(({ data }) => {
                 this.data_mhs = item;
                 this.dialogfrm = true;
                 this.daftar_dw = data.users; 
-            });   
+            });
         },
         save() {
             if (this.$refs.frmdata.validate())
@@ -336,26 +336,26 @@ export default {
                     user_id: this.data_mhs.user_id,
                     nim: this.formdata.nim,
                     nirm: this.formdata.nirm,
-                    dosen_id: this.formdata.dosen_id,           
-                },     
+                    dosen_id: this.formdata.dosen_id,    
+                }, 
                 {
                     headers: {
-                        Authorization: this.$store.getters["auth/Token"],           
+                        Authorization: this.$store.getters["auth/Token"],    
                     }
                 }
                 ).then(() => { 
                     this.btnLoading = false;
-                    this.initialize();        
-                    this.closedialogfrm();                      
+                    this.initialize();
+                    this.closedialogfrm();
                 }).catch(() => {
                     this.btnLoading = false;
                 }); 
             }
         },
         closedialogfrm() { 
-            this.dialogfrm = false;          
-            setTimeout(() => {       
-                this.formdata = Object.assign({}, this.formdefault);                              
+            this.dialogfrm = false;  
+            setTimeout(() => {
+                this.formdata = Object.assign({}, this.formdefault);     
                 this.data_mhs = Object.assign({}, {}); 
                 }, 300
             );
