@@ -54,7 +54,7 @@
                                     vertical
                                 ></v-divider>
                                 <v-spacer></v-spacer> 
-                                <v-tooltip bottom>    
+                                <v-tooltip bottom>
                                     <template v-slot:activator="{ on, attrs }">   
                                         <v-btn 
                                             v-bind="attrs"
@@ -68,7 +68,7 @@
                                             <v-icon>mdi-plus</v-icon>
                                         </v-btn>
                                     </template>
-                                    <span>Tambah Matakuliah</span>       
+                                    <span>Tambah Matakuliah</span>   
                                 </v-tooltip>
                             </v-toolbar>
                         </template>
@@ -92,7 +92,7 @@
                                     mdi-delete
                                 </v-icon>
                             </v-btn>   
-                        </template>             
+                        </template>         
                         <template v-slot:no-data>
                             Data belum tersedia
                         </template>   
@@ -101,7 +101,7 @@
             </v-row>
             <v-row>
                 <v-col cols="12"> 
-                    <v-dialog v-model="showdialogmatakuliah" max-width="800px" persistent>        
+                    <v-dialog v-model="showdialogmatakuliah" max-width="800px" persistent>    
                         <v-form ref="frmdatamatkul" v-model="form_valid" lazy-validation>
                             <v-card>
                                 <v-card-title>
@@ -119,7 +119,7 @@
                                         outlined
                                         item-text="nmatkul"
                                         item-value="id">
-                                    </v-select>    
+                                    </v-select>
                                 </v-card-text>
                                 <v-card-actions>
                                     <v-spacer></v-spacer>
@@ -136,7 +136,7 @@
                             </v-card>
                         </v-form>
                     </v-dialog>
-                    <v-dialog v-model="showdialogpeserta" max-width="800px" persistent>        
+                    <v-dialog v-model="showdialogpeserta" max-width="800px" persistent>    
                         <v-form ref="frmdata" v-model="form_valid" lazy-validation>
                             <v-card>
                                 <v-card-title>
@@ -204,7 +204,7 @@
                                     vertical
                                 ></v-divider>
                                 <v-spacer></v-spacer>
-                                <v-tooltip bottom>    
+                                <v-tooltip bottom>
                                     <template v-slot:activator="{ on, attrs }">   
                                         <v-btn 
                                             v-bind="attrs"
@@ -219,7 +219,7 @@
                                             <v-icon>mdi-plus</v-icon>
                                         </v-btn>
                                     </template>
-                                    <span>Tambah Peserta Kelas</span>       
+                                    <span>Tambah Peserta Kelas</span>   
                                 </v-tooltip>
                             </v-toolbar>
                         </template>
@@ -240,7 +240,7 @@
                                     mdi-delete
                                 </v-icon>
                             </v-btn>   
-                        </template>             
+                        </template>         
                         <template v-slot:no-data>
                             Data belum tersedia
                         </template>   
@@ -334,7 +334,7 @@ export default {
         //formdata
         form_valid: true, 
         members_selected: [],
-        formdata: {    
+        formdata: {  
             penyelenggaraan_dosen_id: "",
         },  
         
@@ -363,7 +363,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {                 
+            }).then(({ data }) => {               
                 this.datatable=data.penyelenggaraan;     
                 this.datatableLoading = false;
             })   
@@ -376,7 +376,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {                 
+            }).then(({ data }) => {               
                 this.datatable_peserta=data.peserta;     
                 this.datatableLoading = false;
             })   
@@ -393,7 +393,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {                          
+            }).then(({ data }) => {  
                 this.daftar_matakuliah = data.matakuliah; 
                 this.showdialogmatakuliah=true;   
             })  
@@ -435,7 +435,7 @@ export default {
                 }).catch(() => {
                     this.btnLoading = false;
                 });
-            }            
+            }
         },
         savematakuliah: async function() {
             if (this.$refs.frmdatamatkul.validate())
@@ -457,7 +457,7 @@ export default {
                 }).catch(() => {
                     this.btnLoading = false;
                 });
-            }            
+            }
         },
         deleteMatkul(item)
         {
@@ -474,13 +474,13 @@ export default {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
-                    ).then(() => {    
+                    ).then(() => {  
                         this.btnLoading = false;
                         this.$router.go();
                     }).catch(() => {
                         this.btnLoading = false;
                     });
-                }                
+                }    
             });
         },
         deletePeserta(item)
@@ -498,18 +498,18 @@ export default {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
-                    ).then(() => {    
+                    ).then(() => {  
                         this.btnLoading = false;
                         this.$router.go();
                     }).catch(() => {
                         this.btnLoading = false;
                     });
-                }                
+                }    
             });
         },
         closedialogpeserta () {
             this.showdialogpeserta = false;  
-            setTimeout(() => {   
+            setTimeout(() => { 
                 this.members_selected=[];
                 this.fetchPeserta();
                 this.$refs.frmdata.reset(); 
@@ -518,7 +518,7 @@ export default {
         },
         closedialogmatakuliah () {
             this.showdialogmatakuliah = false;  
-            setTimeout(() => {            
+            setTimeout(() => {          
                 this.fetchMatkul();
                 this.$refs.frmdatamatkul.reset(); 
                 }, 300

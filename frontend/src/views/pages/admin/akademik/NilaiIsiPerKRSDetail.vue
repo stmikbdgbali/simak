@@ -72,7 +72,7 @@
                                         </v-card-subtitle>
                                     </v-card>
                                 </v-col>
-                                <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>       
+                                <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>   
                                 <v-col xs="12" sm="6" md="6">
                                     <v-card flat>
                                         <v-card-title>NAMA MAHASISWA:</v-card-title>
@@ -113,8 +113,8 @@
                                     :disable-pagination="true"
                                     :hide-default-footer="true"                                                                
                                     :loading="datatableLoading"
-                                    loading-text="Loading... Please wait">    
-                                    <template v-slot:item.n_kuan="props">        
+                                    loading-text="Loading... Please wait">
+                                    <template v-slot:item.n_kuan="props">    
                                         <VAngkaNilai                                                            
                                             v-model="props.item.n_kuan"                                    
                                             dense                                    
@@ -122,7 +122,7 @@
                                             :disabled="props.item.bydosen">
                                         </VAngkaNilai> 
                                     </template> 
-                                    <template v-slot:item.n_kual="props">        
+                                    <template v-slot:item.n_kual="props">    
                                         <v-select 
                                             :items="$store.getters['uiadmin/getSkalaNilai']" 
                                             v-model="props.item.n_kual"
@@ -226,8 +226,8 @@ export default {
         headers: [
             { text: "KODE", value: "kmatkul", sortable: true, width: 100  },
             { text: "NAMA MATAKULIAH", value: "nmatkul", sortable: true, width:260 },
-            { text: "SKS", value: "sks", sortable: false, width:50 },
-            { text: "SMT", value: "semester", sortable: false, width:50 },
+            { text: "SKS", value: "sks", sortable: false, width: 50 },
+            { text: "SMT", value: "semester", sortable: false, width: 50 },
             { text: "KELAS", value: "nama_kelas", sortable: false, width:200 },
             { text: "NILAI ANGKA (0 s.d 100)", value: "n_kuan", sortable: false, width:70 },
             { text: "NILAI HURUF", value: "n_kual", sortable: false, width: 100 },
@@ -244,7 +244,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {          
+            }).then(({ data }) => {        
                 this.datakrs=data.krs;
                 this.datatable=data.krsmatkul;
                 if (Object.keys(this.datakrs).length)
@@ -278,7 +278,7 @@ export default {
                         Authorization: this.$store.getters["auth/Token"]
                     }
                 }
-            ).then(() => {   
+            ).then(() => { 
                 this.$router.go();
             }).catch(() => {
                 this.btnLoadingTable=false;
@@ -297,7 +297,7 @@ export default {
             for (index in this.datatable)
             {
                 total = total + parseInt(this.datatable[index].sks);
-            }            
+            }
             return total;
         }
     },

@@ -53,7 +53,7 @@
                                 text-color="white"
                                 small
                                 >
-                                {{datakrs.sah== 1?'YA':'TIDAK'}}                            
+                                {{datakrs.sah== 1?'YA':'TIDAK'}}      
                             </v-chip>
                         </v-card-subtitle>
                     </v-card>
@@ -139,7 +139,7 @@ export default {
             if (this.url != null)
             {
                 this.$router.push(this.url);
-            }            
+            }
         }
     },
 }

@@ -27,7 +27,7 @@
                     Halaman ini digunakan untuk mengelola konversi nilai mahasiswa pindahan/ampulan 
                 </v-alert>
             </template>
-        </ModuleHeader>      
+        </ModuleHeader>  
         <v-container fluid v-if="data_konversi.id"> 
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
@@ -203,8 +203,8 @@
                             <v-list-item-content>
                                 <div class="overline mb-1">
                                     PASANGKAN NIM KE DATA KONVERSI INI
-                                </div>    
-                                <v-list-item-subtitle>        
+                                </div>
+                                <v-list-item-subtitle>    
                                     <v-autocomplete
                                         v-model="data_mhs"
                                         :items="entries"
@@ -233,7 +233,7 @@
                         <v-divider></v-divider>
                         <v-expand-transition>
                             <v-list v-if="data_mhs">
-                                <template v-for="(field, i) in fields">        
+                                <template v-for="(field, i) in fields">    
                                 <v-list-item :key="i" v-if="field.key!='foto' && field.key!='nama_mhs_alias'">
                                     <v-list-item-content>
                                         <v-list-item-title>  
@@ -293,36 +293,36 @@
                                 <v-spacer></v-spacer>  
                             </v-toolbar>
                         </template>
-                        <template v-slot:item.kmatkul_asal="{item}">    
+                        <template v-slot:item.kmatkul_asal="{item}">
                             {{item.kmatkul_asal==null ? 'N.A':item.kmatkul_asal}}
-                        </template>                                  
-                        <template v-slot:item.matkul_asal="{item}">    
+                        </template>                              
+                        <template v-slot:item.matkul_asal="{item}">
                             {{item.matkul_asal==null ? 'N.A':item.matkul_asal}}
-                        </template>                                  
-                        <template v-slot:item.sks_asal="{item}">    
+                        </template>                              
+                        <template v-slot:item.sks_asal="{item}">
                             {{item.sks_asal==null ? 'N.A':item.sks_asal}}
-                        </template>                    
-                        <template v-slot:item.n_kual="{item}">    
+                        </template>                
+                        <template v-slot:item.n_kual="{item}">
                             {{item.n_kual==null ? 'N.A':item.n_kual}}
-                        </template>                                                                                                                        
+                        </template>                                                                                                                    
                         <template v-slot:no-data>
                             Data belum tersedia
                         </template>   
                         <template v-slot:body.append v-if="datatable.length > 0">
                             <tr class="grey lighten-4 font-weight-black">
                                 <td class="text-right" colspan="2">TOTAL SKS</td>
-                                <td colspan="6">{{totalSKS}}</td>     
+                                <td colspan="6">{{totalSKS}}</td> 
                             </tr>
                             <tr class="grey lighten-4 font-weight-black">
                                 <td class="text-right" colspan="2">TOTAL MATAKULIAH</td>
-                                <td colspan="6">{{totalMatkul}}</td>     
+                                <td colspan="6">{{totalMatkul}}</td> 
                             </tr>
                         </template>
                     </v-data-table>
                 </v-col>
             </v-row> 
         </v-container>   
-        <v-dialog v-model="dialogprintpdf" max-width="500px" persistent>       
+        <v-dialog v-model="dialogprintpdf" max-width="500px" persistent>   
             <v-card>
                 <v-card-title>
                     <span class="headline">Print to PDF</span>
@@ -395,7 +395,7 @@ export default {
         datatable: [],
         headers: [            
             { text: "KODE", value: "kmatkul", sortable: false, width: 100  },
-            { text: "NAMA", value: "nmatkul", sortable: false, width:250  },
+            { text: "NAMA", value: "nmatkul", sortable: false, width: 250  },
             { text: "SKS", value: "sks", sortable: false, width:70 },
             { text: "SMT", value: "semester", sortable: true, width:70, },
             { text: "KODE MATKUL ASAL", value: "kmatkul_asal", sortable: false, width: 120 },
@@ -436,14 +436,14 @@ export default {
     }),
     methods: { 
         initialize: async function() 
-        {    
+        {  
             this.datatableLoading = true;
             await this.$ajax.get("/akademik/nilai/konversi/" + this.nilai_konversi_id,
             {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {  
+            }).then(({ data }) => {
                 this.datatable = data.nilai_konversi;
                 this.data_konversi = data.data_konversi;
                 this.datatableLoading = false;
@@ -562,7 +562,7 @@ export default {
                     },
                     
                 }
-            ).then(() => {       
+            ).then(() => {     
                 this.$router.go();
             }).catch(() => {
                 this.btnLoading = false;
@@ -588,7 +588,7 @@ export default {
                     }).catch(() => {
                         this.btnLoading = false;
                     });
-                }                
+                }    
             });
         },
         clearDataMhs()
@@ -647,7 +647,7 @@ export default {
                         headers: {
                             Authorization: this.$store.getters["auth/Token"]
                         }
-                    }).then(({ data }) => {                  
+                    }).then(({ data }) => {                
                         const { jumlah, daftar_mhs } = data;
                         this.count = jumlah;
                         this.entries = daftar_mhs;

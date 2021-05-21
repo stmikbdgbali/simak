@@ -135,9 +135,9 @@ export default {
         
     }),
     methods: {
-        changeTahunAkademik (tahun)
+        changeTahunAkademik(tahun)
         {
-            this.tahun_akademik=tahun;
+            this.tahun_akademik = tahun;
         },
         changeSemesterAkademik (semester)
         {
@@ -171,14 +171,14 @@ export default {
             if (!this.firstloading)
             {
                 this.initialize();
-            }            
+            }
         },
         semester_akademik()
         {
             if (!this.firstloading)
             {
                 this.initialize();
-            }            
+            }
         },
     },
     components: {

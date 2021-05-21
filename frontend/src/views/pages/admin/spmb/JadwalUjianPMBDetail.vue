@@ -133,7 +133,7 @@
 								<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
 							</v-row>							
 						</v-card-text>							
-					</v-card>        
+					</v-card>    
 				</v-col>
 			</v-row>
 			<v-row>
@@ -241,7 +241,7 @@
 		name: "JadwalUjianPMBDetail",
 		created() {
 			this.jadwal_ujian_id = this.$route.params.jadwal_ujian_id;
-			this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];
+			this.dashboard = this.$store.getters["uiadmin/getDefaultDashboard"];
 			this.breadcrumbs = [
 				{
 					text: "HOME",
@@ -288,7 +288,7 @@
 				datatable: [],
 				headers: [                
 					{ text: "NO", value: "no_peserta", sortable: true, width:70 },
-					{ text: "NAMA", value: "nama_mhs", sortable: true, width:250 },
+					{ text: "NAMA", value: "nama_mhs", sortable: true, width: 250 },
 					{ text: "JK", value: "jk", sortable: true, width:70 },
 					{ text: "NOMOR HP", value: "telp_hp", sortable: true, width:125 },
 					{ text: "NILAI", value: "nilai", sortable: true, width: 100 },
@@ -334,7 +334,7 @@
 					this.expanded = [];
 				} else {
 					this.expanded = [item];
-				}               
+				}   
 			},			
 			durasiUjian (item) {
 				let waktu_mulai = this.$date(item.tanggal_ujian + " " +item.jam_mulai_ujian);

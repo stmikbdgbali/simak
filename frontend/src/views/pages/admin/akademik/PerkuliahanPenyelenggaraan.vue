@@ -112,8 +112,8 @@
 												<template v-slot:expanded-item="{ headers, item }">
 														<td :colspan="headers.length" class="text-center">
 																<v-col cols="12">  
-																		<strong>id:</strong>{{ item.id }}          
-																		<strong>matkul_id:</strong>{{ item.matkul_id }}          
+																		<strong>id:</strong>{{ item.id }}
+																		<strong>matkul_id:</strong>{{ item.matkul_id }}
 																		<strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
 																		<strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
 																</v-col>
@@ -179,20 +179,20 @@
 				headers: [
 						{ text: "KODE", value: "kmatkul", sortable: true, width: 120  },
 						{ text: "NAMA MATAKULIAH", value: "nmatkul", sortable: true  },
-						{ text: "SKS", value: "sks", sortable: true, width:50  },
-						{ text: "SMT. MATKUL", value: "semester", sortable: true, width:50  },
-						{ text: "TAHUN MATKUL", value: "ta_matkul", sortable: true, width:50 },
+						{ text: "SKS", value: "sks", sortable: true, width: 50  },
+						{ text: "SMT. MATKUL", value: "semester", sortable: true, width: 50  },
+						{ text: "TAHUN MATKUL", value: "ta_matkul", sortable: true, width: 50 },
 						{ text: "KETUA GROUP", value: "nama_dosen", sortable: true },
-						{ text: "JUMLAH DOSEN", value: "jumlah_dosen", sortable: true, width:50 },
-						{ text: "JUMLAH MHS", value: "jumlah_mhs", sortable: true, width:50},
+						{ text: "JUMLAH DOSEN", value: "jumlah_dosen", sortable: true, width: 50 },
+						{ text: "JUMLAH MHS", value: "jumlah_mhs", sortable: true, width: 50},
 						{ text: "AKSI", value: "actions", sortable: false, width: 100 },
 				],
 				search: "",
 			}),
 			methods: {
-				changeTahunAkademik (tahun)
+				changeTahunAkademik(tahun)
 				{
-						this.tahun_akademik=tahun;
+						this.tahun_akademik = tahun;
 				},
 				changeSemesterAkademik (semester)
 				{
@@ -215,7 +215,7 @@
 								headers: {
 										Authorization: this.$store.getters["auth/Token"]
 								}
-						}).then(({ data }) => {  
+						}).then(({ data }) => {
 								this.datatable = data.penyelenggaraan;
 								this.datatableLoading = false;
 						}).catch(() => {
@@ -282,7 +282,7 @@
 			},
 			prodi_id(val) {
 				if (!this.firstloading) {
-						this.nama_prodi=this.$store.getters["uiadmin/getProdiName"](val);
+						this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](val);
 						this.initialize();
 				}
 			},

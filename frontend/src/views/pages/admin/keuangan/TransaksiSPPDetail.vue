@@ -87,7 +87,7 @@
                                         </v-card-subtitle>
                                     </v-card>
                                 </v-col>
-                                <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>    
+                                <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
                                 
                                 <v-col xs="12" sm="6" md="6">
                                     <v-card flat>
@@ -185,7 +185,7 @@ export default {
     name: "TransaksiSPPDetail",
     created()
     {
-        this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard']; 
+        this.dashboard = this.$store.getters["uiadmin/getDefaultDashboard"]; 
         this.transaksi_id=this.$route.params.transaksi_id;   
         this.breadcrumbs = [
             {
@@ -223,7 +223,7 @@ export default {
         //tables
         datatableLoading: false,
         datatable: [],
-        headers: [                        
+        headers: [
             { text: "NO. BULAN", value: "no_bulan", width: 120, sortable: false },
             { text: "BULAN", value: "nama_bulan", sortable: false }, 
             { text: "TAHUN", value: "tahun", sortable: false }, 
@@ -234,9 +234,9 @@ export default {
         form_valid: true  
     }),
     methods: {
-        changeTahunAkademik (tahun)
+        changeTahunAkademik(tahun)
         {
-            this.tahun_akademik=tahun;
+            this.tahun_akademik = tahun;
         },
         initialize: async function() 
         {
@@ -273,7 +273,7 @@ export default {
                     }).catch(() => {
                         this.btnLoading = false;
                     });
-                }                
+                }    
             });
         },
         closeDetailTransaksi ()
@@ -297,7 +297,7 @@ export default {
             for (index in this.item_selected)
             {
                 total = total + parseInt(this.item_selected[index].biaya_kombi);
-            }            
+            }
             return total;
         }
     },

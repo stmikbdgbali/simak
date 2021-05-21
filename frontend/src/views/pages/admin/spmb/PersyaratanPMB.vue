@@ -84,8 +84,8 @@
 									vertical
 								></v-divider>
 								<v-spacer></v-spacer>
-								<v-dialog v-model="dialogprofilmhsbaru" :fullscreen="true">        
-									<ProfilMahasiswaBaru :item="datamhsbaru" v-on:closeProfilMahasiswaBaru="closeProfilMahasiswaBaru" v-if="dialogprofilmhsbaru" />        
+								<v-dialog v-model="dialogprofilmhsbaru" :fullscreen="true">    
+									<ProfilMahasiswaBaru :item="datamhsbaru" v-on:closeProfilMahasiswaBaru="closeProfilMahasiswaBaru" v-if="dialogprofilmhsbaru" />    
 								</v-dialog>
 							</v-toolbar>
 						</template>
@@ -95,10 +95,10 @@
 								:color="badgeColor(item)"
 								:icon="badgeIcon(item)"
 								:value="item.jumlah_persyaratan > 0"
-								overlap>       
+								overlap>   
 								<v-avatar size="30">   
-									<v-img :src="$api.url+'/'+item.foto" />                       
-								</v-avatar>                                                    
+									<v-img :src="$api.url+'/'+item.foto" />                   
+								</v-avatar>                                                
 							</v-badge>
 						</template>
 						<template v-slot:item.actions="{ item }">
@@ -139,7 +139,7 @@ import Filter7 from "@/components/sidebar/FilterMode7";
 export default {
 	name: "PersyaratanPMB", 
 	created() {
-		this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard']; 
+		this.dashboard = this.$store.getters["uiadmin/getDefaultDashboard"]; 
 		this.breadcrumbs = [
 			{
 				text: "HOME",
@@ -158,7 +158,7 @@ export default {
 			}
 		];
 
-		this.breadcrumbs[1].disabled=(this.dashboard=='mahasiswabaru'||this.dashboard == "mahasiswa");		
+		this.breadcrumbs[1].disabled = (this.dashboard=='mahasiswabaru'||this.dashboard == "mahasiswa");		
 		let prodi_id = this.$store.getters["uiadmin/getProdiID"];
 		this.prodi_id = prodi_id;
 		this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](prodi_id);
@@ -185,7 +185,7 @@ export default {
 			{ text: "NOMOR HP", value: "nomor_hp", width: 100},
 			{ text: "KELAS", value: "nkelas", width: 100, sortable: true },
 			{ text: "STATUS", value: "status", width: 120, sortable: true },
-			{ text: "AKSI", value: "actions", sortable: false, width:50 },
+			{ text: "AKSI", value: "actions", sortable: false, width: 50 },
 		],
 		search: "",
 
@@ -210,7 +210,7 @@ export default {
 						}
 					},
 					
-				).then(({ data }) => {   
+				).then(({ data }) => { 
 					this.showcomponentpersyaratan=data.formulir.idkelas==null||data.formulir.idkelas==''?false: true; 
 				});
 			} else {
@@ -230,7 +230,7 @@ export default {
 				});
 				this.firstloading = false; 
 				this.$refs.filter7.setFirstTimeLoading(this.firstloading);  
-			}               
+			}   
 		},
 		dataTableRowClicked(item)
 		{
@@ -241,7 +241,7 @@ export default {
 			else
 			{
 				this.expanded = [item];
-			}               
+			}   
 		},
 		badgeColor(item)
 		{
@@ -267,15 +267,15 @@ export default {
 			if (!this.firstloading)
 			{
 				this.initialize();
-			}            
+			}
 		},
 		prodi_id(val)
 		{
 			if (!this.firstloading)
 			{
-				this.nama_prodi=this.$store.getters["uiadmin/getProdiName"](val);
+				this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](val);
 				this.initialize();
-			}            
+			}
 		}
 	},
 	components: {

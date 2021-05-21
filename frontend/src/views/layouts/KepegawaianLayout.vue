@@ -30,7 +30,7 @@
                             <v-list-item-title class="title">
                                 {{ ATTRIBUTE_USER("username") }}
                             </v-list-item-title>
-                            <v-list-item-subtitle>    
+                            <v-list-item-subtitle>
                                 [{{ DEFAULT_ROLE }}]
                             </v-list-item-subtitle>
                         </v-list-item-content>
@@ -93,7 +93,7 @@
                             DOSEN
                         </v-list-item-title>
                     </v-list-item-content>
-                </v-list-item>       
+                </v-list-item>   
             </v-list>
         </v-navigation-drawer>
         <v-navigation-drawer v-model="drawerRight" width="300" app fixed right temporary v-if="showrightsidebar">
@@ -142,7 +142,7 @@ export default {
     name: "KepegawaianLayout", 
     created()
     {
-        this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];   
+        this.dashboard = this.$store.getters["uiadmin/getDefaultDashboard"];   
     },
     props: {
         showrightsidebar: {
@@ -172,7 +172,7 @@ export default {
                         Authorization: this.TOKEN,
                     }
                 }
-            ).then(()=> {   
+            ).then(()=> { 
                 this.$store.dispatch("auth/logout");	
                 this.$store.dispatch("uifront/reinit");
                 this.$store.dispatch("uiadmin/reinit");
@@ -235,7 +235,7 @@ export default {
                 case 'PerkuliahanPembagianKelasPeserta':
                     id=this.$route.params.kelas_mhs_id;
                 break;
-            }            
+            }
             return id;
         }
     },

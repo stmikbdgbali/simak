@@ -45,7 +45,7 @@ export default {
     name: "Keuangan",
     created()
 	{
-        this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard']; 
+        this.dashboard = this.$store.getters["uiadmin/getDefaultDashboard"]; 
 		this.breadcrumbs = [
 			{
 				text: "HOME",
@@ -73,9 +73,9 @@ export default {
         dashboard: null
     }),
     methods: {
-        changeTahunAkademik (tahun)
+        changeTahunAkademik(tahun)
         {
-            this.tahun_akademik=tahun;
+            this.tahun_akademik = tahun;
         },		
     },
     components: {

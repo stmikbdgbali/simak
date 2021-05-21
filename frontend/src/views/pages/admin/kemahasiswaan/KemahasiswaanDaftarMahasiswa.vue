@@ -104,7 +104,7 @@
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
                                 <v-col cols="12">  
-                                    <strong>id:</strong>{{ item.user_id }}          
+                                    <strong>id:</strong>{{ item.user_id }}
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
                                 </v-col> 
@@ -206,7 +206,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {  
+            }).then(({ data }) => {
                 this.datatable = data.mahasiswa;
                 this.datatableLoading = false;
             }).catch(() => {
@@ -224,7 +224,7 @@ export default {
             else
             {
                 this.expanded = [item];
-            }               
+            }   
         },
         printtoexcel: async function()
         {
@@ -269,7 +269,7 @@ export default {
                         Authorization: this.$store.getters["auth/Token"]
                     }
                 }
-            ).then(() => {   
+            ).then(() => { 
                 this.btnLoading = false;
             }).catch(() => {
                 this.btnLoading = false;
@@ -287,7 +287,7 @@ export default {
                         Authorization: this.$store.getters["auth/Token"]
                     }
                 }
-            ).then(() => {   
+            ).then(() => { 
                 this.btnLoading = false;
             }).catch(() => {
                 this.btnLoading = false;
@@ -300,17 +300,17 @@ export default {
             if (!this.firstloading)
             {
                 this.initialize();
-            }            
+            }
         },
         prodi_id(val)
         {
             if (!this.firstloading)
             {
-                this.nama_prodi=this.$store.getters["uiadmin/getProdiName"](val);
+                this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](val);
                 this.initialize();
-            }            
+            }
         },
-        search ()
+        search()
         {
             if (!this.awaiting_search) 
             {
@@ -328,7 +328,7 @@ export default {
                             headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
-                        }).then(({ data }) => {  
+                        }).then(({ data }) => {
                             this.datatable = data.mahasiswa;
                             this.datatableLoading = false;
                         });  

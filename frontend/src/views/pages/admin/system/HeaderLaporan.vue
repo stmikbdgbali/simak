@@ -36,7 +36,7 @@
                                     v-model="formdata.header_1" 
                                     label="HEADER 1"
                                     outlined>
-                                </v-text-field>                                                                                                                                                                            
+                                </v-text-field>                                                                                                                                                                        
                                 <v-text-field 
                                     v-model="formdata.header_2" 
                                     label="HEADER 2"

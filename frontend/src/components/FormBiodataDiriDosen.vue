@@ -14,7 +14,7 @@
                                     v-model="formdata.nidn"    
                                     :rules="rule_nidn"
                                     filled
-                                />    
+                                />
                             </v-col>
                             <v-col cols="6">
                                 <v-text-field
@@ -155,7 +155,7 @@
                             filled
                         />
                     </v-card-text>
-                </v-card>      
+                </v-card>  
                 <v-card class="mb-4"> 
                     <v-card-actions>
                         <v-spacer></v-spacer>
@@ -247,7 +247,7 @@ export default {
             desc: "",
             active: "",
         },
-        rule_nidn: [                         
+        rule_nidn: [ 
             value => /^[0-9]+$/.test(value) || "NIDN hanya boleh angka",
         ],
         rule_nipy: [            
@@ -281,7 +281,7 @@ export default {
     methods: {
         initialize: async function()
         {
-            this.$ajax.get("/datamaster/provinsi").then(({ data }) => {   
+            this.$ajax.get("/datamaster/provinsi").then(({ data }) => { 
                 this.daftar_provinsi = data.provinsi; 
             });    
             await this.$ajax.get("/system/usersdosen/biodatadiri/" + this.$store.getters['auth/AttributeUser']("id"), 
@@ -319,7 +319,7 @@ export default {
             if (this.$refs.frmdata.validate())
             {
                 this.btnLoading = true;
-                await this.$ajax.post("/system/usersdosen/biodatadiri/" + this.$store.getters['auth/AttributeUser']("id"),{  
+                await this.$ajax.post("/system/usersdosen/biodatadiri/" + this.$store.getters['auth/AttributeUser']("id"),{
                     _method: "put",
                     nidn: this.formdata.nidn,    
                     nipy: this.formdata.nipy,    
@@ -350,13 +350,13 @@ export default {
                         Authorization: this.$store.getters["auth/Token"]
                     }
                 }
-                ).then(() => {            
+                ).then(() => {          
                     this.btnLoading = false;
                     this.$router.go();
-                }).catch(() => {               
+                }).catch(() => {             
                     this.btnLoading = false;
                 });
-            }                             
+            }                 
         },
     },
     watch: {
@@ -365,7 +365,7 @@ export default {
             if (val.id != null && val.id != "")
             {
                 this.btnLoadingProv=true;
-                this.$ajax.get("/datamaster/provinsi/" + val.id + "/kabupaten").then(({ data }) => {   
+                this.$ajax.get("/datamaster/provinsi/" + val.id + "/kabupaten").then(({ data }) => { 
                     this.daftar_kabupaten=data.kabupaten;
                     this.btnLoadingProv=false;
                 });
@@ -377,7 +377,7 @@ export default {
             if (val.id != null && val.id != "")
             {
                 this.btnLoadingKab=true;
-                this.$ajax.get("/datamaster/kabupaten/" + val.id + "/kecamatan").then(({ data }) => {            
+                this.$ajax.get("/datamaster/kabupaten/" + val.id + "/kecamatan").then(({ data }) => {          
                     this.daftar_kecamatan=data.kecamatan;
                     this.btnLoadingKab=false;
                 });
@@ -388,7 +388,7 @@ export default {
             if (val.id != null && val.id != "")
             {
                 this.btnLoadingKec=true;
-                this.$ajax.get("/datamaster/kecamatan/" + val.id + "/desa").then(({ data }) => {            
+                this.$ajax.get("/datamaster/kecamatan/" + val.id + "/desa").then(({ data }) => {          
                     this.daftar_desa=data.desa;
                     this.btnLoadingKec=false;
                 });
@@ -397,7 +397,7 @@ export default {
         kode_fakultas (val)
         {
             this.btnLoadingFakultas=true;
-            this.$ajax.get("/datamaster/fakultas/" + val + "/programstudi").then(({ data }) => {            
+            this.$ajax.get("/datamaster/fakultas/" + val + "/programstudi").then(({ data }) => {          
                 this.daftar_prodi=data.programstudi;
                 this.btnLoadingFakultas=false;
             });

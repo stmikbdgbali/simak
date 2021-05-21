@@ -54,7 +54,7 @@
                                 <v-switch
                                     v-model="formdata.is_ketua"
                                     label="SEBAGAI KETUA GROUP DOSEN PENGAMPU">
-                                </v-switch>                                
+                                </v-switch>                            
                             </v-card-text>
                             <v-card-actions>
                                 <v-spacer></v-spacer>
@@ -91,14 +91,14 @@
                                 class="elevation-1"
                                 :loading="datatableLoading"
                                 loading-text="Loading... Please wait">
-                                <template v-slot:item.is_ketua="{ item }">        
+                                <template v-slot:item.is_ketua="{ item }">    
                                     <v-switch
                                         v-model="item.is_ketua"
                                         :label="item.is_ketua == 1 ? 'YA' : 'TIDAK'"
                                         @change="updateketua(item)">
                                     </v-switch>  
                                 </template>
-                                <template v-slot:item.actions="{ item }">        
+                                <template v-slot:item.actions="{ item }">    
                                     <v-btn
                                         small
                                         icon
@@ -301,7 +301,7 @@ export default {
                     }).catch(() => {
                         this.btnLoadingTable=false;
                     });
-                }                
+                }    
             });
         },
         async updateketua(item)
@@ -318,7 +318,7 @@ export default {
                     }
                 }
             ).then(() => {
-                setTimeout(() => {                 
+                setTimeout(() => {               
                     this.initialize();      
                     }, 500
                 );

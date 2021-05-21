@@ -34,7 +34,7 @@
                     <DataKelasMHS :datakelas="data_kelas_mhs" />
                 </v-col>
             </v-row> 
-            <v-row>        
+            <v-row>    
                 <v-col cols="12">  
                     <v-alert type="info">
                         Catatan: Pilihlah mahasiswa yang di isi nilainya. Untuk meningkatkan performance bila jumlah peserta lebih dari 10; maka disarankan mengisi nilai per 10 mahasiswa.
@@ -87,7 +87,7 @@
                                 </v-numeric>
                                 <v-chip color="primary" class="ma-2" outlined label v-if="props.item.n_kuan != null">{{props.item.n_kuan}}</v-chip>   
                             </template>
-                            <template v-slot:item.n_kual="props">    
+                            <template v-slot:item.n_kual="props">
                                 <v-select 
                                     :items="skala_nilai" 
                                     v-model="props.item.n_kual"
@@ -106,7 +106,7 @@
                                                 SIMPAN
                                         </v-btn>
                                     </td>
-                                </tr>    
+                                </tr>
                             </template>  
                             <template v-slot:no-data>
                                 Data belum tersedia
@@ -203,7 +203,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {                                            
+            }).then(({ data }) => {                    
                 this.datatableLoading = false;
                 this.datatable_peserta=data.peserta; 
             })              
@@ -216,7 +216,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {                 
+            }).then(({ data }) => {               
                 this.datatable_peserta=data.peserta;     
                 this.datatableLoading = false;
             })   

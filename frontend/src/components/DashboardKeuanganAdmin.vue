@@ -93,12 +93,12 @@
                             :headers="headers"
                             :items="kombi_ganjil_paid"> 
                             <template v-slot:item.jumlah="{ item }">
-                                {{  item.jumlah|formatUang }}
+                                {{item.jumlah|formatUang }}
                             </template>
                             <template v-slot:body.append v-if="kombi_ganjil_paid.length > 0">
                                 <tr class="grey lighten-4 font-weight-black">
                                     <td class="text-right">TOTAL</td>
-                                    <td class="text-right">{{totalKombiGanjilPaid|formatUang}}</td>                                  
+                                    <td class="text-right">{{totalKombiGanjilPaid|formatUang}}</td>                              
                                 </tr>
                             </template>
                             <template v-slot:no-data>
@@ -127,12 +127,12 @@
                             :headers="headers"
                             :items="kombi_genap_paid"> 
                             <template v-slot:item.jumlah="{ item }">
-                                {{  item.jumlah|formatUang }}
+                                {{item.jumlah|formatUang }}
                             </template>
                             <template v-slot:body.append v-if="kombi_genap_paid.length > 0">
                                 <tr class="grey lighten-4 font-weight-black">
                                     <td class="text-right">TOTAL</td>
-                                    <td class="text-right">{{totalKombiGenapPaid|formatUang}}</td>                                  
+                                    <td class="text-right">{{totalKombiGenapPaid|formatUang}}</td>                              
                                 </tr>
                             </template>
                             <template v-slot:no-data>
@@ -194,7 +194,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {    
+            }).then(({ data }) => {  
                 this.total_transaction=data.total_transaction;
                 this.total_transaction_paid=data.total_transaction_paid;
                 this.total_transaction_unpaid=data.total_transaction_unpaid;

@@ -28,7 +28,7 @@
                 </v-alert>
             </template>
         </ModuleHeader>  
-        <v-container fluid>    
+        <v-container fluid>
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
                     <v-card>
@@ -79,13 +79,13 @@
                                     v-if="$store.getters['auth/can']('DMASTER-PERSYARATAN-PMB_STORE')">
                                     TAMBAH
                                 </v-btn>
-                                <v-dialog v-model="dialogfrm" max-width="500px" persistent>        
+                                <v-dialog v-model="dialogfrm" max-width="500px" persistent>    
                                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>
                                         <v-card>
                                             <v-card-title>
                                                 <span class="headline">{{ formTitle }}</span>
                                             </v-card-title>
-                                            <v-card-text>                                                        
+                                            <v-card-text>                                                    
                                                 <v-text-field 
                                                     v-model="formdata.nama_persyaratan" 
                                                     label="NAMA PERSYARATAN"
@@ -173,13 +173,13 @@
                                                     </v-card>
                                                 </v-col>
                                                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
-                                            </v-row>            
+                                            </v-row>        
                                         </v-card-text>
                                         <v-card-actions>
                                             <v-spacer></v-spacer>
                                             <v-btn color="blue darken-1" text @click.stop="closedialogdetailitem">KELUAR</v-btn>
                                         </v-card-actions>
-                                    </v-card>        
+                                    </v-card>    
                                 </v-dialog>
                                 <v-dialog v-model="dialogcopypersyaratan" max-width="500px" persistent>
                                     <v-form ref="frmdialogcopypersyaratan" v-model="form_valid" lazy-validation>
@@ -241,7 +241,7 @@
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
                                 <v-col cols="12">  
-                                    <strong>ID:</strong>{{ item.id }}          
+                                    <strong>ID:</strong>{{ item.id }}
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
                                 </v-col>
@@ -352,7 +352,7 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data }) => {  
+            }).then(({ data }) => {
                 this.datatable = data.persyaratan;
                 this.datatableLoading = false;
             }).catch(() => {
@@ -370,7 +370,7 @@ export default {
             else
             {
                 this.expanded = [item];
-            }               
+            }   
         },
         tambahItem: async function()
         { 
@@ -397,8 +397,8 @@ export default {
                         value:item.value,
                         text:item.text
                     })
-                }                              
-            }            
+                }                  
+            }
             this.dialogcopypersyaratan=true;
         },
         save: async function() {
@@ -492,7 +492,7 @@ export default {
                     }).catch(() => {
                         this.btnLoading = false;
                     });
-                }                
+                }    
             });
         },
         closedialogdetailitem() {
@@ -505,16 +505,16 @@ export default {
         },
         closedialogfrm() {
             this.dialogfrm = false;  
-            setTimeout(() => {          
+            setTimeout(() => {        
                 this.$refs.frmdata.resetValidation();      
                 this.formdata = Object.assign({}, this.formdefault);
                 this.editedIndex = -1
                 }, 300
             );
         },
-        closedialogsalinpersyaratan () {   
+        closedialogsalinpersyaratan () { 
             this.dialogcopypersyaratan = false; 
-            setTimeout(() => {   
+            setTimeout(() => { 
                 this.$refs.frmdialogcopypersyaratan.reset();      
                 this.editedIndex = -1
                 }, 300
@@ -536,7 +536,7 @@ export default {
             if (!this.firstloading)
             {
                 this.initialize();
-            }            
+            }
         },
     },
     components: {

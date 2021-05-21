@@ -30,7 +30,7 @@
                 <v-col cols="12">
                     <v-card color="grey lighten-4">
                         <v-toolbar elevation="2"> 
-                            <v-toolbar-title>DATA USER</v-toolbar-title>          
+                            <v-toolbar-title>DATA USER</v-toolbar-title>      
                         </v-toolbar>
                         <v-card-text>
                             <v-row>
@@ -307,7 +307,7 @@
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
-                    ).then(({ data }) => {                                       
+                    ).then(({ data }) => {               
                         this.$refs.frmdata.reset(); 
                         this.formdata.foto=data.foto;  
                         this.formdata=this.formdefault; 
@@ -330,7 +330,7 @@
             },
             uploadFoto: async function() {
                 if (this.$refs.frmuploadfoto.validate()) {
-                    if (this.formdata.foto) {   
+                    if (this.formdata.foto) { 
                         this.btnLoading = true;
                         var formdata = new FormData();
                         formdata.append("foto",this.formdata.foto);
@@ -341,7 +341,7 @@
                                     'Content-Type': "multipart/form-data"                      
                                 }
                             }
-                        ).then(({ data }) => {       
+                        ).then(({ data }) => {     
                             this.btnLoading = false;
                             this.$store.dispatch("updateFoto",data.user.foto);
                         }).catch(() => {
@@ -360,7 +360,7 @@
                             Authorization: this.$store.getters["auth/Token"], 
                         }
                     }
-                ).then(({ data }) => {       
+                ).then(({ data }) => {     
                     this.btnLoading = false;
                     this.$store.dispatch("updateFoto",data.user.foto);
                 }).catch(() => {
@@ -375,7 +375,7 @@
                             Authorization: this.$store.getters["auth/Token"], 
                         }
                     }
-                ).then(({ data }) => {       
+                ).then(({ data }) => {     
                     this.data_mhs=data.mahasiswa;  
                 })
             }

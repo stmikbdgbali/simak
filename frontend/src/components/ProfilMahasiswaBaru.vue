@@ -63,7 +63,7 @@
                                         </v-col>
                                         <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
                                     </v-row>
-                                    <v-row no-gutters>       
+                                    <v-row no-gutters>   
                                         <v-col xs="12" sm="6" md="7">
                                             <v-card flat>
                                                 <v-card-title>NAMA MAHASISWA :</v-card-title>
@@ -83,7 +83,7 @@
                                         </v-col>
                                         <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
                                     </v-row>
-                                    <v-row no-gutters>       
+                                    <v-row no-gutters>   
                                         <v-col xs="12" sm="6" md="7">
                                             <v-card flat>
                                                 <v-card-title>TEMPAT DAN TGL. LAHIR :</v-card-title>
@@ -103,7 +103,7 @@
                                         </v-col>
                                         <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
                                     </v-row>
-                                    <v-row no-gutters>      
+                                    <v-row no-gutters>  
                                         <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
                                         <v-col xs="12" sm="6" md="7">
                                             <v-card flat>
@@ -215,7 +215,7 @@ export default {
                         Authorization: this.$store.getters["auth/Token"]
                     }
                 }
-            ).then(({ data }) => {  
+            ).then(({ data }) => {
                 let persyaratan = data.persyaratan;
                 persyaratan.forEach(element => {
                     if (element.path != null)

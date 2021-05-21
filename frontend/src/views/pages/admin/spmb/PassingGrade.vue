@@ -75,7 +75,7 @@
                                 @cancel="cancelItem"
                                 @open="openItem"
                                 @close="closeItem"> 
-                                    {{ props.item.nilai }}                                    
+                                    {{ props.item.nilai }}              
                                     <template v-slot:input>
                                         <div class="mt-4 title">Update Nilai</div>   
                                         <v-text-field 
@@ -91,7 +91,7 @@
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
                                 <v-col cols="12">  
-                                    <strong>ID:</strong>{{ item.id }}          
+                                    <strong>ID:</strong>{{ item.id }}
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
                                 </v-col>
@@ -175,7 +175,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {    
+            }).then(({ data }) => {  
                 this.datatableLoading = false;
                 this.jadwal_ujian=data.jadwal_ujian; 
                 this.datatable=data.passing_grade;    
@@ -192,7 +192,7 @@ export default {
             else
             {
                 this.expanded = [item];
-            }               
+            }   
         },
         loadprodi: async function()
         {
@@ -206,7 +206,7 @@ export default {
                         Authorization: this.$store.getters["auth/Token"]
                     }
                 }
-            ).then(() => {    
+            ).then(() => {  
                 this.btnLoading = false;
                 this.initialize();
             }).catch(() => {
@@ -226,7 +226,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(() => {   
+            }).then(() => { 
                 this.btnLoading = false;  
                 this.initialize();
             });

@@ -71,7 +71,7 @@
                                 ></v-divider>
                                 <v-spacer></v-spacer>
                             </v-toolbar>
-                            <v-dialog v-model="dialogprintpdf" max-width="500px" persistent>       
+                            <v-dialog v-model="dialogprintpdf" max-width="500px" persistent>   
                                 <v-card>
                                     <v-card-title>
                                         <span class="headline">Print to PDF</span>
@@ -115,7 +115,7 @@
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
                                 <v-col cols="12">  
-                                    <strong>krs_id:</strong>{{ item.id }}          
+                                    <strong>krs_id:</strong>{{ item.id }}
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
                                 </v-col>
@@ -193,12 +193,12 @@ export default {
         datatable: [],
         headers: [
             { text: "NIM", value: "nim", sortable: true, width: 100  },
-            { text: "NAMA", value: "nama_mhs", sortable: true, width:250  },
+            { text: "NAMA", value: "nama_mhs", sortable: true, width: 250  },
             { text: "ANGK.", value: "tahun_masuk", sortable: true, width: 80  },
             { text: "JUMLAH MATKUL", value: "jumlah_matkul", sortable: true, width: 80  },
             { text: "JUMLAH SKS", value: "jumlah_sks", sortable: true, width: 80 },
             { text: "TA.SMT", value: "tasmt", sortable: true, width: 80 },
-            { text: "SAH", value: "sah", sortable: true, width:50},
+            { text: "SAH", value: "sah", sortable: true, width: 50},
             { text: "AKSI", value: "actions", sortable: false, width: 100 },
         ],
         search: "",
@@ -207,9 +207,9 @@ export default {
         file_pdf: null
     }),
     methods: {
-        changeTahunAkademik (tahun)
+        changeTahunAkademik(tahun)
         {
-            this.tahun_akademik=tahun;
+            this.tahun_akademik = tahun;
         },
         changeSemesterAkademik (semester)
         {
@@ -230,7 +230,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {      
+            }).then(({ data }) => {    
                 this.datatable = data.daftar_krs;
                 this.datatableLoading = false;
             }).catch(() => {
@@ -250,7 +250,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {   
+            }).then(({ data }) => { 
                 this.datatable = data.daftar_krs;
                 this.datatableLoading = false;
                 this.firstloading = false;
@@ -268,7 +268,7 @@ export default {
             else
             {
                 this.expanded = [item];
-            }               
+            }   
         },  
         deleteItem (item)
         {
@@ -292,7 +292,7 @@ export default {
                     }).catch(() => {
                         this.btnLoadingTable=false;
                     });
-                }                
+                }    
             });
         },
         async printpdf(item)
@@ -327,22 +327,22 @@ export default {
             if (!this.firstloading)
             {
                 this.initialize();
-            }            
+            }
         },
         semester_akademik()
         {
             if (!this.firstloading)
             {
                 this.initialize();
-            }            
+            }
         },
         prodi_id(val)
         {
             if (!this.firstloading)
             {
-                this.nama_prodi=this.$store.getters["uiadmin/getProdiName"](val);
+                this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](val);
                 this.initialize();
-            }            
+            }
         }
     },
     components: {

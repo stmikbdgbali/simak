@@ -95,8 +95,8 @@
                         </template>
                         <template v-slot:item.foto="{ item }">
                             <v-avatar size="30">
-                                <v-img :src="$api.url+'/'+item.foto" />    
-                            </v-avatar>                                                    
+                                <v-img :src="$api.url+'/'+item.foto" />
+                            </v-avatar>                                                
                         </template>
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
@@ -171,7 +171,7 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data }) => {  
+            }).then(({ data }) => {
                 this.daftar_users = data.users;
                 this.role_id=data.role.id;
                 this.datatableLoading = false;
@@ -187,7 +187,7 @@ export default {
             else
             {
                 this.expanded = [item];
-            }               
+            }   
         }, 
         viewItem: async function(item) {
             this.$router.push("/akademik/dosenwali" + item.id)

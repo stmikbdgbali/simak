@@ -32,7 +32,7 @@
                     </v-col>
                 </v-row>
                 <v-row>
-                    <v-col xs="12" sm="6" md="3" v-for="(item,index) in daftar_jawaban" v-bind:key="item.id">        
+                    <v-col xs="12" sm="6" md="3" v-for="(item,index) in daftar_jawaban" v-bind:key="item.id">    
                         <JawabanSoal :index="index" :item="item" v-on:selesaiJawab="selesaiJawab" />
                     </v-col> 
                     <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>   
@@ -77,7 +77,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {   
+            }).then(({ data }) => { 
                 if (data.status == 0)
                 {
                     this.isprosesujian=true;

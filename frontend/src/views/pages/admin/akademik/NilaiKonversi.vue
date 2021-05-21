@@ -88,7 +88,7 @@
                             {{item.nim == null ?'N.A':item.nim}}
                         </template>
                         <template v-slot:item.actions="{ item }">
-                            <v-tooltip bottom>    
+                            <v-tooltip bottom>
                                 <template v-slot:activator="{ on, attrs }">   
                                     <v-btn 
                                         v-bind="attrs"
@@ -103,9 +103,9 @@
                                         <v-icon>mdi-eye</v-icon>
                                     </v-btn>
                                 </template>
-                                <span>Detail Konversi Nilai</span>       
+                                <span>Detail Konversi Nilai</span>   
                             </v-tooltip> 
-                            <v-tooltip bottom>    
+                            <v-tooltip bottom>
                                 <template v-slot:activator="{ on, attrs }">   
                                     <v-btn 
                                         v-bind="attrs"
@@ -120,9 +120,9 @@
                                         <v-icon>mdi-pencil</v-icon>
                                     </v-btn>
                                 </template>
-                                <span>Ubah Konversi Nilai</span>       
+                                <span>Ubah Konversi Nilai</span>   
                             </v-tooltip> 
-                            <v-tooltip bottom>    
+                            <v-tooltip bottom>
                                 <template v-slot:activator="{ on, attrs }">   
                                     <v-btn 
                                         v-bind="attrs"
@@ -137,9 +137,9 @@
                                         <v-icon>mdi-printer</v-icon>
                                     </v-btn>
                                 </template>
-                                <span>Cetak Konversi Nilai</span>       
+                                <span>Cetak Konversi Nilai</span>   
                             </v-tooltip>
-                            <v-tooltip bottom>    
+                            <v-tooltip bottom>
                                 <template v-slot:activator="{ on, attrs }">   
                                     <v-btn 
                                         v-bind="attrs"
@@ -154,7 +154,7 @@
                                         <v-icon>mdi-delete</v-icon>
                                     </v-btn>
                                 </template>
-                                <span>Hapus Konversi Nilai</span>       
+                                <span>Hapus Konversi Nilai</span>   
                             </v-tooltip>
                         </template>  
                         <template v-slot:expanded-item="{ headers, item }">
@@ -162,7 +162,7 @@
                                 <v-col cols="12">  
                                     <strong>ID:</strong>{{ item.id}}     
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
-                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}                                         
+                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}                   
                                 </v-col>
                             </td>
                         </template>
@@ -173,7 +173,7 @@
                 </v-col>
             </v-row> 
         </v-container>
-        <v-dialog v-model="dialogprintpdf" max-width="500px" persistent>       
+        <v-dialog v-model="dialogprintpdf" max-width="500px" persistent>   
             <v-card>
                 <v-card-title>
                     <span class="headline">Print to PDF</span>
@@ -242,7 +242,7 @@ export default {
         datatable: [],
         headers: [            
             { text: "NIM", value: "nim_asal", sortable: true, width: 100  },
-            { text: "NAMA", value: "nama_mhs", sortable: true, width:250  },
+            { text: "NAMA", value: "nama_mhs", sortable: true, width: 250  },
             { text: "ALAMAT", value: "alamat", sortable: true, width:200 },
             { text: "NO. TELP", value: "no_telp", sortable: true, width: 120, },
             { text: "JUMLAH MATKUL", value: "jumlah_matkul", sortable: false, width: 100, },
@@ -276,7 +276,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {  
+            }).then(({ data }) => {
                 this.datatable = data.mahasiswa;
                 this.datatableLoading = false;
             }).catch(() => {
@@ -294,7 +294,7 @@ export default {
             else
             {
                 this.expanded = [item];
-            }               
+            }   
         },
         viewItem(item)
         {
@@ -325,7 +325,7 @@ export default {
                     }).catch(() => {
                         this.btnLoading = false;
                     });
-                }                
+                }    
             });
         },
         async printpdf1(item)
@@ -360,15 +360,15 @@ export default {
             if (!this.firstloading)
             {
                 this.initialize();
-            }            
+            }
         },
         prodi_id(val)
         {
             if (!this.firstloading)
             {
-                this.nama_prodi=this.$store.getters["uiadmin/getProdiName"](val);
+                this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](val);
                 this.initialize();
-            }            
+            }
         }
     },
     components: {

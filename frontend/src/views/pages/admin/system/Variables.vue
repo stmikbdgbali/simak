@@ -174,7 +174,7 @@
 			
 			//form pmb
 			daftar_user_ttd_sk_kelulusan: [],
-			formdata_pmb: {  
+			formdata_pmb: {
 				tahun_pendaftaran: 0,
 				nama_sk_kelulusan: "",
 				nidn_sk_kelulusan: "",

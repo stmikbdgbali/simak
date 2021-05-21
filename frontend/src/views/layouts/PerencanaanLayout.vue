@@ -30,7 +30,7 @@
                             <v-list-item-title class="title">
                                 {{ATTRIBUTE_USER("username")}}
                             </v-list-item-title>
-                            <v-list-item-subtitle>    
+                            <v-list-item-subtitle>
                                 [{{DEFAULT_ROLE}}]
                             </v-list-item-subtitle>
                         </v-list-item-content>
@@ -83,7 +83,7 @@
                     <v-list-item-content>
                         <v-list-item-title>BOARD PERENCANAAN</v-list-item-title>
                     </v-list-item-content>
-                </v-list-item>       
+                </v-list-item>   
                 <v-subheader>RENSTRA P.T</v-subheader>
                 <v-list-item link to="/dmaster/renstra/visi">
                     <v-list-item-icon class="mr-2">
@@ -166,7 +166,7 @@ export default {
                         'Authorization': this.TOKEN,
                     }
                 }
-            ).then(()=> {   
+            ).then(()=> { 
                 this.$store.dispatch("auth/logout");	
                 this.$store.dispatch("uifront/reinit");	
                 this.$store.dispatch("uiadmin/reinit");	

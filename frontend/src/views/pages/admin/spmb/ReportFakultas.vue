@@ -86,10 +86,10 @@
                                     :color="badgeColor(item)"
                                     :icon="badgeIcon(item)"
                                     overlap
-                                >       
+                                >   
                                     <v-avatar size="30">   
-                                        <v-img :src="$api.url+'/'+item.foto" />                       
-                                    </v-avatar>                                                    
+                                        <v-img :src="$api.url+'/'+item.foto" />                   
+                                    </v-avatar>                                                
                             </v-badge>
                         </template>
                         <template v-slot:expanded-item="{ headers, item }">
@@ -121,7 +121,7 @@ export default {
     name: "ReportFakultas", 
     created()
     {
-        this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];
+        this.dashboard = this.$store.getters["uiadmin/getDefaultDashboard"];
         this.breadcrumbs = [
             {
                 text: "HOME",
@@ -196,7 +196,7 @@ export default {
                         headers: {
                             Authorization: this.$store.getters["auth/Token"]
                         }
-                    }).then(({ data }) => {  
+                    }).then(({ data }) => {
                         this.datatable = data.pmb;
                         this.datatableLoading = false;
                     });    
@@ -213,7 +213,7 @@ export default {
             else
             {
                 this.expanded = [item];
-            }               
+            }   
         },
         badgeColor(item)
         {
@@ -259,7 +259,7 @@ export default {
             if (!this.firstloading)
             {
                 this.initialize();
-            }            
+            }
         },
         fakultas_id(val)
         {
@@ -267,7 +267,7 @@ export default {
             {
                 this.nama_fakultas=this.$store.getters['uiadmin/getFakultasName'](val);
                 this.initialize();
-            }            
+            }
         }
     },
     components: {

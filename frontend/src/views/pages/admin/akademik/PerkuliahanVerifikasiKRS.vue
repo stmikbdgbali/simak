@@ -74,9 +74,9 @@
                                     inset
                                     vertical
                                 ></v-divider>
-                                <v-spacer></v-spacer>    
+                                <v-spacer></v-spacer>
                             </v-toolbar>
-                            <v-dialog v-model="dialogprintpdf" max-width="500px" persistent>       
+                            <v-dialog v-model="dialogprintpdf" max-width="500px" persistent>   
                                 <v-card>
                                     <v-card-title>
                                         <span class="headline">Print to PDF</span>
@@ -102,7 +102,7 @@
                                 text-color="white"
                                 small
                                 >
-                                {{item.sah== 1?"YA": "TIDAK"}}                            
+                                {{item.sah== 1?"YA": "TIDAK"}}      
                             </v-chip>
                         </template>
                         <template v-slot:item.idkelas="{item}">
@@ -126,8 +126,8 @@
                                 <v-icon>
                                     mdi-eye
                                 </v-icon>
-                            </v-btn>               
-                            <v-tooltip bottom>    
+                            </v-btn>           
+                            <v-tooltip bottom>
                                 <template v-slot:activator="{ on, attrs }">   
                                     <v-btn 
                                         v-bind="attrs"
@@ -143,13 +143,13 @@
                                         <v-icon>mdi-check</v-icon>
                                     </v-btn>
                                 </template>
-                                <span>Verifikasi KRS</span>       
+                                <span>Verifikasi KRS</span>   
                             </v-tooltip>   
                         </template>  
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
                                 <v-col cols="12">  
-                                    <strong>krs_id:</strong>{{ item.id }}          
+                                    <strong>krs_id:</strong>{{ item.id }}
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
                                 </v-col>
@@ -230,7 +230,7 @@ export default {
         datatable: [],
         headers: [
             { text: "NIM", value: "nim", sortable: true, width: 100  },
-            { text: "NAMA", value: "nama_mhs", sortable: true, width:250  },
+            { text: "NAMA", value: "nama_mhs", sortable: true, width: 250  },
             { text: "ANGK.", value: "tahun_masuk", sortable: true, width: 100  },
             { text: "JUMLAH MATKUL", value: "jumlah_matkul", sortable: true, width: 100  },
             { text: "JUMLAH SKS", value: "jumlah_sks", sortable: true, width: 100 },
@@ -244,9 +244,9 @@ export default {
         file_pdf: null
     }),
     methods: {
-        changeTahunAkademik (tahun)
+        changeTahunAkademik(tahun)
         {
-            this.tahun_akademik=tahun;
+            this.tahun_akademik = tahun;
         },
         changeSemesterAkademik (semester)
         {
@@ -267,7 +267,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {      
+            }).then(({ data }) => {    
                 this.datatable = data.daftar_krs;
                 this.datatableLoading = false;
             }).catch(() => {
@@ -287,7 +287,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {   
+            }).then(({ data }) => { 
                 this.datatable = data.daftar_krs;
                 this.datatableLoading = false;
                 this.firstloading = false;
@@ -305,7 +305,7 @@ export default {
             else
             {
                 this.expanded = [item];
-            }               
+            }   
         },  
         async printpdf(item)
         {
@@ -338,7 +338,7 @@ export default {
                     },
                     
                 }
-            ).then(() => {       
+            ).then(() => {     
                 this.$router.go();
                 this.btnLoading = false;
             }).catch(() => {
@@ -359,24 +359,24 @@ export default {
             if (!this.firstloading)
             {
                 this.initialize();
-            }            
+            }
         },
         semester_akademik()
         {
             if (!this.firstloading)
             {
                 this.initialize();
-            }            
+            }
         },
         prodi_id(val)
         {
             if (!this.firstloading)
             {
-                this.nama_prodi=this.$store.getters["uiadmin/getProdiName"](val);
+                this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](val);
                 this.initialize();
-            }            
+            }
         },
-        search ()
+        search()
         {
             if (!this.awaiting_search) 
             {
@@ -395,7 +395,7 @@ export default {
                             headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
-                        }).then(({ data }) => {  
+                        }).then(({ data }) => {
                             this.datatable = data.daftar_krs;
                             this.datatableLoading = false;
                         });  

@@ -52,7 +52,7 @@
                                     :disable-pagination="true"
                                     :hide-default-footer="true"                                                                
                                     :loading="datatableLoading"
-                                    loading-text="Loading... Please wait">    
+                                    loading-text="Loading... Please wait">
                                     <template v-slot:no-data>
                                         Data matakuliah belum tersedia silahkan hubungi bagian akademik
                                     </template>
@@ -161,7 +161,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {          
+            }).then(({ data }) => {        
                 this.datakrs=data.krs;
                 if (Object.keys(this.datakrs).length)
                 {
@@ -187,7 +187,7 @@ export default {
                     headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     }
-                }).then(({ data }) => {  
+                }).then(({ data }) => {
                     this.datatable = data.penyelenggaraan;
                     this.datatableLoading = false;
                 }).catch(() => {
@@ -218,8 +218,8 @@ export default {
                 });
             }
         }, 
-        closedialogfrm() {         
-            setTimeout(() => {   
+        closedialogfrm() {       
+            setTimeout(() => { 
                 this.$router.push("/akademik/perkuliahan/krs/" + this.krs_id + "/detail");
                 }, 300
             );
@@ -233,7 +233,7 @@ export default {
             for (index in this.daftar_matkul_selected)
             {
                 total = total + parseInt(this.daftar_matkul_selected[index].sks);
-            }            
+            }
             return total;
         }
     },

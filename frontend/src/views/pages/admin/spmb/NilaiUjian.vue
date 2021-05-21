@@ -71,8 +71,8 @@
 									vertical
 								></v-divider>
 								<v-spacer></v-spacer>
-								<v-dialog v-model="dialogprofilmhsbaru" :fullscreen="true">        
-									<ProfilMahasiswaBaru :item="datamhsbaru" v-on:closeProfilMahasiswaBaru="closeProfilMahasiswaBaru" />        
+								<v-dialog v-model="dialogprofilmhsbaru" :fullscreen="true">    
+									<ProfilMahasiswaBaru :item="datamhsbaru" v-on:closeProfilMahasiswaBaru="closeProfilMahasiswaBaru" />    
 								</v-dialog>
 								<v-dialog v-model="dialogfrm" persistent v-if="dialogfrm">
 									<v-card color="grey lighten-4">
@@ -131,8 +131,8 @@
 											<v-row>
 												<v-col cols="12">
 													<v-form ref="frmdata" v-model="form_valid" lazy-validation>
-														<v-card>              
-															<v-card-text>                        
+														<v-card>          
+															<v-card-text>                    
 																<v-currency-field 
 																	label="NILAI UJIAN:" 
 																	:min="null"
@@ -186,10 +186,10 @@
 									:color="badgeColor(item)"
 									:icon="badgeIcon(item)"
 									overlap
-								>       
+								>   
 									<v-avatar size="30">   
-										<v-img :src="$api.url+'/'+item.foto" />                       
-									</v-avatar>                                                    
+										<v-img :src="$api.url+'/'+item.foto" />                   
+									</v-avatar>                                                
 							</v-badge>
 						</template>
 						<template v-slot:item.no_formulir="{ item }">
@@ -260,7 +260,7 @@
 	export default {
 		name: "NilaiUjian",
 		created() {
-			this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];
+			this.dashboard = this.$store.getters["uiadmin/getDefaultDashboard"];
 			this.breadcrumbs = [
 				{
 					text: "HOME",
@@ -397,7 +397,7 @@
 							headers: {
 								Authorization: this.$store.getters["auth/Token"]
 							}
-						}).then(({ data }) => {  
+						}).then(({ data }) => {
 							this.datatable = data.pmb;
 							this.datatableLoading = false;
 						});

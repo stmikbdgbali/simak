@@ -31,7 +31,7 @@
         <template v-slot:filtersidebar>
             <Filter7 v-on:changeTahunPendaftaran="changeTahunPendaftaran" v-on:changeProdi="changeProdi" ref="filter7" />	
         </template>
-        <v-container fluid>    
+        <v-container fluid>
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
                     <v-card>
@@ -87,7 +87,7 @@
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
                                 <v-col cols="12">  
-                                    <strong>id:</strong>{{ item.id }}          
+                                    <strong>id:</strong>{{ item.id }}
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
                                 </v-col>
@@ -165,12 +165,12 @@ export default {
         dialogfrm: false, 
         daftar_dw: [],  
 
-        formdata: {    
+        formdata: {  
             nim: "",
             nirm: "",
             dosen_id: ""           
         },
-        formdefault: {    
+        formdefault: {  
             nim: "",
             nirm: "",
             dosen_id: ""           
@@ -209,7 +209,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {  
+            }).then(({ data }) => {
                 this.datatable = data.mahasiswa;
                 this.datatableLoading = false;
             }).catch(() => {
@@ -227,10 +227,10 @@ export default {
             else
             {
                 this.expanded = [item];
-            }               
+            }   
         },
         async tambahItem ()
-        {  
+        {
             await this.$ajax.post("/keuangan/transaksi/" + this.formdata.nim+"/sppmhsbaru",
             {
                 jenis_id: "nim"
@@ -239,7 +239,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(() => {           
+            }).then(() => {         
                 
             }); 
 
@@ -247,7 +247,7 @@ export default {
             //     headers: {
             //         Authorization: this.$store.getters["auth/Token"]
             //     }
-            // }).then(({ data }) => {    
+            // }).then(({ data }) => {  
             //     this.dialogfrm = true;
             //     this.daftar_dw = data.users; 
             // }); 
@@ -275,7 +275,7 @@ export default {
                     }).catch(() => {
                         this.btnLoadingTable=false;
                     });
-                }                
+                }    
             });
         },
         closedialogfrm() { 
@@ -293,15 +293,15 @@ export default {
             if (!this.firstloading)
             {
                 this.initialize();
-            }            
+            }
         },
         prodi_id(val)
         {
             if (!this.firstloading)
             {
-                this.nama_prodi=this.$store.getters["uiadmin/getProdiName"](val);
+                this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](val);
                 this.initialize();
-            }            
+            }
         }
     },
     components: {

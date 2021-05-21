@@ -28,7 +28,7 @@
                 </v-alert>
             </template>
         </ModuleHeader> 
-        <v-container fluid>    
+        <v-container fluid>
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
                     <v-card>
@@ -68,7 +68,7 @@
                                     inset
                                     vertical
                                 ></v-divider>
-                                <v-dialog v-model="dialogfrm" width="600" persistent v-if="dialogfrm">        
+                                <v-dialog v-model="dialogfrm" width="600" persistent v-if="dialogfrm">    
                                     <v-card color="grey lighten-4">
                                         <v-toolbar elevation="2"> 
                                             <v-toolbar-title>SETTING NIM !!!</v-toolbar-title>
@@ -115,7 +115,7 @@
                                             <v-row>
                                                 <v-col cols="12">
                                                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>
-                                                        <v-card>              
+                                                        <v-card>          
                                                             <v-card-text>   
                                                                 <v-text-field 
                                                                     v-model="formdata.nim"
@@ -165,14 +165,14 @@
                             <v-icon
                                 small
                                 class="mr-2"
-                                @click.stop="addItem(item)">    
+                                @click.stop="addItem(item)">
                                 mdi-send
                             </v-icon>
                         </template>  
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
                                 <v-col cols="12">  
-                                    <strong>userid:</strong>{{ item.user_id }}          
+                                    <strong>userid:</strong>{{ item.user_id }}
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
                                 </v-col>
@@ -252,12 +252,12 @@ export default {
         dialogfrm: false, 
         daftar_dw: [],  
         
-        formdata: {    
+        formdata: {  
             nim: "",
             nirm: "",
             dosen_id: ""           
         },
-        formdefault: {    
+        formdefault: {  
             nim: "",
             nirm: "",
             dosen_id: ""           
@@ -295,7 +295,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {  
+            }).then(({ data }) => {
                 this.datatable = data.mahasiswa;
                 this.datatableLoading = false;
             }).catch(() => {
@@ -313,7 +313,7 @@ export default {
             else
             {
                 this.expanded = [item];
-            }               
+            }   
         },
         async addItem (item)
         {
@@ -367,15 +367,15 @@ export default {
             if (!this.firstloading)
             {
                 this.initialize();
-            }            
+            }
         },
         prodi_id(val)
         {
             if (!this.firstloading)
             {
-                this.nama_prodi=this.$store.getters["uiadmin/getProdiName"](val);
+                this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](val);
                 this.initialize();
-            }            
+            }
         }
     },
     components: {

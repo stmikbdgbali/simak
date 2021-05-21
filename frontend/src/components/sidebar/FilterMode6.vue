@@ -61,7 +61,7 @@ export default {
             {
                 this.$store.dispatch("uiadmin/updateTahunAkademik",val);
                 this.$emit("changeTahunAkademik",val);
-            }            
+            }
         },
         prodi_id(val)
         {

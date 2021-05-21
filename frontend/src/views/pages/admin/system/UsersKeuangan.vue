@@ -81,7 +81,7 @@
                                     @click.stop="showDialogTambahUserKeuangan">
                                     TAMBAH
                                 </v-btn>
-                                <v-dialog v-model="dialog" max-width="500px" persistent>        
+                                <v-dialog v-model="dialog" max-width="500px" persistent>    
                                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>
                                         <v-card>
                                             <v-card-title>
@@ -96,13 +96,13 @@
                                                     label="NAMA USER"
                                                     outlined
                                                     :rules="rule_user_name">
-                                                </v-text-field>                                                 
+                                                </v-text-field>                                             
                                                 <v-text-field 
                                                     v-model="editedItem.email" 
                                                     label="EMAIL"
                                                     outlined
                                                     :rules="rule_user_email">
-                                                </v-text-field>          
+                                                </v-text-field>      
                                                 <v-text-field 
                                                     v-model="editedItem.nomor_hp" 
                                                     label="NOMOR HP"
@@ -130,7 +130,7 @@
                                                     item-value="id"
                                                     multiple 
                                                     small-chips
-                                                    outlined>                                  
+                                                    outlined>                              
                                                 </v-autocomplete> 
                                                 <v-autocomplete 
                                                     :items="daftar_roles" 
@@ -138,8 +138,8 @@
                                                     label="ROLES"                                                     
                                                     multiple 
                                                     small-chips
-                                                    outlined>                                  
-                                                </v-autocomplete>                                        
+                                                    outlined>                              
+                                                </v-autocomplete>                                    
                                             </v-card-text>
                                             <v-card-actions>
                                                 <v-spacer></v-spacer>
@@ -165,7 +165,7 @@
                                             <v-card-subtitle>
                                                 Bila program studi, tidak dipilih artinya user ini dapat mengakses seluruh data keuangan mahasiswa
                                             </v-card-subtitle>
-                                            <v-card-text>                                                  
+                                            <v-card-text>                                              
                                                 <v-text-field 
                                                     v-model="editedItem.name" 
                                                     label="NAMA USER"
@@ -205,7 +205,7 @@
                                                     item-value="id"
                                                     multiple 
                                                     small-chips
-                                                    outlined>                                  
+                                                    outlined>                              
                                                 </v-autocomplete>
                                                 <v-autocomplete 
                                                     :items="daftar_roles" 
@@ -213,8 +213,8 @@
                                                     label="ROLES"                                                     
                                                     multiple 
                                                     small-chips
-                                                    outlined>                                  
-                                                </v-autocomplete>                                         
+                                                    outlined>                              
+                                                </v-autocomplete>                                     
                                             </v-card-text>
                                             <v-card-actions>
                                                 <v-spacer></v-spacer>
@@ -229,7 +229,7 @@
                                         </v-card>
                                     </v-form>
                                 </v-dialog>
-                                <v-dialog v-model="dialogUserPermission" max-width="800px" persistent>                                                          
+                                <v-dialog v-model="dialogUserPermission" max-width="800px" persistent>                                                      
                                     <UserPermissions :user="editedItem" v-on:closeUserPermissions="closeUserPermissions" role_default="keuangan" />
                                 </v-dialog>
                             </v-toolbar>
@@ -264,8 +264,8 @@
                         </template>
                         <template v-slot:item.foto="{ item }">
                             <v-avatar size="30">
-                                <v-img :src="$api.url+'/'+item.foto" />    
-                            </v-avatar>                                                    
+                                <v-img :src="$api.url+'/'+item.foto" />
+                            </v-avatar>                                                
                         </template>
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
@@ -410,7 +410,7 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data }) => {  
+            }).then(({ data }) => {
                 this.daftar_users = data.users;
                 this.role_id=data.role.id;
                 this.datatableLoading = false;
@@ -426,7 +426,7 @@ export default {
             else
             {
                 this.expanded = [item];
-            }               
+            }   
         },
         syncPermission ()
         {
@@ -443,7 +443,7 @@ export default {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
-                    ).then(() => {   
+                    ).then(() => { 
                         this.btnLoading = false;
                     }).catch(() => {
                         this.btnLoading = false;
@@ -457,12 +457,12 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data }) => {    
+            }).then(({ data }) => {  
                 let roles = data.roles;
                 var daftar_roles=[];
                 roles.forEach(element => {
                     if (element.name == "keuangan")
-                    {    
+                    {  
                         daftar_roles.push({
                             text:element.name,
                             disabled: true,
@@ -474,7 +474,7 @@ export default {
                             text:element.name,
                             disabled: false,         
                         });
-                    }                    
+                    }        
                 });   
                 this.daftar_roles=daftar_roles;  
                 this.daftar_prodi=this.$store.getters['uiadmin/getDaftarProdi'];  
@@ -505,12 +505,12 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data }) => {    
+            }).then(({ data }) => {  
                 let roles = data.roles;
                 var daftar_roles=[];
                 roles.forEach(element => {
                     if (element.name == "keuangan")
-                    {    
+                    {  
                         daftar_roles.push({
                             text:element.name,
                             disabled: true,
@@ -522,7 +522,7 @@ export default {
                             text:element.name,
                             disabled: false,         
                         });
-                    }                    
+                    }        
                 });   
                 this.daftar_roles=daftar_roles; 
             });  

@@ -81,8 +81,8 @@
                                     vertical
                                 ></v-divider>
                                 <v-spacer></v-spacer>
-                                <v-dialog v-model="dialogprofilmhsbaru" :fullscreen="true">        
-                                    <ProfilMahasiswaBaru :item="datamhsbaru" v-on:closeProfilMahasiswaBaru="closeProfilMahasiswaBaru" />        
+                                <v-dialog v-model="dialogprofilmhsbaru" :fullscreen="true">    
+                                    <ProfilMahasiswaBaru :item="datamhsbaru" v-on:closeProfilMahasiswaBaru="closeProfilMahasiswaBaru" />    
                                 </v-dialog>
                             </v-toolbar>
                         </template>
@@ -92,10 +92,10 @@
                                     :color="badgeColor(item)"
                                     :icon="badgeIcon(item)"
                                     overlap
-                                >       
+                                >   
                                     <v-avatar size="30">   
-                                        <v-img :src="$api.url+'/'+item.foto" />                       
-                                    </v-avatar>                                                    
+                                        <v-img :src="$api.url+'/'+item.foto" />                   
+                                    </v-avatar>                                                
                             </v-badge>
                         </template>
                         <template v-slot:item.actions="{ item }">
@@ -142,7 +142,7 @@ import Filter7 from "@/components/sidebar/FilterMode7";
 export default {
     name: "FormulirPendaftaran", 
     created() {
-        this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];
+        this.dashboard = this.$store.getters["uiadmin/getDefaultDashboard"];
         this.breadcrumbs = [
             {
                 text: "HOME",
@@ -160,7 +160,7 @@ export default {
                 href: "#",
             }
         ];
-        this.breadcrumbs[1].disabled=(this.dashboard=='mahasiswabaru'||this.dashboard=="mahasiswa");
+        this.breadcrumbs[1].disabled = (this.dashboard=='mahasiswabaru'||this.dashboard=="mahasiswa");
         
         let prodi_id = this.$store.getters["uiadmin/getProdiID"];
         this.prodi_id = prodi_id;
@@ -223,7 +223,7 @@ export default {
                         headers: {
                             Authorization: this.$store.getters["auth/Token"]
                         }
-                    }).then(({ data }) => {  
+                    }).then(({ data }) => {
                         this.datatable = data.pmb;
                         this.datatableLoading = false;
                     });    
@@ -241,7 +241,7 @@ export default {
             else
             {
                 this.expanded = [item];
-            }               
+            }   
         },
         badgeColor(item)
         {
@@ -271,15 +271,15 @@ export default {
             if (!this.firstloading)
             {
                 this.initialize();
-            }            
+            }
         },
         prodi_id(val)
         {
             if (!this.firstloading)
             {
-                this.nama_prodi=this.$store.getters["uiadmin/getProdiName"](val);
+                this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](val);
                 this.initialize();
-            }            
+            }
         }
     },
     components: {

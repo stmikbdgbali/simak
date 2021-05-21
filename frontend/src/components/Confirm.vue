@@ -26,7 +26,7 @@
             </v-card-actions>
             <v-card-actions class="pt-0" v-else>
                 <v-spacer></v-spacer>
-                <v-btn color="primary darken-1" text @click.native="agree">YA</v-btn>       
+                <v-btn color="primary darken-1" text @click.native="agree">YA</v-btn>   
             </v-card-actions>
         </v-card>
     </v-dialog>
