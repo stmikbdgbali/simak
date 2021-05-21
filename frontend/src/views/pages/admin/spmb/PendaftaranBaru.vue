@@ -247,7 +247,7 @@
 																														Klik tombol berikut ini untuk mengirim ulang email konfirmasi pendaftaran
 																												</v-card-subtitle>
 																												<v-card-text>
-																														<v-btn small color="primary" @click.stop="resend(formdata.id)" class="mb-2" >KIRIM ULANG</v-btn>
+																														<v-btn small color="primary" @click.stop="resend(formdata.id)" class="mb-2">KIRIM ULANG</v-btn>
 																												</v-card-text>
 																										</v-card>
 																								</v-col>  

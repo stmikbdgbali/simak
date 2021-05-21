@@ -8,7 +8,7 @@
                 PEMBAGIAN KELAS
             </template>
             <template v-slot:subtitle>
-                TAHUN AKADEMIK {{tahun_akademik}} SEMESTER {{$store.getters['uiadmin/getNamaSemester'](semester_akademik)}}
+                TAHUN AKADEMIK {{ tahun_akademik }} SEMESTER {{$store.getters['uiadmin/getNamaSemester'](semester_akademik)}}
             </template>
             <template v-slot:breadcrumbs>
                 <v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -97,7 +97,7 @@
                                                     <v-col cols="4">
                                                         <v-text-field 
                                                             v-model="formdata.jam_masuk" 
-                                                            label="JAM MASUK (contoh: 04:00)"
+                                                            label="JAM MASUK (contoh: 04: 00)"
                                                             outlined
                                                             :rules="rule_jam_masuk">
                                                         </v-text-field>
@@ -105,7 +105,7 @@
                                                     <v-col cols="4">
                                                         <v-text-field 
                                                             v-model="formdata.jam_keluar" 
-                                                            label="JAM KELUAR (contoh: 06:00)"
+                                                            label="JAM KELUAR (contoh: 06: 00)"
                                                             outlined
                                                             :rules="rule_jam_keluar">
                                                         </v-text-field>
@@ -312,7 +312,7 @@ export default {
         ],
         rule_jam_keluar: [
             value => !!value || "Mohon diisi jam keluar mengajar!!!",
-            value => /^([0-9]|0[0-9]|1[0-9]|2[0-3]): [0-5][0-9]$/.test(value) || "Format jam keluar mengajar hh:mm, misalnya 15:00"
+            value => /^([0-9]|0[0-9]|1[0-9]|2[0-3]): [0-5][0-9]$/.test(value) || "Format jam keluar mengajar hh:mm, misalnya 15: 00"
         ],
         rule_ruang_kelas: [
             value => !!value || "Mohon dipilih ruang kelas mengajar!!!"

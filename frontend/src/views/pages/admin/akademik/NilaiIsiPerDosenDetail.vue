@@ -8,7 +8,7 @@
                 ISI NILAI PER KELAS
             </template>
             <template v-slot:subtitle>
-                TAHUN AKADEMIK {{tahun_akademik}} SEMESTER {{$store.getters['uiadmin/getNamaSemester'](semester_akademik)}}
+                TAHUN AKADEMIK {{ tahun_akademik }} SEMESTER {{$store.getters['uiadmin/getNamaSemester'](semester_akademik)}}
             </template>
             <template v-slot:breadcrumbs>
                 <v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -247,9 +247,9 @@ export default {
         form_valid: true,
         komponen_nilai: {
             'persen_absen':15,
-            'persen_quiz':0,
+            'persen_quiz': 0,
             'persen_tugas_individu':35,
-            'persen_tugas_kelompok':0,
+            'persen_tugas_kelompok': 0,
             'persen_uts':25,
             'persen_uas':25,
         },

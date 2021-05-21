@@ -8,7 +8,7 @@
 				KEMAHASISWAAN 
 			</template>
 			<template v-slot:subtitle>
-				TAHUN KEMAHASISWAAN {{tahun_akademik}}
+				TAHUN KEMAHASISWAAN {{ tahun_akademik }}
 			</template>
 			<template v-slot:breadcrumbs>
 				<v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -137,7 +137,7 @@
 		data: () => ({   
 			firstloading: true,
 			breadcrumbs: [],
-			tahun_akademik:0,
+			tahun_akademik: 0,
 			
 			//profil mahasiswa        
 			entries: [],

@@ -409,6 +409,16 @@ const routes = [
 		component: () => import("../views/pages/admin/keuangan/Transaksi.vue"),
 	},
 	{
+		path: "/keuangan/transaksi/:transaksi_id",
+		name: "KeuanganTransaksiInvoice",
+		meta: {
+			title: "KEUANGAN - TRANSAKSI",
+			requiresAuth: true,
+		},
+		component: () =>
+			import("../views/pages/admin/keuangan/TransaksiInvoice.vue"),
+	},
+	{
 		path: "/keuangan/transaksi-pendaftaranmhsbaru",
 		name: "KeuanganTransaksiPendaftaranMHSBaru",
 		meta: {

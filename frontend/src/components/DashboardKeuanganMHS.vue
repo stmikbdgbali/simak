@@ -101,10 +101,10 @@ export default {
             { text: "JUMLAH", align: "end",value: "jumlah", width: 250, sortable: false}, 
         ],
         //statistik
-        total_transaction:0,
+        total_transaction: 0,
         total_transaction_paid: 0,
         total_transaction_unpaid: 0,
-        total_transaction_cancelled:0
+        total_transaction_cancelled: 0
     }),
     props: {
         ta: {

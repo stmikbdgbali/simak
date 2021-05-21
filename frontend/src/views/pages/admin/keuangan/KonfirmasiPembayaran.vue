@@ -8,7 +8,7 @@
 				KONFIRMASI PEMBAYARAN
 			</template>
 			<template v-slot:subtitle>
-				TAHUN AKADEMIK {{tahun_akademik}} - {{ nama_prodi }}
+				TAHUN AKADEMIK {{ tahun_akademik }} - {{ nama_prodi }}
 			</template>
 			<template v-slot:breadcrumbs>
 				<v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -573,7 +573,7 @@
 			daftar_channel: [],
 			formdata: {
 				id_channel:1,
-				total_bayar:0,
+				total_bayar: 0,
 				nomor_rekening_pengirim: "",
 				nama_rekening_pengirim: "",
 				nama_bank_pengirim: "",
@@ -583,7 +583,7 @@
 			},
 			formdefault: {
 				id_channel:1,
-				total_bayar:0,
+				total_bayar: 0,
 				nomor_rekening_pengirim: "",
 				nama_rekening_pengirim: "",
 				nama_bank_pengirim: "",

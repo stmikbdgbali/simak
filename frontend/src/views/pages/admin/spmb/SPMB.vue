@@ -265,7 +265,7 @@
 			datatableLoading: false,
 			firstloading: true,
 			breadcrumbs: [],
-			tahun_pendaftaran:0,
+			tahun_pendaftaran: 0,
 			
 			//statistik
 			total_registrasi: 0,

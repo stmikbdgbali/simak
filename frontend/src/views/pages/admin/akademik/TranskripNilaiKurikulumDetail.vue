@@ -281,11 +281,11 @@ export default {
         search: "",
 
         data_mhs: {},
-        jumlahMatkul:0, 
-        totalSKS:0, 
-        totalM:0, 
-        totalAM:0, 
-        ipk:0.00, 
+        jumlahMatkul: 0, 
+        totalSKS: 0, 
+        totalM: 0, 
+        totalAM: 0, 
+        ipk: 0.00, 
 
         //history
         data_matkul: {},

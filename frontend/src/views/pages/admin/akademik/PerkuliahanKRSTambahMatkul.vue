@@ -8,7 +8,7 @@
                 KARTU RENCANA STUDI
             </template>
             <template v-slot:subtitle v-if="Object.keys(datakrs).length">
-                TAHUN AKADEMIK {{tahun_akademik}} SEMESTER {{$store.getters['uiadmin/getNamaSemester'](semester_akademik)}} - {{ nama_prodi }}
+                TAHUN AKADEMIK {{ tahun_akademik }} SEMESTER {{$store.getters['uiadmin/getNamaSemester'](semester_akademik)}} - {{ nama_prodi }}
             </template>
             <template v-slot:breadcrumbs>
                 <v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -137,8 +137,8 @@ export default {
         form_valid: true,  
         krs_id: null,
         datakrs: {},
-        jumlah_matkul:0,
-        jumlah_sks:0,
+        jumlah_matkul: 0,
+        jumlah_sks: 0,
         daftar_matkul_selected: [],
 
         //table        

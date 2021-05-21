@@ -218,7 +218,7 @@ export default {
         item_selected: [],
 
         breadcrumbs: [],  
-        tahun_akademik:0,
+        tahun_akademik: 0,
         btnLoading: false,  
         //tables
         datatableLoading: false,
