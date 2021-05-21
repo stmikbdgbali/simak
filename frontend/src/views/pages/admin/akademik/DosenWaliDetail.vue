@@ -71,7 +71,7 @@
                                     vertical
                                 ></v-divider>
                                 <v-spacer></v-spacer> 
-                                <v-dialog v-model="dialogfrm" max-width="750px" persistent>        
+                                <v-dialog v-model="dialogfrm" max-width="750px" persistent>    
                                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>
                                         <v-card>
                                             <v-toolbar elevation="2"> 
@@ -157,7 +157,7 @@
                                                             item-text="name"
                                                             item-value="id"
                                                             :rules="rule_dw"
-                                                            outlined />     
+                                                            outlined /> 
                                                     </v-col>
                                                 </v-row>
                                             </v-card-text>
@@ -185,7 +185,7 @@
                             {{item.is_dw == false ? "BUKAN": "YA"}}
                         </template>
                         <template v-slot:item.actions="{ item }">
-                            <v-tooltip bottom>    
+                            <v-tooltip bottom>
                                 <template v-slot:activator="{ on, attrs }">   
                                     <v-btn 
                                         v-bind="attrs"
@@ -199,18 +199,18 @@
                                         <v-icon>mdi-file-replace-outline</v-icon>
                                     </v-btn>
                                 </template>
-                                <span>Ganti Dosen Wali</span>       
+                                <span>Ganti Dosen Wali</span>   
                             </v-tooltip>
                         </template>
                         <template v-slot:item.foto="{ item }">
                             <v-avatar size="30">
-                                <v-img :src="$api.url+'/'+item.foto" />    
-                            </v-avatar>                                                    
+                                <v-img :src="$api.url+'/'+item.foto" />
+                            </v-avatar>                                                
                         </template>
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
                                 <v-col cols="12">
-                                    <strong>ID:</strong>{{ item.id }}                                    
+                                    <strong>ID:</strong>{{ item.id }}              
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
                                 </v-col>
@@ -272,7 +272,7 @@ export default {
             { text: "PROGRAM STUDI", value: "nama_prodi", width: 150, sortable: true }, 
             { text: "KELAS", value: "nkelas", width: 150, sortable: true }, 
             { text: "TAHUN MASUK", value: "tahun", sortable: true },  
-            { text: "AKSI", value: "actions", sortable: false, width:50 },
+            { text: "AKSI", value: "actions", sortable: false, width: 50 },
         ],
         expanded: [],
         search: "",
@@ -284,10 +284,10 @@ export default {
         data_mhs: {},
         daftar_dw: [],  
 
-        formdata: {                
+        formdata: {              
             dosen_id: ""           
         },
-        formdefault: {                
+        formdefault: {              
             dosen_id: ""           
         },
 
@@ -314,7 +314,7 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data }) => {  
+            }).then(({ data }) => {
                 this.daftar_mahasiswa = data.daftar_mahasiswa;
                 this.datatableLoading = false;
             });
@@ -329,17 +329,16 @@ export default {
             else
             {
                 this.expanded = [item];
-            }               
+            }   
         },
         async showDialogChangeDW(item)
         {
             this.data_mhs = item;
-            console.log(this.data_mhs);
             await this.$ajax.get("/akademik/dosenwali",{
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {    
+            }).then(({ data }) => {  
                 this.dialogfrm = true;
                 this.daftar_dw = data.users; 
                 this.formdata.dosen_id = this.dosen_id;

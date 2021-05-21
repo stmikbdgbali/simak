@@ -65,14 +65,14 @@
                                     inset
                                     vertical
                                 ></v-divider>
-                                <v-spacer></v-spacer>     
+                                <v-spacer></v-spacer> 
                                 <v-dialog v-model="dialogEdit" max-width="700px" persistent>
                                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>
                                         <v-card>
                                             <v-card-title>
                                                 <span class="headline">UBAH DATA DOSEN</span>
                                             </v-card-title>  
-                                            <v-card-text>                                                  
+                                            <v-card-text>                                              
                                                 <v-row>
                                                     <v-col cols="3">
                                                         <v-text-field 
@@ -101,7 +101,7 @@
                                                     v-model="editedItem.nidn" 
                                                     label="NIDN (NOMOR INDUK DOSEN NASIONAL)"
                                                     outlined>
-                                                </v-text-field>                                                 
+                                                </v-text-field>                                             
                                                 <v-text-field 
                                                     v-model="editedItem.nipy" 
                                                     label="NIPY (NOMOR INDUK PEGAWAI YAYASAN)"
@@ -141,14 +141,14 @@
                                             </v-card-actions>
                                         </v-card>
                                     </v-form>
-                                </v-dialog>       
+                                </v-dialog>   
                             </v-toolbar>
                         </template>
                         <template v-slot:item.nidn="{ item }">
                             {{(item.nidn && item.nidn.length > 0) > 0 ? item.nidn: "N.A'}}
                         </template>
                         <template v-slot:item.actions="{ item }"> 
-                            <v-tooltip bottom>    
+                            <v-tooltip bottom>
                                 <template v-slot:activator="{ on, attrs }">   
                                     <v-btn 
                                         v-bind="attrs"
@@ -163,13 +163,13 @@
                                         <v-icon>mdi-pencil</v-icon>
                                     </v-btn>
                                 </template>
-                                <span>Ubah data user dosen</span>       
+                                <span>Ubah data user dosen</span>   
                             </v-tooltip>  
                         </template>
                         <template v-slot:item.foto="{ item }">
                             <v-avatar size="30">
-                                <v-img :src="$api.url+'/'+item.foto" />    
-                            </v-avatar>                                                    
+                                <v-img :src="$api.url+'/'+item.foto" />
+                            </v-avatar>                                                
                         </template>
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
@@ -219,13 +219,13 @@ export default {
         this.initialize()
     },  
    
-    data: () => ({  
+    data: () => ({
         datatableLoading: false,
         btnLoading: false,  
         //tables
         headers: [
             { text: "",value: "foto" }, 
-            { text: "NAMA DOSEN", value: "nama_dosen", sortable: true, width:250 },
+            { text: "NAMA DOSEN", value: "nama_dosen", sortable: true, width: 250 },
             { text: "NIDN", value: "nidn", sortable: true }, 
             { text: "NIPY", value: "nipy", sortable: true }, 
             { text: "NOMOR HP", value: "nomor_hp", sortable: true }, 
@@ -278,7 +278,7 @@ export default {
             value => !!value || "Mohon untuk di isi nama Dosen !!!",  
             value => /^[A-Za-z\s]*$/.test(value) || "Nama Dosen hanya boleh string dan spasi",
         ],
-        rule_nidn: [                         
+        rule_nidn: [ 
             value => /^[0-9]+$/.test(value) || "NIDN hanya boleh angka",
         ],
         rule_nipy: [            
@@ -301,7 +301,7 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data }) => {  
+            }).then(({ data }) => {
                 this.daftar_dosen = data.dosen;
                 this.datatableLoading = false;
             });
@@ -316,7 +316,7 @@ export default {
             else
             {
                 this.expanded = [item];
-            }               
+            }   
         },  
         editItem: async function(item) {
             this.$ajax.get("/datamaster/jabatanakademik",

@@ -47,7 +47,7 @@
                         loading-text="Loading... Please wait">
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
-                                <v-col cols="12">        
+                                <v-col cols="12">    
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
                                 </v-col>
@@ -110,7 +110,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {  
+            }).then(({ data }) => {
                 this.datatable = data.kombi;
                 this.datatableLoading = false;
             });  
@@ -124,7 +124,7 @@ export default {
             else
             {
                 this.expanded = [item];
-            }               
+            }   
         },
     },
     components: {

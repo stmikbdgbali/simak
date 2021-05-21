@@ -3,7 +3,7 @@
 		<v-card>
 			<v-toolbar dark color="primary" dense flat>
 				<v-toolbar-title class="white--text">
-					Printout {{title}}                    
+					Printout {{title}}        
 				</v-toolbar-title>
 				<v-spacer></v-spacer> 
 				<v-icon>mdi-printer</v-icon> 

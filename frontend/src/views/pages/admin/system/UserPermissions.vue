@@ -106,7 +106,7 @@
 									label="ROLES"
 									:items="daftar_role"
 									v-model="role_name"
-								>        
+								>    
 								</v-select>
 								<v-text-field
 									v-model="search"

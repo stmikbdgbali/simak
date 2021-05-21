@@ -116,7 +116,7 @@ export default {
             if (this.url != null)
             {
                 this.$router.push(this.url);
-            }            
+            }
         }
     },  
 }

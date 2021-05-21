@@ -39,31 +39,31 @@
                                     label="SYSTEM BAR"
                                     outlined
                                     :rules="rule_required">
-                                </v-text-field>                                                 
+                                </v-text-field>                                             
                                 <v-text-field 
                                     v-model="formdata.V_APP_BAR_NAV_ICON_CSS_CLASS" 
                                     label="APPLICATION BAR"
                                     outlined
                                     :rules="rule_required">
-                                </v-text-field>    
+                                </v-text-field>
                                 <v-text-field 
                                     v-model="formdata.V_NAVIGATION_DRAWER_CSS_CLASS" 
                                     label="NAVIGATION DRAWER"
                                     outlined
                                     :rules="rule_required">
-                                </v-text-field>    
+                                </v-text-field>
                                 <v-text-field 
                                     v-model="formdata.V_LIST_ITEM_BOARD_CSS_CLASS" 
                                     label="LIST ITEM BOARD"
                                     outlined
                                     :rules="rule_required">
-                                </v-text-field>    
+                                </v-text-field>
                                 <v-text-field 
                                     v-model="formdata.V_LIST_ITEM_ACTIVE_CSS_CLASS" 
                                     label="LIST ITEM ACTIVE"
                                     outlined
                                     :rules="rule_required">
-                                </v-text-field>    
+                                </v-text-field>
                             </v-card-text>
                             <v-card-actions>
                                 <v-spacer></v-spacer>

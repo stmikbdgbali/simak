@@ -93,7 +93,7 @@
 											<v-icon small>
 												mdi-delete
 											</v-icon>
-										</v-btn>                            
+										</v-btn>                        
 									</template>
 									<span>Hapus Permission dari Role ini</span>  
 								</v-tooltip>
@@ -183,21 +183,21 @@
 			permissionsselected: Array,
 		},
 		computed: {
-			...mapGetters("auth", {         
+			...mapGetters("auth", {       
 				TOKEN: "Token", 
 			}),
 			daftar_permissions() {
 				return this.daftarpermissions;
 			},
 			permissions_selected: {
-				get() {   
+				get() { 
 					if (this.perm_selected.length >0) {
 						return this.perm_selected;
 					} else {
 						return this.permissionsselected;
 					}
 				},
-				set(val) {   
+				set(val) { 
 					this.perm_selected=val;
 				}
 			},

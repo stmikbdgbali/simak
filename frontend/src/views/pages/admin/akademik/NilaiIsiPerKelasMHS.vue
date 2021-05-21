@@ -93,11 +93,11 @@
                             <span v-else>
                                 N.A
                             </span>
-                        </template>       
+                        </template>   
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
                                 <v-col cols="12">  
-                                    <strong>ID:</strong>{{ item.id }}          
+                                    <strong>ID:</strong>{{ item.id }}
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
                                 </v-col>
@@ -172,9 +172,9 @@ export default {
 
     }),
     methods: {
-        changeTahunAkademik (tahun)
+        changeTahunAkademik(tahun)
         {
-            this.tahun_akademik=tahun;
+            this.tahun_akademik = tahun;
         },
         changeSemesterAkademik (semester)
         {
@@ -210,7 +210,7 @@ export default {
             else
             {
                 this.expanded = [item];
-            }               
+            }   
         }, 
     },
     watch: {
@@ -219,14 +219,14 @@ export default {
             if (!this.firstloading)
             {
                 this.initialize();
-            }            
+            }
         },
         semester_akademik()
         {
             if (!this.firstloading)
             {
                 this.initialize();
-            }            
+            }
         },
     },
     computed: {

@@ -107,8 +107,8 @@
                                             </v-card-actions>
                                         </v-card>
                                     </v-form>
-                                </v-dialog>    
-                                <v-dialog v-model="dialogRolePermission" max-width="800px" persistent>                      
+                                </v-dialog>
+                                <v-dialog v-model="dialogRolePermission" max-width="800px" persistent>                  
                                     <RolePermissions :role="editedItem" :daftarpermissions="daftar_permissions" :permissionsselected="permissions_selected" v-on:closeRolePermissions="closeRolePermissions" />
                                 </v-dialog>
                             </v-toolbar>
@@ -152,7 +152,7 @@
                         </template>
                     </v-data-table> 
                 </v-col>
-                <v-dialog v-model="dialogdetail" width="800px">        
+                <v-dialog v-model="dialogdetail" width="800px">    
                     <v-card>
                         <v-card-title>
                             <span class="headline">DETAIL ROLE</span>
@@ -218,7 +218,7 @@
                         <v-card-actions>
                             
                         </v-card-actions>
-                    </v-card>        
+                    </v-card>    
                 </v-dialog>
             </v-row>
         </v-container>
@@ -267,7 +267,7 @@ export default {
             { text: "AKSI", value: "actions", sortable: false, width:130 },
         ],
         //tables
-        headersdetail: [                        
+        headersdetail: [
             { text: "NAMA PERMISSION", value: "name" },
             { text: "GUARD", value: "guard_name" },    
         ],
@@ -326,7 +326,7 @@ export default {
             else
             {
                 this.expanded = [item];
-            }               
+            }   
         },
         viewItem(item) {
             this.editedIndex = this.datatable.indexOf(item);
@@ -340,7 +340,7 @@ export default {
                 if (status == 200)
                 {
                     this.permissions_selected = data.permissions;
-                }                 
+                }     
             });
             
             this.dialogdetail = true;
@@ -359,7 +359,7 @@ export default {
                 if (status == 200)
                 {
                     this.daftar_permissions = data.permissions;
-                }                 
+                }     
             });
 
             this.$ajax.get("/system/setting/roles/" + item.id + "/permission",{
@@ -370,7 +370,7 @@ export default {
                 if (status == 200)
                 {
                     this.permissions_selected = data.permissions;
-                }                 
+                }     
             });
             this.dialogRolePermission = true;
             this.editedItem=item;
@@ -387,7 +387,7 @@ export default {
                 }, 300
             );
         },
-        closeRolePermissions () {  
+        closeRolePermissions () {
             this.permissions_selected=[];
             this.dialogRolePermission = false;
         },

@@ -93,7 +93,7 @@
                                                     label="NAME"
                                                     outlined
                                                     :rules="rule_name">
-                                                </v-text-field>                                    
+                                                </v-text-field>                                
                                             </v-card-text>
                                             <v-card-actions>
                                                 <v-spacer></v-spacer>
@@ -161,7 +161,7 @@
                                             <v-spacer></v-spacer>
                                             <v-btn color="blue darken-1" text @click.stop="closedialogdetailitem">KELUAR</v-btn>
                                         </v-card-actions>
-                                    </v-card>                           
+                                    </v-card>                       
                                 </v-dialog>
                             </v-toolbar>
                         </template>
@@ -195,7 +195,7 @@
                                     <strong>ID:</strong>{{ item.id }}
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
-                                </v-col>                       
+                                </v-col>                   
                             </td>
                         </template>
                         <template v-slot:no-data>
@@ -237,7 +237,7 @@ export default {
         datatableLoading: false,
         expanded: [],
         datatable: [],
-        headers: [                        
+        headers: [
             { text: 'ID', value: 'id' },
             { text: "AKSI", value: "actions", sortable: false, width: 100 },
         ],
@@ -282,7 +282,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {      
+            }).then(({ data }) => {    
                 this.datatable = data.object;
                 this.datatableLoading = false;
             }).catch(() => {
@@ -298,7 +298,7 @@ export default {
             else
             {
                 this.expanded = [item];
-            }               
+            }   
         },
         viewItem(item) {
             this.formdata = item;   
@@ -307,7 +307,7 @@ export default {
             //     headers: {
             //         Authorization: this.$store.getters["auth/Token"]
             //     }
-            // }).then(({ data }) => {      
+            // }).then(({ data }) => {    
                                            
             // });
         },
@@ -360,7 +360,7 @@ export default {
                 }
             }
         },
-        deleteItem(item) {  
+        deleteItem(item) {
             this.$root.$confirm.open("Delete", 'Apakah Anda ingin menghapus data dengan ID ' + item.id + ' ?', { color: 'red' }).then(confirm => {
                 if (confirm)
                 {
@@ -381,7 +381,7 @@ export default {
                     }).catch(() => {
                         this.btnLoading = false;
                     });
-                }                
+                }    
             });
         },
         closedialogdetailitem() {

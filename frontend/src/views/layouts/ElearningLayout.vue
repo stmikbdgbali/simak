@@ -30,7 +30,7 @@
                             <v-list-item-title class="title">
                                 {{ATTRIBUTE_USER("username")}}
                             </v-list-item-title>
-                            <v-list-item-subtitle>    
+                            <v-list-item-subtitle>
                                 {{ROLE}}
                             </v-list-item-subtitle>
                         </v-list-item-content>
@@ -84,7 +84,7 @@
                         <v-list-item-title>BOARD E-LEARNING</v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>   
-                <v-subheader>DATA MASTER</v-subheader>       
+                <v-subheader>DATA MASTER</v-subheader>   
                 <v-list-item link to="/elearning/kelas" :active-class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_ACTIVE_CSS_CLASS')" v-if="CAN_ACCESS('ELEARNING-GROUP')">
                     <v-list-item-icon class="mr-2">
                         <v-icon>mdi-google-classroom</v-icon>
@@ -143,7 +143,7 @@ export default {
     name: "AkademikLayout", 
     created()
     {
-        this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];
+        this.dashboard = this.$store.getters["uiadmin/getDefaultDashboard"];
     },
     props: {
         showrightsidebar: {
@@ -173,7 +173,7 @@ export default {
                         'Authorization': this.TOKEN,
                     }
                 }
-            ).then(()=> {   
+            ).then(()=> { 
                 this.$store.dispatch("auth/logout");	
                 this.$store.dispatch("uifront/reinit");	
                 this.$store.dispatch("uiadmin/reinit");	
@@ -235,7 +235,7 @@ export default {
                 case 'PerkuliahanPembagianKelasPeserta':
                     id=this.$route.params.kelas_mhs_id;
                 break;
-            }            
+            }
             return id;
         }
     },

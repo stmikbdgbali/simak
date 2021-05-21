@@ -189,7 +189,7 @@
                                             <v-spacer></v-spacer>
                                             <v-btn color="blue darken-1" text @click.stop="closedialogdetailitem">KELUAR</v-btn>
                                         </v-card-actions>
-                                    </v-card>        
+                                    </v-card>    
                                 </v-dialog>
                             </v-toolbar>
                         </template>
@@ -219,7 +219,7 @@
                                 <v-col cols="12">
                                     <strong>ID:</strong>{{ item.id }}     
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
-                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}                               
+                                    <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}         
                                 </v-col>
                             </td>
                         </template>
@@ -324,7 +324,7 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data }) => {  
+            }).then(({ data }) => {
                 this.datatable = data.bank;
                 this.datatableLoading = false;
             }).catch(() => {
@@ -340,7 +340,7 @@ export default {
             else
             {
                 this.expanded = [item];
-            }               
+            }   
         },
         viewItem(item) {
             this.formdata = item;  
@@ -422,7 +422,7 @@ export default {
                     }).catch(() => {
                         this.btnLoading = false;
                     });
-                }                
+                }    
             });
         },
         closedialogdetailitem() {

@@ -83,7 +83,7 @@
                             {{$store.getters['uiadmin/getNamaKelas'](item.idkelas)}}
                         </template>
                         <template v-slot:item.actions="{ item }">
-                            <v-tooltip bottom>    
+                            <v-tooltip bottom>
                                 <template v-slot:activator="{ on, attrs }">   
                                     <v-btn 
                                         v-bind="attrs"
@@ -99,9 +99,9 @@
                                         <v-icon>mdi-eye</v-icon>
                                     </v-btn>
                                 </template>
-                                <span>Detail Transkrip</span>       
+                                <span>Detail Transkrip</span>   
                             </v-tooltip> 
-                            <v-tooltip bottom>    
+                            <v-tooltip bottom>
                                 <template v-slot:activator="{ on, attrs }">   
                                     <v-btn 
                                         v-bind="attrs"
@@ -117,13 +117,13 @@
                                         <v-icon>mdi-printer</v-icon>
                                     </v-btn>
                                 </template>
-                                <span>Cetak Transkrip Dua Kolom</span>       
-                            </v-tooltip>        
+                                <span>Cetak Transkrip Dua Kolom</span>   
+                            </v-tooltip>    
                         </template>  
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
                                 <v-col cols="12">  
-                                    <strong>user_id:</strong>{{ item.user_id }}                                              
+                                    <strong>user_id:</strong>{{ item.user_id }}                        
                                 </v-col>
                             </td>
                         </template>
@@ -134,7 +134,7 @@
                 </v-col>
             </v-row> 
         </v-container>
-        <v-dialog v-model="dialogprintpdf" max-width="500px" persistent>       
+        <v-dialog v-model="dialogprintpdf" max-width="500px" persistent>   
             <v-card>
                 <v-card-title>
                     <span class="headline">Print to PDF</span>
@@ -238,7 +238,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {  
+            }).then(({ data }) => {
                 this.datatable = data.mahasiswa;
                 this.datatableLoading = false;
             }).catch(() => {
@@ -256,7 +256,7 @@ export default {
             else
             {
                 this.expanded = [item];
-            }               
+            }   
         },
         viewItem(item)
         {
@@ -294,17 +294,17 @@ export default {
             if (!this.firstloading)
             {
                 this.initialize();
-            }            
+            }
         },
         prodi_id(val)
         {
             if (!this.firstloading)
             {
-                this.nama_prodi=this.$store.getters["uiadmin/getProdiName"](val);
+                this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](val);
                 this.initialize();
-            }            
+            }
         },
-        search ()
+        search()
         {
             if (!this.awaiting_search) 
             {
@@ -322,7 +322,7 @@ export default {
                             headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
-                        }).then(({ data }) => {  
+                        }).then(({ data }) => {
                             this.datatable = data.mahasiswa;
                             this.datatableLoading = false;
                         });  

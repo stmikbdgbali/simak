@@ -139,35 +139,35 @@
                                     <v-spacer></v-spacer>  
                                 </v-toolbar>
                             </template>
-                            <template v-slot:item.kmatkul_asal="props">    
+                            <template v-slot:item.kmatkul_asal="props">
                                 <v-text-field
                                     v-model="props.item.kmatkul_asal"                            
                                     dense                                                                 
                                 >
                                 </v-text-field>
-                            </template>                                  
-                            <template v-slot:item.matkul_asal="props">    
+                            </template>                              
+                            <template v-slot:item.matkul_asal="props">
                                 <v-text-field
                                     v-model="props.item.matkul_asal"                            
                                     dense                                 
                                 >
                                 </v-text-field>
-                            </template>                                  
-                            <template v-slot:item.sks_asal="props">    
+                            </template>                              
+                            <template v-slot:item.sks_asal="props">
                                 <v-text-field
                                     v-model="props.item.sks_asal"                            
                                     dense                                                             
                                 >
                                 </v-text-field>
-                            </template>                                  
-                            <template v-slot:item.n_kual="props">    
+                            </template>                              
+                            <template v-slot:item.n_kual="props">
                                 <v-select 
                                     :items="$store.getters['uiadmin/getSkalaNilai']"  
                                     v-model="props.item.n_kual"
                                     style="width:65px"                                
                                     dense>
                                 </v-select>
-                            </template>                                  
+                            </template>                              
                             <template v-slot:no-data>
                                 Data belum tersedia
                             </template>   
@@ -217,7 +217,7 @@ export default {
         this.tahun_pendaftaran = this.$store.getters["uiadmin/getTahunPendaftaran"];
         this.initialize()
     },  
-    data: () => ({  
+    data: () => ({
         prodi_id: null,
         nama_prodi: null,
         tahun_pendaftaran: null,
@@ -228,7 +228,7 @@ export default {
         datatable: [],
         headers: [            
             { text: "KODE", value: "kmatkul", sortable: false, width: 100  },
-            { text: "NAMA", value: "nmatkul", sortable: false, width:250  },
+            { text: "NAMA", value: "nmatkul", sortable: false, width: 250  },
             { text: "SKS", value: "sks", sortable: false, width:70 },
             { text: "SMT", value: "semester", sortable: true, width:70, },
             { text: "KODE MATKUL ASAL", value: "kmatkul_asal", sortable: false, width: 120 },
@@ -314,7 +314,7 @@ export default {
     }),
     methods: { 
         initialize: async function() 
-        {    
+        {  
             this.datatableLoading = true;
             await this.$ajax.post("/akademik/nilai/konversi/matakuliah",
             {
@@ -325,7 +325,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {  
+            }).then(({ data }) => {
                 this.datatable = data.matakuliah;
                 this.datatableLoading = false;
             }).catch(() => {

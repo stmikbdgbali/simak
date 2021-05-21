@@ -173,10 +173,10 @@
                                                         :items="data_transaksi_detail"
                                                         :headers="headers_detail">
                                                         <template v-slot:item.biaya="{ item }">
-                                                            {{item.biaya|formatUang}}
+                                                            {{ item.biaya | formatUang }}
                                                         </template>
                                                         <template v-slot:item.sub_total="{ item }">
-                                                            {{item.sub_total|formatUang}}
+                                                            {{ item.sub_total | formatUang }}
                                                         </template>
                                                     </v-data-table>
                                                 </v-col>
@@ -186,21 +186,21 @@
                                             <v-spacer></v-spacer>
                                             <v-btn color="blue darken-1" text @click.stop="closedialogdetailitem">KELUAR</v-btn>
                                         </v-card-actions>
-                                    </v-card>        
+                                    </v-card>    
                                 </v-dialog>
                             </v-toolbar>
                         </template>
                         <template v-slot:item.tanggal="{ item }">
-                            {{$date(item.tanggal).format("DD/MM/YYYY")}}
+                            {{ $date(item.tanggal).format("DD/MM/YYYY") }}
                         </template>
                         <template v-slot:item.idsmt="{ item }">
-                            {{item.ta}} {{$store.getters['uiadmin/getNamaSemester'](item.idsmt)}}
+                            {{item.ta}} {{ $store.getters['uiadmin/getNamaSemester'](item.idsmt) }}
                         </template>
                         <template v-slot:item.total="{ item }">
-                            {{item.total|formatUang}}
+                            {{ item.total | formatUang }}
                         </template>
                         <template v-slot:item.nama_status="{ item }">
-                            <v-chip :color="item.style" dark>{{item.nama_status}}</v-chip>
+                            <v-chip :color="item.style" dark>{{ item.nama_status }}</v-chip>
                         </template>
                         <template v-slot:item.actions="{ item }">
                             <v-icon
@@ -213,7 +213,7 @@
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
                                 <v-col cols="12">  
-                                    <strong>ID:</strong>{{ item.id }}          
+                                    <strong>ID:</strong>{{ item.id }}
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
                                 </v-col>
@@ -221,7 +221,7 @@
                         </template>
                         <template v-slot:no-data>
                             Data belum tersedia
-                        </template>    
+                        </template>
                     </v-data-table>
                 </v-col>
             </v-row>
@@ -259,7 +259,7 @@ export default {
     {
         this.initialize();
     },
-    data: () => ({    
+    data: () => ({  
         firstloading: true,
         breadcrumbs: [],  
         
@@ -276,15 +276,15 @@ export default {
         //tables
         datatableLoading: false,
         datatable: [],
-        headers: [                        
+        headers: [
             { text: "KODE BILLING", value: "no_transaksi", width: 100, sortable: true },
             { text: "TANGGAL", value: "tanggal", width: 100, sortable: true },
             { text: "NIM", value: "nim", width: 100, sortable: true },
-            { text: "NAMA MAHASISWA", value: "nama_mhs", sortable: true, width:250 },
+            { text: "NAMA MAHASISWA", value: "nama_mhs", sortable: true, width: 250 },
             { text: "T.A/SMT", value: "idsmt", width: 100, sortable: true },
             { text: "TOTAL", value: "total", width: 100, sortable: true },
             { text: "STATUS", value: "nama_status", width: 50, sortable: true }, 
-            { text: "AKSI", value: "actions", sortable: false, width:50 },
+            { text: "AKSI", value: "actions", sortable: false, width: 50 },
         ],  
         expanded: [],
         search: "",
@@ -320,7 +320,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {  
+            }).then(({ data }) => {
                 this.datatable = data.transaksi;
                 this.datatableLoading = false;
             });  
@@ -334,7 +334,7 @@ export default {
             else
             {
                 this.expanded = [item];
-            }               
+            }   
         },
         async viewItem(item) {
             this.btnLoading = true;
@@ -343,9 +343,9 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {                        
-                this.data_transaksi=item; 
-                this.data_transaksi_detail=data.transaksi_detail; 
+            }).then(({ data }) => {
+                this.data_transaksi = item; 
+                this.data_transaksi_detail = data.transaksi_detail; 
                 this.dialogdetailitem = true;
                 this.btnLoading = false;
             }); 
@@ -354,8 +354,8 @@ export default {
             this.dialogdetailitem = false;  
             setTimeout(() => {
                 this.editedIndex = -1;
-                this.data_transaksi={}; 
-                this.data_transaksi_detail={}; 
+                this.data_transaksi = {}; 
+                this.data_transaksi_detail = {}; 
                 }, 300
             );
         },

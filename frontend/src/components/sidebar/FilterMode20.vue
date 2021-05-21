@@ -48,7 +48,7 @@ export default {
             {
                 this.$store.dispatch("uiadmin/updateTahunPendaftaran",val);
                 this.$emit("changeTahunPendaftaran",val);
-            }            
+            }
         },
         fakultas_id(val)
         {

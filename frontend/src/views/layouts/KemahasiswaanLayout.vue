@@ -30,7 +30,7 @@
                             <v-list-item-title class="title">
                                 {{ ATTRIBUTE_USER("username") }}
                             </v-list-item-title>
-                            <v-list-item-subtitle>    
+                            <v-list-item-subtitle>
                                 [{{ DEFAULT_ROLE }}]
                             </v-list-item-subtitle>
                         </v-list-item-content>
@@ -142,7 +142,7 @@ export default {
     name: "KemahasiswaanLayout", 
     created()
     {
-        this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];  
+        this.dashboard = this.$store.getters["uiadmin/getDefaultDashboard"];  
     },
     props: {
         showrightsidebar: {
@@ -172,7 +172,7 @@ export default {
                         Authorization: this.TOKEN,
                     }
                 }
-            ).then(()=> {   
+            ).then(()=> { 
                 this.$store.dispatch("auth/logout");	
                 this.$store.dispatch("uifront/reinit");
                 this.$store.dispatch("uiadmin/reinit");
@@ -226,7 +226,7 @@ export default {
                 case 'KemahasiswaanProfilMHS':
                     id=this.$route.params.idpenyelenggaraan;
                 break;
-            }            
+            }
             return id;
         }
     },

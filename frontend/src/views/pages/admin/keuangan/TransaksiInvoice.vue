@@ -13,7 +13,9 @@
 								/>
 							</v-col>
 							<v-col cols="4" class="font-weight-medium">
-								<h1 :class="colorstatus(data_transaksi.status)">{{ data_transaksi.nama_status }}</h1>
+								<h1 :class="colorstatus(data_transaksi.status)">
+									{{ data_transaksi.nama_status }}
+								</h1>
 							</v-col>
 						</v-row>
 						<v-row>
@@ -35,16 +37,14 @@
 								<strong>Pay To:</strong><br />
 								BNI (BANK NEGARA INDONESIA) <br />
 								NOMOR REKENING : 10-0062-8460 <br />
-								A.N : STMIK BANDUNG BALI <br />								
+								A.N : STMIK BANDUNG BALI <br />
 							</v-col>
 						</v-row>
 						<v-row>
 							<v-col cols="6">
 								<strong>Invoice Date:</strong><br />
 								{{
-									$date(data_transaksi.created_at).format(
-										"DD/MM/YYYY HH:mm"
-									)
+									$date(data_transaksi.created_at).format("DD/MM/YYYY HH:mm")
 								}}
 							</v-col>
 							<v-col cols="6">
@@ -69,12 +69,15 @@
 									<template v-slot:item.sub_total="{ item }">
 										{{ item.sub_total | formatUang }}
 									</template>
-									<template v-slot:body.append v-if="transaksi_detail.length > 0">
+									<template
+										v-slot:body.append
+										v-if="transaksi_detail.length > 0"
+									>
 										<tr class="grey lighten-4 font-weight-black">
 											<td class="text-right" colspan="6">TOTAL</td>
 											<td class="text-right">
-													{{ total | formatUang}}
-											</td>											
+												{{ total | formatUang }}
+											</td>
 										</tr>
 									</template>
 								</v-data-table>
@@ -82,7 +85,7 @@
 						</v-row>
 					</v-col>
 				</v-row>
-			</v-container>			
+			</v-container>
 		</v-main>
 	</v-app>
 </template>
@@ -151,7 +154,7 @@
 					});
 			},
 			colorstatus(status) {
-				switch(status) {
+				switch (status) {
 					case 0:
 						return "red--text";
 					case 1:
@@ -159,7 +162,7 @@
 					case 2:
 						return "orange--text";
 				}
-			}
+			},
 		},
 		computed: {
 			...mapGetters("uifront", {
@@ -168,10 +171,10 @@
 			total() {
 				var total = 0;
 				this.transaksi_detail.forEach(element => {
-					total += element.sub_total; 
+					total += element.sub_total;
 				});
 				return total;
-			}
+			},
 		},
 	};
 </script>

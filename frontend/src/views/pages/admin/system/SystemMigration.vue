@@ -83,7 +83,7 @@
                                     item-text="name"
                                     item-value="id"
                                     :rules="rule_dw"
-                                    outlined />          
+                                    outlined />      
                             </v-card-text>
                         </v-card>
                         <v-card class="mb-4">
@@ -100,7 +100,7 @@
                                     item-key="id"
                                     :items="daftar_tasmt"
                                     dense> 
-                                    <template v-slot:item.k_status="{ item }">                      
+                                    <template v-slot:item.k_status="{ item }">                  
                                         <v-select       
                                             v-model="formdata.status_mhs[daftar_tasmt.indexOf(item)]"                                                                                
                                             :items="daftar_status_mhs"
@@ -203,10 +203,10 @@ export default {
         ],
         
         datatableLoading: false,
-        headers: [                        
+        headers: [
             { text: "TAHUN AKADEMIK", value: "ta", sortable: false },
             { text: "SEMESTER", value: "semester", sortable: false },
-            { text: "STATUS", value: "k_status", sortable: false, width:250 },  
+            { text: "STATUS", value: "k_status", sortable: false, width: 250 },  
         ],
     }),
     methods: {
@@ -272,7 +272,7 @@ export default {
                             Authorization: this.$store.getters["auth/Token"]
                         }
                     }
-                ).then(() => {                
+                ).then(() => {              
                     setTimeout(() => {
                         this.$router.go();  
                         this.btnLoading = false;
@@ -291,7 +291,7 @@ export default {
             if (!this.firstloading)
             {
                 this.initialize();
-            }            
+            }
         },
     },
     components: {

@@ -30,7 +30,7 @@
                             <v-list-item-title class="title">
                                 {{ATTRIBUTE_USER("username")}}
                             </v-list-item-title>
-                            <v-list-item-subtitle>    
+                            <v-list-item-subtitle>
                                 [{{DEFAULT_ROLE}}]
                             </v-list-item-subtitle>
                         </v-list-item-content>
@@ -94,7 +94,7 @@
                             DOSEN WALI
                         </v-list-item-title>
                     </v-list-item-content>
-                </v-list-item>       
+                </v-list-item>   
                 <v-subheader v-if="CAN_ACCESS('AKADEMIK-DULANG-BARU_BROWSE')||CAN_ACCESS('AKADEMIK-DULANG-LAMA_BROWSE')">DAFTAR ULANG</v-subheader>
                 <v-list-item link to="/akademik/dulang/mhsbelumpunyanim" :active-class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_ACTIVE_CSS_CLASS')" v-if="CAN_ACCESS('AKADEMIK-DULANG-BARU_BROWSE')">
                     <v-list-item-icon class="mr-2">
@@ -115,7 +115,7 @@
                             MAHASISWA BARU
                         </v-list-item-title>
                     </v-list-item-content>
-                </v-list-item>       
+                </v-list-item>   
                 <v-list-item link to="/akademik/dulang/mahasiswalama" :active-class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_ACTIVE_CSS_CLASS')" v-if="CAN_ACCESS('AKADEMIK-DULANG-LAMA_BROWSE')">
                     <v-list-item-icon class="mr-2">
                         <v-icon>mdi-book</v-icon>
@@ -125,7 +125,7 @@
                             MAHASISWA LAMA
                         </v-list-item-title>
                     </v-list-item-content>
-                </v-list-item>    
+                </v-list-item>
                 <v-subheader>PERKULIAHAN</v-subheader>
                 <v-list-item link to="/akademik/matakuliah" :active-class="this.$store.getters['uiadmin/getTheme']('V_LIST_ITEM_ACTIVE_CSS_CLASS')" v-if="CAN_ACCESS('AKADEMIK-MATAKULIAH_BROWSE')">
                     <v-list-item-icon class="mr-2">
@@ -178,7 +178,7 @@
                             </v-list-item-content>
                         </v-list-item>   						 
                     </div>
-                </v-list-group>       
+                </v-list-group>   
                 <v-list-group group="/akademik/perkuliahan/krs" active-class="yellow" no-action v-if="CAN_ACCESS('AKADEMIK-PERKULIAHAN-KRS_BROWSE')" color="green">
                     <template v-slot:activator>
                         <v-list-item-icon class="mr-2">
@@ -363,7 +363,7 @@ export default {
     name: "AkademikLayout", 
     created()
     {
-        this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];
+        this.dashboard = this.$store.getters["uiadmin/getDefaultDashboard"];
     },
     props: {
         showrightsidebar: {
@@ -393,7 +393,7 @@ export default {
                         'Authorization': this.TOKEN,
                     }
                 }
-            ).then(()=> {   
+            ).then(()=> { 
                 this.$store.dispatch("auth/logout");	
                 this.$store.dispatch("uifront/reinit");	
                 this.$store.dispatch("uiadmin/reinit");	
@@ -456,7 +456,7 @@ export default {
                 case 'PerkuliahanPembagianKelasPeserta':
                     id=this.$route.params.kelas_mhs_id;
                 break;
-            }            
+            }
             return id;
         }
     },

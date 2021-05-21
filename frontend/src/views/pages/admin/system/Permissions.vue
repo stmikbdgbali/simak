@@ -205,7 +205,7 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data }) => {   
+            }).then(({ data }) => { 
                 this.daftar_permissions = data.permissions;
                 this.datatableLoading = false;
             });
@@ -220,7 +220,7 @@ export default {
             else
             {
                 this.expanded = [item];
-            }               
+            }   
         },
         editItem(item) {
             this.editedIndex = this.daftar_permissions.indexOf(item)

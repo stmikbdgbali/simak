@@ -23,7 +23,7 @@
 				</v-alert>
 			</template>
 		</ModuleHeader>  
-		<v-container fluid>    
+		<v-container fluid>
 			<v-row class="mb-4" no-gutters>
 				<v-col cols="12">
 					<v-card>
@@ -113,7 +113,7 @@
 													<v-date-picker
 														v-model="formdata.tanggal_akhir_daftar"                                        
 														no-title                                
-														scrollable>          
+														scrollable>      
 														<v-spacer></v-spacer>
 														<v-btn text color="primary" @click="menuTanggalAkhirPendaftaran = false">Cancel</v-btn>
 														<v-btn text color="primary" @click="$refs.menuTanggalAkhirPendaftaran.save(formdata.tanggal_akhir_daftar)">OK</v-btn>
@@ -140,7 +140,7 @@
 													<v-date-picker
 														v-model="formdata.tanggal_ujian"                                        
 														no-title                                
-														scrollable>          
+														scrollable>      
 														<v-spacer></v-spacer>
 														<v-btn text color="primary" @click="menuTanggalUjian = false">Cancel</v-btn>
 														<v-btn text color="primary" @click="$refs.menuTanggalUjian.save(formdata.tanggal_ujian)">OK</v-btn>
@@ -225,7 +225,7 @@
 											</v-card-actions>
 										</v-card>
 									</v-form>
-								</v-dialog>                       
+								</v-dialog>                   
 							</v-toolbar>
 						</template>
 						<template v-slot:item.tanggal_ujian="{ item }">
@@ -292,7 +292,7 @@
 	export default {
 		name: "JadwalUjianPMB",
 		created() {
-			this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];
+			this.dashboard = this.$store.getters["uiadmin/getDefaultDashboard"];
 			this.breadcrumbs = [
 				{
 					text: "HOME",
@@ -406,7 +406,7 @@
 						{
 							return true;
 						}
-					}            
+					}
 				],
 			}
 		},
@@ -457,7 +457,7 @@
 					this.expanded = [];
 				} else {
 					this.expanded = [item];
-				}               
+				}   
 			},
 			addItem: async function() {
 				this.btnLoading = true;
@@ -466,7 +466,7 @@
 					headers: {
 						Authorization: this.$store.getters["auth/Token"]
 					}
-				}).then(({ data }) => {  
+				}).then(({ data }) => {
 					this.daftar_ruangan = data.ruangan;
 					this.btnLoading = false;
 					this.dialogfrm = true;
@@ -490,7 +490,7 @@
 								Authorization: this.$store.getters["auth/Token"]
 							}
 						})
-						.then(({ data }) => {  
+						.then(({ data }) => {
 							this.daftar_ruangan = data.ruangan;
 							this.btnLoading = false;
 							this.editedIndex = this.datatable.indexOf(item);
@@ -523,7 +523,7 @@
 									Authorization: this.$store.getters["auth/Token"]
 								}
 							}
-						).then(() => {   
+						).then(() => { 
 							this.closedialogfrm();
 							this.btnLoading = false;
 							this.initialize();
@@ -533,7 +533,7 @@
 						
 					} else {
 						await this.$ajax.post("/spmb/jadwalujianpmb/store",
-							{    
+							{  
 								nama_kegiatan: this.formdata.nama_kegiatan,
 								jumlah_soal: this.formdata.jumlah_soal,
 								tanggal_ujian: this.formdata.tanggal_ujian,
@@ -550,7 +550,7 @@
 									Authorization: this.$store.getters["auth/Token"]
 								}
 							}
-						).then(() => {   
+						).then(() => { 
 							this.closedialogfrm();
 							this.btnLoading = false;
 							this.initialize();
@@ -581,7 +581,7 @@
 						}).catch(() => {
 							this.btnLoading = false;
 						});
-					}                
+					}    
 				});
 			},			
 			closedialogfrm() {

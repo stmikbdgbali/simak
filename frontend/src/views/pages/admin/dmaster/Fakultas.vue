@@ -25,7 +25,7 @@
                 </v-alert>
             </template>
         </ModuleHeader>  
-        <v-container fluid>    
+        <v-container fluid>
             <v-row class="mb-4" no-gutters>
                 <v-col cols="12">
                     <v-card>
@@ -137,7 +137,7 @@
                                             <v-spacer></v-spacer>
                                             <v-btn color="blue darken-1" text @click.stop="closedialogdetailitem">KELUAR</v-btn>
                                         </v-card-actions>
-                                    </v-card>        
+                                    </v-card>    
                                 </v-dialog>
                             </v-toolbar>
                         </template>
@@ -165,7 +165,7 @@
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
                                 <v-col cols="12">
-                                    <strong>ID:</strong>{{ item.kode_fakultas }}                                   
+                                    <strong>ID:</strong>{{ item.kode_fakultas }}             
                                 </v-col>
                             </td>
                         </template>
@@ -251,7 +251,7 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data }) => {  
+            }).then(({ data }) => {
                 this.datatable = data.fakultas;
                 this.datatableLoading = false;
             }).catch(() => {
@@ -267,7 +267,7 @@ export default {
             else
             {
                 this.expanded = [item];
-            }               
+            }   
         },
         viewItem(item) {
             this.formdata = item;  
@@ -346,7 +346,7 @@ export default {
                     }).catch(() => {
                         this.btnLoading = false;
                     });
-                }                
+                }    
             });
         },
         closedialogdetailitem() {

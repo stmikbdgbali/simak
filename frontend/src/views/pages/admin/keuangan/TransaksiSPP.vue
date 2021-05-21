@@ -79,7 +79,7 @@
                                 <v-btn color="primary" icon outlined small class="ma-2" @click.stop="addItem">
                                     <v-icon>mdi-plus</v-icon>
                                 </v-btn>   
-                                <v-dialog v-model="dialogfrm" max-width="500px" persistent>        
+                                <v-dialog v-model="dialogfrm" max-width="500px" persistent>    
                                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>
                                         <v-card>
                                             <v-card-title>
@@ -106,7 +106,7 @@
                                                     :rules="rule_semester"
                                                     item-text="text"
                                                     item-value="id"
-                                                    outlined />                                   
+                                                    outlined />                               
                                             </v-card-text>
                                             <v-card-actions>
                                                 <v-spacer></v-spacer>
@@ -126,16 +126,16 @@
                             </v-toolbar>
                         </template>
                         <template v-slot:item.tanggal="{ item }">
-                            {{$date(item.tanggal).format("DD/MM/YYYY")}}
+                            {{ $date(item.tanggal).format("DD/MM/YYYY") }}
                         </template>
                         <template v-slot:item.sub_total="{ item }">
-                            {{item.sub_total|formatUang}}
+                            {{ item.sub_total | formatUang }}
                         </template>
-                        <template v-slot:item.idsmt="{ item }">    
-                            {{item.ta}} {{$store.getters['uiadmin/getNamaSemester'](item.idsmt)}}
+                        <template v-slot:item.idsmt="{ item }">
+                            {{item.ta}} {{ $store.getters['uiadmin/getNamaSemester'](item.idsmt) }}
                         </template>
                         <template v-slot:item.nama_status="{ item }">
-                            <v-chip :color="item.style" dark>{{item.nama_status}}</v-chip>
+                            <v-chip :color="item.style" dark>{{ item.nama_status }}</v-chip>
                         </template>
                         <template v-slot:item.actions="{ item }">
                             <v-icon
@@ -143,32 +143,32 @@
                                 class="mr-2"
                                 @click.stop="viewItem(item)">
                                 mdi-eye
-                            </v-icon>          
+                            </v-icon>      
                         </template>
                         <template v-slot:body.append v-if="datatable.length > 0">
                             <tr class="grey lighten-4 font-weight-black">
                                 <td class="text-right" colspan="7">TOTAL TRANSAKSI PAID</td>
                                 <td class="text-right" >{{totaltransaksi_paid|formatUang}}</td> 
                                 <td></td>
-                                <td></td>    
+                                <td></td>
                             </tr>
                             <tr class="grey lighten-4 font-weight-black">
                                 <td class="text-right" colspan="7">TOTAL TRANSAKSI UNPAID</td>
                                 <td class="text-right" >{{totaltransaksi_unpaid|formatUang}}</td> 
                                 <td></td>
-                                <td></td>    
+                                <td></td>
                             </tr>
                             <tr class="grey lighten-4 font-weight-black">
                                 <td class="text-right" colspan="7">TOTAL TRANSAKSI CANCELED</td>
                                 <td class="text-right" >{{totaltransaksi_canceled|formatUang}}</td> 
                                 <td></td>
-                                <td></td>    
+                                <td></td>
                             </tr>
                             <tr class="grey lighten-4 font-weight-black">
                                 <td class="text-right" colspan="7">TOTAL TRANSAKSI</td>
                                 <td class="text-right" >{{(totaltransaksi_canceled+totaltransaksi_paid+totaltransaksi_unpaid)|formatUang}}</td> 
                                 <td></td>
-                                <td></td>    
+                                <td></td>
                             </tr>
                         </template>   
                         <template v-slot:no-data>
@@ -183,12 +183,12 @@
 <script>
 import KeuanganLayout from "@/views/layouts/KeuanganLayout";
 import ModuleHeader from "@/components/ModuleHeader";
-import Filter18 from '@/components/sidebar/FilterMode18';
+import Filter18 from "@/components/sidebar/FilterMode18";
 export default {
     name: "TransaksiSPP",
     created()
     {
-        this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard']; 
+        this.dashboard = this.$store.getters["uiadmin/getDefaultDashboard"]; 
         this.breadcrumbs = [
             {
                 text: "HOME",
@@ -229,16 +229,16 @@ export default {
         //tables
         datatableLoading: false,
         datatable: [],
-        headers: [                        
+        headers: [
             { text: "KODE BILLING", value: "no_transaksi", width: 100, sortable: true },
             { text: "TANGGAL", value: "tanggal", width: 90, sortable: true },
             { text: "NIM", value: "nim", sortable: true, width: 100 },
-            { text: "NAMA MAHASISWA", value: "nama_mhs", sortable: true, width:250 }, 
+            { text: "NAMA MAHASISWA", value: "nama_mhs", sortable: true, width: 250 }, 
             { text: "BULAN", value: "nama_bulan", width: 100, sortable: true },
             { text: "TA/SMT", value: "idsmt", width: 50, sortable: false },
             { text: "JUMLAH", value: "sub_total", width: 100, sortable: false,align: "right" },
             { text: "STATUS", value: "nama_status", width: 100, sortable: false }, 
-            { text: "AKSI", value: "actions", sortable: false, width:50 },
+            { text: "AKSI", value: "actions", sortable: false, width: 50 },
         ],  
         expanded: [],
         search: "",
@@ -270,9 +270,9 @@ export default {
         {
             this.prodi_id = id;
         },
-        changeTahunAkademik (tahun)
+        changeTahunAkademik(tahun)
         {
-            this.tahun_akademik=tahun;
+            this.tahun_akademik = tahun;
         },
         initialize: async function() 
         {
@@ -286,7 +286,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {  
+            }).then(({ data }) => {
                 this.datatable = data.transaksi;
                 this.datatableLoading = false;
             });  
@@ -302,7 +302,7 @@ export default {
             else
             {
                 this.expanded = [item];
-            }               
+            }   
         },
         async addItem()
         {
@@ -332,13 +332,13 @@ export default {
                             Authorization: this.$store.getters["auth/Token"]
                         }
                     }
-                ).then(({ data }) => {   
+                ).then(({ data }) => { 
                     this.btnLoading = false; 
                     this.$router.push("/keuangan/transaksi-spp/tambah/" + data.transaksi.id);
                 }).catch(() => {
                     this.btnLoading = false;
                 });
-            }            
+            }
         },
         closedialogfrm() {
             this.dialogfrm = false;  
@@ -390,17 +390,17 @@ export default {
             if (!this.firstloading)
             {
                 this.initialize();
-            }            
+            }
         },
         prodi_id(val)
         {
             if (!this.firstloading)
             {
-                this.nama_prodi=this.$store.getters["uiadmin/getProdiName"](val);
+                this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](val);
                 this.initialize();
-            }            
+            }
         },
-        search ()
+        search()
         {
             if (!this.awaiting_search) 
             {
@@ -418,7 +418,7 @@ export default {
                             headers: {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
-                        }).then(({ data }) => {  
+                        }).then(({ data }) => {
                             this.datatable = data.transaksi;
                             this.datatableLoading = false;
                         });  

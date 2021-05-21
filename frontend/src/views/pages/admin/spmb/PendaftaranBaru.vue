@@ -65,7 +65,7 @@
 												:loading="datatableLoading"
 												loading-text="Loading... Please wait">
 												<template v-slot:top>
-														<v-toolbar flat color="white">    
+														<v-toolbar flat color="white">
 																<v-spacer></v-spacer>
 																<v-btn 
 																		
@@ -81,7 +81,7 @@
 																		@click.stop="addItem">
 																				TAMBAH
 																</v-btn>
-																<v-dialog v-model="dialogfrm" max-width="500px" persistent>        
+																<v-dialog v-model="dialogfrm" max-width="500px" persistent>    
 																		<v-form ref="frmdata" v-model="form_valid" lazy-validation>
 																				<v-card>
 																						<v-card-title>
@@ -211,7 +211,7 @@
 																								<v-col xs="12" sm="6" md="6">
 																										<v-card flat>
 																												<v-card-title>TAHUN PENDAFTARAN:</v-card-title>
-																												<v-card-subtitle>              
+																												<v-card-subtitle>          
 																														{{formdata.ta}}
 																												</v-card-subtitle>
 																										</v-card>
@@ -222,7 +222,7 @@
 																								<v-col xs="12" sm="6" md="6">
 																										<v-card flat>
 																												<v-card-title>PROGRAM STUDI :</v-card-title>
-																												<v-card-subtitle>              
+																												<v-card-subtitle>          
 																														{{$store.getters["uiadmin/getProdiName"](formdata.prodi_id)}}
 																												</v-card-subtitle>
 																										</v-card>
@@ -257,7 +257,7 @@
 																						<v-spacer></v-spacer>
 																						<v-btn color="blue darken-1" text @click.stop="closedialogdetailitem">KELUAR</v-btn>
 																				</v-card-actions>
-																		</v-card>        
+																		</v-card>    
 																</v-dialog>
 														</v-toolbar>
 												</template>
@@ -294,10 +294,10 @@
 																bordered
 																:color="badgeColor(item)"
 																:icon="badgeIcon(item)"
-																overlap>       
+																overlap>   
 																<v-avatar size="30">   
-																		<v-img :src="$api.url+'/'+item.foto" />                       
-																</v-avatar>                                                    
+																		<v-img :src="$api.url+'/'+item.foto" />                   
+																</v-avatar>                                                
 														</v-badge>
 												</template>
 												<template v-slot:item.nomor_hp="{ item }">
@@ -309,7 +309,7 @@
 												<template v-slot:expanded-item="{ headers, item }">
 														<td :colspan="headers.length" class="text-center">
 																<v-col cols="12">
-																		<strong>ID:</strong>{{ item.id }}                                    
+																		<strong>ID:</strong>{{ item.id }}              
 																		<strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
 																		<strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
 																</v-col>
@@ -345,7 +345,7 @@
 	export default {
 			name: "PendaftaranBaru",  
 			created() {
-					this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard']; 
+					this.dashboard = this.$store.getters["uiadmin/getDefaultDashboard"]; 
 					this.breadcrumbs = [
 							{
 									text: "HOME",
@@ -363,7 +363,7 @@
 									href: "#"
 							}
 					]; 
-					this.breadcrumbs[1].disabled=(this.dashboard=='mahasiswabaru'||this.dashboard == "mahasiswa");
+					this.breadcrumbs[1].disabled = (this.dashboard=='mahasiswabaru'||this.dashboard == "mahasiswa");
 
 					let prodi_id = this.$store.getters["uiadmin/getProdiID"];
 					this.prodi_id = prodi_id;
@@ -480,7 +480,7 @@
 									headers: {
 											Authorization: this.$store.getters["auth/Token"]
 									}
-							}).then(({ data }) => {  
+							}).then(({ data }) => {
 									this.datatable = data.pmb;
 									this.datatableLoading = false;
 							});
@@ -504,7 +504,7 @@
 							else
 							{
 									this.expanded = [item];
-							}               
+							}   
 					},
 					aktifkan(id)
 					{
@@ -540,7 +540,7 @@
 													Authorization: this.$store.getters["auth/Token"]
 											}
 									}
-							).then(() => {   
+							).then(() => { 
 									this.btnLoading = false;
 							}).catch(() => {
 									this.btnLoading = false;
@@ -553,7 +553,7 @@
 							this.formdata.prodi_id=this.prodi_id;
 
 							if (this.$store.getters['uifront/getBentukPT']== "universitas")
-							{     
+							{   
 									await this.$ajax.get("/datamaster/fakultas").then(({ data }) => {
 											this.daftar_fakultas=data.fakultas;
 									});
@@ -612,7 +612,7 @@
 																	Authorization: this.$store.getters["auth/Token"]
 															}
 													}
-											).then(({ data }) => {       
+											).then(({ data }) => {     
 													this.datatable.push(data.pendaftar);
 													this.closedialogfrm();
 													this.btnLoading = false;
@@ -634,7 +634,7 @@
 													Authorization: this.$store.getters["auth/Token"]
 											}
 									}
-							).then(() => {                    
+							).then(() => {                  
 									this.closedialogdetailitem();
 									this.btnLoading = false;
 							}).catch(() => {
@@ -651,7 +651,7 @@
 							this.formdata.nomor_hp='+'+this.formdata.nomor_hp;
 							this.daftar_ta = this.$store.getters['uiadmin/getDaftarTA'];
 							if (this.$store.getters['uifront/getBentukPT']== "universitas")
-							{     
+							{   
 									await this.$ajax.get("/datamaster/fakultas").then(({ data }) => {
 											this.daftar_fakultas=data.fakultas;
 									});
@@ -727,26 +727,26 @@
 							if (!this.firstloading)
 							{
 									this.initialize();
-							}            
+							}
 					},
 					kode_fakultas(val) {
 							if (val != null && val != "") {
 									this.btnLoadingFakultas=true;
-									this.$ajax.get("/datamaster/fakultas/" + val + "/programstudi").then(({ data }) => {  
+									this.$ajax.get("/datamaster/fakultas/" + val + "/programstudi").then(({ data }) => {
 											this.daftar_prodi=data.programstudi;
 											this.btnLoadingFakultas=false;
 									});
-							}            
+							}
 					},
 					prodi_id(val)
 					{
 							if (!this.firstloading)
 							{
-									this.nama_prodi=this.$store.getters["uiadmin/getProdiName"](val);
+									this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](val);
 									this.initialize();
-							}            
+							}
 					},
-					search ()
+					search()
 					{
 							if (!this.awaiting_search) 
 							{
@@ -764,7 +764,7 @@
 															headers: {
 																	Authorization: this.$store.getters["auth/Token"]
 															}
-													}).then(({ data }) => {  
+													}).then(({ data }) => {
 															this.datatable = data.pmb;
 															this.datatableLoading = false;
 													});  

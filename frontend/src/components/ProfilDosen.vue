@@ -30,7 +30,7 @@
                         <v-card-text>
                             <v-chip label outlined color="info">{{active}}</v-chip>
                         </v-card-text>
-                    </v-card>        
+                    </v-card>    
                 </v-col>
                 <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly || $vuetify.breakpoint.smOnly"/>
                 <v-col xs="12" sm="12" md="10">
@@ -148,7 +148,7 @@ export default {
             if (this.url != null)
             {
                 this.$router.push(this.url);
-            }            
+            }
         }
     },
     computed: {

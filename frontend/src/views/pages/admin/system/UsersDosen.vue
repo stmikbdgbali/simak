@@ -81,7 +81,7 @@
                                     @click.stop="showDialogTambahUserDosen">
                                     TAMBAH
                                 </v-btn>
-                                <v-dialog v-model="dialog" max-width="500px" persistent>        
+                                <v-dialog v-model="dialog" max-width="500px" persistent>    
                                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>
                                         <v-card>
                                             <v-card-title>
@@ -93,24 +93,24 @@
                                                     label="NAMA DOSEN"
                                                     outlined
                                                     :rules="rule_user_name">
-                                                </v-text-field>                                                 
+                                                </v-text-field>                                             
                                                 <v-text-field 
                                                     v-model="editedItem.nidn" 
                                                     label="NIDN (NOMOR INDUK DOSEN NASIONAL)"
                                                     outlined>
-                                                </v-text-field>                                                 
+                                                </v-text-field>                                             
                                                 <v-text-field 
                                                     v-model="editedItem.nipy" 
                                                     label="NIPY (NOMOR INDUK PEGAWAI YAYASAN)"
                                                     outlined
                                                     :rules="rule_nipy">
-                                                </v-text-field>                                                 
+                                                </v-text-field>                                             
                                                 <v-text-field 
                                                     v-model="editedItem.email" 
                                                     label="EMAIL"
                                                     outlined
                                                     :rules="rule_user_email">
-                                                </v-text-field>          
+                                                </v-text-field>      
                                                 <v-text-field 
                                                     v-model="editedItem.nomor_hp" 
                                                     label="NOMOR HP"
@@ -133,7 +133,7 @@
                                                 <v-switch
                                                     v-model="editedItem.is_dw"
                                                     label="SEBAGAI DOSEN WALI">
-                                                </v-switch>                   
+                                                </v-switch>               
                                             </v-card-text>
                                             <v-card-actions>
                                                 <v-spacer></v-spacer>
@@ -156,7 +156,7 @@
                                             <v-card-title>
                                                 <span class="headline">{{ formTitle }}</span>
                                             </v-card-title>  
-                                            <v-card-text>                                                  
+                                            <v-card-text>                                              
                                                 <v-text-field 
                                                     v-model="editedItem.onlyname" 
                                                     label="NAMA DOSEN"
@@ -167,7 +167,7 @@
                                                     v-model="editedItem.nidn" 
                                                     label="NIDN (NOMOR INDUK DOSEN NASIONAL)"
                                                     outlined>
-                                                </v-text-field>                                                 
+                                                </v-text-field>                                             
                                                 <v-text-field 
                                                     v-model="editedItem.nipy" 
                                                     label="NIPY (NOMOR INDUK PEGAWAI YAYASAN)"
@@ -202,7 +202,7 @@
                                                 <v-switch
                                                     v-model="editedItem.is_dw"
                                                     label="SEBAGAI DOSEN WALI">
-                                                </v-switch>    
+                                                </v-switch>
                                             </v-card-text>
                                             <v-card-actions>
                                                 <v-spacer></v-spacer>
@@ -228,8 +228,8 @@
                         <template v-slot:item.is_dw="{ item }">
                             {{item.is_dw == false ? "BUKAN" : "YA"}}
                         </template>
-                        <template v-slot:item.actions="{ item }">      
-                            <v-tooltip bottom v-if="item.default_role=='dosen'">    
+                        <template v-slot:item.actions="{ item }">  
+                            <v-tooltip bottom v-if="item.default_role=='dosen'">
                                 <template v-slot:activator="{ on, attrs }">   
                                     <v-btn 
                                         v-bind="attrs"
@@ -243,9 +243,9 @@
                                         <v-icon>mdi-axis-arrow-lock</v-icon>
                                     </v-btn>
                                 </template>
-                                <span>Setting Hak Akses</span>       
+                                <span>Setting Hak Akses</span>   
                             </v-tooltip>   
-                            <v-tooltip bottom v-if="item.default_role=='dosen'">    
+                            <v-tooltip bottom v-if="item.default_role=='dosen'">
                                 <template v-slot:activator="{ on, attrs }">   
                                     <v-btn 
                                         v-bind="attrs"
@@ -260,9 +260,9 @@
                                         <v-icon>mdi-pencil</v-icon>
                                     </v-btn>
                                 </template>
-                                <span>Ubah data user dosen</span>       
+                                <span>Ubah data user dosen</span>   
                             </v-tooltip>   
-                            <v-tooltip bottom v-if="item.default_role=='dosen'">    
+                            <v-tooltip bottom v-if="item.default_role=='dosen'">
                                 <template v-slot:activator="{ on, attrs }">   
                                     <v-btn 
                                         v-bind="attrs"
@@ -276,13 +276,13 @@
                                         <v-icon>mdi-delete</v-icon>
                                     </v-btn>
                                 </template>
-                                <span>Hapus data user dosen</span>       
+                                <span>Hapus data user dosen</span>   
                             </v-tooltip> 
                         </template>
                         <template v-slot:item.foto="{ item }">
                             <v-avatar size="30">
-                                <v-img :src="$api.url+'/'+item.foto" />    
-                            </v-avatar>                                                    
+                                <v-img :src="$api.url+'/'+item.foto" />
+                            </v-avatar>                                                
                         </template>
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
@@ -332,14 +332,14 @@ export default {
         this.initialize()
     },  
    
-    data: () => ({  
+    data: () => ({
         datatableLoading: false,
         btnLoading: false,  
         //tables
         headers: [
             { text: "",value: "foto" },
             { text: "USERNAME", value: "username", sortable: true, width:150 },
-            { text: "NAMA DOSEN", value: "name", sortable: true, width:250 },
+            { text: "NAMA DOSEN", value: "name", sortable: true, width: 250 },
             { text: "NIDN", value: "nidn", sortable: true }, 
             { text: "NIPY", value: "nipy", sortable: true }, 
             { text: "NOMOR HP", value: "nomor_hp", sortable: true }, 
@@ -389,7 +389,7 @@ export default {
         rule_user_name: [
 					value => !!value || "Mohon untuk di isi nama Dosen !!!",       
         ],
-        rule_nidn: [                         
+        rule_nidn: [ 
             value => /^[0-9]+$/.test(value) || "NIDN hanya boleh angka",
         ],
         rule_nipy: [            
@@ -435,7 +435,7 @@ export default {
                 headers: {
                     Authorization: this.TOKEN
                 }
-            }).then(({ data }) => {  
+            }).then(({ data }) => {
                 this.daftar_users = data.users;
                 this.datatableLoading = false;
             });
@@ -450,7 +450,7 @@ export default {
             else
             {
                 this.expanded = [item];
-            }               
+            }   
         },
         showDialogTambahUserDosen: async function()
         {
@@ -550,7 +550,7 @@ export default {
                                 Authorization: this.$store.getters["auth/Token"]
                             }
                         }
-                    ).then(() => {   
+                    ).then(() => { 
                         this.btnLoading = false;
                     }).catch(() => {
                         this.btnLoading = false;

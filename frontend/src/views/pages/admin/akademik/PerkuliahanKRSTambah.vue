@@ -55,7 +55,7 @@
                                     label="DAFTAR ULANG"                                            
                                     class="mr-2"
                                     :rules="rule_dulang"
-                                    outlined />     
+                                    outlined /> 
                             </v-card-text>
                             <v-card-actions>
                                 <v-spacer></v-spacer>
@@ -198,7 +198,7 @@ export default {
                     headers: {
                         Authorization: this.$store.getters["auth/Token"]
                     }
-                }).then(({ data }) => {  
+                }).then(({ data }) => {
                     this.$router.push("/akademik/perkuliahan/krs/" + data.krs.id + "/detail");
                     this.btnLoading = false;
                 }).catch(() => {
@@ -206,7 +206,7 @@ export default {
                 });  
             }
         },
-        closedialogfrm() {         
+        closedialogfrm() {       
             setTimeout(() => {
                 this.formdata = Object.assign({}, this.formdefault);     
                 this.$router.push("/akademik/perkuliahan/krs/daftar");

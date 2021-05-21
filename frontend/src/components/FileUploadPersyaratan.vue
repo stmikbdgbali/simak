@@ -1,6 +1,6 @@
 <template>
     <v-form v-model="form_valid" ref="frmpersyaratan" lazy-validation>
-        <v-card class="mx-auto" max-width="400">      
+        <v-card class="mx-auto" max-width="400">  
             <v-img class="white--text align-end" height="200px" :src="photoPersyaratan"></v-img>
             <v-card-text class="text--primary">
                 <div>
@@ -37,7 +37,7 @@
                     @click="upload(index,item)"
                                                     
                     :disabled="btnLoading||btnSimpan"
-                    v-if="verified == 0">       
+                    v-if="verified == 0">   
                     Simpan
                 </v-btn>
                 <v-btn
@@ -55,7 +55,7 @@
                     @click="verifikasipersyaratan(item)"
                                                     
                     :disabled="btnLoading||btnVerifikasi" 
-                    v-if="dashboard != 'mahasiswabaru' && dashboard != 'mahasiswa' && verified == 0">       
+                    v-if="dashboard != 'mahasiswabaru' && dashboard != 'mahasiswa' && verified == 0">   
                     Verifikasi
                 </v-btn>
             </v-card-actions>
@@ -67,7 +67,7 @@ export default {
     name: "FileUploadPersyaratan",
     created()
     {
-        this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard']; 
+        this.dashboard = this.$store.getters["uiadmin/getDefaultDashboard"]; 
         if (this.item.path == null || this.item.persyaratan_pmb_id==null)
         { 
             this.image_prev=this.item.path;  
@@ -94,7 +94,7 @@ export default {
             required: true
         }
     },
-    data: () => ({     
+    data: () => ({   
         dashboard: null,
 
         btnSimpan: true, 
@@ -151,15 +151,15 @@ export default {
                                 'Content-Type': "multipart/form-data"                    
                             }
                         }
-                    ).then(() => {                            
+                    ).then(() => {    
                         this.btnHapus=false;
                         this.btnSimpan=true;
                         this.btnLoading = false;
                     }).catch(() => {
                         this.btnLoading = false;
                     }); 
-                }               
-            }            
+                }   
+            }
         },
         hapusfilepersysaratan(item)
         {
@@ -175,7 +175,7 @@ export default {
                                 Authorization: this.$store.getters["auth/Token"]                
                             }
                         }
-                    ).then(() => {   
+                    ).then(() => { 
                         this.btnHapus=true;
                         this.photoPersyaratan=require("@/assets/no-image.png");   
                         this.btnLoading = false;
@@ -219,7 +219,7 @@ export default {
                 this.btnHapus=true;
                 this.btnVerifikasi=true;
                 this.btnLoading = false;
-            }).catch(() => {                               
+            }).catch(() => {       
                 this.btnLoading = false;
             });  
         }

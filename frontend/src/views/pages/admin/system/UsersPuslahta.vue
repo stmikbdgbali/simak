@@ -229,7 +229,7 @@
 										</v-card>
 									</v-form>
 								</v-dialog>
-								<v-dialog v-if="dialogUserPermission"  v-model="dialogUserPermission" max-width="800px" persistent>        
+								<v-dialog v-if="dialogUserPermission"  v-model="dialogUserPermission" max-width="800px" persistent>    
 									<UserPermissions :user="editedItem" v-on:closeUserPermissions="closeUserPermissions" role_default="puslahta" />
 								</v-dialog>
 							</v-toolbar>

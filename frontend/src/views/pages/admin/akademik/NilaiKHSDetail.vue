@@ -72,7 +72,7 @@
                                         </v-card-subtitle>
                                     </v-card>
                                 </v-col>
-                                <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>       
+                                <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>   
                                 <v-col xs="12" sm="6" md="6">
                                     <v-card flat>
                                         <v-card-title>NAMA MAHASISWA:</v-card-title>
@@ -110,7 +110,7 @@
                                 
                                 :disabled="btnLoading || !datakrs.hasOwnProperty('id')">
                                 <v-icon>mdi-printer</v-icon>
-                            </v-btn>         
+                            </v-btn>     
                         </v-card-title>
                         <v-card-text>
                             <v-data-table        
@@ -121,7 +121,7 @@
                                 :disable-pagination="true"
                                 :hide-default-footer="true"                                                                
                                 :loading="datatableLoading"
-                                loading-text="Loading... Please wait">                 
+                                loading-text="Loading... Please wait">             
                                 <template v-slot:body.append v-if="datatable.length > 0">
                                     <tr class="grey lighten-4 font-weight-black">
                                         <td class="text-right" colspan="2">JUMLAH</td>
@@ -134,11 +134,11 @@
                                     <tr class="grey lighten-4 font-weight-black">
                                         <td class="text-right" colspan="2">IPS</td>
                                         <td colspan="5">{{ips}}</td>
-                                    </tr>        
+                                    </tr>    
                                     <tr class="grey lighten-4 font-weight-black">
                                         <td class="text-right" colspan="2">IPK</td>
                                         <td colspan="5">{{ipk}}</td>
-                                    </tr>        
+                                    </tr>    
                                 </template>   
                                 <template v-slot:no-data>
                                     Data matakuliah belum tersedia silahkan tambah
@@ -149,7 +149,7 @@
                 </v-col>
             </v-row>
         </v-container>
-        <v-dialog v-model="dialogprintpdf" max-width="500px" persistent>       
+        <v-dialog v-model="dialogprintpdf" max-width="500px" persistent>   
             <v-card>
                 <v-card-title>
                     <span class="headline">Print to PDF</span>
@@ -226,10 +226,10 @@ export default {
         headers: [
             { text: "KODE", value: "kmatkul", sortable: true, width: 100  },
             { text: "NAMA MATAKULIAH", value: "nmatkul", sortable: true },
-            { text: "SKS", value: "sks", sortable: false, width:50 },
-            { text: "HM", value: "HM", sortable: false, width:50 },
-            { text: "AM", value: "AM", sortable: false, width:50 },
-            { text: "M", value: "M", sortable: false, width:50 },
+            { text: "SKS", value: "sks", sortable: false, width: 50 },
+            { text: "HM", value: "HM", sortable: false, width: 50 },
+            { text: "AM", value: "AM", sortable: false, width: 50 },
+            { text: "M", value: "M", sortable: false, width: 50 },
             { text: "NAMA DOSEN", value: "nama_dosen", sortable: false, width:200 }, 
         ],
 
@@ -251,7 +251,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {          
+            }).then(({ data }) => {        
                 this.datakrs=data.krs;
                 this.datatable=data.daftar_nilai;
                 if (Object.keys(this.datakrs).length)

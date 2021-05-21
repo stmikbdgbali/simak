@@ -399,16 +399,16 @@
 							</v-toolbar>
 						</template>
 						<template v-slot:item.tanggal="{ item }">
-							{{$date(item.tanggal).format("DD/MM/YYYY")}}
+							{{ $date(item.tanggal).format("DD/MM/YYYY") }}
 						</template>
 						<template v-slot:item.idsmt="{ item }">
 							{{$store.getters["uiadmin/getNamaSemester"](item.idsmt)}}
 						</template>
 						<template v-slot:item.total="{ item }">
-							{{item.total|formatUang}}
+							{{ item.total | formatUang }}
 						</template>
 						<template v-slot:item.nama_status="{ item }">
-							<v-chip :color="item.style" dark>{{item.nama_status}}</v-chip>
+							<v-chip :color="item.style" dark>{{ item.nama_status }}</v-chip>
 						</template>
 						<template v-slot:item.actions="{ item }">
 							<v-tooltip bottom v-if="item.status_konfirmasi=='N.A'">   
@@ -519,7 +519,7 @@
 				href: "#",
 			},
 		];
-		this.breadcrumbs[1].disabled=(this.dashboard=="mahasiswabaru"||this.dashboard == "mahasiswa");
+		this.breadcrumbs[1].disabled = (this.dashboard=="mahasiswabaru"||this.dashboard == "mahasiswa");
 		let prodi_id = this.$store.getters["uiadmin/getProdiID"];
 		this.prodi_id = prodi_id;
 		this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](prodi_id);
@@ -546,7 +546,7 @@
 				{ text: "TANGGAL TRANSAKSI", value: "tanggal", width: 100, sortable: true },
 				{ text: "NO. FORMULIR", value: "no_formulir", sortable: true, width: 100 },
 				{ text: "NIM", value: "nim", sortable: true, width: 100 },
-				{ text: "NAMA MAHASISWA", value: "nama_mhs", sortable: true, width:250 },
+				{ text: "NAMA MAHASISWA", value: "nama_mhs", sortable: true, width: 250 },
 				{ text: "SMT", value: "idsmt", width: 100, sortable: true },
 				{ text: "TOTAL", value: "total", width: 100, sortable: true },
 				{ text: "STATUS TRANSAKSI", value: "nama_status", width: 50, sortable: true },
@@ -614,9 +614,9 @@
 			],
 		}),
 		methods: {
-			changeTahunAkademik (tahun)
+			changeTahunAkademik(tahun)
 			{
-				this.tahun_akademik=tahun;
+				this.tahun_akademik = tahun;
 			},
 			changeProdi(id)
 			{
@@ -661,7 +661,7 @@
 					}
 				}).then(({ data }) => {
 					this.daftar_channel=data.channel;
-					this.data_transaksi=item;
+					this.data_transaksi = item;
 					this.dialogfrm = true;
 				});
 
@@ -817,11 +817,11 @@
 			prodi_id(val) {
 				if (!this.firstloading)
 				{
-					this.nama_prodi=this.$store.getters["uiadmin/getProdiName"](val);
+					this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](val);
 					this.initialize();
 				}
 			},
-			search ()
+			search()
 			{
 				if (!this.awaiting_search)
 				{

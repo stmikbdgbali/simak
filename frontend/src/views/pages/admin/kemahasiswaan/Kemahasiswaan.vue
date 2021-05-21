@@ -39,8 +39,8 @@
 							<v-list-item-content>
 								<div class="overline mb-1">
 									PROFIL MAHASISWA (MASUKAN NIM)
-								</div>    
-								<v-list-item-subtitle>        
+								</div>
+								<v-list-item-subtitle>    
 									<v-autocomplete
 										v-model="data_mhs"
 										:items="entries"
@@ -69,7 +69,7 @@
 						<v-divider></v-divider>
 						<v-expand-transition>
 							<v-list v-if="data_mhs">
-								<template v-for="(field, i) in fields">        
+								<template v-for="(field, i) in fields">    
 								<v-list-item :key="i" v-if="field.key!='foto' && field.key!='nama_mhs_alias'">
 									<v-list-item-content>
 										<v-list-item-title>  
@@ -134,7 +134,7 @@
 		mounted() {
 			this.initialize();
 		},
-		data: () => ({     
+		data: () => ({   
 			firstloading: true,
 			breadcrumbs: [],
 			tahun_akademik:0,
@@ -147,9 +147,9 @@
 			
 		}),
 		methods: {
-			changeTahunAkademik (tahun)
+			changeTahunAkademik(tahun)
 			{
-				this.tahun_akademik=tahun;
+				this.tahun_akademik = tahun;
 			},
 			initialize: async function()
 			{	            
@@ -201,7 +201,7 @@
 				if (!this.firstloading)
 				{
 					this.initialize();
-				}            
+				}
 			},
 			search(val) {
 				if (this.isLoading) return;
@@ -217,7 +217,7 @@
 							headers: {
 								Authorization: this.$store.getters["auth/Token"]
 							}
-						}).then(({ data }) => {                  
+						}).then(({ data }) => {                
 							const { jumlah, daftar_mhs } = data;
 							this.count = jumlah;
 							this.entries = daftar_mhs;

@@ -78,9 +78,9 @@
                                         mdi-printer
                                     </v-icon>
                                 </v-btn>  
-                                <v-dialog v-model="dialogprofilmhsbaru" :fullscreen="true">        
-                                    <ProfilMahasiswaBaru :item="datamhsbaru" v-on:closeProfilMahasiswaBaru="closeProfilMahasiswaBaru" />        
-                                </v-dialog>    
+                                <v-dialog v-model="dialogprofilmhsbaru" :fullscreen="true">    
+                                    <ProfilMahasiswaBaru :item="datamhsbaru" v-on:closeProfilMahasiswaBaru="closeProfilMahasiswaBaru" />    
+                                </v-dialog>
                             </v-toolbar>
                         </template>
                         <template v-slot:item.foto="{ item }">
@@ -89,10 +89,10 @@
                                     :color="badgeColor(item)"
                                     :icon="badgeIcon(item)"
                                     overlap
-                                >       
+                                >   
                                     <v-avatar size="30">   
-                                        <v-img :src="$api.url+'/'+item.foto" />                       
-                                    </v-avatar>                                                    
+                                        <v-img :src="$api.url+'/'+item.foto" />                   
+                                    </v-avatar>                                                
                             </v-badge>
                         </template>
                         <template v-slot:item.actions="{ item }">
@@ -133,7 +133,7 @@ export default {
     name: "NilaiUjian", 
     created()
     {
-        this.dashboard = this.$store.getters['uiadmin/getDefaultDashboard'];
+        this.dashboard = this.$store.getters["uiadmin/getDefaultDashboard"];
         this.breadcrumbs = [
             {
                 text: "HOME",
@@ -151,7 +151,7 @@ export default {
                 href: "#"
             }
         ];
-        this.breadcrumbs[1].disabled=(this.dashboard=='mahasiswabaru'||this.dashboard == "mahasiswa");
+        this.breadcrumbs[1].disabled = (this.dashboard=='mahasiswabaru'||this.dashboard == "mahasiswa");
         
         let prodi_id = this.$store.getters["uiadmin/getProdiID"];
         this.prodi_id = prodi_id;
@@ -182,7 +182,7 @@ export default {
             { text: "KELAS", value: "nkelas", width: 100, sortable: true },
             { text: "NILAI", value: "nilai", width: 100, sortable: true },
             { text: "STATUS", value: "status", width: 100, sortable: true },
-            { text: "AKSI", value: "actions", sortable: false, width:50 },
+            { text: "AKSI", value: "actions", sortable: false, width: 50 },
         ],
         search: "", 
         
@@ -224,7 +224,7 @@ export default {
                         headers: {
                             Authorization: this.$store.getters["auth/Token"]
                         }
-                    }).then(({ data }) => {  
+                    }).then(({ data }) => {
                         this.datatable = data.pmb;
                         this.datatableLoading = false;
                     });    
@@ -242,7 +242,7 @@ export default {
             else
             {
                 this.expanded = [item];
-            }               
+            }   
         },
         badgeColor(item)
         {
@@ -298,15 +298,15 @@ export default {
             if (!this.firstloading)
             {
                 this.initialize();
-            }            
+            }
         },
         prodi_id(val)
         {
             if (!this.firstloading)
             {
-                this.nama_prodi=this.$store.getters["uiadmin/getProdiName"](val);
+                this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](val);
                 this.initialize();
-            }            
+            }
         }
     },
     components: {

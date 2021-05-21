@@ -40,7 +40,7 @@
                         <v-card-title>
                             DAFTAR NILAI TRANSKRIP
                             <v-spacer></v-spacer>   
-                            <v-tooltip bottom>    
+                            <v-tooltip bottom>
                                 <template v-slot:activator="{ on, attrs }">   
                                     <v-btn 
                                         v-bind="attrs"
@@ -56,9 +56,9 @@
                                         <v-icon>mdi-printer</v-icon>
                                     </v-btn>
                                 </template>
-                                <span>Cetak Transkrip Satu Kolom</span>       
+                                <span>Cetak Transkrip Satu Kolom</span>   
                             </v-tooltip>  
-                            <v-tooltip bottom>    
+                            <v-tooltip bottom>
                                 <template v-slot:activator="{ on, attrs }">   
                                     <v-btn 
                                         v-bind="attrs"
@@ -74,7 +74,7 @@
                                         <v-icon>mdi-printer</v-icon>
                                     </v-btn>
                                 </template>
-                                <span>Cetak Transkrip Dua Kolom</span>       
+                                <span>Cetak Transkrip Dua Kolom</span>   
                             </v-tooltip>  
                         </v-card-title>
                         <v-data-table        
@@ -87,7 +87,7 @@
                             :loading="datatableLoading"
                             loading-text="Loading... Please wait"> 
                             <template v-slot:item.actions="{ item }">
-                                <v-tooltip bottom>    
+                                <v-tooltip bottom>
                                     <template v-slot:activator="{ on, attrs }">   
                                         <v-btn 
                                             v-bind="attrs"
@@ -103,10 +103,10 @@
                                             <v-icon>mdi-history</v-icon>
                                         </v-btn>
                                     </template>
-                                    <span>Histori Nilai</span>       
+                                    <span>Histori Nilai</span>   
                                 </v-tooltip>
-                            </template>                            
-                            <template v-slot:body.append v-if="datatable.length > 0">       
+                            </template>                        
+                            <template v-slot:body.append v-if="datatable.length > 0">   
                                 <tr class="grey lighten-4 font-weight-black">
                                     <td class="text-right" colspan="3">JUMLAH</td>
                                     <td></td> 
@@ -136,7 +136,7 @@
                 </v-col>
             </v-row>
         </v-container>
-        <v-dialog v-model="dialogprintpdf" max-width="500px" persistent>       
+        <v-dialog v-model="dialogprintpdf" max-width="500px" persistent>   
             <v-card>
                 <v-card-title>
                     <span class="headline">Print to PDF</span>
@@ -155,7 +155,7 @@
                 </v-card-actions>
             </v-card>   
         </v-dialog>
-        <v-dialog v-model="dialoghistory" max-width="750px" persistent>       
+        <v-dialog v-model="dialoghistory" max-width="750px" persistent>   
             <v-card>
                 <v-card-title>
                     <span class="headline">Histori Nilai Matakuliah</span>
@@ -267,7 +267,7 @@ export default {
         datatableLoading: false, 
         datatable: [],
         headers: [            
-            { text: "NO", value: "no", sortable: true, width:50  },
+            { text: "NO", value: "no", sortable: true, width: 50  },
             { text: "MATAKULIAH", value: "nmatkul", sortable: true, width:350 },
             { text: "KODE", value: "kmatkul", sortable: true, width: 120, },
             { text: "SMT", value: "semester", sortable: true, width: 80, },
@@ -276,7 +276,7 @@ export default {
             { text: "AM", value: "AM", sortable: false, width: 100, },
             { text: "K", value: "sks", sortable: true, width: 100, },
             { text: "M", value: "M", sortable: false, width: 100 },
-            { text: "AKSI", value: "actions", sortable: false, width:50 },
+            { text: "AKSI", value: "actions", sortable: false, width: 50 },
         ],
         search: "",
 
@@ -367,7 +367,7 @@ export default {
             else
             {
                 this.expanded = [item];
-            }               
+            }   
         },
         async printpdf1()
         {

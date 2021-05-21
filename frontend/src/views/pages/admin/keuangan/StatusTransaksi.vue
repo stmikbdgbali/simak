@@ -61,7 +61,7 @@
                                 @cancel="cancelItem"
                                 @open="openItem"
                                 @close="closeItem">
-                                    <v-chip :color="props.item.style" dark>{{props.item.style}}</v-chip>      
+                                    <v-chip :color="props.item.style" dark>{{props.item.style}}</v-chip>  
                                     <template v-slot:input>
                                         <div class="mt-4 title">Update Style</div>   
                                         <v-text-field 
@@ -76,7 +76,7 @@
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length" class="text-center">
                                 <v-col cols="12">  
-                                    <strong>ID:</strong>{{ item.id_status }}          
+                                    <strong>ID:</strong>{{ item.id_status }}
                                     <strong>created_at:</strong>{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
                                     <strong>updated_at:</strong>{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
                                 </v-col>
@@ -142,7 +142,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {  
+            }).then(({ data }) => {
                 this.datatable = data.status;
                 this.datatableLoading = false;
             });  
@@ -157,7 +157,7 @@ export default {
             else
             {
                 this.expanded = [item];
-            }               
+            }   
         },
         saveItem: async function({id,style})
         {

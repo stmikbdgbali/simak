@@ -135,7 +135,7 @@
                                                             </v-date-picker>
                                                         </v-menu>
                                                     </v-col>
-                                                    <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>      
+                                                    <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>  
                                                 </v-row>
                                                 <v-row no-gutters>
                                                     <v-col xs="12" sm="12" md="12">
@@ -173,7 +173,7 @@
                                                             </v-date-picker>
                                                         </v-menu>
                                                     </v-col>
-                                                    <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>      
+                                                    <v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>  
                                                 </v-row>
                                             </v-card-text>
                                             <v-card-actions>
@@ -372,7 +372,7 @@ export default {
             expanded: [],
             datatable: [],
             headers: [
-                { text: "TA", value: "tahun", width:50 },
+                { text: "TA", value: "tahun", width: 50 },
                 { text: "TAHUN AKADEMIK", value: "tahun_akademik", width: 150 },
                 { text: "AWAL GANJIL", value: "awal_ganjil", width: 50 },
                 { text: "AKHIR GANJIL", value: "akhir_ganjil", width: 50 },
@@ -429,7 +429,7 @@ export default {
                     else
                     {
                         return true;
-                    }                    
+                    }        
                 }
             ],
             rule_tahun_akademik: [                

@@ -50,7 +50,7 @@
                                 :disable-pagination="true"
                                 :hide-default-footer="true"                                                                
                                 :loading="datatableLoading"
-                                loading-text="Loading... Please wait">                  
+                                loading-text="Loading... Please wait">              
                                 <template v-slot:body.append v-if="datatable.length > 0">
                                     <tr class="grey lighten-4 font-weight-black">
                                         <td class="text-right" colspan="2">TOTAL MATAKULIAH</td>
@@ -135,8 +135,8 @@ export default {
         headers: [
             { text: "KODE", value: "kmatkul", sortable: true, width: 120  },
             { text: "NAMA MATAKULIAH", value: "nmatkul", sortable: true },
-            { text: "SKS", value: "sks", sortable: false, width:50 },
-            { text: "SMT", value: "semester", sortable: false, width:50 },
+            { text: "SKS", value: "sks", sortable: false, width: 50 },
+            { text: "SMT", value: "semester", sortable: false, width: 50 },
             { text: "KELAS", value: "nama_kelas", sortable: false, width:200 },
             { text: "NAMA DOSEN", value: "nama_dosen", sortable: false, width:200 }, 
         ],
@@ -149,7 +149,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {          
+            }).then(({ data }) => {        
                 this.datakrs=data.krs;
                 this.datatable=data.krsmatkul;
                 if (Object.keys(this.datakrs).length)
@@ -174,7 +174,7 @@ export default {
             for (index in this.datatable)
             {
                 total = total + parseInt(this.datatable[index].sks);
-            }            
+            }
             return total;
         }
     },

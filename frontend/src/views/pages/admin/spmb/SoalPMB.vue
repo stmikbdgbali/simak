@@ -266,7 +266,7 @@
                                             <v-spacer></v-spacer>
                                             <v-btn color="blue darken-1" text @click.stop="closedialogdetailitem">KELUAR</v-btn>
                                         </v-card-actions>
-                                    </v-card>        
+                                    </v-card>    
                                 </v-dialog>
                             </v-toolbar>
                         </template>
@@ -452,7 +452,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {    
+            }).then(({ data }) => {  
                 this.datatable = data.soal;
                 this.datatableLoading = false;
             }).catch(() => {
@@ -470,9 +470,9 @@ export default {
             else
             {
                 this.expanded = [item];
-            }               
+            }   
         },
-        viewItem: async function(item) {      
+        viewItem: async function(item) {    
             await this.$ajax.get("/spmb/soalpmb/" + item.id, {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
@@ -483,7 +483,7 @@ export default {
                 this.daftar_soal_jawaban=data.soal.jawaban;
             });   
         },
-        editItem: async function(item) {      
+        editItem: async function(item) {    
             await this.$ajax.get("/spmb/soalpmb/" + item.id, {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
@@ -497,7 +497,7 @@ export default {
                     if (element.status== 1)
                     {
                         jawaban_benar=element.id;
-                    }                     
+                    }         
                 });  
                 this.formdata.jawaban_benar=jawaban_benar;    
                 this.daftar_soal_jawaban=data.soal.jawaban;
@@ -515,7 +515,7 @@ export default {
                 reader.readAsDataURL(e);
                 reader.onload = img => {
                     this.image_prev=img.target.result;
-                }                
+                }    
             }          
         },
         save: async function() {
@@ -592,7 +592,7 @@ export default {
                     }).catch(() => {
                         this.btnLoading = false;
                     });
-                }                
+                }    
             });
         },
         closedialogdetailitem() {
@@ -639,7 +639,7 @@ export default {
             set(val)
             {
                 this.image_prev=val;
-            }            
+            }
         },
         formTitle() {
             return this.editedIndex === -1 ? "TAMBAH DATA" : "UBAH DATA"
@@ -651,7 +651,7 @@ export default {
             if (!this.firstloading)
             {
                 this.initialize();
-            }            
+            }
         },
         semester_pendaftaran (val)
         {
@@ -659,15 +659,15 @@ export default {
             {
                 this.nama_semester_pendaftaran=this.$store.getters['uiadmin/getNamaSemester'](val); 
                 this.initialize();
-            }            
+            }
         },
         prodi_id(val)
         {
             if (!this.firstloading)
             {
-                this.nama_prodi=this.$store.getters["uiadmin/getProdiName"](val);
+                this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](val);
                 this.initialize();
-            }            
+            }
         }
     },
     components: {

@@ -34,7 +34,7 @@
                     <DataKelasMHS :datakelas="data_kelas_mhs" />
                 </v-col>
             </v-row> 
-            <v-row>        
+            <v-row>    
                 <v-col cols="12">  
                     <v-alert type="warning">
                         Catatan: Pilihlah (CENTANG) mahasiswa yang akan diisi nilainya. Untuk meningkatkan performance bila jumlah peserta lebih dari 10; maka disarankan mengisi nilai per 10 mahasiswa.
@@ -58,7 +58,7 @@
                                 C/D = 45.00-49.99<br>
                                 (D+) = 40.00-44.99<br>
                                 D = 35.00-39.99<br>
-                                E = 34.99-0<br>    
+                                E = 34.99-0<br>
                             </v-expansion-panel-content>
                         </v-expansion-panel>
                     </v-expansion-panels>
@@ -93,7 +93,7 @@
                             </template>
                             <template v-slot:item.kjur="{item}">
                                 {{$store.getters["uiadmin/getProdiName"](item.kjur)}}
-                            </template>    
+                            </template>
                             <template v-slot:item.nilai_absen="props"> 
                                 <VAngkaNilai 
                                     @input="updateNKuan(props)" 
@@ -101,7 +101,7 @@
                                     dense 
                                     :disabled="isbydosen(props.item.bydosen)"
                                     style="width:65px">
-                                </VAngkaNilai>    
+                                </VAngkaNilai>
                             </template> 
                             <template v-slot:item.nilai_quiz="props"> 
                                 <VAngkaNilai               
@@ -110,7 +110,7 @@
                                     dense    
                                     :disabled="isbydosen(props.item.bydosen)"                                
                                     style="width:65px">
-                                </VAngkaNilai>          
+                                </VAngkaNilai>      
                             </template>
                             <template v-slot:item.nilai_tugas_individu="props"> 
                                 <VAngkaNilai                
@@ -119,7 +119,7 @@
                                     dense      
                                     :disabled="isbydosen(props.item.bydosen)"                              
                                     style="width:65px">
-                                </VAngkaNilai>          
+                                </VAngkaNilai>      
                             </template>
                             <template v-slot:item.nilai_tugas_kelompok="props"> 
                                 <VAngkaNilai            
@@ -128,7 +128,7 @@
                                     dense      
                                     :disabled="isbydosen(props.item.bydosen)"                              
                                     style="width:65px">
-                                </VAngkaNilai>          
+                                </VAngkaNilai>      
                             </template>
                             <template v-slot:item.nilai_uts="props"> 
                                 <VAngkaNilai                
@@ -137,7 +137,7 @@
                                     dense                   
                                     :disabled="isbydosen(props.item.bydosen)"                 
                                     style="width:65px">
-                                </VAngkaNilai>          
+                                </VAngkaNilai>      
                             </template>
                             <template v-slot:item.nilai_uas="props"> 
                                 <VAngkaNilai                
@@ -146,12 +146,12 @@
                                     dense             
                                     :disabled="isbydosen(props.item.bydosen)"                       
                                     style="width:65px">
-                                </VAngkaNilai>          
+                                </VAngkaNilai>      
                             </template>
-                            <template v-slot:item.n_kuan="props">       
+                            <template v-slot:item.n_kuan="props">   
                                 <v-chip color="primary" class="ma-2" outlined label v-if="props.item.n_kuan != null">{{props.item.n_kuan}}</v-chip>   
                             </template>
-                            <template v-slot:item.n_kual="props">    
+                            <template v-slot:item.n_kual="props">
                                 <v-select 
                                     :items="$store.getters['uiadmin/getSkalaNilai']"  
                                     v-model="props.item.n_kual"
@@ -171,7 +171,7 @@
                                                 SIMPAN
                                         </v-btn>
                                     </td>
-                                </tr>    
+                                </tr>
                             </template>  
                             <template v-slot:no-data>
                                 Data belum tersedia
@@ -232,7 +232,7 @@ export default {
         datatable_peserta: [], 
         headers_peserta: [             
             { text: "NIM", value: "nim", sortable: false, width: 100  },
-            { text: "NAMA", value: "nama_mhs", sortable: false, width:250   },
+            { text: "NAMA", value: "nama_mhs", sortable: false, width: 250   },
             { text: "NILAI ABSENSI", value: "nilai_absen", sortable: false, width: 100   },
             { text: "NILAI QUIZ", value: "nilai_quiz", sortable: false, width: 100   },
             { text: "NILAI TUGAS INDIVIDU", value: "nilai_tugas_individu", sortable: false, width: 100   },
@@ -272,7 +272,7 @@ export default {
                 headers: {
                     Authorization: this.$store.getters["auth/Token"]
                 }
-            }).then(({ data }) => {                                            
+            }).then(({ data }) => {                    
                 this.datatableLoading = false;
                 this.datatable_peserta=data.peserta; 
             })              
@@ -374,7 +374,7 @@ export default {
             else if (n_kuan <40)
             {
                 n_kual='E';
-            }            
+            }
             props.item.n_kual=n_kual;
 
         },
@@ -406,7 +406,7 @@ export default {
                         Authorization: this.$store.getters["auth/Token"]
                     }
                 }
-            ).then(() => {   
+            ).then(() => { 
                 this.$router.go();
             }).catch(() => {
                 this.btnLoadingTable=false;
