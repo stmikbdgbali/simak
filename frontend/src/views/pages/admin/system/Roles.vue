@@ -264,7 +264,7 @@ export default {
         headers: [
             { text: "NAMA ROLE", value: "name" },
             { text: "GUARD", value: "guard_name" }, 
-            { text: "AKSI", value: "actions", sortable: false, width:130 },
+            { text: "AKSI", value: "actions", sortable: false, width: 130 },
         ],
         //tables
         headersdetail: [

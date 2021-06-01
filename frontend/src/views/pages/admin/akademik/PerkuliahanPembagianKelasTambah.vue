@@ -230,7 +230,7 @@
 				daftar_hari: [
 						{
 								text: "SENIN",
-								value:1,
+								value: 1,
 						},
 						{
 								text: "SELASA",

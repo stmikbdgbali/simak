@@ -210,7 +210,7 @@ export default {
         expanded: [],
         datatable: [],
         headers: [
-            { text: "KODE FAKULTAS", value: "kode_fakultas", width:150 },
+            { text: "KODE FAKULTAS", value: "kode_fakultas", width: 150 },
             { text: "NAMA FAKULTAS", value: "nama_fakultas" },
             { text: "AKSI", value: "actions", sortable: false, width: 100 },
         ],

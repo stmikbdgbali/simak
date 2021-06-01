@@ -206,7 +206,7 @@ export default {
         this.fetchKRS();  
     },  
     data: () => ({ 
-        test:100,
+        test: 100,
         firstloading: true,
         nama_prodi: null,
         tahun_akademik: null,

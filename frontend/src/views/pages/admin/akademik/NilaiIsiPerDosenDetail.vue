@@ -246,7 +246,7 @@ export default {
         //formdata
         form_valid: true,
         komponen_nilai: {
-            'persen_absen':15,
+            'persen_absen': 15,
             'persen_quiz': 0,
             'persen_tugas_individu':35,
             'persen_tugas_kelompok': 0,
