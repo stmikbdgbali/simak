@@ -227,12 +227,12 @@ export default {
         formdata: {
             id: "",
             namaruang: "",
-            kapasitas:0,
+            kapasitas: 0,
         },
         formdefault: {
             id: "",
             namaruang: "",
-            kapasitas:0,
+            kapasitas: 0,
         },
         editedIndex: -1,
 

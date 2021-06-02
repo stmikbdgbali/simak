@@ -8,7 +8,7 @@
                 KARTUS HASIL STUDI (KHS)
             </template>
             <template v-slot:subtitle v-if="Object.keys(datakrs).length">
-                TAHUN AKADEMIK {{tahun_akademik}} SEMESTER {{$store.getters['uiadmin/getNamaSemester'](semester_akademik)}} - {{ nama_prodi }}
+                TAHUN AKADEMIK {{ tahun_akademik }} SEMESTER {{$store.getters['uiadmin/getNamaSemester'](semester_akademik)}} - {{ nama_prodi }}
             </template>
             <template v-slot:breadcrumbs>
                 <v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -233,12 +233,12 @@ export default {
             { text: "NAMA DOSEN", value: "nama_dosen", sortable: false, width:200 }, 
         ],
 
-        jumlah_sks:0,
-        jumlah_matkul:0,
-        jumlah_m:0,
-        jumlah_am:0,
-        ips:0,
-        ipk:0,
+        jumlah_sks: 0,
+        jumlah_matkul: 0,
+        jumlah_m: 0,
+        jumlah_am: 0,
+        ips: 0,
+        ipk: 0,
 
         dialogprintpdf: false,
         file_pdf: null

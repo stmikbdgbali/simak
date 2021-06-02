@@ -129,25 +129,25 @@
                         <template v-slot:body.append v-if="datatable.length > 0">
                             <tr class="grey lighten-4 font-weight-black">
                                 <td class="text-right" colspan="6">TOTAL TRANSAKSI PAID</td>
-                                <td class="text-right" >{{totaltransaksi_paid|formatUang}}</td> 
+                                <td class="text-right">{{totaltransaksi_paid|formatUang}}</td> 
                                 <td></td>
                                 <td></td>
                             </tr>
                             <tr class="grey lighten-4 font-weight-black">
                                 <td class="text-right" colspan="6">TOTAL TRANSAKSI UNPAID</td>
-                                <td class="text-right" >{{totaltransaksi_unpaid|formatUang}}</td> 
+                                <td class="text-right">{{totaltransaksi_unpaid|formatUang}}</td> 
                                 <td></td>
                                 <td></td>
                             </tr>
                             <tr class="grey lighten-4 font-weight-black">
                                 <td class="text-right" colspan="6">TOTAL TRANSAKSI CANCELED</td>
-                                <td class="text-right" >{{totaltransaksi_canceled|formatUang}}</td> 
+                                <td class="text-right">{{totaltransaksi_canceled|formatUang}}</td> 
                                 <td></td>
                                 <td></td>
                             </tr>
                             <tr class="grey lighten-4 font-weight-black">
                                 <td class="text-right" colspan="6">TOTAL TRANSAKSI</td>
-                                <td class="text-right" >{{(totaltransaksi_canceled+totaltransaksi_paid+totaltransaksi_unpaid)|formatUang}}</td> 
+                                <td class="text-right">{{(totaltransaksi_canceled+totaltransaksi_paid+totaltransaksi_unpaid)|formatUang}}</td> 
                                 <td></td>
                                 <td></td>
                             </tr>
@@ -229,7 +229,7 @@ export default {
         breadcrumbs: [], 
         prodi_id: null,
         nama_prodi: null,
-        tahun_pendaftaran:0, 
+        tahun_pendaftaran: 0, 
         filter_ignore: false, 
         awaiting_search: false,
 

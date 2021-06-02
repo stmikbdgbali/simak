@@ -338,7 +338,7 @@ export default {
         //tables
         headers: [
             { text: "",value: "foto" },
-            { text: "USERNAME", value: "username", sortable: true, width:150 },
+            { text: "USERNAME", value: "username", sortable: true, width: 150 },
             { text: "NAMA DOSEN", value: "name", sortable: true, width: 250 },
             { text: "NIDN", value: "nidn", sortable: true }, 
             { text: "NIPY", value: "nipy", sortable: true }, 

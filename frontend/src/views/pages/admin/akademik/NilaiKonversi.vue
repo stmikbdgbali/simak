@@ -248,7 +248,7 @@ export default {
             { text: "JUMLAH MATKUL", value: "jumlah_matkul", sortable: false, width: 100, },
             { text: "JUMLAH SKS", value: "jumlah_sks", sortable: false, width: 100, },
             { text: "NIM SISTEM", value: "nim", sortable: true, width: 100, },
-            { text: "AKSI", value: "actions", sortable: false, width:150 },
+            { text: "AKSI", value: "actions", sortable: false, width: 150 },
         ],
         search: "",
 
@@ -374,7 +374,7 @@ export default {
     components: {
         AkademikLayout,
         ModuleHeader,
-        Filter7               
+        Filter7,       
     },
 }
 </script>

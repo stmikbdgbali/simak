@@ -162,9 +162,9 @@ export default {
         expanded: [],
         datatable: [],
         headers: [
-            { text: "NO. FORMULIR", value: "no_formulir", sortable: true, width:150  },
-            { text: "NIM", value: "nim", sortable: true, width:150  },
-            { text: "NIRM", value: "nirm", sortable: true, width:150  },
+            { text: "NO. FORMULIR", value: "no_formulir", sortable: true, width: 150  },
+            { text: "NIM", value: "nim", sortable: true, width: 150  },
+            { text: "NIRM", value: "nirm", sortable: true, width: 150  },
             { text: "NAMA MAHASISWA", value: "nama_mhs", sortable: true },
             { text: "KELAS", value: "idkelas", sortable: true, width: 120, },     
             { text: "STATUS", value: "k_status", sortable: true, width: 120, },     
@@ -282,7 +282,7 @@ export default {
     components: {
         AkademikLayout,
         ModuleHeader,
-        Filter7               
+        Filter7,       
     },
 }
 </script>

@@ -159,7 +159,7 @@ export default {
     data: () => ({ 
         firstloading: true,
         breadcrumbs: [],
-        tahun_pendaftaran:0,  
+        tahun_pendaftaran: 0,  
         
         //form
         form_valid: true,

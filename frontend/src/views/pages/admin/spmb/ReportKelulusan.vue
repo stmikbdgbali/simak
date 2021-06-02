@@ -189,7 +189,7 @@ export default {
         datamhsbaru: {},
 
         //form data 
-        filter_status:1,  
+        filter_status: 1,  
         form_valid: true,  
 
         data_mhs: {},

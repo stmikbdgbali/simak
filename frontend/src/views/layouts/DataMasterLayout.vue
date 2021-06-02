@@ -76,7 +76,7 @@
 			</v-list-item>
 			<v-divider></v-divider>
 			<v-list expand>
-				<v-list-item :to="{ path: '/dmaster' }" v-if="CAN_ACCESS('DMASTER-GROUP')" link class="yellow" color="green" >
+				<v-list-item :to="{ path: '/dmaster' }" v-if="CAN_ACCESS('DMASTER-GROUP')" link class="yellow" color="green">
 					<v-list-item-icon class="mr-2">
 						<v-icon>mdi-home-floor-b</v-icon>
 					</v-list-item-icon>

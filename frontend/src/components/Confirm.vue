@@ -15,7 +15,7 @@
                     dense
                     text
                     :type="options.type"
-                    v-show="!!options.desc" >
+                    v-show="!!options.desc">
                     {{options.desc}}
                 </v-alert>
             </v-card-text>

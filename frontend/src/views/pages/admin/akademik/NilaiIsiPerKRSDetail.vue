@@ -8,7 +8,7 @@
                 ISI NILAI PER KRS
             </template>
             <template v-slot:subtitle v-if="Object.keys(datakrs).length">
-                TAHUN AKADEMIK {{tahun_akademik}} SEMESTER {{$store.getters['uiadmin/getNamaSemester'](semester_akademik)}} - {{ nama_prodi }}
+                TAHUN AKADEMIK {{ tahun_akademik }} SEMESTER {{$store.getters['uiadmin/getNamaSemester'](semester_akademik)}} - {{ nama_prodi }}
             </template>
             <template v-slot:breadcrumbs>
                 <v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -206,7 +206,7 @@ export default {
         this.fetchKRS();  
     },  
     data: () => ({ 
-        test:100,
+        test: 100,
         firstloading: true,
         nama_prodi: null,
         tahun_akademik: null,

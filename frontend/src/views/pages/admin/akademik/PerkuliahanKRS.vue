@@ -8,7 +8,7 @@
                 KARTU RENCANA STUDI
             </template>
             <template v-slot:subtitle v-if="$store.getters['uiadmin/getDefaultDashboard']!='mahasiswa'">
-                TAHUN AKADEMIK {{tahun_akademik}} SEMESTER {{$store.getters['uiadmin/getNamaSemester'](semester_akademik)}} - {{ nama_prodi }}
+                TAHUN AKADEMIK {{ tahun_akademik }} SEMESTER {{$store.getters['uiadmin/getNamaSemester'](semester_akademik)}} - {{ nama_prodi }}
             </template>
             <template v-slot:breadcrumbs>
                 <v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -235,7 +235,7 @@ export default {
             { text: "JUMLAH SKS", value: "jumlah_sks", sortable: true, width: 100 },
             { text: "TA.SMT", value: "tasmt", sortable: true, width: 100 },
             { text: "SAH", value: "sah", sortable: true, width: 100},
-            { text: "AKSI", value: "actions", sortable: false, width:140 },
+            { text: "AKSI", value: "actions", sortable: false, width: 140 },
         ],
         search: "",
 

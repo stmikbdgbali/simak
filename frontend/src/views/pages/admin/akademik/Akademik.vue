@@ -8,7 +8,7 @@
                 AKADEMIK 
             </template>
             <template v-slot:subtitle>
-                TAHUN AKADEMIK {{tahun_akademik}}
+                TAHUN AKADEMIK {{ tahun_akademik }}
             </template>
             <template v-slot:breadcrumbs>
                 <v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -66,7 +66,7 @@ export default {
         datatableLoading: false,
         firstloading: true,
         breadcrumbs: [],
-        tahun_akademik:0,
+        tahun_akademik: 0,
         
     }),
     methods: {

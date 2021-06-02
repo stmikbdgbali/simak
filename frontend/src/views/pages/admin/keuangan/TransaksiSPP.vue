@@ -8,7 +8,7 @@
                 TRANSAKSI SPP
             </template>
             <template v-slot:subtitle>
-                TAHUN AKADEMIK {{tahun_akademik}} - {{ nama_prodi }}
+                TAHUN AKADEMIK {{ tahun_akademik }} - {{ nama_prodi }}
             </template>
             <template v-slot:breadcrumbs>
                 <v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -83,7 +83,7 @@
                                     <v-form ref="frmdata" v-model="form_valid" lazy-validation>
                                         <v-card>
                                             <v-card-title>
-                                                <span class="headline">TAMBAH TRANSAKSI T.A {{tahun_akademik}}</span>
+                                                <span class="headline">TAMBAH TRANSAKSI T.A {{ tahun_akademik }}</span>
                                             </v-card-title>
                                             <v-card-text>
                                                 <v-text-field 
@@ -95,7 +95,7 @@
                                                 </v-text-field>   
                                                 <v-alert type="warning">
                                                     Pilihlah Semester Sesuai dengan Range, Misalnya :<br>
-                                                    September {{tahun_akademik}} s.d  Februari {{tahun_akademik+1}} = GANJIL<br>
+                                                    September {{ tahun_akademik }} s.d  Februari {{tahun_akademik+1}} = GANJIL<br>
                                                     Maret {{tahun_akademik+1}} s.d  JULI {{tahun_akademik+1}} = GENAP<br>
                                                     AGUSTUS {{tahun_akademik+1}} = PENDEK (bila ada)<br>
                                                 </v-alert>
@@ -148,25 +148,25 @@
                         <template v-slot:body.append v-if="datatable.length > 0">
                             <tr class="grey lighten-4 font-weight-black">
                                 <td class="text-right" colspan="7">TOTAL TRANSAKSI PAID</td>
-                                <td class="text-right" >{{totaltransaksi_paid|formatUang}}</td> 
+                                <td class="text-right">{{totaltransaksi_paid|formatUang}}</td> 
                                 <td></td>
                                 <td></td>
                             </tr>
                             <tr class="grey lighten-4 font-weight-black">
                                 <td class="text-right" colspan="7">TOTAL TRANSAKSI UNPAID</td>
-                                <td class="text-right" >{{totaltransaksi_unpaid|formatUang}}</td> 
+                                <td class="text-right">{{totaltransaksi_unpaid|formatUang}}</td> 
                                 <td></td>
                                 <td></td>
                             </tr>
                             <tr class="grey lighten-4 font-weight-black">
                                 <td class="text-right" colspan="7">TOTAL TRANSAKSI CANCELED</td>
-                                <td class="text-right" >{{totaltransaksi_canceled|formatUang}}</td> 
+                                <td class="text-right">{{totaltransaksi_canceled|formatUang}}</td> 
                                 <td></td>
                                 <td></td>
                             </tr>
                             <tr class="grey lighten-4 font-weight-black">
                                 <td class="text-right" colspan="7">TOTAL TRANSAKSI</td>
-                                <td class="text-right" >{{(totaltransaksi_canceled+totaltransaksi_paid+totaltransaksi_unpaid)|formatUang}}</td> 
+                                <td class="text-right">{{(totaltransaksi_canceled+totaltransaksi_paid+totaltransaksi_unpaid)|formatUang}}</td> 
                                 <td></td>
                                 <td></td>
                             </tr>
@@ -220,7 +220,7 @@ export default {
         breadcrumbs: [],  
         prodi_id: null,
         nama_prodi: null,
-        tahun_akademik:0,
+        tahun_akademik: 0,
         filter_ignore: false, 
         awaiting_search: false,
 

@@ -73,7 +73,7 @@
 			</v-list-item>
 			<v-divider></v-divider>
 			<v-list expand>
-				<v-list-item :to="{path: '/system-setting'}" v-if="CAN_ACCESS('SYSTEM-SETTING-GROUP')" link class="yellow" color="green" >
+				<v-list-item :to="{path: '/system-setting'}" v-if="CAN_ACCESS('SYSTEM-SETTING-GROUP')" link class="yellow" color="green">
 					<v-list-item-icon class="mr-2">
 						<v-icon>mdi-account</v-icon>
 					</v-list-item-icon>
@@ -155,7 +155,7 @@
 						</v-list-item-title>
 					</v-list-item-content>
 				</v-list-item>
-				<v-subheader v-if="CAN_ACCESS('SYSTEM-SETTING-THEMES_BROWSE')" >THEMES</v-subheader> 
+				<v-subheader v-if="CAN_ACCESS('SYSTEM-SETTING-THEMES_BROWSE')">THEMES</v-subheader> 
 				<v-list-item link v-if="CAN_ACCESS('SYSTEM-SETTING-THEMES_BROWSE')" to="/system-setting/themes/colordashboard">
 					<v-list-item-icon class="mr-2">
 						<v-icon>mdi-desktop-mac-dashboard</v-icon>

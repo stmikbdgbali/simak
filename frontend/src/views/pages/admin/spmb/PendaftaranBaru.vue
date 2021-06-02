@@ -247,7 +247,7 @@
 																														Klik tombol berikut ini untuk mengirim ulang email konfirmasi pendaftaran
 																												</v-card-subtitle>
 																												<v-card-text>
-																														<v-btn small color="primary" @click.stop="resend(formdata.id)" class="mb-2" >KIRIM ULANG</v-btn>
+																														<v-btn small color="primary" @click.stop="resend(formdata.id)" class="mb-2">KIRIM ULANG</v-btn>
 																												</v-card-text>
 																										</v-card>
 																								</v-col>  
@@ -391,7 +391,7 @@
 							{ text: "NAMA MAHASISWA", value: "name", width: 350, sortable: true },
 							{ text: "USERNAME", value: "username", sortable: true },
 							{ text: "EMAIL", value: "email", sortable: true }, 
-							{ text: "NOMOR HP", value: "nomor_hp", sortable: false, width:130 }, 
+							{ text: "NOMOR HP", value: "nomor_hp", sortable: false, width: 130 }, 
 							{ text: "TGL.DAFTAR", value: "created_at", sortable: true, width: 100 }, 
 							{ text: "AKSI", value: "actions", sortable: false, width: 100 },
 					],
@@ -512,7 +512,7 @@
 							this.$ajax.post("/akademik/kemahasiswaan/updatestatus/" + id,
 									{
 											_method: "PUT",
-											'active':1
+											'active': 1
 									},
 									{
 											headers: {

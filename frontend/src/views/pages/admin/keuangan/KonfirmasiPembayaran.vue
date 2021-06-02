@@ -8,7 +8,7 @@
 				KONFIRMASI PEMBAYARAN
 			</template>
 			<template v-slot:subtitle>
-				TAHUN AKADEMIK {{tahun_akademik}} - {{ nama_prodi }}
+				TAHUN AKADEMIK {{ tahun_akademik }} - {{ nama_prodi }}
 			</template>
 			<template v-slot:breadcrumbs>
 				<v-breadcrumbs :items="breadcrumbs" class="pa-0">
@@ -572,8 +572,8 @@
 			data_konfirmasi: {},
 			daftar_channel: [],
 			formdata: {
-				id_channel:1,
-				total_bayar:0,
+				id_channel: 1,
+				total_bayar: 0,
 				nomor_rekening_pengirim: "",
 				nama_rekening_pengirim: "",
 				nama_bank_pengirim: "",
@@ -582,8 +582,8 @@
 				bukti_bayar: [],
 			},
 			formdefault: {
-				id_channel:1,
-				total_bayar:0,
+				id_channel: 1,
+				total_bayar: 0,
 				nomor_rekening_pengirim: "",
 				nama_rekening_pengirim: "",
 				nama_bank_pengirim: "",
@@ -652,7 +652,7 @@
 					this.expanded = [item];
 				}
 			},
-			async addItem (item)
+			async addItem(item)
 			{
 				await this.$ajax.get("/keuangan/channelpembayaran",
 				{

@@ -337,8 +337,8 @@ export default {
             }
         ];
         this.tahun_pendaftaran = this.$store.getters["uiadmin/getTahunPendaftaran"];   
-        this.semester_pendaftaran = this.$store.getters['uiadmin/getSemesterPendaftaran'];
-        this.nama_semester_pendaftaran=this.$store.getters['uiadmin/getNamaSemester'](this.semester_pendaftaran);
+        this.semester_pendaftaran = this.$store.getters["uiadmin/getSemesterPendaftaran"];
+        this.nama_semester_pendaftaran=this.$store.getters["uiadmin/getNamaSemester"](this.semester_pendaftaran);
         this.initialize()
     },  
     data: () => ({ 
@@ -657,7 +657,7 @@ export default {
         {
             if (!this.firstloading)
             {
-                this.nama_semester_pendaftaran=this.$store.getters['uiadmin/getNamaSemester'](val); 
+                this.nama_semester_pendaftaran=this.$store.getters["uiadmin/getNamaSemester"](val); 
                 this.initialize();
             }
         },

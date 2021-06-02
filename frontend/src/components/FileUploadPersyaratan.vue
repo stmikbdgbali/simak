@@ -104,7 +104,7 @@ export default {
         image_prev: null,
 
         //form
-        verified:0,
+        verified: 0,
         form_valid: true,
         filepersyaratan: [],
         //form rules  

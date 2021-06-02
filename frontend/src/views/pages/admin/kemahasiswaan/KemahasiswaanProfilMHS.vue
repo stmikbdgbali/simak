@@ -24,7 +24,7 @@
                     <ProfilMahasiswa :datamhs="datamhs" url="/kemahasiswaan" />
                 </v-col>
             </v-row>
-            <v-row dense class="mb-4" >
+            <v-row dense class="mb-4">
                 <v-col xs="12" sm="6" md="3">
                     <v-card                         
                         class="green darken-1"
@@ -268,10 +268,10 @@ export default {
         datamhs: {
             nama_mhs: ""
         },
-        totalSKS:0, 
-        totalM:0, 
-        totalAM:0, 
-        ipk:0.00, 
+        totalSKS: 0, 
+        totalM: 0, 
+        totalAM: 0, 
+        ipk: 0.00, 
 
         //tables
         datatableLoading: false,

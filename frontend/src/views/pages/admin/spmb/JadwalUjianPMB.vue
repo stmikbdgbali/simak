@@ -311,8 +311,8 @@
 				},
 			];   
 			this.tahun_pendaftaran = this.$store.getters["uiadmin/getTahunPendaftaran"];   
-			this.semester_pendaftaran = this.$store.getters['uiadmin/getSemesterPendaftaran'];
-			this.nama_semester_pendaftaran = this.$store.getters['uiadmin/getNamaSemester'](this.semester_pendaftaran);
+			this.semester_pendaftaran = this.$store.getters["uiadmin/getSemesterPendaftaran"];
+			this.nama_semester_pendaftaran = this.$store.getters["uiadmin/getNamaSemester"](this.semester_pendaftaran);
 			this.initialize();
 		},
 		data() { 
@@ -346,7 +346,7 @@
 				
 				//form data   
 				form_valid: true,
-				jumlah_bank_soal:0,
+				jumlah_bank_soal: 0,
 				daftar_ruangan: [],
 				
 				menuTanggalUjian: false,
