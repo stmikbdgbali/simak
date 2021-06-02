@@ -652,7 +652,7 @@
 					this.expanded = [item];
 				}
 			},
-			async addItem (item)
+			async addItem(item)
 			{
 				await this.$ajax.get("/keuangan/channelpembayaran",
 				{

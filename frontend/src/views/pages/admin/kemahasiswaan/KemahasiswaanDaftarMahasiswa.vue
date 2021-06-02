@@ -342,7 +342,7 @@ export default {
     components: {
         KemahasiswaanLayout,
         ModuleHeader,
-        Filter7               
+        Filter7,       
     },
 }
 </script>

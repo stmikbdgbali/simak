@@ -307,7 +307,7 @@ export default {
     components: {
         AkademikLayout,
         ModuleHeader,
-        Filter7               
+        Filter7,       
     },
 }
 </script>
