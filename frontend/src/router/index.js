@@ -305,6 +305,15 @@ const routes = [
 		component: () => import("../views/pages/admin/spmb/NilaiUjianHasil.vue"),
 	},
 	{
+		path: "/spmb/pesertalulus",
+		name: "SPMBPesertaLulus",
+		meta: {
+			title: "SPMB - PESERTA LULUS",
+			requiresAuth: true,
+		},
+		component: () => import("../views/pages/admin/spmb/PesertaLulus.vue"),
+	},
+	{
 		path: "/spmb/jadwalujianpmb/passinggrade/:idjadwalujian",
 		name: "SPMBPassingGrade",
 		meta: {

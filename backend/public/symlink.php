@@ -1,6 +1,6 @@
 <?php
 
-$linkName = 'storage';
+$linkName = 'storages';
 
 $target = '';//isi dengan path yang mengarah ke storage/app/public
 
