@@ -11,6 +11,7 @@ use App\Models\SPMB\SoalPMBModel;
 use App\Models\SPMB\JawabanUjianPMBModel;
 use App\Models\SPMB\NilaiUjianPMBModel;
 use App\Models\SPMB\PMBPassingGradeModel;
+use App\Models\SPMB\FormulirPendaftaranModel;
 
 use Ramsey\Uuid\Uuid;
 

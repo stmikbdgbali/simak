@@ -38,7 +38,7 @@ export default {
     name: "UsersProfile",
     created() {
         this.dashboard=this.$store.getters['uiadmin/getDefaultDashboard'];
-        this.formdata=this.$store.getters['auth/User'];
+        this.formdata = this.$store.getters['auth/User'];
         this.breadcrumbs = [
             {
                 text: "HOME",

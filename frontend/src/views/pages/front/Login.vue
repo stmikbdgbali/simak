@@ -81,7 +81,10 @@
 				password: "",
 			},
 			rule_username: [
-				value => !!value || "Kolom Username mohon untuk diisi !!!",
+				value =>
+					/^[a-zA-Z0-9.\-_$@*!]{3,30}$/.test(value) || 
+					"Username tidak boleh ada spasi, koma, maksimal minimal 3 maksimal 30",
+				value => !!value || "Username mohon untuk diisi !!!",
 			],
 			rule_password: [
 				value => !!value || "Kolom Password mohon untuk diisi !!!",

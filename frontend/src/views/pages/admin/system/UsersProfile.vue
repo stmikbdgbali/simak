@@ -186,7 +186,7 @@
                                     text 
                                     @click.stop="save" 
                                     
-                                    :disabled="!form_valid||btnLoading">SIMPAN</v-btn>
+                                    :disabled="!form_valid || btnLoading">SIMPAN</v-btn>
                             </v-card-actions>
                         </v-card>
                     </v-form>
@@ -203,7 +203,7 @@
         name: "UsersProfile",
         created() {
             this.dashboard=this.$store.getters['uiadmin/getDefaultDashboard'];
-            this.formdata=this.$store.getters['auth/User'];
+            this.formdata = this.$store.getters['auth/User'];
             this.breadcrumbs = [
                 {
                     text: "HOME",
@@ -310,7 +310,7 @@
                     ).then(({ data }) => {               
                         this.$refs.frmdata.reset(); 
                         this.formdata.foto=data.foto;  
-                        this.formdata=this.formdefault; 
+                        this.formdata = this.formdefault; 
                         this.btnLoading = false;
                     }).catch(() => {
                         this.btnLoading = false;

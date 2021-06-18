@@ -256,7 +256,7 @@ export default {
                 this.datatable=data.daftar_nilai;
                 if (Object.keys(this.datakrs).length)
                 {
-                    let prodi_id=this.datakrs.kjur; 
+                    let prodi_id = this.datakrs.kjur; 
                     this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](prodi_id);
                     this.tahun_akademik=this.datakrs.tahun;    
                     this.semester_akademik=this.datakrs.idsmt;
