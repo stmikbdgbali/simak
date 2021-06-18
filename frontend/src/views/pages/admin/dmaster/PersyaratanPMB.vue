@@ -101,7 +101,7 @@
                                                     text 
                                                     @click.stop="save" 
                                                     
-                                                    :disabled="!form_valid||btnLoading">
+                                                    :disabled="!form_valid || btnLoading">
                                                         SIMPAN
                                                 </v-btn>
                                             </v-card-actions>
@@ -208,7 +208,7 @@
                                                         text 
                                                         @click.stop="salinpersyaratan" 
                                                         
-                                                        :disabled="!form_valid||btnLoading">
+                                                        :disabled="!form_valid || btnLoading">
                                                             SALIN
                                                     </v-btn>
                                             </v-card-actions>

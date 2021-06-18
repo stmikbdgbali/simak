@@ -111,7 +111,7 @@
                                                     text 
                                                     @click.stop="save" 
                                                     
-                                                    :disabled="!form_valid||btnLoading">
+                                                    :disabled="!form_valid || btnLoading">
                                                         SIMPAN
                                                 </v-btn>
                                             </v-card-actions>

@@ -131,7 +131,7 @@
 													text 
 													@click.stop="save" 
 													
-													:disabled="!form_valid||btnLoading">
+													:disabled="!form_valid || btnLoading">
 														SIMPAN
 												</v-btn>
 											</v-card-actions>
@@ -289,7 +289,7 @@
 									color="green" 
 									@click.stop="sink(item)"
 									class="mb-2 white--text"
-									:disabled="!form_valid||btnLoading">SINKRONISASI
+									:disabled="!form_valid || btnLoading">SINKRONISASI
 									</v-btn>
 								</v-col>
 							</td>

@@ -77,7 +77,7 @@
                                     text 
                                     @click.stop="save" 
                                     
-                                    :disabled="!form_valid||btnLoading||!daftar_matkul_selected.length > 0">
+                                    :disabled="!form_valid || btnLoading||!daftar_matkul_selected.length > 0">
                                         SIMPAN
                                 </v-btn>
                             </v-card-actions>
@@ -165,7 +165,7 @@ export default {
                 this.datakrs=data.krs;
                 if (Object.keys(this.datakrs).length)
                 {
-                    let prodi_id=this.datakrs.kjur; 
+                    let prodi_id = this.datakrs.kjur; 
                     this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](prodi_id);
                     this.tahun_akademik=this.datakrs.tahun;    
                     this.semester_akademik=this.datakrs.idsmt;

@@ -82,7 +82,7 @@
 									color="blue darken-1"
 									text
 									@click.stop="save_pmb"									
-									:disabled="!form_valid||btnLoading">SIMPAN</v-btn>
+									:disabled="!form_valid || btnLoading">SIMPAN</v-btn>
 							</v-card-actions>
 						</v-card>
 					</v-form>
@@ -123,7 +123,7 @@
 									color="blue darken-1"
 									text
 									@click.stop="save_perkuliahan"									
-									:disabled="!form_valid||btnLoading">SIMPAN</v-btn>
+									:disabled="!form_valid || btnLoading">SIMPAN</v-btn>
 							</v-card-actions>
 						</v-card>
 					</v-form>

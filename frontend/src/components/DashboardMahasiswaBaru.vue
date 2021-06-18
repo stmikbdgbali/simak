@@ -301,12 +301,7 @@
 						di nomor kontak WA berikut.
 					</v-card-subtitle>
 					<v-card-text class="justify-center">
-						<div>
-							<h3 class="headline pink--text text--accent-2">SANG AYU</h3>
-							<div>
-								<v-icon>mdi-card-account-phone-outline</v-icon> 0822 3662 5018
-							</div>
-						</div>
+						
 						<div>
 							<h3 class="headline pink--text text--accent-2">KADEK AYU</h3>
 							<div>

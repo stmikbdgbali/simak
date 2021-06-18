@@ -157,7 +157,7 @@
 																		text
 																		@click.stop="save"
 																		
-																		:disabled="!form_valid||btnLoading||dosen_id==null">
+																		:disabled="!form_valid || btnLoading||dosen_id==null">
 																				BUAT
 																</v-btn>
 														</v-card-actions>

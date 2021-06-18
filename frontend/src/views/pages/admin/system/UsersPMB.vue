@@ -149,7 +149,7 @@
                                                     text 
                                                     @click.stop="save" 
                                                     
-                                                    :disabled="!form_valid||btnLoading">
+                                                    :disabled="!form_valid || btnLoading">
                                                         SIMPAN
                                                 </v-btn>
                                             </v-card-actions>
@@ -224,7 +224,7 @@
                                                     text 
                                                     @click.stop="save" 
                                                     
-                                                    :disabled="!form_valid||btnLoading">SIMPAN</v-btn>
+                                                    :disabled="!form_valid || btnLoading">SIMPAN</v-btn>
                                             </v-card-actions>
                                         </v-card>
                                     </v-form>
@@ -375,8 +375,10 @@ export default {
             value => /^\+[1-9]{1}[0-9]{1,14}$/.test(value) || "Nomor HP hanya boleh angka dan gunakan kode negara didepan seperti +6281214553388",
         ],
         rule_user_username: [
-            value => !!value || "Mohon untuk di isi username User !!!",  
-            value => /^[A-Za-z_]*$/.test(value) || "Username hanya boleh string dan underscore", 
+            value =>
+                /^[a-zA-Z0-9.\-_$@*!]{3,30}$/.test(value) || 
+                "Username tidak boleh ada spasi, koma, maksimal minimal 3 maksimal 30",
+            value => !!value || "Username mohon untuk diisi !!!",
         ],
         rule_user_password: [
             value => !!value || "Mohon untuk di isi password User !!!",

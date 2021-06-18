@@ -105,7 +105,7 @@
                                                     text 
                                                     @click.stop="save" 
                                                     
-                                                    :disabled="!form_valid||btnLoading">
+                                                    :disabled="!form_valid || btnLoading">
                                                         BUAT
                                                 </v-btn>
                                             </v-card-actions>

@@ -116,7 +116,7 @@
                                                     text 
                                                     @click.stop="buatTransaksi" 
                                                     
-                                                    :disabled="!form_valid||btnLoading">
+                                                    :disabled="!form_valid || btnLoading">
                                                         BUAT
                                                 </v-btn>
                                             </v-card-actions>

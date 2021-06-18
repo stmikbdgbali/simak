@@ -169,7 +169,7 @@
                                                     text 
                                                     @click.stop="changeDosenWali" 
                                                     
-                                                    :disabled="!form_valid||btnLoading">
+                                                    :disabled="!form_valid || btnLoading">
                                                         GANTI
                                                 </v-btn>
                                             </v-card-actions>

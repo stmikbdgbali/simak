@@ -80,8 +80,8 @@
 				username: "",
 				password: "",
 			},
-			rule_username: [
-				value => !!value || "Kolom Username mohon untuk diisi !!!",
+			rule_username: [				
+				value => !!value || "Username mohon untuk diisi !!!",
 			],
 			rule_password: [
 				value => !!value || "Kolom Password mohon untuk diisi !!!",
