@@ -1,4 +1,8 @@
 <IfModule mod_rewrite.c>
+    <Files ".env">  
+      Order Allow,Deny
+      Deny from all
+    </Files>
     <IfModule mod_negotiation.c>
         Options -MultiViews -Indexes
     </IfModule>
