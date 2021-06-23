@@ -15,7 +15,8 @@
 				transition="scale-transition"
 				:offset-y="true"
 				bottom 
-				left>
+				left
+			>
 				<template v-slot:activator="{on}">
 					<v-avatar size="30">
 						<v-img :src="photoUser" v-on="on" />

@@ -57,7 +57,8 @@ class CreateTransaksiTable extends Migration
             $table->decimal('promovalue',15,2)->default(0);
             $table->smallInteger('jumlah')->default(0);                                                            
             $table->tinyInteger('bulan')->nullable();                                                            
-            $table->year('tahun')->nullable();                                                            
+            $table->year('tahun')->nullable();
+            $table->boolean('installment')->default(false);
             $table->decimal('sub_total',15,2)->default(0);                                                            
             
             $table->timestamps();      

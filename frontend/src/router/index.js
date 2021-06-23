@@ -457,6 +457,15 @@ const routes = [
 		component: () => import("../views/pages/admin/keuangan/TransaksiPengembangan.vue"),
 	},
 	{
+		path: "/keuangan/transaksi-pengembangan/:transaksi_id",
+		name: "KeuanganTransaksiPengembanganDetail",
+		meta: {
+			title: "KEUANGAN - TRANSAKSI PENGEMBANGAN",
+			requiresAuth: true,
+		},
+		component: () => import("../views/pages/admin/keuangan/TransaksiPengembanganDetail.vue"),
+	},
+	{
 		path: "/keuangan/transaksi-spp",
 		name: "KeuanganTransaksiSPP",
 		meta: {
