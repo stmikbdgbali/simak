@@ -37,6 +37,7 @@ class TransaksiDetailModel extends Model {
         // dimanfaatkan untuk pembayaran per bulan
         'bulan',
         'tahun',
+        'installment',
         'sub_total',        
     ];
     /**
