@@ -27,9 +27,9 @@ class TransaksiSPPController extends Controller {
         if ($this->hasRole(['mahasiswa','mahasiswabaru']))
         {
             $this->validate($request, [           
-                'TA'=>'required',            
+                'ta'=>'required',            
             ]);
-            $ta=$request->input('TA');
+            $ta=$request->input('ta');
 
             $daftar_transaksi = TransaksiDetailModel::select(\DB::raw('
                                                         pe3_transaksi_detail.id,
@@ -70,10 +70,10 @@ class TransaksiSPPController extends Controller {
         else
         {
             $this->validate($request, [           
-                'TA'=>'required',
+                'ta'=>'required',
                 'prodi_id'=>'required'
             ]);
-            $ta=$request->input('TA');
+            $ta=$request->input('ta');
             $prodi_id=$request->input('prodi_id');
 
             $daftar_transaksi = TransaksiDetailModel::select(\DB::raw('
@@ -285,14 +285,14 @@ class TransaksiSPPController extends Controller {
         $this->validate($request, [           
             'nim'=>'required|exists:pe3_register_mahasiswa,nim',                 
             'semester_akademik'=>'required',
-            'TA'=>'required'
+            'ta'=>'required'
         ]);
 
         try 
         {
             $nim=$request->input('nim');
             $semester_akademik=$request->input('semester_akademik');
-            $ta=$request->input('TA');
+            $ta=$request->input('ta');
             
             $mahasiswa=RegisterMahasiswaModel::select(\DB::raw('
                                     pe3_formulir_pendaftaran.user_id,

@@ -261,8 +261,8 @@
 					.post(
 						"/keuangan/transaksi",
 						{
-							TA: this.tahun_akademik,
-							PRODI_ID: this.prodi_id,
+							ta: this.tahun_akademik,
+							prodi_id: this.prodi_id,
 						},
 						{
 							headers: {
@@ -319,8 +319,8 @@
 								.post(
 									"/keuangan/transaksi",
 									{
-										PRODI_ID: this.prodi_id,
-										TA: this.tahun_akademik,
+										prodi_id: this.prodi_id,
+										ta: this.tahun_akademik,
 										search: this.search,
 									},
 									{

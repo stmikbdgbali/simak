@@ -448,6 +448,15 @@ const routes = [
 			import("../views/pages/admin/keuangan/TransaksiInvoice.vue"),
 	},
 	{
+		path: "/keuangan/transaksi-pengembangan",
+		name: "KeuanganTransaksiPengembangan",
+		meta: {
+			title: "KEUANGAN - TRANSAKSI PENGEMBANGAN",
+			requiresAuth: true,
+		},
+		component: () => import("../views/pages/admin/keuangan/TransaksiPengembangan.vue"),
+	},
+	{
 		path: "/keuangan/transaksi-spp",
 		name: "KeuanganTransaksiSPP",
 		meta: {

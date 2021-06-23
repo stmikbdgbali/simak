@@ -211,7 +211,7 @@
 					.post(
 						"/keuangan/biayakomponenperiode",
 						{
-							TA: this.tahun_pendaftaran,
+							ta: this.tahun_pendaftaran,
 							prodi_id: this.prodi_id,
 						},
 						{
@@ -240,7 +240,7 @@
 					.post(
 						"/keuangan/biayakomponenperiode",
 						{
-							TA: this.tahun_pendaftaran,
+							ta: this.tahun_pendaftaran,
 							prodi_id: this.prodi_id,
 							filter_idkelas: val,
 						},
@@ -270,7 +270,7 @@
 					.post(
 						"/keuangan/biayakomponenperiode/loadkombiperiode",
 						{
-							TA: this.tahun_pendaftaran,
+							ta: this.tahun_pendaftaran,
 							prodi_id: this.prodi_id,
 						},
 						{

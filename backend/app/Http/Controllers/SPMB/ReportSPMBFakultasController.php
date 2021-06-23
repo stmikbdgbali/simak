@@ -27,11 +27,11 @@ class ReportSPMBFakultasController extends Controller {
         $this->hasPermissionTo('SPMB-PMB-LAPORAN-FAKULTAS_BROWSE');
 
         $this->validate($request, [           
-            'TA'=>'required',
+            'ta'=>'required',
             'fakultas_id'=>'required'
         ]);
         
-        $ta=$request->input('TA');
+        $ta=$request->input('ta');
         $fakultas_id=$request->input('fakultas_id');
 
         $data = User::where('default_role','mahasiswabaru')
@@ -60,13 +60,13 @@ class ReportSPMBFakultasController extends Controller {
         $this->hasPermissionTo('SPMB-PMB-LAPORAN-FAKULTAS_BROWSE');
 
         $this->validate($request, [           
-            'TA'=>'required',
+            'ta'=>'required',
             'fakultas_id'=>'required',
             'nama_fakultas'=>'required',
         ]);
         
         $data_report=[
-            'TA'=>$request->input('TA'),
+            'ta'=>$request->input('ta'),
             'fakultas_id'=>$request->input('fakultas_id'),            
             'nama_fakultas'=>$request->input('nama_fakultas'),            
         ];

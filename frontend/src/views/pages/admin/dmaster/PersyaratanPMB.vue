@@ -346,7 +346,7 @@ export default {
             this.datatableLoading = true;
             await this.$ajax.post("/datamaster/persyaratan",
             {
-                TA: this.tahun_pendaftaran
+                ta: this.tahun_pendaftaran
             },
             {
                 headers: {

@@ -231,7 +231,7 @@ export default {
             this.btnLoading = true;
             await this.$ajax.post("/kemahasiswaan/daftarmhs/printtoexcel",
                 {
-                    TA: this.tahun_pendaftaran,                
+                    ta: this.tahun_pendaftaran,                
                     prodi_id: this.prodi_id,
                     nama_prodi: this.nama_prodi, 
                 },
@@ -261,7 +261,7 @@ export default {
             await this.$ajax.post("/system/users/syncallpermissions",
                 {
                     role_name: "mahasiswa",
-                    TA: this.tahun_pendaftaran, 
+                    ta: this.tahun_pendaftaran, 
                     prodi_id: this.prodi_id                     
                 },
                 {

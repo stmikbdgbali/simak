@@ -18,10 +18,10 @@ class SPMBController extends Controller
         $this->hasPermissionTo('SPMB-PMB_BROWSE');
 
         $this->validate($request, [           
-            'TA'=>'required',
+            'ta'=>'required',
         ]);
 
-        $ta=$request->input('TA');
+        $ta=$request->input('ta');
         
         $daftar_registrasi=[];
         $total_registrasi=0;

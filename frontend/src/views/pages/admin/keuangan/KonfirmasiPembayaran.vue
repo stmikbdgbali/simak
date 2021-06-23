@@ -627,8 +627,8 @@
 				this.datatableLoading = true;
 				await this.$ajax.post("/keuangan/konfirmasipembayaran",
 				{
-					PRODI_ID: this.prodi_id,
-					TA: this.tahun_akademik,
+					prodi_id: this.prodi_id,
+					ta: this.tahun_akademik,
 				},
 				{
 					headers: {
@@ -831,8 +831,8 @@
 							this.datatableLoading = true;
 							await this.$ajax.post("/keuangan/konfirmasipembayaran",
 							{
-								PRODI_ID: this.prodi_id,
-								TA: this.tahun_akademik,
+								prodi_id: this.prodi_id,
+								ta: this.tahun_akademik,
 								search: this.search
 							},
 							{

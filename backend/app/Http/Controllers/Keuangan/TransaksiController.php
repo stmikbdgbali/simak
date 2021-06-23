@@ -45,9 +45,9 @@ class TransaksiController extends Controller {
         if ($this->hasRole(['mahasiswa','mahasiswabaru']))
         {
             $this->validate($request, [           
-                'TA'=>'required',                
+                'ta'=>'required',                
             ]);
-            $ta=$request->input('TA');           
+            $ta=$request->input('ta');           
 
             $daftar_transaksi = TransaksiModel::select($select)
                                             ->join('pe3_status_transaksi','pe3_transaksi.status','pe3_status_transaksi.id_status')
@@ -60,9 +60,9 @@ class TransaksiController extends Controller {
         elseif ($request->has('user_id') && $request->filled('user_id') )
         {
             $this->validate($request, [           
-                'TA'=>'required',                
+                'ta'=>'required',                
             ]);
-            $ta=$request->input('TA');
+            $ta=$request->input('ta');
             
             $daftar_transaksi = TransaksiModel::select($select)
                                             ->join('pe3_status_transaksi','pe3_transaksi.status','pe3_status_transaksi.id_status')
@@ -75,11 +75,11 @@ class TransaksiController extends Controller {
         else
         {
             $this->validate($request, [           
-                'TA'=>'required',
-                'PRODI_ID'=>'required',
+                'ta'=>'required',
+                'prodi_id'=>'required',
             ]);
-            $ta=$request->input('TA');
-            $prodi_id=$request->input('PRODI_ID');
+            $ta=$request->input('ta');
+            $prodi_id=$request->input('prodi_id');
 
             $daftar_transaksi = TransaksiModel::select($select)
                                             ->join('pe3_status_transaksi','pe3_transaksi.status','pe3_status_transaksi.id_status')

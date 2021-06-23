@@ -313,7 +313,7 @@ export default {
             this.datatableLoading = true;
             await this.$ajax.post("/keuangan/transaksi",
             {
-                TA: this.$store.getters['uiadmin/getTahunAkademik'],
+                ta: this.$store.getters['uiadmin/getTahunAkademik'],
                 user_id: this.user_id
             },
             {

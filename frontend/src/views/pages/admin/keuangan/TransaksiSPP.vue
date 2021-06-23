@@ -280,7 +280,7 @@ export default {
             await this.$ajax.post("/keuangan/transaksi-spp",
             {
                 prodi_id: this.prodi_id,
-                TA: this.tahun_akademik,
+                ta: this.tahun_akademik,
             },
             {
                 headers: {
@@ -325,7 +325,7 @@ export default {
                     {
                         nim: this.formdata.nim, 
                         semester_akademik: this.formdata.semester_akademik,    
-                        TA: this.tahun_akademik,
+                        ta: this.tahun_akademik,
                     },
                     {
                         headers: {
@@ -411,7 +411,7 @@ export default {
                         await this.$ajax.post("/keuangan/transaksi-spp",
                         {
                             prodi_id: this.prodi_id,
-                            TA: this.tahun_akademik,
+                            ta: this.tahun_akademik,
                             search: this.search
                         },
                         {

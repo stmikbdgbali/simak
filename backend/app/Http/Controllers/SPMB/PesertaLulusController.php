@@ -23,11 +23,11 @@ class PesertaLulusController extends Controller {
         $this->hasAnyPermission(['SPMB-PMB-NILAI-UJIAN_BROWSE']);
 
         $this->validate($request, [           
-            'TA'=>'required',
+            'ta'=>'required',
             'prodi_id'=>'required'
         ]);
         
-        $ta=$request->input('TA');
+        $ta=$request->input('ta');
         $prodi_id=$request->input('prodi_id');
 
         $data = FormulirPendaftaranModel::select(\DB::raw('

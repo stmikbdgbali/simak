@@ -25,10 +25,10 @@ class SystemMigrationController extends Controller {
         $this->hasPermissionTo('SYSTEM-MIGRATION_BROWSE');
 
         $this->validate($request, [           
-            'TA'=>'required',            
+            'ta'=>'required',            
         ]);
         
-        $ta=$request->input('TA');
+        $ta=$request->input('ta');
         $daftar_tasmt=[];
         
         for ($tahun=$ta;$tahun < 2020; $tahun++)

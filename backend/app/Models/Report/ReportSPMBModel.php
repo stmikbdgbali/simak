@@ -17,7 +17,7 @@ class ReportSPMBModel extends ReportModel
     }    
     public function prodi()  
     {
-        $ta=$this->dataReport['TA'];
+        $ta=$this->dataReport['ta'];
         $prodi_id=$this->dataReport['prodi_id'];
         $nama_prodi=$this->dataReport['nama_prodi'];
 
@@ -145,7 +145,7 @@ class ReportSPMBModel extends ReportModel
     }
     public function fakultas()  
     {
-        $ta=$this->dataReport['TA'];
+        $ta=$this->dataReport['ta'];
         $fakultas_id=$this->dataReport['fakultas_id'];
         $nama_fakultas=$this->dataReport['nama_fakultas'];
 
@@ -280,7 +280,7 @@ class ReportSPMBModel extends ReportModel
     }
     public function kelulusan()  
     {
-        $ta=$this->dataReport['TA'];
+        $ta=$this->dataReport['ta'];
         $prodi_id=$this->dataReport['prodi_id'];
         $nama_prodi=$this->dataReport['nama_prodi'];
         $filter_status=$this->dataReport['filter_status'];

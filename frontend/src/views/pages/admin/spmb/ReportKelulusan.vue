@@ -216,7 +216,7 @@ export default {
                     this.datatableLoading = true;  
                     await this.$ajax.post("/spmb/reportspmbkelulusan",
                     {
-                        TA: this.tahun_pendaftaran,
+                        ta: this.tahun_pendaftaran,
                         prodi_id: this.prodi_id,
                         filter_status: this.filter_status
                     },
@@ -262,7 +262,7 @@ export default {
             this.btnLoading = true;
             await this.$ajax.post("/spmb/reportspmbkelulusan/printtoexcel",
                 {
-                    TA: this.tahun_pendaftaran,                
+                    ta: this.tahun_pendaftaran,                
                     prodi_id: this.prodi_id,
                     nama_prodi: this.nama_prodi, 
                     filter_status: this.filter_status, 

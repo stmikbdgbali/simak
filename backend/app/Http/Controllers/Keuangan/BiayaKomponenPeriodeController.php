@@ -41,11 +41,11 @@ class BiayaKomponenPeriodeController extends Controller {
         else
         {
             $this->validate($request, [           
-                'TA'=>'required',
+                'ta'=>'required',
                 'prodi_id'=>'required'
             ]);
             
-            $ta=$request->input('TA');
+            $ta=$request->input('ta');
             $prodi_id=$request->input('prodi_id');
             
             $kombi=BiayaKomponenPeriodeModel::select(\DB::raw('
@@ -83,10 +83,10 @@ class BiayaKomponenPeriodeController extends Controller {
         $this->hasPermissionTo('KEUANGAN-BIAYA-KOMPONEN-PERIODE_STORE');
         
         $this->validate($request, [           
-            'TA'=>'required',
+            'ta'=>'required',
             'prodi_id'=>'required'
         ]);
-        $ta=$request->input('TA');
+        $ta=$request->input('ta');
         $prodi_id=$request->input('prodi_id');
         
         $daftar_kelas=KelasModel::all();

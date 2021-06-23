@@ -217,7 +217,7 @@ export default {
 				this.datatableLoading = true;
 				await this.$ajax.post("/spmb/pmbpersyaratan",
 				{
-					TA: this.tahun_pendaftaran,
+					ta: this.tahun_pendaftaran,
 					prodi_id: this.prodi_id,
 				},
 				{

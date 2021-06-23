@@ -17,7 +17,7 @@ class ReportKemahasiswaanModel extends ReportModel
     }    
     public function daftarmahasiswa()  
     {
-        $ta=$this->dataReport['TA'];
+        $ta=$this->dataReport['ta'];
         $prodi_id=$this->dataReport['prodi_id'];
         $nama_prodi=$this->dataReport['nama_prodi'];
 
