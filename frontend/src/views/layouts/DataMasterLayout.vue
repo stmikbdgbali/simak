@@ -1,9 +1,16 @@
 <template>
 	<div>
-		<v-system-bar app dark :class="this.$store.getters['uiadmin/getTheme']('V-SYSTEM-BAR-CSS-CLASS')">
+		<v-system-bar
+			app
+			dark
+			color="#245ca3"
+			:class="this.$store.getters['uiadmin/getTheme']('V-SYSTEM-BAR-CSS-CLASS')">
 			<strong>Hak Akses Sebagai :</strong> {{ ROLE }}
-		</v-system-bar>	
-		<v-app-bar app>
+		</v-system-bar>
+		<v-app-bar
+			app
+			elevation="0"
+      color="#f7f8fd">
 			<v-app-bar-nav-icon @click.stop="drawer = !drawer" class="grey--text"></v-app-bar-nav-icon>
 			<v-toolbar-title class="headline clickable" @click.stop="$router.push('/dashboard/'+$store.getters['auth/AccessToken']).catch(err => {})">
 				<span class="hidden-sm-and-down">{{ APP_NAME }}</span>
@@ -60,7 +67,14 @@
 				<v-icon>mdi-menu-open</v-icon>
 			</v-app-bar-nav-icon>   
 		</v-app-bar>
-		<v-navigation-drawer v-model="drawer" width="300" dark class="green darken-1" :temporary="temporaryleftsidebar" app>
+		<v-navigation-drawer
+			v-model="drawer"
+			width="300"
+			dark
+			class="#d8d44c"
+			color="#e1373a"
+			:temporary="temporaryleftsidebar"
+			app>
 			<v-list-item>
 				<v-list-item-avatar>
 					<v-img :src="photoUser" @click.stop="toProfile"></v-img>
@@ -75,8 +89,11 @@
 				</v-list-item-content>
 			</v-list-item>
 			<v-divider></v-divider>
-			<v-list expand>
-				<v-list-item :to="{ path: '/dmaster' }" v-if="CAN_ACCESS('DMASTER-GROUP')" link class="yellow" color="green">
+			<v-list
+				expand
+				dense
+				class="ml-2 mr-2">
+				<v-list-item :to="{ path: '/dmaster' }" v-if="CAN_ACCESS('DMASTER-GROUP')" link class="warning" color="#FFF">
 					<v-list-item-icon class="mr-2">
 						<v-icon>mdi-home-floor-b</v-icon>
 					</v-list-item-icon>
