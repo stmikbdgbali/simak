@@ -294,7 +294,7 @@
 				await this.$ajax
 					.post("/dashboard/pmb",
 					{
-						TA: this.tahun_pendaftaran,
+						ta: this.tahun_pendaftaran,
 					},
 					{
 						headers: {

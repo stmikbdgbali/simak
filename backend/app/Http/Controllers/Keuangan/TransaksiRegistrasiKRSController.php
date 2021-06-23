@@ -24,11 +24,11 @@ class TransaksiRegistrasiKRSController extends Controller {
         if ($this->hasRole(['mahasiswa','mahasiswabaru']))
         {
             $this->validate($request, [           
-                'TA'=>'required',
+                'ta'=>'required',
                 'SEMESTER_AKADEMIK'=>'required|in:1,2,3',            
             ]);
     
-            $ta=$request->input('TA');
+            $ta=$request->input('ta');
             $idsmt=$request->input('SEMESTER_AKADEMIK');
 
             $daftar_transaksi = TransaksiDetailModel::select(\DB::raw('
@@ -71,14 +71,14 @@ class TransaksiRegistrasiKRSController extends Controller {
         else
         {
             $this->validate($request, [           
-                'TA'=>'required',
+                'ta'=>'required',
                 'SEMESTER_AKADEMIK'=>'required|in:1,2,3',
-                'PRODI_ID'=>'required',
+                'prodi_id'=>'required',
             ]);
     
-            $ta=$request->input('TA');
+            $ta=$request->input('ta');
             $idsmt=$request->input('SEMESTER_AKADEMIK');
-            $prodi_id=$request->input('PRODI_ID');
+            $prodi_id=$request->input('prodi_id');
             
             $daftar_transaksi = TransaksiDetailModel::select(\DB::raw('
                                                         pe3_transaksi_detail.id,
@@ -144,14 +144,14 @@ class TransaksiRegistrasiKRSController extends Controller {
         $this->validate($request, [           
             'nim'=>'required|exists:pe3_register_mahasiswa,nim',                 
             'semester_akademik'=>'required',
-            'TA'=>'required'
+            'ta'=>'required'
         ]);
         
         try 
         {
             $nim=$request->input('nim');
             $semester_akademik=$request->input('semester_akademik');
-            $ta=$request->input('TA');
+            $ta=$request->input('ta');
             
             $transaksi=TransaksiDetailModel::select(\DB::raw('
                                                 1
@@ -200,7 +200,7 @@ class TransaksiRegistrasiKRSController extends Controller {
                     'no_transaksi'=>$no_transaksi,
                     'no_faktur'=>'',
                     'kjur'=>$mahasiswa->kjur,
-                    'ta'=>$request->input('TA'),
+                    'ta'=>$request->input('ta'),
                     'idsmt'=>$request->input('semester_akademik'),
                     'idkelas'=>$mahasiswa->idkelas,
                     'no_formulir'=>$mahasiswa->no_formulir,
@@ -224,7 +224,7 @@ class TransaksiRegistrasiKRSController extends Controller {
                 ]);
 
                 $transaksi->total=$biaya_kombi;
-                $transaksi->desc='REGISTRASI KRS '.$request->input('TA').$request->input('semester_akademik');
+                $transaksi->desc='REGISTRASI KRS '.$request->input('ta').$request->input('semester_akademik');
                 $transaksi->save();
 
                 return $transaksi;

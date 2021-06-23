@@ -20,11 +20,11 @@ class PMBPersyaratanController extends Controller {
        $this->hasPermissionTo('SPMB-PMB-PERSYARATAN_BROWSE');
 
         $this->validate($request, [           
-            'TA'=>'required',
+            'ta'=>'required',
             'prodi_id'=>'required'
         ]);
         
-        $ta=$request->input('TA');
+        $ta=$request->input('ta');
         $prodi_id=$request->input('prodi_id');
         
         $jumlah_persyaratan=\DB::table('pe3_persyaratan')->where('ta',$ta)->count();

@@ -5,7 +5,7 @@
 				mdi-video-input-component
 			</template>
 			<template v-slot:name>
-				TRANSAKSI PENDAFTARAN MAHASISWA BARU
+				TRANSAKSI PENGEMBANGAN
 			</template>
 			<template v-slot:subtitle>
 				TAHUN PENDAFTARAN {{ tahun_pendaftaran }} - {{ nama_prodi }}
@@ -19,8 +19,7 @@
 			</template>
 			<template v-slot:desc>
 				<v-alert color="cyan" border="left" colored-border type="info">
-					Halaman ini digunakan untuk mengelola transaksi pendaftaran mahasiswa
-					baru.
+					Halaman ini digunakan untuk mengelola transaksi biaya pengembangan mahasiswa baru dan lama.
 				</v-alert>
 			</template>
 		</ModuleHeader>
@@ -384,8 +383,8 @@
 			</v-row>
 		</v-container>
 		<dialog-printout
-			pid="pendaftaranmhsbaru"
-			title="Pendaftaran Mahasiwa Baru"
+			pid="pengembangan"
+			title="Pengembangan Mahasiswa Baru dan Lama"
 			ref="dialogprint"
 		>
 		</dialog-printout>
@@ -397,7 +396,7 @@
 	import Filter7 from "@/components/sidebar/FilterMode7";
 	import DialogPrintoutKeuangan from "@/components/DialogPrintoutKeuangan";
 	export default {
-		name: "TransaksiPendaftaranMHSBaru",
+		name: "TransaksiPengembangan",
 		created() {
 			this.dashboard = this.$store.getters["uiadmin/getDefaultDashboard"];
 			this.breadcrumbs = [
@@ -412,7 +411,7 @@
 					href: "/keuangan",
 				},
 				{
-					text: "TRANSAKSI PENDAFTARAN MAHASISWA BARU",
+					text: "TRANSAKSI PENGEMBANGAN",
 					disabled: true,
 					href: "#",
 				},
@@ -538,7 +537,7 @@
 				this.datatableLoading = true;
 				await this.$ajax
 					.post(
-						"/keuangan/transaksi-pendaftaranmhsbaru",
+						"/keuangan/transaksi-pengembangan",
 						{
 							ta: this.tahun_pendaftaran,
 							prodi_id: this.prodi_id,
@@ -595,7 +594,7 @@
 			},
 			viewItem(item) {
 				this.$router.push(
-					"/keuangan/transaksi-pendaftaranmhsbaru/" + item.transaksi_id
+					"/keuangan/transaksi-pengembangan/" + item.transaksi_id
 				);
 			},
 			save: async function() {
@@ -604,7 +603,7 @@
 					if (this.$refs.frmeditdata.validate()) {
 						await this.$ajax
 							.post(
-								"/keuangan/transaksi-pendaftaranmhsbaru/" + this.formdata.id,
+								"/keuangan/transaksi-pengembangan/" + this.formdata.id,
 								{
 									_method: "put",
 									promovalue: this.formdata.promovalue,
@@ -629,7 +628,7 @@
 					if (this.$refs.frmdata.validate()) {
 						await this.$ajax
 							.post(
-								"/keuangan/transaksi-pendaftaranmhsbaru/store",
+								"/keuangan/transaksi-pengembangan/store",
 								{
 									user_id: this.data_mhs.id,
 								},
@@ -681,7 +680,7 @@
 							this.btnLoading = true;
 							this.$ajax
 								.post(
-									"/keuangan/transaksi-pendaftaranmhsbaru/" + item.transaksi_id,
+									"/keuangan/transaksi-pengembangan/" + item.transaksi_id,
 									{
 										_method: "DELETE",
 									},
@@ -789,7 +788,7 @@
 						this.isLoading = true;
 						await this.$ajax
 							.post(
-								"/keuangan/transaksi-pengembangan/search",
+								"/spmb/pmb/search",
 								{
 									search: val,
 									prodi_id: this.prodi_id,

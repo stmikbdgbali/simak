@@ -189,7 +189,7 @@ export default {
                     this.datatableLoading = true;  
                     await this.$ajax.post("/spmb/reportspmbfakultas",
                     {
-                        TA: this.tahun_pendaftaran,
+                        ta: this.tahun_pendaftaran,
                         fakultas_id: this.fakultas_id,
                     },
                     {
@@ -228,7 +228,7 @@ export default {
             this.btnLoading = true;
             await this.$ajax.post("/spmb/reportspmbfakultas/printtoexcel",
                 {
-                    TA: this.tahun_pendaftaran,                
+                    ta: this.tahun_pendaftaran,                
                     fakultas_id: this.fakultas_id,
                     nama_fakultas: this.nama_fakultas, 
                 },

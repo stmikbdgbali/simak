@@ -236,6 +236,13 @@ $router->group(['prefix'=>'v1','middleware'=>'auth:api'], function () use ($rout
     $router->post('/keuangan/transaksi-pendaftaranmhsbaru/store',['middleware'=>['role:superadmin|keuangan'],'uses'=>'Keuangan\TransaksiPendaftaranMHSBaruController@store','as'=>'transaksi-pendaftaranmhsbaru.store']);
     $router->put('/keuangan/transaksi-pendaftaranmhsbaru/{id}',['middleware'=>['role:superadmin|keuangan'],'uses'=>'Keuangan\TransaksiPendaftaranMHSBaruController@update','as'=>'transaksi-pendaftaranmhsbaru.update']);
     $router->delete('/keuangan/transaksi-pendaftaranmhsbaru/{id}',['middleware'=>['role:superadmin|keuangan'],'uses'=>'Keuangan\TransaksiPendaftaranMHSBaruController@destroy','as'=>'transaksi-pendaftaranmhsbaru.destroy']);
+    
+    //keuangan - transaksi biaya pengembangan
+    $router->post('/keuangan/transaksi-pengembangan',['middleware'=>['role:superadmin|keuangan|mahasiswabaru|mahasiswa'],'uses'=>'Keuangan\TransaksiPengembanganController@index','as'=>'transaksi-pengembangan.index']);
+    $router->post('/keuangan/transaksi-pengembangan/search',['middleware'=>['role:superadmin|keuangan'],'uses'=>'Keuangan\TransaksiPengembanganController@search','as'=>'transaksi-pengembangan.search']);
+    $router->post('/keuangan/transaksi-pengembangan/store',['middleware'=>['role:superadmin|keuangan|mahasiswabaru|mahasiswa'],'uses'=>'Keuangan\TransaksiPengembanganController@store','as'=>'transaksi-pengembangan.store']);
+    $router->put('/keuangan/transaksi-pengembangan/{id}',['middleware'=>['role:superadmin|keuangan|mahasiswabaru|mahasiswa'],'uses'=>'Keuangan\TransaksiPengembanganController@update','as'=>'transaksi-pengembangan.update']);
+    $router->delete('/keuangan/transaksi-pengembangan/{id}',['middleware'=>['role:superadmin|keuangan|mahasiswabaru|mahasiswa'],'uses'=>'Keuangan\TransaksiPengembanganController@destroy','as'=>'transaksi-pengembangan.destroy']);
 
     //keuangan - transaksi spp
     $router->post('/keuangan/transaksi-spp',['middleware'=>['role:superadmin|keuangan|mahasiswabaru|mahasiswa'],'uses'=>'Keuangan\TransaksiSPPController@index','as'=>'transaksi-spp.index']);

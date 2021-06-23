@@ -17,9 +17,9 @@ class KeuanganController extends Controller {
         $this->hasPermissionTo('KEUANGAN-RINGKASAN_BROWSE');
         
         $this->validate($request, [           
-            'TA'=>'required',
+            'ta'=>'required',
         ]);
-        $ta=$request->input('TA');
+        $ta=$request->input('ta');
         
         if ($this->hasRole('mahasiswa') )
         {

@@ -31,11 +31,11 @@ class PMBController extends Controller {
         $this->hasPermissionTo('SPMB-PMB_BROWSE');
 
         $this->validate($request, [           
-            'TA'=>'required',
+            'ta'=>'required',
             'prodi_id'=>'required'
         ]);
         
-        $ta=$request->input('TA');
+        $ta=$request->input('ta');
         $prodi_id=$request->input('prodi_id');
 
         $data = User::where('default_role','mahasiswabaru')
@@ -115,11 +115,11 @@ class PMBController extends Controller {
         $this->hasAnyPermission(['SPMB-PMB-FORMULIR-PENDAFTARAN_BROWSE','SPMB-PMB-LAPORAN-PRODI_BROWSE']);
 
         $this->validate($request, [           
-            'TA'=>'required',
+            'ta'=>'required',
             'prodi_id'=>'required'
         ]);
         
-        $ta=$request->input('TA');
+        $ta=$request->input('ta');
         $prodi_id=$request->input('prodi_id');
 
         $data = FormulirPendaftaranModel::select(\DB::raw('

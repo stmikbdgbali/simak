@@ -197,11 +197,11 @@ class UsersController extends Controller {
                 $permission=Role::findByName($role_name)->permissions;
                 $permissions=$permission->pluck('name');
                 $this->validate($request, [           
-                    'TA'=>'required',
+                    'ta'=>'required',
                     'prodi_id'=>'required'
                 ]);                
 
-                $ta=$request->input('TA');
+                $ta=$request->input('ta');
                 $prodi_id=$request->input('prodi_id');
                 $data = User::where('default_role','mahasiswabaru')
                         ->select(\DB::raw('users.id'))
@@ -220,10 +220,10 @@ class UsersController extends Controller {
                 $permission=Role::findByName($role_name)->permissions;
                 $permissions=$permission->pluck('name');
                 $this->validate($request, [           
-                    'TA'=>'required',
+                    'ta'=>'required',
                     'prodi_id'=>'required'
                 ]);  
-                $ta=$request->input('TA');
+                $ta=$request->input('ta');
                 $prodi_id=$request->input('prodi_id');
                 $data = User::where('default_role','mahasiswa')
                         ->select(\DB::raw('users.id'))

@@ -17,10 +17,10 @@ class LogDataMhsMigrationController extends Controller {
         $this->hasPermissionTo('SYSTEM-MIGRATION_BROWSE');
 
         $this->validate($request, [           
-            'TA'=>'required',            
+            'ta'=>'required',            
         ]);
         
-        $ta=$request->input('TA');
+        $ta=$request->input('ta');
         
         $daftar_log=DataMHSMigrationModel::where('tahun',$ta)
                                         ->get();

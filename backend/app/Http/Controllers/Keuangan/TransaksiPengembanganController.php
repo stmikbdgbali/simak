@@ -13,13 +13,13 @@ use Exception;
 
 use Ramsey\Uuid\Uuid;
 
-class TransaksiPendaftaranMHSBaruController extends Controller {  
+class TransaksiPengembanganController extends Controller {  
 	/**
 	 * daftar komponen biaya
 	 */
 	public function index(Request $request)
 	{
-		$this->hasPermissionTo('KEUANGAN-TRANSAKSI-BIAYA-PENDAFTARAN_BROWSE');        
+		$this->hasPermissionTo('KEUANGAN-TRANSAKSI-PENGEMBANGAN_BROWSE');        
 			
 		$this->validate($request, [           
 			'ta'=>'required',        
@@ -62,7 +62,7 @@ class TransaksiPendaftaranMHSBaruController extends Controller {
 																						->join('pe3_transaksi','pe3_transaksi_detail.transaksi_id','pe3_transaksi.id')
 																						->join('pe3_formulir_pendaftaran','pe3_formulir_pendaftaran.user_id','pe3_transaksi_detail.user_id')
 																						->join('pe3_status_transaksi','pe3_transaksi.status','pe3_status_transaksi.id_status')                                                    
-																						->where('pe3_transaksi_detail.kombi_id',101)                                                    
+																						->where('pe3_transaksi_detail.kombi_id',102)                                                    
 																						->orderBy('pe3_transaksi.tanggal','DESC');                                                    
 
 		if ($request->has('SEARCH'))
@@ -83,12 +83,45 @@ class TransaksiPendaftaranMHSBaruController extends Controller {
 																'message'=>'Fetch data daftar transaksi berhasil.'
 														],200)->setEncodingOptions(JSON_NUMERIC_CHECK);
 	}
+	public function search(Request $request)
+    {
+        $this->hasPermissionTo('SPMB-PMB_BROWSE');
+
+        $this->validate($request,[
+            'search'=>'required',
+            'prodi_id'=>'required',
+            'ta'=>'required',
+        ]);
+
+        $data = User::where('default_role','mahasiswabaru')
+                    ->select(\DB::raw('
+                                    users.id,
+                                    users.username,
+                                    users.name,
+                                    users.email,
+                                    users.nomor_hp                                  
+                                '))
+                    ->join('pe3_formulir_pendaftaran','pe3_formulir_pendaftaran.user_id','users.id')
+                    ->where('pe3_formulir_pendaftaran.nama_mhs', 'LIKE', '%'.$request->input('search').'%')
+                    ->where('pe3_formulir_pendaftaran.ta',$request->input('ta'))
+                    ->where('pe3_formulir_pendaftaran.kjur1',$request->input('prodi_id'))
+                    ->where('users.active',1)
+                    ->get();
+
+        return Response()->json([
+                                'status'=>1,
+                                'pid'=>'fetchdata',
+                                'daftar_mhs'=>$data,  
+                                'jumlah'=>$data->count(),                                                                                                                                   
+                                'message'=>'Daftar Calon Mahasiswa baru berhasil diperoleh.'
+                            ], 200); 
+    }
 	/**
 	 * buat transaksi baru
 	 */
 	public function store (Request $request)
 	{
-			$this->hasPermissionTo('KEUANGAN-TRANSAKSI-BIAYA-PENDAFTARAN_STORE');
+			$this->hasPermissionTo('KEUANGAN-TRANSAKSI-PENGEMBANGAN_STORE');
 
 			$this->validate($request, [           
 					'user_id'=>'required|exists:pe3_formulir_pendaftaran,user_id',                        
@@ -106,7 +139,7 @@ class TransaksiPendaftaranMHSBaruController extends Controller {
 																					->where('pe3_transaksi.ta',$formulir->ta)
 																					->where('pe3_transaksi.idsmt',$formulir->idsmt)
 																					->where('pe3_transaksi.user_id',$user_id)
-																					->where('pe3_transaksi_detail.kombi_id',101)                                                                                      
+																					->where('pe3_transaksi_detail.kombi_id',102)                                                                                      
 																					->where(function($query) {
 																							$query->where('pe3_transaksi.status',0)
 																									->orWhere('pe3_transaksi.status',1);
@@ -122,16 +155,16 @@ class TransaksiPendaftaranMHSBaruController extends Controller {
 					$biaya_kombi=BiayaKomponenPeriodeModel::where('tahun',$formulir->ta)
 																									->where('idkelas',$formulir->idkelas)
 																									->where('kjur',$formulir->kjur1)
-																									->where('kombi_id',101)
+																									->where('kombi_id',102)
 																									->value('biaya');
 					
 					if (!($biaya_kombi > 0))
 					{
-							throw new Exception ("Komponen Biaya Pendaftaran (101) belum disetting pada TA $ta");  
+							throw new Exception ("Komponen Biaya Pendaftaran (102) belum disetting pada TA $ta");  
 					}
 
 					$transaksi = \DB::transaction(function () use ($request,$formulir,$biaya_kombi){
-							$no_transaksi='101'.date('YmdHms');
+							$no_transaksi='102'.date('YmdHms');
 							$transaksi=TransaksiModel::create([
 									'id'=>Uuid::uuid4()->toString(),
 									'user_id'=>$formulir->user_id,
@@ -152,7 +185,7 @@ class TransaksiPendaftaranMHSBaruController extends Controller {
 									'user_id'=>$formulir->user_id,
 									'transaksi_id'=>$transaksi->id,
 									'no_transaksi'=>$transaksi->no_transaksi,
-									'kombi_id'=>101,
+									'kombi_id'=>102,
 									'nama_kombi'=>'BIAYA PENDAFTARAN',
 									'biaya'=>$biaya_kombi,
 									'jumlah'=>1,
@@ -185,7 +218,7 @@ class TransaksiPendaftaranMHSBaruController extends Controller {
 	}
 	public function update(Request $request,$id)
 	{
-			$this->hasPermissionTo('KEUANGAN-TRANSAKSI-BIAYA-PENDAFTARAN_UPDATE');
+			$this->hasPermissionTo('KEUANGAN-TRANSAKSI-PENGEMBANGAN_UPDATE');
 
 			$transaksi_detail = TransaksiDetailModel::find($id);
 			if (is_null($transaksi_detail))
@@ -234,7 +267,7 @@ class TransaksiPendaftaranMHSBaruController extends Controller {
 	}
 	public function destroy(Request $request,$id)
 	{
-			$this->hasPermissionTo('KEUANGAN-TRANSAKSI-BIAYA-PENDAFTARAN_DESTROY');
+			$this->hasPermissionTo('KEUANGAN-TRANSAKSI-PENGEMBANGAN_DESTROY');
 
 			if ($this->hasRole('mahasiswa'))
 			{

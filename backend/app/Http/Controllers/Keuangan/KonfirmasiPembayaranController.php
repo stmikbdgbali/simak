@@ -20,11 +20,11 @@ class KonfirmasiPembayaranController extends Controller {
         $this->hasPermissionTo('KEUANGAN-KONFIRMASI-PEMBAYARAN_BROWSE');
         
         $this->validate($request, [           
-            'TA'=>'required',
-            'PRODI_ID'=>'required',
+            'ta'=>'required',
+            'prodi_id'=>'required',
         ]);
-        $ta=$request->input('TA');
-        $prodi_id=$request->input('PRODI_ID');
+        $ta=$request->input('ta');
+        $prodi_id=$request->input('prodi_id');
         
         $daftar_transaksi=[];
 

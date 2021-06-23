@@ -543,7 +543,7 @@
 					.post(
 						"/spmb/pmb",
 						{
-							TA: this.tahun_pendaftaran,
+							ta: this.tahun_pendaftaran,
 							prodi_id: this.prodi_id,
 						},
 						{
@@ -602,7 +602,7 @@
 						"/system/users/syncallpermissions",
 						{
 							role_name: "mahasiswabaru",
-							TA: this.tahun_pendaftaran,
+							ta: this.tahun_pendaftaran,
 							prodi_id: this.prodi_id,
 						},
 						{
@@ -831,7 +831,7 @@
 									"/spmb/pmb",
 									{
 										prodi_id: this.prodi_id,
-										TA: this.tahun_pendaftaran,
+										ta: this.tahun_pendaftaran,
 										search: this.search,
 									},
 									{

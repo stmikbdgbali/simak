@@ -281,8 +281,8 @@ export default {
             this.datatableLoading = true;  
             await this.$ajax.post("/keuangan/transaksi-dulangmhsbaru",
             {
-                TA: this.tahun_pendaftaran, 
-                PRODI_ID: this.prodi_id               
+                ta: this.tahun_pendaftaran, 
+                prodi_id: this.prodi_id               
             },
             {
                 headers: {
@@ -321,7 +321,7 @@ export default {
                 await this.$ajax.post("/keuangan/transaksi-dulangmhsbaru/store",
                     {
                         no_formulir: this.formdata.no_formulir, 
-                        TA: this.tahun_pendaftaran,
+                        ta: this.tahun_pendaftaran,
                     },
                     {
                         headers: {
@@ -436,8 +436,8 @@ export default {
                         this.datatableLoading = true;  
                         await this.$ajax.post("/keuangan/transaksi-dulangmhsbaru", 
                         {
-                            PRODI_ID: this.prodi_id,
-                            TA: this.tahun_pendaftaran,
+                            prodi_id: this.prodi_id,
+                            ta: this.tahun_pendaftaran,
                             search: this.search
                         },
                         {

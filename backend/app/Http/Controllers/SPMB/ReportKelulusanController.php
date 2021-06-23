@@ -23,12 +23,12 @@ class ReportKelulusanController extends Controller {
         $this->hasAnyPermission(['SPMB-PMB-LAPORAN-KELULUSAN_BROWSE']);
 
         $this->validate($request, [           
-            'TA'=>'required',
+            'ta'=>'required',
             'prodi_id'=>'required',
             'filter_status'=>'required'
         ]);
         
-        $ta=$request->input('TA');
+        $ta=$request->input('ta');
         $prodi_id=$request->input('prodi_id');
         $filter_status=$request->input('filter_status');
 
@@ -134,14 +134,14 @@ class ReportKelulusanController extends Controller {
         $this->hasAnyPermission(['SPMB-PMB-LAPORAN-KELULUSAN_BROWSE']);
 
         $this->validate($request, [           
-            'TA'=>'required',
+            'ta'=>'required',
             'prodi_id'=>'required',
             'nama_prodi'=>'required',
             'filter_status'=>'required'
         ]);
         
         $data_report=[
-            'TA'=>$request->input('TA'),
+            'ta'=>$request->input('ta'),
             'prodi_id'=>$request->input('prodi_id'),            
             'nama_prodi'=>$request->input('nama_prodi'), 
             'filter_status'=>$request->input('filter_status'),            
