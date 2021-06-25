@@ -3,7 +3,7 @@
 		<v-system-bar
 			app
 			dark
-			color="#245ca3"
+			color="#C43638"
 			:class="this.$store.getters['uiadmin/getTheme']('V-SYSTEM-BAR-CSS-CLASS')">
 			<strong>Hak Akses Sebagai :</strong> {{ ROLE }}
 		</v-system-bar>
@@ -13,7 +13,7 @@
       color="#f7f8fd">
 			<v-app-bar-nav-icon @click.stop="drawer = !drawer" class="grey--text"></v-app-bar-nav-icon>
 			<v-toolbar-title class="headline clickable" @click.stop="$router.push('/dashboard/'+$store.getters['auth/AccessToken']).catch(err => {})">
-				<span class="hidden-sm-and-down">{{ APP_NAME }}</span>
+				<span class="headline font-weight-bold mx-1">{{ APP_NAME }}</span>
 			</v-toolbar-title>
 			<v-spacer></v-spacer>
 			<v-menu 
@@ -92,6 +92,7 @@
 			<v-list
 				expand
 				dense
+				rounded
 				class="ml-2 mr-2">
 				<v-list-item :to="{ path: '/dmaster' }" v-if="CAN_ACCESS('DMASTER-GROUP')" link class="warning" color="#FFF">
 					<v-list-item-icon class="mr-2">
