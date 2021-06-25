@@ -56,13 +56,14 @@ class TransaksiPengembanganController extends Controller {
 																								pe3_transaksi.total,
 																								pe3_transaksi.tanggal,
 																								pe3_transaksi.desc,
+																								pe3_transaksi_detail.installment,
 																								pe3_transaksi_detail.created_at,
 																								pe3_transaksi_detail.updated_at
 																						'))
 																						->join('pe3_transaksi','pe3_transaksi_detail.transaksi_id','pe3_transaksi.id')
 																						->join('pe3_formulir_pendaftaran','pe3_formulir_pendaftaran.user_id','pe3_transaksi_detail.user_id')
 																						->join('pe3_status_transaksi','pe3_transaksi.status','pe3_status_transaksi.id_status')                                                    
-																						->where('pe3_transaksi_detail.kombi_id',102)                                                    
+																						->where('pe3_transaksi_detail.kombi_id',102)																						                                            
 																						->orderBy('pe3_transaksi.tanggal','DESC');                                                    
 
 		if ($request->has('SEARCH'))
@@ -119,12 +120,34 @@ class TransaksiPengembanganController extends Controller {
 	/**
 	 * buat transaksi baru
 	 */
+	public function show (Request $request, $id)
+	{
+		$this->hasPermissionTo('KEUANGAN-TRANSAKSI-PENGEMBANGAN_SHOW');
+
+		$transaksi_detail = TransaksiDetailModel::find($id);
+		if (is_null($transaksi_detail))
+		{
+			return Response()->json([
+														'status'=>0,
+														'pid'=>'show',                
+														'message'=>["Detail Transaksi dengan ($id) gagal diperoleh"]
+												], 422); 
+		}
+		else
+		{
+			
+		}
+	}
+	/**
+	 * buat transaksi baru
+	 */
 	public function store (Request $request)
 	{
 			$this->hasPermissionTo('KEUANGAN-TRANSAKSI-PENGEMBANGAN_STORE');
 
 			$this->validate($request, [           
-					'user_id'=>'required|exists:pe3_formulir_pendaftaran,user_id',                        
+					'user_id'=>'required|exists:pe3_formulir_pendaftaran,user_id', 
+					'installment'=>'required|in:0,1'                       
 			]);
 			
 			try 
@@ -160,7 +183,7 @@ class TransaksiPengembanganController extends Controller {
 					
 					if (!($biaya_kombi > 0))
 					{
-							throw new Exception ("Komponen Biaya Pendaftaran (102) belum disetting pada TA $ta");  
+							throw new Exception ("Komponen BIAYA PENGEMBANGAN (102) belum disetting pada TA $ta");  
 					}
 
 					$transaksi = \DB::transaction(function () use ($request,$formulir,$biaya_kombi){
@@ -186,14 +209,15 @@ class TransaksiPengembanganController extends Controller {
 									'transaksi_id'=>$transaksi->id,
 									'no_transaksi'=>$transaksi->no_transaksi,
 									'kombi_id'=>102,
-									'nama_kombi'=>'BIAYA PENDAFTARAN',
+									'nama_kombi'=>'BIAYA PENGEMBANGAN',
 									'biaya'=>$biaya_kombi,
 									'jumlah'=>1,
+									'installment'=>$request->input('installment'),
 									'sub_total'=>$biaya_kombi    
 							]);
 
 							$transaksi->total=$biaya_kombi;
-							$transaksi->desc='BIAYA PENDAFTARAN '.$formulir->ta.$formulir->idsmst;
+							$transaksi->desc='BIAYA PENGEMBANGAN '.$formulir->ta.$formulir->idsmst;
 							$transaksi->save();
 
 							return $transaksi;
@@ -204,7 +228,7 @@ class TransaksiPengembanganController extends Controller {
 																			'status'=>1,
 																			'pid'=>'store',                   
 																			'transaksi'=>$transaksi,                                                                                                                                   
-																			'message'=>'Transaksi Biaya Pendaftaran berhasil di input.'
+																			'message'=>'Transaksi BIAYA PENGEMBANGAN berhasil di input.'
 																	],200); 
 			}
 			catch (Exception $e)
@@ -232,13 +256,15 @@ class TransaksiPengembanganController extends Controller {
 			else
 			{
 				$this->validate($request, [
-					'promovalue'=>'required'
+					'promovalue'=>'required',
+					'installment'=>'required|in:0,1',
 				]);
 				
 				$transaksi_detail = \DB::transaction(function () use ($request, $transaksi_detail) {
 					$promovalue = $request->input('promovalue');
 					$transaksi_detail->promovalue = $promovalue;
 					$transaksi_detail->sub_total = $transaksi_detail->sub_total - $promovalue;
+					$transaksi_detail->installment = $request->input('installment');
 					$transaksi_detail->save();
 
 					$total = \DB::table('pe3_transaksi_detail')
@@ -261,7 +287,7 @@ class TransaksiPengembanganController extends Controller {
 																'status'=>1,
 																'pid'=>'store',                   
 																'transaksi_detail'=>$transaksi_detail,                                                                                                                                   
-																'message'=>'Transaksi Biaya Pendaftaran berhasil diubah.'
+																'message'=>'Transaksi BIAYA PENGEMBANGAN berhasil diubah.'
 														], 200); 
 			}
 	}

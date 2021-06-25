@@ -138,6 +138,19 @@
 															</v-list-item-content>
 														</v-list-item>
 													</template>
+													<v-list-item>
+														<v-list-item-content>
+															<v-list-item-title>
+																<v-radio-group v-model="formdata.installment">
+																	<v-radio label="Tunai" value="0" />
+																	<v-radio label="Cicilan" value="1" />
+																</v-radio-group>
+															</v-list-item-title>
+															<v-list-item-subtitle>
+																<strong>Model Pembayaran</strong>
+															</v-list-item-subtitle>
+														</v-list-item-content>
+													</v-list-item>
 												</v-list>
 											</v-expand-transition>
 											<v-card-actions>
@@ -266,6 +279,11 @@
 																	label="CATATAN:"
 																	outlined
 																/>
+																MODE PEMBAYARAN
+																<v-radio-group v-model="formdata.installment">
+																	<v-radio label="Tunai" value="0" />
+																	<v-radio label="Cicilan" value="1" />
+																</v-radio-group>
 															</v-card-text>
 														</v-card>
 													</v-col>
@@ -352,6 +370,7 @@
 							<td :colspan="headers.length" class="text-center">
 								<v-col cols="13">
 									<strong>TRANS.DETAIL ID:</strong>{{ item.id }}
+									<strong>MODE BAYAR:</strong>{{ item.installment == 1 ? "CICILAN" : "TUNAI" }}
 									<strong>created_at:</strong>
 									{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
 									<strong>updated_at:</strong>
@@ -360,7 +379,7 @@
 							</td>
 						</template>
 						<template v-slot:item.actions="{ item }">
-							<v-icon small class="mr-2" @click.stop="viewItem(item)">
+							<v-icon small class="mr-2" @click.stop="viewItem(item)" v-if="item.installment">
 								mdi-eye
 							</v-icon>
 							<v-icon small class="mr-2" @click.stop="editItem(item)">
@@ -517,11 +536,13 @@
 			formdata: {
 				id: null,
 				promovalue: 0,
+				installment: 0,
 				desc: "",
 			},
 			formdefault: {
 				id: null,
 				promovalue: 0,
+				installment: 0,
 				desc: "",
 			},
 			editedIndex: -1,
@@ -568,6 +589,7 @@
 			async editItem(item) {
 				this.editedIndex = this.datatable.indexOf(item);
 				this.formdata = Object.assign({}, item);
+				this.formdata.installment = this.formdata.installment == 1 ? "1" : "0";
 				this.dialogeditfrm = true;
 				this.data_transaksi = item;
 			},
@@ -607,6 +629,7 @@
 								{
 									_method: "put",
 									promovalue: this.formdata.promovalue,
+									installment: this.formdata.installment,
 									desc: this.formdata.desc,
 								},
 								{
@@ -631,6 +654,7 @@
 								"/keuangan/transaksi-pengembangan/store",
 								{
 									user_id: this.data_mhs.id,
+									installment: this.formdata.installment,
 								},
 								{
 									headers: {

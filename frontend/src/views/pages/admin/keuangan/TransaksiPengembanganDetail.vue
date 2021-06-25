@@ -114,7 +114,7 @@
 											<v-card-actions>
 												<v-spacer></v-spacer>
 												<v-btn :disabled="!data_mhs" @click="save">
-													Buat Transaksi
+													BAYAR LUNAS
 													<v-icon right>
 														mdi-forward
 													</v-icon>
@@ -519,8 +519,9 @@
 						}
 					)
 					.then(({ data }) => {
-						this.datatable = data.transaksi;
-						this.datatableLoading = false;
+						console.log(data);
+						// this.datatable = data.transaksi;
+						// this.datatableLoading = false;
 					});
 				this.firstloading = false;
 				this.$refs.filter7.setFirstTimeLoading(this.firstloading);
