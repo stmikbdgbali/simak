@@ -4,9 +4,15 @@
 				<strong>Hak Akses Sebagai :</strong> {{ ROLE }}
 			</v-system-bar>	
 			<v-app-bar app class="white" elevation="0">   
-				<v-toolbar-title class="headline clickable" @click.stop="$router.push('/dashboard/'+$store.getters['auth/AccessToken']).catch(err => {})">
-				<span>{{ APP_NAME }}</span>
-			</v-toolbar-title>
+				<v-toolbar-title @click.stop="$router.push('/dashboard/'+$store.getters['auth/AccessToken']).catch(err => {})">
+								<span>
+									<v-img
+											max-width="400"
+											:src="$api.storageURL+'/storage/images/applogo.png'"
+											>
+										</v-img>
+								</span>
+				</v-toolbar-title>
 			<v-spacer></v-spacer>   
 			<v-divider
 				class="mx-4"

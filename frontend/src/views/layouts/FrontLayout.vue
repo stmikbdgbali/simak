@@ -1,21 +1,27 @@
 <template>
 	<div>
-		<v-app-bar app elevation="0">
-			<v-toolbar-title>
-				<span class="hidden-sm-and-down">{{ namaPTAlias }}</span>
-			</v-toolbar-title>
+		<v-app-bar app class="white" elevation="0">
+			<v-toolbar-title @click.stop="$router.push('/dashboard/'+$store.getters['auth/AccessToken']).catch(err => {})">
+								<span>
+									<v-img
+											max-width="305"
+											:src="$api.storageURL+'/storages/images/applogo.png'"
+											>
+										</v-img>
+								</span>
+				</v-toolbar-title>
 			<v-spacer />
 			<v-toolbar-items class="hidden-sm-and-down">
-				<v-btn to="/" class="mr-2" color="primary" text large>
+				<v-btn to="/" class="mr-2" color="red darken-3" text large>
 					HOME
 				</v-btn>
-				<v-btn to="/blog/cara-pendaftaran" class="mr-2" color="primary" text large>
+				<v-btn to="/blog/cara-pendaftaran" class="mr-2" color="red darken-3" text large>
 					CARA PENDAFTARAN
 				</v-btn>
-				<v-btn to="/pmb" class="mr-2" color="primary" text large>
+				<v-btn to="/pmb" class="mr-2" color="red darken-3" text large>
 					PENDAFTARAN
 				</v-btn>
-				<v-btn to="/login" color="primary" text large>
+				<v-btn to="/login" color="red darken-3" text large>
 					LOGIN
 				</v-btn>
 			</v-toolbar-items>
