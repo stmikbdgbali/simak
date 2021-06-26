@@ -7,8 +7,8 @@
 				<v-toolbar-title @click.stop="$router.push('/dashboard/'+$store.getters['auth/AccessToken']).catch(err => {})">
 								<span>
 									<v-img
-											max-width="400"
-											:src="$api.storageURL+'/storage/images/applogo.png'"
+											max-width="305"
+											:src="$api.storageURL+'/storages/images/applogo.png'"
 											>
 										</v-img>
 								</span>
