@@ -21,7 +21,7 @@ export default {
     name: "FilterMode18",
     created()
     {
-        this.daftar_prodi=this.$store.getters['uiadmin/getDaftarProdi'];
+        this.daftar_prodi = this.$store.getters['uiadmin/getDaftarProdi'];
         this.prodi_id = this.$store.getters["uiadmin/getProdiID"];         
 
         this.daftar_ta = this.$store.getters['uiadmin/getDaftarTA'];

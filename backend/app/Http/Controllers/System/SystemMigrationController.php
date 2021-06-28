@@ -31,7 +31,7 @@ class SystemMigrationController extends Controller {
         $ta=$request->input('ta');
         $daftar_tasmt=[];
         
-        for ($tahun=$ta;$tahun < 2020; $tahun++)
+        for ($tahun=$ta;$tahun < 2021; $tahun++)
         {
             $daftar_tasmt[]=[
                 'id'=>$tahun.'1',
@@ -155,7 +155,7 @@ class SystemMigrationController extends Controller {
             ]);
             $status_mhs=$request->input('status_mhs');            
             $i=0;
-            for ($tahun=$ta;$tahun < 2020; $tahun++)
+            for ($tahun=$ta;$tahun < 2021; $tahun++)
             {
                 if (isset($status_mhs[$i]) && isset($status_mhs[$i+1]))
                 {
