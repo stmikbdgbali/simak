@@ -4,12 +4,12 @@
 			<v-row align="center" justify="center" no-gutters>
 				<v-col xs="12" sm="6" md="4">
 					<h1
-						class="text-center display-1 font-weight-black primary--text"
+						class="text-center display-1 font-weight-black" style="color:#cd1618"
 					>
 						PENDAFTARAN MAHASISWA BARU
 					</h1>
 					<h4
-						class="text-center title font-weight-black primary--text"
+						class="text-center title font-weight-black" style="color:#cd1618"
 					>
 						TAHUN AKADEMIK {{ tahunPendaftaran | formatTA }}
 					</h4>
@@ -26,6 +26,7 @@
 									:rules="rule_name"
 									outlined
 									dense
+									color="red darken-3"
 								/>
 								<v-text-field
 									v-model="formdata.nomor_hp"
@@ -33,6 +34,7 @@
 									:rules="rule_nomorhp"
 									outlined
 									dense
+									color="red darken-3"
 								/>
 								<v-text-field
 									v-model="formdata.email"
@@ -40,8 +42,10 @@
 									:rules="rule_email"
 									outlined
 									dense
+									color="red darken-3"
 								/>
 								<v-select
+									color="red darken-3"
 									v-model="kode_fakultas"
 									label="FAKULTAS"
 									outlined
@@ -56,6 +60,7 @@
 									"
 								/>
 								<v-select
+									color="red darken-3"
 									label="PROGRAM STUDI"
 									v-model="prodi_id"
 									:items="daftar_prodi"
@@ -70,6 +75,7 @@
 									:rules="rule_username"
 									outlined
 									dense
+									color="red darken-3"
 								/>
 								<v-text-field
 									v-model="formdata.password"
@@ -78,6 +84,7 @@
 									:rules="rule_password"
 									outlined
 									dense
+									color="red darken-3"
 								/>
 								<v-alert
 									color="error"
@@ -100,7 +107,9 @@
 							</v-card-actions>
 							<v-card-actions class="justify-center">
 								<v-btn
-									color="primary"
+									elevation="0"
+									dark
+									color="red darken-3"
 									@click="save"
 									:disabled="btnLoading"
 									block
