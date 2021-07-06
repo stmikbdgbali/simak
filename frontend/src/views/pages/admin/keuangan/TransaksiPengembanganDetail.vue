@@ -28,8 +28,7 @@
 				<v-col cols="12">
 					<v-data-table
 						:headers="headers"
-						:items="datatable"
-						:search="search"
+						:items="datatable"						
 						item-key="id"
 						sort-by="nama_mhs"
 						show-expand
@@ -519,12 +518,9 @@
 						}
 					)
 					.then(({ data }) => {
-						console.log(data);
-						// this.datatable = data.transaksi;
-						// this.datatableLoading = false;
-					});
-				this.firstloading = false;
-				this.$refs.filter7.setFirstTimeLoading(this.firstloading);
+						this.datatable = data.transaksi_detail;
+						this.datatableLoading = false;
+					});				
 			},
 			dataTableRowClicked(item) {
 				if (item === this.expanded[0]) {
