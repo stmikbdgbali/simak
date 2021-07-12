@@ -47,11 +47,11 @@ class CreateTransaksiTable extends Migration
         Schema::create('pe3_transaksi_detail', function (Blueprint $table) {
             $table->uuid('id')->primary(); 
             $table->uuid('user_id');               
-            $table->uuid('transaksi_id');    
+            $table->uuid('transaksi_id');
             $table->string('no_transaksi',20);  
             $table->smallInteger('kombi_id'); 
             $table->string('nama_kombi');  
-            $table->decimal('biaya',15,2);                                                            
+            $table->decimal('biaya',15,2);
             $table->string('promocode')->nullable();
             $table->string('promotype')->nullable();
             $table->decimal('promovalue',15,2)->default(0);

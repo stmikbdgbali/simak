@@ -124,18 +124,28 @@ class TransaksiPengembanganController extends Controller {
 	{
 		$this->hasPermissionTo('KEUANGAN-TRANSAKSI-PENGEMBANGAN_SHOW');
 
-		$transaksi_detail = TransaksiDetailModel::find($id);
-		if (is_null($transaksi_detail))
-		{
+		$transaksi = TransaksiModel::find($id);
+		if (is_null($transaksi))
+		{			
 			return Response()->json([
 														'status'=>0,
-														'pid'=>'show',                
+														'pid'=>'show',														
 														'message'=>["Detail Transaksi dengan ($id) gagal diperoleh"]
 												], 422); 
 		}
 		else
 		{
-			
+			$transaksi_detail = TransaksiDetailModel::where('transaksi_id', $transaksi->id)
+																								->get();
+
+													
+			return Response()->json([
+														'status'=>0,
+														'pid'=>'show',
+														'transaksi'=>$transaksi,
+														'transaksi_detail'=>$transaksi_detail,
+														'message'=>["Detail Transaksi dengan ($id) gagal diperoleh"]
+												], 200); 
 		}
 	}
 	/**
