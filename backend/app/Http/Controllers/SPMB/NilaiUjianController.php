@@ -39,9 +39,9 @@ class NilaiUjianController extends Controller {
 												COALESCE(pe3_nilai_ujian_pmb.nilai,\'N.A\') AS nilai,
 												pe3_nilai_ujian_pmb.ket_lulus,
 												CASE
-														WHEN pe3_nilai_ujian_pmb.ket_lulus IS NULL THEN \'N.A\'
-														WHEN pe3_nilai_ujian_pmb.ket_lulus=0 THEN \'TIDAK LULUS\'
-														WHEN pe3_nilai_ujian_pmb.ket_lulus=1 THEN \'LULUS\'
+													WHEN pe3_nilai_ujian_pmb.ket_lulus IS NULL THEN \'N.A\'
+													WHEN pe3_nilai_ujian_pmb.ket_lulus=0 THEN \'TIDAK LULUS\'
+													WHEN pe3_nilai_ujian_pmb.ket_lulus=1 THEN \'LULUS\'
 												END AS status,
 												pe3_nilai_ujian_pmb.kjur,
 												pe3_kelas.nkelas,
@@ -151,12 +151,18 @@ class NilaiUjianController extends Controller {
 
 				$formulir=FormulirPendaftaranModel::select(\DB::raw('   
 																														pe3_formulir_pendaftaran.user_id,
+																														users.username,
 																														pe3_formulir_pendaftaran.nama_mhs,
 																														kjur1,
-																														CONCAT(pe3_prodi.nama_prodi,\'(\',pe3_prodi.nama_jenjang,\')\') AS nama_prodi
+																														CONCAT(pe3_prodi.nama_prodi,\' (\',pe3_prodi.nama_jenjang,\')\') AS nama_prodi,
+																														CASE
+																															WHEN pe3_register_mahasiswa.user_id IS NULL THEN 0
+																															ELSE 1
+																														END AS status
 																												'))
 																						->join('users','users.id','pe3_formulir_pendaftaran.user_id')
-																						->join('pe3_prodi','pe3_prodi.id','pe3_formulir_pendaftaran.kjur1')                                            
+																						->join('pe3_prodi','pe3_prodi.id','pe3_formulir_pendaftaran.kjur1')
+																						->leftJoin('pe3_register_mahasiswa', 'pe3_register_mahasiswa.user_id', 'pe3_formulir_pendaftaran.user_id')
 																						->find($id);
 				if (is_null($formulir))
 				{
@@ -185,7 +191,16 @@ class NilaiUjianController extends Controller {
 								$transaksi_status=$transaksi_detail->status;
 						}             
 						$daftar_prodi[]=['prodi_id'=>$formulir->kjur1,'nama_prodi'=>$formulir->nama_prodi];
-						$data_nilai_ujian=NilaiUjianPMBModel::find($id); 
+						$data_nilai_ujian=NilaiUjianPMBModel::select(\DB::raw('
+																										pe3_nilai_ujian_pmb.*,
+																										CASE
+																											WHEN pe3_nilai_ujian_pmb.ket_lulus IS NULL THEN \'N.A\'
+																											WHEN pe3_nilai_ujian_pmb.ket_lulus=0 THEN \'TIDAK LULUS\'
+																											WHEN pe3_nilai_ujian_pmb.ket_lulus=1 THEN \'LULUS\'
+																										END AS status
+																								'))
+																								->where('user_id', $id)
+																								->first(); 
 						return Response()->json([
 																		'status'=>1,
 																		'pid'=>'fetchdata',
@@ -290,15 +305,72 @@ class NilaiUjianController extends Controller {
 				}
 				else
 				{
-						$name=$data_nilai->name;
 						$data_nilai->delete();
-
 						\App\Models\System\ActivityLog::log($request,[
-																																'object' => $this->guard()->user(), 
-																																'object_id' => $this->guard()->user()->id, 
-																																'user_id' => $this->getUserid(), 
-																																'message' => 'Menghapus Data nilai ujian pmb dengan user id ('.$data_nilai->user_id.') berhasil'
-																														]);
+																													'object' => $data_nilai, 
+																													'object_id' => $data_nilai->user_id, 
+																													'user_id' => $this->getUserid(), 
+																													'message' => 'Menghapus Data nilai ujian pmb dengan user id ('.$data_nilai->user_id.') berhasil'
+																												]);
+				
+						return Response()->json([
+																				'status'=>1,
+																				'pid'=>'destroy',                
+																				'message' => 'Menghapus Data nilai ujian pmb dengan user id ('.$data_nilai->user_id.') berhasil'
+																		],200);         
+				}
+									
+		} 
+		/**
+		 * Menghapus data nilai ujian sekaligus pendaftaran
+		 *
+		 * @param  int  $id
+		 * @return \Illuminate\Http\Response
+		 */
+		public function batalkan(Request $request,$id)
+		{ 
+				$this->hasAnyPermission(['SPMB-PMB-NILAI-UJIAN_DESTROY']);
+
+				$data_nilai = NilaiUjianPMBModel::select(\DB::raw('
+																				pe3_nilai_ujian_pmb.user_id
+																			'))
+																			->leftJoin('pe3_register_mahasiswa', 'pe3_register_mahasiswa.user_id', 'pe3_nilai_ujian_pmb.user_id')
+																			->where('pe3_nilai_ujian_pmb.user_id', $id)
+																			->whereNull("pe3_register_mahasiswa.user_id")
+																			->first(); 
+				
+				if (is_null($data_nilai))
+				{
+						return Response()->json([
+																		'status'=>0,
+																		'pid'=>'destroy',                
+																		'message'=>["Data Ujian  dengan ID ($id) gagal dihapus, barangkali sudah terdaftar jadi Mahasiswa."]
+																], 422); 
+				}
+				else
+				{
+					\DB::transaction(function () use ($data_nilai, $request) {												
+						$user_id = $data_nilai->user_id;
+						\DB::table('pe3_nilai_ujian_pmb')
+								->where('user_id', $user_id)
+								->delete();
+
+						\DB::table('pe3_peserta_ujian_pmb')
+								->where('user_id', $user_id)
+								->delete();
+
+						\DB::table('pe3_jawaban_ujian')
+								->where('user_id', $user_id)
+								->delete();
+
+						\App\Models\System\ActivityLog::log($request, [
+																													'object' => $data_nilai, 
+																													'object_id' => $data_nilai->user_id, 
+																													'user_id' => $this->getUserid(), 
+																													'message' => 'Menghapus Data nilai ujian pmb dengan user id ('.$data_nilai->user_id.') berhasil'
+																												]);
+					});
+						
 				
 						return Response()->json([
 																				'status'=>1,

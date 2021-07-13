@@ -49,25 +49,6 @@
 								<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly" />
 								<v-col xs="12" sm="6" md="6">
 									<v-card flat>
-										<v-card-title>PROGRAM STUDI :</v-card-title>
-										<v-card-subtitle>
-											{{ data_mhs.nama_prodi }}
-										</v-card-subtitle>
-									</v-card>
-								</v-col>
-							</v-row>
-							<v-row>
-								<v-col xs="12" sm="6" md="6">
-									<v-card flat>
-										<v-card-title>NAMA MAHASISWA :</v-card-title>
-										<v-card-subtitle>
-											{{ data_mhs.nama_mhs }}
-										</v-card-subtitle>
-									</v-card>
-								</v-col>
-								<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly" />
-								<v-col xs="12" sm="6" md="6">
-									<v-card flat>
 										<v-card-title>JUMLAH SOAL :</v-card-title>
 										<v-card-subtitle>
 											{{ data_nilai_ujian.jumlah_soal }}
@@ -78,9 +59,9 @@
 							<v-row>
 								<v-col xs="12" sm="6" md="6">
 									<v-card flat>
-										<v-card-title>NILAI UJIAN :</v-card-title>
+										<v-card-title>USERNAME :</v-card-title>
 										<v-card-subtitle>
-											{{ data_nilai_ujian.nilai }}
+											{{ data_mhs.username }}
 										</v-card-subtitle>
 									</v-card>
 								</v-col>
@@ -91,13 +72,74 @@
 										<v-card-subtitle>
 											BENAR ({{ data_nilai_ujian.jawaban_benar }}), SALAH ({{
 												data_nilai_ujian.jawaban_salah
-											}})
+											}}), TIDAK TERJAWAB ({{ data_nilai_ujian.soal_tidak_terjawab }})
+										</v-card-subtitle>
+									</v-card>
+								</v-col>
+							</v-row>
+							<v-row>
+								<v-col xs="12" sm="6" md="6">
+									<v-card flat>
+										<v-card-title>NAMA CALON MAHASISWA :</v-card-title>
+										<v-card-subtitle>
+											{{ data_mhs.nama_mhs }}
+										</v-card-subtitle>
+									</v-card>
+								</v-col>
+								<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly" />
+								<v-col xs="12" sm="6" md="6">
+									<v-card flat>
+										<v-card-title>NILAI DAN HASIL UJIAN :</v-card-title>
+										<v-card-subtitle>
+											{{ data_nilai_ujian.nilai }} / {{ data_nilai_ujian.status }}
+										</v-card-subtitle>
+									</v-card>
+								</v-col>
+							</v-row>
+							<v-row>
+								<v-col xs="12" sm="6" md="6">
+									<v-card flat>
+										<v-card-title>PROGRAM STUDI :</v-card-title>
+										<v-card-subtitle>
+											{{ data_mhs.nama_prodi }}
+										</v-card-subtitle>
+									</v-card>
+								</v-col>
+								<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly" />
+								<v-col xs="12" sm="6" md="6">
+									<v-card flat>
+										<v-card-title>CREATED / UPDATED :</v-card-title>
+										<v-card-subtitle>
+											{{ $date(data_nilai_ujian.created_at).format("DD/MM/YYYY HH:mm") }} / 
+											{{ $date(data_nilai_ujian.updated_at).format("DD/MM/YYYY HH:mm") }}											
 										</v-card-subtitle>
 									</v-card>
 								</v-col>
 							</v-row>
 						</v-card-text>
 					</v-card>
+				</v-col>
+			</v-row>
+			<v-row>
+				<v-col cols="12">
+					<v-bottom-navigation color="purple lighten-1">
+						<v-btn
+							@click.stop="batalkan"
+							:disabled="btnLoading || data_mhs.status == 1"
+						>
+							<span>BATALKAN UJIAN</span>
+							<v-icon>mdi-close-outline</v-icon>
+						</v-btn>						
+					</v-bottom-navigation>
+				</v-col>
+			</v-row>
+		</v-container>
+		<v-container fluid v-if="!data_nilai_ujian">
+			<v-row class="mb-4" no-gutters>
+				<v-col cols="12">
+					<v-alert color="red" type="error">
+						Calon mahasiswa baru a.n ({{ data_mhs.nama_mhs }}) ini belum melakukan Ujian Online
+					</v-alert>
 				</v-col>
 			</v-row>
 		</v-container>
@@ -144,6 +186,7 @@
 			this.initialize();
 		},
 		data: () => ({
+			btnLoading: false,
 			prodi_id: null,
 			tahun_pendaftaran: null,
 			nama_prodi: null,
@@ -172,6 +215,44 @@
 							this.datatableLoading = false;
 						});
 				}
+			},
+			batalkan() {
+				this.$root.$confirm
+					.open(
+						"Batalkan Hasil Ujian",
+						"Apakah Anda ingin Membatalkan ujian dan membuat mahasiswa a.n " +
+							this.data_mhs.nama_mhs +
+							" keluar dari jadwal ujian ?",
+						{
+							color: "red",
+							width: "600px",
+						}
+					)
+					.then(confirm => {
+						if (confirm) {
+							this.$ajax
+								.post(
+									"/spmb/nilaiujian/batalkan/" + this.user_id,
+									{
+										_method: "DELETE",
+									},
+									{
+										headers: {
+											Authorization: this.$store.getters[
+												"auth/Token"
+											],
+										},
+									}
+								)
+								.then(() => {
+									this.btnLoading = false;
+									this.$router.push('/spmb/nilaiujian');
+								})
+								.catch(() => {
+									this.btnLoading = false;
+								});
+						}
+					});
 			},
 			closedialogfrm() {
 				this.$router.push("/spmb/nilaiujian/");

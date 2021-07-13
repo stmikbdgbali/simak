@@ -24,7 +24,7 @@
 					colored-border
 					type="info"
 					>
-						Berisi nilai ujian PMB,dan juga bisa untuk penentuan nilai ujian dan kelulusan.
+						Berisi nilai ujian PMB, dan juga bisa untuk penentuan nilai ujian dan kelulusan melalui UJIAN ONLINE atau TANPA UJIAN UJIAN ONLINE.
 				</v-alert>
 			</template>
 		</ModuleHeader>
@@ -304,7 +304,7 @@
 			datatable: [],
 			headers: [
 				{ text: "",value: "foto", width:70 },
-				{ text: "NO. FORMULIR",value: "no_formulir", width: 135, sortable: true },
+				{ text: "NO. FORMULIR",value: "no_formulir", width: 150, sortable: true },
 				{ text: "NAMA MAHASISWA",value: "name", width: 350, sortable: true },
 				{ text: "NOMOR HP",value: "nomor_hp", width: 100},
 				{ text: "KELAS",value: "nkelas", width: 100, sortable: true },
@@ -516,8 +516,8 @@
 			ulangujian(item) {
 				this.$root.$confirm
 					.open(
-						"Delete",
-						"Apakah Anda ingin menghapus data dengan ID " +
+						"Ulang Ujian",
+						"Apakah Anda ingin mengulang ujian mahasiswa dengan ID " +
 							item.id +
 							" ?",
 						{ color: "red" }
