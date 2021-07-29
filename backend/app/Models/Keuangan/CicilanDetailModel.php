@@ -4,13 +4,13 @@ namespace App\Models\Keuangan;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TransaksiModel extends Model {    
+class CicilanDetailModel extends Model {    
 	 /**
 	 * nama tabel model ini.
 	 *
 	 * @var string
 	 */
-	protected $table = 'pe3_transaksi';
+	protected $table = 'pe3_cicilan_detail';
 	/**
 	 * primary key tabel ini.
 	 *
@@ -25,18 +25,9 @@ class TransaksiModel extends Model {
 	protected $fillable = [        
 		'id',                      
 		'user_id',    
-		'no_transaksi',
-		'no_faktur',
-		'kjur',
-		'ta',
-		'idsmt',
-		'idkelas',
-		'no_formulir',
-		'nim',
-		'status',
-		'total',
-		'tanggal',
-		'desc',
+    'cicilan_id',
+    'transaksi_id',
+		'cicilan',		
 	];
 	/**
 	 * enable auto_increment.
@@ -50,9 +41,4 @@ class TransaksiModel extends Model {
 	 * @var string
 	 */
 	public $timestamps = true;
-
-	public function detail ()
-	{
-		return $this->hasMany('\App\Models\Keuangan\TransaksiDetailModel','transaksi_id','id');
-	}
 }
