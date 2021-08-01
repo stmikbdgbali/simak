@@ -94,7 +94,7 @@
 								>
 									<v-icon>mdi-printer</v-icon>
 								</v-btn>
-								<v-dialog v-model="dialogfrm" max-width="500px" persistent>
+								<v-dialog v-model="dialogfrm" max-width="700px" persistent>
 									<v-form ref="frmdata" v-model="form_valid" lazy-validation>
 										<v-card outlined>
 											<v-list-item three-line>
@@ -125,33 +125,44 @@
 											</v-list-item>
 											<v-divider></v-divider>
 											<v-expand-transition>
-												<v-list v-if="data_mhs">
-													<template v-for="(field, i) in fields">
-														<v-list-item :key="i" v-if="field.key != 'name'">
-															<v-list-item-content>
-																<v-list-item-title>
-																	{{ field.value }}
-																</v-list-item-title>
-																<v-list-item-subtitle>
-																	<strong>{{ field_alias(field.key) }}</strong>
-																</v-list-item-subtitle>
-															</v-list-item-content>
-														</v-list-item>
-													</template>
-													<v-list-item>
-														<v-list-item-content>
-															<v-list-item-title>
-																<v-radio-group v-model="formdata.installment">
+												<v-row no-gutters v-if="data_mhs">
+													<v-col xs="12" sm="6" md="6" v-for="(field, i) in fields" v-bind:key="field.id">
+														<v-card flat :key="i">
+															<v-card-title>{{ field_alias(field.key) }}</v-card-title>
+															<v-card-subtitle>
+																{{ field.value }}
+															</v-card-subtitle>
+														</v-card>
+													</v-col>
+													<v-responsive
+														width="100%"
+														v-if="$vuetify.breakpoint.xsOnly"
+													/>
+													<v-col xs="12" sm="6" md="6">
+														<v-card flat>
+															<v-card-title>Model Pembayaran</v-card-title>
+															<v-card-subtitle>
+																<v-radio-group v-model="formdata.installment" row>
 																	<v-radio label="Tunai" value="0" />
 																	<v-radio label="Cicilan" value="1" />
 																</v-radio-group>
-															</v-list-item-title>
-															<v-list-item-subtitle>
-																<strong>Model Pembayaran</strong>
-															</v-list-item-subtitle>
-														</v-list-item-content>
-													</v-list-item>
-												</v-list>
+															</v-card-subtitle>
+														</v-card>
+													</v-col>
+													<v-col xs="12" sm="12" md="12">	
+														<v-card flat>
+															<v-card-title>Potongan</v-card-title>
+															<v-card-text>																
+																<v-text-field
+																	v-model="formdata.promovalue"																	
+																	label=""
+																	outlined
+																	hide-details
+																/>
+															</v-card-text>
+														</v-card>
+													</v-col>
+												</v-row>																						
 											</v-expand-transition>
 											<v-card-actions>
 												<v-spacer></v-spacer>
@@ -444,6 +455,8 @@
 		},
 		mounted() {
 			this.initialize();
+			this.firstloading = false;
+			this.$refs.filter7.setFirstTimeLoading(this.firstloading);
 		},
 		data: () => ({
 			dashboard: null,
@@ -572,9 +585,7 @@
 					.then(({ data }) => {
 						this.datatable = data.transaksi;
 						this.datatableLoading = false;
-					});
-				this.firstloading = false;
-				this.$refs.filter7.setFirstTimeLoading(this.firstloading);
+					});				
 			},
 			dataTableRowClicked(item) {
 				if (item === this.expanded[0]) {
