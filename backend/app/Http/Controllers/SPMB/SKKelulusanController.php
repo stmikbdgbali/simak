@@ -85,6 +85,18 @@ class SKKelulusanController extends Controller {
 				$surat_keluar = SuratKeluarModel::where('user_id_kepada',$formulir->user_id)
 															->first();
 
+				$ttd = json_decode($config['DEFAULT_TTD_SK_KELULUSAN'], true);
+				$user_id = null;
+				$nik = null;
+				$nama_dosen = null;
+				if (isset($ttd['nama']))
+				{
+					$nama_dosen = $ttd['nama'];
+				}
+				if (isset($ttd['nik']))
+				{
+					$nik = $ttd['nik'];
+				}
 				if (is_null($surat_keluar))
 				{
 					$id=Uuid::uuid4()->toString();
@@ -104,13 +116,13 @@ class SKKelulusanController extends Controller {
 					$sign_qrcode = Helper::public_path('images/signature/'.$id.'.png');
 					QrCode::format('png');
 					QrCode::generate('Make me into a QrCode!',$sign_qrcode);	
-
+					
 					$surat_keluar=SuratKeluarModel::create([
 						'id'=>$id,
 						'user_id_created'=>$this->getUserid(),
 						'nama_user_created'=>$this->getName(),
-						'user_id_ttd'=>$config['DEFAULT_USER_ID_TTD_SK_KELULUSAN'],
-						'nama_user_ttd'=>$config['DEFAULT_USER_NAME_TTD_SK_KELULUSAN'],
+						'user_id_ttd'=>$user_id,
+						'nama_user_ttd'=>$nama_dosen,
 						'nomor_surat'=>$nomor_surat,
 						'no_urut'=>$no_urut,
 						'bulan_surat'=>$bulan_surat,
@@ -162,7 +174,8 @@ class SKKelulusanController extends Controller {
 																																	'jas_almamater'=>Helper::formatUang($jas_almamater),
 																																	'spp'=>Helper::formatUang($spp),
 																																	'sign_qrcode'=>$sign_qrcode,
-																																	'signature'=>json_decode($config['DEFAULT_TTD_SK_KELULUSAN'],false),
+																																	'nama_ttd'=>$nama_dosen,
+																																	'nik'=>$nik,
 																																],
 																																[],
 																																[
