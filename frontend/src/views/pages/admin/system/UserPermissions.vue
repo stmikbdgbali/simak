@@ -205,7 +205,7 @@
 						},
 					})
 					.then(({ data }) => {
-						this.daftar_role=data.roles;
+						this.daftar_role= data.roles;
 					});
 			},
 			save() {

@@ -159,7 +159,7 @@ export default {
                 href: "#"
             }
         ];
-        if (this.$store.getters['uiadmin/getDefaultDashboard']=="mahasiswa")
+        if (this.$store.getters['uiadmin/getDefaultDashboard'] =="mahasiswa")
         {
             this.initializeMhs();
         }   
@@ -306,7 +306,7 @@ export default {
                     
                 }
             ).then(({ data }) => {
-                this.file_pdf=data.pdf_file;
+                this.file_pdf= data.pdf_file;
                 this.dialogprintpdf=true;
                 this.btnLoadingTable=false;
             }).catch(() => {

@@ -470,10 +470,10 @@ export default {
         editItem(item) {
             this.editedIndex = this.datatable.indexOf(item);
             this.formdata = Object.assign({}, item);  
-            this.semester_ganjil[0]=this.formdata.awal_ganjil == null ? item.tahun+"-09-01":item.awal_ganjil;
-            this.semester_ganjil[1]=this.formdata.akhir_ganjil == null ? (item.tahun+1)+"-02-31":item.akhir_ganjil;  
-            this.semester_genap[0]=this.formdata.awal_genap == null ? (item.tahun+1)+"-03-01":item.awal_genap;
-            this.semester_genap[1]=this.formdata.akhir_genap == null ? (item.tahun+1)+"-08-31":item.akhir_genap;
+            this.semester_ganjil[0] =this.formdata.awal_ganjil == null ? item.tahun+"-09-01":item.awal_ganjil;
+            this.semester_ganjil[1] =this.formdata.akhir_ganjil == null ? (item.tahun+1)+"-02-31":item.akhir_ganjil;  
+            this.semester_genap[0] =this.formdata.awal_genap == null ? (item.tahun+1)+"-03-01":item.awal_genap;
+            this.semester_genap[1] =this.formdata.akhir_genap == null ? (item.tahun+1)+"-08-31":item.akhir_genap;
             this.old_tahun=item.tahun;
             this.dialogfrm = true
         },

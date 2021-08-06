@@ -162,7 +162,7 @@ export default {
                     Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({ data }) => {        
-                this.datakrs=data.krs;
+                this.datakrs= data.krs;
                 if (Object.keys(this.datakrs).length)
                 {
                     let prodi_id = this.datakrs.kjur; 

@@ -170,7 +170,7 @@
                                     item-text="nama_fakultas"
                                     item-value="kode_fakultas"
                                     :loading="btnLoadingFakultas"
-                                    v-if="$store.getters['uifront/getBentukPT']=='universitas'"
+                                    v-if="$store.getters['uifront/getBentukPT'] =='universitas'"
                                 />
                                 <v-select
                                     label="PROGRAM STUDI"
@@ -342,17 +342,17 @@ export default {
             if (bentukpt== "universitas")
             { 
                 await this.$ajax.get("/datamaster/fakultas").then(({ data }) => {
-                    this.daftar_fakultas=data.fakultas;
+                    this.daftar_fakultas= data.fakultas;
                 });
             }
             else
             {
                 await this.$ajax.get("/datamaster/programstudi").then(({ data }) => {
-                    this.daftar_prodi=data.prodi;
+                    this.daftar_prodi = data.prodi;
                 });
             }           
             this.$ajax.get("/datamaster/kelas").then(({ data }) => { 
-                this.daftar_kelas=data.kelas;
+                this.daftar_kelas= data.kelas;
             });
             await this.$ajax.get("/spmb/formulirpendaftaran/" + this.user_id, 
                 {
@@ -362,13 +362,13 @@ export default {
                 },
                 
             ).then(({ data }) => { 
-                this.formdata.nama_mhs=data.formulir.nama_mhs; 
-                this.formdata.tempat_lahir=data.formulir.tempat_lahir; 
-                this.formdata.tanggal_lahir=data.formulir.tanggal_lahir; 
-                this.formdata.jk=data.formulir.jk; 
+                this.formdata.nama_mhs= data.formulir.nama_mhs; 
+                this.formdata.tempat_lahir= data.formulir.tempat_lahir; 
+                this.formdata.tanggal_lahir= data.formulir.tanggal_lahir; 
+                this.formdata.jk= data.formulir.jk; 
                 this.formdata.nomor_hp='+'+data.formulir.nomor_hp; 
-                this.formdata.email=data.formulir.email;  
-                this.formdata.nama_ibu_kandung=data.formulir.nama_ibu_kandung;  
+                this.formdata.email= data.formulir.email;  
+                this.formdata.nama_ibu_kandung= data.formulir.nama_ibu_kandung;  
 
                 this.provinsi_id={
                     id:""+data.formulir.address1_provinsi_id,
@@ -387,18 +387,18 @@ export default {
                     nama:""+data.formulir.address1_kelurahan
                 };
                 
-                this.formdata.alamat_rumah=data.formulir.alamat_rumah;  
+                this.formdata.alamat_rumah= data.formulir.alamat_rumah;  
                 if (bentukpt=='universitas' && data.formulir.kode_fakultas !=null)
                 {
-                    this.kode_fakultas=data.formulir.kode_fakultas;
+                    this.kode_fakultas= data.formulir.kode_fakultas;
                 }
-                this.formdata.kjur1=data.formulir.kjur1;  
-                this.formdata.idkelas=data.formulir.idkelas;  
+                this.formdata.kjur1= data.formulir.kjur1;  
+                this.formdata.idkelas= data.formulir.idkelas;  
                 
-                this.kode_billing=data.no_transaksi;
+                this.kode_billing= data.no_transaksi;
 
                 this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](data.formulir.kjur1);
-                this.tahun_pendaftaran=data.ta;
+                this.tahun_pendaftaran= data.ta;
 
                 this.$refs.frmdata.resetValidation();  
             });  
@@ -435,7 +435,7 @@ export default {
                     }
                 }
                 ).then(({ data }) => {
-                    this.kode_billing=data.no_transaksi;
+                    this.kode_billing= data.no_transaksi;
                     this.btnLoading = false;
                 }).catch(() => {             
                     this.btnLoading = false;
@@ -452,7 +452,7 @@ export default {
             {
                 this.btnLoadingProv=true;
                 this.$ajax.get("/datamaster/provinsi/" + val.id + "/kabupaten").then(({ data }) => { 
-                    this.daftar_kabupaten=data.kabupaten;
+                    this.daftar_kabupaten= data.kabupaten;
                     this.btnLoadingProv=false;
                 });
                 this.daftar_kecamatan=[];
@@ -464,7 +464,7 @@ export default {
             {
                 this.btnLoadingKab=true;
                 this.$ajax.get("/datamaster/kabupaten/" + val.id + "/kecamatan").then(({ data }) => {
-                    this.daftar_kecamatan=data.kecamatan;
+                    this.daftar_kecamatan= data.kecamatan;
                     this.btnLoadingKab=false;
                 });
             }
@@ -475,7 +475,7 @@ export default {
             {
                 this.btnLoadingKec=true;
                 this.$ajax.get("/datamaster/kecamatan/" + val.id + "/desa").then(({ data }) => {
-                    this.daftar_desa=data.desa;
+                    this.daftar_desa= data.desa;
                     this.btnLoadingKec=false;
                 });
             }
@@ -484,7 +484,7 @@ export default {
         {
             this.btnLoadingFakultas=true;
             this.$ajax.get("/datamaster/fakultas/" + val + "/programstudi").then(({ data }) => {
-                this.daftar_prodi=data.programstudi;
+                this.daftar_prodi = data.programstudi;
                 this.btnLoadingFakultas=false;
             });
         }

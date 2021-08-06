@@ -435,16 +435,16 @@
 						{
 							this.dialogfrm = true;
 							this.data_mhs=item;
-							this.data_mhs['no_transaksi']=data.no_transaksi;
-							this.daftar_prodi=data.daftar_prodi;
+							this.data_mhs['no_transaksi'] = data.no_transaksi;
+							this.daftar_prodi = data.daftar_prodi;
 							if (JSON.stringify(data.data_nilai_ujian)== "{}")
 							{
-								this.formdata.kjur=data.kjur;
+								this.formdata.kjur= data.kjur;
 							}
 							else
 							{
-								var ket_lulus=data.data_nilai_ujian.ket_lulus.toString();
-								this.formdata=data.data_nilai_ujian;
+								var ket_lulus= data.data_nilai_ujian.ket_lulus.toString();
+								this.formdata= data.data_nilai_ujian;
 								this.formdata.ket_lulus=ket_lulus                        
 								this.editedItem=1;
 							}

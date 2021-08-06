@@ -252,8 +252,8 @@ export default {
                     Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({ data }) => {        
-                this.datakrs=data.krs;
-                this.datatable=data.daftar_nilai;
+                this.datakrs= data.krs;
+                this.datatable= data.daftar_nilai;
                 if (Object.keys(this.datakrs).length)
                 {
                     let prodi_id = this.datakrs.kjur; 
@@ -261,12 +261,12 @@ export default {
                     this.tahun_akademik=this.datakrs.tahun;    
                     this.semester_akademik=this.datakrs.idsmt;
                     
-                    this.jumlah_sks=data.jumlah_sks;
-                    this.jumlah_matkul=data.jumlah_matkul;
-                    this.jumlah_m=data.jumlah_m;
-                    this.jumlah_am=data.jumlah_am;
-                    this.ips=data.ips;
-                    this.ipk=data.ipk;
+                    this.jumlah_sks= data.jumlah_sks;
+                    this.jumlah_matkul= data.jumlah_matkul;
+                    this.jumlah_m= data.jumlah_m;
+                    this.jumlah_am= data.jumlah_am;
+                    this.ips= data.ips;
+                    this.ipk= data.ipk;
                 }
             })  
         },  
@@ -281,7 +281,7 @@ export default {
                     
                 }
             ).then(({ data }) => {
-                this.file_pdf=data.pdf_file;
+                this.file_pdf= data.pdf_file;
                 this.dialogprintpdf=true;
                 this.btnLoading = false;
             }).catch(() => {

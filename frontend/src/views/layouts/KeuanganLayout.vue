@@ -36,14 +36,14 @@
 							</v-list-item-subtitle>
 						</v-list-item-content>
 					</v-list-item> 
-					<v-divider/>
+					<v-divider />
 					<v-list-item to="/system-users/profil">
 						<v-list-item-icon class="mr-2">
 							<v-icon>mdi-account</v-icon>
 						</v-list-item-icon>
 						<v-list-item-title>Profil</v-list-item-title>
 					</v-list-item>
-					<v-divider/>
+					<v-divider />
 					<v-list-item @click.prevent="logout">
 						<v-list-item-icon class="mr-2">
 							<v-icon>mdi-power</v-icon>
@@ -158,7 +158,8 @@
 						</v-list-item-title>
 					</v-list-item-content>
 				</v-list-item> 
-				<v-divider/>
+				<v-divider />
+				<v-subheader>TRANSAKSI TUNAI</v-subheader>
 				<v-list-item link v-if="CAN_ACCESS('KEUANGAN-TRANSAKSI-BIAYA-PENDAFTARAN_BROWSE')" to="/keuangan/transaksi-pendaftaranmhsbaru">
 					<v-list-item-icon class="mr-2">
 						<v-icon>mdi-account-cash</v-icon>
@@ -179,6 +180,8 @@
 						</v-list-item-title>
 					</v-list-item-content>
 				</v-list-item>
+				<v-divider />
+				<v-subheader>TRANSAKSI CICILAN</v-subheader>
 			</v-list>
 		</v-navigation-drawer>
 		<v-navigation-drawer v-model="drawerRight" width="300" app fixed right temporary v-if="showrightsidebar">

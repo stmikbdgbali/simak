@@ -245,8 +245,8 @@ export default {
                     Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({ data }) => {        
-                this.datakrs=data.krs;
-                this.datatable=data.krsmatkul;
+                this.datakrs= data.krs;
+                this.datatable= data.krsmatkul;
                 if (Object.keys(this.datakrs).length)
                 {
                     let prodi_id = this.datakrs.kjur; 

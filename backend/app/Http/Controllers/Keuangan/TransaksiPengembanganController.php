@@ -8,6 +8,8 @@ use App\Models\SPMB\FormulirPendaftaranModel;
 use App\Models\Keuangan\BiayaKomponenPeriodeModel;
 use App\Models\Keuangan\TransaksiModel;
 use App\Models\Keuangan\TransaksiDetailModel;
+use App\Models\Keuangan\CicilanModel;
+use App\Models\Keuangan\CicilanDetailModel;
 use App\Models\User;
 
 use Exception;
@@ -264,6 +266,30 @@ class TransaksiPengembanganController extends Controller {
 																	'message'=>["Detail Transaksi dengan ($id) gagal diupdate"]
 															], 422); 
 			}
+			else if ($transaksi_detail->transaksi->status == 1)
+			{
+				return Response()->json([
+					'status'=>0,
+					'pid'=>'update',
+					'message'=>["Detail Transaksi dengan ($id) gagal diupdate karena status paid"]
+				], 422);
+			}
+			else if ($transaksi_detail->transaksi->status == 2)
+			{
+				return Response()->json([
+					'status'=>0,
+					'pid'=>'update',
+					'message'=>["Detail Transaksi dengan ($id) gagal diupdate karena status batal"]
+				], 422);
+			}
+			else if ($transaksi_detail->installment > 0)
+			{
+				return Response()->json([
+					'status'=>0,
+					'pid'=>'update',
+					'message'=>["Detail Transaksi dengan ($id) gagal diupdate karena transaksi ini cicilan. Silahkan ubah di menu cicilan biaya pengembangan"]
+				], 422);
+			}
 			else
 			{
 				$this->validate($request, [
@@ -274,8 +300,8 @@ class TransaksiPengembanganController extends Controller {
 				$transaksi_detail = \DB::transaction(function () use ($request, $transaksi_detail) {
 					$promovalue = $request->input('promovalue');
 					$transaksi_detail->promovalue = $promovalue;
-					$transaksi_detail->sub_total = $transaksi_detail->sub_total - $promovalue;
-					$transaksi_detail->installment = $request->input('installment');
+					$transaksi_detail->sub_total = $transaksi_detail->biaya - $promovalue;
+					$transaksi_detail->installment = (int)$request->input('installment');
 					$transaksi_detail->save();
 
 					$total = \DB::table('pe3_transaksi_detail')
@@ -291,6 +317,47 @@ class TransaksiPengembanganController extends Controller {
 					$transaksi = $transaksi_detail->transaksi;
 					$transaksi->desc = $request->input('desc');
 					$transaksi->save();
+					
+					if ($transaksi_detail->installment > 0)
+					{
+						$cicilan = CicilanModel::create([
+							'id'=>Uuid::uuid4()->toString(),
+							'user_id'=>$transaksi->user_id,
+							'no_formulir'=>$transaksi->no_formulir,
+							'nim'=>null,
+							'kombi_id'=>$transaksi_detail->kombi_id,
+							'nama_kombi'=>$transaksi_detail->nama_kombi,
+							'biaya'=>$transaksi_detail->biaya,
+							'promocode'=>$transaksi_detail->promocode,
+							'promotype'=>$transaksi_detail->promotype,
+							'promovalue'=>$transaksi_detail->promovalue,
+							'promovalue'=>$transaksi_detail->promovalue,
+							'jumlah'=>$transaksi_detail->jumlah,
+							'bulan'=>$transaksi_detail->bulan,
+							'tahun'=>$transaksi->tahun,
+							'total'=>$total,
+							'jumlah_cicilan'=>0,
+							'sudah_nyicil'=>0,
+							'sisa_rp_cicilan'=>0,
+
+							'kjur'=>$transaksi->kjur,
+							'ta'=>$transaksi->ta,
+							'idsmt'=>$transaksi->idsmt,
+							'idkelas'=>$transaksi->idkelas,
+							'desc'=>$transaksi->desc,
+							'status'=>0,
+						]);
+
+						CicilanDetailModel::create([
+							'id'=>Uuid::uuid4()->toString(),
+							'user_id'=>$transaksi->user_id,
+							'cicilan_id'=>$cicilan->id,
+							'transaksi_id'=>$transaksi->id,
+							'cicilan'=>$total,
+						]);
+
+					}
+
 					return $transaksi_detail;
 				});
 

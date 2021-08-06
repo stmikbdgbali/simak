@@ -660,7 +660,7 @@
 						Authorization: this.$store.getters["auth/Token"]
 					}
 				}).then(({ data }) => {
-					this.daftar_channel=data.channel;
+					this.daftar_channel= data.channel;
 					this.data_transaksi = item;
 					this.dialogfrm = true;
 				});
@@ -674,7 +674,7 @@
 						Authorization: this.$store.getters["auth/Token"]
 					}
 				}).then(({ data }) => {
-					this.data_konfirmasi=data.konfirmasi;
+					this.data_konfirmasi= data.konfirmasi;
 					this.image_prev=this.$api.url+"/"+data.konfirmasi.bukti_bayar;
 					this.dialogdetailitem = true;
 				});

@@ -470,7 +470,7 @@ export default {
 												}
 										}
 								).then(({ data }) => { 
-										this.datatable=data.persyaratan;
+										this.datatable= data.persyaratan;
 										this.btnLoading = false;
 										this.closedialogsalinpersyaratan();
 								}).catch(() => {

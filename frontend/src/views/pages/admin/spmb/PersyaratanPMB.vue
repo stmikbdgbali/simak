@@ -211,7 +211,7 @@ export default {
 					},
 					
 				).then(({ data }) => { 
-					this.showcomponentpersyaratan=data.formulir.idkelas==null||data.formulir.idkelas==''?false: true; 
+					this.showcomponentpersyaratan= data.formulir.idkelas==null||data.formulir.idkelas==''?false: true; 
 				});
 			} else {
 				this.datatableLoading = true;

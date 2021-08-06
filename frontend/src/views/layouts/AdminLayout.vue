@@ -128,7 +128,7 @@
 						},
 						isBentukPT (bentuk_pt)
 						{
-								return this.$store.getters['uifront/getBentukPT']==bentuk_pt?true: false;
+								return this.$store.getters['uifront/getBentukPT'] ==bentuk_pt?true: false;
 						}
 				},
 				computed: {

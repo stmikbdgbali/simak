@@ -47,7 +47,7 @@
                                     outlined
                                     append-outer-icon="mdi-send"
                                     @click:append-outer="cekNIM"
-                                    :disabled="(this.$store.getters['uiadmin/getDefaultDashboard']=='mahasiswa')"
+                                    :disabled="(this.$store.getters['uiadmin/getDefaultDashboard'] =='mahasiswa')"
                                     /> 
                                 <v-select
                                     v-model="formdata.dulang_id"
@@ -175,7 +175,7 @@ export default {
                     Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({ data }) => { 
-                this.daftar_dulang=data.daftar_dulang;
+                this.daftar_dulang= data.daftar_dulang;
             })
         }, 
         cekNIM ()

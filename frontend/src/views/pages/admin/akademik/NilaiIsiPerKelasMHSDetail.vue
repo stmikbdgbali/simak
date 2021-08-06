@@ -195,7 +195,7 @@ export default {
                     Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({ data }) => {
-                this.data_kelas_mhs=data.pembagiankelas;  
+                this.data_kelas_mhs= data.pembagiankelas;  
             });
             this.datatableLoading = true;
             await this.$ajax.get("/akademik/nilai/matakuliah/pesertakelas/" + this.kelas_mhs_id,
@@ -205,7 +205,7 @@ export default {
                 }
             }).then(({ data }) => {                    
                 this.datatableLoading = false;
-                this.datatable_peserta=data.peserta; 
+                this.datatable_peserta= data.peserta; 
             })              
         },
         async fetchPeserta()
@@ -217,7 +217,7 @@ export default {
                     Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({ data }) => {               
-                this.datatable_peserta=data.peserta;     
+                this.datatable_peserta= data.peserta;     
                 this.datatableLoading = false;
             })   
         },  
