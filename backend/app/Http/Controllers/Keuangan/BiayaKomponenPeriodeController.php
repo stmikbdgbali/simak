@@ -45,8 +45,8 @@ class BiayaKomponenPeriodeController extends Controller {
                 'prodi_id'=>'required'
             ]);
             
-            $ta=$request->input('ta');
-            $prodi_id=$request->input('prodi_id');
+            $ta = $request->input('ta');
+            $prodi_id = $request->input('prodi_id');
             
             $kombi=BiayaKomponenPeriodeModel::select(\DB::raw('
                                                 pe3_kombi_periode.id,
@@ -57,8 +57,8 @@ class BiayaKomponenPeriodeController extends Controller {
                                                 pe3_kombi_periode.biaya
                                             '))
                                             ->join('pe3_kelas','pe3_kombi_periode.idkelas','pe3_kelas.idkelas')
-                                            ->where('tahun',$ta)
-                                            ->where('kjur',$prodi_id)
+                                            ->where('tahun', $ta)
+                                            ->where('kjur', $prodi_id)
                                             ->orderBy('pe3_kombi_periode.idkelas','asc')
                                             ->orderBy('kombi_id','asc');
 
@@ -71,7 +71,7 @@ class BiayaKomponenPeriodeController extends Controller {
         return Response()->json([
                                     'status'=>1,
                                     'pid'=>'fetchdata',  
-                                    'kombi'=>$kombi,                                                                                                                                   
+                                    'kombi'=>$kombi,
                                     'message'=>'Fetch data biaya komponen periode berhasil.'
                                 ],200);     
     } 
@@ -86,8 +86,8 @@ class BiayaKomponenPeriodeController extends Controller {
             'ta'=>'required',
             'prodi_id'=>'required'
         ]);
-        $ta=$request->input('ta');
-        $prodi_id=$request->input('prodi_id');
+        $ta = $request->input('ta');
+        $prodi_id = $request->input('prodi_id');
         
         $daftar_kelas=KelasModel::all();
         foreach ($daftar_kelas as $kelas)
@@ -100,8 +100,8 @@ class BiayaKomponenPeriodeController extends Controller {
         }        
 
         $kombi=BiayaKomponenPeriodeModel::join('pe3_kelas','pe3_kombi_periode.idkelas','pe3_kelas.idkelas')
-                                        ->where('tahun',$ta)
-                                        ->where('kjur',$prodi_id)
+                                        ->where('tahun', $ta)
+                                        ->where('kjur', $prodi_id)
                                         ->orderBy('pe3_kombi_periode.idkelas','asc')
                                         ->orderBy('kombi_id','asc')
                                         ->get();
@@ -115,7 +115,7 @@ class BiayaKomponenPeriodeController extends Controller {
         return Response()->json([
                                     'status'=>1,
                                     'pid'=>'store',  
-                                    'kombi'=>$kombi,                                                                                                                                   
+                                    'kombi'=>$kombi,
                                     'message'=>'Menyalin data kombi ke data kombi periode berhasil.'
                                 ],200);     
     } 
@@ -147,7 +147,7 @@ class BiayaKomponenPeriodeController extends Controller {
         return Response()->json([
                                     'status'=>1,
                                     'pid'=>'update',     
-                                    'kombi_biaya'=>$kombi_biaya,                                                                                                                                                               
+                                    'kombi_biaya'=>$kombi_biaya,                            
                                     'message'=>'Mengubah biaya komponen '.$kombi_biaya->nama_kombi.' berhasil.'
                                 ],200);     
     } 

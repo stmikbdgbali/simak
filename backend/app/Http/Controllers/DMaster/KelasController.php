@@ -19,7 +19,7 @@ class KelasController extends Controller {
         return Response()->json([
                                     'status'=>1,
                                     'pid'=>'fetchdata',  
-                                    'kelas'=>$kelas,                                                                                                                                   
+                                    'kelas'=>$kelas,
                                     'message'=>'Fetch data kelas berhasil.'
                                 ],200);     
     }
@@ -35,7 +35,7 @@ class KelasController extends Controller {
 
         $rule=[            
             'idkelas'=>'required|string|max:1|unique:pe3_kelas,idkelas',
-            'nkelas'=>'required|string|unique:pe3_kelas,nkelas',                     
+            'nkelas'=>'required|string|unique:pe3_kelas,nkelas',     
         ];
     
         $this->validate($request, $rule);
@@ -76,7 +76,7 @@ class KelasController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'update',                
+                                    'pid'=>'update',
                                     'message'=>["Kode Kelas ($id) gagal diupdate"]
                                 ], 422); 
         }
@@ -87,7 +87,7 @@ class KelasController extends Controller {
             {
                 $this->validate($request, [
                                             'idkelas'=>[
-                                                            'required',                                                        
+                                                            'required',                                        
                                                             'string',
                                                             'max:1',
                                                             Rule::unique('pe3_kelas')->ignore($kelas->idkelas,'idkelas')                                                       
@@ -108,7 +108,7 @@ class KelasController extends Controller {
                                                 'required',
                                                 'string',
                                                 'max:1',
-                                                'exists:pe3_kelas,idkelas',                                                     
+                                                'exists:pe3_kelas,idkelas',                                     
                                             ], 
                                             'nama_kelas'=>[
                                                 'required',
@@ -154,7 +154,7 @@ class KelasController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'destroy',                
+                                    'pid'=>'destroy',
                                     'message'=>["Kode kelas ($id) gagal dihapus"]
                                 ], 422); 
         }
@@ -169,7 +169,7 @@ class KelasController extends Controller {
             $kelas->delete();
             return Response()->json([
                                         'status'=>1,
-                                        'pid'=>'destroy',                
+                                        'pid'=>'destroy',
                                         'message'=>"Kelas dengan kode ($id) berhasil dihapus"
                                     ],200);         
         }

@@ -28,7 +28,7 @@ class PMBUjianOnlineController extends Controller {
         {
             return Response()->json([
                                         'status'=>0,
-                                        'pid'=>'fetchdata',                
+                                        'pid'=>'fetchdata',
                                         'message'=>["Peserta Ujian dengan ID ($id) gagal diperoleh, mungkin belum mendaftar"]
                                     ], 422); 
         }
@@ -36,7 +36,7 @@ class PMBUjianOnlineController extends Controller {
         {
             return Response()->json([
                                         'status'=>0,
-                                        'pid'=>'fetchdata',                
+                                        'pid'=>'fetchdata',
                                         'message'=>['Jadwal Ujian PMB ini sudah dinyatakan selesai, oleh karena itu tidak bisa dilanjutkan']
                                     ], 422);
         }
@@ -112,13 +112,13 @@ class PMBUjianOnlineController extends Controller {
                                                 pe3_jadwal_ujian_pmb.updated_at
                                             '))
                                             ->leftJoin('pe3_ruangkelas','pe3_ruangkelas.id','pe3_jadwal_ujian_pmb.ruangkelas_id')
-                                            ->where('ta',$tahun_pendaftaran)
+                                            ->where('ta', $tahun_pendaftaran)
                                             ->where('idsmt',$semester_pendaftaran)
                                             ->whereRaw('CURRENT_DATE() <= pe3_jadwal_ujian_pmb.tanggaL_akhir_daftar')
                                             ->orderBy('tanggal_akhir_daftar','desc')
                                             ->get();
 
-        $jumlah_bank_soal=SoalPMBModel::where('ta',$tahun_pendaftaran)
+        $jumlah_bank_soal=SoalPMBModel::where('ta', $tahun_pendaftaran)
                                         ->where('semester',$semester_pendaftaran)
                                         ->count();
         return Response()->json([
@@ -174,13 +174,13 @@ class PMBUjianOnlineController extends Controller {
         
         $this->validate($request,[
             'user_id'=>'required|exists:users,id',
-            'jadwal_ujian_id'=>'required|exists:pe3_jadwal_ujian_pmb,id',                    
+            'jadwal_ujian_id'=>'required|exists:pe3_jadwal_ujian_pmb,id',    
         ]);
         
         $is_bayar = \DB::table('pe3_transaksi')
                         ->join('pe3_transaksi_detail','pe3_transaksi.id','pe3_transaksi_detail.transaksi_id')
-                        ->where('kombi_id',101)
-                        ->where('status',1)
+                        ->where('kombi_id', 101)
+                        ->where('status', 1)
                         ->where('pe3_transaksi_detail.user_id', $request->input('user_id'))
                         ->exists();
         
@@ -217,7 +217,7 @@ class PMBUjianOnlineController extends Controller {
     public function mulaiujian (Request $request)
     {
         $this->validate($request,[
-            'user_id'=>'required|exists:pe3_peserta_ujian_pmb,user_id',                               
+            'user_id'=>'required|exists:pe3_peserta_ujian_pmb,user_id',               
         ]);
         
         $peserta =PesertaUjianPMBModel::find($request->input('user_id'));        
@@ -255,7 +255,7 @@ class PMBUjianOnlineController extends Controller {
 
         return Response()->json([
                                     'status'=>1,
-                                    'pid'=>'destroy',                
+                                    'pid'=>'destroy',
                                     'message'=>"Peserta berhasil dihapus dari jadwal ujian ini"
                                 ],200);       
     
@@ -273,13 +273,13 @@ class PMBUjianOnlineController extends Controller {
         
         $user_id = $request->input('user_id');
         $isfinish=PesertaUjianPMBModel::where('user_id',$user_id)
-                                        ->where('isfinish',1)
+                                        ->where('isfinish', 1)
                                         ->exists();
         if ($isfinish)
         {
             return Response()->json([
                                         'status'=>0,
-                                        'pid'=>'store',                                                                                                                                    
+                                        'pid'=>'store', 
                                         'message'=>['Jadwal Ujian PMB ini sudah dinyatakan selesai, oleh karena itu tidak bisa dilanjutkan']
                                     ], 422); 
         } 
@@ -293,7 +293,7 @@ class PMBUjianOnlineController extends Controller {
                                                         ]);
             return Response()->json([
                                         'status'=>1,
-                                        'pid'=>'store',                                                                                                                                    
+                                        'pid'=>'store', 
                                         'message'=>'Data Jawaban Ujian berhasil disimpan.'
                                     ],200); 
         }               
@@ -304,7 +304,7 @@ class PMBUjianOnlineController extends Controller {
     public function selesaiujian (Request $request)
     {
         $this->validate($request,[
-            'user_id'=>'required|exists:pe3_peserta_ujian_pmb,user_id',                               
+            'user_id'=>'required|exists:pe3_peserta_ujian_pmb,user_id',               
         ]);
         
         $peserta = $this->hitungNilaiUjian($request->input('user_id'));
@@ -319,7 +319,7 @@ class PMBUjianOnlineController extends Controller {
     public function recalculate(Request $request)
     {
         $this->validate($request,[
-            'user_id'=>'required|exists:pe3_peserta_ujian_pmb,user_id',                               
+            'user_id'=>'required|exists:pe3_peserta_ujian_pmb,user_id',               
         ]);
         
         $peserta = $this->hitungNilaiUjian($request->input('user_id'));

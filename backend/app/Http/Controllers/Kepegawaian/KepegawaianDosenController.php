@@ -48,7 +48,7 @@ class KepegawaianDosenController extends Controller {
         
         return Response()->json([
                                 'status'=>1,
-                                'pid'=>'fetchdata',                                
+                                'pid'=>'fetchdata',                
                                 'dosen'=>$dosen,
                                 'message'=>'Fetch data users Dosen berhasil diperoleh'
                             ],200);  
@@ -69,7 +69,7 @@ class KepegawaianDosenController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'update',                
+                                    'pid'=>'update',
                                     'message'=>["User ID ($id) gagal diupdate"]
                                 ], 422); 
         }
@@ -85,7 +85,7 @@ class KepegawaianDosenController extends Controller {
                                                     'unique:pe3_dosen,nipy,'.$user->id.',user_id'
                                                 ],           
                                         'name'=>'required',            
-                                        'id_jabatan'=>'required',                                                    
+                                        'id_jabatan'=>'required',                                    
                                         'name'=>'required',            
                                         'email'=>'required|string|email|unique:users,email,'.$user->id,
                                         'nomor_hp'=>'required|string|unique:users,nomor_hp,'.$user->id,                                           

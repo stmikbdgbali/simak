@@ -28,7 +28,7 @@ class TransaksiRegistrasiKRSController extends Controller {
                 'SEMESTER_AKADEMIK'=>'required|in:1,2,3',            
             ]);
     
-            $ta=$request->input('ta');
+            $ta = $request->input('ta');
             $idsmt=$request->input('SEMESTER_AKADEMIK');
 
             $daftar_transaksi = TransaksiDetailModel::select(\DB::raw('
@@ -61,7 +61,7 @@ class TransaksiRegistrasiKRSController extends Controller {
                                                     ->join('pe3_transaksi','pe3_transaksi_detail.transaksi_id','pe3_transaksi.id')
                                                     ->join('pe3_formulir_pendaftaran','pe3_formulir_pendaftaran.user_id','pe3_transaksi_detail.user_id')
                                                     ->join('pe3_status_transaksi','pe3_transaksi.status','pe3_status_transaksi.id_status')
-                                                    ->where('pe3_transaksi.ta',$ta)
+                                                    ->where('pe3_transaksi.ta', $ta)
                                                     ->where('pe3_transaksi.idsmt',$idsmt)
                                                     ->where('pe3_transaksi_detail.user_id',$this->getUserid())
                                                     ->where('pe3_transaksi_detail.kombi_id',202)                                                    
@@ -76,9 +76,9 @@ class TransaksiRegistrasiKRSController extends Controller {
                 'prodi_id'=>'required',
             ]);
     
-            $ta=$request->input('ta');
+            $ta = $request->input('ta');
             $idsmt=$request->input('SEMESTER_AKADEMIK');
-            $prodi_id=$request->input('prodi_id');
+            $prodi_id = $request->input('prodi_id');
             
             $daftar_transaksi = TransaksiDetailModel::select(\DB::raw('
                                                         pe3_transaksi_detail.id,
@@ -120,9 +120,9 @@ class TransaksiRegistrasiKRSController extends Controller {
             }            
             else
             {
-                $daftar_transaksi=$daftar_transaksi->where('pe3_transaksi.ta',$ta)     
+                $daftar_transaksi=$daftar_transaksi->where('pe3_transaksi.ta', $ta)     
                                                     ->where('pe3_transaksi.idsmt',$idsmt)                                               
-                                                    ->where('pe3_transaksi.kjur',$prodi_id)                                               
+                                                    ->where('pe3_transaksi.kjur', $prodi_id)                                               
                                                     ->get();
             }
         }        
@@ -130,7 +130,7 @@ class TransaksiRegistrasiKRSController extends Controller {
         return Response()->json([
                                     'status'=>1,
                                     'pid'=>'fetchdata',  
-                                    'transaksi'=>$daftar_transaksi,                                                                                                                                   
+                                    'transaksi'=>$daftar_transaksi,
                                     'message'=>'Fetch data daftar transaksi berhasil.'
                                 ],200)->setEncodingOptions(JSON_NUMERIC_CHECK);
     }
@@ -142,7 +142,7 @@ class TransaksiRegistrasiKRSController extends Controller {
         $this->hasPermissionTo('KEUANGAN-TRANSAKSI-REGISTRASIKRS_STORE');
 
         $this->validate($request, [           
-            'nim'=>'required|exists:pe3_register_mahasiswa,nim',                 
+            'nim'=>'required|exists:pe3_register_mahasiswa,nim', 
             'semester_akademik'=>'required',
             'ta'=>'required'
         ]);
@@ -151,19 +151,19 @@ class TransaksiRegistrasiKRSController extends Controller {
         {
             $nim=$request->input('nim');
             $semester_akademik=$request->input('semester_akademik');
-            $ta=$request->input('ta');
+            $ta = $request->input('ta');
             
             $transaksi=TransaksiDetailModel::select(\DB::raw('
                                                 1
                                             '))
                                             ->join('pe3_transaksi','pe3_transaksi_detail.transaksi_id','pe3_transaksi.id')
-                                            ->where('pe3_transaksi.ta',$ta)                                        
+                                            ->where('pe3_transaksi.ta', $ta)                                        
                                             ->where('pe3_transaksi.idsmt',$semester_akademik)
                                             ->where('pe3_transaksi.nim',$nim)
                                             ->where('pe3_transaksi_detail.kombi_id',202)                                                                                      
                                             ->where(function($query) {
                                                 $query->where('pe3_transaksi.status',0)
-                                                    ->orWhere('pe3_transaksi.status',1);
+                                                    ->orWhere('pe3_transaksi.status', 1);
                                             })                                        
                                             ->first();
 
@@ -181,7 +181,7 @@ class TransaksiRegistrasiKRSController extends Controller {
             $idkelas=$mahasiswa->idkelas;
             $kjur=$mahasiswa->kjur;
             
-            $biaya_kombi=BiayaKomponenPeriodeModel::where('tahun',$tahun)
+            $biaya_kombi=BiayaKomponenPeriodeModel::where('tahun', $tahun)
                                                     ->where('idkelas',$idkelas)
                                                     ->where('kjur',$kjur)
                                                     ->where('kombi_id',202)
@@ -233,8 +233,8 @@ class TransaksiRegistrasiKRSController extends Controller {
 
             return Response()->json([
                                         'status'=>1,
-                                        'pid'=>'store',                   
-                                        'transaksi'=>$transaksi,                                                                                                                                   
+                                        'pid'=>'store',   
+                                        'transaksi'=>$transaksi,
                                         'message'=>'Transaksi Registrasi KRS berhasil di input.'
                                     ],200); 
         }
@@ -242,7 +242,7 @@ class TransaksiRegistrasiKRSController extends Controller {
         {
             return Response()->json([
                 'status'=>0,
-                'pid'=>'store',                                                                                                                                                  
+                'pid'=>'store',               
                 'message'=>[$e->getMessage()]
             ], 422); 
         }        
@@ -281,7 +281,7 @@ class TransaksiRegistrasiKRSController extends Controller {
             $transaksi->delete();
             return Response()->json([
                                         'status'=>1,
-                                        'pid'=>'destroy',                
+                                        'pid'=>'destroy',
                                         'message'=>"transaksi registrasi dengan id ($id) berhasil dihapus"
                                     ],200);         
         }

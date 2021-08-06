@@ -36,9 +36,9 @@ class VariablesController extends Controller {
     {
         $this->hasPermissionTo('SYSTEM-SETTING-VARIABLES_UPDATE');
         $this->validate($request, [ 
-            'pid'=>'required',                               
+            'pid'=>'required',               
             'setting'=>[
-                'required',                
+                'required',
             ],                     
         ],[
             'name.required'=>'Setting mohon untuk di isi',
@@ -71,7 +71,7 @@ class VariablesController extends Controller {
         ConfigurationModel::toCache();
         return Response()->json([
                                     'status'=>1,
-                                    'pid'=>'update',                                                                    
+                                    'pid'=>'update',                                                    
                                     'message'=>"Cache sudah dikosongkan dan direload ulang setting berhasil."
                                 ],200); 
     }

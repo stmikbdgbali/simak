@@ -364,7 +364,7 @@
 							<v-icon small class="mr-2" @click.stop="viewItem(item)">
 								mdi-eye
 							</v-icon>
-							<v-icon small class="mr-2" @click.stop="editItem(item)">
+							<v-icon small class="mr-2" @click.stop="editItem(item)" v-if="item.status == 0">
 								mdi-pencil
 							</v-icon>
 							<v-icon

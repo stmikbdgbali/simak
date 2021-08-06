@@ -29,7 +29,7 @@ class TransaksiSPPController extends Controller {
             $this->validate($request, [           
                 'ta'=>'required',            
             ]);
-            $ta=$request->input('ta');
+            $ta = $request->input('ta');
 
             $daftar_transaksi = TransaksiDetailModel::select(\DB::raw('
                                                         pe3_transaksi_detail.id,
@@ -61,7 +61,7 @@ class TransaksiSPPController extends Controller {
                                                     ->join('pe3_transaksi','pe3_transaksi_detail.transaksi_id','pe3_transaksi.id')
                                                     ->join('pe3_formulir_pendaftaran','pe3_formulir_pendaftaran.user_id','pe3_transaksi_detail.user_id')
                                                     ->join('pe3_status_transaksi','pe3_transaksi.status','pe3_status_transaksi.id_status')
-                                                    ->where('pe3_transaksi.ta',$ta)
+                                                    ->where('pe3_transaksi.ta', $ta)
                                                     ->where('pe3_transaksi_detail.user_id',$this->getUserid())
                                                     ->where('pe3_transaksi_detail.kombi_id',201)                                                    
                                                     ->orderBy('pe3_transaksi.tanggal','DESC')
@@ -73,8 +73,8 @@ class TransaksiSPPController extends Controller {
                 'ta'=>'required',
                 'prodi_id'=>'required'
             ]);
-            $ta=$request->input('ta');
-            $prodi_id=$request->input('prodi_id');
+            $ta = $request->input('ta');
+            $prodi_id = $request->input('prodi_id');
 
             $daftar_transaksi = TransaksiDetailModel::select(\DB::raw('
                                                         pe3_transaksi_detail.id,
@@ -115,8 +115,8 @@ class TransaksiSPPController extends Controller {
             }            
             else
             {
-                $daftar_transaksi=$daftar_transaksi->where('pe3_transaksi.ta',$ta)                                                    
-                                                    ->where('pe3_transaksi.kjur',$prodi_id)                                                    
+                $daftar_transaksi=$daftar_transaksi->where('pe3_transaksi.ta', $ta)                                                    
+                                                    ->where('pe3_transaksi.kjur', $prodi_id)                                                    
                                                     ->get();
             }
         }        
@@ -127,7 +127,7 @@ class TransaksiSPPController extends Controller {
         return Response()->json([
                                     'status'=>1,
                                     'pid'=>'fetchdata',  
-                                    'transaksi'=>$daftar_transaksi,                                                                                                                                   
+                                    'transaksi'=>$daftar_transaksi,
                                     'message'=>'Fetch data daftar transaksi berhasil.'
                                 ],200)->setEncodingOptions(JSON_NUMERIC_CHECK);    
     }
@@ -263,9 +263,9 @@ class TransaksiSPPController extends Controller {
             return Response()->json([
                                         'status'=>1,
                                         'pid'=>'fetchdata',  
-                                        'transaksi'=>$transaksi,                                                                                                                                   
-                                        'transaksi_detail'=>$transaksi_detail,                                                                                                                                   
-                                        'item_selected'=>$item_selected,                                                                                                                                   
+                                        'transaksi'=>$transaksi,
+                                        'transaksi_detail'=>$transaksi_detail,
+                                        'item_selected'=>$item_selected,
                                         'message'=>"Fetch data transaksi dengan id ($id) berhasil diperoleh."
                                     ],200)->setEncodingOptions(JSON_NUMERIC_CHECK); 
         }
@@ -273,7 +273,7 @@ class TransaksiSPPController extends Controller {
         {
             return Response()->json([
                 'status'=>0,
-                'pid'=>'fetchdata',                                                                                                                                                  
+                'pid'=>'fetchdata',               
                 'message'=>[$e->getMessage()]
             ], 422); 
         }      
@@ -283,7 +283,7 @@ class TransaksiSPPController extends Controller {
         $this->hasPermissionTo('KEUANGAN-TRANSAKSI-SPP-KEMAHASISWAAN_STORE');
 
         $this->validate($request, [           
-            'nim'=>'required|exists:pe3_register_mahasiswa,nim',                 
+            'nim'=>'required|exists:pe3_register_mahasiswa,nim', 
             'semester_akademik'=>'required',
             'ta'=>'required'
         ]);
@@ -292,7 +292,7 @@ class TransaksiSPPController extends Controller {
         {
             $nim=$request->input('nim');
             $semester_akademik=$request->input('semester_akademik');
-            $ta=$request->input('ta');
+            $ta = $request->input('ta');
             
             $mahasiswa=RegisterMahasiswaModel::select(\DB::raw('
                                     pe3_formulir_pendaftaran.user_id,
@@ -323,7 +323,7 @@ class TransaksiSPPController extends Controller {
             $idkelas=$mahasiswa->idkelas;
             $kjur=$mahasiswa->kjur;
 
-            $biaya_kombi=BiayaKomponenPeriodeModel::where('tahun',$tahun)
+            $biaya_kombi=BiayaKomponenPeriodeModel::where('tahun', $tahun)
                                                     ->where('idkelas',$idkelas)
                                                     ->where('kjur',$kjur)
                                                     ->where('kombi_id',201)
@@ -364,8 +364,8 @@ class TransaksiSPPController extends Controller {
 
             return Response()->json([
                                         'status'=>1,
-                                        'pid'=>'store',                   
-                                        'transaksi'=>$transaksi,                                                                                                                                   
+                                        'pid'=>'store',   
+                                        'transaksi'=>$transaksi,
                                         'message'=>'Membuat Transaksi SPP baru berhasil.'
                                     ],200); 
         }
@@ -373,7 +373,7 @@ class TransaksiSPPController extends Controller {
         {
             return Response()->json([
                 'status'=>0,
-                'pid'=>'store',                                                                                                                                                  
+                'pid'=>'store',               
                 'message'=>[$e->getMessage()]
             ], 422); 
         }  
@@ -454,9 +454,9 @@ class TransaksiSPPController extends Controller {
         $bulan_spp=$result['bulan_spp'];
         return Response()->json([
                                     'status'=>1,
-                                    'pid'=>'store',                                                                                                                                                                         
-                                    'bulan_selected'=>$bulan_selected,                                                                                                                                                                         
-                                    'bulan_spp'=>$bulan_spp,                                                                                                                                                                         
+                                    'pid'=>'store',                      
+                                    'bulan_selected'=>$bulan_selected,                                      
+                                    'bulan_spp'=>$bulan_spp,                                      
                                     'message'=>(count($bulan_spp)).' Bulan SPP telah berhasil ditambahkan'
                                 ],200);  
     }
@@ -478,7 +478,7 @@ class TransaksiSPPController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'destroy',                
+                                    'pid'=>'destroy',
                                     'message'=>["Transaksi Detail dengan ID ($id) gagal dihapus"]
                                 ], 422); 
         }
@@ -486,7 +486,7 @@ class TransaksiSPPController extends Controller {
         {
             return Response()->json([
                                     'status'=>1,
-                                    'pid'=>'destroy',                
+                                    'pid'=>'destroy',
                                     'message'=>["Transaksi dengan ID ($id) sudah tidak bisa dihapus"]
                                 ], 422); 
         }
@@ -515,7 +515,7 @@ class TransaksiSPPController extends Controller {
     {
         return \DB::table('pe3_transaksi')
                     ->join('pe3_transaksi_detail','pe3_transaksi.id','pe3_transaksi_detail.transaksi_id')
-                    ->where('pe3_transaksi.ta',$tahun)
+                    ->where('pe3_transaksi.ta', $tahun)
                     ->where('pe3_transaksi.user_id',$user_id)
                     ->where('pe3_transaksi_detail.bulan',$no_bulan)
                     ->exists();

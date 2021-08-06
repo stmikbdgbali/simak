@@ -19,7 +19,7 @@ class JabatanAkademikController extends Controller {
         return Response()->json([
                                     'status'=>1,
                                     'pid'=>'fetchdata',  
-                                    'jabatan_akademik'=>$jabatan_akademik,                                                                                                                                   
+                                    'jabatan_akademik'=>$jabatan_akademik,
                                     'message'=>'Fetch data jabatan akademik berhasil.'
                                 ],200)->setEncodingOptions(JSON_NUMERIC_CHECK);     
     }  

@@ -57,7 +57,7 @@ class DosenWaliController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'fetchdata',                
+                                    'pid'=>'fetchdata',
                                     'message'=>["User ID ($id) gagal diupdate"]
                                 ], 422); 
         }
@@ -109,7 +109,7 @@ class DosenWaliController extends Controller {
             'email'=>'required|string|email|unique:users',
             'nomor_hp'=>'required|string|unique:users',
             'username'=>'required|string|unique:users',
-            'password'=>'required',                        
+            'password'=>'required',        
         ]);
         $user = \DB::transaction(function () use ($request){
 
@@ -184,7 +184,7 @@ class DosenWaliController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'update',                
+                                    'pid'=>'update',
                                     'message'=>["User ID ($id) gagal diupdate"]
                                 ], 422); 
         }
@@ -234,7 +234,7 @@ class DosenWaliController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'destroy',                
+                                    'pid'=>'destroy',
                                     'message'=>["Dosen wali dengan ID ($id) gagal dihapus"]
                                 ], 422); 
         }
@@ -253,7 +253,7 @@ class DosenWaliController extends Controller {
         
             return Response()->json([
                                         'status'=>1,
-                                        'pid'=>'destroy',                
+                                        'pid'=>'destroy',
                                         'message'=>"Dosen Wali ($username) berhasil dihapus"
                                     ],200);         
         }

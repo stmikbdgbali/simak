@@ -17,7 +17,7 @@ class FakultasController extends Controller {
         return Response()->json([
                                     'status'=>1,
                                     'pid'=>'fetchdata',  
-                                    'fakultas'=>$fakultas,                                                                                                                                   
+                                    'fakultas'=>$fakultas,
                                     'message'=>'Fetch data fakultas berhasil.'
                                 ],200);     
     }
@@ -72,7 +72,7 @@ class FakultasController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'update',                
+                                    'pid'=>'update',
                                     'message'=>["Kode Fakultas ($id) gagal diupdate"]
                                 ], 422); 
         }
@@ -80,7 +80,7 @@ class FakultasController extends Controller {
         {
             $this->validate($request, [
                                         'kode_fakultas'=>[
-                                                        'required',                                                        
+                                                        'required',                                        
                                                         Rule::unique('pe3_fakultas')->ignore($fakultas->kode_fakultas,'kode_fakultas')
                                                     ],           
                                         
@@ -120,7 +120,7 @@ class FakultasController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'fetchdata',                
+                                    'pid'=>'fetchdata',
                                     'message'=>["Fetch data program studi berdasarkan id fakultas gagal"]
                                 ], 422); 
         }
@@ -130,7 +130,7 @@ class FakultasController extends Controller {
             return Response()->json([
                                         'status'=>1,
                                         'pid'=>'fetchdata',  
-                                        'programstudi'=>$programstudi,                                                                                                                                   
+                                        'programstudi'=>$programstudi,
                                         'message'=>'Fetch data program studi berdasarkan id fakultas berhasil.'
                                     ],200);     
 
@@ -152,7 +152,7 @@ class FakultasController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'destroy',                
+                                    'pid'=>'destroy',
                                     'message'=>["Kode fakultas ($id) gagal dihapus"]
                                 ], 422); 
         }
@@ -167,7 +167,7 @@ class FakultasController extends Controller {
             $fakultas->delete();
             return Response()->json([
                                         'status'=>1,
-                                        'pid'=>'destroy',                
+                                        'pid'=>'destroy',
                                         'message'=>"Fakultas dengan kode ($id) berhasil dihapus"
                                     ],200);         
         }

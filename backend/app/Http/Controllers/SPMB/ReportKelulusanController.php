@@ -28,8 +28,8 @@ class ReportKelulusanController extends Controller {
             'filter_status'=>'required'
         ]);
         
-        $ta=$request->input('ta');
-        $prodi_id=$request->input('prodi_id');
+        $ta = $request->input('ta');
+        $prodi_id = $request->input('prodi_id');
         $filter_status=$request->input('filter_status');
 
         $data = FormulirPendaftaranModel::select(\DB::raw('
@@ -53,10 +53,10 @@ class ReportKelulusanController extends Controller {
                     ->join('users','pe3_formulir_pendaftaran.user_id','users.id')                    
                     ->join('pe3_kelas','pe3_formulir_pendaftaran.idkelas','pe3_kelas.idkelas')                    
                     ->leftJoin('pe3_nilai_ujian_pmb','pe3_formulir_pendaftaran.user_id','pe3_nilai_ujian_pmb.user_id')                    
-                    ->where('users.ta',$ta)
-                    ->where('kjur1',$prodi_id)            
+                    ->where('users.ta', $ta)
+                    ->where('kjur1', $prodi_id)            
                     ->whereNotNull('pe3_formulir_pendaftaran.idkelas')   
-                    ->where('users.active',1)    
+                    ->where('users.active', 1)    
                     ->where('pe3_nilai_ujian_pmb.ket_lulus',$filter_status)
                     ->orderBy('users.name','ASC') 
                     ->get();
@@ -90,7 +90,7 @@ class ReportKelulusanController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'fetchdata',                
+                                    'pid'=>'fetchdata',
                                     'message'=>["Formulir Pendaftaran dengan ID ($id) gagal diperoleh"]
                                 ], 422); 
         }
@@ -99,7 +99,7 @@ class ReportKelulusanController extends Controller {
             $transaksi_detail=TransaksiDetailModel::select(\DB::raw('pe3_transaksi.no_transaksi,pe3_transaksi.status'))
                                                     ->join('pe3_transaksi','pe3_transaksi.id','pe3_transaksi_detail.transaksi_id')
                                                     ->where('pe3_transaksi.user_id',$formulir->user_id)
-                                                    ->where('kombi_id',101)                                                    
+                                                    ->where('kombi_id', 101)                                                    
                                                     ->first(); 
 
             $transaksi_status=0;
@@ -113,7 +113,7 @@ class ReportKelulusanController extends Controller {
             $data_nilai_ujian=NilaiUjianPMBModel::find($id);                     
             return Response()->json([
                                         'status'=>1,
-                                        'pid'=>'fetchdata',                                                        
+                                        'pid'=>'fetchdata',                                        
                                         'no_transaksi'=>"$no_transaksi ",                                                                           
                                         'transaksi_status'=>$transaksi_status,
                                         'daftar_prodi'=>$daftar_prodi,

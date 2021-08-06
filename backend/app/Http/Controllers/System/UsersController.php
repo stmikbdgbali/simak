@@ -156,7 +156,7 @@ class UsersController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'fetchdata',                
+                                    'pid'=>'fetchdata',
                                     'message'=>["User ID ($id) gagal diperoleh"]
                                 ], 422); 
         }
@@ -165,7 +165,7 @@ class UsersController extends Controller {
             $roles=$user->getRoleNames();           
             return Response()->json([
                                         'status'=>1,
-                                        'pid'=>'fetchdata',                
+                                        'pid'=>'fetchdata',
                                         'roles'=>$roles,                                                        
                                         'message'=>"daftar roles user ($user->username) berhasil diperoleh"
                                     ],200); 
@@ -201,13 +201,13 @@ class UsersController extends Controller {
                     'prodi_id'=>'required'
                 ]);                
 
-                $ta=$request->input('ta');
-                $prodi_id=$request->input('prodi_id');
+                $ta = $request->input('ta');
+                $prodi_id = $request->input('prodi_id');
                 $data = User::where('default_role','mahasiswabaru')
                         ->select(\DB::raw('users.id'))
                         ->join('pe3_formulir_pendaftaran','pe3_formulir_pendaftaran.user_id','users.id')
-                        ->where('users.ta',$ta)
-                        ->where('kjur1',$prodi_id)
+                        ->where('users.ta', $ta)
+                        ->where('kjur1', $prodi_id)
                         ->get();
 
                 foreach ($data as $user)
@@ -223,13 +223,13 @@ class UsersController extends Controller {
                     'ta'=>'required',
                     'prodi_id'=>'required'
                 ]);  
-                $ta=$request->input('ta');
-                $prodi_id=$request->input('prodi_id');
+                $ta = $request->input('ta');
+                $prodi_id = $request->input('prodi_id');
                 $data = User::where('default_role','mahasiswa')
                         ->select(\DB::raw('users.id'))
                         ->join('pe3_register_mahasiswa','pe3_register_mahasiswa.user_id','users.id')
-                        ->where('pe3_register_mahasiswa.tahun',$ta)
-                        ->where('pe3_register_mahasiswa.kjur',$prodi_id)
+                        ->where('pe3_register_mahasiswa.tahun', $ta)
+                        ->where('pe3_register_mahasiswa.kjur', $prodi_id)
                         ->get();
 
                 foreach ($data as $user)
@@ -243,7 +243,7 @@ class UsersController extends Controller {
                 $permissions=$permission->pluck('name');
                 $data = User::role('pmb')
                         ->select(\DB::raw('users.id'))                        
-                        ->where('active',1)
+                        ->where('active', 1)
                         ->get();
 
                 foreach ($data as $user)
@@ -257,7 +257,7 @@ class UsersController extends Controller {
                 $permissions=$permission->pluck('name');
                 $data = User::role('akademik')
                         ->select(\DB::raw('users.id'))                        
-                        ->where('active',1)
+                        ->where('active', 1)
                         ->get();
 
                 foreach ($data as $user)
@@ -271,7 +271,7 @@ class UsersController extends Controller {
                 $permissions=$permission->pluck('name');
                 $data = User::role('programstudi')
                         ->select(\DB::raw('users.id'))                        
-                        ->where('active',1)
+                        ->where('active', 1)
                         ->get();
 
                 foreach ($data as $user)
@@ -285,7 +285,7 @@ class UsersController extends Controller {
                 $permissions=$permission->pluck('name');
                 $data = User::role('puslahta')
                         ->select(\DB::raw('users.id'))                        
-                        ->where('active',1)
+                        ->where('active', 1)
                         ->get();
 
                 foreach ($data as $user)
@@ -299,7 +299,7 @@ class UsersController extends Controller {
                 $permissions=$permission->pluck('name');
                 $data = User::role('keuangan')
                         ->select(\DB::raw('users.id'))                        
-                        ->where('active',1)
+                        ->where('active', 1)
                         ->get();
 
                 foreach ($data as $user)
@@ -313,7 +313,7 @@ class UsersController extends Controller {
                 $permissions=$permission->pluck('name');
                 $data = User::role('perpustakaan')
                         ->select(\DB::raw('users.id'))                        
-                        ->where('active',1)
+                        ->where('active', 1)
                         ->get();
 
                 foreach ($data as $user)
@@ -327,7 +327,7 @@ class UsersController extends Controller {
                 $permissions=$permission->pluck('name');
                 $data = User::role('lppm')
                         ->select(\DB::raw('users.id'))                        
-                        ->where('active',1)
+                        ->where('active', 1)
                         ->get();
 
                 foreach ($data as $user)
@@ -341,7 +341,7 @@ class UsersController extends Controller {
                 $permissions=$permission->pluck('name');
                 $data = User::role('dosen')
                         ->select(\DB::raw('users.id'))                        
-                        ->where('active',1)
+                        ->where('active', 1)
                         ->get();
 
                 foreach ($data as $user)
@@ -355,7 +355,7 @@ class UsersController extends Controller {
                 $permissions=$permission->pluck('name');
                 $data = User::role('dosenwali')
                         ->select(\DB::raw('users.id'))                        
-                        ->where('active',1)
+                        ->where('active', 1)
                         ->get();
 
                 foreach ($data as $user)
@@ -369,7 +369,7 @@ class UsersController extends Controller {
                 $permissions=$permission->pluck('name');
                 $data = User::role('alumni')
                         ->select(\DB::raw('users.id'))                        
-                        ->where('active',1)
+                        ->where('active', 1)
                         ->get();
 
                 foreach ($data as $user)
@@ -383,7 +383,7 @@ class UsersController extends Controller {
                 $permissions=$permission->pluck('name');
                 $data = User::role('orangtuawali')
                         ->select(\DB::raw('users.id'))                        
-                        ->where('active',1)
+                        ->where('active', 1)
                         ->get();
 
                 foreach ($data as $user)
@@ -395,7 +395,7 @@ class UsersController extends Controller {
         }       
         return Response()->json([
                                     'status'=>1,
-                                    'pid'=>'update',                                                                                                     
+                                    'pid'=>'update',                                                                                     
                                     'message'=>"Permission seluruh user role ($role_name) berhasil disinkronisasi."
                                 ],200); 
     }    
@@ -479,7 +479,7 @@ class UsersController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'update',                
+                                    'pid'=>'update',
                                     'message'=>["User ID ($id) gagal diupdate"]
                                 ], 422); 
         }
@@ -590,14 +590,14 @@ class UsersController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'update',                
+                                    'pid'=>'update',
                                     'message'=>["Password User ID ($id) gagal diupdate"]
                                 ], 422); 
         }
         else
         {
             $this->validate($request, [            
-                'password'=>'required',                        
+                'password'=>'required',        
             ]); 
 
             $user->password = Hash::make($request->input('password'));                
@@ -670,7 +670,7 @@ class UsersController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'destroy',                                      
+                                    'pid'=>'destroy',                      
                                     'message'=>["User dengan id ($id) gagal dihapus"]
                                 ], 422);    
         }
@@ -704,14 +704,14 @@ class UsersController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'store',                
+                                    'pid'=>'store',
                                     'message'=>["Data User tidak ditemukan."]
                                 ], 422);         
         }
         else
         {
             $this->validate($request, [        
-                'foto'=>'required',                          
+                'foto'=>'required',          
             ]);
             $username=$user->username;
             $foto = $request->file('foto');
@@ -761,7 +761,7 @@ class UsersController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'store',                
+                                    'pid'=>'store',
                                     'message'=>["Data User tidak ditemukan."]
                                 ], 422);         
         }
@@ -797,7 +797,7 @@ class UsersController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'store',                
+                                    'pid'=>'store',
                                     'message'=>["Data User tidak ditemukan."]
                                 ], 422);         
         }

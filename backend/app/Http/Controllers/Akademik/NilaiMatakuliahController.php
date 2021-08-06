@@ -28,8 +28,8 @@ class NilaiMatakuliahController extends Controller
             'prodi_id'=>'required'
         ]);
 
-        $ta=$request->input('ta');
-        $prodi_id=$request->input('prodi_id');
+        $ta = $request->input('ta');
+        $prodi_id = $request->input('prodi_id');
         $semester_akademik=$request->input('semester_akademik');
         
         $daftar_nilai=[];
@@ -37,7 +37,7 @@ class NilaiMatakuliahController extends Controller
         return Response()->json([
                                     'status'=>1,
                                     'pid'=>'fetchdata',  
-                                    'daftar_nilai'=>$daftar_nilai,                                                                                                                                   
+                                    'daftar_nilai'=>$daftar_nilai,
                                     'message'=>'Fetch data penyelenggaraan matakuliah berhasil.'
                                 ],200); 
     }
@@ -49,7 +49,7 @@ class NilaiMatakuliahController extends Controller
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'fetchdata',                
+                                    'pid'=>'fetchdata',
                                     'message'=>["Kelas Mahasiswa dengan ($id) gagal diperoleh"]
                                 ], 422); 
         }
@@ -63,7 +63,7 @@ class NilaiMatakuliahController extends Controller
                                         pe3_register_mahasiswa.tahun,
                                         pe3_register_mahasiswa.idkelas,
                                         pe3_register_mahasiswa.tahun,
-                                        pe3_register_mahasiswa.kjur,                                                                                                                                                           
+                                        pe3_register_mahasiswa.kjur,                        
                                         COALESCE(pe3_nilai_matakuliah.nilai_absen,0.00) AS nilai_absen,
                                         COALESCE(pe3_nilai_matakuliah.nilai_tugas_individu,0.00) AS nilai_tugas_individu,
                                         COALESCE(pe3_nilai_matakuliah.nilai_tugas_kelompok,0.00) AS nilai_tugas_kelompok,
@@ -85,7 +85,7 @@ class NilaiMatakuliahController extends Controller
                                     ->get();
             return Response()->json([
                                 'status'=>1,
-                                'pid'=>'fetchdata',                                                                                         
+                                'pid'=>'fetchdata',                                                                         
                                 'peserta'=>$peserta,                                            
                                 'message'=>"Daftar Peserta MHS dari Kelas MHS dengan id ($id) berhasil diperoleh."
                             ],200)->setEncodingOptions(JSON_NUMERIC_CHECK);
@@ -118,7 +118,7 @@ class NilaiMatakuliahController extends Controller
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'destroy',                
+                                    'pid'=>'destroy',
                                     'message'=>["KRS dengan ($id) gagal diperoleh"]
                                 ], 422); 
         }
@@ -150,10 +150,10 @@ class NilaiMatakuliahController extends Controller
         return Response()->json([
                                     'status'=>1,
                                     'pid'=>'fetchdata',  
-                                    'krs'=>$krs,                                                                                                                                   
-                                    'krsmatkul'=>$daftar_matkul,                                                                                                                                   
-                                    'jumlah_matkul'=>$daftar_matkul->count(),                                                                                                                                   
-                                    'jumlah_sks'=>$daftar_matkul->sum('sks'),                                                                                                                                   
+                                    'krs'=>$krs,
+                                    'krsmatkul'=>$daftar_matkul,
+                                    'jumlah_matkul'=>$daftar_matkul->count(),
+                                    'jumlah_sks'=>$daftar_matkul->sum('sks'),
                                     'message'=>'Fetch data krs dan detail krs mahasiswa berhasil diperoleh' 
                                 ],200)->setEncodingOptions(JSON_NUMERIC_CHECK);  
     }

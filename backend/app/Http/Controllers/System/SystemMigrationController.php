@@ -28,7 +28,7 @@ class SystemMigrationController extends Controller {
             'ta'=>'required',            
         ]);
         
-        $ta=$request->input('ta');
+        $ta = $request->input('ta');
         $daftar_tasmt=[];
         
         for ($tahun=$ta;$tahun < 2021; $tahun++)
@@ -65,20 +65,20 @@ class SystemMigrationController extends Controller {
             'dosen_id'=>[
                 'required',
                 Rule::exists('pe3_dosen','user_id')->where(function($query){
-                    return $query->where('is_dw',1);
+                    return $query->where('is_dw', 1);
                 })
             ],            
             'prodi_id'=>'required|numeric',            
             'idkelas'=>'required',
             'tahun_pendaftaran'=>'required',
-            'status_mhs.*'=>'required',                        
+            'status_mhs.*'=>'required',        
         ]);
         
         $user = \DB::transaction(function () use ($request){
             $now = \Carbon\Carbon::now()->toDateTimeString();   
             $uuid=Uuid::uuid4()->toString();
             $no_hp=mt_rand(1000,9999);
-            $ta=$request->input('tahun_pendaftaran');
+            $ta = $request->input('tahun_pendaftaran');
             $nim=$request->input('nim');
             $user=User::create([
                 'id'=>$uuid,
@@ -210,7 +210,7 @@ class SystemMigrationController extends Controller {
         });        
         return Response()->json([
                                 'status'=>1,
-                                'pid'=>'store',                                
+                                'pid'=>'store',                
                                 'user'=>$user,                                
                                 'message'=>'Proses migrasi mahasiswa ini berhasil dilakukan, silahkan cek dimasing-masing halaman'
                             ],200);
@@ -221,12 +221,12 @@ class SystemMigrationController extends Controller {
         $this->hasPermissionTo('SYSTEM-MIGRATION_STORE');
 
         $this->validate($request, [            
-            'prodi_id'=>'required|numeric',                   
+            'prodi_id'=>'required|numeric',   
         ]);        
-        $prodi_id=$request->input('prodi_id');
+        $prodi_id = $request->input('prodi_id');
 
         $daftar_matkul=\DB::table('pe3_matakuliah')                        
-                        ->where('kjur',$prodi_id) 
+                        ->where('kjur', $prodi_id) 
                         // ->where('kmatkul','like','%ESY 3103%')
                         ->orderBy('semester','asc')
                         ->get();
@@ -241,7 +241,7 @@ class SystemMigrationController extends Controller {
             $jumlah_row=\DB::table('pe3_penyelenggaraan')
                         ->where('nmatkul','like','%'.$v->nmatkul.'%')
                         ->where('kmatkul','like','%'.$v->kmatkul.'%')
-                        ->where('kjur',$prodi_id)
+                        ->where('kjur', $prodi_id)
                         ->update([
                             'matkul_id'=>$v->id
                         ]);

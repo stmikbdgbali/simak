@@ -33,8 +33,8 @@ class KRSController extends Controller
                 'prodi_id'=>'required'
             ]);
 
-            $ta=$request->input('ta');
-            $prodi_id=$request->input('prodi_id');
+            $ta = $request->input('ta');
+            $prodi_id = $request->input('prodi_id');
             $semester_akademik=$request->input('semester_akademik');
 
             $daftar_krs = KRSModel::select(\DB::raw('
@@ -60,8 +60,8 @@ class KRSController extends Controller
             }            
             else
             {
-                $daftar_krs=$daftar_krs->where('pe3_krs.kjur',$prodi_id)
-                                        ->where('pe3_krs.tahun',$ta)
+                $daftar_krs=$daftar_krs->where('pe3_krs.kjur', $prodi_id)
+                                        ->where('pe3_krs.tahun', $ta)
                                         ->where('pe3_krs.idsmt',$semester_akademik)                            
                                         ->get();
             }
@@ -81,8 +81,8 @@ class KRSController extends Controller
                 'prodi_id'=>'required'
             ]);
 
-            $ta=$request->input('ta');
-            $prodi_id=$request->input('prodi_id');
+            $ta = $request->input('ta');
+            $prodi_id = $request->input('prodi_id');
             $semester_akademik=$request->input('semester_akademik');
 
             $daftar_krs = KRSModel::select(\DB::raw('
@@ -110,8 +110,8 @@ class KRSController extends Controller
             }            
             else
             {
-                $daftar_krs=$daftar_krs->where('pe3_krs.kjur',$prodi_id)
-                                        ->where('pe3_krs.tahun',$ta)
+                $daftar_krs=$daftar_krs->where('pe3_krs.kjur', $prodi_id)
+                                        ->where('pe3_krs.tahun', $ta)
                                         ->where('pe3_krs.idsmt',$semester_akademik)                            
                                         ->get();
             }
@@ -154,7 +154,7 @@ class KRSController extends Controller
         return Response()->json([
                                     'status'=>1,
                                     'pid'=>'fetchdata',  
-                                    'daftar_krs'=>$daftar_krs,                                                                                                                                   
+                                    'daftar_krs'=>$daftar_krs,
                                     'message'=>'Daftar krs mahasiswa berhasil diperoleh' 
                                 ],200);  
         
@@ -194,7 +194,7 @@ class KRSController extends Controller
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'fetchdata',                
+                                    'pid'=>'fetchdata',
                                     'message'=>["KRS dengan ($id) gagal diperoleh"]
                                 ], 422); 
         }
@@ -245,10 +245,10 @@ class KRSController extends Controller
             return Response()->json([
                                     'status'=>1,
                                     'pid'=>'fetchdata',  
-                                    'krs'=>$krs,                                                                                                                                   
-                                    'krsmatkul'=>$daftar_matkul,                                                                                                                                   
-                                    'jumlah_matkul'=>$krs->jumlah_matkul_1,                                                                                                                                   
-                                    'jumlah_sks'=>$krs->jumlah_sks_1,                                                                                                                                   
+                                    'krs'=>$krs,
+                                    'krsmatkul'=>$daftar_matkul,
+                                    'jumlah_matkul'=>$krs->jumlah_matkul_1,
+                                    'jumlah_sks'=>$krs->jumlah_sks_1,
                                     'message'=>'Fetch data krs dan detail krs mahasiswa berhasil diperoleh' 
                                 ],200)->setEncodingOptions(JSON_NUMERIC_CHECK);  
         }        
@@ -265,8 +265,8 @@ class KRSController extends Controller
             'pid'=>'required',     
         ]);
         
-        $prodi_id=$request->input('prodi_id');
-        $ta=$request->input('ta');
+        $prodi_id = $request->input('prodi_id');
+        $ta = $request->input('ta');
         $nim=$request->input('nim');
         $semester_akademik=$request->input('semester_akademik');
         
@@ -278,7 +278,7 @@ class KRSController extends Controller
         {
             return Response()->json([
                                         'status'=>0,
-                                        'pid'=>'fetchdata',                
+                                        'pid'=>'fetchdata',
                                         'message'=>["Data MHS dengan NIM ($nim) gagal diperoleh"]
                                     ], 422); 
         }
@@ -291,14 +291,14 @@ class KRSController extends Controller
                                         sks,
                                         semester
                                     '))       
-                                    ->where('tahun',$ta)                                  
+                                    ->where('tahun', $ta)                                  
                                     ->where('idsmt',$semester_akademik)                                  
-                                    ->where('kjur',$prodi_id)                                                                      
+                                    ->where('kjur', $prodi_id)                                                                      
                                     ->whereNotIn('id',function($query) use ($nim,$ta,$semester_akademik){
                                         $query->select('penyelenggaraan_id')
                                             ->from('pe3_krsmatkul')
                                             ->where('nim',$nim)                                        
-                                            ->where('tahun',$ta)                                        
+                                            ->where('tahun', $ta)                                        
                                             ->where('idsmt',$semester_akademik);                                        
                                     })
                                     ->orderBy('semester','ASC')                                                      
@@ -308,7 +308,7 @@ class KRSController extends Controller
             return Response()->json([
                                         'status'=>1,
                                         'pid'=>'fetchdata',  
-                                        'penyelenggaraan'=>$penyelenggaraan,                                                                                                                                                                       
+                                        'penyelenggaraan'=>$penyelenggaraan,                                    
                                         'message'=>'Fetch data matakuliah yang diselenggarakan dan belum terdaftar di KRS berhasil diperoleh' 
                                     ],200)->setEncodingOptions(JSON_NUMERIC_CHECK);
         }
@@ -350,7 +350,7 @@ class KRSController extends Controller
         return Response()->json([
                                     'status'=>1,
                                     'pid'=>'store',  
-                                    'krs'=>$krs,                                                                                                                                   
+                                    'krs'=>$krs,
                                     'message'=>'menyimpan krs mahasiswa berhasil'
                                 ],200);  
     }
@@ -388,7 +388,7 @@ class KRSController extends Controller
         KRSMatkulModel::insert($daftar_matkul);
         return Response()->json([
                                     'status'=>1,
-                                    'pid'=>'store',                                                                                                                                                                         
+                                    'pid'=>'store',                      
                                     'message'=>(count($daftar_matkul)).' Matakuliah baru telah berhasil ditambahkan'
                                 ],200);  
     }
@@ -402,7 +402,7 @@ class KRSController extends Controller
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'update',                
+                                    'pid'=>'update',
                                     'message'=>["KRS dengan ($id) gagal diverifikasi"]
                                 ], 422); 
         }
@@ -436,18 +436,18 @@ class KRSController extends Controller
         ]);
         
         $nim=$request->input('nim');
-        $ta=$request->input('ta');
+        $ta = $request->input('ta');
         $idsmt=$request->input('idsmt');
 
         $isdulang = KRSModel::where('nim',$nim)
-                                ->where('tahun',$ta)
+                                ->where('tahun', $ta)
                                 ->where('idsmt',$idsmt)                                
                                 ->exists();
 
         return Response()->json([
                                     'status'=>1,
                                     'pid'=>'fetchdata',  
-                                    'iskrs'=>$iskrs,                                                                                                                                   
+                                    'iskrs'=>$iskrs,
                                     'message'=>'Cek krs mahasiswa'
                                 ],200);  
 
@@ -468,7 +468,7 @@ class KRSController extends Controller
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'destroy',                
+                                    'pid'=>'destroy',
                                     'message'=>["KRS dengan ($id) gagal dihapus"]
                                 ], 422); 
         }
@@ -483,7 +483,7 @@ class KRSController extends Controller
             $krs->delete();
             return Response()->json([
                                         'status'=>1,
-                                        'pid'=>'destroy',                
+                                        'pid'=>'destroy',
                                         'message'=>"KRS dengan ID ($id) berhasil dihapus"
                                     ],200);         
         }
@@ -505,7 +505,7 @@ class KRSController extends Controller
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'destroy',                
+                                    'pid'=>'destroy',
                                     'message'=>["Matakuliah dalam KRS dengan ($id) gagal dihapus"]
                                 ], 422); 
         }
@@ -520,7 +520,7 @@ class KRSController extends Controller
             $krsmatkul->delete();
             return Response()->json([
                                         'status'=>1,
-                                        'pid'=>'destroy',                
+                                        'pid'=>'destroy',
                                         'message' => 'Menghapus matakuliah KRS dengan id ('.$id.') berhasil'
                                     ],200);         
         }
@@ -558,7 +558,7 @@ class KRSController extends Controller
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'destroy',                
+                                    'pid'=>'destroy',
                                     'message'=>["KRS dengan ($id) gagal diperoleh"]
                                 ], 422); 
         }
@@ -643,7 +643,7 @@ class KRSController extends Controller
             {
                 return Response()->json([
                     'status'=>0,
-                    'pid'=>'fetchdata',                    
+                    'pid'=>'fetchdata',    
                     'message'=>'Ketua program studi belum disetting di halaman Data Master -> Program Studi'
                 ], 422);
             }

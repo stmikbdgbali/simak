@@ -22,7 +22,7 @@ class MatakuliahController extends Controller {
 			'prodi_id'=>'required'
 		]);
 				
-		$prodi_id=$request->input('prodi_id');
+		$prodi_id = $request->input('prodi_id');
 
 		$matakuliah=MatakuliahModel::select(\DB::raw('
 									id,
@@ -36,7 +36,7 @@ class MatakuliahController extends Controller {
 									status,
 									0 AS jummlah_penyelenggaraan
 								'))       
-								->where('kjur',$prodi_id)                                
+								->where('kjur', $prodi_id)                                
 								->orderBy('semester','ASC')                      
 								->orderBy('kmatkul','ASC');                                
 
@@ -53,7 +53,7 @@ class MatakuliahController extends Controller {
 		return Response()->json([
 									'status'=>1,
 									'pid'=>'fetchdata',  
-									'matakuliah'=>$matakuliah,                                                                                                                                   
+									'matakuliah'=>$matakuliah,
 									'message'=>'Fetch data matakuliah berhasil.'
 								],200);     
 	}
@@ -77,7 +77,7 @@ class MatakuliahController extends Controller {
 		{
 			return Response()->json([
 									'status'=>0,
-									'pid'=>'update',                
+									'pid'=>'update',
 									'message'=>["matakuliah dengan ($id) gagal diupdate"]
 								], 422); 
 		}
@@ -85,7 +85,7 @@ class MatakuliahController extends Controller {
 		{
 			return Response()->json([
 									'status'=>1,
-									'pid'=>'fetchdata',                                    
+									'pid'=>'fetchdata',                    
 									'matakuliah'=>$matakuliah,                                    
 									'message'=>'Data matakuliah dengan id ('.$id.') berhasil diperoleh.'
 								],200); 
@@ -121,7 +121,7 @@ class MatakuliahController extends Controller {
 			'sks'=>'required|numeric',            
 			'semester'=>'required|numeric',            
 			'sks_tatap_muka'=>'required|numeric',            
-			'minimal_nilai'=>'required',                         
+			'minimal_nilai'=>'required',         
 			'kjur'=>'required',  
 		];
 	
@@ -168,7 +168,7 @@ class MatakuliahController extends Controller {
 
 		return Response()->json([
 									'status'=>1,
-									'pid'=>'store',                                    
+									'pid'=>'store',                    
 									'matakuliah'=>$matakuliah,                                    
 									'message'=>'Data matakuliah berhasil disimpan.'
 								],200); 
@@ -190,7 +190,7 @@ class MatakuliahController extends Controller {
 		{
 			return Response()->json([
 									'status'=>0,
-									'pid'=>'update',                
+									'pid'=>'update',
 									'message'=>["matakuliah dengan id ($id) gagal diupdate"]
 								], 422); 
 		}
@@ -207,7 +207,7 @@ class MatakuliahController extends Controller {
 													],           
 										
 										'nmatkul'=>[
-														'required',                                                        
+														'required',                                        
 														Rule::unique('pe3_matakuliah')->ignore($matakuliah->nmatkul,'nmatkul')->where(function ($query) use ($kjur) {
 															$query->where('kjur',$kjur);
 														})
@@ -215,8 +215,8 @@ class MatakuliahController extends Controller {
 										'sks'=>'required|numeric',            
 										'semester'=>'required|numeric',            
 										'sks_tatap_muka'=>'required|numeric',            
-										'minimal_nilai'=>'required',                                                    
-										'kjur'=>'required',                                          
+										'minimal_nilai'=>'required',                                    
+										'kjur'=>'required',                          
 									]); 
 			
 			$id_group=$request->input('id_group');
@@ -291,7 +291,7 @@ class MatakuliahController extends Controller {
 		{
 			return Response()->json([
 									'status'=>0,
-									'pid'=>'destroy',                
+									'pid'=>'destroy',
 									'message'=>["Kode matakuliah ($id) gagal dihapus"]
 								], 422); 
 		}
@@ -306,7 +306,7 @@ class MatakuliahController extends Controller {
 			$matakuliah->delete();
 			return Response()->json([
 										'status'=>1,
-										'pid'=>'destroy',                
+										'pid'=>'destroy',
 										'message'=>"matakuliah dengan kode ($id) berhasil dihapus"
 									],200);         
 		}
@@ -320,7 +320,7 @@ class MatakuliahController extends Controller {
 			'semester_akademik'=>'required'
 		]);
 		
-		$prodi_id=$request->input('prodi_id');
+		$prodi_id = $request->input('prodi_id');
 		$ta_akademik=$request->input('ta_akademik');
 		$semester_akademik=$request->input('semester_akademik');
 
@@ -335,12 +335,12 @@ class MatakuliahController extends Controller {
 									syarat_skripsi,
 									status
 								'))       
-								->where('kjur',$prodi_id)                                
+								->where('kjur', $prodi_id)                                
 								->whereNotIn('id',function($query) use($ta_akademik,$prodi_id,$semester_akademik){
 									$query->select('matkul_id')
 										->from('pe3_penyelenggaraan')
-										->where('kjur',$prodi_id)
-										->where('tahun',$ta_akademik)
+										->where('kjur', $prodi_id)
+										->where('tahun', $ta_akademik)
 										->where('idsmt',$semester_akademik);
 								})
 								->orderBy('semester','ASC')                      
@@ -350,7 +350,7 @@ class MatakuliahController extends Controller {
 		return Response()->json([
 									'status'=>1,
 									'pid'=>'fetchdata',  
-									'matakuliah'=>$matakuliah,                                                                                                                                   
+									'matakuliah'=>$matakuliah,
 									'message'=>'Fetch data matakuliah berhasil.'
 								],200);     
 	}

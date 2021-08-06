@@ -20,8 +20,8 @@ class KemahasiswaanDaftarMahasiswaController  extends Controller
             'prodi_id'=>'required'
         ]);
 
-        $ta=$request->input('ta');
-        $prodi_id=$request->input('prodi_id');
+        $ta = $request->input('ta');
+        $prodi_id = $request->input('prodi_id');
         
         $data = RegisterMahasiswaModel::select(\DB::raw('        
                                 pe3_register_mahasiswa.user_id,
@@ -44,8 +44,8 @@ class KemahasiswaanDaftarMahasiswaController  extends Controller
         }            
         else
         {
-            $data=$data->where('pe3_register_mahasiswa.kjur',$prodi_id)                            
-                        ->where('pe3_register_mahasiswa.tahun',$ta)                            
+            $data=$data->where('pe3_register_mahasiswa.kjur', $prodi_id)                            
+                        ->where('pe3_register_mahasiswa.tahun', $ta)                            
                         ->get();
         }
         
@@ -53,7 +53,7 @@ class KemahasiswaanDaftarMahasiswaController  extends Controller
         return Response()->json([
                                     'status'=>1,
                                     'pid'=>'fetchdata',  
-                                    'mahasiswa'=>$data,                                                                                                                                   
+                                    'mahasiswa'=>$data,
                                     'message'=>'Fetch data daftar mahasiswa berhasil.'
                                 ],200);     
     }

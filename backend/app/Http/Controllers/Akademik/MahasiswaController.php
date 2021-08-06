@@ -39,7 +39,7 @@ class MahasiswaController extends Controller
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'fetchdata',                
+                                    'pid'=>'fetchdata',
                                     'message'=>["Data Mahasiswa dengan id ($id) gagal diperoleh"]
                                 ], 422); 
         }
@@ -47,7 +47,7 @@ class MahasiswaController extends Controller
         {
             return Response()->json([
                                         'status'=>1,
-                                        'pid'=>'fetchdata',                
+                                        'pid'=>'fetchdata',
                                         'mahasiswa'=>$mahasiswa,                
                                         'message'=>"Data mahasiswa dengan id ($id) berhasil diperoleh"
                                     ],200);
@@ -83,7 +83,7 @@ class MahasiswaController extends Controller
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'fetchdata',                
+                                    'pid'=>'fetchdata',
                                     'message'=>["Data Mahasiswa dengan id ($id) gagal diperoleh"]
                                 ],200); 
         }
@@ -91,7 +91,7 @@ class MahasiswaController extends Controller
         {
             return Response()->json([
                                         'status'=>1,
-                                        'pid'=>'fetchdata',                
+                                        'pid'=>'fetchdata',
                                         'mahasiswa'=>$mahasiswa,                
                                         'message'=>"Data mahasiswa dengan id ($id) berhasil diperoleh"
                                     ],200);

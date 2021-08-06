@@ -18,7 +18,7 @@ class ChannelPembayaranController extends Controller {
         return Response()->json([
                                     'status'=>1,
                                     'pid'=>'fetchdata',  
-                                    'channel'=>$channel,                                                                                                                                   
+                                    'channel'=>$channel,
                                     'message'=>'Fetch data channel pembayaran berhasil.'
                                 ],200);     
     }    

@@ -104,7 +104,7 @@ class UIController extends Controller {
                                 ->leftJoin('pe3_fakultas','pe3_fakultas.kode_fakultas','pe3_prodi.kode_fakultas')
                                 ->get();
 
-                $prodi_id=$config['DEFAULT_PRODI'];
+                $prodi_id = $config['DEFAULT_PRODI'];
 
                 $tahun_pendaftaran = $config['DEFAULT_TAHUN_PENDAFTARAN'];
                 $tahun_akademik = $config['DEFAULT_TA'];
@@ -130,7 +130,7 @@ class UIController extends Controller {
                                 ->get();
 
                     $fakultas_id=$config['DEFAULT_FAKULTAS'];
-                    $prodi_id=$daftar_prodi[0]->id;
+                    $prodi_id = $daftar_prodi[0]->id;
                 }
                 else
                 {
@@ -154,7 +154,7 @@ class UIController extends Controller {
                                 ->leftJoin('pe3_fakultas','pe3_fakultas.kode_fakultas','pe3_prodi.kode_fakultas')
                                 ->get();
                                                     
-                    $prodi_id=$config['DEFAULT_PRODI'];
+                    $prodi_id = $config['DEFAULT_PRODI'];
                 }
                 $tahun_pendaftaran = $config['DEFAULT_TAHUN_PENDAFTARAN'];
                 $tahun_akademik = $config['DEFAULT_TA'];
@@ -180,7 +180,7 @@ class UIController extends Controller {
                                 ->get();
 
                     $fakultas_id=$config['DEFAULT_FAKULTAS'];
-                    $prodi_id=$daftar_prodi[0]->id;
+                    $prodi_id = $daftar_prodi[0]->id;
                 }
                 else
                 {
@@ -204,7 +204,7 @@ class UIController extends Controller {
                                 ->leftJoin('pe3_fakultas','pe3_fakultas.kode_fakultas','pe3_prodi.kode_fakultas')
                                 ->get();
 
-                    $prodi_id=$config['DEFAULT_PRODI'];
+                    $prodi_id = $config['DEFAULT_PRODI'];
                 }
                 $tahun_pendaftaran = $config['DEFAULT_TAHUN_PENDAFTARAN'];
                 $tahun_akademik = $config['DEFAULT_TA'];
@@ -230,7 +230,7 @@ class UIController extends Controller {
                                 ->get();
 
                     $fakultas_id=$config['DEFAULT_FAKULTAS'];
-                    $prodi_id=$daftar_prodi[0]->id;
+                    $prodi_id = $daftar_prodi[0]->id;
                 }
                 else
                 {
@@ -254,7 +254,7 @@ class UIController extends Controller {
                                 ->leftJoin('pe3_fakultas','pe3_fakultas.kode_fakultas','pe3_prodi.kode_fakultas')
                                 ->get();
 
-                    $prodi_id=$config['DEFAULT_PRODI'];
+                    $prodi_id = $config['DEFAULT_PRODI'];
                 }
                 $tahun_pendaftaran = $config['DEFAULT_TAHUN_PENDAFTARAN'];
                 $tahun_akademik = $config['DEFAULT_TA'];
@@ -289,7 +289,7 @@ class UIController extends Controller {
                                 ->where('id',$formulir->kjur1)
                                 ->get();
 
-                $prodi_id=$formulir->kjur1;
+                $prodi_id = $formulir->kjur1;
 
                 $tahun_pendaftaran = $formulir->ta;
                 $tahun_akademik = $config['DEFAULT_TA'];
@@ -322,7 +322,7 @@ class UIController extends Controller {
                                 ->where('id',$formulir->kjur1)
                                 ->get();
                 
-                $prodi_id=$formulir->kjur1;
+                $prodi_id = $formulir->kjur1;
 
                 $tahun_pendaftaran = $formulir->ta;
                 $tahun_akademik = $formulir->ta;
@@ -346,7 +346,7 @@ class UIController extends Controller {
                             ->get();
 
                 $fakultas_id=$config['DEFAULT_FAKULTAS'];
-                $prodi_id=$daftar_prodi[0]->id;
+                $prodi_id = $daftar_prodi[0]->id;
 
                 $tahun_pendaftaran = $config['DEFAULT_TAHUN_PENDAFTARAN'];
                 $tahun_akademik = $config['DEFAULT_TA'];
@@ -377,7 +377,7 @@ class UIController extends Controller {
                                 ->leftJoin('pe3_fakultas','pe3_fakultas.kode_fakultas','pe3_prodi.kode_fakultas')
                                 ->get();
 
-                $prodi_id=$config['DEFAULT_PRODI'];
+                $prodi_id = $config['DEFAULT_PRODI'];
 
                 $tahun_pendaftaran = $config['DEFAULT_TAHUN_PENDAFTARAN'];
                 $tahun_akademik = $config['DEFAULT_TA'];
