@@ -89,7 +89,7 @@ class UsersProdiController extends Controller {
                         updated_at
                     ) 
                     SELECT
-                        '$user_id',                    
+                        '$user_id',    
                         id,
                         kode_forlap,
                         nama_prodi,
@@ -162,7 +162,7 @@ class UsersProdiController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'update',                
+                                    'pid'=>'update',
                                     'message'=>["User ID ($id) gagal diperoleh"]
                                 ], 422); 
         }
@@ -194,7 +194,7 @@ class UsersProdiController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'update',                
+                                    'pid'=>'update',
                                     'message'=>["User ID ($id) gagal diupdate"]
                                 ], 422); 
         }
@@ -253,7 +253,7 @@ class UsersProdiController extends Controller {
                             updated_at
                         ) 
                         SELECT
-                            '$user_id',                    
+                            '$user_id',    
                             id,
                             kode_forlap,
                             nama_prodi,
@@ -355,7 +355,7 @@ class UsersProdiController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'destroy',                
+                                    'pid'=>'destroy',
                                     'message'=>["User ID ($id) gagal dihapus"]
                                 ], 422); 
         }
@@ -373,7 +373,7 @@ class UsersProdiController extends Controller {
         
             return Response()->json([
                                         'status'=>1,
-                                        'pid'=>'destroy',                
+                                        'pid'=>'destroy',
                                         'message'=>"User PROGRAM STUDI ($username) berhasil dihapus"
                                     ],200);         
         }

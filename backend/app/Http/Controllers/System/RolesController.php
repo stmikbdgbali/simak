@@ -130,7 +130,7 @@ class RolesController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'fetchdata',                
+                                    'pid'=>'fetchdata',
                                     'message'=>["Role ID ($id) gagal diperoleh"]
                                 ], 422); 
         }
@@ -158,7 +158,7 @@ class RolesController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'fetchdata',                
+                                    'pid'=>'fetchdata',
                                     'message'=>["Role ID ($id) gagal diperoleh"]
                                 ], 422); 
         }

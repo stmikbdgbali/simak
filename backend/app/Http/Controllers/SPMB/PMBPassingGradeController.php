@@ -20,7 +20,7 @@ class PMBPassingGradeController extends Controller
         $this->hasPermissionTo('SPMB-PMB-PASSING-GRADE_BROWSE');
 
         $this->validate($request, [                       
-            'jadwal_ujian_id'=>'required|exists:pe3_jadwal_ujian_pmb,id',                       
+            'jadwal_ujian_id'=>'required|exists:pe3_jadwal_ujian_pmb,id',       
         ]);
 
         $jadwal_ujian_id=$request->input('jadwal_ujian_id');
@@ -54,7 +54,7 @@ class PMBPassingGradeController extends Controller
         $this->hasPermissionTo('SPMB-PMB-PASSING-GRADE_STORE');
 
         $this->validate($request, [                       
-            'jadwal_ujian_id'=>'required|exists:pe3_jadwal_ujian_pmb,id',                       
+            'jadwal_ujian_id'=>'required|exists:pe3_jadwal_ujian_pmb,id',       
         ]);
         
         $jadwal_ujian_id=$request->input('jadwal_ujian_id');
@@ -86,7 +86,7 @@ class PMBPassingGradeController extends Controller
         
         return Response()->json([
                                 'status'=>1,
-                                'pid'=>'fetchdata',                                                                
+                                'pid'=>'fetchdata',                                                
                                 'message'=>'Data nilai passing grade ujian pmb masing-masing prodi berhasil digenerate'
                             ],200);  
     }    
@@ -100,8 +100,8 @@ class PMBPassingGradeController extends Controller
         $this->hasPermissionTo('SPMB-PMB-PASSING-GRADE_STORE');
 
         $this->validate($request, [                       
-            'id'=>'required|exists:pe3_passing_grade_pmb,id',                       
-            'nilai'=>'required|numeric',                       
+            'id'=>'required|exists:pe3_passing_grade_pmb,id',       
+            'nilai'=>'required|numeric',       
         ]);
         
         $passing_id=$request->input('id');
@@ -112,7 +112,7 @@ class PMBPassingGradeController extends Controller
 
         return Response()->json([
                                 'status'=>1,
-                                'pid'=>'fetchdata',                                
+                                'pid'=>'fetchdata',                
                                 'passing_grade'=>$passing,
                                 'message'=>'Data nilai passing grade ujian pmb sudah diubah'
                             ],200);  

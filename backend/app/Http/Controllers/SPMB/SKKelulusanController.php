@@ -26,7 +26,7 @@ class SKKelulusanController extends Controller {
 		{
 			return Response()->json([
 																'status'=>0,
-																'pid'=>'fetchdata',                
+																'pid'=>'fetchdata',
 																'message'=>["SK Kelulusan tidak dikenali"]
 														], 422); 
 		}
@@ -52,7 +52,7 @@ class SKKelulusanController extends Controller {
 		{
 				return Response()->json([
 																'status'=>0,
-																'pid'=>'fetchdata',                
+																'pid'=>'fetchdata',
 																'message'=>["Formulir Pendaftaran dengan ID ($id) gagal diperoleh"]
 														], 422); 
 		}
@@ -66,13 +66,13 @@ class SKKelulusanController extends Controller {
 				$biaya_pengembangan=BiayaKomponenPeriodeModel::where('tahun',$formulir->ta)
 																											->where('idkelas',$formulir->idkelas)
 																											->where('kjur',$formulir->kjur1)
-																											->where('kombi_id',102)
+																											->where('kombi_id', 102)
 																											->value('biaya');
 
 				$jas_almamater=BiayaKomponenPeriodeModel::where('tahun',$formulir->ta)
 																											->where('idkelas',$formulir->idkelas)
 																											->where('kjur',$formulir->kjur1)
-																											->where('kombi_id',103)
+																											->where('kombi_id', 103)
 																											->value('biaya');
 
 				$spp=BiayaKomponenPeriodeModel::where('tahun',$formulir->ta)

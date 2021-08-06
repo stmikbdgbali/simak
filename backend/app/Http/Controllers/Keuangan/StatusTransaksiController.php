@@ -20,7 +20,7 @@ class StatusTransaksiController extends Controller {
         return Response()->json([
                                     'status'=>1,
                                     'pid'=>'fetchdata',  
-                                    'status'=>$status_transaksi,                                                                                                                                   
+                                    'status'=>$status_transaksi,
                                     'message'=>'Fetch data status transaksi berhasil.'
                                 ],200);     
     } 
@@ -45,7 +45,7 @@ class StatusTransaksiController extends Controller {
         return Response()->json([
                                     'status'=>1,
                                     'pid'=>'update',     
-                                    'status'=>$status,                                                                                                                                                               
+                                    'status'=>$status,                            
                                     'message'=>'Mengubah status transaksi '.$status->nama_status.' berhasil.'
                                 ],200);     
     } 

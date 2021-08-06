@@ -23,8 +23,8 @@ class KonfirmasiPembayaranController extends Controller {
             'ta'=>'required',
             'prodi_id'=>'required',
         ]);
-        $ta=$request->input('ta');
-        $prodi_id=$request->input('prodi_id');
+        $ta = $request->input('ta');
+        $prodi_id = $request->input('prodi_id');
         
         $daftar_transaksi=[];
 
@@ -62,7 +62,7 @@ class KonfirmasiPembayaranController extends Controller {
                                                 ->join('pe3_status_transaksi','pe3_transaksi.status','pe3_status_transaksi.id_status')
                                                 ->join('pe3_formulir_pendaftaran','pe3_formulir_pendaftaran.user_id','pe3_transaksi.user_id')
                                                 ->leftJoin('pe3_konfirmasi_pembayaran','pe3_konfirmasi_pembayaran.transaksi_id','pe3_transaksi.id')
-                                                ->where('pe3_transaksi.ta',$ta)
+                                                ->where('pe3_transaksi.ta', $ta)
                                                 ->where('pe3_transaksi.user_id',$userid)
                                                 ->orderBy('tanggal','DESC')
                                                 ->get();
@@ -109,8 +109,8 @@ class KonfirmasiPembayaranController extends Controller {
             }            
             else
             {
-                $daftar_transaksi=$daftar_transaksi->where('pe3_transaksi.ta',$ta)                                                    
-                                                    ->where('pe3_transaksi.kjur',$prodi_id)                                                    
+                $daftar_transaksi=$daftar_transaksi->where('pe3_transaksi.ta', $ta)                                                    
+                                                    ->where('pe3_transaksi.kjur', $prodi_id)                                                    
                                                     ->get();
             }
             
@@ -118,7 +118,7 @@ class KonfirmasiPembayaranController extends Controller {
         return Response()->json([
                                     'status'=>1,
                                     'pid'=>'fetchdata',  
-                                    'transaksi'=>$daftar_transaksi,                                                                                                                                   
+                                    'transaksi'=>$daftar_transaksi,
                                     'message'=>'Fetch data daftar transaksi berhasil.'
                                 ],200);     
     }  
@@ -149,7 +149,7 @@ class KonfirmasiPembayaranController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'fetchdata',                
+                                    'pid'=>'fetchdata',
                                     'message'=>["Fetch data transaksi dengan ID ($id) gagal diperoleh"]
                                 ], 422); 
         }
@@ -158,7 +158,7 @@ class KonfirmasiPembayaranController extends Controller {
             return Response()->json([
                                         'status'=>1,
                                         'pid'=>'fetchdata',  
-                                        'konfirmasi'=>$konfirmasi,                                                                                                                                   
+                                        'konfirmasi'=>$konfirmasi,
                                         'message'=>'Fetch data detail konfirmasi berhasil.'
                                     ],200);     
         }
@@ -236,7 +236,7 @@ class KonfirmasiPembayaranController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'update',                
+                                    'pid'=>'update',
                                     'message'=>["Update data transaksi dengan ID ($id) gagal diperoleh"]
                                 ], 422); 
         }
@@ -248,7 +248,7 @@ class KonfirmasiPembayaranController extends Controller {
             
             return Response()->json([
                                         'status'=>1,
-                                        'pid'=>'update',                                          
+                                        'pid'=>'update',                          
                                         'message'=>"Mengubah data konfirmasi dengan id ($id) berhasil."                                        
                                     ],200);   
         }

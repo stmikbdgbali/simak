@@ -24,10 +24,10 @@ class PMBPersyaratanController extends Controller {
             'prodi_id'=>'required'
         ]);
         
-        $ta=$request->input('ta');
-        $prodi_id=$request->input('prodi_id');
+        $ta = $request->input('ta');
+        $prodi_id = $request->input('prodi_id');
         
-        $jumlah_persyaratan=\DB::table('pe3_persyaratan')->where('ta',$ta)->count();
+        $jumlah_persyaratan=\DB::table('pe3_persyaratan')->where('ta', $ta)->count();
         $data = FormulirPendaftaranModel::select(\DB::raw("users.id,users.name,users.nomor_hp,pe3_kelas.nkelas,users.active,users.foto,$jumlah_persyaratan AS jumlah_persyaratan,0 AS persyaratan,'BELUM LENGKAP' AS status,users.created_at,users.updated_at"))                    
                     ->join('users','pe3_formulir_pendaftaran.user_id','users.id')
                     ->join('pe3_kelas','pe3_formulir_pendaftaran.idkelas','pe3_kelas.idkelas')
@@ -36,9 +36,9 @@ class PMBPersyaratanController extends Controller {
                               ->from('pe3_pmb_persyaratan')
                               ->whereRaw('pe3_pmb_persyaratan.user_id = users.id');
                     })
-                    ->where('users.ta',$ta)
-                    ->where('kjur1',$prodi_id)                    
-                    ->where('users.active',1)
+                    ->where('users.ta', $ta)
+                    ->where('kjur1', $prodi_id)                    
+                    ->where('users.active', 1)
                     ->orderBy('users.name','ASC')
                     ->get();
         
@@ -68,7 +68,7 @@ class PMBPersyaratanController extends Controller {
         {
             return Response()->json([
                                         'status'=>0,
-                                        'pid'=>'fetchdata',                
+                                        'pid'=>'fetchdata',
                                         'message'=>["User ID ($id) gagal diperoleh"]
                                     ], 422); 
         }
@@ -112,7 +112,7 @@ class PMBPersyaratanController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'store',                
+                                    'pid'=>'store',
                                     'message'=>["Data Mahasiswa tidak ditemukan."]
                                 ], 422);         
         }
@@ -120,7 +120,7 @@ class PMBPersyaratanController extends Controller {
         {
             $this->validate($request, [      
                 'persyaratan_pmb_id'=>'required',
-                'persyaratan_id'=>'required|exists:pe3_persyaratan,id',                                                               
+                'persyaratan_id'=>'required|exists:pe3_persyaratan,id',                                               
                 'nama_persyaratan'=>'required',  
                 'foto'=>'required'                        
             ]);
@@ -192,7 +192,7 @@ class PMBPersyaratanController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'destroy',                
+                                    'pid'=>'destroy',
                                     'message'=>["Data Persyaratan Mahasiswa Baru tidak ditemukan."]
                                 ], 422);         
         }
@@ -213,7 +213,7 @@ class PMBPersyaratanController extends Controller {
             
             return Response()->json([
                                         'status'=>1,
-                                        'pid'=>'destroy',                                        
+                                        'pid'=>'destroy',                        
                                         'message'=>"Persyaratan Mahasiswa Baru user id ($userid)  berhasil dihapus"
                                     ],200);
         }
@@ -228,7 +228,7 @@ class PMBPersyaratanController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'update',                
+                                    'pid'=>'update',
                                     'message'=>["Data Persyaratan Mahasiswa Baru tidak ditemukan."]
                                 ], 422);         
         }

@@ -21,7 +21,7 @@ class TransferBankController extends Controller {
         return Response()->json([
                                     'status'=>1,
                                     'pid'=>'fetchdata',  
-                                    'bank'=>$bank,                                                                                                                                   
+                                    'bank'=>$bank,
                                     'message'=>'Fetch data bank berhasil.'
                                 ],200);     
     }
@@ -36,10 +36,10 @@ class TransferBankController extends Controller {
         $this->hasPermissionTo('KEUANGAN-METODE-TRANSFER-BANK_STORE');
 
         $rule=[            
-            'nama_bank'=>'required',                     
-            'nama_cabang'=>'required',                     
+            'nama_bank'=>'required',     
+            'nama_cabang'=>'required',     
             'nomor_rekening'=>'required|numeric|unique:pe3_transfer_bank,nomor_rekening',
-            'pemilik_rekening'=>'required',                  
+            'pemilik_rekening'=>'required',  
         ];
     
         $this->validate($request, $rule);
@@ -83,7 +83,7 @@ class TransferBankController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'update',                
+                                    'pid'=>'update',
                                     'message'=>["Kode Kelas ($id) gagal diupdate"]
                                 ], 422); 
         }
@@ -91,11 +91,11 @@ class TransferBankController extends Controller {
         {
             
             $this->validate($request, [
-                                        'nama_bank'=>'required',                     
+                                        'nama_bank'=>'required',     
                                         'nama_cabang'=>'required',   
                                         'nomor_rekening'=>[
-                                                        'required',                                                        
-                                                        'numeric',                                                        
+                                                        'required',                                        
+                                                        'numeric',                                        
                                                         Rule::unique('pe3_transfer_bank')->ignore($bank->nomor_rekening,'nomor_rekening')                                                       
                                                     ],     
                                         'pemilik_rekening'=>'required',   
@@ -139,7 +139,7 @@ class TransferBankController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'destroy',                
+                                    'pid'=>'destroy',
                                     'message'=>["Kode bank ($id) gagal dihapus"]
                                 ], 422); 
         }
@@ -154,7 +154,7 @@ class TransferBankController extends Controller {
             $bank->delete();
             return Response()->json([
                                         'status'=>1,
-                                        'pid'=>'destroy',                
+                                        'pid'=>'destroy',
                                         'message'=>"Kelas dengan kode ($id) berhasil dihapus"
                                     ],200);         
         }

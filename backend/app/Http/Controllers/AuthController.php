@@ -18,7 +18,7 @@ class AuthController extends Controller
     {
         $this->validate($request, [            
             'username'=>'required',
-            'password'=>'required',                        
+            'password'=>'required',        
         ]);
         $credentials = $request->only('username', 'password');
         $credentials['active']=1;
@@ -34,7 +34,7 @@ class AuthController extends Controller
         if (! $token = $this->guard()->attempt($credentials, ['exp' => \Carbon\Carbon::now()->addMinutes($ttl_expire)->timestamp])) {
             return response()->json([
                                     'page' => 'login',
-                                    'error' => 'Unauthorized',                                    
+                                    'error' => 'Unauthorized',                    
                                 ], 401);
         }
         //log user loggin

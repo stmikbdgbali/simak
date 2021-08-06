@@ -17,7 +17,7 @@ class GroupMatakuliahController extends Controller {
         return Response()->json([
                                     'status'=>1,
                                     'pid'=>'fetchdata',  
-                                    'group_matakuliah'=>$group_matakuliah,                                                                                                                                   
+                                    'group_matakuliah'=>$group_matakuliah,
                                     'message'=>'Fetch data group matakuliah berhasil.'
                                 ],200);     
     }

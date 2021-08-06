@@ -44,7 +44,7 @@ class UsersDosenController extends Controller {
         
         return Response()->json([
                                 'status'=>1,
-                                'pid'=>'fetchdata',                                
+                                'pid'=>'fetchdata',                
                                 'users'=>$data,
                                 'message'=>'Fetch data users Dosen berhasil diperoleh'
                             ],200);  
@@ -56,13 +56,13 @@ class UsersDosenController extends Controller {
                                 nidn,
                                 nama_dosen
                             '))
-                            ->where('active',1)
+                            ->where('active', 1)
                             ->orderBy('nama_dosen', 'ASC')
                             ->get();
 
         return Response()->json([
                                 'status'=>1,
-                                'pid'=>'fetchdata',                                
+                                'pid'=>'fetchdata',                
                                 'dosen'=>$data,
                                 'message'=>'Fetch data Dosen Pengampu berhasil diperoleh'
                             ],200);  
@@ -84,7 +84,7 @@ class UsersDosenController extends Controller {
             'email'=>'required|string|email|unique:users',
             'nomor_hp'=>'required|string|unique:users',
             'username'=>'required|string|unique:users',
-            'password'=>'required',                        
+            'password'=>'required',        
         ]);
         $user = \DB::transaction(function () use ($request){
 
@@ -160,7 +160,7 @@ class UsersDosenController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'update',                
+                                    'pid'=>'update',
                                     'message'=>["User ID ($id) gagal diupdate"]
                                 ], 422); 
         }
@@ -238,7 +238,7 @@ class UsersDosenController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'update',                
+                                    'pid'=>'update',
                                     'message'=>["User ID ($id) gagal diupdate karena bukan pada tempatnya"]
                                 ], 422); 
         }
@@ -263,13 +263,13 @@ class UsersDosenController extends Controller {
                                     users.foto
                                 '))
                                 ->join('users','pe3_dosen.user_id','users.id')
-                                ->where('pe3_dosen.active',1)
+                                ->where('pe3_dosen.active', 1)
                                 ->find($id);
         if (is_null($biodatadiri))
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'update',                
+                                    'pid'=>'update',
                                     'message'=>["User ID ($id) gagal diupdate"]
                                 ], 422); 
         }
@@ -277,7 +277,7 @@ class UsersDosenController extends Controller {
         {
             return Response()->json([
                                     'status'=>1,
-                                    'pid'=>'fetchdata',                                    
+                                    'pid'=>'fetchdata',                    
                                     'biodatadiri'=>$biodatadiri,      
                                     'message'=>'Data Biodata Diri Dosen '.$biodatadiri->username.' berhasil diperoleh.'
                                 ],200); 
@@ -293,13 +293,13 @@ class UsersDosenController extends Controller {
     {
         $this->hasPermissionTo('SYSTEM-USERS-DOSEN_UPDATE');
 
-        $biodatadiri = UserDosen::where('pe3_dosen.active',1)
+        $biodatadiri = UserDosen::where('pe3_dosen.active', 1)
                                 ->find($id);
         if (is_null($biodatadiri))
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'update',                
+                                    'pid'=>'update',
                                     'message'=>["User ID ($id) gagal diupdate"]
                                 ], 422); 
         }
@@ -317,7 +317,7 @@ class UsersDosenController extends Controller {
                 'nama_dosen'=>'required',            
                 'tempat_lahir'=>'required',            
                 'tanggal_lahir'=>'required',            
-                'jk'=>'required',                            
+                'jk'=>'required',            
                 'email'=>'required|string|email|unique:users,email,'.$biodatadiri->user_id,
                 'nomor_hp'=>'required|string|unique:users,nomor_hp,'.$biodatadiri->user_id,                                           
                 'alamat_rumah'=>'required',            
@@ -383,7 +383,7 @@ class UsersDosenController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'destroy',                
+                                    'pid'=>'destroy',
                                     'message'=>["User ID ($id) gagal dihapus"]
                                 ], 422); 
         }
@@ -401,7 +401,7 @@ class UsersDosenController extends Controller {
         
             return Response()->json([
                                         'status'=>1,
-                                        'pid'=>'destroy',                
+                                        'pid'=>'destroy',
                                         'message'=>"User Dosen ($username) berhasil dihapus"
                                     ],200);         
         }

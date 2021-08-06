@@ -27,7 +27,7 @@ class KemahasiswaanController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'store',                
+                                    'pid'=>'store',
                                     'message'=>["Data User tidak ditemukan."]
                                 ], 422);         
         }
@@ -45,7 +45,7 @@ class KemahasiswaanController extends Controller {
 
             return Response()->json([
                                         'status'=>1,
-                                        'pid'=>'update',                                                                                                                                     
+                                        'pid'=>'update',  
                                         'message'=>'Status Mahasiswa berhasil diubah.'
                                     ],200); 
         }
@@ -66,7 +66,7 @@ class KemahasiswaanController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'update',                
+                                    'pid'=>'update',
                                     'message'=>["Biodata Mahasiswa dengan User ID ($id) gagal diperoleh"]
                                 ], 422); 
         }
@@ -90,7 +90,7 @@ class KemahasiswaanController extends Controller {
                 'address1_kecamatan'=>'required',
                 'address1_desa_id'=>'required',
                 'address1_kelurahan'=>'required',
-                'alamat_rumah'=>'required',                
+                'alamat_rumah'=>'required',
             ]);
 
             $data_mhs = \DB::transaction(function () use ($request,$formulir){            
@@ -128,7 +128,7 @@ class KemahasiswaanController extends Controller {
             return Response()->json([
                                         'status'=>1,
                                         'pid'=>'update',
-                                        'formulir'=>$data_mhs,                                                                                                                                          
+                                        'formulir'=>$data_mhs,       
                                         'message'=>'Biodata Mahasiswa berhasil diubah.'
                                     ],200)->setEncodingOptions(JSON_NUMERIC_CHECK);
         }
@@ -146,7 +146,7 @@ class KemahasiswaanController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'store',                
+                                    'pid'=>'store',
                                     'message'=>["Data Mahasiswa tidak ditemukan."]
                                 ], 422);         
         }
@@ -168,7 +168,7 @@ class KemahasiswaanController extends Controller {
 
             return Response()->json([
                                         'status'=>1,
-                                        'pid'=>'update',                                                                                                                                     
+                                        'pid'=>'update',  
                                         'message'=>'Dosen wali Mahasiswa berhasil diubah.'
                                     ],200); 
         }

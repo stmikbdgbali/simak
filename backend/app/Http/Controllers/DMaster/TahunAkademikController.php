@@ -51,7 +51,7 @@ class TahunAkademikController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'fetchdata',                
+                                    'pid'=>'fetchdata',
                                     'message'=>["Tahun Akademik ($id) gagal diperoleh"]
                                 ], 422); 
         }
@@ -82,7 +82,7 @@ class TahunAkademikController extends Controller {
             {
                 return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'fetchdata',                
+                                    'pid'=>'fetchdata',
                                     'message'=>["Awal bulan semester ganjil Tahun Akademik ($id) belum disetting"]
                                 ], 422);
             }

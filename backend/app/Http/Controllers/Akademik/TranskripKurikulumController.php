@@ -41,8 +41,8 @@ class TranskripKurikulumController  extends Controller
                 'prodi_id'=>'required'
             ]);
 
-            $ta=$request->input('ta');
-            $prodi_id=$request->input('prodi_id');
+            $ta = $request->input('ta');
+            $prodi_id = $request->input('prodi_id');
             
             $data = RegisterMahasiswaModel::select(\DB::raw('        
                                     pe3_register_mahasiswa.user_id,                                
@@ -55,8 +55,8 @@ class TranskripKurikulumController  extends Controller
                                 '))
                                 ->join('pe3_formulir_pendaftaran','pe3_register_mahasiswa.user_id','pe3_formulir_pendaftaran.user_id')                                                    
                                 ->leftJoin('pe3_rekap_transkrip_kurikulum','pe3_rekap_transkrip_kurikulum.user_id','pe3_register_mahasiswa.user_id')
-                                ->where('pe3_register_mahasiswa.kjur',$prodi_id)                            
-                                ->where('pe3_register_mahasiswa.tahun',$ta)                            
+                                ->where('pe3_register_mahasiswa.kjur', $prodi_id)                            
+                                ->where('pe3_register_mahasiswa.tahun', $ta)                            
                                 ->orderBy('nama_mhs','asc')
                                 ->get();                    
             
@@ -64,7 +64,7 @@ class TranskripKurikulumController  extends Controller
         return Response()->json([
                                         'status'=>1,
                                         'pid'=>'fetchdata',  
-                                        'mahasiswa'=>$data,                                                                                                                                   
+                                        'mahasiswa'=>$data,
                                         'message'=>'Fetch data daftar mahasiswa berhasil.'
                                     ],200);     
     }
@@ -131,7 +131,7 @@ class TranskripKurikulumController  extends Controller
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'destroy',                
+                                    'pid'=>'destroy',
                                     'message'=>["Mahasiswa dengan ($id) gagal diperoleh"]
                                 ], 422); 
         }
@@ -254,7 +254,7 @@ class TranskripKurikulumController  extends Controller
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'update',                
+                                    'pid'=>'update',
                                     'message'=>["matakuliah dengan id ($id) gagal diperoleh"]
                                 ], 422); 
         }
@@ -353,7 +353,7 @@ class TranskripKurikulumController  extends Controller
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'show',                
+                                    'pid'=>'show',
                                     'message'=>["Mahasiswa dengan ($id) gagal diperoleh"]
                                 ], 422); 
         }
@@ -591,7 +591,7 @@ class TranskripKurikulumController  extends Controller
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'show',                
+                                    'pid'=>'show',
                                     'message'=>["Mahasiswa dengan ($id) gagal diperoleh"]
                                 ], 422); 
         }
@@ -610,7 +610,7 @@ class TranskripKurikulumController  extends Controller
             $rpt->setSubject('Transkrip Nilai Semester');
 
             $row=$pdf->getCurrentRow();                
-            $rpt->SetFont ('helvetica','B',12);	
+            $rpt->SetFont ('helvetica','B', 12);	
             $rpt->setXY(0.5,$row);			
             $rpt->Cell(0,0.5,'TRANSKRIP NILAI SEMESTER',0,2,'C');
 
@@ -686,20 +686,20 @@ class TranskripKurikulumController  extends Controller
             $rpt->setXY(0.5,$row);	
             $rpt->SetFont ('helvetica','B',8);     
             //ganjil                        				
-            $rpt->Cell(0.7,0.5,'NO',1,null,'C');
-            $rpt->Cell(1.5,0.5,'KODE',1,null,'C');
-            $rpt->Cell(5,0.5,'MATA KULIAH',1,null,'C');
-            $rpt->Cell(1,0.5,'SKS',1,null,'C');
-            $rpt->Cell(1,0.5,'HM',1,null,'C');
-            $rpt->Cell(1,0.5,'AM',1,null,'C');
+            $rpt->Cell(0.7,0.5,'NO', 1,null,'C');
+            $rpt->Cell(1.5,0.5,'KODE', 1,null,'C');
+            $rpt->Cell(5,0.5,'MATA KULIAH', 1,null,'C');
+            $rpt->Cell(1,0.5,'SKS', 1,null,'C');
+            $rpt->Cell(1,0.5,'HM', 1,null,'C');
+            $rpt->Cell(1,0.5,'AM', 1,null,'C');
             $rpt->Cell(0.1,0.5,'');				
             //genap                       			
-            $rpt->Cell(0.7,0.5,'NO',1,null,'C');
-            $rpt->Cell(1.5,0.5,'KODE',1,null,'C');
-            $rpt->Cell(5,0.5,'MATA KULIAH',1,null,'C');
-            $rpt->Cell(1,0.5,'SKS',1,null,'C');
-            $rpt->Cell(1,0.5,'HM',1,null,'C');
-            $rpt->Cell(1,0.5,'AM',1,null,'C');
+            $rpt->Cell(0.7,0.5,'NO', 1,null,'C');
+            $rpt->Cell(1.5,0.5,'KODE', 1,null,'C');
+            $rpt->Cell(5,0.5,'MATA KULIAH', 1,null,'C');
+            $rpt->Cell(1,0.5,'SKS', 1,null,'C');
+            $rpt->Cell(1,0.5,'HM', 1,null,'C');
+            $rpt->Cell(1,0.5,'AM', 1,null,'C');
             $rpt->Cell(0.1,0.5,'');				
 
             $totalMatkul=0;
@@ -783,8 +783,8 @@ class TranskripKurikulumController  extends Controller
                         }
                         else
                         {
-                            $rpt->Cell(1,0.5,'-',1,null,'C');
-                            $rpt->Cell(1,0.5,'-',1,null,'C');
+                            $rpt->Cell(1,0.5,'-', 1,null,'C');
+                            $rpt->Cell(1,0.5,'-', 1,null,'C');
                         }
                         $rpt->Cell(0.1,0.5,'');				
                         $row_genap+=0.5;
@@ -843,8 +843,8 @@ class TranskripKurikulumController  extends Controller
                         }
                         else
                         {
-                            $rpt->Cell(1,0.5,'-',1,null,'C');
-                            $rpt->Cell(1,0.5,'-',1,null,'C');                            
+                            $rpt->Cell(1,0.5,'-', 1,null,'C');
+                            $rpt->Cell(1,0.5,'-', 1,null,'C');                            
                         }                                                
                         $rpt->Cell(0.1,0.5,'');				
                         $row_ganjil+=0.5;
@@ -860,58 +860,58 @@ class TranskripKurikulumController  extends Controller
                         $sisa=$row_ganjil + ($row_genap-$row_ganjil);
                         for ($c=$row_ganjil;$c <= $row_genap;$c+=0.5) {
                             $rpt->setXY(0.5,$c);
-                            $rpt->Cell(10.2,0.5,'',1,0);
+                            $rpt->Cell(10.2,0.5,'', 1,0);
                         }
                         $row_ganjil=$sisa;
                     }else{ // berarti tambah row yang genap
                         $sisa=$row_genap + ($row_ganjil-$row_genap);						
                         for ($c=$row_genap;$c < $row_ganjil;$c+=0.5) {
                             $rpt->setXY(10.8,$c);
-                            $rpt->Cell(10.2,0.5,'',1,0);
+                            $rpt->Cell(10.2,0.5,'', 1,0);
                         }
                         $row_genap=$sisa;
                     }
                     $rpt->SetFont ('helvetica','B',6);
                     //ganjil
                     $rpt->setXY(0.5,$row_ganjil);	                                        				
-                    $rpt->Cell(2.2,0.5,'SEMESTER',1,null,'C');                    
-                    $rpt->Cell(5,0.5,'Jumlah',1,null,'L');                    
+                    $rpt->Cell(2.2,0.5,'SEMESTER', 1,null,'C');                    
+                    $rpt->Cell(5,0.5,'Jumlah', 1,null,'L');                    
                     $rpt->Cell(1,0.5,$ganjil_total_sks,1,null,'C');                    
-                    $rpt->Cell(1,0.5,'',1,null,'C');                    
+                    $rpt->Cell(1,0.5,'', 1,null,'C');                    
                     $rpt->Cell(1,0.5,$ganjil_total_m,1,null,'C');                    
 
                     $row_ganjil+=0.5;
                     $rpt->setXY(0.5,$row_ganjil);	                                        				
                     $rpt->Cell(2.2,0.5,$smt_ganjil,1,null,'C');                    
-                    $rpt->Cell(7,0.5,'Indeks Prestasi Semester',1,null,'L');                    
+                    $rpt->Cell(7,0.5,'Indeks Prestasi Semester', 1,null,'L');                    
                     $ips=\App\Helpers\HelperAkademik::formatIPK($ganjil_total_m,$ganjil_total_sks);                                       				
                     $rpt->Cell(1,0.5,$ips,1,null,'C');
 
                     $row_ganjil+=0.5;
                     $rpt->setXY(2.7,$row_ganjil);	                        
-                    $rpt->Cell(7,0.5,'Indeks Prestasi Kumulatif',1,null,'L');                      
+                    $rpt->Cell(7,0.5,'Indeks Prestasi Kumulatif', 1,null,'L');                      
                     $rpt->Cell(1,0.5,$ipk_ganjil,1,null,'C');
 
                     $row_ganjil+=0.6;
                     
                     //genap                    
                     $rpt->setXY(10.8,$row_genap);	    
-                    $rpt->Cell(2.2,0.5,'SEMESTER',1,null,'C');                                                        				
-                    $rpt->Cell(5,0.5,'Jumlah',1,null,'L');                    
+                    $rpt->Cell(2.2,0.5,'SEMESTER', 1,null,'C');                                                        				
+                    $rpt->Cell(5,0.5,'Jumlah', 1,null,'L');                    
                     $rpt->Cell(1,0.5,$genap_total_sks,1,null,'C');  
-                    $rpt->Cell(1,0.5,'',1,null,'C');                    
+                    $rpt->Cell(1,0.5,'', 1,null,'C');                    
                     $rpt->Cell(1,0.5,$genap_total_m,1,null,'C');  
 
                     $row_genap+=0.5;
                     $rpt->setXY(10.8,$row_genap);	      
                     $rpt->Cell(2.2,0.5,$smt_genap,1,null,'C');                                  				
-                    $rpt->Cell(7,0.5,'Indeks Prestasi Semester',1,null,'L'); 
+                    $rpt->Cell(7,0.5,'Indeks Prestasi Semester', 1,null,'L'); 
                     $ips=\App\Helpers\HelperAkademik::formatIPK($genap_total_m,$genap_total_sks);                                       				
                     $rpt->Cell(1,0.5,$ips,1,null,'C');
                                        
                     $row_genap+=0.5;
                     $rpt->setXY(13,$row_genap);	                                        				
-                    $rpt->Cell(7,0.5,'Indeks Prestasi Kumulatif',1,null,'L');
+                    $rpt->Cell(7,0.5,'Indeks Prestasi Kumulatif', 1,null,'L');
                     $rpt->Cell(1,0.5,$ipk_genap,1,null,'C');
                     
                     $row_genap+=0.6;

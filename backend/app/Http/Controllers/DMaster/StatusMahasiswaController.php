@@ -19,7 +19,7 @@ class StatusMahasiswaController extends Controller {
         return Response()->json([
                                     'status'=>1,
                                     'pid'=>'fetchdata',  
-                                    'status_mahasiswa'=>$status_mahasiswa,                                                                                                                                   
+                                    'status_mahasiswa'=>$status_mahasiswa,
                                     'message'=>'Fetch data status mahasiswa berhasil.'
                                 ],200);     
     }  

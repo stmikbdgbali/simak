@@ -26,7 +26,7 @@ class PembagianKelasController extends Controller
             'semester_akademik'=>'required',
         ]);
 
-        $ta=$request->input('ta');
+        $ta = $request->input('ta');
         $semester_akademik=$request->input('semester_akademik');
 
         $pembagiankelas=PembagianKelasModel::select(\DB::raw('
@@ -50,7 +50,7 @@ class PembagianKelasController extends Controller
                         '))
                         ->join('pe3_dosen','pe3_kelas_mhs.user_id','pe3_dosen.user_id')
                         ->join('pe3_ruangkelas','pe3_ruangkelas.id','pe3_kelas_mhs.ruang_kelas_id')
-                        ->where('pe3_kelas_mhs.tahun',$ta)
+                        ->where('pe3_kelas_mhs.tahun', $ta)
                         ->where('pe3_kelas_mhs.idsmt',$semester_akademik);
         if ($this->hasRole('dosen'))
         {
@@ -175,7 +175,7 @@ class PembagianKelasController extends Controller
         else
         {
             $pembagiankelas->nama_hari=\App\Helpers\Helper::getNamaHari($pembagiankelas->hari);
-            $pembagiankelas->jumlah_mhs=\DB::table('pe3_kelas_mhs_peserta')->where('kelas_mhs_id',$pembagiankelas->id)->count();
+            $pembagiankelas->jumlah_mhs=\DB::table('pe3_kelas_mhs_peserta')->where('kelas_mhs_id', $pembagiankelas->id)->count();
 
             $penyelenggaraan=PembagianKelasPenyelenggaraanModel::select(\DB::raw('
                                         pe3_kelas_mhs_penyelenggaraan.id,
@@ -339,7 +339,7 @@ class PembagianKelasController extends Controller
                                     nidn,
                                     nama_dosen
                                 '))
-                                ->where('active',1)
+                                ->where('active', 1)
                                 ->whereNotIn('user_id',function($query) use ($idpenyelenggaraan){
                                     $query->select('user_id')
                                         ->from('pe3_penyelenggaraan_dosen')
@@ -576,11 +576,11 @@ class PembagianKelasController extends Controller
                 $penyelenggaraan_id=$penyelenggaraan->penyelenggaraan_id;
                 \DB::table('pe3_kelas_mhs_peserta')
                         ->join('pe3_krsmatkul','pe3_krsmatkul.id','pe3_kelas_mhs_peserta.krsmatkul_id')
-                        ->where('pe3_krsmatkul.penyelenggaraan_id',$penyelenggaraan_id)
+                        ->where('pe3_krsmatkul.penyelenggaraan_id', $penyelenggaraan_id)
                         ->delete();
 
                 \DB::table('pe3_kelas_mhs_penyelenggaraan')
-                        ->where('id',$penyelenggaraan->id)
+                        ->where('id', $penyelenggaraan->id)
                         ->delete();
 
                 return $penyelenggaraan_id;

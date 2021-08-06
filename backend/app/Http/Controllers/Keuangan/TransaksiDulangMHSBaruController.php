@@ -26,8 +26,8 @@ class TransaksiDulangMHSBaruController extends Controller {
             'prodi_id'=>'required',            
         ]);
 
-        $ta=$request->input('ta');
-        $prodi_id=$request->input('prodi_id');
+        $ta = $request->input('ta');
+        $prodi_id = $request->input('prodi_id');
 
         if ($this->hasRole(['mahasiswa','mahasiswabaru']))
         {
@@ -60,9 +60,9 @@ class TransaksiDulangMHSBaruController extends Controller {
                                                     ->join('pe3_transaksi','pe3_transaksi_detail.transaksi_id','pe3_transaksi.id')
                                                     ->join('pe3_formulir_pendaftaran','pe3_formulir_pendaftaran.user_id','pe3_transaksi_detail.user_id')
                                                     ->join('pe3_status_transaksi','pe3_transaksi.status','pe3_status_transaksi.id_status')
-                                                    ->where('pe3_transaksi.ta',$ta)                                                    
+                                                    ->where('pe3_transaksi.ta', $ta)                                                    
                                                     ->where('pe3_transaksi_detail.user_id',$this->getUserid())
-                                                    ->where('pe3_transaksi_detail.kombi_id',102)                                                    
+                                                    ->where('pe3_transaksi_detail.kombi_id', 102)                                                    
                                                     ->orderBy('pe3_transaksi.tanggal','DESC')
                                                     ->get();
         }
@@ -97,7 +97,7 @@ class TransaksiDulangMHSBaruController extends Controller {
                                                     ->join('pe3_transaksi','pe3_transaksi_detail.transaksi_id','pe3_transaksi.id')
                                                     ->join('pe3_formulir_pendaftaran','pe3_formulir_pendaftaran.user_id','pe3_transaksi_detail.user_id')
                                                     ->join('pe3_status_transaksi','pe3_transaksi.status','pe3_status_transaksi.id_status')                                                    
-                                                    ->where('pe3_transaksi_detail.kombi_id',102)                                                    
+                                                    ->where('pe3_transaksi_detail.kombi_id', 102)                                                    
                                                     ->orderBy('pe3_transaksi.tanggal','DESC');                                                    
 
             if ($request->has('search'))
@@ -107,8 +107,8 @@ class TransaksiDulangMHSBaruController extends Controller {
             }            
             else
             {
-                $daftar_transaksi=$daftar_transaksi->where('pe3_transaksi.ta',$ta)                                                    
-                                                    ->where('pe3_transaksi.kjur',$prodi_id)                                                    
+                $daftar_transaksi=$daftar_transaksi->where('pe3_transaksi.ta', $ta)                                                    
+                                                    ->where('pe3_transaksi.kjur', $prodi_id)                                                    
                                                     ->get();
             }
         }        
@@ -116,7 +116,7 @@ class TransaksiDulangMHSBaruController extends Controller {
         return Response()->json([
                                     'status'=>1,
                                     'pid'=>'fetchdata',  
-                                    'transaksi'=>$daftar_transaksi,                                                                                                                                   
+                                    'transaksi'=>$daftar_transaksi,
                                     'message'=>'Fetch data daftar transaksi berhasil.'
                                 ],200)->setEncodingOptions(JSON_NUMERIC_CHECK);
     }
@@ -128,25 +128,25 @@ class TransaksiDulangMHSBaruController extends Controller {
         $this->hasPermissionTo('KEUANGAN-TRANSAKSI-DULANG-MHS-BARU_STORE');
 
         $this->validate($request, [           
-            'no_formulir'=>'required|exists:pe3_formulir_pendaftaran,no_formulir',                             
+            'no_formulir'=>'required|exists:pe3_formulir_pendaftaran,no_formulir',             
             'ta'=>'required'
         ]);
         
         try 
         {
             $no_formulir=$request->input('no_formulir');            
-            $ta=$request->input('ta');
+            $ta = $request->input('ta');
             
             $transaksi=TransaksiDetailModel::select(\DB::raw('
                                                 1
                                             '))
                                             ->join('pe3_transaksi','pe3_transaksi_detail.transaksi_id','pe3_transaksi.id')
-                                            ->where('pe3_transaksi.ta',$ta)                                                                                    
+                                            ->where('pe3_transaksi.ta', $ta)                                                                                    
                                             ->where('pe3_transaksi.no_formulir',$no_formulir)
-                                            ->where('pe3_transaksi_detail.kombi_id',102)                                                                                      
+                                            ->where('pe3_transaksi_detail.kombi_id', 102)                                                                                      
                                             ->where(function($query) {
                                                 $query->where('pe3_transaksi.status',0)
-                                                    ->orWhere('pe3_transaksi.status',1);
+                                                    ->orWhere('pe3_transaksi.status', 1);
                                             })                                        
                                             ->first();
 
@@ -172,10 +172,10 @@ class TransaksiDulangMHSBaruController extends Controller {
             $kjur=$mahasiswa->kjur1;
             $idsmt=$mahasiswa->idsmt;
             
-            $biaya_kombi=BiayaKomponenPeriodeModel::where('tahun',$tahun)
+            $biaya_kombi=BiayaKomponenPeriodeModel::where('tahun', $tahun)
                                                     ->where('idkelas',$idkelas)
                                                     ->where('kjur',$kjur)
-                                                    ->where('kombi_id',102)
+                                                    ->where('kombi_id', 102)
                                                     ->value('biaya');
             
             if (!($biaya_kombi > 0))
@@ -223,8 +223,8 @@ class TransaksiDulangMHSBaruController extends Controller {
 
             return Response()->json([
                                         'status'=>1,
-                                        'pid'=>'store',                   
-                                        'transaksi'=>$transaksi,                                                                                                                                   
+                                        'pid'=>'store',   
+                                        'transaksi'=>$transaksi,
                                         'message'=>'Transaksi Daftar Ulang Mahasiswa Baru berhasil di input.'
                                     ],200); 
         }
@@ -232,7 +232,7 @@ class TransaksiDulangMHSBaruController extends Controller {
         {
             return Response()->json([
                 'status'=>0,
-                'pid'=>'store',                                                                                                                                                  
+                'pid'=>'store',               
                 'message'=>[$e->getMessage()]
             ], 422); 
         }        
@@ -271,7 +271,7 @@ class TransaksiDulangMHSBaruController extends Controller {
             $transaksi->delete();
             return Response()->json([
                                         'status'=>1,
-                                        'pid'=>'destroy',                
+                                        'pid'=>'destroy',
                                         'message'=>"transaksi registrasi dengan id ($id) berhasil dihapus"
                                     ],200);         
         }

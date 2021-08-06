@@ -33,8 +33,8 @@ class NilaiKHSController extends Controller
                 'prodi_id'=>'required'
             ]);
 
-            $ta=$request->input('ta');
-            $prodi_id=$request->input('prodi_id');
+            $ta = $request->input('ta');
+            $prodi_id = $request->input('prodi_id');
             $semester_akademik=$request->input('semester_akademik');
 
             $daftar_khs = KRSModel::select(\DB::raw('
@@ -52,8 +52,8 @@ class NilaiKHSController extends Controller
                                     pe3_krs.updated_at
                                 '))
                                 ->join('pe3_formulir_pendaftaran','pe3_formulir_pendaftaran.user_id','pe3_krs.user_id')
-                                ->where('pe3_krs.kjur',$prodi_id)
-                                ->where('pe3_krs.tahun',$ta)
+                                ->where('pe3_krs.kjur', $prodi_id)
+                                ->where('pe3_krs.tahun', $ta)
                                 ->where('pe3_krs.idsmt',$semester_akademik)
                                 ->orderBy('nama_mhs','ASC')
                                 ->get();
@@ -99,7 +99,7 @@ class NilaiKHSController extends Controller
         return Response()->json([
                                     'status'=>1,
                                     'pid'=>'fetchdata',  
-                                    'daftar_khs'=>$daftar_khs,                                                                                                                                   
+                                    'daftar_khs'=>$daftar_khs,
                                     'message'=>'Daftar khs mahasiswa berhasil diperoleh' 
                                 ],200);  
         
@@ -144,7 +144,7 @@ class NilaiKHSController extends Controller
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'destroy',                
+                                    'pid'=>'destroy',
                                     'message'=>["KRS dengan ($id) gagal diperoleh"]
                                 ], 422); 
         }
@@ -255,14 +255,14 @@ class NilaiKHSController extends Controller
             return Response()->json([
                                         'status'=>1,
                                         'pid'=>'fetchdata',  
-                                        'krs'=>$krs,                                                                                                                                   
-                                        'daftar_nilai'=>$daftar_nilai,                                                                                                                                   
+                                        'krs'=>$krs,
+                                        'daftar_nilai'=>$daftar_nilai,
                                         'jumlah_matkul'=>$jumlah_matkul,
-                                        'jumlah_sks'=>$jumlah_sks,                                                                                                                                   
-                                        'jumlah_m'=>$jumlah_m,                                                                                                                                   
-                                        'jumlah_am'=>$jumlah_am,                                                                                                                                   
-                                        'ipk'=>$ipk,                                                                                                                                   
-                                        'ips'=>$ips,                                                                                                                                   
+                                        'jumlah_sks'=>$jumlah_sks,
+                                        'jumlah_m'=>$jumlah_m,
+                                        'jumlah_am'=>$jumlah_am,
+                                        'ipk'=>$ipk,
+                                        'ips'=>$ips,
                                         'message'=>'Fetch data khs dan detail khs mahasiswa berhasil diperoleh' 
                                     ],200)->setEncodingOptions(JSON_NUMERIC_CHECK);  
         }        
@@ -311,7 +311,7 @@ class NilaiKHSController extends Controller
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'destroy',                
+                                    'pid'=>'destroy',
                                     'message'=>["KRS dengan ($id) gagal diperoleh"]
                                 ], 422); 
         }
@@ -448,12 +448,12 @@ class NilaiKHSController extends Controller
                                                                             'headers'=>$headers,
                                                                             'data_krs'=>$krs,
                                                                             'nama_semester'=>\App\Helpers\HelperAkademik::getSemester($krs->idsmt),
-                                                                            'daftar_nilai'=>$daftar_nilai,                                                                                                                                   
+                                                                            'daftar_nilai'=>$daftar_nilai,
                                                                             'jumlah_matkul'=>$jumlah_matkul,
-                                                                            'jumlah_sks'=>$jumlah_sks,                                                                                                                                   
-                                                                            'jumlah_m'=>$jumlah_m,                                                                                                                                   
-                                                                            'jumlah_am'=>$jumlah_am,                                                                                                                                   
-                                                                            'ipk'=>$ipk,                                                                                                                                   
+                                                                            'jumlah_sks'=>$jumlah_sks,
+                                                                            'jumlah_m'=>$jumlah_m,
+                                                                            'jumlah_am'=>$jumlah_am,
+                                                                            'ipk'=>$ipk,
                                                                             'ips'=>$ips, 
                                                                             'tanggal'=>\App\Helpers\Helper::tanggal('d F Y'),
                                                                             'kaprodi'=>$kaprodi
@@ -479,7 +479,7 @@ class NilaiKHSController extends Controller
             {
                 return Response()->json([
                                         'status'=>0,
-                                        'pid'=>'fetchdata',                                        
+                                        'pid'=>'fetchdata',                        
                                         'message'=>'Ketua program studi belum disetting di halaman Data Master -> Program Studi'
                                     ], 422);
             }

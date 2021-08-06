@@ -39,7 +39,7 @@ class ProgramStudiController extends Controller {
         return Response()->json([
                                     'status'=>1,
                                     'pid'=>'fetchdata',  
-                                    'prodi'=>$prodi,                                                                                                                                   
+                                    'prodi'=>$prodi,
                                     'message'=>'Fetch data program studi berhasil.'
                                 ],200);     
     }
@@ -137,7 +137,7 @@ class ProgramStudiController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'update',                
+                                    'pid'=>'update',
                                     'message'=>["Kode Program Studi ($id) gagal diupdate"]
                                 ], 422); 
         }
@@ -176,7 +176,7 @@ class ProgramStudiController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'update',                
+                                    'pid'=>'update',
                                     'message'=>["Kode Program Studi ($id) gagal diupdate"]
                                 ], 422); 
         }
@@ -192,13 +192,13 @@ class ProgramStudiController extends Controller {
                 $this->validate($request, 
                                 [
                                     'id'=>[
-                                        'required',                                                        
+                                        'required',                                        
                                         'numeric',
                                         Rule::unique('pe3_prodi')->ignore($prodi->id,'id')
                                     ],  
 
                                     'kode_forlap'=>[
-                                        'required',                                                        
+                                        'required',                                        
                                         'numeric'                                                       
                                     ],           
                                     
@@ -213,7 +213,7 @@ class ProgramStudiController extends Controller {
                                         Rule::unique('pe3_prodi')->ignore($prodi->nama_prodi_alias,'nama_prodi_alias')
                                     ],                                                          
                                     'kode_jenjang'=>'required|exists:pe3_jenjang_studi,kode_jenjang',            
-                                    'nama_jenjang'=>'required',                                                        
+                                    'nama_jenjang'=>'required',                                        
                                 ],
                                 [],
                                 $custom_atribute
@@ -224,16 +224,16 @@ class ProgramStudiController extends Controller {
                 $this->validate($request, 
                                 [
                                     'id'=>[
-                                        'required',                                                        
+                                        'required',                                        
                                         'numeric',
                                         Rule::unique('pe3_prodi')->ignore($prodi->id,'id')
                                     ],
                                     'kode_fakultas'=>[
                                         'required',
-                                        'exists:pe3_fakultas,kode_fakultas',                                                     
+                                        'exists:pe3_fakultas,kode_fakultas',                                     
                                     ],
                                     'kode_forlap'=>[
-                                        'required',                                                        
+                                        'required',                                        
                                         'numeric'                                                       
                                     ],    
                                     
@@ -300,7 +300,7 @@ class ProgramStudiController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'fetchdata',                
+                                    'pid'=>'fetchdata',
                                     'message'=>["Fetch data program studi berdasarkan id program studi gagal"]
                                 ], 422); 
         }
@@ -310,7 +310,7 @@ class ProgramStudiController extends Controller {
             return Response()->json([
                                         'status'=>1,
                                         'pid'=>'fetchdata',  
-                                        'programstudi'=>$programstudi,                                                                                                                                   
+                                        'programstudi'=>$programstudi,
                                         'message'=>'Fetch data program studi berdasarkan id program studi berhasil.'
                                     ],200);     
 
@@ -332,7 +332,7 @@ class ProgramStudiController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'destroy',                
+                                    'pid'=>'destroy',
                                     'message'=>["Kode program studi ($id) gagal dihapus"]
                                 ], 422); 
         }
@@ -347,7 +347,7 @@ class ProgramStudiController extends Controller {
             $prodi->delete();
             return Response()->json([
                                         'status'=>1,
-                                        'pid'=>'destroy',                
+                                        'pid'=>'destroy',
                                         'message'=>"Program Studi dengan kode ($id) berhasil dihapus"
                                     ],200);         
         }

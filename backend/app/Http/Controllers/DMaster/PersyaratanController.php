@@ -16,13 +16,13 @@ class PersyaratanController extends Controller {
         $this->validate($request, [           
             'ta'=>'required',            
         ]);
-        $ta=$request->input('ta');
+        $ta = $request->input('ta');
 
-        $persyaratan=PersyaratanModel::where('ta',$ta)->get();
+        $persyaratan=PersyaratanModel::where('ta', $ta)->get();
         return Response()->json([
                                     'status'=>1,
                                     'pid'=>'fetchdata',  
-                                    'persyaratan'=>$persyaratan,                                                                                                                                   
+                                    'persyaratan'=>$persyaratan,
                                     'message'=>'Fetch data persyaratan berhasil.'
                                 ],200);     
     }    
@@ -72,8 +72,8 @@ class PersyaratanController extends Controller {
         $this->hasPermissionTo('DMASTER-PERSYARATAN-PMB_UPDATE');
         
         $this->validate($request, [           
-            'dari_tahun_pendaftaran'=>'required',                     
-            'proses'=>'required',                     
+            'dari_tahun_pendaftaran'=>'required',     
+            'proses'=>'required',     
         ]);
 
         $dari_tahun_pendaftaran=$request->input('dari_tahun_pendaftaran');
@@ -118,7 +118,7 @@ class PersyaratanController extends Controller {
         return Response()->json([
                                 'status'=>1,
                                 'pid'=>'store',  
-                                'persyaratan'=>$persyaratan,                                                                                                                                   
+                                'persyaratan'=>$persyaratan,
                                 'message' => "Menyalin data persyaratan dari tahun $dari_tahun_pendaftaran ke $id berhasil."
                             ],200);    
     }
@@ -138,10 +138,10 @@ class PersyaratanController extends Controller {
                         'prodi_id'=>'required|numeric|exists:pe3_prodi,id',  
                         'ta'=>'required',          
                     ]);
-                    $ta=$request->input('ta');
+                    $ta = $request->input('ta');
                     $persyaratan=PersyaratanModel::where('prodi_id',$request->input('prodi_id'))
                                                 ->where('proses','pmb')
-                                                ->where('ta',$ta)
+                                                ->where('ta', $ta)
                                                 ->get();
                 }
                 else
@@ -149,9 +149,9 @@ class PersyaratanController extends Controller {
                     $this->validate($request, [                                    
                         'ta'=>'required',          
                     ]);
-                    $ta=$request->input('ta');
+                    $ta = $request->input('ta');
                     $persyaratan=PersyaratanModel::where('proses','pmb')
-                                                ->where('ta',$ta)
+                                                ->where('ta', $ta)
                                                 ->get();
                 }                
             break;
@@ -159,7 +159,7 @@ class PersyaratanController extends Controller {
         return Response()->json([
                                     'status'=>1,
                                     'pid'=>'fetchdata',  
-                                    'persyaratan'=>$persyaratan,                                                                                                                                   
+                                    'persyaratan'=>$persyaratan,
                                     'message'=>"Fetch data persyaratan $id berhasil diperoleh."
                                 ],200);     
 
@@ -182,14 +182,14 @@ class PersyaratanController extends Controller {
         {
             return Response()->json([
                                         'status'=>0,
-                                        'pid'=>'destroy',                
+                                        'pid'=>'destroy',
                                         'message'=>["Kode persyaratan ($id) gagal dihapus"]
                                     ], 422); 
         }
         else
         {
             $this->validate($request, [           
-                                        'nama_persyaratan'=>'required',                    
+                                        'nama_persyaratan'=>'required',    
                                     ]);
             $persyaratan->nama_persyaratan=$request->input('nama_persyaratan');
             $persyaratan->save();
@@ -218,7 +218,7 @@ class PersyaratanController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'destroy',                
+                                    'pid'=>'destroy',
                                     'message'=>["Kode persyaratan ($id) gagal dihapus"]
                                 ], 422); 
         }
@@ -233,7 +233,7 @@ class PersyaratanController extends Controller {
             $persyaratan->delete();
             return Response()->json([
                                         'status'=>1,
-                                        'pid'=>'destroy',                
+                                        'pid'=>'destroy',
                                         'message'=>"Persyaratan dengan kode ($id) berhasil dihapus"
                                     ],200);         
         }

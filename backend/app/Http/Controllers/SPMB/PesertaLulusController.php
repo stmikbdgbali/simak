@@ -27,8 +27,8 @@ class PesertaLulusController extends Controller {
             'prodi_id'=>'required'
         ]);
         
-        $ta=$request->input('ta');
-        $prodi_id=$request->input('prodi_id');
+        $ta = $request->input('ta');
+        $prodi_id = $request->input('prodi_id');
 
         $data = FormulirPendaftaranModel::select(\DB::raw('
                         users.id,
@@ -52,11 +52,11 @@ class PesertaLulusController extends Controller {
                     ->join('users','pe3_formulir_pendaftaran.user_id','users.id')                    
                     ->join('pe3_kelas','pe3_formulir_pendaftaran.idkelas','pe3_kelas.idkelas')                    
                     ->leftJoin('pe3_nilai_ujian_pmb','pe3_formulir_pendaftaran.user_id','pe3_nilai_ujian_pmb.user_id')                    
-                    ->where('users.ta',$ta)
-                    ->where('kjur1',$prodi_id)            
-                    ->where('pe3_nilai_ujian_pmb.ket_lulus',1)            
+                    ->where('users.ta', $ta)
+                    ->where('kjur1', $prodi_id)            
+                    ->where('pe3_nilai_ujian_pmb.ket_lulus', 1)            
                     ->whereNotNull('pe3_formulir_pendaftaran.idkelas')   
-                    ->where('users.active',1)    
+                    ->where('users.active', 1)    
                     ->orderBy('users.name','ASC') 
                     ->get();
         

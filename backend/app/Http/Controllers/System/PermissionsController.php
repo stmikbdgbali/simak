@@ -99,7 +99,7 @@ class PermissionsController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'destroy',                
+                                    'pid'=>'destroy',
                                     'message'=>["Permission dengan ID ($id) gagal dihapus"]
                                 ], 422); 
         }
@@ -118,7 +118,7 @@ class PermissionsController extends Controller {
                                                     ]);                                                                 
             return Response()->json([
                                         'status'=>1,
-                                        'pid'=>'destroy',                
+                                        'pid'=>'destroy',
                                         'message'=>"Permission ($nama_permission) berhasil dihapus"
                                     ],200); 
         }

@@ -25,7 +25,7 @@ class SoalPMBController extends Controller {
         $tahun_pendaftaran=$request->input('tahun_pendaftaran');
         $semester_pendaftaran=$request->input('semester_pendaftaran');
 
-        $soal=SoalPMBModel::where('ta',$tahun_pendaftaran)
+        $soal=SoalPMBModel::where('ta', $tahun_pendaftaran)
                             ->where('semester',$semester_pendaftaran)
                             ->get();
 

@@ -35,8 +35,8 @@ class PMBController extends Controller {
             'prodi_id'=>'required'
         ]);
         
-        $ta=$request->input('ta');
-        $prodi_id=$request->input('prodi_id');
+        $ta = $request->input('ta');
+        $prodi_id = $request->input('prodi_id');
 
         $data = User::where('default_role','mahasiswabaru')
                     ->select(\DB::raw('
@@ -61,8 +61,8 @@ class PMBController extends Controller {
         }            
         else
         {
-            $data=$data->where('users.ta',$ta)
-                        ->where('kjur1',$prodi_id)
+            $data=$data->where('users.ta', $ta)
+                        ->where('kjur1', $prodi_id)
                         ->get();
         }
         return Response()->json([
@@ -94,14 +94,14 @@ class PMBController extends Controller {
                     ->where('pe3_formulir_pendaftaran.nama_mhs', 'LIKE', '%'.$request->input('search').'%')
                     ->where('pe3_formulir_pendaftaran.ta',$request->input('ta'))
                     ->where('pe3_formulir_pendaftaran.kjur1',$request->input('prodi_id'))
-                    ->where('users.active',1)
+                    ->where('users.active', 1)
                     ->get();
 
         return Response()->json([
                                 'status'=>1,
                                 'pid'=>'fetchdata',
                                 'daftar_mhs'=>$data,  
-                                'jumlah'=>$data->count(),                                                                                                                                   
+                                'jumlah'=>$data->count(),
                                 'message'=>'Daftar Calon Mahasiswa baru berhasil diperoleh.'
                             ], 200); 
     }
@@ -119,8 +119,8 @@ class PMBController extends Controller {
             'prodi_id'=>'required'
         ]);
         
-        $ta=$request->input('ta');
-        $prodi_id=$request->input('prodi_id');
+        $ta = $request->input('ta');
+        $prodi_id = $request->input('prodi_id');
 
         $data = FormulirPendaftaranModel::select(\DB::raw('
                                             users.id,
@@ -137,10 +137,10 @@ class PMBController extends Controller {
                                         '))
                                         ->join('users','pe3_formulir_pendaftaran.user_id','users.id')                    
                                         ->join('pe3_kelas','pe3_formulir_pendaftaran.idkelas','pe3_kelas.idkelas')                    
-                                        ->where('users.ta',$ta)
-                                        ->where('kjur1',$prodi_id)            
+                                        ->where('users.ta', $ta)
+                                        ->where('kjur1', $prodi_id)            
                                         ->whereNotNull('pe3_formulir_pendaftaran.idkelas')   
-                                        ->where('users.active',1)    
+                                        ->where('users.active', 1)    
                                         ->orderBy('users.name','ASC') 
                                         ->get();
         
@@ -260,12 +260,12 @@ class PMBController extends Controller {
             'prodi_id'=>'required|numeric|exists:pe3_prodi,id',
             'tahun_pendaftaran'=>'required|numeric',            
             'username'=>'required|string|unique:users',
-            'password'=>'required',                        
+            'password'=>'required',        
         ]);
         $user = \DB::transaction(function () use ($request){
             $now = \Carbon\Carbon::now()->toDateTimeString();                   
             $code=mt_rand(1000,9999);
-            $ta=$request->input('tahun_pendaftaran');
+            $ta = $request->input('tahun_pendaftaran');
             $user=User::create([
                 'id'=>Uuid::uuid4()->toString(),
                 'name'=>$request->input('name'),
@@ -332,7 +332,7 @@ class PMBController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'update',                
+                                    'pid'=>'update',
                                     'message'=>["User ID ($id) gagal diupdate"]
                                 ], 422); 
         }
@@ -429,7 +429,7 @@ class PMBController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'fetchdata',                
+                                    'pid'=>'fetchdata',
                                     'message'=>["Formulir Pendaftaran dengan ID ($id) gagal diperoleh"]
                                 ], 422); 
         }
@@ -438,7 +438,7 @@ class PMBController extends Controller {
             $transaksi_detail=TransaksiDetailModel::join('pe3_transaksi','pe3_transaksi.id','pe3_transaksi_detail.transaksi_id')
                                                     ->where('pe3_transaksi_detail.user_id',$formulir->user_id)                                                    
                                                     ->whereRaw('(pe3_transaksi.status=1 OR pe3_transaksi.status=0)')
-                                                    ->where('kombi_id',101)
+                                                    ->where('kombi_id', 101)
                                                     ->first(); 
             $no_transaksi='N.A';
             $biaya_pendaftaran = 0;
@@ -449,7 +449,7 @@ class PMBController extends Controller {
             } 
             return Response()->json([
                                         'status'=>1,
-                                        'pid'=>'fetchdata',                
+                                        'pid'=>'fetchdata',
                                         'formulir'=>$formulir,                                        
                                         'no_transaksi'=>"$no_transaksi ",
                                         'biaya_pendaftaran'=>$biaya_pendaftaran,
@@ -468,7 +468,7 @@ class PMBController extends Controller {
     {
         $this->validate($request, [            
             'email'=>'required|string|email',
-            'code'=>'required|numeric',                        
+            'code'=>'required|numeric',        
         ]);
         $now = \Carbon\Carbon::now()->toDateTimeString();       
         $email= $request->input('email');
@@ -490,7 +490,7 @@ class PMBController extends Controller {
 
             return Response()->json([
                                         'status'=>1,
-                                        'pid'=>'update',                                                                                                                                        
+                                        'pid'=>'update',     
                                         'message'=>'Email Mahasiswa berhasil diverifikasi.'
                                     ],200);
         }
@@ -498,7 +498,7 @@ class PMBController extends Controller {
         {
             return Response()->json([
                                         'status'=>1,
-                                        'pid'=>'update',                                                                                                                                        
+                                        'pid'=>'update',     
                                         'message'=>['Email Registrasi Mahasiswa gagal diverifikasi.']
                                     ], 422);
         }
@@ -518,7 +518,7 @@ class PMBController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'update',                
+                                    'pid'=>'update',
                                     'message'=>["Formulir Pendaftaran dengan ID ($id) gagal diperoleh"]
                                 ], 422); 
         }
@@ -587,11 +587,11 @@ class PMBController extends Controller {
                 $transaksi_detail=TransaksiDetailModel::join('pe3_transaksi','pe3_transaksi.id','pe3_transaksi_detail.transaksi_id')
                                                         ->where('pe3_transaksi_detail.user_id',$formulir->user_id)
                                                         ->whereRaw('(pe3_transaksi.status=1 OR pe3_transaksi.status=0)')
-                                                        ->where('pe3_transaksi_detail.kombi_id',101)
+                                                        ->where('pe3_transaksi_detail.kombi_id', 101)
                                                         ->first();                
                 if (is_null($transaksi_detail))
                 {                  
-                    $kombi=\App\Models\Keuangan\BiayaKomponenPeriodeModel::where('kombi_id',101)
+                    $kombi=\App\Models\Keuangan\BiayaKomponenPeriodeModel::where('kombi_id', 101)
                                                                         ->where('kjur',$formulir->kjur1)
                                                                         ->where('idkelas',$formulir->idkelas)
                                                                         ->where('tahun',$formulir->ta)
@@ -650,7 +650,7 @@ class PMBController extends Controller {
                                         'pid'=>'update',
                                         'formulir'=>$data_mhs['formulir']. " ",                                                                                                  
                                         'no_transaksi'=>$data_mhs['no_transaksi']. " ", 
-                                        'biaya_pendaftaran'=>$data_mhs['biaya_pendaftaran'],                                                                                                                                       
+                                        'biaya_pendaftaran'=>$data_mhs['biaya_pendaftaran'],    
                                         'message'=>'Formulir Pendaftaran Mahasiswa baru berhasil diubah.'
                                     ],200)->setEncodingOptions(JSON_NUMERIC_CHECK);
         }
@@ -672,7 +672,7 @@ class PMBController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'destroy',                
+                                    'pid'=>'destroy',
                                     'message'=>["Calon Mahasiswa Baru dengan ID ($id) gagal dihapus"]
                                 ], 422); 
         }
@@ -690,7 +690,7 @@ class PMBController extends Controller {
         
             return Response()->json([
                                         'status'=>1,
-                                        'pid'=>'destroy',                
+                                        'pid'=>'destroy',
                                         'message'=>"Mahasiswa Baru ($name) berhasil dihapus"
                                     ],200);         
         }
@@ -712,7 +712,7 @@ class PMBController extends Controller {
         
         return Response()->json([
                                 'status'=>1,
-                                'pid'=>'resendemail',                
+                                'pid'=>'resendemail',
                                 'message'=>"Kirim ulang data dan konfirmasi PMB ($name) berhasil dikirim"
                             ],200);         
     } 

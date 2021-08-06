@@ -27,8 +27,8 @@ class NilaiUjianController extends Controller {
 						'prodi_id'=>'required'
 				]);
 				
-				$ta=$request->input('ta');
-				$prodi_id=$request->input('prodi_id');
+				$ta = $request->input('ta');
+				$prodi_id = $request->input('prodi_id');
 
 				$data = FormulirPendaftaranModel::select(\DB::raw('
 												users.id,
@@ -53,10 +53,10 @@ class NilaiUjianController extends Controller {
 										->join('users','pe3_formulir_pendaftaran.user_id','users.id')                    
 										->join('pe3_kelas','pe3_formulir_pendaftaran.idkelas','pe3_kelas.idkelas')                    
 										->leftJoin('pe3_nilai_ujian_pmb','pe3_formulir_pendaftaran.user_id','pe3_nilai_ujian_pmb.user_id')                    
-										->where('users.ta',$ta)
-										->where('kjur1',$prodi_id)            
+										->where('users.ta', $ta)
+										->where('kjur1', $prodi_id)            
 										->whereNotNull('pe3_formulir_pendaftaran.idkelas')   
-										->where('users.active',1)    
+										->where('users.active', 1)    
 										->orderBy('users.name','ASC') 
 										->get();
 				
@@ -89,7 +89,7 @@ class NilaiUjianController extends Controller {
 						'no_transaksi'=>[
 												'required',
 												Rule::exists('pe3_transaksi')->where(function ($query) {
-														return $query->where('status',1);
+														return $query->where('status', 1);
 												})
 										],   
 						'nilai'=>'required|numeric',            
@@ -168,7 +168,7 @@ class NilaiUjianController extends Controller {
 				{
 						return Response()->json([
 																		'status'=>0,
-																		'pid'=>'fetchdata',                
+																		'pid'=>'fetchdata',
 																		'message'=>["Formulir Pendaftaran dengan ID ($id) gagal diperoleh"]
 																], 422); 
 				}
@@ -180,7 +180,7 @@ class NilaiUjianController extends Controller {
 																										'))
 																										->join('pe3_transaksi','pe3_transaksi.id','pe3_transaksi_detail.transaksi_id')
 																										->where('pe3_transaksi.user_id',$formulir->user_id)
-																										->where('kombi_id',101)                                                    
+																										->where('kombi_id', 101)                                                    
 																										->first(); 
 
 						$transaksi_status=0;
@@ -231,7 +231,7 @@ class NilaiUjianController extends Controller {
 				{
 						return Response()->json([
 																		'status'=>0,
-																		'pid'=>'update',                
+																		'pid'=>'update',
 																		'message'=>["Nilai ujian dengan ID ($id) gagal diperoleh"]
 																], 422); 
 				}
@@ -241,7 +241,7 @@ class NilaiUjianController extends Controller {
 								'no_transaksi'=>[
 														'required',
 														Rule::exists('pe3_transaksi')->where(function ($query) {
-																return $query->where('status',1);
+																return $query->where('status', 1);
 														})
 												],   
 								'nilai'=>'required|numeric',            
@@ -299,7 +299,7 @@ class NilaiUjianController extends Controller {
 				{
 						return Response()->json([
 																		'status'=>0,
-																		'pid'=>'destroy',                
+																		'pid'=>'destroy',
 																		'message'=>["Nilai Ujian dengan ID ($id) gagal dihapus"]
 																], 422); 
 				}
@@ -315,7 +315,7 @@ class NilaiUjianController extends Controller {
 				
 						return Response()->json([
 																				'status'=>1,
-																				'pid'=>'destroy',                
+																				'pid'=>'destroy',
 																				'message' => 'Menghapus Data nilai ujian pmb dengan user id ('.$data_nilai->user_id.') berhasil'
 																		],200);         
 				}
@@ -343,7 +343,7 @@ class NilaiUjianController extends Controller {
 				{
 						return Response()->json([
 																		'status'=>0,
-																		'pid'=>'destroy',                
+																		'pid'=>'destroy',
 																		'message'=>["Data Ujian  dengan ID ($id) gagal dihapus, barangkali sudah terdaftar jadi Mahasiswa."]
 																], 422); 
 				}
@@ -374,7 +374,7 @@ class NilaiUjianController extends Controller {
 				
 						return Response()->json([
 																				'status'=>1,
-																				'pid'=>'destroy',                
+																				'pid'=>'destroy',
 																				'message' => 'Menghapus Data nilai ujian pmb dengan user id ('.$data_nilai->user_id.') berhasil'
 																		],200);         
 				}
@@ -383,10 +383,10 @@ class NilaiUjianController extends Controller {
 		//buat transaksi keuangan daftar ulang 
 		private function createTransaksiPSPTJasAlmamater($formulir)
 		{
-				$transaksi_detail=TransaksiDetailModel::where('user_id',$formulir->user_id)->where('kombi_id',103)->first();                
+				$transaksi_detail=TransaksiDetailModel::where('user_id',$formulir->user_id)->where('kombi_id', 103)->first();                
 				if (is_null($transaksi_detail))
 				{   
-						$kombi=\App\Models\Keuangan\BiayaKomponenPeriodeModel::where('kombi_id',103)
+						$kombi=\App\Models\Keuangan\BiayaKomponenPeriodeModel::where('kombi_id', 103)
 																																->where('kjur',$formulir->kjur1)
 																																->where('idkelas',$formulir->idkelas)
 																																->where('tahun',$formulir->ta)
@@ -431,10 +431,10 @@ class NilaiUjianController extends Controller {
 		//buat transaksi keuangan daftar ulang 
 		private function createTransaksiDulang($formulir)
 		{
-				$transaksi_detail=TransaksiDetailModel::where('user_id',$formulir->user_id)->where('kombi_id',102)->first();                
+				$transaksi_detail=TransaksiDetailModel::where('user_id',$formulir->user_id)->where('kombi_id', 102)->first();                
 				if (is_null($transaksi_detail))
 				{   
-						$kombi=\App\Models\Keuangan\BiayaKomponenPeriodeModel::where('kombi_id',102)
+						$kombi=\App\Models\Keuangan\BiayaKomponenPeriodeModel::where('kombi_id', 102)
 																																->where('kjur',$formulir->kjur1)
 																																->where('idkelas',$formulir->idkelas)
 																																->where('tahun',$formulir->ta)

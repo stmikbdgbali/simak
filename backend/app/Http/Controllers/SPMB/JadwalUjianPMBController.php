@@ -46,7 +46,7 @@ class JadwalUjianPMBController extends Controller {
                                             '))
                                             ->join('pe3_peserta_ujian_pmb','pe3_peserta_ujian_pmb.jadwal_ujian_id','pe3_jadwal_ujian_pmb.id')
                                             ->leftJoin('pe3_ruangkelas','pe3_ruangkelas.id','pe3_jadwal_ujian_pmb.ruangkelas_id')
-                                            ->where('ta',$tahun_pendaftaran)
+                                            ->where('ta', $tahun_pendaftaran)
                                             ->where('idsmt',$semester_pendaftaran)
                                             ->orderBy('tanggal_akhir_daftar','desc')
                                             ->get();
@@ -70,12 +70,12 @@ class JadwalUjianPMBController extends Controller {
                                                 pe3_jadwal_ujian_pmb.updated_at
                                             '))
                                             ->leftJoin('pe3_ruangkelas','pe3_ruangkelas.id','pe3_jadwal_ujian_pmb.ruangkelas_id')
-                                            ->where('ta',$tahun_pendaftaran)
+                                            ->where('ta', $tahun_pendaftaran)
                                             ->where('idsmt',$semester_pendaftaran)
                                             ->orderBy('tanggal_akhir_daftar','desc')
                                             ->get();
         }
-        $jumlah_bank_soal=SoalPMBModel::where('ta',$tahun_pendaftaran)
+        $jumlah_bank_soal=SoalPMBModel::where('ta', $tahun_pendaftaran)
                                         ->where('semester',$semester_pendaftaran)
                                         ->count();
 
@@ -145,7 +145,7 @@ class JadwalUjianPMBController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'show',                
+                                    'pid'=>'show',
                                     'message'=>["Fetch data jadwal ujian pmb dengan ID ($id) gagal diperoleh"]
                                 ], 422); 
         }
@@ -153,8 +153,8 @@ class JadwalUjianPMBController extends Controller {
         {
             return Response()->json([   
                                         'status'=>1,
-                                        'pid'=>'fetchdata',                                          
-                                        'jadwal_ujian'=>$jadwal_ujian,                                                                                                                                                                                                                                                                                                                                              
+                                        'pid'=>'fetchdata',                          
+                                        'jadwal_ujian'=>$jadwal_ujian,                                                                                                                                                                                                           
                                         'message'=>"Fetch data jadwal ujian pmb dengan id ($id) berhasil diperoleh."
                                     ],200); 
         }
@@ -190,9 +190,9 @@ class JadwalUjianPMBController extends Controller {
         
             return Response()->json([   
                                         'status'=>1,
-                                        'pid'=>'fetchdata',                                          
-                                        'jadwal_ujian'=>$jadwal_ujian,                                                                                                                                                                                                                                                                                                           
-                                        'peserta'=>$peserta,                                                                                                                                                                                                                                                                                                           
+                                        'pid'=>'fetchdata',                          
+                                        'jadwal_ujian'=>$jadwal_ujian,                                                                                                                                                                        
+                                        'peserta'=>$peserta,                                                                                                                                                                        
                                         'message'=>"Fetch data jadwal ujian pmb dengan id ($id) berhasil diperoleh."
                                     ],200);     
         }
@@ -209,7 +209,7 @@ class JadwalUjianPMBController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'update',                
+                                    'pid'=>'update',
                                     'message'=>["Fetch data jadwal ujian pmb dengan ID ($id) gagal diperoleh"]
                                 ], 422); 
         }
@@ -223,7 +223,7 @@ class JadwalUjianPMBController extends Controller {
                 'jam_selesai_ujian'=>'required',
                 'tanggal_akhir_daftar'=>'required',            
                 'durasi_ujian'=>'required',            
-                'ruangkelas_id'=>'required',                
+                'ruangkelas_id'=>'required',
             ]);            
                 
             $jadwal_ujian->nama_kegiatan=$request->input('nama_kegiatan');
@@ -239,7 +239,7 @@ class JadwalUjianPMBController extends Controller {
             return Response()->json([
                                         'status'=>1,
                                         'pid'=>'update',  
-                                        'jadwal_ujian'=>$jadwal_ujian,                                                                                                                                                                                                                                                                                                                                                    
+                                        'jadwal_ujian'=>$jadwal_ujian,                                                                                                                                                                                                                 
                                         'message'=>"Mengubah data jadwal ujian pmb dengan id ($id) berhasil."                                        
                                     ],200);    
         }
@@ -254,14 +254,14 @@ class JadwalUjianPMBController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'update',                
+                                    'pid'=>'update',
                                     'message'=>["Fetch data jadwal ujian pmb dengan ID ($id) gagal diperoleh"]
                                 ], 422); 
         }
         else
         {
             $this->validate($request, [           
-                'status_ujian'=>'required|integer|digits_between:0,3',                               
+                'status_ujian'=>'required|integer|digits_between:0,3',               
             ]);            
             $status_ujian=$request->input('status_ujian');
             $jadwal_ujian->status_pendaftaran=1;            
@@ -273,7 +273,7 @@ class JadwalUjianPMBController extends Controller {
                 $now = \Carbon\Carbon::now()->toDateTimeString();        
                 \DB::table('pe3_peserta_ujian_pmb')
                     ->where('jadwal_ujian_id', $jadwal_ujian->id)
-                    ->where('isfinish','!=',1)
+                    ->where('isfinish','!=', 1)
                     ->update([
                         'isfinish'=>1,
                         'selesai_ujian'=>$now
@@ -282,7 +282,7 @@ class JadwalUjianPMBController extends Controller {
             return Response()->json([
                                         'status'=>1,
                                         'pid'=>'update',  
-                                        'jadwal_ujian'=>$jadwal_ujian,                                                                                                                                                                                                                                                                                                                                                    
+                                        'jadwal_ujian'=>$jadwal_ujian,                                                                                                                                                                                                                 
                                         'message'=>"ujian pmb dengan id ($id) berhasil dimulai."                                        
                                     ],200);    
         }
@@ -304,7 +304,7 @@ class JadwalUjianPMBController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'destroy',                
+                                    'pid'=>'destroy',
                                     'message'=>["Menghapus jadwal ujian PMB dengan ID ($id) gagal dihapus"]
                                 ], 422); 
         }
@@ -322,7 +322,7 @@ class JadwalUjianPMBController extends Controller {
         
             return Response()->json([
                                         'status'=>1,
-                                        'pid'=>'destroy',                
+                                        'pid'=>'destroy',
                                         'message'=>"Jadwal Ujian PMB ($nama_kegiatan) berhasil dihapus"
                                     ],200);         
         }

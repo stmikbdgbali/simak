@@ -17,7 +17,7 @@ class KecamatanController extends Controller {
         return Response()->json([
                                     'status'=>1,
                                     'pid'=>'fetchdata',  
-                                    'kecamatan'=>$kecamatan,                                                                                                                                   
+                                    'kecamatan'=>$kecamatan,
                                     'message'=>'Fetch data kecamatan berhasil.'
                                 ],200);     
     }
@@ -31,7 +31,7 @@ class KecamatanController extends Controller {
         {
             return Response()->json([
                                     'status'=>0,
-                                    'pid'=>'fetchdata',                
+                                    'pid'=>'fetchdata',
                                     'message'=>["Fetch data desa berdasarkan id kecamatan gagal"]
                                 ], 422); 
         }
@@ -41,7 +41,7 @@ class KecamatanController extends Controller {
             return Response()->json([
                                         'status'=>1,
                                         'pid'=>'fetchdata',  
-                                        'desa'=>$desa,                                                                                                                                   
+                                        'desa'=>$desa,
                                         'message'=>'Fetch data desa berdasarkan id kecamatan berhasil.'
                                     ],200);     
 

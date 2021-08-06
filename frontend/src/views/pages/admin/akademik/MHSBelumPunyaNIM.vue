@@ -20,7 +20,7 @@
 			<template v-slot:desc>
 				<v-alert color="cyan" border="left" colored-border type="info">
 					Halaman untuk melihat daftar calon mahasiswa yang sudah melakukan
-					<strong>PEMBAYARAN BIAYA PENGEMBANGAN</strong> tetapi belum memiliki
+					<strong>PEMBAYARAN BIAYA PENGEMBANGAN</strong>, <strong>JAS ALMAMATER + PSPT</strong>, <strong>SPP + KEMAHASISWAAN</strong> tetapi belum memiliki
 					NIM.
 				</v-alert>
 			</template>

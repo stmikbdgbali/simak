@@ -26,8 +26,8 @@ class TransaksiPendaftaranMHSBaruController extends Controller {
 			'prodi_id'=>'required',
 		]);
 	
-		$ta=$request->input('ta');      
-		$prodi_id=$request->input('prodi_id');
+		$ta = $request->input('ta');      
+		$prodi_id = $request->input('prodi_id');
 					
 		$daftar_transaksi = TransaksiDetailModel::select(\DB::raw('
 																								pe3_transaksi_detail.id,
@@ -62,7 +62,7 @@ class TransaksiPendaftaranMHSBaruController extends Controller {
 																						->join('pe3_transaksi','pe3_transaksi_detail.transaksi_id','pe3_transaksi.id')
 																						->join('pe3_formulir_pendaftaran','pe3_formulir_pendaftaran.user_id','pe3_transaksi_detail.user_id')
 																						->join('pe3_status_transaksi','pe3_transaksi.status','pe3_status_transaksi.id_status')                                                    
-																						->where('pe3_transaksi_detail.kombi_id',101)                                                    
+																						->where('pe3_transaksi_detail.kombi_id', 101)                                                    
 																						->orderBy('pe3_transaksi.tanggal','DESC');                                                    
 
 		if ($request->has('SEARCH'))
@@ -72,14 +72,14 @@ class TransaksiPendaftaranMHSBaruController extends Controller {
 		}            
 		else
 		{
-				$daftar_transaksi=$daftar_transaksi->where('pe3_transaksi.ta',$ta)                                                                                              
-																						->where('pe3_transaksi.kjur',$prodi_id)                                               
+				$daftar_transaksi=$daftar_transaksi->where('pe3_transaksi.ta', $ta)                                                                                              
+																						->where('pe3_transaksi.kjur', $prodi_id)                                               
 																						->get();
 		} 
 		return Response()->json([
 																'status'=>1,
 																'pid'=>'fetchdata',  
-																'transaksi'=>$daftar_transaksi,                                                                                                                                   
+																'transaksi'=>$daftar_transaksi,
 																'message'=>'Fetch data daftar transaksi berhasil.'
 														],200)->setEncodingOptions(JSON_NUMERIC_CHECK);
 	}
@@ -91,7 +91,7 @@ class TransaksiPendaftaranMHSBaruController extends Controller {
 			$this->hasPermissionTo('KEUANGAN-TRANSAKSI-BIAYA-PENDAFTARAN_STORE');
 
 			$this->validate($request, [           
-					'user_id'=>'required|exists:pe3_formulir_pendaftaran,user_id',                        
+					'user_id'=>'required|exists:pe3_formulir_pendaftaran,user_id',        
 			]);
 			
 			try 
@@ -106,10 +106,10 @@ class TransaksiPendaftaranMHSBaruController extends Controller {
 																					->where('pe3_transaksi.ta',$formulir->ta)
 																					->where('pe3_transaksi.idsmt',$formulir->idsmt)
 																					->where('pe3_transaksi.user_id',$user_id)
-																					->where('pe3_transaksi_detail.kombi_id',101)                                                                                      
+																					->where('pe3_transaksi_detail.kombi_id', 101)                                                                                      
 																					->where(function($query) {
 																							$query->where('pe3_transaksi.status',0)
-																									->orWhere('pe3_transaksi.status',1);
+																									->orWhere('pe3_transaksi.status', 1);
 																					})                                        
 																					->first();
 
@@ -122,7 +122,7 @@ class TransaksiPendaftaranMHSBaruController extends Controller {
 					$biaya_kombi=BiayaKomponenPeriodeModel::where('tahun',$formulir->ta)
 																									->where('idkelas',$formulir->idkelas)
 																									->where('kjur',$formulir->kjur1)
-																									->where('kombi_id',101)
+																									->where('kombi_id', 101)
 																									->value('biaya');
 					
 					if (!($biaya_kombi > 0))
@@ -169,8 +169,8 @@ class TransaksiPendaftaranMHSBaruController extends Controller {
 
 					return Response()->json([
 																			'status'=>1,
-																			'pid'=>'store',                   
-																			'transaksi'=>$transaksi,                                                                                                                                   
+																			'pid'=>'store',   
+																			'transaksi'=>$transaksi,
 																			'message'=>'Transaksi Biaya Pendaftaran berhasil di input.'
 																	],200); 
 			}
@@ -178,7 +178,7 @@ class TransaksiPendaftaranMHSBaruController extends Controller {
 			{
 					return Response()->json([
 							'status'=>0,
-							'pid'=>'store',                                                                                                                                                 
+							'pid'=>'store',              
 							'message'=>[$e->getMessage()]
 					], 422); 
 			}        
@@ -190,13 +190,28 @@ class TransaksiPendaftaranMHSBaruController extends Controller {
 			$transaksi_detail = TransaksiDetailModel::find($id);
 			if (is_null($transaksi_detail))
 			{
-					return Response()->json([
-																	'status'=>0,
-																	'pid'=>'update',                
-																	'message'=>["Detail Transaksi dengan ($id) gagal diupdate"]
-															], 422); 
+				return Response()->json([
+					'status'=>0,
+					'pid'=>'update',
+					'message'=>["Detail Transaksi dengan ($id) gagal diupdate"]
+				], 422); 
 			}
-			else
+			else if ($transaksi_detail->transaksi->status == 1)
+			{
+				return Response()->json([
+					'status'=>0,
+					'pid'=>'update',
+					'message'=>["Detail Transaksi dengan ($id) gagal diupdate karena status paid"]
+				], 422);
+			}
+			else if ($transaksi_detail->transaksi->status == 2)
+			{
+				return Response()->json([
+					'status'=>0,
+					'pid'=>'update',
+					'message'=>["Detail Transaksi dengan ($id) gagal diupdate karena status batal"]
+				], 422);
+			}
 			{
 				$this->validate($request, [
 					'promovalue'=>'required'
@@ -226,8 +241,8 @@ class TransaksiPendaftaranMHSBaruController extends Controller {
 
 				return Response()->json([
 																'status'=>1,
-																'pid'=>'store',                   
-																'transaksi_detail'=>$transaksi_detail,                                                                                                                                   
+																'pid'=>'store',   
+																'transaksi_detail'=>$transaksi_detail,
 																'message'=>'Transaksi Biaya Pendaftaran berhasil diubah.'
 														], 200); 
 			}
@@ -266,7 +281,7 @@ class TransaksiPendaftaranMHSBaruController extends Controller {
 					$transaksi->delete();
 					return Response()->json([
 																			'status'=>1,
-																			'pid'=>'destroy',                
+																			'pid'=>'destroy',
 																			'message'=>"transaksi registrasi dengan id ($id) berhasil dihapus"
 																	],200);         
 			}
