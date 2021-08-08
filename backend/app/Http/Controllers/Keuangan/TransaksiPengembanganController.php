@@ -143,11 +143,11 @@ class TransaksiPengembanganController extends Controller {
 
 													
 			return Response()->json([
-														'status'=>0,
+														'status'=>1,
 														'pid'=>'show',
 														'transaksi'=>$transaksi,
 														'transaksi_detail'=>$transaksi_detail,
-														'message'=>["Detail Transaksi dengan ($id) gagal diperoleh"]
+														'message'=>["Detail Transaksi dengan ($id) berhasil diperoleh"]
 												], 200); 
 		}
 	}

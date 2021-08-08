@@ -513,7 +513,16 @@ const routes = [
 		},
 		component: () => import("../views/pages/admin/keuangan/CicilanPengembangan.vue"),
 	},
-
+	{
+		path: "/keuangan/cicilan-pengembangan/:cicilan_id",
+		name: "KeuanganCicilanPengembanganDetail",
+		meta: {
+			title: "KEUANGAN - CICILAN PENGEMBANGAN",
+			requiresAuth: true,
+		},
+		component: () =>
+			import("../views/pages/admin/keuangan/CicilanPengembanganDetail.vue"),
+	},
 	//kemahasiswaan
 	{
 		path: "/kemahasiswaan",

@@ -51,6 +51,7 @@ class CreateCicilanTable extends Migration
 			$table->uuid('user_id');
 			$table->uuid('cicilan_id');
 			$table->uuid('transaksi_id');
+			$table->uuid('transaksi_detail_id');
 			$table->decimal('cicilan',15,2)->default(0);
 			$table->timestamps();   
 			
@@ -63,6 +64,12 @@ class CreateCicilanTable extends Migration
 			$table->foreign('transaksi_id')
 				->references('id')
 				->on('pe3_transaksi')
+				->onDelete('cascade') 
+				->onUpdate('cascade');
+
+			$table->foreign('transaksi_detail_id')
+				->references('id')
+				->on('pe3_transaksi_detail')
 				->onDelete('cascade') 
 				->onUpdate('cascade');
 		});

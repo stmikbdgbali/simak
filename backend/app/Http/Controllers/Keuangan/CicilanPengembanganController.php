@@ -109,27 +109,26 @@ class CicilanPengembanganController extends Controller {
 	{
 		$this->hasPermissionTo('KEUANGAN-TRANSAKSI-PENGEMBANGAN_SHOW');
 
-		$transaksi = TransaksiModel::find($id);
-		if (is_null($transaksi))
+		$cicilan = CicilanModel::find($id);
+		if (is_null($cicilan))
 		{			
 			return Response()->json([
 														'status'=>0,
 														'pid'=>'show',														
-														'message'=>["Detail Transaksi dengan ($id) gagal diperoleh"]
+														'message'=>["Detail cicilan dengan ($id) gagal diperoleh"]
 												], 422); 
 		}
 		else
 		{
-			$transaksi_detail = TransaksiDetailModel::where('transaksi_id', $transaksi->id)
+			$cicilan_detail = CicilanDetailModel::where('cicilan_id', $cicilan->id)
 																								->get();
-
 													
 			return Response()->json([
-														'status'=>0,
+														'status'=>1,
 														'pid'=>'show',
-														'transaksi'=>$transaksi,
-														'transaksi_detail'=>$transaksi_detail,
-														'message'=>["Detail Transaksi dengan ($id) gagal diperoleh"]
+														'cicilan'=>$cicilan,
+														'daftar_cicilan'=>$cicilan_detail,
+														'message'=>["Detail cicilan dengan ($id) berhasil diperoleh"]
 												], 200); 
 		}
 	}
@@ -222,7 +221,7 @@ class CicilanPengembanganController extends Controller {
 					return Response()->json([
 																			'status'=>1,
 																			'pid'=>'store',   
-																			'transaksi'=>$transaksi,
+																			'cicilan'=>$transaksi,
 																			'message'=>'Transaksi BIAYA PENGEMBANGAN berhasil di input.'
 																	],200); 
 			}
@@ -370,7 +369,7 @@ class CicilanPengembanganController extends Controller {
 					return Response()->json([
 																	'status'=>0,
 																	'pid'=>'destroy',           
-																	'transaksi'=>$transaksi,     
+																	'cicilan'=>$transaksi,     
 																	'message'=>["Transaksi registrasi krs dengan ($id) gagal dihapus"]
 															], 422); 
 			}
@@ -394,7 +393,7 @@ class CicilanPengembanganController extends Controller {
 					return Response()->json([
 																	'status'=>1,
 																	'pid'=>'destroy',           
-																	'transaksi'=>$transaksi,     
+																	'cicilan'=>$transaksi,     
 																	'message'=>["Transaksi registrasi krs dengan ($id) gagal dihapus"]
 															], 422); 
 			}

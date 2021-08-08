@@ -405,7 +405,7 @@
 							</v-icon>
 						</template>
 						<template v-slot:no-data>
-							Data transaksi daftar ulang mahasiswa baru belum tersedia
+							Data transaksi pengembangan belum tersedia
 						</template>
 					</v-data-table>
 				</v-col>

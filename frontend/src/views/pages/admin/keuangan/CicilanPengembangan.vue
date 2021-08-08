@@ -5,7 +5,7 @@
 				mdi-video-input-component
 			</template>
 			<template v-slot:name>
-				TRANSAKSI PENGEMBANGAN
+				CICILAN PENGEMBANGAN
 			</template>
 			<template v-slot:subtitle>
 				TAHUN PENDAFTARAN {{ tahun_pendaftaran }} - {{ nama_prodi }}
@@ -19,7 +19,7 @@
 			</template>
 			<template v-slot:desc>
 				<v-alert color="cyan" border="left" colored-border type="info">
-					Halaman ini digunakan untuk mengelola transaksi biaya pengembangan mahasiswa baru dan lama.
+					Halaman ini digunakan untuk mengelola cicilan biaya pengembangan mahasiswa baru dan lama.
 				</v-alert>
 			</template>
 		</ModuleHeader>
@@ -71,19 +71,9 @@
 					>
 						<template v-slot:top>
 							<v-toolbar flat color="white">
-								<v-toolbar-title>DAFTAR TRANSAKSI</v-toolbar-title>
+								<v-toolbar-title>DAFTAR CICILAN</v-toolbar-title>
 								<v-divider class="mx-4" inset vertical></v-divider>
-								<v-spacer></v-spacer>
-								<v-btn
-									color="primary"
-									icon
-									outlined
-									small
-									class="ma-2"
-									@click.stop="addItem"
-								>
-									<v-icon>mdi-plus</v-icon>
-								</v-btn>
+								<v-spacer></v-spacer>								
 								<v-btn
 									color="primary"
 									icon
@@ -93,231 +83,7 @@
 									@click.stop="showDialogPrintout"
 								>
 									<v-icon>mdi-printer</v-icon>
-								</v-btn>
-								<v-dialog v-model="dialogfrm" max-width="700px" persistent>
-									<v-form ref="frmdata" v-model="form_valid" lazy-validation>
-										<v-card outlined>
-											<v-list-item three-line>
-												<v-list-item-content>
-													<div class="overline mb-1">
-														TAMBAH TRANSAKSI
-													</div>
-													<v-list-item-subtitle>
-														Masukan calon mahasiswa baru Prodi
-														{{ nama_prodi }} T.A {{ tahun_pendaftaran }}
-														<v-autocomplete
-															v-model="data_mhs"
-															:items="entries"
-															:loading="isLoading"
-															:search-input.sync="search_data_mhs"
-															cache-items
-															dense
-															item-text="name"
-															item-value="id"
-															hide-no-data
-															hide-details
-															prepend-icon="mdi-database-search"
-															return-object
-															ref="ref_data_mhs"
-														></v-autocomplete>
-													</v-list-item-subtitle>
-												</v-list-item-content>
-											</v-list-item>
-											<v-divider></v-divider>
-											<v-expand-transition>
-												<v-row no-gutters v-if="data_mhs">
-													<v-col xs="12" sm="6" md="6" v-for="(field, i) in fields" v-bind:key="field.id">
-														<v-card flat :key="i">
-															<v-card-title>{{ field_alias(field.key) }}</v-card-title>
-															<v-card-subtitle>
-																{{ field.value }}
-															</v-card-subtitle>
-														</v-card>
-													</v-col>
-													<v-responsive
-														width="100%"
-														v-if="$vuetify.breakpoint.xsOnly"
-													/>
-													<v-col xs="12" sm="6" md="6">
-														<v-card flat>
-															<v-card-title>Model Pembayaran</v-card-title>
-															<v-card-subtitle>
-																<v-radio-group v-model="formdata.installment" row>
-																	<v-radio label="Tunai" value="0" />
-																	<v-radio label="Cicilan" value="1" />
-																</v-radio-group>
-															</v-card-subtitle>
-														</v-card>
-													</v-col>
-													<v-col xs="12" sm="12" md="12">	
-														<v-card flat>
-															<v-card-title>Potongan</v-card-title>
-															<v-card-text>																
-																<v-text-field
-																	v-model="formdata.promovalue"																	
-																	label=""
-																	outlined
-																	hide-details
-																/>
-															</v-card-text>
-														</v-card>
-													</v-col>
-												</v-row>																						
-											</v-expand-transition>
-											<v-card-actions>
-												<v-spacer></v-spacer>
-												<v-btn :disabled="!data_mhs" @click="save">
-													Buat Transaksi
-													<v-icon right>
-														mdi-forward
-													</v-icon>
-												</v-btn>
-												<v-btn @click="closedialogfrm">
-													Close
-													<v-icon right>
-														mdi-close-circle
-													</v-icon>
-												</v-btn>
-											</v-card-actions>
-										</v-card>
-									</v-form>
-								</v-dialog>
-								<v-dialog v-model="dialogeditfrm" max-width="750px" persistent>
-									<v-form
-										ref="frmeditdata"
-										v-model="form_valid"
-										lazy-validation
-									>
-										<v-card outlined>
-											<v-card-title>
-												UBAH TRANSAKSI
-											</v-card-title>
-											<v-card-text>
-												<v-row no-gutters>
-													<v-col xs="12" sm="6" md="6">
-														<v-card flat>
-															<v-card-title>ID :</v-card-title>
-															<v-card-subtitle>
-																{{ data_transaksi.id }}
-															</v-card-subtitle>
-														</v-card>
-													</v-col>
-													<v-responsive
-														width="100%"
-														v-if="$vuetify.breakpoint.xsOnly"
-													/>
-													<v-col xs="12" sm="6" md="6">
-														<v-card flat>
-															<v-card-title>KODE BILLING :</v-card-title>
-															<v-card-subtitle>
-																{{ data_transaksi.no_transaksi }}
-															</v-card-subtitle>
-														</v-card>
-													</v-col>
-													<v-responsive
-														width="100%"
-														v-if="$vuetify.breakpoint.xsOnly"
-													/>
-												</v-row>
-												<v-row no-gutters>
-													<v-col xs="12" sm="6" md="6">
-														<v-card flat>
-															<v-card-title>NAMA MAHASISWA :</v-card-title>
-															<v-card-subtitle>
-																{{ data_transaksi.nama_mhs }}
-															</v-card-subtitle>
-														</v-card>
-													</v-col>
-													<v-responsive
-														width="100%"
-														v-if="$vuetify.breakpoint.xsOnly"
-													/>
-													<v-col xs="12" sm="6" md="6">
-														<v-card flat>
-															<v-card-title>STATUS :</v-card-title>
-															<v-card-subtitle>
-																<v-chip :color="data_transaksi.style" dark>
-																	{{ data_transaksi.nama_status }}
-																</v-chip>
-															</v-card-subtitle>
-														</v-card>
-													</v-col>
-													<v-responsive
-														width="100%"
-														v-if="$vuetify.breakpoint.xsOnly"
-													/>
-												</v-row>
-												<v-row no-gutters>
-													<v-col xs="12" sm="6" md="6">
-														<v-card flat>
-															<v-card-title>BIAYA PENDAFTARAN :</v-card-title>
-															<v-card-subtitle>
-																{{ data_transaksi.biaya | formatUang }}
-															</v-card-subtitle>
-														</v-card>
-													</v-col>
-													<v-responsive
-														width="100%"
-														v-if="$vuetify.breakpoint.xsOnly"
-													/>
-													<v-col xs="12" sm="6" md="6">
-														<v-card flat>
-															<v-card-title>TOTAL :</v-card-title>
-															<v-card-subtitle>
-																{{ data_transaksi.total | formatUang }}
-															</v-card-subtitle>
-														</v-card>
-													</v-col>
-													<v-responsive
-														width="100%"
-														v-if="$vuetify.breakpoint.xsOnly"
-													/>
-												</v-row>
-												<v-row no-gutters>
-													<v-col cols="12">
-														<v-card>
-															<v-card-text>
-																<v-currency-field
-																	label="POTONGAN :"
-																	:min="null"
-																	:max="null"
-																	outlined
-																	v-model="formdata.promovalue"
-																>
-																</v-currency-field>
-																<v-textarea
-																	v-model="formdata.desc"
-																	label="CATATAN:"
-																	outlined
-																/>
-																MODE PEMBAYARAN
-																<v-radio-group v-model="formdata.installment">
-																	<v-radio label="Tunai" value="0" />
-																	<v-radio label="Cicilan" value="1" />
-																</v-radio-group>
-															</v-card-text>
-														</v-card>
-													</v-col>
-												</v-row>
-											</v-card-text>
-											<v-card-actions>
-												<v-spacer></v-spacer>
-												<v-btn @click.stop="save">
-													SIMPAN
-													<v-icon right>
-														mdi-content-save
-													</v-icon>
-												</v-btn>
-												<v-btn @click="closedialogeditfrm">
-													Close
-													<v-icon right>
-														mdi-close-circle
-													</v-icon>
-												</v-btn>
-											</v-card-actions>
-										</v-card>
-									</v-form>
-								</v-dialog>
+								</v-btn>								
 							</v-toolbar>
 						</template>
 						<template v-slot:item.idsmt="{ item }">
@@ -339,8 +105,8 @@
 						<template v-slot:item.sisa_rp_cicilan="{ item }">
 							{{ item.sisa_rp_cicilan | formatUang }}
 						</template>						
-						<template v-slot:item.nama_status="{ item }">
-							<v-chip :color="item.style" dark>
+						<template v-slot:item.status="{ item }">
+							<v-chip :color="item.status == 0 ? 'warning':'success'" dark>
 								BELUM SELESAI
 							</v-chip>
 						</template>
@@ -398,20 +164,9 @@
 							<v-icon small class="mr-2" @click.stop="viewItem(item)">
 								mdi-eye
 							</v-icon>
-							<v-icon small class="mr-2" @click.stop="editItem(item)" v-if="item.installment < 1">
-								mdi-pencil
-							</v-icon>
-							<v-icon
-								small
-								:disabled="btnLoading"
-								@click.stop="deleteItem(item)"
-								v-if="item.status == 0 && item.installment < 1"
-							>
-								mdi-delete
-							</v-icon>
 						</template>
 						<template v-slot:no-data>
-							Data transaksi daftar ulang mahasiswa baru belum tersedia
+							Data cicilan pengembangan belum tersedia
 						</template>
 					</v-data-table>
 				</v-col>
@@ -419,7 +174,7 @@
 		</v-container>
 		<dialog-printout
 			pid="pengembangan"
-			title="Pengembangan Mahasiswa Baru dan Lama"
+			title="Cicilan Mahasiswa Baru dan Lama"
 			ref="dialogprint"
 		>
 		</dialog-printout>
@@ -431,7 +186,7 @@
 	import Filter7 from "@/components/sidebar/FilterMode7";
 	import DialogPrintoutKeuangan from "@/components/DialogPrintoutKeuangan";
 	export default {
-		name: "TransaksiPengembangan",
+		name: "CicilanPengembangan",
 		created() {
 			this.dashboard = this.$store.getters["uiadmin/getDefaultDashboard"];
 			this.breadcrumbs = [
@@ -446,7 +201,7 @@
 					href: "/keuangan",
 				},
 				{
-					text: "TRANSAKSI PENGEMBANGAN",
+					text: "CICILAN PENGEMBANGAN",
 					disabled: true,
 					href: "#",
 				},
@@ -545,32 +300,6 @@
 			],
 			expanded: [],
 			search: "",
-
-			//dialog
-			dialogfrm: false,
-			dialogeditfrm: false,
-
-			//form data
-			entries: [],
-			isLoading: false,
-			data_mhs: null,
-			search_data_mhs: null,
-
-			form_valid: true,
-			data_transaksi: {},
-			formdata: {
-				id: null,
-				promovalue: 0,
-				installment: 0,
-				desc: "",
-			},
-			formdefault: {
-				id: null,
-				promovalue: 0,
-				installment: 0,
-				desc: "",
-			},
-			editedIndex: -1,
 		}),
 		methods: {
 			changeTahunPendaftaran(tahun) {
@@ -606,147 +335,13 @@
 					this.expanded = [item];
 				}
 			},
-			async addItem() {
-				this.dialogfrm = true;
-			},
-			async editItem(item) {
-				this.editedIndex = this.datatable.indexOf(item);
-				this.formdata = Object.assign({}, item);
-				this.formdata.installment = this.formdata.installment == 1 ? "1" : "0";
-				this.dialogeditfrm = true;
-				this.data_transaksi = item;
-			},
-			field_alias(atr) {
-				var alias;
-				switch (atr) {
-					case "id":
-						alias = "USER ID";
-						break;
-					case "name":
-						alias = "NAMA MAHASIWA";
-						break;
-					case "username":
-						alias = "USERNAME";
-						break;
-					case "email":
-						alias = "EMAIL";
-						break;
-					case "nomor_hp":
-						alias = "NOMOR HP";
-						break;
-				}
-				return alias;
-			},
 			viewItem(item) {
 				this.$router.push(
-					"/keuangan/cicilan-pengembangan/" + item.transaksi_id
+					"/keuangan/cicilan-pengembangan/" + item.id
 				);
-			},
-			save: async function() {
-				this.btnLoading = true;
-				if (this.editedIndex > -1) {
-					if (this.$refs.frmeditdata.validate()) {
-						await this.$ajax
-							.post(
-								"/keuangan/cicilan-pengembangan/" + this.formdata.id,
-								{
-									_method: "put",
-									promovalue: this.formdata.promovalue,
-									installment: this.formdata.installment,
-									desc: this.formdata.desc,
-								},
-								{
-									headers: {
-										Authorization: this.$store.getters["auth/Token"],
-									},
-								}
-							)
-							.then(() => {
-								this.closedialogeditfrm();
-								this.btnLoading = false;
-								this.initialize();
-							})
-							.catch(() => {
-								this.btnLoading = false;
-							});
-					}
-				} else {
-					if (this.$refs.frmdata.validate()) {
-						await this.$ajax
-							.post(
-								"/keuangan/cicilan-pengembangan/store",
-								{
-									user_id: this.data_mhs.id,
-									installment: this.formdata.installment,
-								},
-								{
-									headers: {
-										Authorization: this.$store.getters["auth/Token"],
-									},
-								}
-							)
-							.then(() => {
-								this.closedialogfrm();
-								this.btnLoading = false;
-								this.initialize();
-							})
-							.catch(() => {
-								this.btnLoading = false;
-							});
-					}
-				}
 			},
 			showDialogPrintout() {
 				this.$refs.dialogprint.open();
-			},
-			closedialogfrm() {
-				this.dialogfrm = false;
-				setTimeout(() => {
-					this.data_mhs = null;
-					this.$refs.frmdata.reset();
-				}, 300);
-			},
-			closedialogeditfrm() {
-				this.dialogeditfrm = false;
-				setTimeout(() => {
-					this.data_transaksi = {};
-					this.$refs.frmeditdata.reset();
-				}, 300);
-			},
-			deleteItem(item) {
-				this.$root.$confirm
-					.open(
-						"Delete",
-						"Apakah Anda ingin menghapus data transaksi daftar ulang mahasiswa baru dengan ID " +
-							item.id +
-							" ?",
-						{ color: "red", width: "500px" }
-					)
-					.then(confirm => {
-						if (confirm) {
-							this.btnLoading = true;
-							this.$ajax
-								.post(
-									"/keuangan/cicilan-pengembangan/" + item.transaksi_id,
-									{
-										_method: "DELETE",
-									},
-									{
-										headers: {
-											Authorization: this.$store.getters["auth/Token"],
-										},
-									}
-								)
-								.then(() => {
-									const index = this.datatable.indexOf(item);
-									this.datatable.splice(index, 1);
-									this.btnLoading = false;
-								})
-								.catch(() => {
-									this.btnLoading = false;
-								});
-						}
-					});
 			},
 		},
 		computed: {
@@ -776,15 +371,6 @@
 					}
 				});
 				return total;
-			},
-			fields() {
-				if (!this.data_mhs) return [];
-				return Object.keys(this.data_mhs).map(key => {
-					return {
-						key,
-						value: this.data_mhs[key] || "n/a",
-					};
-				});
 			},
 		},
 		watch: {
@@ -827,37 +413,6 @@
 					}, 1000); // 1 sec delay
 				}
 				this.awaiting_search = true;
-			},
-			search_data_mhs(val) {
-				if (this.isLoading) return;
-				if (val && val !== this.data_mhs && val.length > 1) {
-					setTimeout(async () => {
-						this.isLoading = true;
-						await this.$ajax
-							.post(
-								"/spmb/pmb/search",
-								{
-									search: val,
-									prodi_id: this.prodi_id,
-									ta: this.tahun_pendaftaran,
-								},
-								{
-									headers: {
-										Authorization: this.$store.getters["auth/Token"],
-									},
-								}
-							)
-							.then(({ data }) => {
-								const { jumlah, daftar_mhs } = data;
-								this.count = jumlah;
-								this.entries = daftar_mhs;
-								this.isLoading = false;
-							})
-							.catch(() => {
-								this.isLoading = false;
-							});
-					}, 1000);
-				}
 			},
 		},
 		components: {
