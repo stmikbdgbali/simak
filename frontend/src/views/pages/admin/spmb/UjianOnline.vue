@@ -1,75 +1,39 @@
 <template>
-		<div>
-				<v-system-bar
-						app
-						dark
-						color="#C43638"
-						class="white--text">
-						<strong>No. Peserta :</strong> {{ this.peserta.no_peserta}}
-						<v-divider
-								class="mx-4"
-								inset
-								vertical>
-						</v-divider>
-						<strong>Mulai Ujian :</strong> {{$date(this.peserta.mulai_ujian).format("DD/MM/YYYY HH:mm")}}
-						<v-divider
-								class="mx-4"
-								inset
-								vertical>
-						</v-divider>
-				</v-system-bar>
-				<v-app-bar 
-						color="#e9373b"
-						app class="white--text" elevation="0">  
-						<v-toolbar-title>
-								Ujian Online
-						</v-toolbar-title>
-				</v-app-bar>
-				<v-main>
-						<v-container
-							class="white lighten-5">
-								<v-row no-gutters>
-										<v-col>
-											<v-card
-												class="pa-0 ma-1"
-												tile
-											>
-											<v-app-bar
-												color="#FFCA28"
-												elevation="0"
-												dense
-												dark
-											>
-											<v-toolbar-title
-												class="font-weight-bold black--text">
-												Soal
-											</v-toolbar-title>
-
-											<v-spacer></v-spacer>
-
-											</v-app-bar>
-
-											<p class="font-weight-regular pa-4">
-												{{nama_soal}}
-											</p>
-											</v-card>
-										</v-col>
-										<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
-										<v-col order="1">
+	<div>
+		<v-system-bar
+			app
+			dark
+			color="#C43638"
+			class="white--text"
+		>
+			<strong>No. Peserta :</strong> {{ this.peserta.no_peserta}}
+			<v-divider class="mx-4" inset vertical></v-divider>
+			<strong>Mulai Ujian :</strong> {{$date(this.peserta.mulai_ujian).format("DD/MM/YYYY HH:mm")}}
+			<v-divider class="mx-4" inset vertical></v-divider>
+			</v-system-bar>
+			<v-app-bar color="#e9373b" app class="white--text" elevation="0">  
+				<v-toolbar-title>
+					Ujian Online
+				</v-toolbar-title>
+			</v-app-bar>
+			<v-main>
+					<v-container
+						class="white lighten-5">
+							<v-row no-gutters>
+									<v-col>
 										<v-card
-										class="pa-0 ma-1"
-										tile
+											class="pa-0 ma-1"
+											tile
 										>
 										<v-app-bar
-										color="#FFCA28"
-										elevation="0"
-										dense
-										dark
+											color="#FFCA28"
+											elevation="0"
+											dense
+											dark
 										>
-
 										<v-toolbar-title
-										class="font-weight-bold black--text">
-												Pilih Jawaban
+											class="font-weight-bold black--text">
+											Soal
 										</v-toolbar-title>
 
 										<v-spacer></v-spacer>
@@ -77,31 +41,58 @@
 										</v-app-bar>
 
 										<p class="font-weight-regular pa-4">
-												<v-card-text>
-														<v-row
-																justify="center"
-																alignment="center">
-																<v-col xs="12" sm="6" md="12" v-for="(item,index) in daftar_jawaban" v-bind:key="item.id">        
-																		<JawabanSoal :index="index" :item="item" v-on:selesaiJawab="selesaiJawab" />
-																</v-col>
-														</v-row>
-														<v-row v-if="isprosesujian">
-																<v-col cols="12">
-																		<v-btn 
-																				@click.stop="selesaiUjian"
-																				color="error">
-																				Selesai
-																		</v-btn>
-																</v-col>
-														</v-row>
-												</v-card-text>
+											{{nama_soal}}
 										</p>
-										</v-card> 
-								</v-col>
-								</v-row>
-						</v-container>
-				</v-main>
-		</div>
+										</v-card>
+									</v-col>
+									<v-responsive width="100%" v-if="$vuetify.breakpoint.xsOnly"/>
+									<v-col order="1">
+									<v-card
+									class="pa-0 ma-1"
+									tile
+									>
+									<v-app-bar
+									color="#FFCA28"
+									elevation="0"
+									dense
+									dark
+									>
+
+									<v-toolbar-title
+									class="font-weight-bold black--text">
+											Pilih Jawaban
+									</v-toolbar-title>
+
+									<v-spacer></v-spacer>
+
+									</v-app-bar>
+
+									<p class="font-weight-regular pa-4">
+											<v-card-text>
+													<v-row
+															justify="center"
+															alignment="center">
+															<v-col xs="12" sm="6" md="12" v-for="(item,index) in daftar_jawaban" v-bind:key="item.id">        
+																	<JawabanSoal :index="index" :item="item" v-on:selesaiJawab="selesaiJawab" />
+															</v-col>
+													</v-row>
+													<v-row v-if="isprosesujian">
+															<v-col cols="12">
+																	<v-btn 
+																			@click.stop="selesaiUjian"
+																			color="error">
+																			Selesai
+																	</v-btn>
+															</v-col>
+													</v-row>
+											</v-card-text>
+									</p>
+									</v-card> 
+							</v-col>
+							</v-row>
+					</v-container>
+			</v-main>
+	</div>
 </template>
 <script>
 import JawabanSoal from '@/components/JawabanSoal';
