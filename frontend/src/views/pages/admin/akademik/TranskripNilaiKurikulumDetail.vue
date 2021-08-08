@@ -322,14 +322,14 @@ export default {
                     Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({ data }) => {
-                this.data_mhs=data.mahasiswa;
-                this.jumlahMatkul=data.jumlah_matkul;
-                this.totalSKS=data.jumlah_sks;
-                this.totalM=data.jumlah_m;
-                this.totalAM=data.jumlah_am;
-                this.ipk=data.ipk;
+                this.data_mhs= data.mahasiswa;
+                this.jumlahMatkul= data.jumlah_matkul;
+                this.totalSKS= data.jumlah_sks;
+                this.totalM= data.jumlah_m;
+                this.totalAM= data.jumlah_am;
+                this.ipk= data.ipk;
 
-                this.datatable=data.nilai_matakuliah;
+                this.datatable= data.nilai_matakuliah;
                 this.datatableLoading = false;
             }).catch(() => {
                 this.datatableLoading = false;
@@ -350,8 +350,8 @@ export default {
                     
                 }
             ).then(({ data }) => {
-                this.data_matkul=data.matakuliah;
-                this.data_history=data.history;
+                this.data_matkul= data.matakuliah;
+                this.data_history= data.history;
                 this.dialoghistory=true;
                 this.btnLoading = false;
             }).catch(() => {
@@ -380,7 +380,7 @@ export default {
                     
                 }
             ).then(({ data }) => {
-                this.file_pdf=data.pdf_file;
+                this.file_pdf= data.pdf_file;
                 this.dialogprintpdf=true;
                 this.btnLoading = false;
             }).catch(() => {
@@ -398,7 +398,7 @@ export default {
                     
                 }
             ).then(({ data }) => {
-                this.file_pdf=data.pdf_file;
+                this.file_pdf= data.pdf_file;
                 this.dialogprintpdf=true;
                 this.btnLoading = false;
             }).catch(() => {

@@ -326,7 +326,7 @@ export default {
                     }
                 }
             ).then(({ data }) => { 
-                this.daftar_jabatan=data.jabatan_akademik;
+                this.daftar_jabatan= data.jabatan_akademik;
             });
             
             this.editedIndex = this.daftar_dosen.indexOf(item);  

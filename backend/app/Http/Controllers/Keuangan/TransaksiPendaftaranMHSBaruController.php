@@ -220,7 +220,7 @@ class TransaksiPendaftaranMHSBaruController extends Controller {
 				$transaksi_detail = \DB::transaction(function () use ($request, $transaksi_detail) {
 					$promovalue = $request->input('promovalue');
 					$transaksi_detail->promovalue = $promovalue;
-					$transaksi_detail->sub_total = $transaksi_detail->sub_total - $promovalue;
+					$transaksi_detail->sub_total = $transaksi_detail->biaya - $promovalue;
 					$transaksi_detail->save();
 
 					$total = \DB::table('pe3_transaksi_detail')

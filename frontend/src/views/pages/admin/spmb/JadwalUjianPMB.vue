@@ -432,7 +432,7 @@
 							},
 						})
 						.then(({ data }) => { 
-							this.jumlah_bank_soal=data.jumlah_bank_soal;
+							this.jumlah_bank_soal= data.jumlah_bank_soal;
 							this.datatable = data.jadwal_ujian;
 							this.datatableLoading = false;
 						})

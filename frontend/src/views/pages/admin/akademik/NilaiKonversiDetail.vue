@@ -451,7 +451,7 @@ export default {
                 this.datatableLoading = false;
             });    
             await this.$ajax.get("/datamaster/programstudi/jenjangstudi").then(({ data }) => {
-                this.daftar_jenjang=data.jenjangstudi;
+                this.daftar_jenjang= data.jenjangstudi;
             }); 
         },
         save: async function() {
@@ -534,7 +534,7 @@ export default {
                     
                 }
             ).then(({ data }) => {
-                this.file_pdf=data.pdf_file;
+                this.file_pdf= data.pdf_file;
                 this.dialogprintpdf=true;
                 this.btnLoading = false;
             }).catch(() => {

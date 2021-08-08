@@ -480,7 +480,7 @@ export default {
             }).then(({ data }) => {
                 this.formdata = item;  
                 this.dialogdetailitem = true;  
-                this.daftar_soal_jawaban=data.soal.jawaban;
+                this.daftar_soal_jawaban= data.soal.jawaban;
             });   
         },
         editItem: async function(item) {    
@@ -500,7 +500,7 @@ export default {
                     }         
                 });  
                 this.formdata.jawaban_benar=jawaban_benar;    
-                this.daftar_soal_jawaban=data.soal.jawaban;
+                this.daftar_soal_jawaban= data.soal.jawaban;
             });   
         }, 
         previewImage(e)

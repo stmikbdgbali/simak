@@ -302,12 +302,12 @@ export default {
                     Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({ data }) => {
-                this.datamhs=data.mahasiswa;
+                this.datamhs= data.mahasiswa;
                 
-                this.totalSKS=data.jumlah_sks;
-                this.totalM=data.jumlah_m;
-                this.totalAM=data.jumlah_am;
-                this.ipk=data.ipk;
+                this.totalSKS= data.jumlah_sks;
+                this.totalM= data.jumlah_m;
+                this.totalAM= data.jumlah_am;
+                this.ipk= data.ipk;
             });
 
             this.datatableLoading = true;

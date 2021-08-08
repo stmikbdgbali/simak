@@ -302,7 +302,7 @@ export default {
                     Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({ data }) => {
-                this.data_transaksi=data.transaksi;   
+                this.data_transaksi= data.transaksi;   
                 this.datatable = data.transaksi_detail;
                 this.item_selected = data.item_selected;
                 this.datatableLoading = false;

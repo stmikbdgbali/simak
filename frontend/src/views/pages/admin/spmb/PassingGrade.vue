@@ -177,8 +177,8 @@ export default {
                 }
             }).then(({ data }) => {  
                 this.datatableLoading = false;
-                this.jadwal_ujian=data.jadwal_ujian; 
-                this.datatable=data.passing_grade;    
+                this.jadwal_ujian= data.jadwal_ujian; 
+                this.datatable= data.passing_grade;    
             }).catch(() => {
                 this.datatableLoading = false;
             });

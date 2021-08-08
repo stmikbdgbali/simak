@@ -283,8 +283,8 @@ export default {
                     Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({ data }) => {
-                this.datakrs=data.krs;
-                this.datatable=data.krsmatkul;
+                this.datakrs= data.krs;
+                this.datatable= data.krsmatkul;
                 if (Object.keys(this.datakrs).length)
                 {
                     let prodi_id = this.datakrs.kjur;
@@ -304,7 +304,7 @@ export default {
             }).then(({ data }) => {
                 this.dialogfrm = true;
                 this.datamatkul=item;
-                this.daftar_kelas=data.daftarkelas;
+                this.daftar_kelas= data.daftarkelas;
                 this.formdata.kelas_mhs_id=item.kelas_mhs_id;
             })
         },

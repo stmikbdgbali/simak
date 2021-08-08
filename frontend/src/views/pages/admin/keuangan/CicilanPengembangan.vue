@@ -1,0 +1,425 @@
+<template>
+	<KeuanganLayout>
+		<ModuleHeader>
+			<template v-slot:icon>
+				mdi-video-input-component
+			</template>
+			<template v-slot:name>
+				CICILAN PENGEMBANGAN
+			</template>
+			<template v-slot:subtitle>
+				TAHUN PENDAFTARAN {{ tahun_pendaftaran }} - {{ nama_prodi }}
+			</template>
+			<template v-slot:breadcrumbs>
+				<v-breadcrumbs :items="breadcrumbs" class="pa-0">
+					<template v-slot:divider>
+						<v-icon>mdi-chevron-right</v-icon>
+					</template>
+				</v-breadcrumbs>
+			</template>
+			<template v-slot:desc>
+				<v-alert color="cyan" border="left" colored-border type="info">
+					Halaman ini digunakan untuk mengelola cicilan biaya pengembangan mahasiswa baru dan lama.
+				</v-alert>
+			</template>
+		</ModuleHeader>
+		<template v-slot:filtersidebar>
+			<Filter7
+				v-on:changeTahunPendaftaran="changeTahunPendaftaran"
+				v-on:changeProdi="changeProdi"
+				ref="filter7"
+			/>
+		</template>
+		<v-container fluid>
+			<v-row class="mb-4" no-gutters>
+				<v-col cols="12">
+					<v-card>
+						<v-card-text>
+							<v-text-field
+								v-model="search"
+								append-icon="mdi-database-search"
+								label="Search"
+								single-line
+								hide-details
+							>
+							</v-text-field>
+							<v-switch
+								v-model="filter_ignore"
+								label="ABAIKAN FILTER"
+								class="font-weight-bold"
+							>
+							</v-switch>
+						</v-card-text>
+					</v-card>
+				</v-col>
+			</v-row>
+			<v-row class="mb-4" no-gutters>
+				<v-col cols="12">
+					<v-data-table
+						:headers="headers"
+						:items="datatable"
+						:search="search"
+						item-key="id"
+						sort-by="nama_mhs"
+						show-expand
+						:expanded.sync="expanded"
+						:single-expand="true"
+						@click:row="dataTableRowClicked"
+						class="elevation-1"
+						:loading="datatableLoading"
+						loading-text="Loading... Please wait"
+					>
+						<template v-slot:top>
+							<v-toolbar flat color="white">
+								<v-toolbar-title>DAFTAR CICILAN</v-toolbar-title>
+								<v-divider class="mx-4" inset vertical></v-divider>
+								<v-spacer></v-spacer>								
+								<v-btn
+									color="primary"
+									icon
+									outlined
+									small
+									class="ma-2"
+									@click.stop="showDialogPrintout"
+								>
+									<v-icon>mdi-printer</v-icon>
+								</v-btn>								
+							</v-toolbar>
+						</template>
+						<template v-slot:item.idsmt="{ item }">
+							{{ item.ta }}
+							{{ $store.getters["uiadmin/getNamaSemester"](item.idsmt) }}
+						</template>
+						<template v-slot:item.tanggal="{ item }">
+							{{ $date(item.tanggal).format("DD/MM/YYYY") }}
+						</template>
+						<template v-slot:item.promovalue="{ item }">
+							{{ item.promovalue | formatUang }}
+						</template>
+						<template v-slot:item.total="{ item }">
+							{{ item.total | formatUang }}
+						</template>
+						<template v-slot:item.jumlah_cicilan="{ item }">
+							{{ item.jumlah_cicilan }} / {{ item.sudah_nyicil }}
+						</template>
+						<template v-slot:item.sisa_rp_cicilan="{ item }">
+							{{ item.sisa_rp_cicilan | formatUang }}
+						</template>						
+						<template v-slot:item.status="{ item }">
+							<v-chip :color="item.status == 0 ? 'warning':'success'" dark>
+								BELUM SELESAI
+							</v-chip>
+						</template>
+						<template v-slot:item.installment="{ item }">
+							{{ item.installment > 0 ? item.installment : "N.A" }}
+						</template>
+						<template v-slot:body.append v-if="datatable.length > 0">
+							<tr class="grey lighten-4 font-weight-black">
+								<td class="text-right" colspan="7">TOTAL TRANSAKSI PAID</td>
+								<td class="text-right">
+									{{ totaltransaksi_paid | formatUang }}
+								</td>
+								<td colspan="3"></td>
+							</tr>
+							<tr class="grey lighten-4 font-weight-black">
+								<td class="text-right" colspan="7">TOTAL TRANSAKSI UNPAID</td>
+								<td class="text-right">
+									{{ totaltransaksi_unpaid | formatUang }}
+								</td>
+								<td colspan="3"></td>								
+							</tr>
+							<tr class="grey lighten-4 font-weight-black">
+								<td class="text-right" colspan="7">TOTAL TRANSAKSI CANCELED</td>
+								<td class="text-right">
+									{{ totaltransaksi_canceled | formatUang }}
+								</td>
+								<td colspan="3"></td>
+							</tr>
+							<tr class="grey lighten-4 font-weight-black">
+								<td class="text-right" colspan="7">TOTAL TRANSAKSI</td>
+								<td class="text-right">
+									{{
+										(totaltransaksi_canceled +
+											totaltransaksi_paid +
+											totaltransaksi_unpaid)
+											| formatUang
+									}}
+								</td>
+								<td colspan="3"></td>
+							</tr>
+						</template>
+						<template v-slot:expanded-item="{ headers, item }">
+							<td :colspan="headers.length" class="text-center">
+								<v-col cols="13">
+									<strong>TRANS.DETAIL ID:</strong>{{ item.id }}
+									<strong>MODE BAYAR:</strong>{{ item.installment > 0 ? "CICILAN" : "TUNAI" }}
+									<strong>created_at:</strong>
+									{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
+									<strong>updated_at:</strong>
+									{{ $date(item.updated_at).format("DD/MM/YYYY HH:mm") }}
+								</v-col>
+							</td>
+						</template>
+						<template v-slot:item.actions="{ item }">							
+							<v-icon small class="mr-2" @click.stop="viewItem(item)">
+								mdi-eye
+							</v-icon>
+						</template>
+						<template v-slot:no-data>
+							Data cicilan pengembangan belum tersedia
+						</template>
+					</v-data-table>
+				</v-col>
+			</v-row>
+		</v-container>
+		<dialog-printout
+			pid="pengembangan"
+			title="Cicilan Mahasiswa Baru dan Lama"
+			ref="dialogprint"
+		>
+		</dialog-printout>
+	</KeuanganLayout>
+</template>
+<script>
+	import KeuanganLayout from "@/views/layouts/KeuanganLayout";
+	import ModuleHeader from "@/components/ModuleHeader";
+	import Filter7 from "@/components/sidebar/FilterMode7";
+	import DialogPrintoutKeuangan from "@/components/DialogPrintoutKeuangan";
+	export default {
+		name: "CicilanPengembangan",
+		created() {
+			this.dashboard = this.$store.getters["uiadmin/getDefaultDashboard"];
+			this.breadcrumbs = [
+				{
+					text: "HOME",
+					disabled: false,
+					href: "/dashboard/" + this.$store.getters["auth/AccessToken"],
+				},
+				{
+					text: "KEUANGAN",
+					disabled: false,
+					href: "/keuangan",
+				},
+				{
+					text: "CICILAN PENGEMBANGAN",
+					disabled: true,
+					href: "#",
+				},
+			];
+			let prodi_id = this.$store.getters["uiadmin/getProdiID"];
+			this.prodi_id = prodi_id;
+			this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](prodi_id);
+			this.tahun_pendaftaran = this.$store.getters[
+				"uiadmin/getTahunPendaftaran"
+			];
+		},
+		mounted() {
+			this.initialize();
+			this.firstloading = false;
+			this.$refs.filter7.setFirstTimeLoading(this.firstloading);
+		},
+		data: () => ({
+			dashboard: null,
+			firstloading: true,
+			breadcrumbs: [],
+			prodi_id: null,
+			nama_prodi: null,
+			tahun_pendaftaran: 0,
+			filter_ignore: false,
+			awaiting_search: false,
+
+			btnLoading: false,
+
+			//tables
+			datatableLoading: false,
+			datatable: [],
+			headers: [
+				{
+					text: "TANGGAL",
+					value: "tanggal",
+					width: 90,
+					sortable: true,
+				},
+				{
+					text: "NO. FORMULIR",
+					value: "no_formulir",
+					sortable: true,
+					width: 100,
+				},
+				{
+					text: "NAMA MAHASISWA",
+					value: "nama_mhs",
+					sortable: true,
+					width: 250,
+				},
+				{
+					text: "SMT",
+					value: "idsmt",
+					width: 100,
+					sortable: false,
+				},
+				{
+					text: "BIAYA",
+					value: "total",
+					width: 100,
+					sortable: false,
+					align: "right",
+				},
+				{
+					text: "POTONGAN",
+					value: "promovalue",
+					width: 100,
+					sortable: false,
+					align: "right",
+				},
+				{
+					text: "JUMLAH CICILAN",
+					value: "jumlah_cicilan",
+					width: 100,
+					sortable: false,
+					align: "right",
+				},				
+				{
+					text: "SISA CICILAN",
+					value: "sisa_rp_cicilan",
+					width: 100,
+					sortable: false,
+				},
+				{
+					text: "STATUS",
+					value: "status",
+					width: 100,
+					sortable: false,
+				},
+				{
+					text: "AKSI",
+					value: "actions",
+					sortable: false,
+					width: 100,
+				},
+			],
+			expanded: [],
+			search: "",
+		}),
+		methods: {
+			changeTahunPendaftaran(tahun) {
+				this.tahun_pendaftaran = tahun;
+			},
+			changeProdi(id) {
+				this.prodi_id = id;
+			},
+			initialize: async function() {
+				this.datatableLoading = true;
+				await this.$ajax
+					.post(
+						"/keuangan/cicilan-pengembangan",
+						{
+							ta: this.tahun_pendaftaran,
+							prodi_id: this.prodi_id,
+						},
+						{
+							headers: {
+								Authorization: this.$store.getters["auth/Token"],
+							},
+						}
+					)
+					.then(({ data }) => {
+						this.datatable = data.cicilan;
+						this.datatableLoading = false;
+					});				
+			},
+			dataTableRowClicked(item) {
+				if (item === this.expanded[0]) {
+					this.expanded = [];
+				} else {
+					this.expanded = [item];
+				}
+			},
+			viewItem(item) {
+				this.$router.push(
+					"/keuangan/cicilan-pengembangan/" + item.id
+				);
+			},
+			showDialogPrintout() {
+				this.$refs.dialogprint.open();
+			},
+		},
+		computed: {
+			totaltransaksi_paid() {
+				var total = 0;
+				this.datatable.forEach(item => {
+					if (item.status == 1) {
+						total += item.total;
+					}
+				});
+				return total;
+			},
+			totaltransaksi_unpaid() {
+				var total = 0;
+				this.datatable.forEach(item => {
+					if (item.status == 0) {
+						total += item.total;
+					}
+				});
+				return total;
+			},
+			totaltransaksi_canceled() {
+				var total = 0;
+				this.datatable.forEach(item => {
+					if (item.status == 2) {
+						total += item.total;
+					}
+				});
+				return total;
+			},
+		},
+		watch: {
+			tahun_pendaftaran() {
+				if (!this.firstloading) {
+					this.initialize();
+				}
+			},
+			prodi_id(val) {
+				if (!this.firstloading) {
+					this.nama_prodi = this.$store.getters["uiadmin/getProdiName"](val);
+					this.initialize();
+				}
+			},
+			search() {
+				if (!this.awaiting_search) {
+					setTimeout(async () => {
+						if (this.search.length > 0 && this.filter_ignore) {
+							this.datatableLoading = true;
+							await this.$ajax
+								.post(
+									"/keuangan/cicilan-pengembangan",
+									{
+										prodi_id: this.prodi_id,
+										ta: this.tahun_pendaftaran,
+										search: this.search,
+									},
+									{
+										headers: {
+											Authorization: this.$store.getters["auth/Token"],
+										},
+									}
+								)
+								.then(({ data }) => {
+									this.datatable = data.transaksi;
+									this.datatableLoading = false;
+								});
+						}
+						this.awaiting_search = false;
+					}, 1000); // 1 sec delay
+				}
+				this.awaiting_search = true;
+			},
+		},
+		components: {
+			KeuanganLayout,
+			ModuleHeader,
+			Filter7,
+			"dialog-printout": DialogPrintoutKeuangan,
+		},
+	};
+</script>

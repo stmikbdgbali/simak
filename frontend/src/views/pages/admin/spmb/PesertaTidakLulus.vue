@@ -5,7 +5,7 @@
 				mdi-order-alphabetical-ascending
 			</template>
 			<template v-slot:name>
-				PESERTA YANG LULUS
+				PESERTA TIDAK LULUS
 			</template>
 			<template v-slot:subtitle v-if="dashboard != 'mahasiswabaru'">
 				TAHUN PENDAFTARAN {{ tahun_pendaftaran }} - {{ nama_prodi }}
@@ -19,7 +19,7 @@
 			</template>
 			<template v-slot:desc>
 				<v-alert color="orange" border="left" colored-border type="info">
-					Berisi daftar mahasiswa baru yang lulus ujian PMB
+					Berisi daftar mahasiswa baru yang TIDAK lulus ujian PMB
 				</v-alert>
 			</template>
 		</ModuleHeader>
@@ -57,7 +57,7 @@
 					>
 						<template v-slot:top>
 							<v-toolbar flat color="white">
-								<v-toolbar-title>DAFTAR PESERTA YANG LULUS</v-toolbar-title>
+								<v-toolbar-title>DAFTAR PESERTA TIDAK LULUS</v-toolbar-title>
 								<v-divider class="mx-4" inset vertical></v-divider>
 							</v-toolbar>
 						</template>
@@ -73,23 +73,7 @@
 								</v-avatar>
 							</v-badge>
 						</template>
-						<template v-slot:item.actions="{ item }">							
-							<v-tooltip bottom>
-								<template v-slot:activator="{ on, attrs }">
-									<v-icon
-										v-bind="attrs"
-										v-on="on"
-										small
-										color="primary"
-										:disabled="btnLoading"
-										@click.stop="printpdf(item)"
-										class="mr-2"
-									>
-										mdi-printer
-									</v-icon>
-								</template>
-								<span>Print SK Kelulusan</span>
-							</v-tooltip>
+						<template v-slot:item.actions="{ item }">
 							<v-tooltip bottom>
 								<template v-slot:activator="{ on, attrs }">
 									<v-icon
@@ -103,7 +87,7 @@
 										mdi-delete
 									</v-icon>
 								</template>
-								<span>Hapus Peserta Lulus</span>
+								<span>Hapus Peserta Tidak Lulus</span>
 							</v-tooltip>
 						</template>
 						<template v-slot:expanded-item="{ headers, item }">
@@ -122,11 +106,6 @@
 					</v-data-table>
 				</v-col>
 			</v-row>
-			<dialog-printout
-				pid="sklulus"
-				title="SK kelulusan"
-				ref="dialogprint"
-			></dialog-printout>
 		</v-container>
 		<template v-slot:filtersidebar v-if="dashboard != 'mahasiswabaru'">
 			<Filter7
@@ -141,9 +120,8 @@
 	import SPMBLayout from "@/views/layouts/SPMBLayout";
 	import ModuleHeader from "@/components/ModuleHeader";
 	import Filter7 from "@/components/sidebar/FilterMode7";
-	import DialogPrintoutSPMB from "@/components/DialogPrintoutSPMB";
 	export default {
-		name: "PesertaLulus",
+		name: "PesertaTidakLulus",
 		created() {
 			this.dashboard = this.$store.getters["uiadmin/getDefaultDashboard"];
 			this.breadcrumbs = [
@@ -212,7 +190,7 @@
 				this.datatableLoading = true;
 				await this.$ajax
 					.post(
-						"/spmb/pesertalulus",
+						"/spmb/pesertatidaklulus",
 						{
 							ta: this.tahun_pendaftaran,
 							prodi_id: this.prodi_id,
@@ -243,31 +221,6 @@
 			badgeIcon(item) {
 				return item.active == 1 ? "mdi-check-bold" : "mdi-close-thick";
 			},
-			async printpdf(item) {
-				this.btnLoading = true;
-				await this.$ajax
-					.post(
-						"/spmb/skkelulusan/printtopdf1/" + item.id,
-						{},
-						{
-							headers: {
-								Authorization: this.$store.getters["auth/Token"],
-							},
-						}
-					)
-					.then(({ data }) => {
-						this.$refs.dialogprint.open({
-							message:
-								"Silahkah download Formulir Pendaftaran dan SK Kelulusan",
-							file: data.pdf_file,
-							nama_file: "SK KELULUSAN",
-						});
-						this.btnLoading = false;
-					})
-					.catch(() => {
-						this.btnLoading = false;
-					});
-			},
 			deleteItem(item) {
 				this.$root.$confirm
 					.open(
@@ -280,7 +233,7 @@
 							this.btnLoading = true;
 							this.$ajax
 								.post(
-									"/spmb/pesertalulus/" + item.id,
+									"/spmb/pesertatidaklulus/" + item.id,
 									{
 										_method: "DELETE",
 									},
@@ -300,7 +253,7 @@
 								});
 						}
 					});
-			},
+			},			
 		},
 		watch: {
 			tahun_pendaftaran() {
@@ -319,7 +272,6 @@
 			SPMBLayout,
 			ModuleHeader,
 			Filter7,
-			"dialog-printout": DialogPrintoutSPMB,
 		},
 	};
 </script>

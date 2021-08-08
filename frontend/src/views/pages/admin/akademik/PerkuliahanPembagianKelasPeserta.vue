@@ -349,9 +349,9 @@ export default {
                     Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({ data }) => {
-                this.data_kelas_mhs=data.pembagiankelas;  
-                this.datatable=data.penyelenggaraan;     
-                this.datatable_peserta=data.peserta;     
+                this.data_kelas_mhs= data.pembagiankelas;  
+                this.datatable= data.penyelenggaraan;     
+                this.datatable_peserta= data.peserta;     
                 this.datatableLoading = false;
             })       
         },
@@ -364,7 +364,7 @@ export default {
                     Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({ data }) => {               
-                this.datatable=data.penyelenggaraan;     
+                this.datatable= data.penyelenggaraan;     
                 this.datatableLoading = false;
             })   
         },
@@ -377,7 +377,7 @@ export default {
                     Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({ data }) => {               
-                this.datatable_peserta=data.peserta;     
+                this.datatable_peserta= data.peserta;     
                 this.datatableLoading = false;
             })   
         },
@@ -411,7 +411,7 @@ export default {
                     Authorization: this.$store.getters["auth/Token"]
                 }
             }).then(({ data }) => {
-                this.datatable_members=data.members;
+                this.datatable_members= data.members;
                 this.showdialogpeserta=true;
             })             
         },

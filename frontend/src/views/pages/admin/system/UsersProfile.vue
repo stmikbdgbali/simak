@@ -309,7 +309,7 @@
                         }
                     ).then(({ data }) => {               
                         this.$refs.frmdata.reset(); 
-                        this.formdata.foto=data.foto;  
+                        this.formdata.foto= data.foto;  
                         this.formdata = this.formdefault; 
                         this.btnLoading = false;
                     }).catch(() => {
@@ -376,7 +376,7 @@
                         }
                     }
                 ).then(({ data }) => {     
-                    this.data_mhs=data.mahasiswa;  
+                    this.data_mhs= data.mahasiswa;  
                 })
             }
             

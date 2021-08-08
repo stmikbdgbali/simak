@@ -338,7 +338,7 @@ export default {
                     
                 }
             ).then(({ data }) => {
-                this.file_pdf=data.pdf_file;
+                this.file_pdf= data.pdf_file;
                 this.dialogprintpdf=true;
                 this.btnLoading = false;
             }).catch(() => {

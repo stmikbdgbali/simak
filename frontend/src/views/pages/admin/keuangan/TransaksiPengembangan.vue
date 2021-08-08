@@ -338,30 +338,30 @@
 								{{ item.nama_status }}
 							</v-chip>
 						</template>
+						<template v-slot:item.installment="{ item }">
+							{{ item.installment > 0 ? item.installment : "N.A" }}
+						</template>
 						<template v-slot:body.append v-if="datatable.length > 0">
 							<tr class="grey lighten-4 font-weight-black">
 								<td class="text-right" colspan="7">TOTAL TRANSAKSI PAID</td>
 								<td class="text-right">
 									{{ totaltransaksi_paid | formatUang }}
 								</td>
-								<td></td>
-								<td></td>
+								<td colspan="3"></td>
 							</tr>
 							<tr class="grey lighten-4 font-weight-black">
 								<td class="text-right" colspan="7">TOTAL TRANSAKSI UNPAID</td>
 								<td class="text-right">
 									{{ totaltransaksi_unpaid | formatUang }}
 								</td>
-								<td></td>
-								<td></td>
+								<td colspan="3"></td>								
 							</tr>
 							<tr class="grey lighten-4 font-weight-black">
 								<td class="text-right" colspan="7">TOTAL TRANSAKSI CANCELED</td>
 								<td class="text-right">
 									{{ totaltransaksi_canceled | formatUang }}
 								</td>
-								<td></td>
-								<td></td>
+								<td colspan="3"></td>
 							</tr>
 							<tr class="grey lighten-4 font-weight-black">
 								<td class="text-right" colspan="7">TOTAL TRANSAKSI</td>
@@ -373,15 +373,14 @@
 											| formatUang
 									}}
 								</td>
-								<td></td>
-								<td></td>
+								<td colspan="3"></td>
 							</tr>
 						</template>
 						<template v-slot:expanded-item="{ headers, item }">
 							<td :colspan="headers.length" class="text-center">
 								<v-col cols="13">
 									<strong>TRANS.DETAIL ID:</strong>{{ item.id }}
-									<strong>MODE BAYAR:</strong>{{ item.installment == 1 ? "CICILAN" : "TUNAI" }}
+									<strong>MODE BAYAR:</strong>{{ item.installment > 0 ? "CICILAN" : "TUNAI" }}
 									<strong>created_at:</strong>
 									{{ $date(item.created_at).format("DD/MM/YYYY HH:mm") }}
 									<strong>updated_at:</strong>
@@ -389,24 +388,24 @@
 								</v-col>
 							</td>
 						</template>
-						<template v-slot:item.actions="{ item }">
-							<v-icon small class="mr-2" @click.stop="viewItem(item)" v-if="item.installment">
+						<template v-slot:item.actions="{ item }">							
+							<v-icon small class="mr-2" @click.stop="viewItem(item)">
 								mdi-eye
 							</v-icon>
-							<v-icon small class="mr-2" @click.stop="editItem(item)">
+							<v-icon small class="mr-2" @click.stop="editItem(item)" v-if="item.installment < 1">
 								mdi-pencil
 							</v-icon>
 							<v-icon
 								small
 								:disabled="btnLoading"
 								@click.stop="deleteItem(item)"
-								v-if="item.status == 0"
+								v-if="item.status == 0 && item.installment < 1"
 							>
 								mdi-delete
 							</v-icon>
 						</template>
 						<template v-slot:no-data>
-							Data transaksi daftar ulang mahasiswa baru belum tersedia
+							Data transaksi pengembangan belum tersedia
 						</template>
 					</v-data-table>
 				</v-col>
@@ -522,6 +521,12 @@
 					text: "STATUS",
 					value: "nama_status",
 					width: 100,
+					sortable: false,
+				},
+				{
+					text: "CICILAN",
+					value: "installment",
+					width: 70,
 					sortable: false,
 				},
 				{

@@ -16,7 +16,7 @@ use Exception;
 
 use Ramsey\Uuid\Uuid;
 
-class TransaksiPengembanganController extends Controller {  
+class CicilanPengembanganController extends Controller {  
 	/**
 	 * daftar komponen biaya
 	 */
@@ -32,58 +32,40 @@ class TransaksiPengembanganController extends Controller {
 		$ta = $request->input('ta');      
 		$prodi_id = $request->input('prodi_id');
 					
-		$daftar_transaksi = TransaksiDetailModel::select(\DB::raw('
-																								pe3_transaksi_detail.id,
-																								pe3_transaksi_detail.user_id,
-																								pe3_transaksi_detail.transaksi_id,
-																								CONCAT(pe3_transaksi.no_transaksi,\' \') AS no_transaksi,
-																								pe3_transaksi_detail.biaya,
-																								pe3_transaksi_detail.jumlah,
-																								pe3_transaksi_detail.bulan,
-																								pe3_transaksi_detail.promovalue,
-																								pe3_transaksi_detail.sub_total,
+		$daftar_cicilan = CicilanModel::select(\DB::raw('
+																								id,
+																								pe3_cicilan.no_formulir,
+																								pe3_formulir_pendaftaran.nama_mhs,																								
+																								pe3_cicilan.total,
+																								pe3_cicilan.promovalue,
+																								pe3_cicilan.jumlah_cicilan,
+																								pe3_cicilan.sudah_nyicil,
+																								pe3_cicilan.sisa_rp_cicilan,
+																								pe3_cicilan.status,
+																								pe3_cicilan.ta,
+																								pe3_cicilan.idsmt,
+																								pe3_cicilan.created_at,
+																								pe3_cicilan.updated_at
 
-																								pe3_formulir_pendaftaran.nama_mhs,
-
-																								pe3_transaksi.no_faktur,
-																								pe3_transaksi.kjur,
-																								pe3_transaksi.ta,
-																								pe3_transaksi.idsmt,
-																								pe3_transaksi.idkelas,
-																								
-																								COALESCE(pe3_transaksi.no_formulir,"N.A") AS no_formulir,
-																								pe3_transaksi.nim,
-																								pe3_transaksi.status,
-																								pe3_status_transaksi.nama_status,
-																								pe3_status_transaksi.style,
-																								pe3_transaksi.total,
-																								pe3_transaksi.tanggal,
-																								pe3_transaksi.desc,
-																								pe3_transaksi_detail.installment,
-																								pe3_transaksi_detail.created_at,
-																								pe3_transaksi_detail.updated_at
-																						'))
-																						->join('pe3_transaksi','pe3_transaksi_detail.transaksi_id','pe3_transaksi.id')
-																						->join('pe3_formulir_pendaftaran','pe3_formulir_pendaftaran.user_id','pe3_transaksi_detail.user_id')
-																						->join('pe3_status_transaksi','pe3_transaksi.status','pe3_status_transaksi.id_status')                                                    
-																						->where('pe3_transaksi_detail.kombi_id', 102)																						                                            
-																						->orderBy('pe3_transaksi.tanggal','DESC');                                                    
+																						'))																						
+																						->join('pe3_formulir_pendaftaran','pe3_formulir_pendaftaran.user_id','pe3_cicilan.user_id')																						                                
+																						->orderBy('pe3_cicilan.tanggal','DESC');                                                    
 
 		if ($request->has('SEARCH'))
 		{
-				$daftar_transaksi=$daftar_transaksi->whereRaw('(pe3_transaksi.nim LIKE \''.$request->input('SEARCH').'%\' OR pe3_formulir_pendaftaran.nama_mhs LIKE \'%'.$request->input('SEARCH').'%\')')                                                    
+				$daftar_cicilan=$daftar_cicilan->whereRaw('(pe3_cicilan.nim LIKE \''.$request->input('SEARCH').'%\' OR pe3_formulir_pendaftaran.nama_mhs LIKE \'%'.$request->input('SEARCH').'%\')')                                                    
 																						->get();
 		}            
 		else
 		{
-				$daftar_transaksi=$daftar_transaksi->where('pe3_transaksi.ta', $ta)                                                                                              
-																						->where('pe3_transaksi.kjur', $prodi_id)                                               
+				$daftar_cicilan=$daftar_cicilan->where('pe3_cicilan.ta', $ta)                                                                                              
+																						->where('pe3_cicilan.kjur', $prodi_id)                                               
 																						->get();
 		} 
 		return Response()->json([
 																'status'=>1,
 																'pid'=>'fetchdata',  
-																'transaksi'=>$daftar_transaksi,
+																'cicilan'=>$daftar_cicilan,
 																'message'=>'Fetch data daftar transaksi berhasil.'
 														],200)->setEncodingOptions(JSON_NUMERIC_CHECK);
 	}
@@ -127,27 +109,26 @@ class TransaksiPengembanganController extends Controller {
 	{
 		$this->hasPermissionTo('KEUANGAN-TRANSAKSI-PENGEMBANGAN_SHOW');
 
-		$transaksi = TransaksiModel::find($id);
-		if (is_null($transaksi))
+		$cicilan = CicilanModel::find($id);
+		if (is_null($cicilan))
 		{			
 			return Response()->json([
 														'status'=>0,
 														'pid'=>'show',														
-														'message'=>["Detail Transaksi dengan ($id) gagal diperoleh"]
+														'message'=>["Detail cicilan dengan ($id) gagal diperoleh"]
 												], 422); 
 		}
 		else
 		{
-			$transaksi_detail = TransaksiDetailModel::where('transaksi_id', $transaksi->id)
+			$cicilan_detail = CicilanDetailModel::where('cicilan_id', $cicilan->id)
 																								->get();
-
 													
 			return Response()->json([
 														'status'=>1,
 														'pid'=>'show',
-														'transaksi'=>$transaksi,
-														'transaksi_detail'=>$transaksi_detail,
-														'message'=>["Detail Transaksi dengan ($id) berhasil diperoleh"]
+														'cicilan'=>$cicilan,
+														'daftar_cicilan'=>$cicilan_detail,
+														'message'=>["Detail cicilan dengan ($id) berhasil diperoleh"]
 												], 200); 
 		}
 	}
@@ -240,7 +221,7 @@ class TransaksiPengembanganController extends Controller {
 					return Response()->json([
 																			'status'=>1,
 																			'pid'=>'store',   
-																			'transaksi'=>$transaksi,
+																			'cicilan'=>$transaksi,
 																			'message'=>'Transaksi BIAYA PENGEMBANGAN berhasil di input.'
 																	],200); 
 			}
@@ -318,7 +299,7 @@ class TransaksiPengembanganController extends Controller {
 					$transaksi->desc = $request->input('desc');
 					$transaksi->save();
 					
-					if ($transaksi_detail->installment > 0 && !CicilanModel::where('user_id', $transaksi->user_id)->exists())
+					if ($transaksi_detail->installment > 0)
 					{
 						$cicilan = CicilanModel::create([
 							'id'=>Uuid::uuid4()->toString(),
@@ -336,10 +317,9 @@ class TransaksiPengembanganController extends Controller {
 							'bulan'=>$transaksi_detail->bulan,
 							'tahun'=>$transaksi->tahun,
 							'total'=>$total,
-							'jumlah_cicilan'=>3,
+							'jumlah_cicilan'=>0,
 							'sudah_nyicil'=>0,
-							'sisa_rp_cicilan'=>$total,
-							'tanggal'=>$transaksi->tanggal,
+							'sisa_rp_cicilan'=>0,
 
 							'kjur'=>$transaksi->kjur,
 							'ta'=>$transaksi->ta,
@@ -389,7 +369,7 @@ class TransaksiPengembanganController extends Controller {
 					return Response()->json([
 																	'status'=>0,
 																	'pid'=>'destroy',           
-																	'transaksi'=>$transaksi,     
+																	'cicilan'=>$transaksi,     
 																	'message'=>["Transaksi registrasi krs dengan ($id) gagal dihapus"]
 															], 422); 
 			}
@@ -413,7 +393,7 @@ class TransaksiPengembanganController extends Controller {
 					return Response()->json([
 																	'status'=>1,
 																	'pid'=>'destroy',           
-																	'transaksi'=>$transaksi,     
+																	'cicilan'=>$transaksi,     
 																	'message'=>["Transaksi registrasi krs dengan ($id) gagal dihapus"]
 															], 422); 
 			}

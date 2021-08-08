@@ -121,8 +121,8 @@ class NilaiUjianController extends Controller {
 																														'user_id' => $this->getUserid(), 
 																														'message'=>"Menyimpan status kelulusan Mahasiswa Baru ($keterangan) berhasil dilakukan."
 																												]);
-						if ($ket_lulus==1)
-						{        
+						if ($ket_lulus == 1)
+						{
 								$formulir=$data_nilai->formulir;       
 								$this->createTransaksiDulang($formulir);
 								$this->createTransaksiSPP($formulir);                

@@ -314,6 +314,15 @@ const routes = [
 		component: () => import("../views/pages/admin/spmb/PesertaLulus.vue"),
 	},
 	{
+		path: "/spmb/pesertatidaklulus",
+		name: "SPMBPesertaTidakLulus",
+		meta: {
+			title: "SPMB - PESERTA TIDAK LULUS",
+			requiresAuth: true,
+		},
+		component: () => import("../views/pages/admin/spmb/PesertaTidakLulus.vue"),
+	},
+	{
 		path: "/spmb/jadwalujianpmb/passinggrade/:idjadwalujian",
 		name: "SPMBPassingGrade",
 		meta: {
@@ -504,7 +513,25 @@ const routes = [
 		component: () =>
 			import("../views/pages/admin/keuangan/KonfirmasiPembayaran.vue"),
 	},
-
+	{
+		path: "/keuangan/cicilan-pengembangan",
+		name: "KeuanganCicilanPengembangan",
+		meta: {
+			title: "KEUANGAN - CICILAN PENGEMBANGAN",
+			requiresAuth: true,
+		},
+		component: () => import("../views/pages/admin/keuangan/CicilanPengembangan.vue"),
+	},
+	{
+		path: "/keuangan/cicilan-pengembangan/:cicilan_id",
+		name: "KeuanganCicilanPengembanganDetail",
+		meta: {
+			title: "KEUANGAN - CICILAN PENGEMBANGAN",
+			requiresAuth: true,
+		},
+		component: () =>
+			import("../views/pages/admin/keuangan/CicilanPengembanganDetail.vue"),
+	},
 	//kemahasiswaan
 	{
 		path: "/kemahasiswaan",

@@ -111,7 +111,7 @@ class DosenWaliController extends Controller {
             'username'=>'required|string|unique:users',
             'password'=>'required',        
         ]);
-        $user = \DB::transaction(function () use ($request){
+        $user = \DB::transaction(function () use ($request) {
 
             $now = \Carbon\Carbon::now()->toDateTimeString();        
             $user=User::create([

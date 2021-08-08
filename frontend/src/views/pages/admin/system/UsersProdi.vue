@@ -414,7 +414,7 @@ export default {
 								}
 						}).then(({ data }) => {
 								this.daftar_users = data.users;
-								this.role_id=data.role.id;
+								this.role_id= data.role.id;
 								this.datatableLoading = false;
 						});
 
@@ -536,7 +536,7 @@ export default {
 										Authorization: this.TOKEN
 								}
 						}).then(({ data }) => {
-								this.editedItem.role_id=data.roles;
+								this.editedItem.role_id= data.roles;
 								this.btnLoading = false;
 								this.dialogEdit = true;
 						});
