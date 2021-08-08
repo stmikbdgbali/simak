@@ -280,7 +280,7 @@
 							this.btnLoading = true;
 							this.$ajax
 								.post(
-									"/spmb/pesertatidaklulus/" + item.id,
+									"/spmb/pesertalulus/" + item.id,
 									{
 										_method: "DELETE",
 									},

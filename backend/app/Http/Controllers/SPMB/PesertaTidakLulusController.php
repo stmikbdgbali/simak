@@ -75,7 +75,8 @@ class PesertaTidakLulusController extends Controller {
 		{ 
 				$this->hasAnyPermission(['SPMB-PMB-NILAI-UJIAN_DESTROY']);
 
-				$data_nilai = NilaiUjianPMBModel::find($id); 
+				$data_nilai = NilaiUjianPMBModel::where('ket_lulus',0)
+										->find($id); 
 				
 				if (is_null($data_nilai))
 				{
