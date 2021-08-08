@@ -42,6 +42,7 @@ class CicilanModel extends Model {
 		'jumlah_cicilan',
 		'sudah_nyicil',
 		'sisa_rp_cicilan',
+		'tanggal',
 		
     'kjur',
     'ta',

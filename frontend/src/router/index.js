@@ -504,6 +504,15 @@ const routes = [
 		component: () =>
 			import("../views/pages/admin/keuangan/KonfirmasiPembayaran.vue"),
 	},
+	{
+		path: "/keuangan/cicilan-pengembangan",
+		name: "KeuanganCicilanPengembangan",
+		meta: {
+			title: "KEUANGAN - CICILAN PENGEMBANGAN",
+			requiresAuth: true,
+		},
+		component: () => import("../views/pages/admin/keuangan/CicilanPengembangan.vue"),
+	},
 
 	//kemahasiswaan
 	{

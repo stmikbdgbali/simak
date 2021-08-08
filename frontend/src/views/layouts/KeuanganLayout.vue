@@ -158,8 +158,7 @@
 						</v-list-item-title>
 					</v-list-item-content>
 				</v-list-item> 
-				<v-divider />
-				<v-subheader>TRANSAKSI TUNAI</v-subheader>
+				<v-divider />				
 				<v-list-item link v-if="CAN_ACCESS('KEUANGAN-TRANSAKSI-BIAYA-PENDAFTARAN_BROWSE')" to="/keuangan/transaksi-pendaftaranmhsbaru">
 					<v-list-item-icon class="mr-2">
 						<v-icon>mdi-account-cash</v-icon>
@@ -181,7 +180,17 @@
 					</v-list-item-content>
 				</v-list-item>
 				<v-divider />
-				<v-subheader>TRANSAKSI CICILAN</v-subheader>
+				<v-subheader>CICILAN</v-subheader>
+				<v-list-item link v-if="CAN_ACCESS('KEUANGAN-TRANSAKSI-PENGEMBANGAN_BROWSE')" to="/keuangan/cicilan-pengembangan">
+					<v-list-item-icon class="mr-2">
+						<v-icon>mdi-account-cash</v-icon>
+					</v-list-item-icon>
+					<v-list-item-content>
+						<v-list-item-title>
+							PENGEMBANGAN
+						</v-list-item-title>
+					</v-list-item-content>
+				</v-list-item>
 			</v-list>
 		</v-navigation-drawer>
 		<v-navigation-drawer v-model="drawerRight" width="300" app fixed right temporary v-if="showrightsidebar">
