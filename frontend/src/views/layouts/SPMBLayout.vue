@@ -156,6 +156,16 @@
 						</v-list-item-title>
 					</v-list-item-content>
 				</v-list-item>
+				<v-list-item link v-if="CAN_ACCESS('SPMB-PMB-NILAI-UJIAN_BROWSE') && dashboard!='mahasiswabaru' && dashboard!='mahasiswa'" to="/spmb/pesertatidaklulus">
+					<v-list-item-icon class="mr-2">
+						<v-icon>mdi-order-alphabetical-ascending</v-icon>
+					</v-list-item-icon>
+					<v-list-item-content>
+						<v-list-item-title>
+							PESERTA TIDAK LULUS
+						</v-list-item-title>
+					</v-list-item-content>
+				</v-list-item>
 				<v-subheader v-if="CAN_ACCESS('SPMB-GROUP') && dashboard!='mahasiswabaru' && dashboard!='mahasiswa'">LAPORAN</v-subheader>   
 				<v-list-item link v-if="CAN_ACCESS('SPMB-PMB-LAPORAN-FAKULTAS_BROWSE') && isBentukPT('universitas')" to="/spmb/laporanfakultas">
 					<v-list-item-icon class="mr-2">

@@ -181,6 +181,8 @@ $router->group(['prefix'=>'v1','middleware'=>'auth:api'], function () use ($rout
 
 	//spmb - peserta lulus
 	$router->post('/spmb/pesertalulus',['middleware'=>['role:superadmin|pmb|keuangan'],'uses'=>'SPMB\PesertaLulusController@index','as'=>'pesertalulus.index']);
+	$router->post('/spmb/pesertatidaklulus',['middleware'=>['role:superadmin|pmb|keuangan'],'uses'=>'SPMB\PesertaTidakLulusController@index','as'=>'pesertatidaklulus.index']);
+	$router->delete('/spmb/pesertatidaklulus/{id}',['middleware'=>['role:superadmin|pmb|keuangan'],'uses'=>'SPMB\PesertaTidakLulusController@destroy','as'=>'pesertatidaklulus.destroy']);
 	
 	//spmb - persyaratan
 	$router->post('/spmb/pmbpersyaratan',['middleware'=>['role:superadmin|pmb|mahasiswabaru|keuangan'],'uses'=>'SPMB\PMBPersyaratanController@index','as'=>'pmbpersyaratan.index']);

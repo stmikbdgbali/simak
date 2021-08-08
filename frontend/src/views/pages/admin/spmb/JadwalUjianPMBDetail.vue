@@ -180,7 +180,7 @@
 					</v-bottom-navigation>
 				</v-col>
 			</v-row>
-			<v-row class="mb-4" no-gutters>
+			<v-row class="mb-4">
 				<v-col cols="12">
 					<v-card>
 						<v-card-text>
@@ -197,6 +197,9 @@
 			</v-row>
 			<v-row class="mb-4" no-gutters>
 				<v-col cols="12">
+					<v-alert type="info">
+						Bila calon Mahasiwa baru dinyatakan "TIDAK LULUS", dan berniat untuk mengulang. Silahkan masuk ke halaman Peserta Tidak Lulus kemudian klik tombol hapus. Selanjutnya minta mahasiswa untuk ikut jadwal lain.
+					</v-alert>
 					<v-data-table
 						:headers="headers"
 						:items="datatable"

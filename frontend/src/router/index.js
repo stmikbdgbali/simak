@@ -314,6 +314,15 @@ const routes = [
 		component: () => import("../views/pages/admin/spmb/PesertaLulus.vue"),
 	},
 	{
+		path: "/spmb/pesertatidaklulus",
+		name: "SPMBPesertaTidakLulus",
+		meta: {
+			title: "SPMB - PESERTA TIDAK LULUS",
+			requiresAuth: true,
+		},
+		component: () => import("../views/pages/admin/spmb/PesertaTidakLulus.vue"),
+	},
+	{
 		path: "/spmb/jadwalujianpmb/passinggrade/:idjadwalujian",
 		name: "SPMBPassingGrade",
 		meta: {
