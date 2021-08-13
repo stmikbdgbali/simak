@@ -80,11 +80,13 @@
 					<v-img :src="photoUser" @click.stop="toProfile"></v-img>
 				</v-list-item-avatar>
 				<v-list-item-content>
-					<v-list-item-title class="title">
+					<v-list-item-title class="headline font-weight-bold mx-1" style="color:#FFFFFF" dark>
 						{{ ATTRIBUTE_USER("username") }}
 					</v-list-item-title>
 					<v-list-item-subtitle>
-						[{{ DEFAULT_ROLE }}]
+						<span style="color:#FFFFFF" dark>
+							[{{DEFAULT_ROLE}}]
+						</span>
 					</v-list-item-subtitle>
 				</v-list-item-content>
 			</v-list-item>
@@ -92,8 +94,7 @@
 			<v-list
 				expand
 				dense
-				rounded
-				class="ml-2 mr-2">
+				rounded>
 				<v-list-item :to="{ path: '/dmaster' }" v-if="CAN_ACCESS('DMASTER-GROUP')" link class="warning" color="#FFF">
 					<v-list-item-icon class="mr-2">
 						<v-icon>mdi-home-floor-b</v-icon>
