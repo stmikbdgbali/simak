@@ -16,7 +16,7 @@
 						</template>
 						<template v-slot:desc>
 								<v-alert
-										color="#245EA9"
+										color="#245ea9"
 										border="left"
 										colored-border
 										type="info"
