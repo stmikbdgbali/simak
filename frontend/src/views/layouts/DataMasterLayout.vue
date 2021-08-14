@@ -84,7 +84,7 @@
 						{{ ATTRIBUTE_USER("username") }}
 					</v-list-item-title>
 					<v-list-item-subtitle>
-						<span style="color:#FFFFFF" dark>
+						<span style="color:#FFF" dark>
 							[{{DEFAULT_ROLE}}]
 						</span>
 					</v-list-item-subtitle>
