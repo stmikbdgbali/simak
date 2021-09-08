@@ -3,7 +3,7 @@
 		<v-system-bar
 			app
 			dark
-			color="#C43638"
+			color="#800000"
 			:class="this.$store.getters['uiadmin/getTheme']('V-SYSTEM-BAR-CSS-CLASS')">
 			<strong>Hak Akses Sebagai :</strong> {{ ROLE }}
 		</v-system-bar>
@@ -72,7 +72,7 @@
 			width="300"
 			dark
 			class="#d8d44c"
-			color="#e1373a"
+			color="#8D021F"
 			:temporary="temporaryleftsidebar"
 			app>
 			<v-list-item>
@@ -80,7 +80,7 @@
 					<v-img :src="photoUser" @click.stop="toProfile"></v-img>
 				</v-list-item-avatar>
 				<v-list-item-content>
-					<v-list-item-title class="headline font-weight-bold mx-1" style="color:#FFFFFF" dark>
+					<v-list-item-title class="headline font-weight-bold mx-0" style="color:#FFFFFF" dark>
 						{{ ATTRIBUTE_USER("username") }}
 					</v-list-item-title>
 					<v-list-item-subtitle>
@@ -102,7 +102,7 @@
 					<v-list-item-content>
 						<v-list-item-title>BOARD DATA MASTER</v-list-item-title>
 					</v-list-item-content>
-				</v-list-item>   
+				</v-list-item>
 				<v-subheader>FASILITAS</v-subheader>
 				<v-list-item link to="/dmaster/ruangkelas">
 					<v-list-item-icon class="mr-2">
