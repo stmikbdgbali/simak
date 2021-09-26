@@ -8,7 +8,7 @@
 								RUANG KELAS
 						</template>
 						<template v-slot:breadcrumbs>
-								<v-breadcrumbs :items="breadcrumbs" class="pa-0">
+								<v-breadcrumbs :items="breadcrumbs" class="pa-0" color="warning">
 										<template v-slot:divider>
 												<v-icon>mdi-chevron-right</v-icon>
 										</template>
